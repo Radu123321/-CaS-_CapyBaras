@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Înregistrare - CaS Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="index.html">spalatoriile <strong>auto</strong> | <span class="red">self service</span></a>
+      </div>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html">ACASA</a></li>
+          <li><a href="multiwash.html">DE CE MultiWash?</a></li>
+          <li><a href="#">SPALATORII</a></li>
+          <li><a href="#">ECHIPAMENTE</a></li>
+          <li><a href="#">APP</a></li>
+          <li><a href="#">CONTACT</a></li>
+        </ul>
+      </nav>
+
+      <div class="auth-buttons">
+        <a href="login.html" class="btn">Login</a>
+        <a href="register.html" class="btn active">Register</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>Înregistrare</h1>
+          <p>Creează un cont nou CaS</p>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">Prenume</label>
+              <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                required 
+                placeholder="Prenumele tău"
+                autocomplete="given-name"
+              >
+              <span class="error-message" id="firstNameError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="lastName">Nume</label>
+              <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                required 
+                placeholder="Numele tău"
+                autocomplete="family-name"
+              >
+              <span class="error-message" id="lastNameError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              placeholder="exemplu@email.com"
+              autocomplete="email"
+            >
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              required 
+              placeholder="+40 7XX XXX XXX"
+              autocomplete="tel"
+            >
+            <span class="error-message" id="phoneError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Parolă</label>
+            <div class="password-input">
+              <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                required 
+                placeholder="Minim 8 caractere"
+                autocomplete="new-password"
+              >
+              <button type="button" class="toggle-password" id="togglePassword">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength">
+              <div class="strength-bar">
+                <div class="strength-fill"></div>
+              </div>
+              <span class="strength-text">Forța parolei</span>
+            </div>
+            <span class="error-message" id="passwordError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirmă Parola</label>
+            <div class="password-input">
+              <input 
+                type="password" 
+                id="confirmPassword" 
+                name="confirmPassword" 
+                required 
+                placeholder="Repetă parola"
+                autocomplete="new-password"
+              >
+              <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                <span class="eye-icon">👁️</span>
+              </button>
+            </div>
+            <span class="error-message" id="confirmPasswordError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="role">Rol</label>
+            <select id="role" name="role" required>
+              <option value="">Selectează rolul</option>
+              <option value="EMPLOYEE">Angajat</option>
+              <option value="MANAGER">Manager</option>
+              <option value="ADMIN">Administrator</option>
+            </select>
+            <span class="error-message" id="roleError"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+              <span class="checkmark"></span>
+              Sunt de acord cu <a href="terms.html" target="_blank">Termenii și Condițiile</a>
+            </label>
+            <span class="error-message" id="agreeTermsError"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreePrivacy" name="agreePrivacy" required>
+              <span class="checkmark"></span>
+              Sunt de acord cu <a href="privacy.html" target="_blank">Politica de Confidențialitate</a>
+            </label>
+            <span class="error-message" id="agreePrivacyError"></span>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-container">
+              <input type="checkbox" id="agreeNewsletter" name="agreeNewsletter">
+              <span class="checkmark"></span>
+              Doresc să primesc newsletter și oferte speciale
+            </label>
+          </div>
+
+          <button type="submit" class="auth-btn" id="registerBtn">
+            <span class="btn-text">Creează Cont</span>
+            <span class="btn-loading" style="display: none;">
+              <span class="spinner"></span> Se înregistrează...
+            </span>
+          </button>
+
+          <div class="form-divider">
+            <span>sau</span>
+          </div>
+
+          <div class="social-login">
+            <button type="button" class="social-btn google-btn" disabled>
+              <span class="social-icon">🔗</span>
+              Google (În curând)
+            </button>
+          </div>
+
+          <div class="auth-footer">
+            <p>Ai deja cont? <a href="login.html">Autentifică-te aici</a></p>
+          </div>
+        </form>
+
+        <!-- Success/Error Messages -->
+        <div id="alertContainer" class="alert-container" style="display: none;">
+          <div id="alertMessage" class="alert"></div>
+        </div>
+      </div>
+
+      <!-- Registration Info -->
+      <div class="demo-info">
+        <h3>ℹ️ Informații Înregistrare</h3>
+        <div class="info-list">
+          <div class="info-item">
+            <strong>Roluri disponibile:</strong>
+            <ul>
+              <li><strong>Angajat:</strong> Acces la comenzi și servicii</li>
+              <li><strong>Manager:</strong> Gestiune locație și echipă</li>
+              <li><strong>Administrator:</strong> Acces complet sistem</li>
+            </ul>
+          </div>
+          <div class="info-item">
+            <strong>Cerințe parolă:</strong>
+            <ul>
+              <li>Minim 8 caractere</li>
+              <li>Cel puțin o literă mare</li>
+              <li>Cel puțin o literă mică</li>
+              <li>Cel puțin o cifră</li>
+              <li>Cel puțin un caracter special</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html> 

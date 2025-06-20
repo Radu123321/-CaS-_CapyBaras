@@ -1,0 +1,273 @@
+{
+  "system": {
+    "name": "CaS - Cleaning as a Service",
+    "version": "2.0.0",
+    "description": "Complete Management System for Cleaning Services",
+    "author": "CaS Development Team",
+    "license": "ISC"
+  },
+  "server": {
+    "host": "localhost",
+    "port": 3000,
+    "environment": "development",
+    "cors": {
+      "enabled": true,
+      "origins": ["*"],
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "headers": ["Content-Type", "Authorization"]
+    }
+  },
+  "database": {
+    "type": "postgresql",
+    "host": "localhost",
+    "port": 5432,
+    "name": "cas_db",
+    "schema": "createschema_enhanced.sql",
+    "seedData": ["seed_data.sql", "seed_equipment.sql"]
+  },
+  "authentication": {
+    "jwtSecret": "cas-super-secret-key-2024",
+    "tokenExpiration": "24h",
+    "refreshTokenExpiration": "7d",
+    "roles": ["ADMIN", "MANAGER", "EMPLOYEE", "CUSTOMER"],
+    "demoAccounts": {
+      "admin": {
+        "email": "admin@cas.ro",
+        "password": "admin123",
+        "role": "ADMIN"
+      },
+      "manager": {
+        "email": "manager@cas.ro",
+        "password": "manager123",
+        "role": "MANAGER"
+      },
+      "employee": {
+        "email": "employee@cas.ro",
+        "password": "employee123",
+        "role": "EMPLOYEE"
+      }
+    }
+  },
+  "frontend": {
+    "directory": "Cas-front",
+    "entryPoint": "index.html",
+    "pages": {
+      "home": "/",
+      "login": "/login.html",
+      "register": "/register.html",
+      "dashboard": "/dashboard.html"
+    },
+    "assets": {
+      "css": "css/",
+      "js": "js/",
+      "images": "assets/"
+    }
+  },
+  "backend": {
+    "directory": "src",
+    "entryPoint": "index.js",
+    "structure": {
+      "controllers": "controllers/",
+      "services": "services/",
+      "repositories": "repositories/",
+      "core": "core/",
+      "jobs": "jobs/",
+      "public": "public/"
+    }
+  },
+  "api": {
+    "baseUrl": "/api",
+    "version": "v1",
+    "endpoints": {
+      "auth": "/api/auth",
+      "orders": "/api/orders",
+      "equipment": "/api/equipment",
+      "stats": "/api/stats",
+      "notifications": "/api/notifications",
+      "weather": "/api/weather",
+      "inventory": "/api/inventory",
+      "employees": "/api/employees",
+      "customers": "/api/customers",
+      "locations": "/api/locations",
+      "services": "/api/services",
+      "transports": "/api/transports"
+    },
+    "documentation": {
+      "endpoints": "API_ENDPOINTS.md",
+      "notifications": "NOTIFICATION_API_ENDPOINTS.md",
+      "postman": "CaS_Complete_API_Collection.postman_collection.json"
+    }
+  },
+  "websocket": {
+    "enabled": true,
+    "endpoint": "/ws/status",
+    "features": {
+      "realTimeUpdates": true,
+      "notifications": true,
+      "dashboardSync": true,
+      "equipmentStatus": true
+    }
+  },
+  "notifications": {
+    "channels": {
+      "email": {
+        "enabled": true,
+        "smtp": {
+          "host": "smtp.gmail.com",
+          "port": 587,
+          "secure": false,
+          "requireAuth": true
+        }
+      },
+      "websocket": {
+        "enabled": true,
+        "realTime": true
+      },
+      "browser": {
+        "enabled": true,
+        "pushNotifications": true
+      },
+      "rss": {
+        "enabled": true,
+        "endpoints": ["/rss", "/rss/location/:id", "/rss/orders", "/rss/inventory"]
+      }
+    }
+  },
+  "jobs": {
+    "scheduler": {
+      "enabled": true,
+      "timezone": "Europe/Bucharest"
+    },
+    "tasks": {
+      "expandRecurrences": {
+        "schedule": "*/5 * * * *",
+        "description": "Expand recurring orders every 5 minutes"
+      },
+      "checkInventory": {
+        "schedule": "0 * * * *",
+        "description": "Check inventory levels every hour"
+      },
+      "checkEquipmentStatus": {
+        "schedule": "0 */6 * * *",
+        "description": "Check equipment status every 6 hours"
+      },
+      "updateWeatherData": {
+        "schedule": "0 */3 * * *",
+        "description": "Update weather data every 3 hours"
+      },
+      "generateDailyStats": {
+        "schedule": "0 0 * * *",
+        "description": "Generate daily statistics at midnight"
+      },
+      "exceptionDetection": {
+        "schedule": "*/30 * * * *",
+        "description": "Run exception detection every 30 minutes"
+      }
+    }
+  },
+  "features": {
+    "authentication": {
+      "enabled": true,
+      "roleBasedAccess": true,
+      "jwtTokens": true,
+      "sessionManagement": true
+    },
+    "dashboard": {
+      "enabled": true,
+      "realTimeCharts": true,
+      "kpiCards": true,
+      "responsiveDesign": true,
+      "chartLibrary": "Chart.js"
+    },
+    "equipmentManagement": {
+      "enabled": true,
+      "statusMonitoring": true,
+      "maintenanceScheduling": true,
+      "preventiveAlerts": true,
+      "analytics": true
+    },
+    "weatherIntegration": {
+      "enabled": true,
+      "impactAnalysis": true,
+      "schedulingRecommendations": true,
+      "severeWeatherAlerts": true,
+      "correlationAnalytics": true
+    },
+    "statistics": {
+      "enabled": true,
+      "realTimeData": true,
+      "trendAnalysis": true,
+      "predictiveAnalytics": true,
+      "customReports": true,
+      "locationComparison": true
+    },
+    "exceptionDetection": {
+      "enabled": true,
+      "staffUnavailability": true,
+      "powerOutages": true,
+      "equipmentFailures": true,
+      "transportDelays": true,
+      "proactiveAlerting": true
+    }
+  },
+  "logging": {
+    "enabled": true,
+    "level": "info",
+    "directory": "logs/",
+    "filePattern": "cas-YYYY-MM-DD.log",
+    "maxFiles": 30,
+    "console": true
+  },
+  "security": {
+    "cors": true,
+    "helmet": false,
+    "rateLimit": false,
+    "inputValidation": true,
+    "sqlInjectionProtection": true,
+    "xssProtection": true
+  },
+  "performance": {
+    "caching": {
+      "enabled": false,
+      "ttl": 300
+    },
+    "compression": {
+      "enabled": false,
+      "level": 6
+    },
+    "clustering": {
+      "enabled": false,
+      "workers": "auto"
+    }
+  },
+  "monitoring": {
+    "healthChecks": {
+      "enabled": true,
+      "endpoints": ["/api/ping", "/api/stats/dashboard"]
+    },
+    "metrics": {
+      "enabled": true,
+      "websocketStats": true,
+      "apiResponseTimes": true,
+      "databaseQueries": true
+    }
+  },
+  "deployment": {
+    "environment": "development",
+    "startScript": "start-cas.js",
+    "processManager": "pm2",
+    "docker": {
+      "supported": true,
+      "baseImage": "node:16-alpine",
+      "port": 3000
+    }
+  },
+  "documentation": {
+    "readme": "README.md",
+    "apiDocs": "API_ENDPOINTS.md",
+    "notificationDocs": "NOTIFICATION_API_ENDPOINTS.md",
+    "postmanCollection": "CaS_Complete_API_Collection.postman_collection.json",
+    "roadmap": "roadmap.txt",
+    "projectAnalysis": "ANALIZA_PROIECT_CaS.md"
+  }
+} 

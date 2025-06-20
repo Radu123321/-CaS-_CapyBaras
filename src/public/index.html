@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaS - Cleaning as a Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.connected {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.disconnected {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .message-log {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .rss-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .rss-link {
+            background-color: #ff6600;
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .rss-link:hover {
+            background-color: #e55a00;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧹 CaS - Cleaning as a Service</h1>
+    <p>Real-time status dashboard with WebSocket and RSS feeds</p>
+
+    <div class="grid">
+        <!-- WebSocket Section -->
+        <div class="container">
+            <h2>📡 WebSocket Status</h2>
+            <div id="wsStatus" class="status disconnected">Disconnected</div>
+            
+            <div>
+                <label>Location ID:</label>
+                <input type="number" id="locationId" value="1" min="1">
+                <button onclick="connectWebSocket()">Connect</button>
+                <button onclick="disconnectWebSocket()">Disconnect</button>
+            </div>
+            
+            <div>
+                <input type="text" id="messageInput" placeholder="Enter message to send" style="width: 200px;">
+                <button onclick="sendMessage()">Send Message</button>
+            </div>
+            
+            <h3>Message Log:</h3>
+            <div id="messageLog" class="message-log"></div>
+        </div>
+
+        <!-- RSS Feeds Section -->
+        <div class="container">
+            <h2>📰 RSS Feeds</h2>
+            <p>Subscribe to real-time updates:</p>
+            
+            <div class="rss-links">
+                <a href="/rss" class="rss-link" target="_blank">📡 General Feed</a>
+                <a href="/rss/orders" class="rss-link" target="_blank">📋 Orders</a>
+                <a href="/rss/inventory" class="rss-link" target="_blank">📦 Inventory</a>
+                <a href="/rss/location/1" class="rss-link" target="_blank">📍 Location 1</a>
+                <a href="/rss/location/2" class="rss-link" target="_blank">📍 Location 2</a>
+            </div>
+            
+            <h3>API Endpoints:</h3>
+            <div style="font-family: monospace; font-size: 12px;">
+                <div>GET /api/ping - Health check</div>
+                <div>GET /api/websocket/stats - WebSocket statistics</div>
+                <div>POST /api/websocket/broadcast - Broadcast to all</div>
+                <div>GET /api/inventory/alerts - Inventory alerts</div>
+                <div>GET /api/orders - Recent orders</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Status Section -->
+    <div class="container">
+        <h2>🔧 System Status</h2>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <button onclick="testAPI()">Test API</button>
+            <button onclick="getWebSocketStats()">WebSocket Stats</button>
+            <button onclick="getInventoryAlerts()">Inventory Alerts</button>
+            <button onclick="broadcastTestMessage()">Broadcast Test</button>
+        </div>
+        
+        <h3>System Log:</h3>
+        <div id="systemLog" class="message-log"></div>
+    </div>
+
+    <script>
+        let ws = null;
+        let currentLocationId = 1;
+
+        function log(message, isSystem = false) {
+            const logElement = isSystem ? document.getElementById('systemLog') : document.getElementById('messageLog');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `[${timestamp}] ${message}\n`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function connectWebSocket() {
+            const locationId = document.getElementById('locationId').value;
+            currentLocationId = locationId;
+            
+            if (ws) {
+                ws.close();
+            }
+
+            const wsUrl = `ws://localhost:8000/ws/status?location=${locationId}`;
+            ws = new WebSocket(wsUrl);
+
+            ws.onopen = function() {
+                document.getElementById('wsStatus').textContent = `Connected to Location ${locationId}`;
+                document.getElementById('wsStatus').className = 'status connected';
+                log(`Connected to WebSocket for location ${locationId}`);
+                
+                // Subscribe to location updates
+                ws.send(JSON.stringify({
+                    type: 'subscribe',
+                    locationId: parseInt(locationId)
+                }));
+            };
+
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                log(`Received: ${JSON.stringify(data, null, 2)}`);
+            };
+
+            ws.onclose = function() {
+                document.getElementById('wsStatus').textContent = 'Disconnected';
+                document.getElementById('wsStatus').className = 'status disconnected';
+                log('WebSocket connection closed');
+            };
+
+            ws.onerror = function(error) {
+                log(`WebSocket error: ${error}`);
+            };
+        }
+
+        function disconnectWebSocket() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
+            const message = messageInput.value.trim();
+            
+            if (!message || !ws) return;
+
+            const data = {
+                type: 'ping',
+                message: message,
+                timestamp: new Date().toISOString()
+            };
+
+            ws.send(JSON.stringify(data));
+            log(`Sent: ${JSON.stringify(data)}`);
+            messageInput.value = '';
+        }
+
+        async function testAPI() {
+            try {
+                const response = await fetch('/api/ping');
+                const data = await response.json();
+                log(`API Test: ${JSON.stringify(data)}`, true);
+            } catch (error) {
+                log(`API Test Error: ${error.message}`, true);
+            }
+        }
+
+        async function getWebSocketStats() {
+            try {
+                const response = await fetch('/api/websocket/stats');
+                const data = await response.json();
+                log(`WebSocket Stats: ${JSON.stringify(data, null, 2)}`, true);
+            } catch (error) {
+                log(`WebSocket Stats Error: ${error.message}`, true);
+            }
+        }
+
+        async function getInventoryAlerts() {
+            try {
+                const response = await fetch('/api/inventory/alerts');
+                const data = await response.json();
+                log(`Inventory Alerts: ${JSON.stringify(data, null, 2)}`, true);
+            } catch (error) {
+                log(`Inventory Alerts Error: ${error.message}`, true);
+            }
+        }
+
+        async function broadcastTestMessage() {
+            try {
+                const response = await fetch('/api/websocket/broadcast', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: 'test',
+                        message: 'Test broadcast message from dashboard'
+                    })
+                });
+                const data = await response.json();
+                log(`Broadcast Result: ${JSON.stringify(data)}`, true);
+            } catch (error) {
+                log(`Broadcast Error: ${error.message}`, true);
+            }
+        }
+
+        // Auto-connect on page load
+        window.onload = function() {
+            log('Dashboard loaded. Ready to connect.', true);
+        };
+
+        // Handle Enter key in message input
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

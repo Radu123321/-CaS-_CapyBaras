@@ -1,0 +1,36 @@
+2025-06-20T14:58:18.498Z [INFO] Minimal server listening on port 8000
+2025-06-20T14:59:46.164Z [INFO] POST /api/register
+2025-06-20T14:59:46.288Z [ERROR] SQL Error: 
+2025-06-20T15:03:20.218Z [INFO] POST /api/register
+2025-06-20T15:03:20.430Z [ERROR] SQL Error: 
+2025-06-20T15:06:42.614Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:07:17.370Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:07:24.384Z [INFO] POST /api/register
+2025-06-20T15:07:24.511Z [ERROR] psql spawn error: spawn psql.exe ENOENT
+2025-06-20T15:07:24.512Z [ERROR] Register DB error: spawn psql.exe ENOENT
+2025-06-20T15:07:24.514Z [ERROR] SQL Error: 
+2025-06-20T15:11:55.837Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:12:00.405Z [INFO] POST /api/register
+2025-06-20T15:12:00.539Z [ERROR] psql spawn error: spawn psql.exe ENOENT
+2025-06-20T15:12:00.540Z [ERROR] Register DB error: spawn psql.exe ENOENT
+2025-06-20T15:12:00.542Z [ERROR] SQL Error: 
+2025-06-20T15:13:42.787Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:14:14.498Z [INFO] POST /api/register
+2025-06-20T15:14:14.797Z [ERROR] psql spawn error: spawn C:\Program Files\PostgreSQL\15\bin\psql.exe ENOENT
+2025-06-20T15:14:14.799Z [ERROR] Register DB error: spawn C:\Program Files\PostgreSQL\15\bin\psql.exe ENOENT
+2025-06-20T15:14:14.805Z [ERROR] SQL Error: 
+2025-06-20T15:14:59.222Z [INFO] GET /api/ping
+2025-06-20T15:15:02.772Z [INFO] POST /api/register
+2025-06-20T15:15:03.038Z [ERROR] psql spawn error: spawn C:\Program Files\PostgreSQL\15\bin\psql.exe ENOENT
+2025-06-20T15:15:03.039Z [ERROR] Register DB error: spawn C:\Program Files\PostgreSQL\15\bin\psql.exe ENOENT
+2025-06-20T15:15:03.041Z [ERROR] SQL Error: 
+2025-06-20T15:22:54.943Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:30:46.105Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:30:57.729Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:31:03.052Z [INFO] POST /api/register
+2025-06-20T15:31:03.278Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:31:03.279Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+

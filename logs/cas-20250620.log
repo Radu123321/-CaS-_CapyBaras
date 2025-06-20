@@ -1,0 +1,2537 @@
+2025-06-20T15:38:05.406Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:38:09.725Z [INFO] POST /api/register
+2025-06-20T15:38:09.836Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:38:09.836Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:23.414Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:41:29.055Z [INFO] POST /api/register
+2025-06-20T15:41:29.180Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:29.180Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:31.017Z [INFO] POST /api/register
+2025-06-20T15:41:31.120Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:31.121Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:31.978Z [INFO] POST /api/register
+2025-06-20T15:41:32.079Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:32.079Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:32.776Z [INFO] POST /api/register
+2025-06-20T15:41:32.937Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:41:32.938Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:46:53.898Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:47:00.815Z [INFO] POST /api/ping
+2025-06-20T15:47:00.816Z [WARN] Route not found: POST /api/ping
+2025-06-20T15:47:14.266Z [INFO] GET /api/ping
+2025-06-20T15:47:32.019Z [INFO] POST /api/register
+2025-06-20T15:47:32.125Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:47:32.126Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:48:33.862Z [INFO] POST /api/register
+2025-06-20T15:48:33.978Z [ERROR] SQL Error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:48:33.978Z [ERROR] Register DB error: 'psql.exe' is not recognized as an internal or external command,
+operable program or batch file.
+
+2025-06-20T15:49:14.416Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:49:19.648Z [INFO] POST /api/register
+2025-06-20T15:49:19.787Z [WARN] Real DB connection failed: Authentication failed, using mock
+2025-06-20T15:49:19.787Z [WARN] Using mock database - no real DB operations
+2025-06-20T15:49:31.958Z [INFO] POST /api/login
+2025-06-20T15:49:32.049Z [ERROR] Login DB error: Input buffers must have the same byte length
+2025-06-20T15:52:30.501Z [INFO] POST /api/register
+2025-06-20T15:52:59.796Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:53:05.247Z [INFO] GET /api/ping
+2025-06-20T15:53:16.799Z [INFO] POST /api/register
+2025-06-20T15:54:04.329Z [INFO] POST /api/register
+2025-06-20T15:55:40.727Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:58:38.665Z [INFO] GET /api/ping
+2025-06-20T15:58:52.213Z [INFO] POST /api/register
+2025-06-20T15:58:52.214Z [INFO] POST /api/register
+2025-06-20T15:58:52.214Z [ERROR] Register error: authService is not defined
+2025-06-20T15:59:39.632Z [INFO] Minimal server listening on port 8000
+2025-06-20T15:59:46.129Z [INFO] POST /api/register
+2025-06-20T15:59:46.130Z [INFO] POST /api/register
+2025-06-20T15:59:46.228Z [INFO] SimpleDB: Created user test@example.com with ID 1
+2025-06-20T15:59:46.228Z [INFO] AuthService: Successfully registered user test@example.com with ID 1
+2025-06-20T16:00:08.081Z [INFO] POST /api/login
+2025-06-20T16:00:08.083Z [INFO] POST /api/login
+2025-06-20T16:00:08.183Z [INFO] AuthService: Successful login for test@example.com
+2025-06-20T16:01:46.699Z [INFO] POST /api/login
+2025-06-20T16:01:46.700Z [INFO] POST /api/login
+2025-06-20T16:01:46.794Z [INFO] AuthService: Successful login for test@example.com
+2025-06-20T16:02:17.249Z [INFO] POST /api/register
+2025-06-20T16:02:17.250Z [INFO] POST /api/register
+2025-06-20T16:02:17.348Z [INFO] SimpleDB: Created user user2@test.com with ID 2
+2025-06-20T16:02:17.349Z [INFO] AuthService: Successfully registered user user2@test.com with ID 2
+2025-06-20T16:02:40.274Z [INFO] POST /api/login
+2025-06-20T16:02:40.275Z [INFO] POST /api/login
+2025-06-20T16:02:40.372Z [INFO] AuthService: Successful login for user2@test.com
+2025-06-20T16:02:51.794Z [INFO] POST /api/register
+2025-06-20T16:02:51.794Z [INFO] POST /api/register
+2025-06-20T16:02:51.894Z [ERROR] Database error: User already exists
+2025-06-20T16:02:51.894Z [ERROR] AuthService: Registration failed for test@example.com: User already exists
+2025-06-20T16:02:51.894Z [ERROR] Register error: User already exists
+2025-06-20T16:05:29.347Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:05:29.364Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:05:29.421Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:05:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:07:27.366Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:07:27.378Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:07:27.469Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:07:27 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:07:40.319Z [INFO] GET /api/ping
+2025-06-20T16:07:48.695Z [INFO] POST /api/register
+2025-06-20T16:07:48.696Z [INFO] POST /api/register
+2025-06-20T16:07:48.843Z [INFO] AuthService: Successfully registered user real_user@example.com with ID 1
+2025-06-20T16:07:59.734Z [INFO] POST /api/register
+2025-06-20T16:07:59.735Z [INFO] POST /api/register
+2025-06-20T16:07:59.908Z [ERROR] SQL error after 42ms: duplicate key value violates unique constraint "users_email_key"
+2025-06-20T16:07:59.908Z [ERROR] Failed query: 
+      INSERT INTO users (email, password_hash, full_name, default_role) 
+      VALUES ($1, $2, $3, $4)
+      RETURNING user_id
+    
+2025-06-20T16:07:59.908Z [ERROR] AuthService: Registration failed for real_user@example.com: duplicate key value violates unique constraint "users_email_key"
+2025-06-20T16:07:59.908Z [ERROR] Register error: Email already exists
+2025-06-20T16:08:44.468Z [INFO] POST /api/register
+2025-06-20T16:08:44.468Z [INFO] POST /api/register
+2025-06-20T16:08:44.631Z [INFO] AuthService: Successfully registered user test_user_190844@example.com with ID 3
+2025-06-20T16:09:04.035Z [INFO] POST /api/login
+2025-06-20T16:09:04.035Z [INFO] POST /api/login
+2025-06-20T16:09:04.149Z [INFO] AuthService: Successful login for real_user@example.com
+2025-06-20T16:09:11.198Z [INFO] POST /api/login
+2025-06-20T16:09:11.198Z [INFO] POST /api/login
+2025-06-20T16:09:11.296Z [ERROR] AuthService: Login failed for real_user@example.com: Invalid credentials
+2025-06-20T16:09:11.297Z [ERROR] Login error: Invalid credentials
+2025-06-20T16:09:21.114Z [INFO] POST /api/register
+2025-06-20T16:09:21.115Z [INFO] POST /api/register
+2025-06-20T16:09:21.277Z [INFO] AuthService: Successfully registered user newuser@test.com with ID 4
+2025-06-20T16:09:29.955Z [INFO] POST /api/login
+2025-06-20T16:09:29.955Z [INFO] POST /api/login
+2025-06-20T16:09:30.044Z [INFO] AuthService: Successful login for newuser@test.com
+2025-06-20T16:13:40.935Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:13:40.961Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:13:41.026Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:13:41 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:14:02.980Z [INFO] POST /api/locations
+2025-06-20T16:14:02.982Z [INFO] POST /api/locations
+2025-06-20T16:14:03.024Z [INFO] LocationService: Created location Centrul Bucuresti with ID 1
+2025-06-20T16:14:13.531Z [INFO] POST /api/locations
+2025-06-20T16:14:13.532Z [INFO] POST /api/locations
+2025-06-20T16:14:13.571Z [INFO] LocationService: Created location Centrul Bucuresti with ID 2
+2025-06-20T16:14:29.842Z [INFO] GET /api/locations
+2025-06-20T16:14:29.842Z [INFO] GET /api/locations
+2025-06-20T16:14:38.782Z [INFO] GET /api/locations/1
+2025-06-20T16:14:38.782Z [INFO] GET /api/locations/1
+2025-06-20T16:14:49.121Z [INFO] PUT /api/locations/1
+2025-06-20T16:14:49.121Z [INFO] PUT /api/locations/1
+2025-06-20T16:14:49.162Z [INFO] LocationService: Updated location 1
+2025-06-20T16:16:12.900Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:16:12.917Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:16:12.974Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:16:12 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:16:24.538Z [INFO] POST /api/services
+2025-06-20T16:16:24.540Z [INFO] POST /api/services
+2025-06-20T16:16:24.584Z [INFO] ServiceService: Created service CARPET with ID 1
+2025-06-20T16:16:38.830Z [INFO] GET /api/services
+2025-06-20T16:16:38.831Z [INFO] GET /api/services
+2025-06-20T16:16:45.414Z [INFO] POST /api/services
+2025-06-20T16:16:45.415Z [INFO] POST /api/services
+2025-06-20T16:16:45.421Z [INFO] ServiceService: Created service CAR_WASH with ID 2
+2025-06-20T16:16:50.297Z [INFO] GET /api/services
+2025-06-20T16:16:50.298Z [INFO] GET /api/services
+2025-06-20T16:22:17.482Z [INFO] GET /api/ping
+2025-06-20T16:24:17.142Z [INFO] GET /api/ping
+2025-06-20T16:24:24.091Z [INFO] POST /api/register
+2025-06-20T16:24:24.091Z [INFO] POST /api/register
+2025-06-20T16:24:24.091Z [WARN] Register: Missing required fields
+2025-06-20T16:24:32.343Z [INFO] POST /api/register
+2025-06-20T16:24:32.344Z [INFO] POST /api/register
+2025-06-20T16:24:32.344Z [WARN] Register: Missing required fields
+2025-06-20T16:25:17.127Z [INFO] POST /api/register
+2025-06-20T16:25:17.128Z [INFO] POST /api/register
+2025-06-20T16:25:17.128Z [WARN] Register: Missing required fields
+2025-06-20T16:25:39.514Z [INFO] POST /api/register
+2025-06-20T16:25:39.514Z [INFO] POST /api/register
+2025-06-20T16:25:39.514Z [WARN] Register: Missing required fields
+2025-06-20T16:26:07.587Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:26:07.609Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:26:07.662Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:26:07 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:26:16.002Z [INFO] GET /api/ping
+2025-06-20T16:26:22.905Z [INFO] POST /api/register
+2025-06-20T16:26:22.906Z [INFO] POST /api/register
+2025-06-20T16:26:22.907Z [WARN] Register: Missing required fields
+2025-06-20T16:27:32.023Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:27:32.040Z [INFO] Minimal server listening on port 8000
+2025-06-20T16:27:32.098Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:27:32 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:27:41.630Z [INFO] POST /api/register
+2025-06-20T16:27:41.631Z [INFO] POST /api/register
+2025-06-20T16:27:41.727Z [INFO] AuthService: Successfully registered user testuser@example.com with ID 5
+2025-06-20T16:27:49.990Z [INFO] POST /api/customers
+2025-06-20T16:27:49.991Z [INFO] POST /api/customers
+2025-06-20T16:27:49.999Z [INFO] CustomerService: Created customer with ID 1 for user 5
+2025-06-20T16:27:58.754Z [INFO] GET /api/customers
+2025-06-20T16:27:58.755Z [INFO] GET /api/customers
+2025-06-20T16:28:07.381Z [INFO] POST /api/register
+2025-06-20T16:28:07.382Z [INFO] POST /api/register
+2025-06-20T16:28:07.477Z [INFO] AuthService: Successfully registered user employee@example.com with ID 6
+2025-06-20T16:28:17.234Z [INFO] POST /api/register
+2025-06-20T16:28:17.235Z [INFO] POST /api/register
+2025-06-20T16:28:17.322Z [INFO] AuthService: Successfully registered user employee2@example.com with ID 7
+2025-06-20T16:28:26.249Z [INFO] POST /api/employees
+2025-06-20T16:28:26.250Z [INFO] POST /api/employees
+2025-06-20T16:28:26.253Z [ERROR] SQL error after 2ms: column "employee_type" of relation "employees" does not exist
+2025-06-20T16:28:26.253Z [ERROR] Failed query: 
+      INSERT INTO employees (user_id, employee_type, hire_date, salary) 
+      VALUES ($1, $2, $3, $4)
+      RETURNING employee_id, user_id, employee_type, hire_date, salary, is_active, created_at
+    
+2025-06-20T16:28:26.253Z [ERROR] EmployeeService: Failed to create employee for user 6: column "employee_type" of relation "employees" does not exist
+2025-06-20T16:28:26.254Z [ERROR] Create employee error: column "employee_type" of relation "employees" does not exist
+2025-06-20T16:29:31.177Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T16:29:31.253Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 19:29:31 GMT+0300 (Eastern European Summer Time)
+2025-06-20T16:29:45.907Z [INFO] POST /api/employees
+2025-06-20T16:29:45.908Z [INFO] POST /api/employees
+2025-06-20T16:29:46.071Z [INFO] EmployeeService: Created employee with ID 1 for user 5
+2025-06-20T16:29:53.011Z [INFO] GET /api/employees
+2025-06-20T16:29:53.012Z [INFO] GET /api/employees
+2025-06-20T16:29:58.581Z [INFO] GET /api/employees/type/CLEANER
+2025-06-20T16:29:58.582Z [INFO] GET /api/employees/type/CLEANER
+2025-06-20T16:30:05.106Z [INFO] PUT /api/employees/1
+2025-06-20T16:30:05.107Z [INFO] PUT /api/employees/1
+2025-06-20T16:30:05.109Z [INFO] EmployeeService: Updated employee 1
+2025-06-20T16:30:12.654Z [INFO] PUT /api/employees/1
+2025-06-20T16:30:12.654Z [INFO] PUT /api/employees/1
+2025-06-20T16:30:12.654Z [ERROR] Update employee error: Invalid employee type. Must be one of: CLEANER, DRIVER, ADMIN, MANAGER
+2025-06-20T17:51:03.319Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T17:51:03.381Z [INFO] Minimal server listening on port 8000
+2025-06-20T17:51:03.386Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 20:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:51:03.386Z [INFO] Scheduler: Starting...
+2025-06-20T17:51:03.386Z [INFO] Scheduler: Started successfully
+2025-06-20T17:51:03.387Z [INFO] Server and scheduler started successfully
+2025-06-20T17:51:03.453Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 20:51:03 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:51:09.003Z [INFO] GET /api/ping
+2025-06-20T17:51:18.685Z [INFO] GET /api/locations
+2025-06-20T17:51:18.686Z [INFO] GET /api/locations
+2025-06-20T17:51:28.385Z [INFO] POST /api/register
+2025-06-20T17:51:28.386Z [INFO] POST /api/register
+2025-06-20T17:51:28.521Z [INFO] AuthService: Successfully registered user test@example.com with ID 8
+2025-06-20T17:53:22.193Z [INFO] POST /api/register
+2025-06-20T17:53:22.194Z [INFO] POST /api/register
+2025-06-20T17:53:22.479Z [INFO] AuthService: Successfully registered user test-repo@example.com with ID 9
+2025-06-20T17:53:28.197Z [INFO] GET /api/ping
+2025-06-20T17:54:34.050Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T17:54:34.080Z [INFO] Minimal server listening on port 8000
+2025-06-20T17:54:34.082Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 20:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:54:34.083Z [INFO] Scheduler: Starting...
+2025-06-20T17:54:34.083Z [INFO] Scheduler: Started successfully
+2025-06-20T17:54:34.084Z [INFO] Server and scheduler started successfully
+2025-06-20T17:54:34.147Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 20:54:34 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:54:48.761Z [INFO] GET /api/ping
+2025-06-20T17:54:57.269Z [INFO] GET /api/scheduler/status
+2025-06-20T17:55:06.730Z [INFO] POST /api/register
+2025-06-20T17:55:06.731Z [INFO] POST /api/register
+2025-06-20T17:55:06.870Z [INFO] AuthService: Successfully registered user test-endpoints@example.com with ID 10
+2025-06-20T17:55:34.093Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T17:55:34.094Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T17:55:34.105Z [ERROR] SQL error after 10ms: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T17:55:34.105Z [ERROR] Failed query: 
+      SELECT order_id, customer_id, location_id, scheduled_for, recurrence_rule, 
+             transport_needed, notes, created_at
+      FROM orders
+      WHERE recurrence_rule IS NOT NULL 
+        AND recurrence_rule != ''
+        AND status IN ('CONFIRMED', 'COMPLETED')
+      ORDER BY scheduled_for
+    
+2025-06-20T17:55:34.105Z [ERROR] OrderService: Failed to get orders with recurrence: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T17:55:34.105Z [ERROR] ExpandRecurrences: Job failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T17:55:34.106Z [ERROR] Scheduler: Job 'expandRecurrences' failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T17:55:34.106Z [WARN] Scheduler: Job 'expandRecurrences' will retry at Fri Jun 20 2025 21:00:34 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:57:08.086Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T17:57:08.126Z [INFO] Minimal server listening on port 8000
+2025-06-20T17:57:08.128Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:57:08.129Z [INFO] Scheduler: Starting...
+2025-06-20T17:57:08.130Z [INFO] Scheduler: Started successfully
+2025-06-20T17:57:08.130Z [INFO] Server and scheduler started successfully
+2025-06-20T17:57:08.210Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 20:57:08 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:57:18.441Z [INFO] GET /api/ping
+2025-06-20T17:57:18.471Z [INFO] GET /api/scheduler/status
+2025-06-20T17:57:18.503Z [INFO] POST /api/register
+2025-06-20T17:57:18.503Z [INFO] POST /api/register
+2025-06-20T17:57:18.600Z [INFO] AuthService: Successfully registered user test-final@example.com with ID 11
+2025-06-20T17:57:18.628Z [INFO] POST /api/login
+2025-06-20T17:57:18.629Z [INFO] POST /api/login
+2025-06-20T17:57:18.714Z [INFO] AuthService: Successful login for test-final@example.com
+2025-06-20T17:57:18.764Z [INFO] GET /api/locations
+2025-06-20T17:57:18.765Z [INFO] GET /api/locations
+2025-06-20T17:57:18.815Z [INFO] POST /api/locations
+2025-06-20T17:57:18.816Z [INFO] POST /api/locations
+2025-06-20T17:57:18.821Z [INFO] LocationService: Created location Test Location Repository with ID 3
+2025-06-20T17:57:18.856Z [INFO] GET /api/services
+2025-06-20T17:57:18.857Z [INFO] GET /api/services
+2025-06-20T17:57:18.899Z [INFO] POST /api/services
+2025-06-20T17:57:18.900Z [INFO] POST /api/services
+2025-06-20T17:57:18.902Z [INFO] ServiceService: Created service CARPET with ID 3
+2025-06-20T17:57:18.935Z [INFO] GET /api/customers
+2025-06-20T17:57:18.935Z [INFO] GET /api/customers
+2025-06-20T17:57:18.967Z [INFO] GET /api/employees
+2025-06-20T17:57:18.968Z [INFO] GET /api/employees
+2025-06-20T17:57:57.597Z [INFO] GET /api/customers
+2025-06-20T17:57:57.597Z [INFO] GET /api/customers
+2025-06-20T17:57:57.681Z [INFO] GET /api/locations
+2025-06-20T17:57:57.681Z [INFO] GET /api/locations
+2025-06-20T17:57:57.715Z [INFO] GET /api/services
+2025-06-20T17:57:57.716Z [INFO] GET /api/services
+2025-06-20T17:57:57.754Z [INFO] GET /api/orders
+2025-06-20T17:57:57.785Z [INFO] POST /api/orders
+2025-06-20T17:57:57.797Z [INFO] OrderService: Created order 1 with 1 items
+2025-06-20T17:57:57.835Z [INFO] GET /api/orders/
+2025-06-20T17:57:57.837Z [ERROR] OrderController: Get order failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:57:57.860Z [INFO] GET /api/transports
+2025-06-20T17:57:57.882Z [INFO] GET /api/transports/order/
+2025-06-20T17:57:57.883Z [ERROR] TransportController: Get transport by order failed: Cannot read properties of undefined (reading 'orderId')
+2025-06-20T17:57:57.895Z [INFO] PUT /api/transports//status
+2025-06-20T17:57:57.896Z [ERROR] TransportController: Update transport status failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:57:57.904Z [INFO] PUT /api/orders//status
+2025-06-20T17:57:57.906Z [ERROR] OrderController: Update order status failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:58:56.455Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T17:58:56.482Z [INFO] Minimal server listening on port 8000
+2025-06-20T17:58:56.484Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:58:56.485Z [INFO] Scheduler: Starting...
+2025-06-20T17:58:56.485Z [INFO] Scheduler: Started successfully
+2025-06-20T17:58:56.485Z [INFO] Server and scheduler started successfully
+2025-06-20T17:58:56.542Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 20:58:56 GMT+0300 (Eastern European Summer Time)
+2025-06-20T17:59:12.381Z [INFO] GET /api/customers
+2025-06-20T17:59:12.382Z [INFO] GET /api/customers
+2025-06-20T17:59:12.418Z [INFO] GET /api/locations
+2025-06-20T17:59:12.419Z [INFO] GET /api/locations
+2025-06-20T17:59:12.458Z [INFO] GET /api/services
+2025-06-20T17:59:12.459Z [INFO] GET /api/services
+2025-06-20T17:59:12.493Z [INFO] GET /api/orders
+2025-06-20T17:59:12.536Z [INFO] POST /api/orders
+2025-06-20T17:59:12.551Z [INFO] OrderService: Created order 2 with 1 items
+2025-06-20T17:59:12.584Z [INFO] GET /api/orders/
+2025-06-20T17:59:12.585Z [ERROR] OrderController: Get order failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:59:12.603Z [INFO] GET /api/transports
+2025-06-20T17:59:12.628Z [INFO] GET /api/transports/order/
+2025-06-20T17:59:12.629Z [ERROR] TransportController: Get transport by order failed: Cannot read properties of undefined (reading 'orderId')
+2025-06-20T17:59:12.638Z [INFO] PUT /api/transports//status
+2025-06-20T17:59:12.638Z [ERROR] TransportController: Update transport status failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:59:12.644Z [INFO] PUT /api/orders//status
+2025-06-20T17:59:12.645Z [ERROR] OrderController: Update order status failed: Cannot read properties of undefined (reading 'id')
+2025-06-20T17:59:23.336Z [INFO] GET /api/ping
+2025-06-20T18:06:12.934Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:06:12.961Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:06:12.962Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:06:12.962Z [INFO] Scheduler: Starting...
+2025-06-20T18:06:12.962Z [INFO] Scheduler: Started successfully
+2025-06-20T18:06:12.962Z [INFO] Server and scheduler started successfully
+2025-06-20T18:06:13.022Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:06:13 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:06:18.235Z [INFO] POST /api/register
+2025-06-20T18:06:18.236Z [INFO] POST /api/register
+2025-06-20T18:06:18.333Z [INFO] AuthService: Successfully registered user test-152@example.com with ID 12
+2025-06-20T18:07:00.813Z [INFO] POST /api/login
+2025-06-20T18:07:00.814Z [INFO] POST /api/login
+2025-06-20T18:07:01.055Z [INFO] AuthService: Successful login for test-152@example.com
+2025-06-20T18:07:31.944Z [INFO] GET /api/customers
+2025-06-20T18:07:31.945Z [INFO] GET /api/customers
+2025-06-20T18:07:43.937Z [INFO] GET /api/ping
+2025-06-20T18:07:43.944Z [INFO] GET /api/scheduler/status
+2025-06-20T18:07:43.960Z [INFO] GET /api/locations
+2025-06-20T18:07:43.961Z [INFO] GET /api/locations
+2025-06-20T18:07:43.971Z [INFO] POST /api/locations
+2025-06-20T18:07:43.972Z [INFO] POST /api/locations
+2025-06-20T18:07:43.975Z [INFO] LocationService: Created location Test Location Collection 6741092 with ID 4
+2025-06-20T18:07:43.980Z [INFO] GET /api/locations/4
+2025-06-20T18:07:43.981Z [INFO] GET /api/locations/4
+2025-06-20T18:07:43.991Z [INFO] GET /api/services
+2025-06-20T18:07:43.992Z [INFO] GET /api/services
+2025-06-20T18:07:44.000Z [INFO] POST /api/services
+2025-06-20T18:07:44.002Z [INFO] POST /api/services
+2025-06-20T18:07:44.005Z [INFO] ServiceService: Created service CARPET with ID 4
+2025-06-20T18:07:44.011Z [INFO] GET /api/customers
+2025-06-20T18:07:44.012Z [INFO] GET /api/customers
+2025-06-20T18:07:44.020Z [INFO] POST /api/customers
+2025-06-20T18:07:44.022Z [INFO] POST /api/customers
+2025-06-20T18:10:13.003Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T18:10:13.004Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T18:10:13.050Z [ERROR] SQL error after 45ms: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:10:13.050Z [ERROR] Failed query: 
+      SELECT order_id, customer_id, location_id, scheduled_for, recurrence_rule, 
+             transport_needed, notes, created_at
+      FROM orders
+      WHERE recurrence_rule IS NOT NULL 
+        AND recurrence_rule != ''
+        AND status IN ('CONFIRMED', 'COMPLETED')
+      ORDER BY scheduled_for
+    
+2025-06-20T18:10:13.051Z [ERROR] OrderService: Failed to get orders with recurrence: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:10:13.051Z [ERROR] ExpandRecurrences: Job failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:10:13.052Z [ERROR] Scheduler: Job 'expandRecurrences' failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:10:13.053Z [WARN] Scheduler: Job 'expandRecurrences' will retry at Fri Jun 20 2025 21:15:13 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:14:57.470Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:14:57.496Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:14:57.498Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:14:57.499Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:14:57.500Z [INFO] Scheduler: Starting...
+2025-06-20T18:14:57.501Z [INFO] Scheduler: Started successfully
+2025-06-20T18:14:57.501Z [INFO] Server and scheduler started successfully
+2025-06-20T18:14:57.565Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:14:57 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:15:11.075Z [INFO] GET /api/ping
+2025-06-20T18:15:18.523Z [INFO] GET /api/resources
+2025-06-20T18:15:18.524Z [INFO] GET /api/resources
+2025-06-20T18:15:18.533Z [INFO] Retrieved 0 resources
+2025-06-20T18:15:29.608Z [INFO] POST /api/resources
+2025-06-20T18:15:29.609Z [INFO] POST /api/resources
+2025-06-20T18:15:29.617Z [INFO] Created resource: Detergent Universal (ID: 1)
+2025-06-20T18:15:57.504Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T18:15:57.505Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T18:15:57.507Z [ERROR] SQL error after 1ms: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:15:57.507Z [ERROR] Failed query: 
+      SELECT order_id, customer_id, location_id, scheduled_for, recurrence_rule, 
+             transport_needed, notes, created_at
+      FROM orders
+      WHERE recurrence_rule IS NOT NULL 
+        AND recurrence_rule != ''
+        AND status IN ('CONFIRMED', 'COMPLETED')
+      ORDER BY scheduled_for
+    
+2025-06-20T18:15:57.508Z [ERROR] OrderService: Failed to get orders with recurrence: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:15:57.508Z [ERROR] ExpandRecurrences: Job failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:15:57.508Z [ERROR] Scheduler: Job 'expandRecurrences' failed: invalid input value for enum order_status: "CONFIRMED"
+2025-06-20T18:15:57.508Z [WARN] Scheduler: Job 'expandRecurrences' will retry at Fri Jun 20 2025 21:20:57 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:16:09.739Z [INFO] POST /api/resources
+2025-06-20T18:16:09.741Z [INFO] POST /api/resources
+2025-06-20T18:16:09.788Z [INFO] Created resource: Perie de Cura?at (ID: 2)
+2025-06-20T18:16:09.793Z [INFO] POST /api/resources
+2025-06-20T18:16:09.794Z [INFO] POST /api/resources
+2025-06-20T18:16:09.795Z [INFO] Created resource: Apa Distilata (ID: 3)
+2025-06-20T18:16:09.798Z [INFO] POST /api/resources
+2025-06-20T18:16:09.799Z [INFO] POST /api/resources
+2025-06-20T18:16:09.800Z [INFO] Created resource: Aspirator Industrial (ID: 4)
+2025-06-20T18:16:18.479Z [INFO] POST /api/resources
+2025-06-20T18:16:18.479Z [INFO] POST /api/resources
+2025-06-20T18:16:18.482Z [INFO] Created resource: Perie de Cura?at (ID: 5)
+2025-06-20T18:16:18.486Z [INFO] POST /api/resources
+2025-06-20T18:16:18.486Z [INFO] POST /api/resources
+2025-06-20T18:16:18.487Z [INFO] Created resource: Apa Distilata (ID: 6)
+2025-06-20T18:16:18.490Z [INFO] POST /api/resources
+2025-06-20T18:16:18.490Z [INFO] POST /api/resources
+2025-06-20T18:16:18.491Z [INFO] Created resource: Aspirator Industrial (ID: 7)
+2025-06-20T18:16:27.863Z [INFO] GET /api/inventory
+2025-06-20T18:16:27.863Z [INFO] GET /api/inventory
+2025-06-20T18:16:27.868Z [INFO] Retrieved 0 total inventory items
+2025-06-20T18:16:39.076Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:16:39.077Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:16:39.080Z [ERROR] Transaction rolled back: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:39.080Z [ERROR] Failed to restock resources: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:39.080Z [ERROR] Failed to restock resources at location 1: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:39.081Z [ERROR] Restock resources error: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:49.293Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:16:49.293Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:16:49.295Z [ERROR] Transaction rolled back: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:49.295Z [ERROR] Failed to restock resources: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:49.295Z [ERROR] Failed to restock resources at location 1: cannot insert multiple commands into a prepared statement
+2025-06-20T18:16:49.296Z [ERROR] Restock resources error: cannot insert multiple commands into a prepared statement
+2025-06-20T18:20:11.074Z [INFO] GET /api/ping
+2025-06-20T18:20:18.588Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:20:18.589Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:20:18.643Z [ERROR] Transaction rolled back: cannot insert multiple commands into a prepared statement
+2025-06-20T18:20:18.643Z [ERROR] Failed to restock resources: cannot insert multiple commands into a prepared statement
+2025-06-20T18:20:18.643Z [ERROR] Failed to restock resources at location 1: cannot insert multiple commands into a prepared statement
+2025-06-20T18:20:18.643Z [ERROR] Restock resources error: cannot insert multiple commands into a prepared statement
+2025-06-20T18:20:57.497Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:20:57.521Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:20:57.522Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:20:57.522Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:20:57.523Z [INFO] Scheduler: Starting...
+2025-06-20T18:20:57.523Z [INFO] Scheduler: Started successfully
+2025-06-20T18:20:57.523Z [INFO] Server and scheduler started successfully
+2025-06-20T18:20:57.591Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:20:57 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:21:31.371Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:21:31.399Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:21:31.401Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:25:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:21:31.401Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:21:31.402Z [INFO] Scheduler: Starting...
+2025-06-20T18:21:31.402Z [INFO] Scheduler: Started successfully
+2025-06-20T18:21:31.402Z [INFO] Server and scheduler started successfully
+2025-06-20T18:21:31.468Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:21:31 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:21:41.828Z [INFO] GET /api/ping
+2025-06-20T18:21:47.891Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:21:47.892Z [INFO] POST /api/inventory/location/1/restock
+2025-06-20T18:21:47.907Z [INFO] Restocked resources at location 1
+2025-06-20T18:21:55.425Z [INFO] GET /api/inventory
+2025-06-20T18:21:55.426Z [INFO] GET /api/inventory
+2025-06-20T18:21:55.434Z [INFO] Retrieved 2 total inventory items
+2025-06-20T18:22:02.853Z [INFO] GET /api/inventory/location/1
+2025-06-20T18:22:02.853Z [INFO] GET /api/inventory/location/1
+2025-06-20T18:22:02.854Z [INFO] Retrieved 2 inventory items for location 1
+2025-06-20T18:22:10.643Z [INFO] POST /api/inventory/consume
+2025-06-20T18:22:10.644Z [INFO] POST /api/inventory/consume
+2025-06-20T18:22:18.689Z [INFO] GET /api/inventory/alerts
+2025-06-20T18:22:18.690Z [INFO] GET /api/inventory/alerts
+2025-06-20T18:22:18.691Z [INFO] Found 0 low stock items (threshold: 10)
+2025-06-20T18:22:18.692Z [INFO] Found 0 out of stock items
+2025-06-20T18:30:09.131Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:30:09.167Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:30:09.169Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:30:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:30:09.169Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:30:09.169Z [INFO] Scheduler: Starting...
+2025-06-20T18:30:09.170Z [INFO] Scheduler: Started successfully
+2025-06-20T18:30:09.170Z [INFO] Server and scheduler started successfully
+2025-06-20T18:30:09.351Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:30:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:30:19.592Z [INFO] GET /api/ping
+2025-06-20T18:30:27.806Z [INFO] GET /api/websocket/stats
+2025-06-20T18:30:27.807Z [INFO] GET /api/websocket/stats
+2025-06-20T18:30:27.808Z [INFO] WebSocket stats: 0 total clients across 0 locations
+2025-06-20T18:30:33.655Z [INFO] GET /rss
+2025-06-20T18:30:33.656Z [INFO] GET /rss
+2025-06-20T18:30:33.735Z [INFO] Found 0 low stock items (threshold: 5)
+2025-06-20T18:30:33.736Z [INFO] Generated general RSS feed with 3 items
+2025-06-20T18:30:40.441Z [INFO] GET /rss/location/1
+2025-06-20T18:31:05.704Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:31:05.736Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:31:05.738Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 21:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:31:05.738Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:31:05.739Z [INFO] Scheduler: Starting...
+2025-06-20T18:31:05.739Z [INFO] Scheduler: Started successfully
+2025-06-20T18:31:05.739Z [INFO] Server and scheduler started successfully
+2025-06-20T18:31:05.792Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:31:05 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:31:14.943Z [INFO] GET /api/ping
+2025-06-20T18:31:22.429Z [INFO] POST /api/websocket/broadcast
+2025-06-20T18:31:22.430Z [INFO] POST /api/websocket/broadcast
+2025-06-20T18:58:28.584Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T18:58:28.609Z [WARN] AlertService: SMTP not configured - email alerts disabled
+2025-06-20T18:58:28.613Z [INFO] Minimal server listening on port 8000
+2025-06-20T18:58:28.614Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:58:28.615Z [INFO] Scheduler: Job 'checkInventory' added, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T18:58:28.615Z [INFO] Scheduler: Starting...
+2025-06-20T18:58:28.616Z [INFO] Scheduler: Started successfully
+2025-06-20T18:58:28.616Z [INFO] Server and scheduler started successfully
+2025-06-20T18:58:28.674Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 21:58:28 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:00:28.653Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:00:28.653Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:00:28.700Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:00:28.700Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:00:28.700Z [INFO] Scheduler: Running job 'checkInventory'
+2025-06-20T19:00:28.700Z [INFO] CheckInventory: Starting inventory monitoring job
+2025-06-20T19:00:28.704Z [INFO] Found 0 low stock items (threshold: 10)
+2025-06-20T19:00:28.704Z [INFO] Found 0 out of stock items
+2025-06-20T19:00:28.705Z [INFO] CheckInventory: All inventory levels are adequate
+2025-06-20T19:00:28.705Z [INFO] Scheduler: Job 'checkInventory' completed, next run: Fri Jun 20 2025 23:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:01:28.657Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:01:28.658Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:01:28.705Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:01:28.706Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:05:28.671Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:05:28.673Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:05:28.722Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:05:28.723Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:06:28.677Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:06:28.678Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:06:28.726Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:06:28.726Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:10:28.719Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:10:28.720Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:10:28.768Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:10:28.769Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:11:28.722Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:11:28.723Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:11:28.772Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:11:28.772Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:15:28.747Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:15:28.748Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:15:28.810Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:15:28.811Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:16:28.753Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:16:28.754Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:16:28.806Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:16:28.807Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:20:28.762Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:20:28.763Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:20:28.836Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:20:28.837Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:21:28.766Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:21:28.767Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:21:28.930Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:21:28.931Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:25:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:25:28.782Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:25:28.783Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:25:28.936Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:25:28.937Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:25:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:26:28.785Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:26:28.786Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:26:28.833Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:26:28.834Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:30:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:30:28.808Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:30:28.809Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:30:28.980Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:30:28.981Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:30:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:31:28.808Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:31:28.808Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:31:28.865Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:31:28.865Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:35:28.833Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:35:28.834Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:35:28.878Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:35:28.879Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:36:28.842Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:36:28.843Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:36:28.892Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:36:28.893Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:40:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:40:28.860Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:40:28.861Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:40:28.904Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:40:28.905Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:40:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:41:28.875Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:41:28.877Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:41:28.940Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:41:28.941Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:45:28.888Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:45:28.890Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:45:28.938Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:45:28.940Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:46:28.896Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:46:28.897Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:46:28.943Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:46:28.944Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:49:13.858Z [INFO] GET /api/ping
+2025-06-20T19:50:28.901Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:50:28.903Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:50:29.000Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:50:29.001Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:51:28.904Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:51:28.905Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:51:28.957Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:51:28.958Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:55:28.922Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:55:28.923Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:55:28.967Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:55:28.968Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 22:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T19:56:28.932Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T19:56:28.933Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T19:56:28.984Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T19:56:28.984Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:00:28.958Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:00:28.959Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:00:29.054Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:00:29.055Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:00:29.056Z [INFO] Scheduler: Running job 'checkInventory'
+2025-06-20T20:00:29.056Z [INFO] CheckInventory: Starting inventory monitoring job
+2025-06-20T20:00:29.064Z [INFO] Found 0 low stock items (threshold: 10)
+2025-06-20T20:00:29.066Z [INFO] Found 0 out of stock items
+2025-06-20T20:00:29.067Z [INFO] CheckInventory: All inventory levels are adequate
+2025-06-20T20:00:29.067Z [INFO] Scheduler: Job 'checkInventory' completed, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:01:28.969Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:01:28.969Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:01:29.023Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:01:29.024Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:05:28.980Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:05:28.980Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:05:29.034Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:05:29.034Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:06:28.983Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:06:28.984Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:06:29.059Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:06:29.060Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.135Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T20:07:29.157Z [INFO] AlertService: SMTP client initialized
+2025-06-20T20:07:29.163Z [INFO] Minimal server listening on port 8000
+2025-06-20T20:07:29.166Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 23:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.167Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.167Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Fri Jun 20 2025 23:08:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.167Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Fri Jun 20 2025 23:08:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.168Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:07:29.168Z [INFO] Scheduler: Starting...
+2025-06-20T20:07:29.169Z [INFO] Scheduler: Started successfully
+2025-06-20T20:07:29.169Z [INFO] Server and scheduler started successfully
+2025-06-20T20:07:29.224Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 23:07:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:08:29.178Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:08:29.179Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:08:29.179Z [INFO] Starting equipment status check...
+2025-06-20T20:08:29.231Z [ERROR] SQL error after 52ms: column em.ended_at does not exist
+2025-06-20T20:08:29.232Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:08:29.232Z [ERROR] Error checking equipment status:
+2025-06-20T20:08:29.233Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:08:29.233Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:09:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:08:29.234Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:08:29.234Z [INFO] Starting weather data update job...
+2025-06-20T20:08:29.234Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:08:29.296Z [ERROR] Error updating weather data:
+2025-06-20T20:08:29.297Z [ERROR] Weather data update job failed:
+2025-06-20T20:08:29.297Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:09:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:10:29.196Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:10:29.197Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:10:29.293Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:10:29.294Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:10:29.295Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:10:29.295Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:10:29.296Z [INFO] Starting equipment status check...
+2025-06-20T20:10:29.299Z [ERROR] SQL error after 3ms: column em.ended_at does not exist
+2025-06-20T20:10:29.300Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:10:29.300Z [ERROR] Error checking equipment status:
+2025-06-20T20:10:29.301Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:10:29.301Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:11:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:10:29.302Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:10:29.302Z [INFO] Starting weather data update job...
+2025-06-20T20:10:29.302Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:10:29.394Z [ERROR] Error updating weather data:
+2025-06-20T20:10:29.395Z [ERROR] Weather data update job failed:
+2025-06-20T20:10:29.396Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:11:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:11:29.205Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:11:29.206Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:11:29.274Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:11:29.274Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:12:29.210Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:12:29.211Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:12:29.211Z [INFO] Starting equipment status check...
+2025-06-20T20:12:29.276Z [ERROR] SQL error after 64ms: column em.ended_at does not exist
+2025-06-20T20:12:29.277Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:12:29.277Z [ERROR] Error checking equipment status:
+2025-06-20T20:12:29.278Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:12:29.278Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:13:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:12:29.279Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:12:29.279Z [INFO] Starting weather data update job...
+2025-06-20T20:12:29.280Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:12:29.361Z [ERROR] Error updating weather data:
+2025-06-20T20:12:29.362Z [ERROR] Weather data update job failed:
+2025-06-20T20:12:29.363Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:13:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:14:29.223Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:14:29.224Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:14:29.224Z [INFO] Starting equipment status check...
+2025-06-20T20:14:29.306Z [ERROR] SQL error after 81ms: column em.ended_at does not exist
+2025-06-20T20:14:29.307Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:14:29.308Z [ERROR] Error checking equipment status:
+2025-06-20T20:14:29.308Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:14:29.309Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:15:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:14:29.309Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:14:29.310Z [INFO] Starting weather data update job...
+2025-06-20T20:14:29.310Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:14:29.397Z [ERROR] Error updating weather data:
+2025-06-20T20:14:29.398Z [ERROR] Weather data update job failed:
+2025-06-20T20:14:29.399Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:15:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.268Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T20:40:09.317Z [INFO] AlertService: SMTP client initialized
+2025-06-20T20:40:09.329Z [INFO] Minimal server listening on port 8000
+2025-06-20T20:40:09.338Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 23:40:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.338Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.339Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Fri Jun 20 2025 23:41:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.339Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Fri Jun 20 2025 23:41:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.340Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.340Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Fri Jun 20 2025 23:41:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:40:09.341Z [INFO] Scheduler: Starting...
+2025-06-20T20:40:09.341Z [INFO] Scheduler: Started successfully
+2025-06-20T20:40:09.341Z [INFO] Server and scheduler started successfully
+2025-06-20T20:40:09.419Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 23:40:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:41:09.350Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:41:09.351Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:41:09.542Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:41:09.543Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:41:09.543Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:41:09.544Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:41:09.545Z [INFO] Starting equipment status check...
+2025-06-20T20:41:09.548Z [ERROR] SQL error after 3ms: column em.ended_at does not exist
+2025-06-20T20:41:09.549Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:41:09.549Z [ERROR] Error checking equipment status:
+2025-06-20T20:41:09.549Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:41:09.550Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:42:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:41:09.550Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:41:09.551Z [INFO] Starting weather data update job...
+2025-06-20T20:41:09.552Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:41:09.637Z [ERROR] Error updating weather data:
+2025-06-20T20:41:09.639Z [ERROR] Weather data update job failed:
+2025-06-20T20:41:09.639Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:42:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:41:09.640Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:41:09.641Z [INFO] Starting automated exception detection...
+2025-06-20T20:41:09.641Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:41:09.645Z [ERROR] SQL error after 3ms: column l.id does not exist
+2025-06-20T20:41:09.646Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:41:09.646Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:41:09.747Z [ERROR] SQL error after 104ms: column l.id does not exist
+2025-06-20T20:41:09.748Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:41:09.748Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:41:09.750Z [ERROR] SQL error after 107ms: column l.id does not exist
+2025-06-20T20:41:09.750Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:41:09.751Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:41:09.762Z [ERROR] SQL error after 119ms: column o.id does not exist
+2025-06-20T20:41:09.763Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:41:09.763Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:41:09.764Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:41:09.764Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:41:09.765Z [INFO] - Staff issues: 0
+2025-06-20T20:41:09.765Z [INFO] - Power issues: 0
+2025-06-20T20:41:09.765Z [INFO] - Equipment issues: 0
+2025-06-20T20:41:09.766Z [INFO] - Transport issues: 0
+2025-06-20T20:41:09.767Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:41:09.805Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:41:09.806Z [INFO] Exception detection completed successfully in 165ms
+2025-06-20T20:41:09.807Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:42:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:43:09.352Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:43:09.353Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:43:09.354Z [INFO] Starting equipment status check...
+2025-06-20T20:43:09.407Z [ERROR] SQL error after 53ms: column em.ended_at does not exist
+2025-06-20T20:43:09.407Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:43:09.408Z [ERROR] Error checking equipment status:
+2025-06-20T20:43:09.408Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:43:09.409Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:44:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:43:09.409Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:43:09.409Z [INFO] Starting weather data update job...
+2025-06-20T20:43:09.410Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:43:09.461Z [ERROR] Error updating weather data:
+2025-06-20T20:43:09.462Z [ERROR] Weather data update job failed:
+2025-06-20T20:43:09.462Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:44:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:43:09.462Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:43:09.463Z [INFO] Starting automated exception detection...
+2025-06-20T20:43:09.463Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:43:09.467Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-20T20:43:09.467Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:43:09.468Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:43:09.530Z [ERROR] SQL error after 66ms: column l.id does not exist
+2025-06-20T20:43:09.531Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:43:09.531Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:43:09.538Z [ERROR] SQL error after 74ms: column l.id does not exist
+2025-06-20T20:43:09.539Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:43:09.539Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:43:09.541Z [ERROR] SQL error after 77ms: column o.id does not exist
+2025-06-20T20:43:09.542Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:43:09.542Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:43:09.543Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:43:09.543Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:43:09.544Z [INFO] - Staff issues: 0
+2025-06-20T20:43:09.544Z [INFO] - Power issues: 0
+2025-06-20T20:43:09.545Z [INFO] - Equipment issues: 0
+2025-06-20T20:43:09.545Z [INFO] - Transport issues: 0
+2025-06-20T20:43:09.546Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:43:09.546Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:43:09.547Z [INFO] Exception detection completed successfully in 84ms
+2025-06-20T20:43:09.547Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:44:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:45:09.383Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:45:09.383Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:45:09.442Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:45:09.443Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:45:09.443Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:45:09.444Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:45:09.444Z [INFO] Starting equipment status check...
+2025-06-20T20:45:09.446Z [ERROR] SQL error after 2ms: column em.ended_at does not exist
+2025-06-20T20:45:09.446Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:45:09.447Z [ERROR] Error checking equipment status:
+2025-06-20T20:45:09.447Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:45:09.447Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:46:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:45:09.448Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:45:09.448Z [INFO] Starting weather data update job...
+2025-06-20T20:45:09.448Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:45:09.617Z [ERROR] Error updating weather data:
+2025-06-20T20:45:09.618Z [ERROR] Weather data update job failed:
+2025-06-20T20:45:09.618Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:46:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:45:09.618Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:45:09.619Z [INFO] Starting automated exception detection...
+2025-06-20T20:45:09.619Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:45:09.621Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-20T20:45:09.622Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:45:09.622Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:45:09.698Z [ERROR] SQL error after 78ms: column l.id does not exist
+2025-06-20T20:45:09.698Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:45:09.699Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:45:09.700Z [ERROR] SQL error after 80ms: column l.id does not exist
+2025-06-20T20:45:09.700Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:45:09.701Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:45:09.703Z [ERROR] SQL error after 83ms: column o.id does not exist
+2025-06-20T20:45:09.703Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:45:09.704Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:45:09.704Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:45:09.704Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:45:09.705Z [INFO] - Staff issues: 0
+2025-06-20T20:45:09.705Z [INFO] - Power issues: 0
+2025-06-20T20:45:09.705Z [INFO] - Equipment issues: 0
+2025-06-20T20:45:09.706Z [INFO] - Transport issues: 0
+2025-06-20T20:45:09.707Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:45:09.707Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:45:09.708Z [INFO] Exception detection completed successfully in 89ms
+2025-06-20T20:45:09.708Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:46:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:46:09.396Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:46:09.396Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:46:09.452Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:46:09.452Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:47:09.407Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:47:09.408Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:47:09.408Z [INFO] Starting equipment status check...
+2025-06-20T20:47:09.506Z [ERROR] SQL error after 97ms: column em.ended_at does not exist
+2025-06-20T20:47:09.508Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:47:09.509Z [ERROR] Error checking equipment status:
+2025-06-20T20:47:09.509Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:47:09.510Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:48:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:47:09.511Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:47:09.512Z [INFO] Starting weather data update job...
+2025-06-20T20:47:09.513Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:47:09.624Z [ERROR] Error updating weather data:
+2025-06-20T20:47:09.625Z [ERROR] Weather data update job failed:
+2025-06-20T20:47:09.625Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:48:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:47:09.626Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:47:09.627Z [INFO] Starting automated exception detection...
+2025-06-20T20:47:09.628Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:47:09.636Z [ERROR] SQL error after 6ms: column l.id does not exist
+2025-06-20T20:47:09.638Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:47:09.639Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:47:09.782Z [ERROR] SQL error after 151ms: column l.id does not exist
+2025-06-20T20:47:09.783Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:47:09.784Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:47:09.794Z [ERROR] SQL error after 162ms: column o.id does not exist
+2025-06-20T20:47:09.795Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:47:09.796Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:47:09.810Z [ERROR] SQL error after 179ms: column l.id does not exist
+2025-06-20T20:47:09.811Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:47:09.812Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:47:09.813Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:47:09.814Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:47:09.814Z [INFO] - Staff issues: 0
+2025-06-20T20:47:09.815Z [INFO] - Power issues: 0
+2025-06-20T20:47:09.815Z [INFO] - Equipment issues: 0
+2025-06-20T20:47:09.816Z [INFO] - Transport issues: 0
+2025-06-20T20:47:09.816Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:47:09.817Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:47:09.817Z [INFO] Exception detection completed successfully in 190ms
+2025-06-20T20:47:09.818Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:48:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:09.416Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:49:09.416Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:49:09.417Z [INFO] Starting equipment status check...
+2025-06-20T20:49:09.490Z [ERROR] SQL error after 73ms: column em.ended_at does not exist
+2025-06-20T20:49:09.491Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:49:09.491Z [ERROR] Error checking equipment status:
+2025-06-20T20:49:09.492Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:49:09.492Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:50:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:09.493Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:49:09.493Z [INFO] Starting weather data update job...
+2025-06-20T20:49:09.493Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:49:09.582Z [ERROR] Error updating weather data:
+2025-06-20T20:49:09.582Z [ERROR] Weather data update job failed:
+2025-06-20T20:49:09.583Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:50:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:09.583Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:49:09.583Z [INFO] Starting automated exception detection...
+2025-06-20T20:49:09.583Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:49:09.588Z [ERROR] SQL error after 4ms: column l.id does not exist
+2025-06-20T20:49:09.589Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:49:09.589Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:49:09.687Z [ERROR] SQL error after 103ms: column l.id does not exist
+2025-06-20T20:49:09.687Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:49:09.688Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:49:09.689Z [ERROR] SQL error after 105ms: column l.id does not exist
+2025-06-20T20:49:09.690Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:49:09.690Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:49:09.699Z [ERROR] SQL error after 115ms: column o.id does not exist
+2025-06-20T20:49:09.700Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:49:09.700Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:49:09.701Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:49:09.701Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:49:09.701Z [INFO] - Staff issues: 0
+2025-06-20T20:49:09.702Z [INFO] - Power issues: 0
+2025-06-20T20:49:09.702Z [INFO] - Equipment issues: 0
+2025-06-20T20:49:09.703Z [INFO] - Transport issues: 0
+2025-06-20T20:49:09.703Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:49:09.704Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:49:09.705Z [INFO] Exception detection completed successfully in 122ms
+2025-06-20T20:49:09.705Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:50:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.106Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T20:49:55.158Z [INFO] AlertService: SMTP client initialized
+2025-06-20T20:49:55.173Z [INFO] Minimal server listening on port 3000
+2025-06-20T20:49:55.180Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Fri Jun 20 2025 23:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.181Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.182Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Fri Jun 20 2025 23:50:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.183Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Fri Jun 20 2025 23:50:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.183Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.184Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Fri Jun 20 2025 23:50:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:49:55.185Z [INFO] Scheduler: Starting...
+2025-06-20T20:49:55.186Z [INFO] Scheduler: Started successfully
+2025-06-20T20:49:55.186Z [INFO] Server and scheduler started successfully
+2025-06-20T20:49:55.377Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 23:49:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:50:09.418Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:50:09.419Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:50:09.491Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:50:09.492Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:50:25.413Z [INFO] OPTIONS /api/auth/login
+2025-06-20T20:50:25.418Z [INFO] POST /api/auth/login
+2025-06-20T20:50:25.420Z [INFO] POST /api/login or /api/auth/login
+2025-06-20T20:50:25.528Z [ERROR] SQL error after 107ms: column e.status does not exist
+2025-06-20T20:50:25.529Z [ERROR] Failed query: 
+      SELECT 
+        u.user_id,
+        u.email,
+        u.password_hash,
+        u.full_name,
+        u.user_type,
+        u.created_at,
+        e.first_name,
+        e.last_name,
+        e.role as employee_role,
+        e.location_id,
+        e.phone,
+        l.name as location_name
+      FROM users u
+      LEFT JOIN employees e ON u.user_id = e.user_id AND e.status = 'ACTIVE'
+      LEFT JOIN locations l ON e.location_id = l.id
+      WHERE u.email = $1
+    
+2025-06-20T20:50:25.530Z [ERROR] AuthService: Login failed for admin@cas.ro: column e.status does not exist
+2025-06-20T20:50:25.531Z [ERROR] Login error: column e.status does not exist
+2025-06-20T20:50:32.364Z [INFO] GET /api/locations
+2025-06-20T20:50:32.365Z [INFO] GET /api/locations
+2025-06-20T20:50:55.193Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:50:55.197Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:50:55.201Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:50:55.201Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:50:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:50:55.201Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:50:55.201Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:50:55.202Z [INFO] Starting equipment status check...
+2025-06-20T20:50:55.203Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-20T20:50:55.203Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:50:55.204Z [ERROR] Error checking equipment status:
+2025-06-20T20:50:55.204Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:50:55.204Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:51:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:50:55.204Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:50:55.205Z [INFO] Starting weather data update job...
+2025-06-20T20:50:55.205Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:50:55.358Z [ERROR] Error updating weather data:
+2025-06-20T20:50:55.358Z [ERROR] Weather data update job failed:
+2025-06-20T20:50:55.359Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:51:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:50:55.359Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:50:55.359Z [INFO] Starting automated exception detection...
+2025-06-20T20:50:55.360Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:50:55.364Z [ERROR] SQL error after 4ms: column l.id does not exist
+2025-06-20T20:50:55.365Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:50:55.365Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:50:55.436Z [ERROR] SQL error after 74ms: column l.id does not exist
+2025-06-20T20:50:55.437Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:50:55.438Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:50:55.439Z [ERROR] SQL error after 78ms: column l.id does not exist
+2025-06-20T20:50:55.439Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:50:55.440Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:50:55.441Z [ERROR] SQL error after 79ms: column o.id does not exist
+2025-06-20T20:50:55.441Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:50:55.442Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:50:55.442Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:50:55.443Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:50:55.443Z [INFO] - Staff issues: 0
+2025-06-20T20:50:55.444Z [INFO] - Power issues: 0
+2025-06-20T20:50:55.444Z [INFO] - Equipment issues: 0
+2025-06-20T20:50:55.445Z [INFO] - Transport issues: 0
+2025-06-20T20:50:55.447Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:50:55.448Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:50:55.448Z [INFO] Exception detection completed successfully in 89ms
+2025-06-20T20:50:55.449Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:51:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:51:09.430Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:51:09.431Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:51:09.479Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:51:09.479Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:51:09.479Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:51:09.480Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:51:09.480Z [INFO] Starting equipment status check...
+2025-06-20T20:51:09.481Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-20T20:51:09.481Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:51:09.482Z [ERROR] Error checking equipment status:
+2025-06-20T20:51:09.482Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:51:09.482Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:52:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:51:09.483Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:51:09.483Z [INFO] Starting weather data update job...
+2025-06-20T20:51:09.483Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:51:09.530Z [ERROR] Error updating weather data:
+2025-06-20T20:51:09.531Z [ERROR] Weather data update job failed:
+2025-06-20T20:51:09.531Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:52:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:51:09.531Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:51:09.532Z [INFO] Starting automated exception detection...
+2025-06-20T20:51:09.532Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:51:09.534Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T20:51:09.534Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:51:09.535Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:51:09.595Z [ERROR] SQL error after 62ms: column l.id does not exist
+2025-06-20T20:51:09.596Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:51:09.597Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:51:09.598Z [ERROR] SQL error after 65ms: column l.id does not exist
+2025-06-20T20:51:09.598Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:51:09.599Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:51:09.694Z [ERROR] SQL error after 161ms: column o.id does not exist
+2025-06-20T20:51:09.695Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:51:09.695Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:51:09.695Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:51:09.696Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:51:09.696Z [INFO] - Staff issues: 0
+2025-06-20T20:51:09.696Z [INFO] - Power issues: 0
+2025-06-20T20:51:09.696Z [INFO] - Equipment issues: 0
+2025-06-20T20:51:09.697Z [INFO] - Transport issues: 0
+2025-06-20T20:51:09.697Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:51:09.698Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:51:09.698Z [INFO] Exception detection completed successfully in 166ms
+2025-06-20T20:51:09.698Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:52:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:51:55.196Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T20:51:55.197Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T20:51:55.252Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T20:51:55.253Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Fri Jun 20 2025 23:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:52:55.198Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:52:55.198Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:52:55.199Z [INFO] Starting equipment status check...
+2025-06-20T20:52:55.265Z [ERROR] SQL error after 65ms: column em.ended_at does not exist
+2025-06-20T20:52:55.265Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:52:55.266Z [ERROR] Error checking equipment status:
+2025-06-20T20:52:55.267Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:52:55.267Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:53:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:52:55.268Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:52:55.268Z [INFO] Starting weather data update job...
+2025-06-20T20:52:55.269Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:52:55.344Z [ERROR] Error updating weather data:
+2025-06-20T20:52:55.345Z [ERROR] Weather data update job failed:
+2025-06-20T20:52:55.345Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:53:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:52:55.345Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:52:55.346Z [INFO] Starting automated exception detection...
+2025-06-20T20:52:55.346Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:52:55.348Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-20T20:52:55.348Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:52:55.349Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:52:55.431Z [ERROR] SQL error after 84ms: column l.id does not exist
+2025-06-20T20:52:55.432Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:52:55.433Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:52:55.446Z [ERROR] SQL error after 100ms: column l.id does not exist
+2025-06-20T20:52:55.447Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:52:55.448Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:52:55.448Z [ERROR] SQL error after 101ms: column o.id does not exist
+2025-06-20T20:52:55.449Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:52:55.450Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:52:55.450Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:52:55.451Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:52:55.451Z [INFO] - Staff issues: 0
+2025-06-20T20:52:55.452Z [INFO] - Power issues: 0
+2025-06-20T20:52:55.452Z [INFO] - Equipment issues: 0
+2025-06-20T20:52:55.453Z [INFO] - Transport issues: 0
+2025-06-20T20:52:55.453Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:52:55.454Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:52:55.454Z [INFO] Exception detection completed successfully in 108ms
+2025-06-20T20:52:55.455Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:53:55 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:53:09.452Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:53:09.453Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:53:09.453Z [INFO] Starting equipment status check...
+2025-06-20T20:53:09.533Z [ERROR] SQL error after 80ms: column em.ended_at does not exist
+2025-06-20T20:53:09.533Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:53:09.534Z [ERROR] Error checking equipment status:
+2025-06-20T20:53:09.534Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:53:09.535Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Fri Jun 20 2025 23:54:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:53:09.535Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:53:09.535Z [INFO] Starting weather data update job...
+2025-06-20T20:53:09.536Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:53:09.626Z [ERROR] Error updating weather data:
+2025-06-20T20:53:09.627Z [ERROR] Weather data update job failed:
+2025-06-20T20:53:09.627Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Fri Jun 20 2025 23:54:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:53:09.628Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:53:09.628Z [INFO] Starting automated exception detection...
+2025-06-20T20:53:09.628Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:53:09.631Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-20T20:53:09.632Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:53:09.632Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:53:09.731Z [ERROR] SQL error after 101ms: column l.id does not exist
+2025-06-20T20:53:09.732Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:53:09.732Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:53:09.736Z [ERROR] SQL error after 106ms: column o.id does not exist
+2025-06-20T20:53:09.736Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:53:09.737Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:53:09.742Z [ERROR] SQL error after 113ms: column l.id does not exist
+2025-06-20T20:53:09.742Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:53:09.743Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:53:09.743Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:53:09.744Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:53:09.744Z [INFO] - Staff issues: 0
+2025-06-20T20:53:09.744Z [INFO] - Power issues: 0
+2025-06-20T20:53:09.745Z [INFO] - Equipment issues: 0
+2025-06-20T20:53:09.745Z [INFO] - Transport issues: 0
+2025-06-20T20:53:09.746Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:53:09.747Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:53:09.747Z [INFO] Exception detection completed successfully in 119ms
+2025-06-20T20:53:09.748Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Fri Jun 20 2025 23:54:09 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.440Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T20:58:33.487Z [INFO] AlertService: SMTP client initialized
+2025-06-20T20:58:33.503Z [INFO] Minimal server listening on port 3000
+2025-06-20T20:58:33.510Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.511Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.511Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Fri Jun 20 2025 23:59:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.512Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Fri Jun 20 2025 23:59:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.512Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.513Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Fri Jun 20 2025 23:59:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:58:33.514Z [INFO] Scheduler: Starting...
+2025-06-20T20:58:33.514Z [INFO] Scheduler: Started successfully
+2025-06-20T20:58:33.515Z [INFO] Server and scheduler started successfully
+2025-06-20T20:58:33.589Z [INFO] PostgreSQL connection successful. Server time: Fri Jun 20 2025 23:58:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:59:03.509Z [INFO] OPTIONS /api/auth/register
+2025-06-20T20:59:03.513Z [INFO] POST /api/auth/register
+2025-06-20T20:59:03.515Z [INFO] POST /api/register or /api/auth/register
+2025-06-20T20:59:03.696Z [ERROR] AuthService: Registration failed for dragoiandrei99@gmail.com: Cannot read properties of undefined (reading 'length')
+2025-06-20T20:59:03.696Z [ERROR] Register error: Cannot read properties of undefined (reading 'length')
+2025-06-20T20:59:08.513Z [INFO] OPTIONS /api/auth/register
+2025-06-20T20:59:08.516Z [INFO] POST /api/auth/register
+2025-06-20T20:59:08.517Z [INFO] POST /api/register or /api/auth/register
+2025-06-20T20:59:08.686Z [ERROR] AuthService: Registration failed for dragoiandrei99@gmail.com: Cannot read properties of undefined (reading 'length')
+2025-06-20T20:59:08.687Z [ERROR] Register error: Cannot read properties of undefined (reading 'length')
+2025-06-20T20:59:18.313Z [INFO] OPTIONS /api/auth/login
+2025-06-20T20:59:18.315Z [INFO] POST /api/auth/login
+2025-06-20T20:59:18.316Z [INFO] POST /api/login or /api/auth/login
+2025-06-20T20:59:18.318Z [ERROR] SQL error after 2ms: column u.user_type does not exist
+2025-06-20T20:59:18.319Z [ERROR] Failed query: 
+      SELECT 
+        u.user_id,
+        u.email,
+        u.password_hash,
+        u.full_name,
+        u.user_type,
+        u.created_at,
+        e.first_name,
+        e.last_name,
+        e.role as employee_role,
+        e.location_id,
+        e.phone,
+        l.name as location_name
+      FROM users u
+      LEFT JOIN employees e ON u.user_id = e.user_id
+      LEFT JOIN locations l ON e.location_id = l.location_id
+      WHERE u.email = $1
+    
+2025-06-20T20:59:18.320Z [ERROR] AuthService: Login failed for admin@cas.ro: column u.user_type does not exist
+2025-06-20T20:59:18.320Z [ERROR] Login error: column u.user_type does not exist
+2025-06-20T20:59:33.526Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T20:59:33.526Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T20:59:33.527Z [INFO] Starting equipment status check...
+2025-06-20T20:59:33.573Z [ERROR] SQL error after 46ms: column em.ended_at does not exist
+2025-06-20T20:59:33.574Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T20:59:33.574Z [ERROR] Error checking equipment status:
+2025-06-20T20:59:33.575Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T20:59:33.575Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:00:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:59:33.575Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T20:59:33.576Z [INFO] Starting weather data update job...
+2025-06-20T20:59:33.576Z [INFO] Starting weather data update for all locations...
+2025-06-20T20:59:33.625Z [ERROR] Error updating weather data:
+2025-06-20T20:59:33.625Z [ERROR] Weather data update job failed:
+2025-06-20T20:59:33.626Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:00:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T20:59:33.626Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T20:59:33.627Z [INFO] Starting automated exception detection...
+2025-06-20T20:59:33.627Z [INFO] Running comprehensive exception detection...
+2025-06-20T20:59:33.634Z [ERROR] SQL error after 6ms: column l.id does not exist
+2025-06-20T20:59:33.635Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:59:33.636Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T20:59:33.698Z [ERROR] SQL error after 70ms: column l.id does not exist
+2025-06-20T20:59:33.699Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T20:59:33.700Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T20:59:33.703Z [ERROR] SQL error after 74ms: column l.id does not exist
+2025-06-20T20:59:33.704Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T20:59:33.704Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T20:59:33.708Z [ERROR] SQL error after 79ms: column o.id does not exist
+2025-06-20T20:59:33.708Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T20:59:33.709Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T20:59:33.709Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T20:59:33.710Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T20:59:33.710Z [INFO] - Staff issues: 0
+2025-06-20T20:59:33.710Z [INFO] - Power issues: 0
+2025-06-20T20:59:33.711Z [INFO] - Equipment issues: 0
+2025-06-20T20:59:33.711Z [INFO] - Transport issues: 0
+2025-06-20T20:59:33.712Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T20:59:33.713Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T20:59:33.714Z [INFO] Exception detection completed successfully in 87ms
+2025-06-20T20:59:33.714Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:00:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.564Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-20T21:00:29.591Z [INFO] AlertService: SMTP client initialized
+2025-06-20T21:00:29.601Z [INFO] Minimal server listening on port 8000
+2025-06-20T21:00:29.606Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.606Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sat Jun 21 2025 01:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.607Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Sat Jun 21 2025 00:01:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.607Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Sat Jun 21 2025 00:01:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.608Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Sun Jun 22 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.608Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Sat Jun 21 2025 00:01:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:29.609Z [INFO] Scheduler: Starting...
+2025-06-20T21:00:29.609Z [INFO] Scheduler: Started successfully
+2025-06-20T21:00:29.609Z [INFO] Server and scheduler started successfully
+2025-06-20T21:00:29.661Z [INFO] PostgreSQL connection successful. Server time: Sat Jun 21 2025 00:00:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:33.531Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:00:33.531Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:00:33.586Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:00:33.587Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:33.587Z [INFO] Scheduler: Running job 'checkInventory'
+2025-06-20T21:00:33.587Z [INFO] CheckInventory: Starting inventory monitoring job
+2025-06-20T21:00:33.592Z [INFO] Found 0 low stock items (threshold: 10)
+2025-06-20T21:00:33.594Z [INFO] Found 0 out of stock items
+2025-06-20T21:00:33.594Z [INFO] CheckInventory: All inventory levels are adequate
+2025-06-20T21:00:33.595Z [INFO] Scheduler: Job 'checkInventory' completed, next run: Sat Jun 21 2025 01:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:33.595Z [INFO] Scheduler: Running job 'generateDailyStats'
+2025-06-20T21:00:33.595Z [INFO] Starting daily statistics generation...
+2025-06-20T21:00:33.596Z [INFO] Generating location-specific statistics...
+2025-06-20T21:00:33.597Z [ERROR] SQL error after 1ms: column "id" does not exist
+2025-06-20T21:00:33.597Z [ERROR] Failed query: SELECT id, name FROM locations ORDER BY name
+2025-06-20T21:00:33.598Z [ERROR] Error generating location stats: column "id" does not exist
+2025-06-20T21:00:33.598Z [ERROR] Daily stats generation failed: column "id" does not exist
+2025-06-20T21:00:33.598Z [ERROR] Failed to send stats generation failure alert: alertService.createAlert is not a function
+2025-06-20T21:00:33.598Z [INFO] Scheduler: Job 'generateDailyStats' completed, next run: Sun Jun 22 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:00:33.757Z [INFO] OPTIONS /api/auth/login
+2025-06-20T21:00:33.759Z [INFO] POST /api/auth/login
+2025-06-20T21:00:33.759Z [INFO] POST /api/login or /api/auth/login
+2025-06-20T21:00:33.815Z [ERROR] SQL error after 55ms: column u.user_type does not exist
+2025-06-20T21:00:33.816Z [ERROR] Failed query: 
+      SELECT 
+        u.user_id,
+        u.email,
+        u.password_hash,
+        u.full_name,
+        u.user_type,
+        u.created_at,
+        e.first_name,
+        e.last_name,
+        e.role as employee_role,
+        e.location_id,
+        e.phone,
+        l.name as location_name
+      FROM users u
+      LEFT JOIN employees e ON u.user_id = e.user_id
+      LEFT JOIN locations l ON e.location_id = l.location_id
+      WHERE u.email = $1
+    
+2025-06-20T21:00:33.817Z [ERROR] AuthService: Login failed for admin@cas.ro: column u.user_type does not exist
+2025-06-20T21:00:33.817Z [ERROR] Login error: column u.user_type does not exist
+2025-06-20T21:00:55.628Z [INFO] OPTIONS /api/auth/register
+2025-06-20T21:00:55.631Z [INFO] POST /api/auth/register
+2025-06-20T21:00:55.631Z [INFO] POST /api/register or /api/auth/register
+2025-06-20T21:00:55.830Z [ERROR] AuthService: Registration failed for dragoiandrei99@gmail.com: Cannot read properties of undefined (reading 'length')
+2025-06-20T21:00:55.830Z [ERROR] Register error: Cannot read properties of undefined (reading 'length')
+2025-06-20T21:01:01.266Z [INFO] POST /api/register
+2025-06-20T21:01:01.268Z [INFO] POST /api/register or /api/auth/register
+2025-06-20T21:01:01.268Z [WARN] Register: Missing required fields
+2025-06-20T21:01:29.613Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:01:29.613Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:01:29.665Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:01:29.666Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:29.667Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:01:29.667Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:01:29.668Z [INFO] Starting equipment status check...
+2025-06-20T21:01:29.671Z [ERROR] SQL error after 2ms: column em.ended_at does not exist
+2025-06-20T21:01:29.672Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:01:29.672Z [ERROR] Error checking equipment status:
+2025-06-20T21:01:29.672Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:01:29.673Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:02:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:29.673Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:01:29.674Z [INFO] Starting weather data update job...
+2025-06-20T21:01:29.675Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:01:29.739Z [ERROR] Error updating weather data:
+2025-06-20T21:01:29.740Z [ERROR] Weather data update job failed:
+2025-06-20T21:01:29.741Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:02:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:29.741Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:01:29.742Z [INFO] Starting automated exception detection...
+2025-06-20T21:01:29.742Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:01:29.746Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-20T21:01:29.746Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:01:29.746Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:01:29.820Z [ERROR] SQL error after 77ms: column l.id does not exist
+2025-06-20T21:01:29.821Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:01:29.822Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:01:29.835Z [ERROR] SQL error after 91ms: column l.id does not exist
+2025-06-20T21:01:29.836Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:01:29.836Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:01:29.838Z [ERROR] SQL error after 94ms: column o.id does not exist
+2025-06-20T21:01:29.838Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:01:29.839Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:01:29.839Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:01:29.840Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:01:29.840Z [INFO] - Staff issues: 0
+2025-06-20T21:01:29.840Z [INFO] - Power issues: 0
+2025-06-20T21:01:29.840Z [INFO] - Equipment issues: 0
+2025-06-20T21:01:29.841Z [INFO] - Transport issues: 0
+2025-06-20T21:01:29.841Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:01:29.842Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:01:29.843Z [INFO] Exception detection completed successfully in 101ms
+2025-06-20T21:01:29.843Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:02:29 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:33.539Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:01:33.540Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:01:33.591Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:01:33.592Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:33.592Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:01:33.593Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:01:33.593Z [INFO] Starting equipment status check...
+2025-06-20T21:01:33.595Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-20T21:01:33.596Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:01:33.596Z [ERROR] Error checking equipment status:
+2025-06-20T21:01:33.597Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:01:33.597Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:02:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:33.598Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:01:33.598Z [INFO] Starting weather data update job...
+2025-06-20T21:01:33.599Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:01:33.646Z [ERROR] Error updating weather data:
+2025-06-20T21:01:33.647Z [ERROR] Weather data update job failed:
+2025-06-20T21:01:33.648Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:02:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:01:33.648Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:01:33.648Z [INFO] Starting automated exception detection...
+2025-06-20T21:01:33.649Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:01:33.650Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T21:01:33.651Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:01:33.651Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:01:33.706Z [ERROR] SQL error after 57ms: column l.id does not exist
+2025-06-20T21:01:33.707Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:01:33.708Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:01:33.709Z [ERROR] SQL error after 60ms: column l.id does not exist
+2025-06-20T21:01:33.709Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:01:33.710Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:01:33.716Z [ERROR] SQL error after 67ms: column o.id does not exist
+2025-06-20T21:01:33.717Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:01:33.717Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:01:33.718Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:01:33.719Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:01:33.719Z [INFO] - Staff issues: 0
+2025-06-20T21:01:33.719Z [INFO] - Power issues: 0
+2025-06-20T21:01:33.720Z [INFO] - Equipment issues: 0
+2025-06-20T21:01:33.720Z [INFO] - Transport issues: 0
+2025-06-20T21:01:33.721Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:01:33.721Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:01:33.722Z [INFO] Exception detection completed successfully in 74ms
+2025-06-20T21:01:33.722Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:02:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:03:33.555Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:03:33.556Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:03:33.557Z [INFO] Starting equipment status check...
+2025-06-20T21:03:33.599Z [ERROR] SQL error after 42ms: column em.ended_at does not exist
+2025-06-20T21:03:33.599Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:03:33.599Z [ERROR] Error checking equipment status:
+2025-06-20T21:03:33.600Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:03:33.600Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:04:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:03:33.600Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:03:33.600Z [INFO] Starting weather data update job...
+2025-06-20T21:03:33.600Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:03:33.647Z [ERROR] Error updating weather data:
+2025-06-20T21:03:33.648Z [ERROR] Weather data update job failed:
+2025-06-20T21:03:33.648Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:04:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:03:33.648Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:03:33.649Z [INFO] Starting automated exception detection...
+2025-06-20T21:03:33.649Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:03:33.651Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T21:03:33.651Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:03:33.652Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:03:33.708Z [ERROR] SQL error after 57ms: column l.id does not exist
+2025-06-20T21:03:33.708Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:03:33.709Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:03:33.711Z [ERROR] SQL error after 61ms: column l.id does not exist
+2025-06-20T21:03:33.712Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:03:33.712Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:03:33.718Z [ERROR] SQL error after 68ms: column o.id does not exist
+2025-06-20T21:03:33.718Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:03:33.719Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:03:33.719Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:03:33.720Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:03:33.720Z [INFO] - Staff issues: 0
+2025-06-20T21:03:33.720Z [INFO] - Power issues: 0
+2025-06-20T21:03:33.720Z [INFO] - Equipment issues: 0
+2025-06-20T21:03:33.721Z [INFO] - Transport issues: 0
+2025-06-20T21:03:33.721Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:03:33.722Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:03:33.722Z [INFO] Exception detection completed successfully in 73ms
+2025-06-20T21:03:33.723Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:04:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:05:33.561Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:05:33.563Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:05:33.641Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:05:33.642Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:05:33.642Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:05:33.642Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:05:33.643Z [INFO] Starting equipment status check...
+2025-06-20T21:05:33.644Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-20T21:05:33.645Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:05:33.645Z [ERROR] Error checking equipment status:
+2025-06-20T21:05:33.646Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:05:33.646Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:06:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:05:33.647Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:05:33.647Z [INFO] Starting weather data update job...
+2025-06-20T21:05:33.648Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:05:33.690Z [ERROR] Error updating weather data:
+2025-06-20T21:05:33.691Z [ERROR] Weather data update job failed:
+2025-06-20T21:05:33.691Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:06:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:05:33.692Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:05:33.692Z [INFO] Starting automated exception detection...
+2025-06-20T21:05:33.692Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:05:33.694Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T21:05:33.695Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:05:33.695Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:05:33.745Z [ERROR] SQL error after 52ms: column l.id does not exist
+2025-06-20T21:05:33.746Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:05:33.746Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:05:33.751Z [ERROR] SQL error after 58ms: column l.id does not exist
+2025-06-20T21:05:33.752Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:05:33.752Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:05:33.753Z [ERROR] SQL error after 60ms: column o.id does not exist
+2025-06-20T21:05:33.753Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:05:33.753Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:05:33.754Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:05:33.754Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:05:33.754Z [INFO] - Staff issues: 0
+2025-06-20T21:05:33.755Z [INFO] - Power issues: 0
+2025-06-20T21:05:33.755Z [INFO] - Equipment issues: 0
+2025-06-20T21:05:33.755Z [INFO] - Transport issues: 0
+2025-06-20T21:05:33.756Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:05:33.756Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:05:33.757Z [INFO] Exception detection completed successfully in 65ms
+2025-06-20T21:05:33.758Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:06:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:06:33.563Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:06:33.564Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:06:33.605Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:06:33.606Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:07:33.580Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:07:33.580Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:07:33.581Z [INFO] Starting equipment status check...
+2025-06-20T21:07:33.641Z [ERROR] SQL error after 60ms: column em.ended_at does not exist
+2025-06-20T21:07:33.641Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:07:33.642Z [ERROR] Error checking equipment status:
+2025-06-20T21:07:33.642Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:07:33.643Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:08:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:07:33.643Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:07:33.643Z [INFO] Starting weather data update job...
+2025-06-20T21:07:33.644Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:07:33.704Z [ERROR] Error updating weather data:
+2025-06-20T21:07:33.705Z [ERROR] Weather data update job failed:
+2025-06-20T21:07:33.705Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:08:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:07:33.706Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:07:33.706Z [INFO] Starting automated exception detection...
+2025-06-20T21:07:33.706Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:07:33.708Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T21:07:33.708Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:07:33.709Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:07:33.773Z [ERROR] SQL error after 66ms: column l.id does not exist
+2025-06-20T21:07:33.774Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:07:33.774Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:07:33.777Z [ERROR] SQL error after 70ms: column l.id does not exist
+2025-06-20T21:07:33.778Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:07:33.778Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:07:33.787Z [ERROR] SQL error after 80ms: column o.id does not exist
+2025-06-20T21:07:33.788Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:07:33.788Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:07:33.789Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:07:33.789Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:07:33.789Z [INFO] - Staff issues: 0
+2025-06-20T21:07:33.790Z [INFO] - Power issues: 0
+2025-06-20T21:07:33.790Z [INFO] - Equipment issues: 0
+2025-06-20T21:07:33.791Z [INFO] - Transport issues: 0
+2025-06-20T21:07:33.791Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:07:33.792Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:07:33.792Z [INFO] Exception detection completed successfully in 86ms
+2025-06-20T21:07:33.793Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:08:33 GMT+0300 (Eastern European Summer Time)

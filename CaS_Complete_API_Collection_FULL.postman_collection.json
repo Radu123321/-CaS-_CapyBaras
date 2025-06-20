@@ -1,0 +1,1029 @@
+{
+	"info": {
+		"_postman_id": "cas-complete-full-api-collection",
+		"name": "CaS - Complete FULL API Collection (All Endpoints)",
+		"description": "Complete API collection for Cleaning Web Simulator with ALL endpoints including Weather, Equipment, Alerts, RSS feeds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "employeeId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "locationId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "serviceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "transportId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "equipmentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "maintenanceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "resourceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "alertId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "🏠 System Endpoints",
+			"description": "Basic system endpoints for health checks and status",
+			"item": [
+				{
+					"name": "Ping Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/ping",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ping"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Scheduler Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/scheduler/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "scheduler", "status"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔐 Auth Controller",
+			"description": "Authentication endpoints - register and login",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test-{{$randomInt}}@example.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Test User CaS\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "register"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "login"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🌤️ Weather Controller",
+			"description": "Weather data management and impact analysis endpoints",
+			"item": [
+				{
+					"name": "Add Weather Snapshot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"temperature_c\": 25.5,\n    \"humidity_pct\": 65,\n    \"condition\": \"partly cloudy\",\n    \"wind_speed\": 12.3,\n    \"precipitation\": 0.0,\n    \"captured_at\": \"2025-06-20T14:30:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/weather",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Weather All Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/current",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "current"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Weather by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/location/{{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "location", "{{locationId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Analyze Service Impact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/impact/location/{{locationId}}/service/CAR_WASH",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "impact", "location", "{{locationId}}", "service", "CAR_WASH"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Scheduling Recommendations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/recommendations/location/{{locationId}}?services=CAR_WASH,CARPET_CLEANING,WINDOW_CLEANING",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "recommendations", "location", "{{locationId}}"],
+							"query": [
+								{
+									"key": "services",
+									"value": "CAR_WASH,CARPET_CLEANING,WINDOW_CLEANING"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update All Weather Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/update-all",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "update-all"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Adverse Conditions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/check-adverse",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "check-adverse"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/weather/service-types",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "weather", "service-types"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔧 Equipment Controller",
+			"description": "Equipment lifecycle management and maintenance endpoints",
+			"item": [
+				{
+					"name": "Get All Equipment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment?location_id={{locationId}}&status=OPERATIVE",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								},
+								{
+									"key": "status",
+									"value": "OPERATIVE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Equipment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"name\": \"Industrial Vacuum Cleaner XL-2000\",\n    \"status\": \"OPERATIVE\",\n    \"purchased_on\": \"2025-01-15\",\n    \"notes\": \"High-power vacuum for carpet cleaning services\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equipment Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/dashboard",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "dashboard"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equipment Statuses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/statuses",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "statuses"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Equipment Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/check-status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "check-status"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Equipment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/{{equipmentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "{{equipmentId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Equipment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Updated Industrial Vacuum Cleaner XL-2000\",\n    \"status\": \"UNDER_MAINTENANCE\",\n    \"notes\": \"Equipment scheduled for maintenance - filter replacement\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/{{equipmentId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "{{equipmentId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule Maintenance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"started_at\": \"2025-06-25T09:00:00Z\",\n    \"description\": \"Scheduled maintenance - filter replacement and deep cleaning\",\n    \"unplanned\": false\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/equipment/{{equipmentId}}/maintenance",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "equipment", "{{equipmentId}}", "maintenance"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Complete Maintenance",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ended_at\": \"2025-06-25T11:30:00Z\",\n    \"description\": \"Maintenance completed - filter replaced, equipment tested and operational\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/maintenance/{{maintenanceId}}/complete",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "maintenance", "{{maintenanceId}}", "complete"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🚨 Alert Controller",
+			"description": "Alert system management and email notifications",
+			"item": [
+				{
+					"name": "Send Test Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/test-email?to=test@example.com",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "test-email"],
+							"query": [
+								{
+									"key": "to",
+									"value": "test@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test SMTP Connection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/test-smtp",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "test-smtp"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Equipment Failure Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"equipment_name\": \"Industrial Vacuum XL-2000\",\n    \"failure_type\": \"Motor malfunction\",\n    \"severity\": \"CRITICAL\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/equipment-failure",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "equipment-failure"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Staff Unavailability Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"employee_name\": \"John Doe\",\n    \"employee_type\": \"CLEANER\",\n    \"reason\": \"Sick leave\",\n    \"duration_hours\": 24\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/staff-unavailable",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "staff-unavailable"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Power Outage Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"outage_type\": \"Scheduled maintenance\",\n    \"estimated_duration_hours\": 4,\n    \"affected_services\": \"All electrical equipment\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/power-outage",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "power-outage"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Critical Inventory Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"resource_name\": \"Cleaning Solution Pro\",\n    \"current_quantity\": 2,\n    \"minimum_threshold\": 10,\n    \"unit\": \"liters\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/critical-inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "critical-inventory"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Transport Delay Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transport_id\": {{transportId}},\n    \"order_id\": {{orderId}},\n    \"delay_minutes\": 45,\n    \"reason\": \"Heavy traffic due to weather conditions\",\n    \"new_eta\": \"2025-06-25T15:45:00Z\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/transport-delay",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "transport-delay"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger Maintenance Due Alert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"equipment_id\": {{equipmentId}},\n    \"equipment_name\": \"Industrial Vacuum XL-2000\",\n    \"days_overdue\": 5,\n    \"last_maintenance\": \"2025-03-15T10:00:00Z\",\n    \"maintenance_type\": \"Scheduled filter replacement\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/maintenance-due",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "maintenance-due"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alert History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/history?limit=50&severity=WARNING&location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "history"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								},
+								{
+									"key": "severity",
+									"value": "WARNING"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Delivery Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/stats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "stats"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Available Alert Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/types",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "types"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alert Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/config",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "config"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Alert Configuration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email_enabled\": true,\n    \"websocket_enabled\": true,\n    \"rss_enabled\": true,\n    \"default_email_recipients\": [\"admin@cas-system.com\", \"manager@cas-system.com\"],\n    \"severity_thresholds\": {\n        \"equipment_failure\": \"CRITICAL\",\n        \"staff_unavailable\": \"WARNING\",\n        \"inventory_low\": \"INFO\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/config",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "config"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Alert by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/{{alertId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "{{alertId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear Old Alerts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/alerts/history?days=30",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "alerts", "history"],
+							"query": [
+								{
+									"key": "days",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📦 Inventory Controller",
+			"description": "Resource and inventory management endpoints",
+			"item": [
+				{
+					"name": "Get All Resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/resources",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "resources"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Resource",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Professional Carpet Cleaner Solution\",\n    \"description\": \"High-grade carpet cleaning solution for deep stain removal\",\n    \"unit\": \"liters\",\n    \"cost_per_unit\": 25.99\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/resources",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "resources"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Inventory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/location/{{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "location", "{{locationId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Inventory Quantity",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 50,\n    \"minimum_threshold\": 10,\n    \"reason\": \"Manual inventory adjustment after stock count\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/location/{{locationId}}/resource/{{resourceId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "location", "{{locationId}}", "resource", "{{resourceId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restock Resources",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"restock_items\": [\n        {\n            \"resource_id\": {{resourceId}},\n            \"quantity\": 25,\n            \"cost_per_unit\": 25.99\n        },\n        {\n            \"resource_id\": 2,\n            \"quantity\": 10,\n            \"cost_per_unit\": 15.50\n        }\n    ],\n    \"supplier\": \"CleanPro Supplies Ltd\",\n    \"notes\": \"Monthly restock delivery\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/location/{{locationId}}/restock",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "location", "{{locationId}}", "restock"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consume Resources for Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_id\": {{orderId}},\n    \"location_id\": {{locationId}},\n    \"resources\": [\n        {\n            \"resource_id\": {{resourceId}},\n            \"quantity_used\": 5\n        },\n        {\n            \"resource_id\": 2,\n            \"quantity_used\": 2\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/consume",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "consume"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/alerts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "alerts"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Low Stock Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/inventory/low-stock?location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "inventory", "low-stock"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🌐 WebSocket Controller",
+			"description": "WebSocket management and broadcasting endpoints",
+			"item": [
+				{
+					"name": "Get WebSocket Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/websocket/stats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "websocket", "stats"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Broadcast to All Clients",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"System maintenance scheduled for tonight at 2 AM\",\n    \"type\": \"SYSTEM_ANNOUNCEMENT\",\n    \"priority\": \"HIGH\",\n    \"data\": {\n        \"maintenance_start\": \"2025-06-21T02:00:00Z\",\n        \"estimated_duration\": \"2 hours\",\n        \"affected_services\": \"All services\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/websocket/broadcast",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "websocket", "broadcast"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Broadcast to Location Clients",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"New order received for carpet cleaning\",\n    \"type\": \"ORDER_UPDATE\",\n    \"priority\": \"NORMAL\",\n    \"data\": {\n        \"order_id\": {{orderId}},\n        \"service_type\": \"CARPET_CLEANING\",\n        \"scheduled_for\": \"2025-06-25T10:00:00Z\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/websocket/broadcast/location/{{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "websocket", "broadcast", "location", "{{locationId}}"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📡 RSS Controller",
+			"description": "RSS feed endpoints for different data types",
+			"item": [
+				{
+					"name": "Get General RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rss",
+							"host": ["{{baseUrl}}"],
+							"path": ["rss"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Location RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rss/location/{{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["rss", "location", "{{locationId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order Updates RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rss/orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["rss", "orders"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inventory Alerts RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/rss/inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["rss", "inventory"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+} 

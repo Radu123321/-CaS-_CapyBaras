@@ -1,0 +1,228 @@
+.despre-page {
+  background-color: #f8f8f8;
+  font-family: Arial, sans-serif;
+  color: #111;
+  padding: 40px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.despre-banner {
+  background-image: url("../assets/banner-multiwash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.despre-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.despre-banner h1 {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  z-index: 1;
+  margin: 0;
+}
+
+.highlight {
+  color: #FFD700;
+}
+
+.despre-multiwash {
+  max-width: 1200px;
+  margin: 60px auto;
+  display: flex;
+  gap: 40px;
+  padding: 0 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.despre-multiwash > div {
+  flex: 1 1 300px;
+}
+
+.despre-multiwash p,
+.despre-multiwash ul {
+  font-size: 18px;
+  text-align: left;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.despre-multiwash ul {
+  margin-top: 20px;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.despre-multiwash ul li {
+  margin-bottom: 10px;
+}
+
+.despre-multiwash img, .despre-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.despre-image {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.despre-multiwash img[loading="lazy"] {
+  opacity: 0;
+}
+
+.despre-multiwash img.loaded,
+.despre-multiwash img:not([loading="lazy"]) {
+  opacity: 1;
+}
+
+.lazy-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  margin: 40px auto;
+  max-width: 1000px;
+  padding: 0 24px;
+}
+
+.lazy-image img {
+  max-width: 520px;
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: block;
+}
+
+.lazy-text {
+  text-align: left;
+  width: 100%;
+  max-width: 520px;
+  padding: 0;
+  margin: 0;
+}
+
+.lazy-text h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.back-btn {
+  display: inline-block;
+  margin: 40px auto;
+  background-color: #e60000;
+  color: white;
+  padding: 10px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.back-btn:hover,
+.back-btn:focus {
+  background-color: #990000;
+  outline: none;
+}
+
+.camera-tehnica {
+  margin-top: 60px;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.camera-tehnica .lazy-text {
+  max-width: 600px;
+  margin-left: auto;
+  padding-right: 20px;
+}
+
+.center-btn {
+  display: block;
+  max-width: 200px;
+  margin: 50px auto;
+}
+
+@media (max-width: 768px) {
+  .despre-multiwash,
+  .lazy-section {
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 20px;
+  }
+
+  .despre-multiwash > div,
+  .lazy-section > div {
+    min-width: 100%;
+  }
+
+  .despre-banner h1 {
+    font-size: 1.8rem;
+    padding: 0 10px;
+  }
+
+  .lazy-text h2 {
+    font-size: 1.75rem;
+  }
+
+  .lazy-section .lazy-text {
+    order: -1;
+  }
+
+  .lazy-section .lazy-image {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .lazy-section {
+    gap: 24px;
+  }
+  .lazy-image img {
+    max-width: 100%;
+  }
+  .lazy-text {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .lazy-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .lazy-image img {
+    max-width: 100%;
+  }
+  .lazy-text {
+    padding: 0 10px;
+    max-width: 100%;
+    align-items: flex-start;
+  }
+}

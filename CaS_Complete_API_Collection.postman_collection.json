@@ -1,0 +1,1012 @@
+{
+	"info": {
+		"_postman_id": "cas-complete-full-collection-2025",
+		"name": "CaS - COMPLETE API Collection (All Features)",
+		"description": "Complete API collection for Cleaning Web Simulator with ALL endpoints: Weather, Equipment, Alerts, Inventory, RSS, WebSocket, Core CRUD operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "locationId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "serviceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "employeeId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "transportId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "equipmentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "maintenanceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "resourceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "alertId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "🏠 System Health",
+			"description": "System health and status endpoints",
+			"item": [
+				{
+					"name": "Ping Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/ping"
+					}
+				},
+				{
+					"name": "Scheduler Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/scheduler/status"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔐 Authentication",
+			"description": "User authentication endpoints",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user-{{$randomInt}}@cas-system.com\",\n    \"password\": \"SecurePass123!\",\n    \"full_name\": \"Test User {{$randomFirstName}} {{$randomLastName}}\"\n}"
+						},
+						"url": "{{baseUrl}}/api/register"
+					}
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@cas-system.com\",\n    \"password\": \"SecurePass123!\"\n}"
+						},
+						"url": "{{baseUrl}}/api/login"
+					}
+				}
+			]
+		},
+		{
+			"name": "🌤️ Weather Management",
+			"description": "Weather data and impact analysis endpoints",
+			"item": [
+				{
+					"name": "Add Weather Snapshot",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"temperature_c\": 22.5,\n    \"humidity_pct\": 68,\n    \"condition\": \"partly cloudy\",\n    \"wind_speed\": 15.2,\n    \"precipitation\": 0.0,\n    \"captured_at\": \"{{$isoTimestamp}}\"\n}"
+						},
+						"url": "{{baseUrl}}/api/weather"
+					}
+				},
+				{
+					"name": "Get Current Weather All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/current"
+					}
+				},
+				{
+					"name": "Get Weather by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/location/{{locationId}}"
+					}
+				},
+				{
+					"name": "Analyze Service Impact - Car Wash",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/impact/location/{{locationId}}/service/CAR_WASH"
+					}
+				},
+				{
+					"name": "Analyze Service Impact - Window Cleaning",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/impact/location/{{locationId}}/service/WINDOW_CLEANING"
+					}
+				},
+				{
+					"name": "Get Scheduling Recommendations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/recommendations/location/{{locationId}}?services=CAR_WASH,CARPET_CLEANING,WINDOW_CLEANING,GENERAL_CLEANING"
+					}
+				},
+				{
+					"name": "Update All Weather Data",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/update-all"
+					}
+				},
+				{
+					"name": "Check Adverse Conditions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/check-adverse"
+					}
+				},
+				{
+					"name": "Get Service Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/weather/service-types"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔧 Equipment Management",
+			"description": "Equipment lifecycle and maintenance endpoints",
+			"item": [
+				{
+					"name": "Get All Equipment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/equipment?location_id={{locationId}}&status=OPERATIVE"
+					}
+				},
+				{
+					"name": "Create Equipment",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"name\": \"Industrial Vacuum Cleaner Pro-X5000\",\n    \"status\": \"OPERATIVE\",\n    \"purchased_on\": \"2025-01-15\",\n    \"notes\": \"High-power industrial vacuum for heavy-duty carpet cleaning operations\"\n}"
+						},
+						"url": "{{baseUrl}}/api/equipment"
+					}
+				},
+				{
+					"name": "Get Equipment Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/equipment/dashboard"
+					}
+				},
+				{
+					"name": "Get Equipment Statuses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/equipment/statuses"
+					}
+				},
+				{
+					"name": "Check Equipment Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "{{baseUrl}}/api/equipment/check-status"
+					}
+				},
+				{
+					"name": "Get Equipment by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/equipment/{{equipmentId}}"
+					}
+				},
+				{
+					"name": "Update Equipment",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Industrial Vacuum Cleaner Pro-X5000 (Updated)\",\n    \"status\": \"UNDER_MAINTENANCE\",\n    \"notes\": \"Equipment scheduled for preventive maintenance - filter replacement and motor servicing\"\n}"
+						},
+						"url": "{{baseUrl}}/api/equipment/{{equipmentId}}"
+					}
+				},
+				{
+					"name": "Schedule Maintenance",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"started_at\": \"2025-06-25T09:00:00Z\",\n    \"description\": \"Scheduled preventive maintenance: Filter replacement, motor cleaning, belt inspection, and performance testing\",\n    \"unplanned\": false\n}"
+						},
+						"url": "{{baseUrl}}/api/equipment/{{equipmentId}}/maintenance"
+					}
+				},
+				{
+					"name": "Complete Maintenance",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ended_at\": \"2025-06-25T12:30:00Z\",\n    \"description\": \"Maintenance completed successfully: New filter installed, motor cleaned and tested, all systems operational\"\n}"
+						},
+						"url": "{{baseUrl}}/api/maintenance/{{maintenanceId}}/complete"
+					}
+				}
+			]
+		},
+		{
+			"name": "🚨 Alert System",
+			"description": "Multi-channel alert system endpoints",
+			"item": [
+				{
+					"name": "Send Test Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/test-email?to=test@cas-system.com"
+					}
+				},
+				{
+					"name": "Test SMTP Connection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/test-smtp"
+					}
+				},
+				{
+					"name": "Equipment Failure Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"equipment_name\": \"Industrial Vacuum Pro-X5000\",\n    \"failure_type\": \"Motor overheating and abnormal noise\",\n    \"severity\": \"CRITICAL\",\n    \"impact\": \"All carpet cleaning services suspended\"\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/equipment-failure"
+					}
+				},
+				{
+					"name": "Staff Unavailability Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"employee_name\": \"John Smith\",\n    \"employee_type\": \"CLEANER\",\n    \"reason\": \"Emergency sick leave - flu symptoms\",\n    \"duration_hours\": 48,\n    \"replacement_needed\": true\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/staff-unavailable"
+					}
+				},
+				{
+					"name": "Power Outage Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"outage_type\": \"Unplanned power outage due to storm\",\n    \"estimated_duration_hours\": 6,\n    \"affected_services\": \"All electrical equipment, vacuum systems, washing machines\",\n    \"backup_power\": false\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/power-outage"
+					}
+				},
+				{
+					"name": "Critical Inventory Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"resource_name\": \"Professional Carpet Cleaning Solution\",\n    \"current_quantity\": 3,\n    \"minimum_threshold\": 15,\n    \"unit\": \"liters\",\n    \"estimated_days_remaining\": 2\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/critical-inventory"
+					}
+				},
+				{
+					"name": "Transport Delay Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"transport_id\": {{transportId}},\n    \"order_id\": {{orderId}},\n    \"delay_minutes\": 60,\n    \"reason\": \"Heavy traffic due to weather conditions and road construction\",\n    \"new_eta\": \"2025-06-25T16:00:00Z\",\n    \"customer_notified\": true\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/transport-delay"
+					}
+				},
+				{
+					"name": "Maintenance Due Alert",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"equipment_id\": {{equipmentId}},\n    \"equipment_name\": \"Industrial Vacuum Pro-X5000\",\n    \"days_overdue\": 7,\n    \"last_maintenance\": \"2025-03-10T10:00:00Z\",\n    \"maintenance_type\": \"Scheduled filter replacement and motor inspection\",\n    \"urgency\": \"HIGH\"\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/maintenance-due"
+					}
+				},
+				{
+					"name": "Get Alert History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/history?limit=100&severity=WARNING&location_id={{locationId}}"
+					}
+				},
+				{
+					"name": "Get Delivery Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/stats"
+					}
+				},
+				{
+					"name": "Get Available Alert Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/types"
+					}
+				},
+				{
+					"name": "Get Alert Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/config"
+					}
+				},
+				{
+					"name": "Update Alert Configuration",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email_enabled\": true,\n    \"websocket_enabled\": true,\n    \"rss_enabled\": true,\n    \"default_email_recipients\": [\n        \"admin@cas-system.com\",\n        \"manager@cas-system.com\",\n        \"operations@cas-system.com\"\n    ],\n    \"severity_thresholds\": {\n        \"equipment_failure\": \"CRITICAL\",\n        \"staff_unavailable\": \"WARNING\",\n        \"inventory_low\": \"INFO\",\n        \"weather_adverse\": \"WARNING\",\n        \"transport_delay\": \"INFO\"\n    },\n    \"notification_intervals\": {\n        \"critical\": 15,\n        \"warning\": 60,\n        \"info\": 240\n    }\n}"
+						},
+						"url": "{{baseUrl}}/api/alerts/config"
+					}
+				},
+				{
+					"name": "Get Alert by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/{{alertId}}"
+					}
+				},
+				{
+					"name": "Clear Old Alerts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/alerts/history?days=30"
+					}
+				}
+			]
+		},
+		{
+			"name": "📦 Inventory Management",
+			"description": "Resource and inventory management endpoints",
+			"item": [
+				{
+					"name": "Get All Resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/resources"
+					}
+				},
+				{
+					"name": "Create Resource",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Professional Carpet Cleaning Solution Pro-Clean\",\n    \"description\": \"High-grade carpet cleaning solution for deep stain removal and fabric protection\",\n    \"unit\": \"liters\",\n    \"cost_per_unit\": 28.50\n}"
+						},
+						"url": "{{baseUrl}}/api/resources"
+					}
+				},
+				{
+					"name": "Get All Inventory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/inventory"
+					}
+				},
+				{
+					"name": "Get Inventory by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/inventory/location/{{locationId}}"
+					}
+				},
+				{
+					"name": "Update Inventory Quantity",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\": 75,\n    \"minimum_threshold\": 15,\n    \"reason\": \"Manual inventory adjustment after monthly stock count and quality check\"\n}"
+						},
+						"url": "{{baseUrl}}/api/inventory/location/{{locationId}}/resource/{{resourceId}}"
+					}
+				},
+				{
+					"name": "Restock Resources",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"restock_items\": [\n        {\n            \"resource_id\": {{resourceId}},\n            \"quantity\": 50,\n            \"cost_per_unit\": 28.50\n        },\n        {\n            \"resource_id\": 2,\n            \"quantity\": 25,\n            \"cost_per_unit\": 18.75\n        },\n        {\n            \"resource_id\": 3,\n            \"quantity\": 100,\n            \"cost_per_unit\": 2.25\n        }\n    ],\n    \"supplier\": \"CleanPro Professional Supplies Ltd\",\n    \"notes\": \"Monthly bulk restock delivery - premium cleaning solutions and consumables\"\n}"
+						},
+						"url": "{{baseUrl}}/api/inventory/location/{{locationId}}/restock"
+					}
+				},
+				{
+					"name": "Consume Resources for Order",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_id\": {{orderId}},\n    \"location_id\": {{locationId}},\n    \"resources\": [\n        {\n            \"resource_id\": {{resourceId}},\n            \"quantity_used\": 8.5\n        },\n        {\n            \"resource_id\": 2,\n            \"quantity_used\": 3.2\n        },\n        {\n            \"resource_id\": 3,\n            \"quantity_used\": 15\n        }\n    ]\n}"
+						},
+						"url": "{{baseUrl}}/api/inventory/consume"
+					}
+				},
+				{
+					"name": "Get Inventory Alerts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/inventory/alerts"
+					}
+				},
+				{
+					"name": "Get Low Stock Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/inventory/low-stock?location_id={{locationId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "🌐 WebSocket Management",
+			"description": "Real-time WebSocket communication endpoints",
+			"item": [
+				{
+					"name": "Get WebSocket Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/websocket/stats"
+					}
+				},
+				{
+					"name": "Broadcast to All Clients",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"System maintenance scheduled for tonight at 2:00 AM - All services will be temporarily unavailable\",\n    \"type\": \"SYSTEM_ANNOUNCEMENT\",\n    \"priority\": \"HIGH\",\n    \"data\": {\n        \"maintenance_start\": \"2025-06-21T02:00:00Z\",\n        \"estimated_duration\": \"3 hours\",\n        \"affected_services\": \"All cleaning services and equipment\",\n        \"backup_contact\": \"+40-123-456-789\"\n    }\n}"
+						},
+						"url": "{{baseUrl}}/api/websocket/broadcast"
+					}
+				},
+				{
+					"name": "Broadcast to Location Clients",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"New urgent carpet cleaning order received - Priority service required\",\n    \"type\": \"ORDER_UPDATE\",\n    \"priority\": \"HIGH\",\n    \"data\": {\n        \"order_id\": {{orderId}},\n        \"service_type\": \"CARPET_CLEANING\",\n        \"scheduled_for\": \"2025-06-25T10:00:00Z\",\n        \"customer_priority\": \"VIP\",\n        \"special_requirements\": \"Pet stain removal and sanitization\"\n    }\n}"
+						},
+						"url": "{{baseUrl}}/api/websocket/broadcast/location/{{locationId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "📡 RSS Feeds",
+			"description": "RSS feed endpoints for different data streams",
+			"item": [
+				{
+					"name": "Get General RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/rss"
+					}
+				},
+				{
+					"name": "Get Location RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/rss/location/{{locationId}}"
+					}
+				},
+				{
+					"name": "Get Order Updates RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/rss/orders"
+					}
+				},
+				{
+					"name": "Get Inventory Alerts RSS Feed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/rss/inventory"
+					}
+				}
+			]
+		},
+		{
+			"name": "📍 Location Management",
+			"description": "Location CRUD operations",
+			"item": [
+				{
+					"name": "Get All Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/locations?include_inactive=false"
+					}
+				},
+				{
+					"name": "Create Location",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"CaS Premium Cleaning Center {{$randomInt}}\",\n    \"address\": \"Strada Victoriei {{$randomInt}}, Sector 1, Bucharest, Romania\",\n    \"latitude\": 44.4268,\n    \"longitude\": 26.1025,\n    \"timezone\": \"Europe/Bucharest\",\n    \"phone\": \"+40-21-{{$randomInt}}\",\n    \"email\": \"center{{$randomInt}}@cas-system.com\"\n}"
+						},
+						"url": "{{baseUrl}}/api/locations"
+					}
+				},
+				{
+					"name": "Get Location by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/locations/{{locationId}}"
+					}
+				},
+				{
+					"name": "Update Location",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"CaS Premium Cleaning Center - Updated\",\n    \"address\": \"Strada Victoriei 123, Sector 1, Bucharest, Romania\",\n    \"timezone\": \"Europe/Bucharest\",\n    \"phone\": \"+40-21-555-0123\",\n    \"email\": \"center-updated@cas-system.com\"\n}"
+						},
+						"url": "{{baseUrl}}/api/locations/{{locationId}}"
+					}
+				},
+				{
+					"name": "Delete Location",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/locations/{{locationId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "🛠️ Service Management",
+			"description": "Service CRUD operations",
+			"item": [
+				{
+					"name": "Get All Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/services"
+					}
+				},
+				{
+					"name": "Create Service",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"service_type\": \"CARPET_CLEANING\",\n    \"description\": \"Professional deep carpet cleaning with stain removal and fabric protection treatment\",\n    \"base_price\": 149.99\n}"
+						},
+						"url": "{{baseUrl}}/api/services"
+					}
+				},
+				{
+					"name": "Get Service by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/services/{{serviceId}}"
+					}
+				},
+				{
+					"name": "Update Service",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"service_type\": \"CARPET_CLEANING\",\n    \"description\": \"Premium deep carpet cleaning with advanced stain removal, sanitization, and long-lasting fabric protection\",\n    \"base_price\": 179.99\n}"
+						},
+						"url": "{{baseUrl}}/api/services/{{serviceId}}"
+					}
+				},
+				{
+					"name": "Delete Service",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/services/{{serviceId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 Customer Management",
+			"description": "Customer CRUD operations",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/customers"
+					}
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": {{userId}},\n    \"address\": \"Bulevardul Magheru {{$randomInt}}, Sector 1, Bucharest, Romania\",\n    \"phone\": \"+40-7{{$randomInt}}\",\n    \"company_name\": \"{{$randomCompanyName}} SRL\",\n    \"preferences\": \"Eco-friendly cleaning products preferred, pet-safe solutions required\"\n}"
+						},
+						"url": "{{baseUrl}}/api/customers"
+					}
+				},
+				{
+					"name": "Get Customer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/customers/{{customerId}}"
+					}
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Bulevardul Magheru 45, Sector 1, Bucharest, Romania\",\n    \"phone\": \"+40-721-555-123\",\n    \"company_name\": \"Premium Services SRL\",\n    \"preferences\": \"VIP customer - premium eco-friendly products only, flexible scheduling required\"\n}"
+						},
+						"url": "{{baseUrl}}/api/customers/{{customerId}}"
+					}
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/customers/{{customerId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "👷 Employee Management",
+			"description": "Employee CRUD operations",
+			"item": [
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/employees?include_inactive=false"
+					}
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": {{userId}},\n    \"employee_type\": \"CLEANER\",\n    \"hire_date\": \"2025-06-20\",\n    \"salary\": 3200.00,\n    \"specializations\": \"Carpet cleaning, window cleaning, industrial equipment operation\",\n    \"certifications\": \"Professional Cleaning Certification, Safety Training Level 2\"\n}"
+						},
+						"url": "{{baseUrl}}/api/employees"
+					}
+				},
+				{
+					"name": "Get Employee by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/employees/{{employeeId}}"
+					}
+				},
+				{
+					"name": "Get Employees by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/employees/type/CLEANER"
+					}
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employee_type\": \"SUPERVISOR\",\n    \"salary\": 4500.00,\n    \"specializations\": \"Team supervision, quality control, advanced carpet cleaning, equipment maintenance\",\n    \"certifications\": \"Professional Cleaning Certification, Safety Training Level 3, Supervisor Training\"\n}"
+						},
+						"url": "{{baseUrl}}/api/employees/{{employeeId}}"
+					}
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/employees/{{employeeId}}"
+					}
+				}
+			]
+		},
+		{
+			"name": "📋 Order Management",
+			"description": "Order CRUD operations",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/orders?include_items=true"
+					}
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": {{customerId}},\n    \"location_id\": {{locationId}},\n    \"scheduled_for\": \"2025-06-25T10:00:00Z\",\n    \"transport_needed\": true,\n    \"notes\": \"VIP customer - Premium carpet cleaning service with stain protection. Pet-safe products required.\",\n    \"priority\": \"HIGH\",\n    \"order_items\": [\n        {\n            \"service_id\": {{serviceId}},\n            \"quantity\": 3,\n            \"price\": 449.97,\n            \"notes\": \"Living room, bedroom, and hallway carpets\"\n        }\n    ]\n}"
+						},
+						"url": "{{baseUrl}}/api/orders"
+					}
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/orders/{{orderId}}"
+					}
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"scheduled_for\": \"2025-06-26T14:00:00Z\",\n    \"notes\": \"VIP customer - Premium carpet cleaning service with stain protection. Pet-safe products required. UPDATED: Customer requested afternoon slot.\",\n    \"priority\": \"HIGH\"\n}"
+						},
+						"url": "{{baseUrl}}/api/orders/{{orderId}}"
+					}
+				},
+				{
+					"name": "Update Order Status",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"CONFIRMED\"\n}"
+						},
+						"url": "{{baseUrl}}/api/orders/{{orderId}}/status"
+					}
+				},
+				{
+					"name": "Cancel Order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/orders/{{orderId}}/cancel"
+					}
+				}
+			]
+		},
+		{
+			"name": "🚚 Transport Management",
+			"description": "Transport CRUD operations",
+			"item": [
+				{
+					"name": "Get All Transports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports"
+					}
+				},
+				{
+					"name": "Create Transport",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_id\": {{orderId}},\n    \"driver_name\": \"Alexandru Popescu\",\n    \"vehicle_plate\": \"B-555-CAS\",\n    \"estimated_start\": \"2025-06-25T09:00:00Z\",\n    \"estimated_end\": \"2025-06-25T11:30:00Z\",\n    \"vehicle_type\": \"Professional cleaning van with equipment\",\n    \"special_instructions\": \"VIP customer - handle with care, call customer 15 minutes before arrival\"\n}"
+						},
+						"url": "{{baseUrl}}/api/transports"
+					}
+				},
+				{
+					"name": "Get Active Transports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/active"
+					}
+				},
+				{
+					"name": "Get Transport by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/{{transportId}}"
+					}
+				},
+				{
+					"name": "Get Transport by Order ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/order/{{orderId}}"
+					}
+				},
+				{
+					"name": "Update Transport",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driver_name\": \"Mihai Ionescu\",\n    \"vehicle_plate\": \"B-777-CAS\",\n    \"estimated_start\": \"2025-06-25T08:30:00Z\",\n    \"vehicle_type\": \"Premium cleaning van with advanced equipment\",\n    \"special_instructions\": \"VIP customer - priority service, call customer 15 minutes before arrival, use premium equipment\"\n}"
+						},
+						"url": "{{baseUrl}}/api/transports/{{transportId}}"
+					}
+				},
+				{
+					"name": "Update Transport Status",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Content-Type", "value": "application/json"}],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"IN_TRANSIT\"\n}"
+						},
+						"url": "{{baseUrl}}/api/transports/{{transportId}}/status"
+					}
+				},
+				{
+					"name": "Start Transport",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/{{transportId}}/start"
+					}
+				},
+				{
+					"name": "Complete Transport",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/{{transportId}}/complete"
+					}
+				},
+				{
+					"name": "Cancel Transport",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{baseUrl}}/api/transports/{{transportId}}/cancel"
+					}
+				}
+			]
+		}
+	]
+} 

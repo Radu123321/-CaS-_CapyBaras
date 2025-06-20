@@ -1,0 +1,44 @@
+{
+  "name": "twcas",
+  "version": "2.0.0",
+  "description": "CaS - Cleaning as a Service - Complete Management System",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node start-cas.js",
+    "server": "node src/index.js",
+    "dev": "node src/index.js",
+    "cas": "node start-cas.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cleaning",
+    "web",
+    "simulator",
+    "cas",
+    "management",
+    "system",
+    "nodejs",
+    "postgresql",
+    "websocket",
+    "dashboard"
+  ],
+  "author": "CaS Development Team",
+  "license": "ISC",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "homepage": "http://localhost:3000",
+  "bugs": {
+    "url": "https://github.com/your-repo/issues"
+  }
+}

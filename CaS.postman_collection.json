@@ -1,0 +1,1384 @@
+{
+  "info": {
+    "name": "CaS API Tests - Complete",
+    "description": "Collection completă de teste pentru serverul CaS (fără framework-uri). Include toate endpoint-urile: Authentication, Locations, Services, Customers, Employees cu CRUD complet, validări și teste de erori.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "2.0.0"
+  },
+  "item": [
+    {
+      "name": "Ping",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/ping",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "ping"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Body status is ok\", function () {",
+              "    var json = pm.response.json();",
+              "    pm.expect(json.status).to.eql('ok');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Register",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Generează un email unic de fiecare dată",
+              "const email = `user${Date.now()}@demo.com`;",
+              "pm.environment.set('email', email);",
+              "pm.environment.set('password', '123456');"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/register",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"full_name\": \"Demo User\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Token exists\", function () {",
+              "    pm.expect(json.token).to.be.a('string');",
+              "});",
+              "// salvează token pentru request-uri ulterioare",
+              "pm.environment.set('token', json.token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "login"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Create Location",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Location created with ID\", function () {",
+              "    pm.expect(json.location_id).to.be.a('number');",
+              "});",
+              "pm.environment.set('locationId', json.location_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/locations",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "locations"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Centrul Bucuresti\",\n  \"address\": \"Piata Universitatii 1, Bucuresti\",\n  \"latitude\": 44.4355,\n  \"longitude\": 26.1025\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Locations",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/locations",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "locations"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response is array\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.be.an('array');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Location by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/locations/{{locationId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "locations", "{{locationId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Location has required fields\", function () {",
+              "    pm.expect(json.location_id).to.be.a('number');",
+              "    pm.expect(json.name).to.be.a('string');",
+              "    pm.expect(json.address).to.be.a('string');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Update Location",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/locations/{{locationId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "locations", "{{locationId}}"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Centrul Bucuresti - Updated\",\n  \"address\": \"Piata Universitatii 1, Sector 1, Bucuresti\"\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Location updated successfully\", function () {",
+              "    pm.expect(json.name).to.include('Updated');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Service",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Service created with ID\", function () {",
+              "    pm.expect(json.service_id).to.be.a('number');",
+              "    pm.expect(json.service_type).to.eql('CARPET');",
+              "});",
+              "pm.environment.set('serviceId', json.service_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/services",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "services"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"service_type\": \"CARPET\",\n  \"description\": \"Professional carpet cleaning service\",\n  \"base_price\": 150.00\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Services",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/services",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "services"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response is array\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.be.an('array');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Service - Car Wash",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Car wash service created\", function () {",
+              "    pm.expect(json.service_type).to.eql('CAR_WASH');",
+              "});",
+              "pm.environment.set('carWashServiceId', json.service_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/services",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "services"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"service_type\": \"CAR_WASH\",\n  \"description\": \"Complete car washing and detailing\",\n  \"base_price\": 80.00\n}"
+        }
+      }
+    },
+    {
+      "name": "Update Service",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/services/{{serviceId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "services", "{{serviceId}}"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"Premium carpet cleaning with stain protection\",\n  \"base_price\": 180.00\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Service updated successfully\", function () {",
+              "    pm.expect(json.description).to.include('Premium');",
+              "    pm.expect(parseFloat(json.base_price)).to.eql(180.00);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Customer",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Creează un user nou pentru customer",
+              "const email = `customer${Date.now()}@demo.com`;",
+              "pm.environment.set('customerEmail', email);",
+              "",
+              "pm.sendRequest({",
+              "    url: pm.environment.get('baseUrl') + '/api/register',",
+              "    method: 'POST',",
+              "    header: {'Content-Type': 'application/json'},",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: JSON.stringify({",
+              "            email: email,",
+              "            password: '123456',",
+              "            full_name: 'Customer Demo'",
+              "        })",
+              "    }",
+              "}, function (err, response) {",
+              "    if (!err && response.code === 201) {",
+              "        const data = response.json();",
+              "        pm.environment.set('customerUserId', data.userId);",
+              "    }",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Customer created with ID\", function () {",
+              "    pm.expect(json.customer_id).to.be.a('number');",
+              "});",
+              "pm.environment.set('customerId', json.customer_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/customers",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "customers"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": {{customerUserId}},\n  \"address\": \"Str. Demo 123, Bucuresti\",\n  \"phone\": \"+40123456789\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Customers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/customers",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "customers"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response is array\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.be.an('array');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Customer by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "customers", "{{customerId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Customer has required fields\", function () {",
+              "    pm.expect(json.customer_id).to.be.a('number');",
+              "    pm.expect(json.email).to.be.a('string');",
+              "    pm.expect(json.full_name).to.be.a('string');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Employee",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Creează un user nou pentru employee",
+              "const email = `employee${Date.now()}@demo.com`;",
+              "pm.environment.set('employeeEmail', email);",
+              "",
+              "pm.sendRequest({",
+              "    url: pm.environment.get('baseUrl') + '/api/register',",
+              "    method: 'POST',",
+              "    header: {'Content-Type': 'application/json'},",
+              "    body: {",
+              "        mode: 'raw',",
+              "        raw: JSON.stringify({",
+              "            email: email,",
+              "            password: '123456',",
+              "            full_name: 'Employee Demo'",
+              "        })",
+              "    }",
+              "}, function (err, response) {",
+              "    if (!err && response.code === 201) {",
+              "        const data = response.json();",
+              "        pm.environment.set('employeeUserId', data.userId);",
+              "    }",
+              "});"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"Employee created with ID\", function () {",
+              "    pm.expect(json.employee_id).to.be.a('number');",
+              "    pm.expect(json.employee_type).to.eql('CLEANER');",
+              "});",
+              "pm.environment.set('employeeId', json.employee_id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "employees"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": {{employeeUserId}},\n  \"employee_type\": \"CLEANER\",\n  \"hire_date\": \"2025-06-20\",\n  \"salary\": 3000\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Employees",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "employees"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test(\"Response is array\", function () {",
+              "    const json = pm.response.json();",
+              "    pm.expect(json).to.be.an('array');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Employees by Type (CLEANER)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees/type/CLEANER",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "employees", "type", "CLEANER"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "const json = pm.response.json();",
+              "pm.test(\"All employees are CLEANER type\", function () {",
+              "    json.forEach(emp => {",
+              "        pm.expect(emp.employee_type).to.eql('CLEANER');",
+              "    });",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "employees", "{{employeeId}}"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"salary\": 3500,\n  \"employee_type\": \"MANAGER\"\n}"
+        }
+      },
+             "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Employee updated successfully\", function () {",
+               "    pm.expect(json.salary).to.eql('3500.00');",
+               "    pm.expect(json.employee_type).to.eql('MANAGER');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Update Customer",
+       "request": {
+         "method": "PUT",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "customers", "{{customerId}}"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"address\": \"Str. Demo 456, Cluj-Napoca\",\n  \"phone\": \"+40987654321\"\n}"
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Customer updated successfully\", function () {",
+               "    pm.expect(json.address).to.include('Cluj-Napoca');",
+               "    pm.expect(json.phone).to.eql('+40987654321');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Test Invalid Employee Type",
+       "request": {
+         "method": "POST",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/employees",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "employees"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"user_id\": 999,\n  \"employee_type\": \"INVALID_TYPE\",\n  \"hire_date\": \"2025-06-20\",\n  \"salary\": 3000\n}"
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 400 for invalid type\", function () {",
+               "    pm.response.to.have.status(400);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Error message contains valid types\", function () {",
+               "    pm.expect(json.error).to.include('Invalid employee type');",
+               "    pm.expect(json.validTypes).to.be.an('array');",
+               "    pm.expect(json.validTypes).to.include('CLEANER');",
+               "    pm.expect(json.validTypes).to.include('DRIVER');",
+               "    pm.expect(json.validTypes).to.include('ADMIN');",
+               "    pm.expect(json.validTypes).to.include('MANAGER');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Employees by Type (MANAGER)",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/employees/type/MANAGER",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "employees", "type", "MANAGER"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"All employees are MANAGER type\", function () {",
+               "    json.forEach(emp => {",
+               "        pm.expect(emp.employee_type).to.eql('MANAGER');",
+               "    });",
+               "});",
+               "pm.test(\"Found at least one manager\", function () {",
+               "    pm.expect(json.length).to.be.greaterThan(0);",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Employee by ID",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "employees", "{{employeeId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Employee has required fields\", function () {",
+               "    pm.expect(json.employee_id).to.be.a('number');",
+               "    pm.expect(json.email).to.be.a('string');",
+               "    pm.expect(json.full_name).to.be.a('string');",
+               "    pm.expect(json.employee_type).to.be.a('string');",
+               "    pm.expect(json.salary).to.be.a('string');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Soft Delete Employee",
+       "request": {
+         "method": "DELETE",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/employees/{{employeeId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "employees", "{{employeeId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Employee deactivated message\", function () {",
+               "    pm.expect(json.message).to.include('deactivated');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Employees with Inactive",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/employees?include_inactive=true",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "employees"],
+           "query": [
+             {
+               "key": "include_inactive",
+               "value": "true"
+             }
+           ]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Response includes inactive employees\", function () {",
+               "    pm.expect(json).to.be.an('array');",
+               "    // Should include both active and inactive employees",
+               "    const hasInactive = json.some(emp => emp.is_active === false);",
+               "    pm.expect(hasInactive).to.be.true;",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Create Order",
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 201\", function () {",
+               "    pm.response.to.have.status(201);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Order created with ID\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.order_id).to.be.a('number');",
+               "});",
+               "pm.environment.set('orderId', json.data.order_id);"
+             ]
+           }
+         }
+       ],
+       "request": {
+         "method": "POST",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/orders",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "orders"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"customer_id\": {{customerId}},\n  \"location_id\": {{locationId}},\n  \"scheduled_for\": \"2025-06-25T10:00:00Z\",\n  \"recurrence_rule\": \"WEEKLY\",\n  \"transport_needed\": true,\n  \"notes\": \"Weekly carpet cleaning\",\n  \"order_items\": [\n    {\n      \"service_id\": {{carpetServiceId}},\n      \"quantity\": 2,\n      \"price\": \"150.00\"\n    }\n  ]\n}"
+         }
+       }
+     },
+     {
+       "name": "Get All Orders",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/orders?include_items=true",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "orders"],
+           "query": [
+             {
+               "key": "include_items",
+               "value": "true"
+             }
+           ]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Response is success with data array\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data).to.be.an('array');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Order by ID",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/orders/{{orderId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "orders", "{{orderId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Order has required fields\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.order_id).to.be.a('number');",
+               "    pm.expect(json.data.customer_id).to.be.a('number');",
+               "    pm.expect(json.data.location_id).to.be.a('number');",
+               "    pm.expect(json.data.status).to.be.a('string');",
+               "    pm.expect(json.data.order_items).to.be.an('array');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Update Order Status",
+       "request": {
+         "method": "PUT",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/orders/{{orderId}}/status",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "orders", "{{orderId}}", "status"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"status\": \"CONFIRMED\"\n}"
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Order status updated\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.status).to.eql('CONFIRMED');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Create Transport",
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 201\", function () {",
+               "    pm.response.to.have.status(201);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Transport created with ID\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.transport_id).to.be.a('number');",
+               "});",
+               "pm.environment.set('transportId', json.data.transport_id);"
+             ]
+           }
+         }
+       ],
+       "request": {
+         "method": "POST",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"order_id\": {{orderId}},\n  \"driver_name\": \"Ion Popescu\",\n  \"vehicle_plate\": \"B123ABC\",\n  \"estimated_start\": \"2025-06-25T09:30:00Z\",\n  \"estimated_end\": \"2025-06-25T11:30:00Z\"\n}"
+         }
+       }
+     },
+     {
+       "name": "Get All Transports",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Response is success with data array\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data).to.be.an('array');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Transport by ID",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports/{{transportId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports", "{{transportId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Transport has required fields\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.transport_id).to.be.a('number');",
+               "    pm.expect(json.data.order_id).to.be.a('number');",
+               "    pm.expect(json.data.status).to.be.a('string');",
+               "    pm.expect(json.data.driver_name).to.be.a('string');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Start Transport",
+       "request": {
+         "method": "PUT",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports/{{transportId}}/start",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports", "{{transportId}}", "start"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Transport started\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.status).to.eql('IN_TRANSIT');",
+               "    pm.expect(json.message).to.include('started');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Complete Transport",
+       "request": {
+         "method": "PUT",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports/{{transportId}}/complete",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports", "{{transportId}}", "complete"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Transport completed\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.status).to.eql('DELIVERED');",
+               "    pm.expect(json.message).to.include('completed');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Active Transports",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/transports/active",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "transports", "active"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Response is success with data array\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data).to.be.an('array');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Update Order Status to Completed",
+       "request": {
+         "method": "PUT",
+         "header": [
+           { "key": "Content-Type", "value": "application/json" }
+         ],
+         "url": {
+           "raw": "{{baseUrl}}/api/orders/{{orderId}}/status",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "orders", "{{orderId}}", "status"]
+         },
+         "body": {
+           "mode": "raw",
+           "raw": "{\n  \"status\": \"COMPLETED\"\n}"
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Order status updated to completed\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.status).to.eql('COMPLETED');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Get Scheduler Status",
+       "request": {
+         "method": "GET",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/scheduler/status",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "scheduler", "status"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Scheduler status available\", function () {",
+               "    pm.expect(json.success).to.be.true;",
+               "    pm.expect(json.data.running).to.be.a('boolean');",
+               "    pm.expect(json.data.jobCount).to.be.a('number');",
+               "    pm.expect(json.data.jobs).to.be.an('array');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Delete Location (Soft Delete)",
+       "request": {
+         "method": "DELETE",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/locations/{{locationId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "locations", "{{locationId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Location marked as inactive\", function () {",
+               "    pm.expect(json.message).to.include('marked as inactive');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Delete Service",
+       "request": {
+         "method": "DELETE",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/services/{{carWashServiceId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "services", "{{carWashServiceId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Service deleted successfully\", function () {",
+               "    pm.expect(json.message).to.include('deleted');",
+               "});"
+             ]
+           }
+         }
+       ]
+     },
+     {
+       "name": "Delete Customer",
+       "request": {
+         "method": "DELETE",
+         "header": [],
+         "url": {
+           "raw": "{{baseUrl}}/api/customers/{{customerId}}",
+           "host": ["{{baseUrl}}"],
+           "path": ["api", "customers", "{{customerId}}"]
+         }
+       },
+       "event": [
+         {
+           "listen": "test",
+           "script": {
+             "type": "text/javascript",
+             "exec": [
+               "pm.test(\"Status code is 200\", function () {",
+               "    pm.response.to.have.status(200);",
+               "});",
+               "const json = pm.response.json();",
+               "pm.test(\"Customer deleted successfully\", function () {",
+               "    pm.expect(json.message).to.include('deleted');",
+               "});"
+             ]
+           }
+         }
+       ]
+     }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000"
+    }
+  ]
+} 

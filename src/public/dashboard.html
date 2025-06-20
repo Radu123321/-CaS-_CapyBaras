@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaS - Analytics Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .header-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .control-group label {
+            font-weight: bold;
+            color: #555;
+            font-size: 12px;
+        }
+        
+        select, button {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .status-connected {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .status-disconnected {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        
+        .kpi-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .kpi-trend {
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        
+        .trend-up {
+            color: #27ae60;
+        }
+        
+        .trend-down {
+            color: #e74c3c;
+        }
+        
+        .trend-stable {
+            color: #f39c12;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 10px;
+        }
+        
+        .chart-container canvas {
+            max-height: 300px;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            color: #666;
+        }
+        
+        .loading::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3498db;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            padding: 20px;
+            background: rgba(231, 76, 60, 0.1);
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: none;
+            background: transparent;
+        }
+        
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(52, 152, 219, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .alert-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+        
+        .alert-high {
+            background: rgba(231, 76, 60, 0.1);
+            border-left-color: #e74c3c;
+        }
+        
+        .alert-medium {
+            background: rgba(243, 156, 18, 0.1);
+            border-left-color: #f39c12;
+        }
+        
+        .alert-low {
+            background: rgba(52, 152, 219, 0.1);
+            border-left-color: #3498db;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+        }
+        
+        .data-table tr:hover {
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧽 CaS Analytics Dashboard</h1>
+            <div class="header-controls">
+                <div class="control-group">
+                    <label for="locationSelect">Location:</label>
+                    <select id="locationSelect">
+                        <option value="">All Locations</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="periodSelect">Period:</label>
+                    <select id="periodSelect">
+                        <option value="day">Daily</option>
+                        <option value="week">Weekly</option>
+                        <option value="month" selected>Monthly</option>
+                        <option value="quarter">Quarterly</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button onclick="refreshDashboard()">🔄 Refresh</button>
+                </div>
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button onclick="toggleAutoRefresh()">⏱️ Auto Refresh</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 10px;">
+                WebSocket: <span id="wsStatus" class="status-indicator status-disconnected">Disconnected</span>
+                | Last Updated: <span id="lastUpdated">Never</span>
+            </div>
+        </div>
+        
+        <!-- KPI Cards -->
+        <div class="kpi-grid" id="kpiGrid">
+            <div class="kpi-card">
+                <div class="kpi-value" id="ordersToday">-</div>
+                <div class="kpi-label">Orders Today</div>
+                <div class="kpi-trend" id="ordersTrend"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value" id="revenueToday">-</div>
+                <div class="kpi-label">Revenue Today</div>
+                <div class="kpi-trend" id="revenueTrend"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value" id="completionRate">-</div>
+                <div class="kpi-label">Completion Rate</div>
+                <div class="kpi-trend" id="completionTrend"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value" id="equipmentUptime">-</div>
+                <div class="kpi-label">Equipment Uptime</div>
+                <div class="kpi-trend" id="equipmentTrend"></div>
+            </div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">📊 Overview</button>
+            <button class="tab" onclick="showTab('orders')">📋 Orders</button>
+            <button class="tab" onclick="showTab('resources')">📦 Resources</button>
+            <button class="tab" onclick="showTab('equipment')">🔧 Equipment</button>
+            <button class="tab" onclick="showTab('employees')">👥 Employees</button>
+            <button class="tab" onclick="showTab('weather')">🌤️ Weather</button>
+        </div>
+        
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📈 Revenue Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📊 Order Status Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="orderStatusChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🏢 Location Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="locationChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⚡ Real-time Alerts</h3>
+                    <div id="alertsList">
+                        <div class="loading">Loading alerts...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Orders Tab -->
+        <div id="orders" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📋 Order Volume Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="orderVolumeChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>💰 Average Order Value</h3>
+                    <div class="chart-container">
+                        <canvas id="avgOrderValueChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🔄 Order Processing Time</h3>
+                    <div class="chart-container">
+                        <canvas id="processingTimeChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📈 Recent Orders</h3>
+                    <div id="recentOrdersTable">
+                        <div class="loading">Loading recent orders...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resources Tab -->
+        <div id="resources" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📦 Resource Consumption</h3>
+                    <div class="chart-container">
+                        <canvas id="resourceConsumptionChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⚡ Resource Efficiency</h3>
+                    <div class="chart-container">
+                        <canvas id="resourceEfficiencyChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🔄 Usage Patterns</h3>
+                    <div class="chart-container">
+                        <canvas id="usagePatternsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>💡 Optimization Recommendations</h3>
+                    <div id="optimizationsList">
+                        <div class="loading">Loading recommendations...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Equipment Tab -->
+        <div id="equipment" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>🔧 Equipment Health</h3>
+                    <div class="chart-container">
+                        <canvas id="equipmentHealthChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🛠️ Maintenance Schedule</h3>
+                    <div class="chart-container">
+                        <canvas id="maintenanceChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📊 Equipment Efficiency</h3>
+                    <div class="chart-container">
+                        <canvas id="equipmentEfficiencyChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>⚠️ Maintenance Predictions</h3>
+                    <div id="maintenancePredictions">
+                        <div class="loading">Loading predictions...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Employees Tab -->
+        <div id="employees" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>👥 Employee Productivity</h3>
+                    <div class="chart-container">
+                        <canvas id="employeeProductivityChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🏆 Performance Rankings</h3>
+                    <div class="chart-container">
+                        <canvas id="performanceRankingChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📈 Productivity Trends</h3>
+                    <div class="chart-container">
+                        <canvas id="productivityTrendsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>💼 Employee Statistics</h3>
+                    <div id="employeeStatsTable">
+                        <div class="loading">Loading employee stats...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Weather Tab -->
+        <div id="weather" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>🌤️ Weather Impact on Orders</h3>
+                    <div class="chart-container">
+                        <canvas id="weatherImpactChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🌡️ Temperature vs Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>🌧️ Weather Conditions</h3>
+                    <div class="chart-container">
+                        <canvas id="weatherConditionsChart"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📊 Weather Statistics</h3>
+                    <div id="weatherStatsTable">
+                        <div class="loading">Loading weather stats...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="chart.min.js"></script>
+    <script src="charts.js"></script>
+    <script>
+        // Global variables
+        let websocket = null;
+        let autoRefreshInterval = null;
+        let charts = {};
+        let currentLocationId = null;
+        let currentPeriod = 'month';
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebSocket();
+            loadLocations();
+            refreshDashboard();
+            
+            // Set up event listeners
+            document.getElementById('locationSelect').addEventListener('change', function() {
+                currentLocationId = this.value || null;
+                refreshDashboard();
+            });
+            
+            document.getElementById('periodSelect').addEventListener('change', function() {
+                currentPeriod = this.value;
+                refreshDashboard();
+            });
+        });
+        
+        // WebSocket connection
+        function initializeWebSocket() {
+            try {
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const wsUrl = `${protocol}//${window.location.host}/ws/status`;
+                
+                websocket = new WebSocket(wsUrl);
+                
+                websocket.onopen = function() {
+                    document.getElementById('wsStatus').textContent = 'Connected';
+                    document.getElementById('wsStatus').className = 'status-indicator status-connected';
+                    console.log('WebSocket connected');
+                };
+                
+                websocket.onmessage = function(event) {
+                    try {
+                        const data = JSON.parse(event.data);
+                        handleWebSocketMessage(data);
+                    } catch (error) {
+                        console.error('Error parsing WebSocket message:', error);
+                    }
+                };
+                
+                websocket.onclose = function() {
+                    document.getElementById('wsStatus').textContent = 'Disconnected';
+                    document.getElementById('wsStatus').className = 'status-indicator status-disconnected';
+                    console.log('WebSocket disconnected');
+                    
+                    // Attempt to reconnect after 5 seconds
+                    setTimeout(initializeWebSocket, 5000);
+                };
+                
+                websocket.onerror = function(error) {
+                    console.error('WebSocket error:', error);
+                };
+            } catch (error) {
+                console.error('Error initializing WebSocket:', error);
+            }
+        }
+        
+        function handleWebSocketMessage(data) {
+            // Handle real-time updates
+            if (data.type === 'stats_update') {
+                updateKPIs(data.data);
+            } else if (data.type === 'alert') {
+                addAlert(data.data);
+            } else if (data.type === 'order_update') {
+                // Refresh order-related charts
+                if (document.querySelector('.tab-content.active').id === 'orders') {
+                    loadOrdersData();
+                }
+            }
+        }
+        
+        // Load locations for dropdown
+        async function loadLocations() {
+            try {
+                const response = await fetch('/api/locations');
+                const result = await response.json();
+                
+                if (result.success) {
+                    const select = document.getElementById('locationSelect');
+                    select.innerHTML = '<option value="">All Locations</option>';
+                    
+                    result.data.forEach(location => {
+                        const option = document.createElement('option');
+                        option.value = location.id;
+                        option.textContent = location.name;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading locations:', error);
+            }
+        }
+        
+        // Main refresh function
+        async function refreshDashboard() {
+            try {
+                showLoading();
+                
+                // Load dashboard data
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                if (currentPeriod) params.append('period', currentPeriod);
+                
+                const response = await fetch(`/api/stats/dashboard?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    updateDashboard(result.data);
+                } else {
+                    showError('Failed to load dashboard data');
+                }
+                
+                document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+            } catch (error) {
+                console.error('Error refreshing dashboard:', error);
+                showError('Error refreshing dashboard');
+            }
+        }
+        
+        function updateDashboard(data) {
+            updateKPIs(data);
+            
+            // Update active tab content
+            const activeTab = document.querySelector('.tab-content.active').id;
+            switch (activeTab) {
+                case 'overview':
+                    loadOverviewData(data);
+                    break;
+                case 'orders':
+                    loadOrdersData();
+                    break;
+                case 'resources':
+                    loadResourcesData();
+                    break;
+                case 'equipment':
+                    loadEquipmentData();
+                    break;
+                case 'employees':
+                    loadEmployeesData();
+                    break;
+                case 'weather':
+                    loadWeatherData();
+                    break;
+            }
+        }
+        
+        function updateKPIs(data) {
+            if (data.summary && data.summary.length > 0) {
+                const summary = data.summary[0];
+                
+                document.getElementById('ordersToday').textContent = summary.orders_today || '0';
+                document.getElementById('revenueToday').textContent = '$' + (parseFloat(summary.revenue_today || 0)).toFixed(2);
+                
+                if (data.kpis && data.kpis.length > 0) {
+                    const kpi = data.kpis[0];
+                    document.getElementById('completionRate').textContent = (parseFloat(kpi.completion_rate || 0)).toFixed(1) + '%';
+                    document.getElementById('equipmentUptime').textContent = (parseFloat(kpi.equipment_uptime || 0)).toFixed(1) + '%';
+                }
+            }
+        }
+        
+        // Tab management
+        function showTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+            
+            // Load tab-specific data
+            switch (tabName) {
+                case 'orders':
+                    loadOrdersData();
+                    break;
+                case 'resources':
+                    loadResourcesData();
+                    break;
+                case 'equipment':
+                    loadEquipmentData();
+                    break;
+                case 'employees':
+                    loadEmployeesData();
+                    break;
+                case 'weather':
+                    loadWeatherData();
+                    break;
+            }
+        }
+        
+        // Data loading functions
+        async function loadOverviewData(dashboardData) {
+            try {
+                // Revenue trends chart
+                if (dashboardData.analytics && dashboardData.analytics.orders) {
+                    const orderData = dashboardData.analytics.orders.orders;
+                    createRevenueChart(orderData);
+                    createOrderStatusChart(dashboardData.analytics.orders.statusDistribution);
+                }
+                
+                // Location performance chart
+                if (dashboardData.summary) {
+                    createLocationChart(dashboardData.summary);
+                }
+                
+                // Load alerts
+                loadAlerts();
+            } catch (error) {
+                console.error('Error loading overview data:', error);
+            }
+        }
+        
+        async function loadOrdersData() {
+            try {
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                params.append('period', currentPeriod);
+                
+                const response = await fetch(`/api/stats/orders?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    createOrderVolumeChart(result.data.orders);
+                    createAvgOrderValueChart(result.data.orders);
+                    createProcessingTimeChart(result.data.orders);
+                    createRecentOrdersTable(result.data.orders);
+                }
+            } catch (error) {
+                console.error('Error loading orders data:', error);
+            }
+        }
+        
+        async function loadResourcesData() {
+            try {
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                params.append('period', currentPeriod);
+                
+                const response = await fetch(`/api/stats/resources?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    createResourceConsumptionChart(result.data.consumption);
+                    createResourceEfficiencyChart(result.data.efficiency);
+                    createUsagePatternsChart(result.data.patterns);
+                    createOptimizationsList(result.data.optimizations);
+                }
+            } catch (error) {
+                console.error('Error loading resources data:', error);
+            }
+        }
+        
+        async function loadEquipmentData() {
+            try {
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                
+                const response = await fetch(`/api/stats/equipment?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    createEquipmentHealthChart(result.data.healthAnalysis);
+                    createMaintenanceChart(result.data.maintenanceTrends);
+                    createEquipmentEfficiencyChart(result.data.efficiency);
+                    createMaintenancePredictions(result.data.maintenancePredictions);
+                }
+            } catch (error) {
+                console.error('Error loading equipment data:', error);
+            }
+        }
+        
+        async function loadEmployeesData() {
+            try {
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                params.append('period', currentPeriod);
+                
+                const response = await fetch(`/api/stats/employees?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    createEmployeeProductivityChart(result.data.productivity);
+                    createPerformanceRankingChart(result.data.productivity);
+                    createProductivityTrendsChart(result.data.productivity);
+                    createEmployeeStatsTable(result.data.productivity);
+                }
+            } catch (error) {
+                console.error('Error loading employees data:', error);
+            }
+        }
+        
+        async function loadWeatherData() {
+            try {
+                const params = new URLSearchParams();
+                if (currentLocationId) params.append('locationId', currentLocationId);
+                params.append('period', currentPeriod);
+                
+                const response = await fetch(`/api/stats/weather?${params}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    createWeatherImpactChart(result.data.weatherStats);
+                    createTemperatureChart(result.data.weatherStats);
+                    createWeatherConditionsChart(result.data.impactAnalysis);
+                    createWeatherStatsTable(result.data.weatherStats);
+                }
+            } catch (error) {
+                console.error('Error loading weather data:', error);
+            }
+        }
+        
+        async function loadAlerts() {
+            try {
+                const response = await fetch('/api/alerts/history?limit=10');
+                const result = await response.json();
+                
+                if (result.success) {
+                    const alertsList = document.getElementById('alertsList');
+                    alertsList.innerHTML = '';
+                    
+                    if (result.data.length === 0) {
+                        alertsList.innerHTML = '<p>No recent alerts</p>';
+                        return;
+                    }
+                    
+                    result.data.forEach(alert => {
+                        const alertItem = document.createElement('div');
+                        alertItem.className = `alert-item alert-${alert.severity.toLowerCase()}`;
+                        alertItem.innerHTML = `
+                            <strong>${alert.type}</strong><br>
+                            ${alert.message}<br>
+                            <small>${new Date(alert.created_at).toLocaleString()}</small>
+                        `;
+                        alertsList.appendChild(alertItem);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading alerts:', error);
+            }
+        }
+        
+        // Auto refresh toggle
+        function toggleAutoRefresh() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+                event.target.textContent = '⏱️ Auto Refresh';
+            } else {
+                autoRefreshInterval = setInterval(refreshDashboard, 30000); // 30 seconds
+                event.target.textContent = '⏹️ Stop Auto';
+            }
+        }
+        
+        // Utility functions
+        function showLoading() {
+            // Add loading indicators where needed
+        }
+        
+        function showError(message) {
+            console.error(message);
+            // Show error message to user
+        }
+        
+        function addAlert(alertData) {
+            const alertsList = document.getElementById('alertsList');
+            const alertItem = document.createElement('div');
+            alertItem.className = `alert-item alert-${alertData.severity.toLowerCase()}`;
+            alertItem.innerHTML = `
+                <strong>${alertData.type}</strong><br>
+                ${alertData.message}<br>
+                <small>Just now</small>
+            `;
+            alertsList.insertBefore(alertItem, alertsList.firstChild);
+            
+            // Remove old alerts if too many
+            const alerts = alertsList.querySelectorAll('.alert-item');
+            if (alerts.length > 10) {
+                alertsList.removeChild(alerts[alerts.length - 1]);
+            }
+        }
+        
+        // Chart creation functions will be loaded from charts.js
+    </script>
+</body>
+</html> 
