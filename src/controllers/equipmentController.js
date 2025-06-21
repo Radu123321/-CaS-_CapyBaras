@@ -24,18 +24,20 @@ class EquipmentController {
             
             const equipment = await equipmentService.getAllEquipment(filters);
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: equipment,
                 count: equipment.length,
                 filters_applied: filters
-            });
+            }));
         } catch (error) {
             logger.error('Error in getAllEquipment:', error);
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     

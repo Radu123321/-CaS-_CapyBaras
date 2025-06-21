@@ -1,58 +1,84 @@
-// ===== DASHBOARD FUNCTIONALITY =====
+// ===== CaS DASHBOARD - INTEGRARE ENDPOINT-URI =====
+// Sistem Web pentru managementul spălătoriilor
+// JavaScript pur cu fetch API - fără framework-uri externe
 
-class Dashboard {
+class CaSDashboard {
   constructor() {
+    this.baseURL = 'http://localhost:8000/api';
+    this.token = localStorage.getItem('authToken');
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.websocket = null;
     this.refreshInterval = null;
-    this.notifications = [];
-    this.confirmCallback = null;
     
     this.init();
   }
 
-  // ===== INITIALIZATION =====
-  
+  // ===== INIȚIALIZARE =====
   async init() {
-    // Check authentication
-    if (!authManager.requireAuth()) {
+    if (!this.checkAuth()) {
+      window.location.href = 'login.html';
       return;
     }
 
     try {
-      // Show loading state
       this.showLoading();
-      
-      // Load dashboard data
       await this.loadDashboardData();
-      
-      // Set up real-time updates
-      this.setupRealTimeUpdates();
-      
-      // Set up periodic refresh
+      this.setupWebSocket();
       this.startPeriodicRefresh();
-      
-      // Show dashboard content
       this.showDashboard();
-      
     } catch (error) {
-      console.error('Dashboard initialization error:', error);
-      this.showError('Nu s-a putut încărca dashboard-ul. Vă rugăm să reîncărcați pagina.');
+      console.error('Dashboard init error:', error);
+      this.showError('Eroare la încărcarea dashboard-ului');
     }
   }
 
-  // ===== LOADING AND ERROR STATES =====
-  
+  // ===== AUTENTIFICARE =====
+  checkAuth() {
+    return this.token && this.currentUser.id;
+  }
+
+  async apiRequest(endpoint, options = {}) {
+    const url = `${this.baseURL}${endpoint}`;
+    const defaultOptions = {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      }
+    };
+
+    const config = { ...defaultOptions, ...options };
+    if (config.body && typeof config.body === 'object') {
+      config.body = JSON.stringify(config.body);
+    }
+
+    try {
+      const response = await fetch(url, config);
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Request failed');
+      }
+      
+      return data;
+    } catch (error) {
+      console.error(`API Request failed for ${endpoint}:`, error);
+      throw error;
+    }
+  }
+
+  // ===== UI STATES =====
   showLoading() {
     document.getElementById('loadingState').style.display = 'flex';
     document.getElementById('dashboardContent').style.display = 'none';
     document.getElementById('errorState').style.display = 'none';
   }
-  
+
   showDashboard() {
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboardContent').style.display = 'block';
     document.getElementById('errorState').style.display = 'none';
   }
-  
+
   showError(message) {
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboardContent').style.display = 'none';
@@ -60,568 +86,946 @@ class Dashboard {
     document.getElementById('errorMessage').textContent = message;
   }
 
-  // ===== DATA LOADING =====
-  
+  // ===== ÎNCĂRCARE DATE DASHBOARD =====
   async loadDashboardData() {
-    const user = authManager.currentUser;
+    // Actualizare mesaj de bun venit
+    document.getElementById('welcomeTitle').textContent = `Bun venit în CaS Management!`;
+    document.getElementById('welcomeSubtitle').textContent = `Dashboard pentru gestionarea spălătoriilor`;
+
+    // Încărcare statistici principale
+    await this.loadMainStats();
     
-    // Update welcome message
-    document.getElementById('welcomeTitle').textContent = `Bun venit, ${user.firstName}!`;
-    document.getElementById('welcomeSubtitle').textContent = `Dashboard ${this.getRoleLabel(user.role)}`;
-    
-    // Load dashboard stats
-    await this.loadDashboardStats();
-    
-    // Load quick actions based on role
-    this.loadQuickActions(user.role);
-    
-    // Load widgets
+    // Încărcare widget-uri principale
+    await this.loadLocations();
+    await this.loadServices();
     await this.loadRecentOrders();
+    await this.loadInventoryStatus();
+    await this.loadEquipmentStatus();
     await this.loadSystemStatus();
-    await this.loadNotifications();
-    await this.loadPerformanceChart();
     
-    // Load role-specific content
-    this.loadRoleSpecificContent(user.role);
-  }
-  
-  async loadDashboardStats() {
-    try {
-      const response = await authManager.apiRequest('/stats/dashboard');
-      
-      if (response.success) {
-        const stats = response.data;
-        
-        document.getElementById('totalLocations').textContent = stats.totalLocations || '0';
-        document.getElementById('activeOrders').textContent = stats.activeOrders || '0';
-        document.getElementById('totalRevenue').textContent = stats.todayRevenue ? `${stats.todayRevenue} RON` : '0 RON';
-      }
-    } catch (error) {
-      console.error('Error loading dashboard stats:', error);
-    }
-  }
-  
-  loadQuickActions(role) {
-    const actionsGrid = document.getElementById('quickActionsGrid');
-    const actions = this.getQuickActionsByRole(role);
+    // Încărcare widget-uri suplimentare
+    await this.loadCustomers();
+    await this.loadEmployees();
+    await this.loadActiveTransports();
+    await this.loadWeatherData();
+    await this.loadRSSFeeds();
     
-    actionsGrid.innerHTML = actions.map(action => `
-      <a href="${action.href}" class="action-card" onclick="${action.onclick || ''}">
-        <span class="action-icon">${action.icon}</span>
-        <h3 class="action-title">${action.title}</h3>
-        <p class="action-description">${action.description}</p>
-      </a>
-    `).join('');
-  }
-  
-  getQuickActionsByRole(role) {
-    const commonActions = [
-      {
-        icon: '📊',
-        title: 'Rapoarte',
-        description: 'Vezi rapoarte și statistici',
-        href: 'reports.html'
-      },
-      {
-        icon: '🔔',
-        title: 'Notificări',
-        description: 'Gestionează notificările',
-        href: '#',
-        onclick: 'showNotificationsModal()'
-      }
-    ];
-    
-    const roleActions = {
-      'ADMIN': [
-        {
-          icon: '👥',
-          title: 'Utilizatori',
-          description: 'Gestionează utilizatorii',
-          href: 'users.html'
-        },
-        {
-          icon: '🏢',
-          title: 'Locații',
-          description: 'Administrează locațiile',
-          href: 'locations.html'
-        },
-        {
-          icon: '⚙️',
-          title: 'Configurări',
-          description: 'Setări de sistem',
-          href: 'settings.html'
-        },
-        {
-          icon: '🔧',
-          title: 'Echipamente',
-          description: 'Gestionează echipamentele',
-          href: 'equipment.html'
-        }
-      ],
-      'MANAGER': [
-        {
-          icon: '📋',
-          title: 'Comenzi',
-          description: 'Gestionează comenzile',
-          href: 'orders.html'
-        },
-        {
-          icon: '👷',
-          title: 'Echipa',
-          description: 'Gestionează echipa',
-          href: 'team.html'
-        },
-        {
-          icon: '🔧',
-          title: 'Echipamente',
-          description: 'Monitorizează echipamentele',
-          href: 'equipment.html'
-        }
-      ],
-      'EMPLOYEE': [
-        {
-          icon: '📋',
-          title: 'Comenzile Mele',
-          description: 'Vezi comenzile atribuite',
-          href: 'my-orders.html'
-        },
-        {
-          icon: '✅',
-          title: 'Servicii',
-          description: 'Actualizează serviciile',
-          href: 'services.html'
-        }
-      ]
-    };
-    
-    return [...(roleActions[role] || []), ...commonActions];
+    // Solicitare permisiuni notificări browser
+    await this.requestNotificationPermission();
   }
 
-  // ===== WIDGET LOADING =====
-  
+  // ===== STATISTICI PRINCIPALE =====
+  async loadMainStats() {
+    try {
+      // Încărcare locații
+      const locationsResponse = await this.apiRequest('/locations');
+      const totalLocations = locationsResponse.success ? locationsResponse.data.length : 0;
+      
+      // Încărcare comenzi active
+      const ordersResponse = await this.apiRequest('/orders?status=IN_PROGRESS');
+      const activeOrders = ordersResponse.success ? ordersResponse.data.length : 0;
+      
+      // Încărcare venituri (simulat - ar trebui implementat endpoint specific)
+      const todayRevenue = await this.calculateTodayRevenue();
+      
+      // Actualizare UI
+      document.getElementById('totalLocations').textContent = totalLocations;
+      document.getElementById('activeOrders').textContent = activeOrders;
+      document.getElementById('totalRevenue').textContent = `${todayRevenue} RON`;
+      
+    } catch (error) {
+      console.error('Error loading main stats:', error);
+    }
+  }
+
+  async calculateTodayRevenue() {
+    try {
+      const today = new Date().toISOString().split('T')[0];
+      const ordersResponse = await this.apiRequest(`/orders?status=COMPLETED&date=${today}`);
+      
+      if (ordersResponse.success) {
+        return ordersResponse.data.reduce((total, order) => total + (order.total_price || 0), 0);
+      }
+      return 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
+  // ===== GESTIONARE LOCAȚII =====
+  async loadLocations() {
+    try {
+      const response = await this.apiRequest('/locations');
+      
+      if (response.success) {
+        this.displayLocations(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading locations:', error);
+    }
+  }
+
+  displayLocations(locations) {
+    const container = this.getOrCreateWidget('locations', 'Locații Spălătorii');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Locații Spălătorii (${locations.length})</h3>
+        <button onclick="dashboard.showAddLocationModal()" class="btn-add">+ Adaugă</button>
+      </div>
+      <div class="widget-content">
+        ${locations.map(location => `
+          <div class="location-item" data-id="${location.location_id}">
+            <div class="location-info">
+              <h4>${location.name}</h4>
+              <p>${location.address}</p>
+              ${location.latitude && location.longitude ? 
+                `<small>GPS: ${location.latitude}, ${location.longitude}</small>` : ''}
+            </div>
+            <div class="location-actions">
+              <button onclick="dashboard.editLocation(${location.location_id})" class="btn-edit">✏️</button>
+              <button onclick="dashboard.deleteLocation(${location.location_id})" class="btn-delete">🗑️</button>
+              <button onclick="dashboard.viewLocationDetails(${location.location_id})" class="btn-view">👁️</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // ===== GESTIONARE SERVICII =====
+  async loadServices() {
+    try {
+      const response = await this.apiRequest('/services');
+      
+      if (response.success) {
+        this.displayServices(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading services:', error);
+    }
+  }
+
+  displayServices(services) {
+    const container = this.getOrCreateWidget('services', 'Servicii Disponibile');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Servicii (${services.length})</h3>
+        <button onclick="dashboard.showAddServiceModal()" class="btn-add">+ Adaugă</button>
+      </div>
+      <div class="widget-content">
+        ${services.map(service => `
+          <div class="service-item" data-id="${service.service_id}">
+            <div class="service-info">
+              <h4>${this.getServiceTypeLabel(service.service_type)}</h4>
+              <p>${service.description}</p>
+              <span class="service-price">${service.base_price} RON</span>
+            </div>
+            <div class="service-actions">
+              <button onclick="dashboard.editService(${service.service_id})" class="btn-edit">✏️</button>
+              <button onclick="dashboard.deleteService(${service.service_id})" class="btn-delete">🗑️</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  getServiceTypeLabel(type) {
+    const labels = {
+      'CARPET': 'Curățare Covoare',
+      'CAR_WASH': 'Spălare Auto',
+      'GARMENT': 'Curățare Îmbrăcăminte',
+      'OTHER': 'Alte Servicii'
+    };
+    return labels[type] || type;
+  }
+
+  // ===== GESTIONARE COMENZI =====
   async loadRecentOrders() {
     try {
-      const response = await authManager.apiRequest('/orders?limit=5&sort=created_at:desc');
-      const ordersList = document.getElementById('recentOrdersList');
+      const response = await this.apiRequest('/orders?limit=10&sort=created_at:desc');
       
-      if (response.success && response.data.length > 0) {
-        ordersList.innerHTML = response.data.map(order => `
-          <div class="order-item">
-            <div class="order-info">
-              <div class="order-id">#${order.id}</div>
-              <div class="order-details">
-                ${order.customer_name} • ${order.service_type} • ${this.formatDate(order.created_at)}
-              </div>
-            </div>
-            <span class="order-status ${order.status.toLowerCase()}">${this.getStatusLabel(order.status)}</span>
-          </div>
-        `).join('');
-      } else {
-        ordersList.innerHTML = '<div class="loading-placeholder">Nu există comenzi recente</div>';
+      if (response.success) {
+        this.displayRecentOrders(response.data);
       }
     } catch (error) {
       console.error('Error loading recent orders:', error);
-      document.getElementById('recentOrdersList').innerHTML = '<div class="loading-placeholder">Eroare la încărcare</div>';
     }
   }
-  
-  async loadSystemStatus() {
+
+  displayRecentOrders(orders) {
+    const container = this.getOrCreateWidget('recent-orders', 'Comenzi Recente');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Comenzi Recente</h3>
+        <button onclick="dashboard.showAllOrders()" class="btn-view-all">Vezi toate</button>
+      </div>
+      <div class="widget-content">
+        ${orders.length > 0 ? orders.map(order => `
+          <div class="order-item" data-id="${order.order_id}">
+            <div class="order-info">
+              <div class="order-id">#${order.order_id}</div>
+              <div class="order-details">
+                <p>Client: ${order.customer_name || 'N/A'}</p>
+                <p>Locație: ${order.location_name || 'N/A'}</p>
+                <p>Data: ${this.formatDate(order.created_at)}</p>
+                ${order.total_price ? `<p>Total: ${order.total_price} RON</p>` : ''}
+              </div>
+            </div>
+            <div class="order-status">
+              <span class="status-badge ${order.status.toLowerCase()}">${this.getOrderStatusLabel(order.status)}</span>
+              <div class="order-actions">
+                <button onclick="dashboard.viewOrderDetails(${order.order_id})" class="btn-view">👁️</button>
+                <button onclick="dashboard.updateOrderStatus(${order.order_id})" class="btn-edit">📝</button>
+              </div>
+            </div>
+          </div>
+        `).join('') : '<p class="no-data">Nu există comenzi recente</p>'}
+      </div>
+    `;
+  }
+
+  getOrderStatusLabel(status) {
+    const labels = {
+      'PENDING': 'În Așteptare',
+      'SCHEDULED': 'Programată',
+      'IN_PROGRESS': 'În Progres',
+      'COMPLETED': 'Completată',
+      'CANCELLED': 'Anulată'
+    };
+    return labels[status] || status;
+  }
+
+  // ===== GESTIONARE INVENTAR =====
+  async loadInventoryStatus() {
     try {
-      const response = await authManager.apiRequest('/stats/system-status');
-      const statusList = document.getElementById('systemStatusList');
+      const response = await this.apiRequest('/inventory/alerts');
       
       if (response.success) {
-        const status = response.data;
-        statusList.innerHTML = `
+        this.displayInventoryStatus(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading inventory status:', error);
+    }
+  }
+
+  displayInventoryStatus(alerts) {
+    const container = this.getOrCreateWidget('inventory-status', 'Status Inventar');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Status Inventar</h3>
+        <button onclick="dashboard.showInventoryManagement()" class="btn-manage">Gestionează</button>
+      </div>
+      <div class="widget-content">
+        ${alerts.length > 0 ? `
+          <div class="alerts-list">
+            ${alerts.map(alert => `
+              <div class="alert-item ${alert.severity.toLowerCase()}">
+                <span class="alert-icon">${this.getAlertIcon(alert.severity)}</span>
+                <div class="alert-content">
+                  <p><strong>${alert.resource_name}</strong></p>
+                  <p>Locație: ${alert.location_name}</p>
+                  <p>Cantitate: ${alert.current_quantity} ${alert.unit}</p>
+                  <p>Minim: ${alert.min_stock} ${alert.unit}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        ` : '<p class="no-alerts">✅ Toate resursele sunt la nivel optim</p>'}
+      </div>
+    `;
+  }
+
+  getAlertIcon(severity) {
+    const icons = {
+      'CRITICAL': '🚨',
+      'WARNING': '⚠️',
+      'INFO': 'ℹ️'
+    };
+    return icons[severity] || 'ℹ️';
+  }
+
+  // ===== GESTIONARE ECHIPAMENTE =====
+  async loadEquipmentStatus() {
+    try {
+      const response = await this.apiRequest('/equipment/statuses');
+      
+      if (response.success) {
+        this.displayEquipmentStatus(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading equipment status:', error);
+    }
+  }
+
+  displayEquipmentStatus(equipment) {
+    const container = this.getOrCreateWidget('equipment-status', 'Status Echipamente');
+    
+    const statusCounts = equipment.reduce((acc, eq) => {
+      acc[eq.status] = (acc[eq.status] || 0) + 1;
+      return acc;
+    }, {});
+
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Status Echipamente</h3>
+        <button onclick="dashboard.showEquipmentManagement()" class="btn-manage">Gestionează</button>
+      </div>
+      <div class="widget-content">
+        <div class="status-summary">
+          <div class="status-item operative">
+            <span class="count">${statusCounts.OPERATIVE || 0}</span>
+            <span class="label">Operaționale</span>
+          </div>
+          <div class="status-item maintenance">
+            <span class="count">${statusCounts.UNDER_MAINTENANCE || 0}</span>
+            <span class="label">În Mentenanță</span>
+          </div>
+          <div class="status-item offline">
+            <span class="count">${statusCounts.OUT_OF_SERVICE || 0}</span>
+            <span class="label">Defecte</span>
+          </div>
+        </div>
+        <div class="equipment-list">
+          ${equipment.slice(0, 5).map(eq => `
+            <div class="equipment-item">
+              <span class="equipment-name">${eq.name}</span>
+              <span class="equipment-location">${eq.location_name}</span>
+              <span class="equipment-status ${eq.status.toLowerCase()}">${eq.status}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // ===== STATUS SISTEM =====
+  async loadSystemStatus() {
+    try {
+      // Test conectivitate API
+      const pingResponse = await this.apiRequest('/ping');
+      const isOnline = pingResponse.status === 'ok';
+      
+      this.displaySystemStatus({
+        api: isOnline,
+        database: isOnline, // Presupunem că dacă API răspunde, DB-ul funcționează
+        websocket: this.websocket && this.websocket.readyState === WebSocket.OPEN,
+        timestamp: new Date().toISOString()
+      });
+    } catch (error) {
+      this.displaySystemStatus({
+        api: false,
+        database: false,
+        websocket: false,
+        timestamp: new Date().toISOString()
+      });
+    }
+  }
+
+  displaySystemStatus(status) {
+    const container = this.getOrCreateWidget('system-status', 'Status Sistem');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Status Sistem</h3>
+        <button onclick="dashboard.refreshSystemStatus()" class="btn-refresh">🔄</button>
+      </div>
+      <div class="widget-content">
+        <div class="status-grid">
           <div class="status-item">
-            <span class="status-label">Server</span>
-            <span class="status-indicator ${status.server ? 'online' : 'offline'}"></span>
+            <span class="status-label">API Server</span>
+            <span class="status-indicator ${status.api ? 'online' : 'offline'}">
+              ${status.api ? '🟢' : '🔴'}
+            </span>
           </div>
           <div class="status-item">
             <span class="status-label">Baza de Date</span>
-            <span class="status-indicator ${status.database ? 'online' : 'offline'}"></span>
+            <span class="status-indicator ${status.database ? 'online' : 'offline'}">
+              ${status.database ? '🟢' : '🔴'}
+            </span>
           </div>
           <div class="status-item">
-            <span class="status-label">Email Service</span>
-            <span class="status-indicator ${status.email ? 'online' : 'warning'}"></span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Echipamente Active</span>
-            <span class="status-indicator ${status.equipment > 80 ? 'online' : status.equipment > 50 ? 'warning' : 'offline'}"></span>
-          </div>
-        `;
-      }
-    } catch (error) {
-      console.error('Error loading system status:', error);
-      document.getElementById('systemStatusList').innerHTML = '<div class="loading-placeholder">Eroare la încărcare</div>';
-    }
-  }
-  
-  async loadNotifications() {
-    try {
-      const response = await authManager.apiRequest('/notifications/recent?limit=5');
-      const notificationsList = document.getElementById('notificationsList');
-      
-      if (response.success && response.data.length > 0) {
-        this.notifications = response.data;
-        notificationsList.innerHTML = response.data.map(notification => `
-          <div class="notification-item ${notification.read ? '' : 'unread'}">
-            <span class="notification-icon">${this.getNotificationIcon(notification.type)}</span>
-            <div class="notification-content">
-              <div class="notification-title">${notification.title}</div>
-              <div class="notification-message">${notification.message}</div>
-              <div class="notification-time">${this.formatRelativeTime(notification.created_at)}</div>
-            </div>
-          </div>
-        `).join('');
-      } else {
-        notificationsList.innerHTML = '<div class="loading-placeholder">Nu există notificări</div>';
-      }
-    } catch (error) {
-      console.error('Error loading notifications:', error);
-      document.getElementById('notificationsList').innerHTML = '<div class="loading-placeholder">Eroare la încărcare</div>';
-    }
-  }
-  
-  async loadPerformanceChart() {
-    try {
-      const period = document.getElementById('performancePeriod').value;
-      const response = await authManager.apiRequest(`/stats/performance?days=${period}`);
-      
-      if (response.success) {
-        this.renderPerformanceChart(response.data);
-      }
-    } catch (error) {
-      console.error('Error loading performance chart:', error);
-    }
-  }
-  
-  renderPerformanceChart(data) {
-    const canvas = document.getElementById('performanceChart');
-    const ctx = canvas.getContext('2d');
-    
-    // Simple chart implementation (you can integrate Chart.js here)
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw chart background
-    ctx.fillStyle = '#f8f9fa';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw chart title
-    ctx.fillStyle = '#2c3e50';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Performanță Zilnică', canvas.width / 2, 30);
-    
-    // Draw simple line chart
-    if (data && data.length > 0) {
-      ctx.strokeStyle = '#667eea';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      
-      const maxValue = Math.max(...data.map(d => d.value));
-      const stepX = canvas.width / (data.length - 1);
-      const stepY = (canvas.height - 80) / maxValue;
-      
-      data.forEach((point, index) => {
-        const x = index * stepX;
-        const y = canvas.height - 40 - (point.value * stepY);
-        
-        if (index === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-      });
-      
-      ctx.stroke();
-    }
-  }
-  
-  loadRoleSpecificContent(role) {
-    const roleContent = document.getElementById('roleSpecificContent');
-    
-    const roleContentMap = {
-      'ADMIN': this.getAdminContent(),
-      'MANAGER': this.getManagerContent(),
-      'EMPLOYEE': this.getEmployeeContent()
-    };
-    
-    roleContent.innerHTML = roleContentMap[role] || '';
-  }
-  
-  getAdminContent() {
-    return `
-      <div class="role-section">
-        <h2>Panou Administrator</h2>
-        <div class="role-grid">
-          <div class="role-card">
-            <h3>Gestiune Sistem</h3>
-            <ul>
-              <li>Administrare utilizatori</li>
-              <li>Configurări globale</li>
-              <li>Monitorizare sistem</li>
-              <li>Backup și securitate</li>
-            </ul>
-          </div>
-          <div class="role-card">
-            <h3>Rapoarte Avansate</h3>
-            <ul>
-              <li>Analize financiare</li>
-              <li>Performanță globală</li>
-              <li>Statistici utilizatori</li>
-              <li>Rapoarte personalizate</li>
-            </ul>
+            <span class="status-label">WebSocket</span>
+            <span class="status-indicator ${status.websocket ? 'online' : 'offline'}">
+              ${status.websocket ? '🟢' : '🔴'}
+            </span>
           </div>
         </div>
-      </div>
-    `;
-  }
-  
-  getManagerContent() {
-    return `
-      <div class="role-section">
-        <h2>Panou Manager</h2>
-        <div class="role-grid">
-          <div class="role-card">
-            <h3>Gestiune Locație</h3>
-            <ul>
-              <li>Monitorizare echipamente</li>
-              <li>Programare servicii</li>
-              <li>Gestiune inventar</li>
-              <li>Rapoarte locație</li>
-            </ul>
-          </div>
-          <div class="role-card">
-            <h3>Gestiune Echipă</h3>
-            <ul>
-              <li>Atribuire sarcini</li>
-              <li>Monitorizare performanță</li>
-              <li>Programare personal</li>
-              <li>Training și dezvoltare</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-  
-  getEmployeeContent() {
-    return `
-      <div class="role-section">
-        <h2>Panou Angajat</h2>
-        <div class="role-grid">
-          <div class="role-card">
-            <h3>Activități Zilnice</h3>
-            <ul>
-              <li>Comenzi atribuite</li>
-              <li>Actualizare status</li>
-              <li>Raportare probleme</li>
-              <li>Timp lucrat</li>
-            </ul>
-          </div>
-          <div class="role-card">
-            <h3>Resurse</h3>
-            <ul>
-              <li>Proceduri de lucru</li>
-              <li>Contacte echipă</li>
-              <li>Materiale training</li>
-              <li>Feedback clienți</li>
-            </ul>
-          </div>
+        <div class="status-info">
+          <p>Ultima actualizare: ${this.formatDate(status.timestamp)}</p>
         </div>
       </div>
     `;
   }
 
-  // ===== REAL-TIME UPDATES =====
-  
-  setupRealTimeUpdates() {
-    // WebSocket connection for real-time updates
-    if (typeof WebSocket !== 'undefined') {
-      try {
-        const wsUrl = 'ws://localhost:3000';
-        this.websocket = new WebSocket(wsUrl);
-        
-        this.websocket.onopen = () => {
-          console.log('WebSocket connected');
-          this.showToast('Conectat la actualizări în timp real', 'success');
-        };
-        
-        this.websocket.onmessage = (event) => {
-          const message = JSON.parse(event.data);
-          this.handleWebSocketMessage(message);
-        };
-        
-        this.websocket.onclose = () => {
-          console.log('WebSocket disconnected');
-          // Attempt to reconnect after 5 seconds
-          setTimeout(() => this.setupRealTimeUpdates(), 5000);
-        };
-        
-        this.websocket.onerror = (error) => {
-          console.error('WebSocket error:', error);
-        };
-      } catch (error) {
-        console.error('WebSocket setup error:', error);
-      }
+  // ===== WEBSOCKET PENTRU TIMP REAL =====
+  setupWebSocket() {
+    try {
+      const wsUrl = 'ws://localhost:8000/ws';
+      this.websocket = new WebSocket(wsUrl);
+      
+      this.websocket.onopen = () => {
+        console.log('WebSocket connected');
+        this.showToast('Conectat la actualizări în timp real', 'success');
+      };
+      
+      this.websocket.onmessage = (event) => {
+        const message = JSON.parse(event.data);
+        this.handleWebSocketMessage(message);
+      };
+      
+      this.websocket.onclose = () => {
+        console.log('WebSocket disconnected');
+        setTimeout(() => this.setupWebSocket(), 5000); // Reconnect
+      };
+      
+      this.websocket.onerror = (error) => {
+        console.error('WebSocket error:', error);
+      };
+    } catch (error) {
+      console.error('WebSocket setup error:', error);
     }
   }
-  
+
   handleWebSocketMessage(message) {
     switch (message.type) {
-      case 'notification':
-        this.handleNotification(message.notification);
-        break;
       case 'order_update':
-        this.handleOrderUpdate(message.order);
+        this.loadRecentOrders();
+        this.loadMainStats();
+        this.showToast(`Comandă #${message.data.order_id} actualizată`, 'info');
+        this.showBrowserNotification('Actualizare Comandă', `Comandă #${message.data.order_id} actualizată`, 'info');
         break;
-      case 'system_status':
-        this.handleSystemStatusUpdate(message.status);
+      case 'inventory_alert':
+        this.loadInventoryStatus();
+        this.showToast(`Alertă inventar: ${message.data.message}`, 'warning');
+        this.showBrowserNotification('Alertă Inventar', message.data.message, 'warning');
         break;
-      default:
-        console.log('Unknown WebSocket message:', message);
-    }
-  }
-  
-  handleNotification(notification) {
-    // Add to notifications list
-    this.notifications.unshift(notification);
-    
-    // Show toast
-    this.showToast(notification.message, this.getNotificationToastType(notification.type));
-    
-    // Refresh notifications widget
-    this.loadNotifications();
-  }
-  
-  handleOrderUpdate(order) {
-    // Refresh recent orders
-    this.loadRecentOrders();
-    
-    // Update stats
-    this.loadDashboardStats();
-  }
-  
-  handleSystemStatusUpdate(status) {
-    // Refresh system status
-    this.loadSystemStatus();
-  }
-
-  // ===== PERIODIC REFRESH =====
-  
-  startPeriodicRefresh() {
-    // Refresh every 5 minutes
-    this.refreshInterval = setInterval(() => {
-      this.loadDashboardStats();
-      this.loadSystemStatus();
-    }, 5 * 60 * 1000);
-  }
-  
-  stopPeriodicRefresh() {
-    if (this.refreshInterval) {
-      clearInterval(this.refreshInterval);
-      this.refreshInterval = null;
+      case 'equipment_status':
+        this.loadEquipmentStatus();
+        this.showToast(`Status echipament actualizat`, 'info');
+        break;
+      case 'transport_update':
+        this.loadActiveTransports();
+        this.showToast(`Transport #${message.data.transport_id} actualizat`, 'info');
+        break;
+      case 'weather_update':
+        this.loadWeatherData();
+        this.showToast('Date meteo actualizate', 'info');
+        break;
+      case 'staff_unavailable':
+        this.loadEmployees();
+        this.showToast('Indisponibilitate personal raportată', 'warning');
+        this.showBrowserNotification('Alertă Personal', message.data.message, 'warning');
+        break;
+      case 'power_outage':
+        this.loadSystemStatus();
+        this.showToast('Pană de curent detectată', 'error');
+        this.showBrowserNotification('Alertă Critică', 'Pană de curent detectată', 'error');
+        break;
+      case 'system_notification':
+        this.showToast(message.data.message, message.data.type || 'info');
+        this.showBrowserNotification('Notificare Sistem', message.data.message, message.data.type || 'info');
+        break;
     }
   }
 
-  // ===== UTILITY METHODS =====
-  
-  getRoleLabel(role) {
-    const roleLabels = {
-      'ADMIN': 'Administrator',
-      'MANAGER': 'Manager',
-      'EMPLOYEE': 'Angajat'
-    };
-    return roleLabels[role] || role;
+  // ===== RSS FEEDS =====
+  async loadRSSFeeds() {
+    const container = this.getOrCreateWidget('rss-feeds', 'RSS Feeds');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>RSS Feeds</h3>
+        <button onclick="dashboard.refreshRSSFeeds()" class="btn-refresh">🔄</button>
+      </div>
+      <div class="widget-content">
+        <div class="rss-links">
+          <a href="/rss" target="_blank" class="rss-link">
+            🌐 Feed General Sistem
+          </a>
+          <a href="/rss/orders" target="_blank" class="rss-link">
+            📋 Feed Actualizări Comenzi
+          </a>
+          <a href="/rss/inventory" target="_blank" class="rss-link">
+            📦 Feed Alerte Inventar
+          </a>
+        </div>
+      </div>
+    `;
   }
-  
-  getStatusLabel(status) {
-    const statusLabels = {
-      'PENDING': 'În așteptare',
-      'IN_PROGRESS': 'În progres',
-      'COMPLETED': 'Finalizată',
-      'CANCELLED': 'Anulată'
-    };
-    return statusLabels[status] || status;
+
+  // ===== NOTIFICĂRI BROWSER =====
+  async requestNotificationPermission() {
+    if ('Notification' in window) {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        this.showToast('Notificările browser au fost activate', 'success');
+      }
+    }
   }
-  
-  getNotificationIcon(type) {
-    const icons = {
-      'ORDER': '📋',
-      'EQUIPMENT': '🔧',
-      'SYSTEM': '⚙️',
-      'ALERT': '🚨',
-      'INFO': 'ℹ️'
-    };
-    return icons[type] || '🔔';
+
+  showBrowserNotification(title, message, type = 'info') {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      const notification = new Notification(title, {
+        body: message,
+        icon: '/favicon.ico',
+        badge: '/favicon.ico',
+        tag: 'cas-notification'
+      });
+
+      notification.onclick = () => {
+        window.focus();
+        notification.close();
+      };
+
+      setTimeout(() => notification.close(), 5000);
+    }
   }
-  
-  getNotificationToastType(type) {
-    const types = {
-      'ALERT': 'error',
-      'WARNING': 'warning',
-      'INFO': 'info',
-      'SUCCESS': 'success'
-    };
-    return types[type] || 'info';
+
+  // ===== GESTIONARE CLIENȚI =====
+  async loadCustomers() {
+    try {
+      const response = await this.apiRequest('/customers');
+      
+      if (response.success) {
+        this.displayCustomers(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading customers:', error);
+    }
   }
+
+  displayCustomers(customers) {
+    const container = this.getOrCreateWidget('customers', 'Clienți');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Clienți (${customers.length})</h3>
+        <button onclick="dashboard.showAddCustomerModal()" class="btn-add">+ Adaugă</button>
+      </div>
+      <div class="widget-content">
+        ${customers.slice(0, 5).map(customer => `
+          <div class="customer-item" data-id="${customer.customer_id}">
+            <div class="customer-info">
+              <h4>${customer.full_name || customer.email}</h4>
+              <p>${customer.address || 'Adresă nespecificată'}</p>
+              <p>📞 ${customer.phone || 'Telefon nespecificat'}</p>
+            </div>
+            <div class="customer-actions">
+              <button onclick="dashboard.editCustomer(${customer.customer_id})" class="btn-edit">✏️</button>
+              <button onclick="dashboard.viewCustomerOrders(${customer.customer_id})" class="btn-view">📋</button>
+            </div>
+          </div>
+        `).join('')}
+        ${customers.length > 5 ? `<p class="show-more">și încă ${customers.length - 5} clienți...</p>` : ''}
+      </div>
+    `;
+  }
+
+  // ===== GESTIONARE ANGAJAȚI =====
+  async loadEmployees() {
+    try {
+      const response = await this.apiRequest('/employees');
+      
+      if (response.success) {
+        this.displayEmployees(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading employees:', error);
+    }
+  }
+
+  displayEmployees(employees) {
+    const container = this.getOrCreateWidget('employees', 'Angajați');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Angajați (${employees.length})</h3>
+        <button onclick="dashboard.showAddEmployeeModal()" class="btn-add">+ Adaugă</button>
+      </div>
+      <div class="widget-content">
+        ${employees.slice(0, 5).map(employee => `
+          <div class="employee-item" data-id="${employee.employee_id}">
+            <div class="employee-info">
+              <h4>${employee.full_name}</h4>
+              <p>Poziție: ${employee.job_title || employee.employee_type}</p>
+              <p>Locație: ${employee.location_name || 'Nespecificată'}</p>
+              <p>Salariu: ${employee.salary ? employee.salary + ' RON' : 'Nespecificat'}</p>
+            </div>
+            <div class="employee-actions">
+              <button onclick="dashboard.editEmployee(${employee.employee_id})" class="btn-edit">✏️</button>
+              <button onclick="dashboard.viewEmployeeSchedule(${employee.employee_id})" class="btn-view">📅</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  // ===== GESTIONARE TRANSPORT =====
+  async loadActiveTransports() {
+    try {
+      const response = await this.apiRequest('/transports/active');
+      
+      if (response.success) {
+        this.displayActiveTransports(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading active transports:', error);
+    }
+  }
+
+  displayActiveTransports(transports) {
+    const container = this.getOrCreateWidget('active-transports', 'Transport Activ');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Transport Activ (${transports.length})</h3>
+        <button onclick="dashboard.showAllTransports()" class="btn-view-all">Vezi toate</button>
+      </div>
+      <div class="widget-content">
+        ${transports.length > 0 ? transports.map(transport => `
+          <div class="transport-item" data-id="${transport.transport_id}">
+            <div class="transport-info">
+              <div class="transport-id">#${transport.transport_id}</div>
+              <p>Comandă: #${transport.order_id}</p>
+              <p>Status: ${this.getTransportStatusLabel(transport.status)}</p>
+              <p>Șofer: ${transport.driver_name || 'Neatribuit'}</p>
+            </div>
+            <div class="transport-actions">
+              <button onclick="dashboard.updateTransportStatus(${transport.transport_id})" class="btn-edit">📝</button>
+              <button onclick="dashboard.trackTransport(${transport.transport_id})" class="btn-view">📍</button>
+            </div>
+          </div>
+        `).join('') : '<p class="no-data">Nu există transport activ</p>'}
+      </div>
+    `;
+  }
+
+  getTransportStatusLabel(status) {
+    const labels = {
+      'NOT_REQUIRED': 'Nu este necesar',
+      'PLANNED': 'Planificat',
+      'ON_ROUTE': 'În drum',
+      'ARRIVED': 'Sosit',
+      'FINISHED': 'Finalizat'
+    };
+    return labels[status] || status;
+  }
+
+  // ===== MONITORIZARE METEO =====
+  async loadWeatherData() {
+    try {
+      const response = await this.apiRequest('/weather/current');
+      
+      if (response.success) {
+        this.displayWeatherData(response.data);
+      }
+    } catch (error) {
+      console.error('Error loading weather data:', error);
+    }
+  }
+
+  displayWeatherData(weatherData) {
+    const container = this.getOrCreateWidget('weather-status', 'Condiții Meteo');
+    
+    container.innerHTML = `
+      <div class="widget-header">
+        <h3>Condiții Meteo</h3>
+        <button onclick="dashboard.refreshWeatherData()" class="btn-refresh">🔄</button>
+      </div>
+      <div class="widget-content">
+        ${weatherData.length > 0 ? weatherData.map(weather => `
+          <div class="weather-item">
+            <div class="weather-location">
+              <h4>${weather.location_name}</h4>
+            </div>
+            <div class="weather-details">
+              <div class="weather-temp">${weather.temperature}°C</div>
+              <div class="weather-condition">${weather.description}</div>
+              <div class="weather-impact ${weather.impact_level?.toLowerCase() || 'normal'}">
+                Impact: ${weather.impact_level || 'Normal'}
+              </div>
+            </div>
+          </div>
+        `).join('') : '<p class="no-data">Date meteo indisponibile</p>'}
+      </div>
+    `;
+  }
+
+  // ===== ACȚIUNI CRUD =====
   
-  formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ro-RO', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+  // Locații
+  async showAddLocationModal() {
+    const modal = this.createModal('Adaugă Locație', `
+      <form id="addLocationForm">
+        <div class="form-group">
+          <label>Nume:</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Adresă:</label>
+          <textarea name="address" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Latitudine:</label>
+          <input type="number" name="latitude" step="any">
+        </div>
+        <div class="form-group">
+          <label>Longitudine:</label>
+          <input type="number" name="longitude" step="any">
+        </div>
+      </form>
+    `, async () => {
+      const form = document.getElementById('addLocationForm');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      try {
+        const response = await this.apiRequest('/locations', {
+          method: 'POST',
+          body: data
+        });
+        
+        if (response.success) {
+          this.showToast('Locația a fost adăugată cu succes', 'success');
+          this.loadLocations();
+          this.closeModal();
+        }
+      } catch (error) {
+        this.showToast('Eroare la adăugarea locației', 'error');
+      }
     });
   }
-  
-  formatRelativeTime(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInSeconds = Math.floor((now - date) / 1000);
-    
-    if (diffInSeconds < 60) {
-      return 'Acum';
-    } else if (diffInSeconds < 3600) {
-      const minutes = Math.floor(diffInSeconds / 60);
-      return `${minutes} min`;
-    } else if (diffInSeconds < 86400) {
-      const hours = Math.floor(diffInSeconds / 3600);
-      return `${hours} ore`;
-    } else {
-      const days = Math.floor(diffInSeconds / 86400);
-      return `${days} zile`;
+
+  async editLocation(locationId) {
+    try {
+      const response = await this.apiRequest(`/locations/${locationId}`);
+      if (response.success) {
+        const location = response.data;
+        
+        const modal = this.createModal('Editează Locația', `
+          <form id="editLocationForm">
+            <div class="form-group">
+              <label>Nume:</label>
+              <input type="text" name="name" value="${location.name}" required>
+            </div>
+            <div class="form-group">
+              <label>Adresă:</label>
+              <textarea name="address" required>${location.address}</textarea>
+            </div>
+          </form>
+        `, async () => {
+          const form = document.getElementById('editLocationForm');
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData);
+          
+          try {
+            const updateResponse = await this.apiRequest(`/locations/${locationId}`, {
+              method: 'PUT',
+              body: data
+            });
+            
+            if (updateResponse.success) {
+              this.showToast('Locația a fost actualizată', 'success');
+              this.loadLocations();
+              this.closeModal();
+            }
+          } catch (error) {
+            this.showToast('Eroare la actualizarea locației', 'error');
+          }
+        });
+      }
+    } catch (error) {
+      this.showToast('Eroare la încărcarea datelor locației', 'error');
     }
   }
 
-  // ===== TOAST NOTIFICATIONS =====
-  
-  showToast(message, type = 'info', duration = 5000) {
-    const toastContainer = document.getElementById('toastContainer');
-    const toast = document.createElement('div');
-    toast.className = `toast ${type}`;
-    
-    const icons = {
-      success: '✅',
-      error: '❌',
-      warning: '⚠️',
-      info: 'ℹ️'
-    };
-    
-    toast.innerHTML = `
-      <span class="toast-icon">${icons[type]}</span>
-      <div class="toast-content">
-        <div class="toast-message">${message}</div>
+  async deleteLocation(locationId) {
+    if (confirm('Ești sigur că vrei să ștergi această locație?')) {
+      try {
+        const response = await this.apiRequest(`/locations/${locationId}`, {
+          method: 'DELETE'
+        });
+        
+        if (response.success) {
+          this.showToast('Locația a fost ștearsă', 'success');
+          this.loadLocations();
+        }
+      } catch (error) {
+        this.showToast('Eroare la ștergerea locației', 'error');
+      }
+    }
+  }
+
+  // Servicii
+  async showAddServiceModal() {
+    const modal = this.createModal('Adaugă Serviciu', `
+      <form id="addServiceForm">
+        <div class="form-group">
+          <label>Tip Serviciu:</label>
+          <select name="service_type" required>
+            <option value="CARPET">Curățare Covoare</option>
+            <option value="CAR_WASH">Spălare Auto</option>
+            <option value="GARMENT">Curățare Îmbrăcăminte</option>
+            <option value="OTHER">Alte Servicii</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Descriere:</label>
+          <textarea name="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Preț de bază (RON):</label>
+          <input type="number" name="base_price" step="0.01" required>
+        </div>
+      </form>
+    `, async () => {
+      const form = document.getElementById('addServiceForm');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      try {
+        const response = await this.apiRequest('/services', {
+          method: 'POST',
+          body: data
+        });
+        
+        if (response.success) {
+          this.showToast('Serviciul a fost adăugat cu succes', 'success');
+          this.loadServices();
+          this.closeModal();
+        }
+      } catch (error) {
+        this.showToast('Eroare la adăugarea serviciului', 'error');
+      }
+    });
+  }
+
+  async editService(serviceId) {
+    try {
+      const response = await this.apiRequest(`/services/${serviceId}`);
+      if (response.success) {
+        const service = response.data;
+        
+        const modal = this.createModal('Editează Serviciul', `
+          <form id="editServiceForm">
+            <div class="form-group">
+              <label>Descriere:</label>
+              <textarea name="description" required>${service.description}</textarea>
+            </div>
+            <div class="form-group">
+              <label>Preț de bază (RON):</label>
+              <input type="number" name="base_price" step="0.01" value="${service.base_price}" required>
+            </div>
+          </form>
+        `, async () => {
+          const form = document.getElementById('editServiceForm');
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData);
+          
+          try {
+            const updateResponse = await this.apiRequest(`/services/${serviceId}`, {
+              method: 'PUT',
+              body: data
+            });
+            
+            if (updateResponse.success) {
+              this.showToast('Serviciul a fost actualizat', 'success');
+              this.loadServices();
+              this.closeModal();
+            }
+          } catch (error) {
+            this.showToast('Eroare la actualizarea serviciului', 'error');
+          }
+        });
+      }
+    } catch (error) {
+      this.showToast('Eroare la încărcarea datelor serviciului', 'error');
+    }
+  }
+
+  async deleteService(serviceId) {
+    if (confirm('Ești sigur că vrei să ștergi acest serviciu?')) {
+      try {
+        const response = await this.apiRequest(`/services/${serviceId}`, {
+          method: 'DELETE'
+        });
+        
+        if (response.success) {
+          this.showToast('Serviciul a fost șters', 'success');
+          this.loadServices();
+        }
+      } catch (error) {
+        this.showToast('Eroare la ștergerea serviciului', 'error');
+      }
+    }
+  }
+
+  // ===== UTILITĂȚI UI =====
+  getOrCreateWidget(id, title) {
+    let widget = document.getElementById(`widget-${id}`);
+    if (!widget) {
+      widget = document.createElement('div');
+      widget.id = `widget-${id}`;
+      widget.className = 'widget';
+      
+      const widgetsContainer = document.querySelector('.widgets-grid') || 
+                              document.querySelector('.dashboard-widgets') ||
+                              document.getElementById('dashboardContent');
+      widgetsContainer.appendChild(widget);
+    }
+    return widget;
+  }
+
+  createModal(title, content, onConfirm) {
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>${title}</h3>
+          <button class="modal-close" onclick="dashboard.closeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          ${content}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="dashboard.closeModal()">Anulează</button>
+          <button class="btn btn-primary" id="modalConfirmBtn">Salvează</button>
+        </div>
       </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    document.getElementById('modalConfirmBtn').onclick = onConfirm;
+    
+    return modal;
+  }
+
+  closeModal() {
+    const modal = document.querySelector('.modal-overlay');
+    if (modal) {
+      modal.remove();
+    }
+  }
+
+  showToast(message, type = 'info', duration = 5000) {
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+      <span class="toast-message">${message}</span>
       <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
     `;
     
-    toastContainer.appendChild(toast);
+    const container = document.getElementById('toastContainer') || document.body;
+    container.appendChild(toast);
     
-    // Auto-remove after duration
     setTimeout(() => {
       if (toast.parentElement) {
         toast.remove();
@@ -629,116 +1033,267 @@ class Dashboard {
     }, duration);
   }
 
-  // ===== MODAL FUNCTIONS =====
-  
-  showConfirm(title, message, callback) {
-    document.getElementById('confirmTitle').textContent = title;
-    document.getElementById('confirmMessage').textContent = message;
-    document.getElementById('confirmModal').style.display = 'flex';
-    this.confirmCallback = callback;
+  // ===== FORMATARE DATE =====
+  formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('ro-RO') + ' ' + date.toLocaleTimeString('ro-RO');
   }
-  
-  closeConfirmModal() {
-    document.getElementById('confirmModal').style.display = 'none';
-    this.confirmCallback = null;
+
+  // ===== REFRESH PERIODIC =====
+  startPeriodicRefresh() {
+    this.refreshInterval = setInterval(() => {
+      this.loadMainStats();
+      this.loadRecentOrders();
+      this.loadInventoryStatus();
+      this.loadEquipmentStatus();
+    }, 30000); // Refresh la 30 secunde
   }
-  
-  confirmAction() {
-    if (this.confirmCallback) {
-      this.confirmCallback();
+
+  stopPeriodicRefresh() {
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
     }
-    this.closeConfirmModal();
   }
 
   // ===== CLEANUP =====
-  
   destroy() {
     this.stopPeriodicRefresh();
-    
     if (this.websocket) {
       this.websocket.close();
     }
   }
 }
 
-// ===== GLOBAL FUNCTIONS =====
+// ===== FUNCȚII GLOBALE =====
+let dashboard;
 
-let dashboard = null;
+// Inițializare dashboard când pagina se încarcă
+document.addEventListener('DOMContentLoaded', () => {
+  dashboard = new CaSDashboard();
+});
 
-// Widget refresh functions
+// Funcții pentru butoanele din HTML
 async function refreshRecentOrders() {
-  if (dashboard) {
-    await dashboard.loadRecentOrders();
-  }
+  await dashboard.loadRecentOrders();
 }
 
 async function refreshSystemStatus() {
+  await dashboard.loadSystemStatus();
+}
+
+function showAllOrders() {
+  window.location.href = 'orders.html';
+}
+
+function showInventoryManagement() {
+  window.location.href = 'inventory.html';
+}
+
+function showEquipmentManagement() {
+  window.location.href = 'equipment.html';
+}
+
+function showAllTransports() {
+  window.location.href = 'transports.html';
+}
+
+async function refreshWeatherData() {
   if (dashboard) {
-    await dashboard.loadSystemStatus();
+    await dashboard.loadWeatherData();
   }
 }
 
-async function refreshNotifications() {
+async function refreshRSSFeeds() {
   if (dashboard) {
-    await dashboard.loadNotifications();
+    await dashboard.loadRSSFeeds();
   }
 }
 
-async function refreshPerformanceChart() {
-  if (dashboard) {
-    await dashboard.loadPerformanceChart();
+// Funcții pentru gestionarea alertelor și excepțiilor
+async function sendTestAlert() {
+  try {
+    const response = await dashboard.apiRequest('/alerts/test-email', { method: 'GET' });
+    if (response.success) {
+      dashboard.showToast('Email de test trimis cu succes', 'success');
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la trimiterea email-ului de test', 'error');
   }
 }
 
-async function updatePerformanceChart() {
-  if (dashboard) {
-    await dashboard.loadPerformanceChart();
+async function triggerEquipmentFailure(equipmentId) {
+  try {
+    const response = await dashboard.apiRequest('/alerts/equipment-failure', {
+      method: 'POST',
+      body: { equipment_id: equipmentId }
+    });
+    if (response.success) {
+      dashboard.showToast('Alertă echipament trimisă', 'warning');
+      dashboard.showBrowserNotification('Alertă Echipament', 'Un echipament necesită atenție', 'warning');
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la trimiterea alertei', 'error');
   }
 }
 
-function clearAllNotifications() {
-  if (dashboard) {
-    dashboard.showConfirm(
-      'Confirmare',
-      'Ești sigur că vrei să marchezi toate notificările ca citite?',
-      async () => {
-        try {
-          await authManager.apiRequest('/notifications/mark-all-read', { method: 'POST' });
-          dashboard.showToast('Toate notificările au fost marcate ca citite', 'success');
-          await dashboard.loadNotifications();
-        } catch (error) {
-          dashboard.showToast('Eroare la marcarea notificărilor', 'error');
-        }
+async function triggerInventoryAlert(locationId, resourceId) {
+  try {
+    const response = await dashboard.apiRequest('/alerts/critical-inventory', {
+      method: 'POST',
+      body: { location_id: locationId, resource_id: resourceId }
+    });
+    if (response.success) {
+      dashboard.showToast('Alertă inventar trimisă', 'warning');
+      dashboard.showBrowserNotification('Alertă Inventar', 'Stoc critic detectat', 'warning');
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la trimiterea alertei', 'error');
+  }
+}
+
+// Funcții pentru RSS
+function openRSSFeed(feedType) {
+  const feedUrls = {
+    'general': '/rss',
+    'orders': '/rss/orders',
+    'inventory': '/rss/inventory',
+    'location': (id) => `/rss/location/${id}`
+  };
+  
+  const url = typeof feedUrls[feedType] === 'function' ? 
+    feedUrls[feedType](arguments[1]) : feedUrls[feedType];
+  
+  if (url) {
+    window.open(url, '_blank');
+  }
+}
+
+// Funcții pentru statistici și raportare
+async function generateDailyReport() {
+  try {
+    const response = await dashboard.apiRequest('/stats/reports', {
+      method: 'POST',
+      body: { 
+        type: 'daily',
+        date: new Date().toISOString().split('T')[0]
       }
-    );
+    });
+    
+    if (response.success) {
+      dashboard.showToast('Raport zilnic generat cu succes', 'success');
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la generarea raportului', 'error');
   }
 }
 
-function showNotificationsModal() {
-  // Implementation for notifications modal
-  dashboard.showToast('Funcționalitatea va fi disponibilă în curând', 'info');
-}
-
-// Modal functions
-function closeConfirmModal() {
-  if (dashboard) {
-    dashboard.closeConfirmModal();
+// Funcții pentru WebSocket și timp real
+function subscribeToLocationUpdates(locationId) {
+  if (dashboard.websocket && dashboard.websocket.readyState === WebSocket.OPEN) {
+    dashboard.websocket.send(JSON.stringify({
+      type: 'subscribe',
+      locationId: locationId
+    }));
   }
 }
 
-function confirmAction() {
-  if (dashboard) {
-    dashboard.confirmAction();
+// Funcții pentru gestionarea excepțiilor
+async function reportStaffUnavailability(employeeId, reason) {
+  try {
+    const response = await dashboard.apiRequest('/alerts/staff-unavailable', {
+      method: 'POST',
+      body: { 
+        employee_id: employeeId,
+        reason: reason,
+        timestamp: new Date().toISOString()
+      }
+    });
+    
+    if (response.success) {
+      dashboard.showToast('Indisponibilitate personal raportată', 'warning');
+      dashboard.showBrowserNotification(
+        'Alertă Personal', 
+        'Indisponibilitate personal raportată', 
+        'warning'
+      );
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la raportarea indisponibilității', 'error');
   }
 }
 
-// ===== INITIALIZATION =====
+async function reportPowerOutage(locationId) {
+  try {
+    const response = await dashboard.apiRequest('/alerts/power-outage', {
+      method: 'POST',
+      body: { 
+        location_id: locationId,
+        timestamp: new Date().toISOString()
+      }
+    });
+    
+    if (response.success) {
+      dashboard.showToast('Pană de curent raportată', 'error');
+      dashboard.showBrowserNotification(
+        'Alertă Critică', 
+        'Pană de curent detectată', 
+        'error'
+      );
+    }
+  } catch (error) {
+    dashboard.showToast('Eroare la raportarea pănii de curent', 'error');
+  }
+}
 
+// Funcții pentru monitorizarea în timp real
+function startRealTimeMonitoring() {
+  // Monitorizare status echipamente
+  setInterval(async () => {
+    try {
+      const response = await dashboard.apiRequest('/equipment/check-status', { method: 'POST' });
+      if (response.success && response.data.alerts) {
+        response.data.alerts.forEach(alert => {
+          dashboard.showBrowserNotification(
+            'Alertă Echipament',
+            alert.message,
+            alert.severity.toLowerCase()
+          );
+        });
+      }
+    } catch (error) {
+      console.error('Equipment monitoring error:', error);
+    }
+  }, 60000); // Check every minute
+
+  // Monitorizare inventar
+  setInterval(async () => {
+    try {
+      const response = await dashboard.apiRequest('/inventory/low-stock');
+      if (response.success && response.data.length > 0) {
+        response.data.forEach(item => {
+          dashboard.showBrowserNotification(
+            'Alertă Inventar',
+            `Stoc scăzut: ${item.resource_name} la ${item.location_name}`,
+            'warning'
+          );
+        });
+      }
+    } catch (error) {
+      console.error('Inventory monitoring error:', error);
+    }
+  }, 300000); // Check every 5 minutes
+}
+
+// Inițializare monitorizare la încărcarea dashboard-ului
 document.addEventListener('DOMContentLoaded', () => {
-  dashboard = new Dashboard();
+  setTimeout(() => {
+    if (dashboard) {
+      startRealTimeMonitoring();
+    }
+  }, 5000); // Start monitoring after 5 seconds
 });
 
-// Cleanup on page unload
+// Cleanup la închiderea paginii
 window.addEventListener('beforeunload', () => {
   if (dashboard) {
     dashboard.destroy();
