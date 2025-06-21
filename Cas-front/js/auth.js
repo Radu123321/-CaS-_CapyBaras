@@ -2,7 +2,7 @@
 
 class AuthManager {
   constructor() {
-    this.apiBaseUrl = 'http://localhost:3000/api';
+    this.apiBaseUrl = 'http://localhost:8000/api';
     this.currentUser = null;
     this.token = null;
     
@@ -245,7 +245,11 @@ class AuthManager {
     // Update user name displays
     const userNameElements = document.querySelectorAll('.user-name');
     userNameElements.forEach(el => {
-      el.textContent = `${this.currentUser.firstName} ${this.currentUser.lastName}`;
+      // Use fullName if available, otherwise combine firstName and lastName
+      const displayName = this.currentUser.fullName || 
+                         `${this.currentUser.firstName || ''} ${this.currentUser.lastName || ''}`.trim() ||
+                         'User';
+      el.textContent = displayName;
     });
     
     // Update user email displays

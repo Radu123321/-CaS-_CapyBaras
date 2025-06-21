@@ -2535,3 +2535,110 @@ operable program or batch file.
 2025-06-20T21:07:33.792Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
 2025-06-20T21:07:33.792Z [INFO] Exception detection completed successfully in 86ms
 2025-06-20T21:07:33.793Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:08:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:09:33.589Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-20T21:09:33.590Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-20T21:09:33.590Z [INFO] Starting equipment status check...
+2025-06-20T21:09:33.643Z [ERROR] SQL error after 52ms: column em.ended_at does not exist
+2025-06-20T21:09:33.644Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-20T21:09:33.645Z [ERROR] Error checking equipment status:
+2025-06-20T21:09:33.645Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-20T21:09:33.646Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Sat Jun 21 2025 00:10:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:09:33.646Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-20T21:09:33.646Z [INFO] Starting weather data update job...
+2025-06-20T21:09:33.647Z [INFO] Starting weather data update for all locations...
+2025-06-20T21:09:33.710Z [ERROR] Error updating weather data:
+2025-06-20T21:09:33.711Z [ERROR] Weather data update job failed:
+2025-06-20T21:09:33.711Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Sat Jun 21 2025 00:10:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:09:33.712Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-20T21:09:33.712Z [INFO] Starting automated exception detection...
+2025-06-20T21:09:33.713Z [INFO] Running comprehensive exception detection...
+2025-06-20T21:09:33.714Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-20T21:09:33.715Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:09:33.715Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-20T21:09:33.788Z [ERROR] SQL error after 75ms: column l.id does not exist
+2025-06-20T21:09:33.789Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-20T21:09:33.789Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-20T21:09:33.797Z [ERROR] SQL error after 84ms: column l.id does not exist
+2025-06-20T21:09:33.798Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-20T21:09:33.798Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-20T21:09:33.801Z [ERROR] SQL error after 88ms: column o.id does not exist
+2025-06-20T21:09:33.802Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-20T21:09:33.802Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-20T21:09:33.803Z [INFO] Exception detection completed: 0 issues found
+2025-06-20T21:09:33.803Z [INFO] Exception detection completed: 0 total issues found
+2025-06-20T21:09:33.803Z [INFO] - Staff issues: 0
+2025-06-20T21:09:33.804Z [INFO] - Power issues: 0
+2025-06-20T21:09:33.804Z [INFO] - Equipment issues: 0
+2025-06-20T21:09:33.805Z [INFO] - Transport issues: 0
+2025-06-20T21:09:33.805Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-20T21:09:33.806Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-20T21:09:33.806Z [INFO] Exception detection completed successfully in 94ms
+2025-06-20T21:09:33.807Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Sat Jun 21 2025 00:10:33 GMT+0300 (Eastern European Summer Time)
+2025-06-20T21:10:33.602Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-20T21:10:33.602Z [INFO] ExpandRecurrences: Starting job
+2025-06-20T21:10:33.661Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-20T21:10:33.662Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Sat Jun 21 2025 00:10:00 GMT+0300 (Eastern European Summer Time)

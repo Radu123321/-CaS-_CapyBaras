@@ -68,15 +68,15 @@ async function registerUser(userData) {
       [userData.email]
     );
     
-    if (existingUser.rows.length > 0) {
+    if (existingUser && existingUser.length > 0) {
       throw new Error('User with this email already exists');
     }
     
     // Insert user into users table
     const insertUserSql = `
-      INSERT INTO users (email, password_hash, full_name, user_type, created_at, updated_at)
+      INSERT INTO users (email, password_hash, full_name, default_role, created_at, updated_at)
       VALUES ($1, $2, $3, $4, NOW(), NOW())
-      RETURNING user_id, email, full_name, user_type, created_at
+      RETURNING user_id, email, full_name, default_role, created_at
     `;
     
     const fullName = `${userData.firstName} ${userData.lastName}`;
@@ -88,29 +88,25 @@ async function registerUser(userData) {
       userData.role
     ]);
     
-    if (userResult.rows.length === 0) {
+    if (!userResult || userResult.length === 0) {
       throw new Error('Failed to create user');
     }
     
-    const user = userResult.rows[0];
+    const user = userResult[0];
     
-    // If role is not ADMIN, create employee record (simplified without status check)
+    // If role is not ADMIN, create employee record (simplified)
     if (userData.role !== 'ADMIN' && userData.locationId) {
       const insertEmployeeSql = `
-        INSERT INTO employees (user_id, first_name, last_name, email, phone, role, location_id, created_at, updated_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), NOW())
-        RETURNING id
+        INSERT INTO employees (user_id, location_id, job_title, hire_date, is_active)
+        VALUES ($1, $2, $3, CURRENT_DATE, true)
+        RETURNING employee_id
       `;
       
       try {
         await query(insertEmployeeSql, [
           user.user_id,
-          userData.firstName,
-          userData.lastName,
-          userData.email,
-          userData.phone,
-          userData.role,
-          userData.locationId
+          userData.locationId,
+          userData.role
         ]);
         log.debug(`AuthService: Created employee record for user ${userData.email}`);
       } catch (empError) {
@@ -146,13 +142,10 @@ async function loginUser(email, password) {
         u.email,
         u.password_hash,
         u.full_name,
-        u.user_type,
+        u.default_role,
         u.created_at,
-        e.first_name,
-        e.last_name,
-        e.role as employee_role,
+        e.job_title,
         e.location_id,
-        e.phone,
         l.name as location_name
       FROM users u
       LEFT JOIN employees e ON u.user_id = e.user_id
@@ -162,11 +155,11 @@ async function loginUser(email, password) {
     
     const result = await query(userSql, [email]);
     
-    if (result.rows.length === 0) {
+    if (!result || result.length === 0) {
       throw new Error('User not found');
     }
     
-    const user = result.rows[0];
+    const user = result[0];
     
     // Verify password
     const isValid = verifyPassword(password, user.password_hash);
@@ -179,7 +172,7 @@ async function loginUser(email, password) {
     const tokenPayload = {
       userId: user.user_id,
       email: user.email,
-      role: user.employee_role || user.user_type,
+      role: user.job_title || user.default_role,
       locationId: user.location_id,
       exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
     };
@@ -190,13 +183,12 @@ async function loginUser(email, password) {
     const userData = {
       id: user.user_id,
       email: user.email,
-      firstName: user.first_name || user.full_name?.split(' ')[0] || 'User',
-      lastName: user.last_name || user.full_name?.split(' ').slice(1).join(' ') || '',
+      firstName: user.full_name?.split(' ')[0] || 'User',
+      lastName: user.full_name?.split(' ').slice(1).join(' ') || '',
       fullName: user.full_name,
-      role: user.employee_role || user.user_type,
+      role: user.job_title || user.default_role,
       locationId: user.location_id,
       locationName: user.location_name,
-      phone: user.phone,
       createdAt: user.created_at
     };
     
@@ -251,13 +243,10 @@ async function getUserFromToken(token) {
         u.user_id,
         u.email,
         u.full_name,
-        u.user_type,
+        u.default_role,
         u.created_at,
-        e.first_name,
-        e.last_name,
-        e.role as employee_role,
+        e.job_title,
         e.location_id,
-        e.phone,
         l.name as location_name
       FROM users u
       LEFT JOIN employees e ON u.user_id = e.user_id
@@ -267,22 +256,21 @@ async function getUserFromToken(token) {
     
     const result = await query(userSql, [payload.userId]);
     
-    if (result.rows.length === 0) {
+    if (!result || result.length === 0) {
       throw new Error('User not found');
     }
     
-    const user = result.rows[0];
+    const user = result[0];
     
     const userData = {
       id: user.user_id,
       email: user.email,
-      firstName: user.first_name || user.full_name?.split(' ')[0] || 'User',
-      lastName: user.last_name || user.full_name?.split(' ').slice(1).join(' ') || '',
+      firstName: user.full_name?.split(' ')[0] || 'User',
+      lastName: user.full_name?.split(' ').slice(1).join(' ') || '',
       fullName: user.full_name,
-      role: user.employee_role || user.user_type,
+      role: user.job_title || user.default_role,
       locationId: user.location_id,
       locationName: user.location_name,
-      phone: user.phone,
       createdAt: user.created_at
     };
     
