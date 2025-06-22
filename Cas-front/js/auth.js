@@ -326,10 +326,17 @@ class AuthManager {
     // Create alert element
     const alert = document.createElement('div');
     alert.className = `alert alert-${type}`;
-    alert.innerHTML = `
-      <span>${message}</span>
-      <button type="button" class="alert-close">&times;</button>
-    `;
+    
+    const messageSpan = document.createElement('span');
+    safeSetText(messageSpan, message);
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.type = 'button';
+    closeBtn.className = 'alert-close';
+    safeSetText(closeBtn, '×');
+    
+    alert.appendChild(messageSpan);
+    alert.appendChild(closeBtn);
     
     // Add to page
     document.body.appendChild(alert);
@@ -342,7 +349,7 @@ class AuthManager {
     }, duration);
     
     // Manual close
-    alert.querySelector('.alert-close').addEventListener('click', () => {
+    closeBtn.addEventListener('click', () => {
       if (alert.parentNode) {
         alert.parentNode.removeChild(alert);
       }

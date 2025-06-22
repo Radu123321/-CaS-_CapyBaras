@@ -76,16 +76,14 @@ async function registerUser(userData) {
     const insertUserSql = `
       INSERT INTO users (email, password_hash, full_name, default_role, created_at, updated_at)
       VALUES ($1, $2, $3, $4, NOW(), NOW())
-      RETURNING user_id, email, full_name, default_role, created_at
+      RETURNING user_id, email, full_name, created_at
     `;
-    
-    const fullName = `${userData.firstName} ${userData.lastName}`;
     
     const userResult = await query(insertUserSql, [
       userData.email,
       hashedPassword,
-      fullName,
-      userData.role
+      userData.full_name,
+      'CUSTOMER'
     ]);
     
     if (!userResult || userResult.length === 0) {
@@ -94,36 +92,11 @@ async function registerUser(userData) {
     
     const user = userResult[0];
     
-    // If role is not ADMIN, create employee record (simplified)
-    if (userData.role !== 'ADMIN' && userData.locationId) {
-      const insertEmployeeSql = `
-        INSERT INTO employees (user_id, location_id, job_title, hire_date, is_active)
-        VALUES ($1, $2, $3, CURRENT_DATE, true)
-        RETURNING employee_id
-      `;
-      
-      try {
-        await query(insertEmployeeSql, [
-          user.user_id,
-          userData.locationId,
-          userData.role
-        ]);
-        log.debug(`AuthService: Created employee record for user ${userData.email}`);
-      } catch (empError) {
-        log.warn(`AuthService: Failed to create employee record for user ${userData.email}: ${empError.message}`);
-        // Don't fail the registration if employee creation fails
-      }
-    }
-    
     log.info(`AuthService: Successfully registered user ${userData.email} with ID ${user.user_id}`);
     
     return {
       userId: user.user_id,
-      email: user.email,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      role: userData.role,
-      createdAt: user.created_at
+      email: user.email
     };
   } catch (error) {
     log.error(`AuthService: Registration failed for ${userData.email}: ${error.message}`);
@@ -135,21 +108,14 @@ async function loginUser(email, password) {
   log.debug(`AuthService: Login attempt for ${email}`);
   
   try {
-    // Simplified query without status check
     const userSql = `
       SELECT 
         u.user_id,
         u.email,
         u.password_hash,
         u.full_name,
-        u.default_role,
-        u.created_at,
-        e.job_title,
-        e.location_id,
-        l.name as location_name
+        u.default_role
       FROM users u
-      LEFT JOIN employees e ON u.user_id = e.user_id
-      LEFT JOIN locations l ON e.location_id = l.location_id
       WHERE u.email = $1
     `;
     
@@ -172,8 +138,7 @@ async function loginUser(email, password) {
     const tokenPayload = {
       userId: user.user_id,
       email: user.email,
-      role: user.job_title || user.default_role,
-      locationId: user.location_id,
+      role: user.default_role,
       exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
     };
     
@@ -182,14 +147,7 @@ async function loginUser(email, password) {
     // Prepare user data for response
     const userData = {
       id: user.user_id,
-      email: user.email,
-      firstName: user.full_name?.split(' ')[0] || 'User',
-      lastName: user.full_name?.split(' ').slice(1).join(' ') || '',
-      fullName: user.full_name,
-      role: user.job_title || user.default_role,
-      locationId: user.location_id,
-      locationName: user.location_name,
-      createdAt: user.created_at
+      email: user.email
     };
     
     log.info(`AuthService: Successful login for ${email}`);

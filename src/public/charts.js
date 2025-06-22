@@ -469,19 +469,42 @@ function createOptimizationsList(optimizations) {
     const container = document.getElementById('optimizationsList');
     
     if (!optimizations || optimizations.length === 0) {
-        container.innerHTML = '<p>No optimization recommendations available</p>';
+        container.innerHTML = '';
+        const message = document.createElement('p');
+        safeSetText(message, 'No optimization recommendations available');
+        container.appendChild(message);
         return;
     }
     
-    const list = optimizations.map(opt => `
-        <div class="alert-item alert-${opt.priority.toLowerCase()}">
-            <strong>${opt.resource}</strong> - ${opt.type}<br>
-            ${opt.recommendation}
-            ${opt.current ? `<br><small>Current: ${opt.current}%</small>` : ''}
-        </div>
-    `).join('');
+    container.innerHTML = '';
     
-    container.innerHTML = list;
+    optimizations.forEach(opt => {
+        const alertItem = document.createElement('div');
+        alertItem.className = `alert-item alert-${escapeHtml(opt.priority.toLowerCase())}`;
+        
+        const resource = document.createElement('strong');
+        safeSetText(resource, opt.resource);
+        
+        const type = document.createTextNode(` - ${opt.type}`);
+        const br1 = document.createElement('br');
+        
+        const recommendation = document.createTextNode(opt.recommendation);
+        
+        alertItem.appendChild(resource);
+        alertItem.appendChild(type);
+        alertItem.appendChild(br1);
+        alertItem.appendChild(recommendation);
+        
+        if (opt.current) {
+            const br2 = document.createElement('br');
+            const current = document.createElement('small');
+            safeSetText(current, `Current: ${opt.current}%`);
+            alertItem.appendChild(br2);
+            alertItem.appendChild(current);
+        }
+        
+        container.appendChild(alertItem);
+    });
 }
 
 // ===== EQUIPMENT CHARTS =====
@@ -630,19 +653,40 @@ function createMaintenancePredictions(predictions) {
     const container = document.getElementById('maintenancePredictions');
     
     if (!predictions || predictions.length === 0) {
-        container.innerHTML = '<p>No maintenance predictions available</p>';
+        container.innerHTML = '';
+        const message = document.createElement('p');
+        safeSetText(message, 'No maintenance predictions available');
+        container.appendChild(message);
         return;
     }
     
-    const list = predictions.map(pred => `
-        <div class="alert-item alert-${pred.priority.toLowerCase()}">
-            <strong>${pred.equipment}</strong> at ${pred.location}<br>
-            Maintenance due in ${pred.daysUntilMaintenance} days<br>
-            <small>Estimated date: ${new Date(pred.estimatedDate).toLocaleDateString()}</small>
-        </div>
-    `).join('');
+    container.innerHTML = '';
     
-    container.innerHTML = list;
+    predictions.forEach(pred => {
+        const alertItem = document.createElement('div');
+        alertItem.className = `alert-item alert-${escapeHtml(pred.priority.toLowerCase())}`;
+        
+        const equipment = document.createElement('strong');
+        safeSetText(equipment, pred.equipment);
+        
+        const location = document.createTextNode(` at ${pred.location}`);
+        const br1 = document.createElement('br');
+        
+        const maintenance = document.createTextNode(`Maintenance due in ${pred.daysUntilMaintenance} days`);
+        const br2 = document.createElement('br');
+        
+        const estimated = document.createElement('small');
+        safeSetText(estimated, `Estimated date: ${new Date(pred.estimatedDate).toLocaleDateString()}`);
+        
+        alertItem.appendChild(equipment);
+        alertItem.appendChild(location);
+        alertItem.appendChild(br1);
+        alertItem.appendChild(maintenance);
+        alertItem.appendChild(br2);
+        alertItem.appendChild(estimated);
+        
+        container.appendChild(alertItem);
+    });
 }
 
 // ===== EMPLOYEE CHARTS =====

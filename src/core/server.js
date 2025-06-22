@@ -190,6 +190,13 @@ router.add('POST', '/api/exceptions/detect/equipment', notificationController.de
 router.add('POST', '/api/exceptions/detect/transport', notificationController.detectTransportIssues);
 router.add('POST', '/api/exceptions/detect/all', notificationController.runFullExceptionDetection);
 
+// Security routes
+const securityController = require('../controllers/securityController');
+router.add('POST', '/api/security/xss-attempt', securityController.logXSSAttempt);
+router.add('GET', '/api/security/status', securityController.getSecurityStatus);
+router.add('POST', '/api/security/validate-input', securityController.validateInput);
+router.add('GET', '/api/security/health', securityController.healthCheck);
+
 // Helper to serve static files
 function serveStatic(filePath, res) {
   fs.stat(filePath, (err, stats) => {
