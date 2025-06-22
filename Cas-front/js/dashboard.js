@@ -168,29 +168,80 @@ class CaSDashboard {
   displayLocations(locations) {
     const container = this.getOrCreateWidget('locations', 'Locații Spălătorii');
     
-    container.innerHTML = `
-      <div class="widget-header">
-        <h3>Locații Spălătorii (${locations.length})</h3>
-        <button onclick="dashboard.showAddLocationModal()" class="btn-add">+ Adaugă</button>
-      </div>
-      <div class="widget-content">
-        ${locations.map(location => `
-          <div class="location-item" data-id="${location.location_id}">
-            <div class="location-info">
-              <h4>${location.name}</h4>
-              <p>${location.address}</p>
-              ${location.latitude && location.longitude ? 
-                `<small>GPS: ${location.latitude}, ${location.longitude}</small>` : ''}
-            </div>
-            <div class="location-actions">
-              <button onclick="dashboard.editLocation(${location.location_id})" class="btn-edit">✏️</button>
-              <button onclick="dashboard.deleteLocation(${location.location_id})" class="btn-delete">🗑️</button>
-              <button onclick="dashboard.viewLocationDetails(${location.location_id})" class="btn-view">👁️</button>
-            </div>
-          </div>
-        `).join('')}
-      </div>
-    `;
+    // Clear container safely
+    container.innerHTML = '';
+    
+    // Create header
+    const header = document.createElement('div');
+    header.className = 'widget-header';
+    
+    const title = document.createElement('h3');
+    safeSetText(title, `Locații Spălătorii (${locations.length})`);
+    
+    const addBtn = document.createElement('button');
+    addBtn.className = 'btn-add';
+    safeSetText(addBtn, '+ Adaugă');
+    addBtn.onclick = () => dashboard.showAddLocationModal();
+    
+    header.appendChild(title);
+    header.appendChild(addBtn);
+    
+    // Create content
+    const content = document.createElement('div');
+    content.className = 'widget-content';
+    
+    locations.forEach(location => {
+      const locationItem = document.createElement('div');
+      locationItem.className = 'location-item';
+      locationItem.setAttribute('data-id', location.location_id);
+      
+      const locationInfo = document.createElement('div');
+      locationInfo.className = 'location-info';
+      
+      const name = document.createElement('h4');
+      safeSetText(name, location.name);
+      
+      const address = document.createElement('p');
+      safeSetText(address, location.address);
+      
+      locationInfo.appendChild(name);
+      locationInfo.appendChild(address);
+      
+      if (location.latitude && location.longitude) {
+        const gps = document.createElement('small');
+        safeSetText(gps, `GPS: ${location.latitude}, ${location.longitude}`);
+        locationInfo.appendChild(gps);
+      }
+      
+      const actions = document.createElement('div');
+      actions.className = 'location-actions';
+      
+      const editBtn = document.createElement('button');
+      editBtn.className = 'btn-edit';
+      safeSetText(editBtn, '✏️');
+      editBtn.onclick = () => dashboard.editLocation(location.location_id);
+      
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'btn-delete';
+      safeSetText(deleteBtn, '🗑️');
+      deleteBtn.onclick = () => dashboard.deleteLocation(location.location_id);
+      
+      const viewBtn = document.createElement('button');
+      viewBtn.className = 'btn-view';
+      safeSetText(viewBtn, '👁️');
+      viewBtn.onclick = () => dashboard.viewLocationDetails(location.location_id);
+      
+      actions.appendChild(editBtn);
+      actions.appendChild(deleteBtn);
+      actions.appendChild(viewBtn);
+      
+      locationItem.appendChild(locationInfo);
+      locationItem.appendChild(actions);
+      content.appendChild(locationItem);
+    });
+    
+    container.appendChild(header);
+    container.appendChild(content);
   }
 
   // ===== GESTIONARE SERVICII =====
@@ -985,25 +1036,54 @@ class CaSDashboard {
   createModal(title, content, onConfirm) {
     const modal = document.createElement('div');
     modal.className = 'modal-overlay';
-    modal.innerHTML = `
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>${title}</h3>
-          <button class="modal-close" onclick="dashboard.closeModal()">&times;</button>
-        </div>
-        <div class="modal-body">
-          ${content}
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" onclick="dashboard.closeModal()">Anulează</button>
-          <button class="btn btn-primary" id="modalConfirmBtn">Salvează</button>
-        </div>
-      </div>
-    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+    
+    // Header
+    const header = document.createElement('div');
+    header.className = 'modal-header';
+    
+    const titleEl = document.createElement('h3');
+    safeSetText(titleEl, title);
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'modal-close';
+    safeSetText(closeBtn, '×');
+    closeBtn.onclick = () => dashboard.closeModal();
+    
+    header.appendChild(titleEl);
+    header.appendChild(closeBtn);
+    
+    // Body
+    const body = document.createElement('div');
+    body.className = 'modal-body';
+    safeSetHtml(body, content);
+    
+    // Footer
+    const footer = document.createElement('div');
+    footer.className = 'modal-footer';
+    
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn btn-secondary';
+    safeSetText(cancelBtn, 'Anulează');
+    cancelBtn.onclick = () => dashboard.closeModal();
+    
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'btn btn-primary';
+    confirmBtn.id = 'modalConfirmBtn';
+    safeSetText(confirmBtn, 'Salvează');
+    confirmBtn.onclick = onConfirm;
+    
+    footer.appendChild(cancelBtn);
+    footer.appendChild(confirmBtn);
+    
+    modalContent.appendChild(header);
+    modalContent.appendChild(body);
+    modalContent.appendChild(footer);
+    modal.appendChild(modalContent);
     
     document.body.appendChild(modal);
-    
-    document.getElementById('modalConfirmBtn').onclick = onConfirm;
     
     return modal;
   }
@@ -1018,10 +1098,18 @@ class CaSDashboard {
   showToast(message, type = 'info', duration = 5000) {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.innerHTML = `
-      <span class="toast-message">${message}</span>
-      <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
-    `;
+    
+    const messageSpan = document.createElement('span');
+    messageSpan.className = 'toast-message';
+    safeSetText(messageSpan, message);
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'toast-close';
+    safeSetText(closeBtn, '×');
+    closeBtn.onclick = () => toast.remove();
+    
+    toast.appendChild(messageSpan);
+    toast.appendChild(closeBtn);
     
     const container = document.getElementById('toastContainer') || document.body;
     container.appendChild(toast);
