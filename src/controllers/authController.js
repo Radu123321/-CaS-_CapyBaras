@@ -7,10 +7,10 @@ async function register(req, res) {
   try {
     log.debug(`Register request body: ${JSON.stringify(req.body)}`);
     
-    const { email, password, firstName, lastName, phone, role, locationId } = req.body;
+    const { email, password, full_name } = req.body;
     
     // Validation
-    if (!email || !password || !firstName || !lastName) {
+    if (!email || !password || !full_name) {
       log.warn('Register: Missing required fields');
       res.writeHead(400, { 
         'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ async function register(req, res) {
       });
       res.end(JSON.stringify({ 
         success: false,
-        error: 'Missing required fields: email, password, firstName, lastName' 
+        error: 'Missing required fields: email, password, full_name' 
       }));
       return;
     }
@@ -53,11 +53,7 @@ async function register(req, res) {
     const userData = {
       email: email.toLowerCase().trim(),
       password,
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
-      phone: phone?.trim() || null,
-      role: role || 'EMPLOYEE',
-      locationId: locationId || null
+      full_name: full_name.trim()
     };
     
     log.debug(`Register: Processing user ${userData.email}`);
@@ -70,15 +66,8 @@ async function register(req, res) {
       'Access-Control-Allow-Origin': '*'
     });
     res.end(JSON.stringify({
-      success: true,
-      message: 'Registration successful! You can now login.',
-      data: {
-        userId: result.userId,
-        email: result.email,
-        firstName: result.firstName,
-        lastName: result.lastName,
-        role: result.role
-      }
+      message: "User registered successfully",
+      userId: result.userId
     }));
   } catch (error) {
     log.error(`Register error: ${error.message}`);
@@ -133,12 +122,8 @@ async function login(req, res) {
       'Access-Control-Allow-Origin': '*'
     });
     res.end(JSON.stringify({
-      success: true,
-      message: 'Login successful',
-      data: {
-        token: result.token,
-        user: result.user
-      }
+      token: result.token,
+      userId: result.user.id
     }));
   } catch (error) {
     log.error(`Login error: ${error.message}`);
