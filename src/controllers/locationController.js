@@ -10,11 +10,17 @@ async function getAllLocations(req, res) {
     const locations = await locationService.getAllLocations(activeOnly);
     
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(locations));
+    res.end(JSON.stringify({
+      success: true,
+      data: locations
+    }));
   } catch (error) {
     log.error(`Get locations error: ${error.message}`);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Failed to get locations' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Failed to get locations' 
+    }));
   }
 }
 
@@ -25,7 +31,10 @@ async function getLocationById(req, res) {
   
   if (!locationId) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Invalid location ID' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Invalid location ID' 
+    }));
     return;
   }
   
@@ -34,15 +43,24 @@ async function getLocationById(req, res) {
     
     if (location) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(location));
+      res.end(JSON.stringify({
+        success: true,
+        data: location
+      }));
     } else {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Location not found' }));
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Location not found' 
+      }));
     }
   } catch (error) {
     log.error(`Get location by ID error: ${error.message}`);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Failed to get location' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Failed to get location' 
+    }));
   }
 }
 
@@ -51,23 +69,37 @@ async function createLocation(req, res) {
   log.info('POST /api/locations');
   
   try {
-    const { name, address, latitude, longitude, timezone } = req.body;
+    const { name, address, latitude, longitude } = req.body;
     
     if (!name || !address) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Name and address are required' }));
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Name and address are required' 
+      }));
       return;
     }
     
-    const locationData = { name, address, latitude, longitude, timezone };
+    const locationData = { 
+      name, 
+      address, 
+      latitude: latitude || null, 
+      longitude: longitude || null 
+    };
     const newLocation = await locationService.createLocation(locationData);
     
     res.writeHead(201, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify(newLocation));
+    res.end(JSON.stringify({
+      success: true,
+      data: newLocation
+    }));
   } catch (error) {
     log.error(`Create location error: ${error.message}`);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Failed to create location' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Failed to create location' 
+    }));
   }
 }
 
@@ -78,33 +110,48 @@ async function updateLocation(req, res) {
   
   if (!locationId) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Invalid location ID' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Invalid location ID' 
+    }));
     return;
   }
   
   try {
-    const { name, address, latitude, longitude, timezone, is_active } = req.body;
+    const { name, address } = req.body;
     
     if (!name || !address) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Name and address are required' }));
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Name and address are required' 
+      }));
       return;
     }
     
-    const locationData = { name, address, latitude, longitude, timezone, is_active };
+    const locationData = { name, address };
     const updatedLocation = await locationService.updateLocation(locationId, locationData);
     
     if (updatedLocation) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(updatedLocation));
+      res.end(JSON.stringify({
+        success: true,
+        data: updatedLocation
+      }));
     } else {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Location not found' }));
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Location not found' 
+      }));
     }
   } catch (error) {
     log.error(`Update location error: ${error.message}`);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Failed to update location' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Failed to update location' 
+    }));
   }
 }
 
@@ -115,7 +162,10 @@ async function deleteLocation(req, res) {
   
   if (!locationId) {
     res.writeHead(400, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Invalid location ID' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Invalid location ID' 
+    }));
     return;
   }
   
@@ -124,15 +174,24 @@ async function deleteLocation(req, res) {
     
     if (deleted) {
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: 'Location deleted successfully' }));
+      res.end(JSON.stringify({
+        success: true,
+        message: 'Location deleted successfully'
+      }));
     } else {
       res.writeHead(404, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Location not found' }));
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Location not found' 
+      }));
     }
   } catch (error) {
     log.error(`Delete location error: ${error.message}`);
     res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ error: 'Failed to delete location' }));
+    res.end(JSON.stringify({ 
+      success: false,
+      error: 'Failed to delete location' 
+    }));
   }
 }
 
