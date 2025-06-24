@@ -3,60 +3,712 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spalatoriile Self Service</title>
+  <title>CaS - Spălătorii Auto Premium Self Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="homepage">
 
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        spalatoriile <strong>auto</strong> | <span class="red">self service</span>
+  <!-- Header -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <h1>CaS <span class="accent">Premium</span></h1>
+          <p class="tagline">Spălătorii Auto Self Service</p>
+        </div>
+
+        <nav class="main-nav">
+          <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Acasă</a></li>
+            <li><a href="#services" class="nav-link">Servicii</a></li>
+            <li><a href="#locations" class="nav-link">Locații</a></li>
+            <li><a href="#about" class="nav-link">Despre Noi</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="login.html" class="btn btn-outline">Conectare</a>
+          <a href="register.html" class="btn btn-primary">Înregistrare</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="#" class="active">ACASA</a></li>
-         <li><a href="multiwash.html">DE CE MultiWash?</a></li>
-          <li><a href="#">SPALATORII</a></li>
-          <li><a href="#">ECHIPAMENTE</a></li>
-          <li><a href="#">APP</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-
-        <!-- Auth buttons will be populated by auth.js -->
-  <div class="auth-buttons">
-    <a href="login.html" class="btn">Login</a>
-    <a href="register.html" class="btn">Register</a>
-  </div>
     </div>
   </header>
 
-  <section class="hero-banner">
-    <div class="hero-text">
-      <h1>Spalatorii Auto Premium</h1>
-      <p>24/7 | Autoservire | Transport la domiciliu</p>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-background">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Spălătorii Auto <span class="accent">Premium</span>
+            <br>Self Service
+          </h1>
+          <p class="hero-description">
+            Tehnologie avansată, servicii 24/7 și transport la domiciliu. 
+            Experiența completă de spălare auto în România.
+          </p>
+          <div class="hero-features">
+            <div class="feature">
+              <span class="feature-icon">🕒</span>
+              <span>24/7 Disponibil</span>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">🚚</span>
+              <span>Transport Gratuit</span>
+            </div>
+            <div class="feature">
+              <span class="feature-icon">⭐</span>
+              <span>Calitate Premium</span>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <a href="#services" class="btn btn-primary btn-large">Descoperă Serviciile</a>
+            <a href="#locations" class="btn btn-outline btn-large">Vezi Locațiile</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <img src="assets/spalatorie-noapte.jpg" alt="Spălătorie Premium" class="hero-image">
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Locații</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">Disponibil</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Satisfacție</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="hero-message">
-    <p class="subtext">Calitate si fiabilitate pentru spalatoriile din Romania</p>
-    <h1>SPALATORII AUTO PREMIUM SELF SERVICE</h1>
-    <p class="description">Deschide-ti propria spalatorie auto, rapid si eficient</p>
-  </section>
-  <section class="lazy-section">
-    <div class="lazy-image">
-      <img src="assets/exterior-spalatorie.jpg" alt="Exterior Spalatorie" class="loaded" />
-    </div>
-    <div class="lazy-text">
-      <h2>Exterior</h2>
-      <p>
-        Spalarea exterioara se realizeaza cu ajutorul unei perii speciale sau a unei lance de spalare, in functie de cat de murdara este masina. Programul standard pentru exterior include spalare cu spuma activa, clatire si ceara, iar pentru interior acest program include aspirare si curatare covorase, in regim self service.
-      </p>
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Serviciile Noastre Premium</h2>
+        <p class="section-description">
+          Oferim o gamă completă de servicii de spălare auto cu tehnologie de ultimă generație
+        </p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🚗</div>
+          <h3 class="service-title">Spălare Exterioară</h3>
+          <p class="service-description">
+            Spălare completă cu spumă activă, clătire și aplicare ceară protectoare pentru o strălucire perfectă.
+          </p>
+          <ul class="service-features">
+            <li>Spumă activă premium</li>
+            <li>Clătire cu presiune</li>
+            <li>Ceară protectoare</li>
+            <li>Uscare cu aer cald</li>
+          </ul>
+        </div>
+
+        <div class="service-card featured">
+          <div class="service-badge">Popular</div>
+          <div class="service-icon">✨</div>
+          <h3 class="service-title">Pachet Complet</h3>
+          <p class="service-description">
+            Serviciul nostru premium care include spălare exterioară și curățare interioară completă.
+          </p>
+          <ul class="service-features">
+            <li>Toate serviciile exterioare</li>
+            <li>Aspirare interior</li>
+            <li>Curățare covorase</li>
+            <li>Dezinfectare</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <h3 class="service-title">Curățare Interioară</h3>
+          <p class="service-description">
+            Aspirare profesională și curățare detaliată a interiorului vehiculului tău.
+          </p>
+          <ul class="service-features">
+            <li>Aspirare scaune</li>
+            <li>Curățare covorase</li>
+            <li>Ștergere suprafețe</li>
+            <li>Parfumare interior</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <script src="js/auth.js"></script>
+  <!-- About Us Section -->
+  <section class="about-us" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2 class="section-title">Despre CaS Premium</h2>
+          <p class="section-description">
+            Povestea noastră începe cu o viziune simplă: să revoluționăm industria spălătoriilor auto din România prin inovație, calitate și respect pentru mediu.
+          </p>
+          
+          <div class="about-story">
+            <div class="story-item">
+              <div class="story-number">2018</div>
+              <div class="story-content">
+                <h4>Începuturile</h4>
+                <p>Am deschis prima noastră spălătorie self-service în București, cu o echipă mică dar plină de pasiune pentru excelență în servicii auto.</p>
+              </div>
+            </div>
+            
+            <div class="story-item">
+              <div class="story-number">2020</div>
+              <div class="story-content">
+                <h4>Expansiunea</h4>
+                <p>Am extins rețeaua la 15 locații în toată țara, introducând tehnologia de ultimă generație și sistemul de transport gratuit.</p>
+              </div>
+            </div>
+            
+            <div class="story-item">
+              <div class="story-number">2022</div>
+              <div class="story-content">
+                <h4>Inovația Verde</h4>
+                <p>Am lansat programul eco-friendly, utilizând exclusiv produse biodegradabile și sisteme de reciclare a apei pentru protejarea mediului.</p>
+              </div>
+            </div>
+            
+            <div class="story-item">
+              <div class="story-number">2025</div>
+              <div class="story-content">
+                <h4>Liderul Pieței</h4>
+                <p>Astăzi suntem cea mai mare rețea de spălătorii premium din România, cu peste 50 de locații și o echipă de 200+ specialiști dedicați.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-values">
+            <h3>Valorile Noastre</h3>
+            <div class="values-grid">
+              <div class="value-item">
+                <span class="value-icon">🎯</span>
+                <h4>Excelență</h4>
+                <p>Căutăm perfecțiunea în fiecare detaliu al serviciilor noastre</p>
+              </div>
+              <div class="value-item">
+                <span class="value-icon">🌱</span>
+                <h4>Sustenabilitate</h4>
+                <p>Protejăm mediul prin practici responsabile și tehnologii verzi</p>
+              </div>
+              <div class="value-item">
+                <span class="value-icon">🤝</span>
+                <h4>Încredere</h4>
+                <p>Construim relații durabile bazate pe transparență și respect</p>
+              </div>
+              <div class="value-item">
+                <span class="value-icon">⚡</span>
+                <h4>Inovație</h4>
+                <p>Adoptăm constant tehnologii noi pentru a îmbunătăți experiența</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-visual">
+          <div class="about-images">
+            <img src="assets/exterior-spalatorie.jpg" alt="Spălătorie CaS Premium" class="about-image main-image" loading="lazy">
+            <img src="assets/interior-colaj.jpg" alt="Interior modern CaS" class="about-image secondary-image" loading="lazy">
+          </div>
+          
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number" data-target="50">0</div>
+              <div class="stat-label">Locații Active</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="150000">0</div>
+              <div class="stat-label">Clienți Mulțumiți</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="200">0</div>
+              <div class="stat-label">Specialiști</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="99">0</div>
+              <div class="stat-label">% Satisfacție</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section class="locations" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Locațiile Noastre în România</h2>
+        <p class="section-description">
+          Peste 50 de locații strategice amplasate în cele mai importante orașe din țară. 
+          Găsește cea mai apropiată spălătorie CaS Premium de tine!
+        </p>
+      </div>
+
+      <div class="locations-grid">
+        <!-- București -->
+        <div class="location-card featured">
+          <div class="location-badge">Capitala</div>
+          <div class="location-icon">🏛️</div>
+          <h3 class="location-city">București</h3>
+          <div class="location-count">15 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Sector 1</span>
+            <span class="area-tag">Sector 2</span>
+            <span class="area-tag">Sector 3</span>
+            <span class="area-tag">Sector 4</span>
+            <span class="area-tag">Sector 5</span>
+            <span class="area-tag">Sector 6</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🚗</span>
+              <span>Transport gratuit</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">⏰</span>
+              <span>24/7 disponibil</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cluj-Napoca -->
+        <div class="location-card">
+          <div class="location-icon">🏔️</div>
+          <h3 class="location-city">Cluj-Napoca</h3>
+          <div class="location-count">8 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Mănăștur</span>
+            <span class="area-tag">Gheorgheni</span>
+            <span class="area-tag">Zorilor</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🌿</span>
+              <span>Eco-friendly</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">💳</span>
+              <span>Plată contactless</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timișoara -->
+        <div class="location-card">
+          <div class="location-icon">🌹</div>
+          <h3 class="location-city">Timișoara</h3>
+          <div class="location-count">6 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Fabric</span>
+            <span class="area-tag">Elisabetin</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🔧</span>
+              <span>Service auto</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">☕</span>
+              <span>Cafenea inclusă</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Iași -->
+        <div class="location-card">
+          <div class="location-icon">🎓</div>
+          <h3 class="location-city">Iași</h3>
+          <div class="location-count">5 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Copou</span>
+            <span class="area-tag">Țicău</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">📚</span>
+              <span>Reduceri studenți</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🚌</span>
+              <span>Transport public</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Constanța -->
+        <div class="location-card">
+          <div class="location-icon">🌊</div>
+          <h3 class="location-city">Constanța</h3>
+          <div class="location-count">4 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Mamaia</span>
+            <span class="area-tag">Tomis</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🏖️</span>
+              <span>Sezon estival</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🧂</span>
+              <span>Spălare sare</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brașov -->
+        <div class="location-card">
+          <div class="location-icon">⛰️</div>
+          <h3 class="location-city">Brașov</h3>
+          <div class="location-count">4 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Tractorul</span>
+            <span class="area-tag">Astra</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🎿</span>
+              <span>Spălare iarnă</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🚡</span>
+              <span>Acces facil</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Craiova -->
+        <div class="location-card">
+          <div class="location-icon">👑</div>
+          <h3 class="location-city">Craiova</h3>
+          <div class="location-count">3 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">1 Mai</span>
+            <span class="area-tag">Brazda</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🏭</span>
+              <span>Zone industriale</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">📦</span>
+              <span>Flote comerciale</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galați -->
+        <div class="location-card">
+          <div class="location-icon">⚓</div>
+          <h3 class="location-city">Galați</h3>
+          <div class="location-count">3 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Micro 17</span>
+            <span class="area-tag">Port</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🚢</span>
+              <span>Zone portuare</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🏗️</span>
+              <span>Vehicule mari</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oradea -->
+        <div class="location-card">
+          <div class="location-icon">🏛️</div>
+          <h3 class="location-city">Oradea</h3>
+          <div class="location-count">2 locații</div>
+          <div class="location-areas">
+            <span class="area-tag">Centru</span>
+            <span class="area-tag">Nufărul</span>
+          </div>
+          <div class="location-features">
+            <div class="feature-item">
+              <span class="feature-icon">🇭🇺</span>
+              <span>Granița HU</span>
+            </div>
+            <div class="feature-item">
+              <span class="feature-icon">🏨</span>
+              <span>Zone turistice</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="coverage-stats">
+        <div class="coverage-item">
+          <div class="coverage-number" data-target="50">0</div>
+          <div class="coverage-label">Locații Totale</div>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-number" data-target="25">0</div>
+          <div class="coverage-label">Orașe Acoperite</div>
+        </div>
+        <div class="coverage-item">
+          <div class="coverage-number" data-target="85">0</div>
+          <div class="coverage-label">% Acoperire Națională</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <div class="container">
+      <div class="why-content">
+        <div class="why-text">
+          <h2 class="section-title">De Ce Să Alegi CaS Premium?</h2>
+          <p class="section-description">
+            Suntem liderii în industria spălătoriilor auto self-service din România, 
+            oferind servicii de calitate superioară și tehnologie avansată.
+          </p>
+          
+          <div class="advantages">
+            <div class="advantage">
+              <div class="advantage-icon">⚡</div>
+              <div class="advantage-content">
+                <h4>Tehnologie Avansată</h4>
+                <p>Echipamente moderne și sisteme automatizate pentru rezultate perfecte</p>
+              </div>
+            </div>
+            
+            <div class="advantage">
+              <div class="advantage-icon">🚚</div>
+              <div class="advantage-content">
+                <h4>Transport la Domiciliu</h4>
+                <p>Ridicăm și aducem vehiculul tău gratuit în zona metropolitană</p>
+              </div>
+            </div>
+            
+            <div class="advantage">
+              <div class="advantage-icon">💧</div>
+              <div class="advantage-content">
+                <h4>Produse Eco-Friendly</h4>
+                <p>Utilizăm doar produse biodegradabile care protejează mediul</p>
+              </div>
+            </div>
+            
+            <div class="advantage">
+              <div class="advantage-icon">📱</div>
+              <div class="advantage-content">
+                <h4>Aplicație Mobilă</h4>
+                <p>Programează, monitorizează și plătește direct din aplicația noastră</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="why-visual">
+          <img src="assets/spalatorie-exterior.jpg" alt="Spălătorie modernă" class="why-image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contactează-ne</h2>
+        <p class="section-description">
+          Suntem aici pentru tine! Contactează echipa CaS Premium pentru orice întrebare, 
+          programare sau asistență. Răspundem rapid și profesional.
+        </p>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Telefon Principal</h3>
+            <div class="contact-details">
+              <a href="tel:+40721345678" class="contact-link">+40 721 345 678</a>
+              <p>Luni - Duminică: 06:00 - 24:00</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">🚨</div>
+            <h3>Urgențe & Asistență</h3>
+            <div class="contact-details">
+              <a href="tel:+40722987654" class="contact-link">+40 722 987 654</a>
+              <p>Disponibil 24/7 pentru urgențe</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">💼</div>
+            <h3>Parteneri & Corporate</h3>
+            <div class="contact-details">
+              <a href="tel:+40723456789" class="contact-link">+40 723 456 789</a>
+              <p>Luni - Vineri: 09:00 - 18:00</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <div class="contact-details">
+              <a href="mailto:contact@cas-premium.ro" class="contact-link">contact@cas-premium.ro</a>
+              <a href="mailto:suport@cas-premium.ro" class="contact-link">suport@cas-premium.ro</a>
+              <p>Răspundem în max 2 ore</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">🏢</div>
+            <h3>Sediul Central</h3>
+            <div class="contact-details">
+              <address>
+                Str. Industriei nr. 45<br>
+                Sector 1, București<br>
+                Cod poștal: 011234
+              </address>
+              <p>Program vizite: Luni - Vineri 09:00-17:00</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">🌐</div>
+            <h3>Social Media</h3>
+            <div class="contact-details">
+              <div class="social-links">
+                <a href="#" class="social-link facebook">Facebook</a>
+                <a href="#" class="social-link instagram">Instagram</a>
+                <a href="#" class="social-link youtube">YouTube</a>
+                <a href="#" class="social-link tiktok">TikTok</a>
+              </div>
+              <p>Urmărește-ne pentru oferte speciale</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-stats-container">
+          <div class="contact-quick-stats">
+            <div class="quick-stat">
+              <div class="stat-number" data-target="98">0</div>
+              <div class="stat-label">% Satisfacție Clienți</div>
+            </div>
+            <div class="quick-stat">
+              <div class="stat-number" data-target="2">0</div>
+              <div class="stat-label">Ore Timp Răspuns</div>
+            </div>
+            <div class="quick-stat">
+              <div class="stat-number" data-target="24">0</div>
+              <div class="stat-label">7 Disponibilitate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Începe Experiența Premium Astăzi</h2>
+        <p class="cta-description">
+          Alătură-te miilor de clienți mulțumiți care au ales calitatea și profesionalismul CaS Premium.
+        </p>
+        <div class="cta-actions">
+          <a href="register.html" class="btn btn-primary btn-large">Înregistrează-te Gratuit</a>
+          <a href="#contact" class="btn btn-outline btn-large">Contactează-ne</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-logo">
+            <h3>CaS <span class="accent">Premium</span></h3>
+            <p>Spălătorii auto de încredere din România</p>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link">📘</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">🐦</a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Servicii</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Spălare Exterioară</a></li>
+            <li><a href="#services">Curățare Interioară</a></li>
+            <li><a href="#services">Pachet Complet</a></li>
+            <li><a href="#services">Transport Gratuit</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Companie</h4>
+          <ul class="footer-links">
+            <li><a href="#about">Despre Noi</a></li>
+            <li><a href="#locations">Locații</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Cariere</a></li>
+          </ul>
+        </div>
+        
+
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 CaS Premium. Toate drepturile rezervate.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../src/core/xssSecurity.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
