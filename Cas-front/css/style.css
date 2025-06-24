@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -var(--space-2);
+  bottom: calc(-1 * var(--space-2));
   left: 0;
   right: 0;
   height: 2px;
