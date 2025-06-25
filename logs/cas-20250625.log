@@ -1,0 +1,445 @@
+2025-06-25T05:13:00.141Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T05:13:00.178Z [INFO] AlertService: SMTP client initialized
+2025-06-25T05:13:00.188Z [INFO] Minimal server listening on port 8000
+2025-06-25T05:13:00.199Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 08:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.200Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 09:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.201Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 08:14:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.202Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 08:14:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.203Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.204Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 08:14:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:13:00.205Z [INFO] Scheduler: Starting...
+2025-06-25T05:13:00.205Z [INFO] Scheduler: Started successfully
+2025-06-25T05:13:00.206Z [INFO] Server and scheduler started successfully
+2025-06-25T05:13:00.362Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 08:13:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:14:00.220Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T05:14:00.222Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T05:14:00.222Z [INFO] Starting equipment status check...
+2025-06-25T05:14:00.324Z [ERROR] SQL error after 100ms: column em.ended_at does not exist
+2025-06-25T05:14:00.325Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T05:14:00.326Z [ERROR] Error checking equipment status:
+2025-06-25T05:14:00.328Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T05:14:00.330Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 08:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:14:00.331Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T05:14:00.332Z [INFO] Starting weather data update job...
+2025-06-25T05:14:00.334Z [INFO] Starting weather data update for all locations...
+2025-06-25T05:14:00.466Z [ERROR] Error updating weather data:
+2025-06-25T05:14:00.467Z [ERROR] Weather data update job failed:
+2025-06-25T05:14:00.468Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 08:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:14:00.469Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T05:14:00.469Z [INFO] Starting automated exception detection...
+2025-06-25T05:14:00.470Z [INFO] Running comprehensive exception detection...
+2025-06-25T05:14:00.477Z [ERROR] SQL error after 6ms: column l.id does not exist
+2025-06-25T05:14:00.478Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T05:14:00.478Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T05:14:00.571Z [ERROR] SQL error after 99ms: column l.id does not exist
+2025-06-25T05:14:00.571Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T05:14:00.572Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T05:14:00.576Z [ERROR] SQL error after 104ms: column l.id does not exist
+2025-06-25T05:14:00.577Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T05:14:00.577Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T05:14:00.578Z [ERROR] SQL error after 105ms: column o.id does not exist
+2025-06-25T05:14:00.579Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T05:14:00.580Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T05:14:00.581Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T05:14:00.581Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T05:14:00.581Z [INFO] - Staff issues: 0
+2025-06-25T05:14:00.582Z [INFO] - Power issues: 0
+2025-06-25T05:14:00.582Z [INFO] - Equipment issues: 0
+2025-06-25T05:14:00.582Z [INFO] - Transport issues: 0
+2025-06-25T05:14:00.584Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T05:14:00.585Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-25T05:14:00.586Z [INFO] Exception detection completed successfully in 117ms
+2025-06-25T05:14:00.586Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 08:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:14:10.287Z [INFO] OPTIONS /api/auth/register
+2025-06-25T05:14:10.295Z [INFO] POST /api/auth/register
+2025-06-25T05:14:10.300Z [INFO] POST /api/register or /api/auth/register
+2025-06-25T05:14:10.725Z [ERROR] SQL error after 9ms: insert or update on table "employees" violates foreign key constraint "employees_location_id_fkey"
+2025-06-25T05:14:10.725Z [ERROR] Failed query: 
+        INSERT INTO employees (user_id, location_id, job_title, hire_date, is_active)
+        VALUES ($1, $2, $3, CURRENT_DATE, true)
+        RETURNING employee_id
+      
+2025-06-25T05:14:10.726Z [WARN] AuthService: Failed to create employee record for user test@gmail.com: insert or update on table "employees" violates foreign key constraint "employees_location_id_fkey"
+2025-06-25T05:14:10.726Z [INFO] AuthService: Successfully registered user test@gmail.com with ID 5
+2025-06-25T05:14:10.727Z [INFO] Register: Success for user test@gmail.com
+2025-06-25T05:14:32.128Z [INFO] OPTIONS /api/auth/login
+2025-06-25T05:14:32.130Z [INFO] POST /api/auth/login
+2025-06-25T05:14:32.132Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T05:14:32.462Z [INFO] AuthService: Successful login for test@gmail.com
+2025-06-25T05:14:32.462Z [INFO] Login: Success for user test@gmail.com
+2025-06-25T05:14:34.058Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:14:34.061Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:14:34.062Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:14:34.072Z [INFO] OPTIONS /api/orders
+2025-06-25T05:14:34.076Z [INFO] GET /api/orders
+2025-06-25T05:14:34.098Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:14:34.104Z [INFO] GET /api/stats/system-status
+2025-06-25T05:14:34.106Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:14:34.116Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:14:34.118Z [INFO] GET /api/notifications/recent
+2025-06-25T05:14:34.120Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:14:34.125Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:14:34.128Z [INFO] GET /api/stats/performance
+2025-06-25T05:14:34.129Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:14:37.249Z [INFO] GET /api/orders
+2025-06-25T05:14:37.254Z [INFO] GET /api/stats/system-status
+2025-06-25T05:14:37.255Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:14:37.259Z [INFO] GET /api/notifications/recent
+2025-06-25T05:14:37.259Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:14:37.264Z [INFO] GET /api/stats/performance
+2025-06-25T05:14:37.265Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:14:53.619Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:14:53.646Z [INFO] OPTIONS /api/orders
+2025-06-25T05:14:53.651Z [INFO] GET /api/orders
+2025-06-25T05:14:53.663Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:14:53.668Z [INFO] GET /api/stats/system-status
+2025-06-25T05:14:53.670Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:14:53.676Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:14:53.678Z [INFO] GET /api/notifications/recent
+2025-06-25T05:14:53.680Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:14:53.687Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:14:53.691Z [INFO] GET /api/stats/performance
+2025-06-25T05:14:53.693Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:15:00.230Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T05:15:00.233Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T05:15:00.251Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T05:15:00.253Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 08:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:15:03.867Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:15:03.871Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:15:03.873Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:15:03.880Z [INFO] OPTIONS /api/orders
+2025-06-25T05:15:03.885Z [INFO] GET /api/orders
+2025-06-25T05:15:03.896Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:15:03.900Z [INFO] GET /api/stats/system-status
+2025-06-25T05:15:03.902Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:15:03.910Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:15:03.914Z [INFO] GET /api/notifications/recent
+2025-06-25T05:15:03.916Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:15:03.924Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:15:03.929Z [INFO] GET /api/stats/performance
+2025-06-25T05:15:03.930Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:15:05.711Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:15:05.713Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:15:05.722Z [INFO] GET /api/orders
+2025-06-25T05:15:05.732Z [INFO] GET /api/stats/system-status
+2025-06-25T05:15:05.733Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:15:05.742Z [INFO] GET /api/notifications/recent
+2025-06-25T05:15:05.744Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:15:05.753Z [INFO] GET /api/stats/performance
+2025-06-25T05:15:05.754Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:15:07.321Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:15:07.322Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:15:07.334Z [INFO] GET /api/orders
+2025-06-25T05:15:07.345Z [INFO] GET /api/stats/system-status
+2025-06-25T05:15:07.347Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:15:07.355Z [INFO] GET /api/notifications/recent
+2025-06-25T05:15:07.357Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:15:07.364Z [INFO] GET /api/stats/performance
+2025-06-25T05:15:07.365Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:15:08.222Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:15:08.224Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:15:08.239Z [INFO] GET /api/orders
+2025-06-25T05:15:08.252Z [INFO] GET /api/stats/system-status
+2025-06-25T05:15:08.253Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:15:08.259Z [INFO] GET /api/notifications/recent
+2025-06-25T05:15:08.261Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:15:08.268Z [INFO] GET /api/stats/performance
+2025-06-25T05:15:08.270Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:15:18.693Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:15:18.708Z [INFO] OPTIONS /api/orders
+2025-06-25T05:15:18.713Z [INFO] GET /api/orders
+2025-06-25T05:15:18.724Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:15:18.729Z [INFO] GET /api/stats/system-status
+2025-06-25T05:15:18.731Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:15:18.738Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:15:18.740Z [INFO] GET /api/notifications/recent
+2025-06-25T05:15:18.742Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:15:18.750Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:15:18.754Z [INFO] GET /api/stats/performance
+2025-06-25T05:15:18.755Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:16:00.233Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T05:16:00.234Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T05:16:00.311Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T05:16:00.312Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 08:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:16:00.312Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T05:16:00.313Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T05:16:00.313Z [INFO] Starting equipment status check...
+2025-06-25T05:16:00.315Z [ERROR] SQL error after 2ms: column em.ended_at does not exist
+2025-06-25T05:16:00.315Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T05:16:00.315Z [ERROR] Error checking equipment status:
+2025-06-25T05:16:00.316Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T05:16:00.316Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 08:17:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:16:00.316Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T05:16:00.317Z [INFO] Starting weather data update job...
+2025-06-25T05:16:00.318Z [INFO] Starting weather data update for all locations...
+2025-06-25T05:16:00.386Z [ERROR] Error updating weather data:
+2025-06-25T05:16:00.387Z [ERROR] Weather data update job failed:
+2025-06-25T05:16:00.387Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 08:17:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:16:00.387Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T05:16:00.388Z [INFO] Starting automated exception detection...
+2025-06-25T05:16:00.388Z [INFO] Running comprehensive exception detection...
+2025-06-25T05:16:00.389Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-25T05:16:00.390Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T05:16:00.390Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T05:16:00.489Z [ERROR] SQL error after 101ms: column l.id does not exist
+2025-06-25T05:16:00.489Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T05:16:00.490Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T05:16:00.491Z [ERROR] SQL error after 103ms: column l.id does not exist
+2025-06-25T05:16:00.491Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T05:16:00.492Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T05:16:00.494Z [ERROR] SQL error after 106ms: column o.id does not exist
+2025-06-25T05:16:00.494Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T05:16:00.495Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T05:16:00.495Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T05:16:00.496Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T05:16:00.496Z [INFO] - Staff issues: 0
+2025-06-25T05:16:00.496Z [INFO] - Power issues: 0
+2025-06-25T05:16:00.496Z [INFO] - Equipment issues: 0
+2025-06-25T05:16:00.497Z [INFO] - Transport issues: 0
+2025-06-25T05:16:00.497Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T05:16:00.498Z [ERROR] Failed to send notification via websocket: WebSocket notification failed: broadcastToAllClients is not a function
+2025-06-25T05:16:00.498Z [INFO] Exception detection completed successfully in 111ms
+2025-06-25T05:16:00.499Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 08:17:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T05:16:54.474Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:16:54.476Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:16:54.477Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:16:54.483Z [INFO] OPTIONS /api/orders
+2025-06-25T05:16:54.485Z [INFO] GET /api/orders
+2025-06-25T05:16:54.547Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:16:54.549Z [INFO] GET /api/stats/system-status
+2025-06-25T05:16:54.549Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:16:54.554Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:16:54.557Z [INFO] GET /api/notifications/recent
+2025-06-25T05:16:54.558Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:16:54.562Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:16:54.564Z [INFO] GET /api/stats/performance
+2025-06-25T05:16:54.565Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:16:56.714Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:16:56.715Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:16:56.723Z [INFO] GET /api/orders
+2025-06-25T05:16:56.729Z [INFO] GET /api/stats/system-status
+2025-06-25T05:16:56.730Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:16:56.735Z [INFO] GET /api/notifications/recent
+2025-06-25T05:16:56.736Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:16:56.741Z [INFO] GET /api/stats/performance
+2025-06-25T05:16:56.742Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:16:59.169Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:16:59.169Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:16:59.177Z [INFO] GET /api/orders
+2025-06-25T05:16:59.186Z [INFO] GET /api/stats/system-status
+2025-06-25T05:16:59.186Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:16:59.192Z [INFO] GET /api/notifications/recent
+2025-06-25T05:16:59.193Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:16:59.198Z [INFO] GET /api/stats/performance
+2025-06-25T05:16:59.200Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:00.421Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:17:00.423Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:00.424Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:00.431Z [INFO] OPTIONS /api/orders
+2025-06-25T05:17:00.434Z [INFO] GET /api/orders
+2025-06-25T05:17:00.440Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:17:00.443Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:00.444Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:00.450Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:17:00.453Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:00.453Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:00.460Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:17:00.462Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:00.463Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:02.042Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:02.044Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:02.052Z [INFO] GET /api/orders
+2025-06-25T05:17:02.059Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:02.059Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:02.063Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:02.064Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:02.069Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:02.070Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:06.376Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:17:06.378Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:06.379Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:06.388Z [INFO] OPTIONS /api/orders
+2025-06-25T05:17:06.392Z [INFO] GET /api/orders
+2025-06-25T05:17:06.397Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:17:06.399Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:06.399Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:06.403Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:17:06.406Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:06.407Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:06.411Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:17:06.413Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:06.413Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:11.394Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:17:11.396Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:11.397Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:11.404Z [INFO] OPTIONS /api/orders
+2025-06-25T05:17:11.406Z [INFO] GET /api/orders
+2025-06-25T05:17:11.413Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:17:11.416Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:11.416Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:11.421Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:17:11.423Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:11.424Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:11.429Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:17:11.431Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:11.431Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:29.720Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T05:17:29.723Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:29.723Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:29.728Z [INFO] OPTIONS /api/orders
+2025-06-25T05:17:29.732Z [INFO] GET /api/orders
+2025-06-25T05:17:29.738Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T05:17:29.743Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:29.744Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:29.750Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T05:17:29.753Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:29.754Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:29.759Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T05:17:29.763Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:29.763Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:30.422Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:30.422Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:30.428Z [INFO] GET /api/orders
+2025-06-25T05:17:30.434Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:30.434Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:30.442Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:30.443Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:30.448Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:30.449Z [WARN] Route not found: GET /api/stats/performance
+2025-06-25T05:17:31.102Z [INFO] GET /api/stats/dashboard
+2025-06-25T05:17:31.103Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T05:17:31.110Z [INFO] GET /api/orders
+2025-06-25T05:17:31.115Z [INFO] GET /api/stats/system-status
+2025-06-25T05:17:31.116Z [WARN] Route not found: GET /api/stats/system-status
+2025-06-25T05:17:31.119Z [INFO] GET /api/notifications/recent
+2025-06-25T05:17:31.120Z [WARN] Route not found: GET /api/notifications/recent
+2025-06-25T05:17:31.126Z [INFO] GET /api/stats/performance
+2025-06-25T05:17:31.127Z [WARN] Route not found: GET /api/stats/performance

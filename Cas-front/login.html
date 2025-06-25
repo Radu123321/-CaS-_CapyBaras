@@ -9,29 +9,17 @@
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        <a href="index.html">spalatoriile <strong>auto</strong> | <span class="red">self service</span></a>
-      </div>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html">ACASA</a></li>
-          <li><a href="multiwash.html">DE CE MultiWash?</a></li>
-          <li><a href="#">SPALATORII</a></li>
-          <li><a href="#">ECHIPAMENTE</a></li>
-          <li><a href="#">APP</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-
-      <div class="auth-buttons">
-        <a href="login.html" class="btn active">Login</a>
-        <a href="register.html" class="btn">Register</a>
-      </div>
+  <!-- Auth buttons only - no header -->
+  <div class="auth-only-buttons">
+    <div class="guest-only">
+      <a href="login.html" class="btn active">Login</a>
+      <a href="register.html" class="btn">Register</a>
     </div>
-  </header>
+    <div class="auth-required" style="display: none;">
+      <span class="user-welcome">Bun venit, <span class="user-name"></span>!</span>
+      <button onclick="authManager.logout()" class="btn logout-btn">Logout</button>
+    </div>
+  </div>
 
   <main class="auth-main">
     <div class="auth-container">
@@ -111,31 +99,14 @@
         </div>
       </div>
 
-      <!-- Demo Credentials Info -->
-      <div class="demo-info">
-        <h3>🧪 Credențiale Demo</h3>
-        <div class="demo-accounts">
-          <div class="demo-account">
-            <strong>Administrator:</strong><br>
-            Email: admin@cas.ro<br>
-            Parolă: admin123
-          </div>
-          <div class="demo-account">
-            <strong>Manager:</strong><br>
-            Email: manager@cas.ro<br>
-            Parolă: manager123
-          </div>
-          <div class="demo-account">
-            <strong>Angajat:</strong><br>
-            Email: employee@cas.ro<br>
-            Parolă: employee123
-          </div>
-        </div>
-      </div>
     </div>
   </main>
 
   <script src="js/auth.js"></script>
   <script src="js/login.js"></script>
+  <script>
+    // Initialize auth manager
+    const authManager = new AuthManager();
+  </script>
 </body>
 </html> 

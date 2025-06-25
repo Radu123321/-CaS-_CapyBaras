@@ -8,29 +8,17 @@
   <link rel="stylesheet" href="css/despre.css" />
 </head>
 <body class="despre-page">
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        spalatoriile <strong>auto</strong> | <span class="red">self service</span>
-      </div>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="index.html">ACASA</a></li>
-          <li><a href="multiwash.html" class="active">DE CE MultiWash?</a></li>
-          <li><a href="#">SPALATORII</a></li>
-          <li><a href="#">ECHIPAMENTE</a></li>
-          <li><a href="#">APP</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-
-      <div class="auth-buttons">
-        <a href="login.html" class="btn">Login</a>
-        <a href="register.html" class="btn">Register</a>
-      </div>
+  <!-- Auth buttons only - no header -->
+  <div class="auth-only-buttons">
+    <div class="guest-only">
+      <a href="login.html" class="btn">Login</a>
+      <a href="register.html" class="btn">Register</a>
     </div>
-  </header>
+    <div class="auth-required" style="display: none;">
+      <span class="user-welcome">Bun venit, <span class="user-name"></span>!</span>
+      <button onclick="authManager.logout()" class="btn logout-btn">Logout</button>
+    </div>
+  </div>
 
   <section class="despre-multiwash">
     <div>
@@ -81,6 +69,12 @@
   </section>
 
   <a href="index.html" class="btn back-btn center-btn">← Înapoi la Acasă</a>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Initialize auth manager
+    const authManager = new AuthManager();
+  </script>
 
 </body>
 </html>

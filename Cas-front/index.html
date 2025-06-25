@@ -3,60 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spalatoriile Self Service</title>
+  <title>CaS Management - Redirecting...</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .redirect-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    .redirect-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .redirect-message {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .redirect-subtext {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
 
-  <header>
-    <div class="header-container">
-      <div class="logo">
-        spalatoriile <strong>auto</strong> | <span class="red">self service</span>
-      </div>
-
-      <nav>
-        <ul class="nav-menu">
-          <li><a href="#" class="active">ACASA</a></li>
-         <li><a href="multiwash.html">DE CE MultiWash?</a></li>
-          <li><a href="#">SPALATORII</a></li>
-          <li><a href="#">ECHIPAMENTE</a></li>
-          <li><a href="#">APP</a></li>
-          <li><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-
-        <!-- Auth buttons will be populated by auth.js -->
-  <div class="auth-buttons">
-    <a href="login.html" class="btn">Login</a>
-    <a href="register.html" class="btn">Register</a>
+  <div class="redirect-container">
+    <div class="redirect-spinner"></div>
+    <div class="redirect-message">Se încarcă...</div>
+    <div class="redirect-subtext">Verificăm starea de autentificare</div>
   </div>
-    </div>
-  </header>
-
-  <section class="hero-banner">
-    <div class="hero-text">
-      <h1>Spalatorii Auto Premium</h1>
-      <p>24/7 | Autoservire | Transport la domiciliu</p>
-    </div>
-  </section>
-
-  <section class="hero-message">
-    <p class="subtext">Calitate si fiabilitate pentru spalatoriile din Romania</p>
-    <h1>SPALATORII AUTO PREMIUM SELF SERVICE</h1>
-    <p class="description">Deschide-ti propria spalatorie auto, rapid si eficient</p>
-  </section>
-  <section class="lazy-section">
-    <div class="lazy-image">
-      <img src="assets/exterior-spalatorie.jpg" alt="Exterior Spalatorie" class="loaded" />
-    </div>
-    <div class="lazy-text">
-      <h2>Exterior</h2>
-      <p>
-        Spalarea exterioara se realizeaza cu ajutorul unei perii speciale sau a unei lance de spalare, in functie de cat de murdara este masina. Programul standard pentru exterior include spalare cu spuma activa, clatire si ceara, iar pentru interior acest program include aspirare si curatare covorase, in regim self service.
-      </p>
-    </div>
-  </section>
 
   <script src="js/auth.js"></script>
+  <script>
+    // Initialize auth manager and handle redirect
+    document.addEventListener('DOMContentLoaded', () => {
+      const authManager = new AuthManager();
+      
+      // Small delay to allow auth manager to initialize
+      setTimeout(() => {
+        if (authManager.isAuthenticated()) {
+          // User is logged in, redirect to dashboard
+          window.location.href = 'dashboard.html';
+        } else {
+          // User is not logged in, redirect to login
+          window.location.href = 'login.html';
+        }
+      }, 500);
+    });
+  </script>
 </body>
 </html>

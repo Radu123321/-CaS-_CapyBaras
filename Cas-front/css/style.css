@@ -1,3 +1,58 @@
+/* === AUTH ONLY BUTTONS === */
+.auth-only-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.auth-only-buttons .guest-only,
+.auth-only-buttons .auth-required {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-only-buttons .user-welcome {
+  color: #333;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.auth-only-buttons .btn {
+  background-color: red;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.auth-only-buttons .btn:hover {
+  background-color: darkred;
+}
+
+.auth-only-buttons .btn.active {
+  background-color: darkred;
+}
+
+.auth-only-buttons .logout-btn {
+  background-color: #666;
+}
+
+.auth-only-buttons .logout-btn:hover {
+  background-color: #444;
+}
+
 /* === HEADER GENERAL === */
 .header-container {
   display: flex;
