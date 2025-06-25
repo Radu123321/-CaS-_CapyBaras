@@ -6,7 +6,13 @@ class StatsController {
   
   async getDashboard(req, res) {
     try {
-      const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      // Get locationId from query params or user context (if authenticated)
+      let locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      
+      // If no locationId in query and user is authenticated, try to use user's locationId
+      if (!locationId && req.user && req.user.locationId) {
+        locationId = req.user.locationId;
+      }
       
       const dashboardData = await statsService.getDashboardData(locationId);
       
@@ -466,6 +472,115 @@ class StatsController {
       res.end(JSON.stringify({
         success: false,
         error: 'Failed to get report types'
+      }));
+    }
+  }
+  
+  // ===== SYSTEM STATUS ENDPOINT =====
+  
+  async getSystemStatus(req, res) {
+    try {
+      const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      
+      // Get basic system health metrics
+      const dashboardData = await statsService.getDashboardData(locationId);
+      const equipmentAnalytics = await statsService.getEquipmentAnalytics(locationId);
+      
+      const systemStatus = {
+        overall: 'OPERATIONAL',
+        timestamp: new Date().toISOString(),
+        locations: dashboardData.summary?.totalLocations || 0,
+        activeOrders: dashboardData.summary?.activeOrders || 0,
+        equipment: {
+          total: equipmentAnalytics.summary?.totalEquipment || 0,
+          operative: equipmentAnalytics.summary?.operativeCount || 0,
+          outOfService: (equipmentAnalytics.summary?.totalEquipment || 0) - (equipmentAnalytics.summary?.operativeCount || 0)
+        },
+        healthScore: equipmentAnalytics.healthAnalysis?.healthScore || 100,
+        criticalIssues: equipmentAnalytics.healthAnalysis?.critical?.length || 0
+      };
+      
+      // Determine overall status based on metrics
+      if (systemStatus.criticalIssues > 0) {
+        systemStatus.overall = 'CRITICAL';
+      } else if (systemStatus.healthScore < 70) {
+        systemStatus.overall = 'WARNING';
+      }
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: true,
+        data: systemStatus
+      }));
+    } catch (error) {
+      log.error(`Error getting system status: ${error.message}`);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Failed to get system status'
+      }));
+    }
+  }
+  
+  async getPerformanceStats(req, res) {
+    try {
+      const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      const days = parseInt(req.query.days) || 7;
+      
+      // Get performance data for the specified period
+      const orderAnalytics = await statsService.getOrderAnalytics(locationId, 'day');
+      const equipmentAnalytics = await statsService.getEquipmentAnalytics(locationId);
+      
+      // Generate performance chart data
+      const chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: 'Comenzi',
+            data: [],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)'
+          },
+          {
+            label: 'Venituri (RON)',
+            data: [],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)'
+          }
+        ]
+      };
+      
+      // Fill with recent data (last 'days' days)
+      const recentOrders = orderAnalytics.orders?.slice(0, days) || [];
+      recentOrders.reverse().forEach(order => {
+        chartData.labels.push(order.period_label || order.date);
+        chartData.datasets[0].data.push(parseInt(order.order_count) || 0);
+        chartData.datasets[1].data.push(parseFloat(order.total_revenue) || 0);
+      });
+      
+      const performanceStats = {
+        period: `${days} zile`,
+        chartData,
+        summary: {
+          totalOrders: orderAnalytics.summary?.totalOrders || 0,
+          totalRevenue: orderAnalytics.summary?.totalRevenue || 0,
+          avgOrderValue: orderAnalytics.summary?.avgOrderValue || 0,
+          equipmentEfficiency: equipmentAnalytics.summary?.avgEfficiency || 0
+        },
+        trends: orderAnalytics.trends || { trend: 'stable', change: 0 }
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: true,
+        data: performanceStats
+      }));
+    } catch (error) {
+      log.error(`Error getting performance stats: ${error.message}`);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Failed to get performance statistics'
       }));
     }
   }

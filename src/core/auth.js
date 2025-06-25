@@ -27,7 +27,9 @@ function requireAuth(req, res, next) {
     // Add user info to request
     req.user = {
       userId: payload.userId,
-      email: payload.email
+      email: payload.email,
+      role: payload.role,
+      locationId: payload.locationId
     };
     
     log.debug(`Auth: Authenticated user ${payload.email}`);
@@ -57,7 +59,9 @@ function optionalAuth(req, res, next) {
     if (payload) {
       req.user = {
         userId: payload.userId,
-        email: payload.email
+        email: payload.email,
+        role: payload.role,
+        locationId: payload.locationId
       };
       log.debug(`Auth: Optional auth successful for ${payload.email}`);
     }

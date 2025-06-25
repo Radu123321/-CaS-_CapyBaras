@@ -152,6 +152,8 @@ router.add('GET', '/api/weather/service-types', weatherController.getServiceType
 const statsController = require('../controllers/statsController');
 router.add('GET', '/api/stats/dashboard', statsController.getDashboard);
 router.add('GET', '/api/stats/summary', statsController.getDashboardSummary);
+router.add('GET', '/api/stats/system-status', statsController.getSystemStatus);
+router.add('GET', '/api/stats/performance', statsController.getPerformanceStats);
 router.add('GET', '/api/stats/orders', statsController.getOrderStats);
 router.add('GET', '/api/stats/orders/trends', statsController.getOrderTrends);
 router.add('GET', '/api/stats/resources', statsController.getResourceStats);
@@ -170,6 +172,7 @@ router.add('GET', '/api/stats/report-types', statsController.getReportTypes);
 
 // Notification and browser alerts routes
 const notificationController = require('../controllers/notificationController');
+router.add('GET', '/api/notifications/recent', notificationController.getRecentNotifications);
 router.add('POST', '/api/notifications/subscribe', notificationController.subscribe);
 router.add('POST', '/api/notifications/unsubscribe', notificationController.unsubscribe);
 router.add('PUT', '/api/notifications/preferences', notificationController.updatePreferences);

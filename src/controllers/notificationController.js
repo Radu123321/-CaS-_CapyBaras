@@ -2,6 +2,36 @@ const notificationService = require('../core/notificationService');
 const log = require('../core/logger');
 
 class NotificationController {
+  // ===== RECENT NOTIFICATIONS =====
+  
+  async getRecentNotifications(req, res) {
+    try {
+      const limit = parseInt(req.query.limit) || 10;
+      const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      
+      // Get recent notifications from the notification service
+      const notifications = notificationService.getRecentNotifications(limit, locationId);
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: true,
+        data: {
+          notifications,
+          count: notifications.length,
+          limit,
+          timestamp: new Date().toISOString()
+        }
+      }));
+    } catch (error) {
+      log.error(`Error getting recent notifications: ${error.message}`);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Failed to get recent notifications'
+      }));
+    }
+  }
+
   // ===== SUBSCRIPTION MANAGEMENT =====
   
   async subscribe(req, res) {

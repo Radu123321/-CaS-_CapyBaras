@@ -1,11 +1,12 @@
 const alertService = require('../services/alertService');
-const { broadcastToAllClients, broadcastToLocationClients } = require('./websocket');
+const { broadcastToAll, broadcastToLocation } = require('./websocket');
 const log = require('./logger');
 
 class NotificationService {
   constructor() {
     this.subscribers = new Map(); // WebSocket clients that want notifications
     this.notificationQueue = []; // Queue for failed notifications
+    this.recentNotifications = []; // Store recent notifications
     this.config = {
       enabled: true,
       channels: {
@@ -26,6 +27,20 @@ class NotificationService {
   }
 
   // ===== SUBSCRIBER MANAGEMENT =====
+  
+  getRecentNotifications(limit = 10, locationId = null) {
+    let notifications = this.recentNotifications;
+    
+    // Filter by location if specified
+    if (locationId) {
+      notifications = notifications.filter(n => n.locationId === locationId || n.locationId === null);
+    }
+    
+    // Sort by timestamp (newest first) and limit
+    return notifications
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+      .slice(0, limit);
+  }
   
   addSubscriber(clientId, preferences = {}) {
     this.subscribers.set(clientId, {
@@ -85,6 +100,12 @@ class NotificationService {
       };
       
       log.info(`Creating notification: ${type} - ${priority} - ${message}`);
+      
+      // Store in recent notifications (keep last 100)
+      this.recentNotifications.unshift(notification);
+      if (this.recentNotifications.length > 100) {
+        this.recentNotifications = this.recentNotifications.slice(0, 100);
+      }
       
       // Route to appropriate channels
       await this.routeNotification(notification);
@@ -173,9 +194,9 @@ class NotificationService {
       };
       
       if (notification.locationId) {
-        await broadcastToLocationClients(notification.locationId, JSON.stringify(wsMessage));
+        await broadcastToLocation(notification.locationId, JSON.stringify(wsMessage));
       } else {
-        await broadcastToAllClients(JSON.stringify(wsMessage));
+        await broadcastToAll(JSON.stringify(wsMessage));
       }
       
       return { success: true, timestamp: new Date().toISOString() };
@@ -210,7 +231,7 @@ class NotificationService {
       );
       
       for (const subscriber of eligibleSubscribers) {
-        await broadcastToAllClients(JSON.stringify(browserMessage));
+        await broadcastToAll(JSON.stringify(browserMessage));
         subscriber.stats.sent++;
         subscriber.stats.lastNotification = new Date();
       }
