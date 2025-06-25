@@ -46,16 +46,20 @@ class Calendar {
   
   async loadInitialData() {
     try {
+      // Add cache-busting timestamp to prevent cache issues
+      const timestamp = Date.now();
+      
       // Load events, customers, services, locations in parallel
       const [eventsResponse, customersResponse, servicesResponse, locationsResponse] = await Promise.all([
-        authManager.apiRequest('/orders?include_recurring=true'),
-        authManager.apiRequest('/customers'),
-        authManager.apiRequest('/services'),
-        authManager.apiRequest('/locations')
+        authManager.apiRequest(`/orders?include_recurring=true&_t=${timestamp}`),
+        authManager.apiRequest(`/customers?_t=${timestamp}`),
+        authManager.apiRequest(`/services?_t=${timestamp}`),
+        authManager.apiRequest(`/locations?_t=${timestamp}`)
       ]);
       
       if (eventsResponse.success) {
         this.events = eventsResponse.data || [];
+        console.log('Loaded events:', this.events.length, 'at', new Date().toLocaleTimeString());
       }
       
       if (customersResponse.success) {
@@ -446,10 +450,13 @@ class Calendar {
     deleteBtn.style.display = canEdit ? 'inline-block' : 'none';
     
     modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
   
   closeEventModal() {
-    document.getElementById('eventModal').style.display = 'none';
+    const modal = document.getElementById('eventModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.selectedEvent = null;
   }
   
@@ -458,7 +465,7 @@ class Calendar {
     
     // Pre-populate form with event data
     document.getElementById('appointmentTitle').value = this.selectedEvent.title || this.selectedEvent.service_name || '';
-    document.getElementById('appointmentType').value = this.selectedEvent.type || 'appointment';
+    document.getElementById('appointmentType').value = this.selectedEvent.type || 'meeting';
     
     const eventDate = new Date(this.selectedEvent.scheduled_date || this.selectedEvent.created_at);
     document.getElementById('appointmentDate').value = this.formatDateString(eventDate);
@@ -498,8 +505,12 @@ class Calendar {
       if (response.success) {
         this.showToast('Programarea a fost ștearsă cu succes', 'success');
         this.closeEventModal();
-        await this.loadInitialData();
-        this.render();
+        
+        // Add a small delay to ensure server has processed the deletion
+        setTimeout(async () => {
+          await this.loadInitialData();
+          this.render();
+        }, 500);
       } else {
         this.showToast('Eroare la ștergerea programării', 'error');
       }
@@ -516,7 +527,10 @@ class Calendar {
   showNewAppointmentModal() {
     document.getElementById('appointmentModalTitle').textContent = 'Programare Nouă';
     this.resetAppointmentForm();
-    document.getElementById('appointmentModal').style.display = 'flex';
+    
+    const modal = document.getElementById('appointmentModal');
+    modal.style.display = 'flex';
+    modal.classList.add('visible');
     
     // Set default date and time
     const now = new Date();
@@ -525,11 +539,15 @@ class Calendar {
   }
   
   showAppointmentModal() {
-    document.getElementById('appointmentModal').style.display = 'flex';
+    const modal = document.getElementById('appointmentModal');
+    modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
   
   closeAppointmentModal() {
-    document.getElementById('appointmentModal').style.display = 'none';
+    const modal = document.getElementById('appointmentModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.resetAppointmentForm();
   }
   
@@ -545,7 +563,7 @@ class Calendar {
     const customerGroup = document.getElementById('customerGroup');
     const serviceGroup = document.getElementById('serviceGroup');
     
-    if (type === 'appointment') {
+    if (type === 'meeting') {
       customerGroup.style.display = 'block';
       serviceGroup.style.display = 'block';
     } else {
@@ -556,32 +574,92 @@ class Calendar {
   
   async saveAppointment() {
     const form = document.getElementById('appointmentForm');
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    
+    // Manual validation for better UX
+    const title = document.getElementById('appointmentTitle').value.trim();
+    const type = document.getElementById('appointmentType').value;
+    const date = document.getElementById('appointmentDate').value;
+    const time = document.getElementById('appointmentTime').value;
+    
+    if (!title) {
+      this.showToast('Vă rugăm să introduceți titlul programării', 'error');
       return;
+    }
+    
+    if (!type) {
+      this.showToast('Vă rugăm să selectați tipul programării', 'error');
+      return;
+    }
+    
+    if (!date) {
+      this.showToast('Vă rugăm să selectați data', 'error');
+      return;
+    }
+    
+    if (!time) {
+      this.showToast('Vă rugăm să selectați ora', 'error');
+      return;
+    }
+    
+    // For client appointments, validate required fields
+    if (type === 'meeting') {
+      const customerId = document.getElementById('appointmentCustomer').value;
+      const serviceId = document.getElementById('appointmentService').value;
+      const locationId = document.getElementById('appointmentLocation').value;
+      
+      if (!customerId) {
+        this.showToast('Vă rugăm să selectați clientul pentru programările cu clienți', 'error');
+        return;
+      }
+      
+      if (!serviceId) {
+        this.showToast('Vă rugăm să selectați serviciul pentru programările cu clienți', 'error');
+        return;
+      }
+      
+      if (!locationId) {
+        this.showToast('Vă rugăm să selectați locația pentru programările cu clienți', 'error');
+        return;
+      }
     }
     
     try {
       this.showLoading();
       
       const formData = {
-        title: document.getElementById('appointmentTitle').value,
-        type: document.getElementById('appointmentType').value,
-        scheduled_date: document.getElementById('appointmentDate').value,
-        scheduled_time: document.getElementById('appointmentTime').value,
-        duration: parseInt(document.getElementById('appointmentDuration').value),
-        customer_id: document.getElementById('appointmentCustomer').value || null,
-        service_id: document.getElementById('appointmentService').value || null,
-        location_id: document.getElementById('appointmentLocation').value || null,
+        title: title,
+        type: type,
+        scheduled_date: date,
+        scheduled_time: time,
+        duration: parseInt(document.getElementById('appointmentDuration').value) || 60,
         description: document.getElementById('appointmentDescription').value,
         is_recurring: document.getElementById('appointmentRecurring').checked,
         recurring_type: document.getElementById('recurringType').value,
         recurring_end_date: document.getElementById('recurringEnd').value || null
       };
       
-      // Remove empty values
+      // Add client-specific fields if it's a meeting
+      if (type === 'meeting') {
+        const customerId = document.getElementById('appointmentCustomer').value;
+        const serviceId = parseInt(document.getElementById('appointmentService').value);
+        const locationId = parseInt(document.getElementById('appointmentLocation').value);
+        
+        // Get the selected service to extract unit_price
+        const selectedService = this.services.find(service => service.service_id === serviceId);
+        if (!selectedService) {
+          this.showToast('Serviciul selectat nu a fost găsit', 'error');
+          return;
+        }
+        
+        formData.customer_id = parseInt(customerId);
+        formData.service_id = serviceId;
+        formData.location_id = locationId;
+        formData.unit_price = parseFloat(selectedService.base_price);
+      }
+      
+      // Remove empty values (but keep 0 values for price and duration)
       Object.keys(formData).forEach(key => {
-        if (formData[key] === '' || formData[key] === null) {
+        if (formData[key] === '' || formData[key] === null || (isNaN(formData[key]) && typeof formData[key] === 'number')) {
           delete formData[key];
         }
       });
@@ -607,8 +685,12 @@ class Calendar {
           'success'
         );
         this.closeAppointmentModal();
-        await this.loadInitialData();
-        this.render();
+        
+        // Add a small delay to ensure server has processed the operation
+        setTimeout(async () => {
+          await this.loadInitialData();
+          this.render();
+        }, 500);
       } else {
         this.showToast('Eroare la salvarea programării', 'error');
       }
@@ -805,6 +887,29 @@ class Calendar {
         toast.remove();
       }
     }, duration);
+  }
+  
+  // Force reload data with cache clearing
+  async forceReload() {
+    try {
+      this.showLoading();
+      
+      // Clear any cached data
+      this.events = [];
+      this.customers = [];
+      this.services = [];
+      this.locations = [];
+      
+      // Reload with fresh data
+      await this.loadInitialData();
+      this.render();
+      
+      console.log('Calendar data force reloaded');
+    } catch (error) {
+      console.error('Error force reloading calendar:', error);
+    } finally {
+      this.hideLoading();
+    }
   }
 }
 

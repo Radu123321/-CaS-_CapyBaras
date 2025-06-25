@@ -171,12 +171,16 @@ class MyOrders {
     const defaultTime = `${String(now.getHours() + 1).padStart(2, '0')}:00`;
     document.getElementById('orderTime').value = defaultTime;
 
-    document.getElementById('newOrderModal').style.display = 'block';
+    const modal = document.getElementById('newOrderModal');
+    modal.style.display = 'block';
+    modal.classList.add('visible');
     this.setupFormHandlers();
   }
 
   closeNewOrderModal() {
-    document.getElementById('newOrderModal').style.display = 'none';
+    const modal = document.getElementById('newOrderModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.resetOrderForm();
   }
 
@@ -384,10 +388,13 @@ class MyOrders {
     `;
 
     modal.style.display = 'block';
+    modal.classList.add('visible');
   }
 
   closeOrderDetailsModal() {
-    document.getElementById('orderDetailsModal').style.display = 'none';
+    const modal = document.getElementById('orderDetailsModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
   }
 
   async cancelOrder(orderId) {
