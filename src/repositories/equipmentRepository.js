@@ -314,7 +314,7 @@ class EquipmentRepository {
             WHERE e.status = 'OPERATIVE'
             GROUP BY e.equipment_id, l.name
             HAVING MAX(ms.completed_at) < NOW() - INTERVAL '90 days' OR MAX(ms.completed_at) IS NULL
-            ORDER BY last_maintenance ASC NULLS FIRST
+            ORDER BY MAX(ms.completed_at) ASC NULLS FIRST
         `;
         
         const result = await query(sql);

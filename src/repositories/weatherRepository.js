@@ -193,7 +193,10 @@ class WeatherRepository {
                 l.latitude,
                 l.longitude,
                 MAX(wc.date) as last_weather_update,
-                EXTRACT(DAYS FROM (CURRENT_DATE - MAX(wc.date))) as days_since_update
+                CASE 
+                    WHEN MAX(wc.date) IS NULL THEN 999
+                    ELSE (CURRENT_DATE - MAX(wc.date))
+                END as days_since_update
             FROM locations l
             LEFT JOIN weather_conditions wc ON l.location_id = wc.location_id
             GROUP BY l.location_id, l.name, l.latitude, l.longitude

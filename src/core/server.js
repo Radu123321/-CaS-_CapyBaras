@@ -93,6 +93,7 @@ router.add('PUT', '/api/orders/:id/assign', orderController.assignEmployee);
 router.add('PUT', '/api/orders/:id/start', orderController.startOrder);
 router.add('PUT', '/api/orders/:id/complete', orderController.completeOrder);
 router.add('DELETE', '/api/orders/:id/cancel', orderController.cancelOrder);
+router.add('DELETE', '/api/orders/:id', orderController.cancelOrder);
 
 const transportController = require('../controllers/transportController');
 router.add('GET', '/api/transports', transportController.getAllTransports);
@@ -190,6 +191,7 @@ router.add('GET', '/api/stats/revenue', statsController.getRevenueStats);
 router.add('GET', '/api/stats/kpis', statsController.getPerformanceKPIs);
 router.add('POST', '/api/stats/reports', statsController.generateReport);
 router.add('GET', '/api/stats/locations/comparison', statsController.getLocationComparison);
+router.add('GET', '/api/stats/appointments', statsController.getAppointmentStats);
 router.add('GET', '/api/stats/periods', statsController.getAvailablePeriods);
 router.add('GET', '/api/stats/report-types', statsController.getReportTypes);
 
@@ -437,10 +439,38 @@ server.listen(config.port, () => {
   
   scheduler.addJob('expandRecurrences', '*/5 * * * *', expandRecurrences.expandRecurrences || expandRecurrences); // Every 5 minutes
   scheduler.addJob('checkInventory', '0 * * * *', checkInventory.checkInventory); // Every hour
-  scheduler.addJob('checkEquipmentStatus', '0 */6 * * *', checkEquipmentStatus.execute.bind(checkEquipmentStatus)); // Every 6 hours
-  scheduler.addJob('updateWeatherData', '0 */3 * * *', updateWeatherData.execute.bind(updateWeatherData)); // Every 3 hours
-  scheduler.addJob('generateDailyStats', '0 0 * * *', generateDailyStats.execute.bind(generateDailyStats)); // Daily at midnight
-  scheduler.addJob('exceptionDetection', '*/30 * * * *', exceptionDetection.execute.bind(exceptionDetection)); // Every 30 minutes
+  scheduler.addJob('checkEquipmentStatus', '0 */6 * * *', async () => {
+    try {
+      await checkEquipmentStatus.execute();
+    } catch (error) {
+      log.error(`CheckEquipmentStatus job error: ${error.message}`);
+      throw error;
+    }
+  }); // Every 6 hours
+  scheduler.addJob('updateWeatherData', '0 */3 * * *', async () => {
+    try {
+      await updateWeatherData.execute();
+    } catch (error) {
+      log.error(`UpdateWeatherData job error: ${error.message}`);
+      throw error;
+    }
+  }); // Every 3 hours
+  scheduler.addJob('generateDailyStats', '0 0 * * *', async () => {
+    try {
+      await generateDailyStats.execute();
+    } catch (error) {
+      log.error(`GenerateDailyStats job error: ${error.message}`);
+      throw error;
+    }
+  }); // Daily at midnight
+  scheduler.addJob('exceptionDetection', '*/30 * * * *', async () => {
+    try {
+      await exceptionDetection.execute();
+    } catch (error) {
+      log.error(`ExceptionDetection job error: ${error.message}`);
+      throw error;
+    }
+  }); // Every 30 minutes
   scheduler.start();
   
   log.info('Server and scheduler started successfully');

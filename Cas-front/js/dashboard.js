@@ -321,17 +321,30 @@ class Dashboard {
       const ordersList = document.getElementById('recentOrdersList');
       
       if (response.success && response.data.length > 0) {
-        ordersList.innerHTML = response.data.map(order => `
-          <div class="order-item">
-            <div class="order-info">
-              <div class="order-id">#${order.id}</div>
-              <div class="order-details">
-                ${order.customer_name} • ${order.service_type} • ${this.formatDate(order.created_at)}
+        ordersList.innerHTML = response.data.map(order => {
+          // Construct customer name from first_name and last_name
+          const customerName = order.customer_first_name && order.customer_last_name 
+            ? `${order.customer_first_name} ${order.customer_last_name}`
+            : order.customer_email || `Client #${order.customer_id}`;
+          
+          // Use service_name instead of service_type
+          const serviceName = order.service_name || order.category || 'Serviciu necunoscut';
+          
+          // Ensure we have a valid order ID
+          const orderId = order.order_id || order.id || 'N/A';
+          
+          return `
+            <div class="order-item">
+              <div class="order-info">
+                <div class="order-id">#${orderId}</div>
+                <div class="order-details">
+                  ${customerName} • ${serviceName} • ${this.formatDate(order.created_at)}
+                </div>
               </div>
+              <span class="order-status ${(order.status || '').toLowerCase()}">${this.getStatusLabel(order.status || 'PENDING')}</span>
             </div>
-            <span class="order-status ${order.status.toLowerCase()}">${this.getStatusLabel(order.status)}</span>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       } else {
         ordersList.innerHTML = '<div class="loading-placeholder">Nu există comenzi recente</div>';
       }
@@ -378,18 +391,35 @@ class Dashboard {
       const response = await authManager.apiRequest('/notifications/recent?limit=5');
       const notificationsList = document.getElementById('notificationsList');
       
-      if (response.success && response.data.length > 0) {
-        this.notifications = response.data;
-        notificationsList.innerHTML = response.data.map(notification => `
-          <div class="notification-item ${notification.read ? '' : 'unread'}">
-            <span class="notification-icon">${this.getNotificationIcon(notification.type)}</span>
-            <div class="notification-content">
-              <div class="notification-title">${notification.title}</div>
-              <div class="notification-message">${notification.message}</div>
-              <div class="notification-time">${this.formatRelativeTime(notification.created_at)}</div>
-            </div>
-          </div>
-        `).join('');
+      if (response.success && response.data) {
+        // Handle both direct array and nested structure
+        const notifications = response.data.notifications || response.data || [];
+        
+        if (notifications.length > 0) {
+          this.notifications = notifications;
+          notificationsList.innerHTML = notifications.map(notification => {
+            // Ensure we have valid data with fallbacks
+            const notificationId = notification.notification_id || notification.id || 'N/A';
+            const title = notification.title || notification.type || 'Notificare';
+            const message = notification.message || 'Fără mesaj';
+            const type = notification.type || 'INFO';
+            const createdAt = notification.created_at || notification.timestamp || new Date().toISOString();
+            const isRead = notification.is_read || notification.read || false;
+            
+            return `
+              <div class="notification-item ${isRead ? '' : 'unread'}">
+                <span class="notification-icon">${this.getNotificationIcon(type)}</span>
+                <div class="notification-content">
+                  <div class="notification-title">${title}</div>
+                  <div class="notification-message">${message}</div>
+                  <div class="notification-time">${this.formatRelativeTime(createdAt)}</div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        } else {
+          notificationsList.innerHTML = '<div class="loading-placeholder">Nu există notificări</div>';
+        }
       } else {
         notificationsList.innerHTML = '<div class="loading-placeholder">Nu există notificări</div>';
       }
@@ -663,14 +693,83 @@ class Dashboard {
   }
   
   getNotificationIcon(type) {
+    // Handle notification types that start with specific patterns
+    const typeUpper = (type || '').toUpperCase();
+    
     const icons = {
+      // Order related
+      'ORDER_CREATED': '📋',
+      'ORDER_UPDATED': '📝',
+      'ORDER_COMPLETED': '✅',
+      'ORDER_CANCELLED': '❌',
       'ORDER': '📋',
+      
+      // Equipment related
+      'EQUIPMENT_FAILURE': '🔧',
+      'EQUIPMENT_MAINTENANCE': '🛠️',
+      'EQUIPMENT_AVAILABLE': '✅',
       'EQUIPMENT': '🔧',
+      
+      // Staff related
+      'STAFF_SHORTAGE': '👥',
+      'STAFF_AVAILABLE': '👷',
+      'SHIFT_REMINDER': '⏰',
+      'STAFF': '👥',
+      
+      // Inventory related
+      'INVENTORY_LOW': '📦',
+      'INVENTORY_CRITICAL': '🚨',
+      'INVENTORY_RESTOCKED': '📈',
+      'INVENTORY': '📦',
+      
+      // Transport related
+      'TRANSPORT_ASSIGNED': '🚚',
+      'TRANSPORT_DELAYED': '⏱️',
+      'TRANSPORT_COMPLETED': '🏁',
+      'TRANSPORT': '🚚',
+      
+      // System related
+      'SYSTEM_ALERT': '🚨',
+      'SYSTEM_MAINTENANCE': '⚙️',
+      'SYSTEM_UPDATE': '🔄',
       'SYSTEM': '⚙️',
+      
+      // Customer related
+      'CUSTOMER_FEEDBACK': '💬',
+      'CUSTOMER_COMPLAINT': '📞',
+      'CUSTOMER_REVIEW': '⭐',
+      'CUSTOMER': '👤',
+      
+      // General
       'ALERT': '🚨',
-      'INFO': 'ℹ️'
+      'WARNING': '⚠️',
+      'INFO': 'ℹ️',
+      'SUCCESS': '✅',
+      'ERROR': '❌',
+      'TEST_NOTIFICATION': '🧪',
+      'GENERAL_ANNOUNCEMENT': '📢'
     };
-    return icons[type] || '🔔';
+    
+    // Direct match first
+    if (icons[typeUpper]) {
+      return icons[typeUpper];
+    }
+    
+    // Pattern matching for complex types
+    if (typeUpper.includes('ORDER')) return '📋';
+    if (typeUpper.includes('EQUIPMENT')) return '🔧';
+    if (typeUpper.includes('STAFF') || typeUpper.includes('EMPLOYEE')) return '👥';
+    if (typeUpper.includes('INVENTORY')) return '📦';
+    if (typeUpper.includes('TRANSPORT')) return '🚚';
+    if (typeUpper.includes('SYSTEM')) return '⚙️';
+    if (typeUpper.includes('CUSTOMER')) return '👤';
+    if (typeUpper.includes('ALERT') || typeUpper.includes('CRITICAL')) return '🚨';
+    if (typeUpper.includes('WARNING')) return '⚠️';
+    if (typeUpper.includes('SUCCESS') || typeUpper.includes('COMPLETED')) return '✅';
+    if (typeUpper.includes('ERROR') || typeUpper.includes('FAILED')) return '❌';
+    
+    // Default fallback
+    return '🔔';
   }
   
   getNotificationToastType(type) {

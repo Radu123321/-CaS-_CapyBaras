@@ -10,109 +10,128 @@
 </head>
 <body>
 
-  <main class="dashboard-main">
+  <div class="orders-container">
     <!-- Loading State -->
     <div id="loadingState" class="loading-state">
       <div class="loading-spinner"></div>
-      <p>Se încarcă comenzile...</p>
+      <p style="margin-top: 20px; color: #6b7280;">Se încarcă comenzile...</p>
     </div>
 
     <!-- Orders Content -->
-    <div id="ordersContent" class="dashboard-content" style="display: none;">
+    <div id="ordersContent" style="display: none;">
       
       <!-- Header Section -->
-      <section class="page-header">
-        <div class="header-content">
-          <div class="header-info">
-            <h1>Gestionare Comenzi</h1>
-            <p>Administrează și monitorizează toate comenzile</p>
-          </div>
-          <div class="header-actions">
-            <button class="btn btn-success" onclick="showCreateOrderModal()">
-              <span>➕</span> Comandă Nouă
-            </button>
-            <button class="btn btn-secondary" onclick="refreshOrders()">
-              <span>🔄</span> Reîmprospătează
-            </button>
-            <a href="dashboard.html" class="btn btn-outline">
-              <span>←</span> Înapoi la Dashboard
-            </a>
-          </div>
+      <div class="orders-header">
+        <div>
+          <h1 class="orders-title">Gestionare Comenzi</h1>
+          <p class="orders-subtitle">Administrează și monitorizează toate comenzile</p>
         </div>
-      </section>
+        <div class="orders-actions">
+          <button class="btn-new-order" onclick="showCreateOrderModal()">
+            <span>➕</span> Comandă Nouă
+          </button>
+          <button class="btn-refresh" onclick="refreshOrders()">
+            <span>🔄</span> Reîmprospătează
+          </button>
+          <a href="dashboard.html" class="btn-back">
+            <span>←</span> Dashboard
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="orders-stats" id="ordersStats">
+        <div class="stat-card pending">
+          <div class="stat-icon">⏳</div>
+          <span class="stat-number" id="pendingCount">0</span>
+          <div class="stat-label">În Așteptare</div>
+        </div>
+        <div class="stat-card confirmed">
+          <div class="stat-icon">✅</div>
+          <span class="stat-number" id="confirmedCount">0</span>
+          <div class="stat-label">Confirmate</div>
+        </div>
+        <div class="stat-card completed">
+          <div class="stat-icon">🎉</div>
+          <span class="stat-number" id="completedCount">0</span>
+          <div class="stat-label">Finalizate</div>
+        </div>
+        <div class="stat-card cancelled">
+          <div class="stat-icon">❌</div>
+          <span class="stat-number" id="cancelledCount">0</span>
+          <div class="stat-label">Anulate</div>
+        </div>
+      </div>
 
       <!-- Filters Section -->
-      <section class="filters-section">
-        <div class="filters-card">
-          <div class="filters-grid">
-            <div class="filter-group">
-              <label for="statusFilter">Status</label>
-              <select id="statusFilter" onchange="applyFilters()">
-                <option value="">Toate</option>
-                <option value="PENDING">În așteptare</option>
-                <option value="CONFIRMED">Confirmate</option>
-                <option value="IN_PROGRESS">În progres</option>
-                <option value="COMPLETED">Finalizate</option>
-                <option value="CANCELLED">Anulate</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="locationFilter">Locație</label>
-              <select id="locationFilter" onchange="applyFilters()">
-                <option value="">Toate locațiile</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="serviceFilter">Serviciu</label>
-              <select id="serviceFilter" onchange="applyFilters()">
-                <option value="">Toate serviciile</option>
-              </select>
-            </div>
-            <div class="filter-group">
-              <label for="dateFilter">Perioada</label>
-              <select id="dateFilter" onchange="applyFilters()">
-                <option value="">Toate</option>
-                <option value="today">Astăzi</option>
-                <option value="week">Ultima săptămână</option>
-                <option value="month">Ultima lună</option>
-              </select>
-            </div>
+      <div class="orders-filters">
+        <h3 class="filters-title">Filtrează Comenzile</h3>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter" onchange="applyFilters()">
+              <option value="">Toate statusurile</option>
+              <option value="PENDING">În așteptare</option>
+              <option value="CONFIRMED">Confirmate</option>
+              <option value="IN_PROGRESS">În progres</option>
+              <option value="COMPLETED">Finalizate</option>
+              <option value="CANCELLED">Anulate</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="locationFilter">Locație</label>
+            <select id="locationFilter" onchange="applyFilters()">
+              <option value="">Toate locațiile</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="serviceFilter">Serviciu</label>
+            <select id="serviceFilter" onchange="applyFilters()">
+              <option value="">Toate serviciile</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="dateFilter">Perioada</label>
+            <select id="dateFilter" onchange="applyFilters()">
+              <option value="">Toate perioadele</option>
+              <option value="today">Astăzi</option>
+              <option value="week">Ultima săptămână</option>
+              <option value="month">Ultima lună</option>
+            </select>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- Orders Table -->
-      <section class="orders-section">
-        <div class="table-card">
-          <div class="table-header">
-            <h3>Lista Comenzilor</h3>
-            <div class="table-stats">
-              <span id="ordersCount">0 comenzi</span>
-            </div>
-          </div>
-          <div class="table-container">
-            <table class="orders-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Client</th>
-                  <th>Serviciu</th>
-                  <th>Locație</th>
-                  <th>Status</th>
-                  <th>Data</th>
-                  <th>Total</th>
-                  <th>Acțiuni</th>
-                </tr>
-              </thead>
-              <tbody id="ordersTableBody">
-                <tr>
-                  <td colspan="8" class="loading-row">Se încarcă comenzile...</td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="orders-table-container">
+        <div class="table-header">
+          <h3 class="table-title">Lista Comenzilor</h3>
+          <div class="table-stats">
+            <span id="ordersCount">0 comenzi</span>
           </div>
         </div>
-      </section>
+        <div style="overflow-x: auto;">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Serviciu</th>
+                <th>Locație</th>
+                <th>Status</th>
+                <th>Data</th>
+                <th>Total</th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <tr>
+                <td colspan="8" class="loading-row">Se încarcă comenzile...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
     </div>
 
@@ -121,11 +140,13 @@
       <div class="error-card">
         <h2>Eroare la încărcarea comenzilor</h2>
         <p id="errorMessage">A apărut o eroare neașteptată.</p>
-        <button class="btn" onclick="location.reload()">Reîncarcă Pagina</button>
+        <button class="btn-refresh" onclick="location.reload()">
+          <span>🔄</span> Reîncarcă Pagina
+        </button>
       </div>
     </div>
 
-  </main>
+  </div>
 
   <!-- Create Order Modal -->
   <div id="createOrderModal" class="modal-overlay" style="display: none;">
@@ -172,8 +193,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeCreateOrderModal()">Anulează</button>
-        <button class="btn btn-primary" onclick="createOrder()">Creează Comanda</button>
+        <button class="btn-back" onclick="closeCreateOrderModal()">Anulează</button>
+        <button class="btn-new-order" onclick="createOrder()">Creează Comanda</button>
       </div>
     </div>
   </div>
@@ -191,8 +212,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeOrderDetailsModal()">Închide</button>
-        <button class="btn btn-primary" id="updateOrderStatusBtn" onclick="showUpdateStatusModal()">Actualizează Status</button>
+        <button class="btn-back" onclick="closeOrderDetailsModal()">Închide</button>
+        <button class="btn-refresh" id="updateOrderStatusBtn" onclick="showUpdateStatusModal()">Actualizează Status</button>
       </div>
     </div>
   </div>
@@ -200,11 +221,9 @@
   <!-- Notification Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
+  <!-- Scripts -->
   <script src="js/auth.js"></script>
   <script src="js/orders.js"></script>
-  <script>
-    // Initialize auth manager
-    const authManager = new AuthManager();
-  </script>
+
 </body>
 </html> 

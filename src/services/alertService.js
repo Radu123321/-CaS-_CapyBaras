@@ -455,6 +455,35 @@ class AlertService {
         }
         return config;
     }
+
+    /**
+     * Generic createAlert method
+     */
+    async createAlert(alertType, alertData, options = {}) {
+        log.debug(`AlertService: Creating alert of type ${alertType}`);
+        
+        try {
+            const alert = {
+                type: alertType,
+                priority: options.priority || 'MEDIUM',
+                locationId: alertData.locationId || null,
+                title: alertData.title || `${alertType} Alert`,
+                message: alertData.message || 'Alert triggered',
+                data: alertData,
+                timestamp: new Date(),
+                ...options
+            };
+
+            // Send the alert through multiple channels
+            const result = await this._sendMultiChannelAlert(alert);
+            
+            log.info(`AlertService: Alert ${alertType} created and sent successfully`);
+            return result;
+        } catch (error) {
+            log.error(`AlertService: Failed to create alert ${alertType}: ${error.message}`);
+            throw error;
+        }
+    }
 }
 
-module.exports = AlertService; 
+module.exports = new AlertService(); 

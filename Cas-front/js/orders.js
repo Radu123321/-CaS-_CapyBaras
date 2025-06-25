@@ -14,23 +14,32 @@ class OrdersManager {
   // ===== INITIALIZATION =====
   
   async init() {
+    console.log('🚀 OrdersManager: Starting initialization');
+    
     // Check authentication
     if (!authManager.requireAuth()) {
+      console.log('❌ OrdersManager: Authentication check failed');
       return;
     }
+    console.log('✅ OrdersManager: Authentication check passed');
 
     try {
       // Show loading state
+      console.log('⏳ OrdersManager: Showing loading state');
       this.showLoading();
       
       // Load initial data
+      console.log('📊 OrdersManager: Loading initial data');
       await this.loadInitialData();
+      console.log('✅ OrdersManager: Initial data loaded successfully');
       
       // Show orders content
+      console.log('📋 OrdersManager: Showing orders content');
       this.showOrders();
+      console.log('🎉 OrdersManager: Initialization completed successfully');
       
     } catch (error) {
-      console.error('Orders page initialization error:', error);
+      console.error('❌ OrdersManager: Initialization error:', error);
       this.showError('Nu s-a putut încărca pagina de comenzi. Vă rugăm să reîncărcați pagina.');
     }
   }
@@ -59,73 +68,111 @@ class OrdersManager {
   // ===== DATA LOADING =====
   
   async loadInitialData() {
-    // Load all required data in parallel
+    console.log('📊 OrdersManager: loadInitialData() starting');
+    
+    // Load all required data in parallel  
+    console.log('📥 OrdersManager: Loading all data in parallel');
     await Promise.all([
       this.loadOrders(),
       this.loadCustomers(),
       this.loadLocations(),
       this.loadServices()
     ]);
+    console.log('✅ OrdersManager: All data loaded. Data state:');
+    console.log('  - Orders:', this.orders.length, 'items');
+    console.log('  - Customers:', this.customers.length, 'items');
+    console.log('  - Locations:', this.locations.length, 'items');
+    console.log('  - Services:', this.services.length, 'items');
     
     // Populate filter dropdowns
+    console.log('🔧 OrdersManager: Populating filters');
     this.populateFilters();
     
     // Display orders
+    console.log('📋 OrdersManager: Displaying orders');
     this.displayOrders();
+    console.log('✅ OrdersManager: loadInitialData() completed');
   }
   
   async loadOrders() {
+    console.log('📋 OrdersManager: loadOrders() starting');
     try {
+      console.log('📋 OrdersManager: Making API request to /orders');
       const response = await authManager.apiRequest('/orders');
+      console.log('📋 OrdersManager: Orders API response:', response);
       
       if (response.success) {
         this.orders = response.data || [];
         this.filteredOrders = [...this.orders];
+        console.log('✅ OrdersManager: Orders loaded successfully:', this.orders.length, 'orders');
+        console.log('📋 OrdersManager: Sample order data:', this.orders[0] || 'No orders');
       } else {
+        console.error('❌ OrdersManager: Orders API returned error:', response.error);
         throw new Error(response.error || 'Failed to load orders');
       }
     } catch (error) {
-      console.error('Error loading orders:', error);
+      console.error('❌ OrdersManager: Error loading orders:', error);
       this.orders = [];
       this.filteredOrders = [];
     }
   }
   
   async loadCustomers() {
+    console.log('👥 OrdersManager: loadCustomers() starting');
     try {
+      console.log('👥 OrdersManager: Making API request to /customers');
       const response = await authManager.apiRequest('/customers');
+      console.log('👥 OrdersManager: Customers API response:', response);
       
       if (response.success) {
         this.customers = response.data || [];
+        console.log('✅ OrdersManager: Customers loaded successfully:', this.customers.length, 'customers');
+        console.log('👥 OrdersManager: Sample customer data:', this.customers[0] || 'No customers');
+      } else {
+        console.error('❌ OrdersManager: Customers API returned error:', response.error);
       }
     } catch (error) {
-      console.error('Error loading customers:', error);
+      console.error('❌ OrdersManager: Error loading customers:', error);
       this.customers = [];
     }
   }
   
   async loadLocations() {
+    console.log('📍 OrdersManager: loadLocations() starting');
     try {
+      console.log('📍 OrdersManager: Making API request to /locations');
       const response = await authManager.apiRequest('/locations');
+      console.log('📍 OrdersManager: Locations API response:', response);
       
       if (response.success) {
         this.locations = response.data || [];
+        console.log('✅ OrdersManager: Locations loaded successfully:', this.locations.length, 'locations');
+        console.log('📍 OrdersManager: Sample location data:', this.locations[0] || 'No locations');
+      } else {
+        console.error('❌ OrdersManager: Locations API returned error:', response.error);
       }
     } catch (error) {
-      console.error('Error loading locations:', error);
+      console.error('❌ OrdersManager: Error loading locations:', error);
       this.locations = [];
     }
   }
   
   async loadServices() {
+    console.log('🔧 OrdersManager: loadServices() starting');
     try {
+      console.log('🔧 OrdersManager: Making API request to /services');
       const response = await authManager.apiRequest('/services');
+      console.log('🔧 OrdersManager: Services API response:', response);
       
       if (response.success) {
         this.services = response.data || [];
+        console.log('✅ OrdersManager: Services loaded successfully:', this.services.length, 'services');
+        console.log('🔧 OrdersManager: Sample service data:', this.services[0] || 'No services');
+      } else {
+        console.error('❌ OrdersManager: Services API returned error:', response.error);
       }
     } catch (error) {
-      console.error('Error loading services:', error);
+      console.error('❌ OrdersManager: Error loading services:', error);
       this.services = [];
     }
   }
@@ -133,94 +180,265 @@ class OrdersManager {
   // ===== DISPLAY METHODS =====
   
   populateFilters() {
+    console.log('🔧 OrdersManager: populateFilters() starting');
+    
     // Populate location filter
     const locationFilter = document.getElementById('locationFilter');
-    locationFilter.innerHTML = '<option value="">Toate locațiile</option>';
-    this.locations.forEach(location => {
-      locationFilter.innerHTML += `<option value="${location.location_id}">${location.name}</option>`;
-    });
+    console.log('🔧 OrdersManager: Location filter element:', locationFilter ? 'Found' : 'NOT FOUND');
+    
+    if (locationFilter) {
+      locationFilter.innerHTML = '<option value="">Toate locațiile</option>';
+      console.log('🔧 OrdersManager: Populating location filter with', this.locations.length, 'locations');
+      
+      this.locations.forEach((location, index) => {
+        const locationName = location.name || location.location_name || `Locație #${location.location_id}`;
+        const locationId = location.location_id || location.id;
+        locationFilter.innerHTML += `<option value="${locationId}">${locationName}</option>`;
+        
+        if (index === 0) {
+          console.log('🔧 OrdersManager: Sample location filter option:', locationName, 'ID:', locationId);
+        }
+      });
+      console.log('🔧 OrdersManager: Location filter populated with', locationFilter.options.length - 1, 'options');
+    }
     
     // Populate service filter
     const serviceFilter = document.getElementById('serviceFilter');
-    serviceFilter.innerHTML = '<option value="">Toate serviciile</option>';
-    this.services.forEach(service => {
-      serviceFilter.innerHTML += `<option value="${service.service_id}">${service.name}</option>`;
-    });
+    console.log('🔧 OrdersManager: Service filter element:', serviceFilter ? 'Found' : 'NOT FOUND');
     
-    // Populate modal dropdowns
-    this.populateModalDropdowns();
+    if (serviceFilter) {
+      serviceFilter.innerHTML = '<option value="">Toate serviciile</option>';
+      console.log('🔧 OrdersManager: Populating service filter with', this.services.length, 'services');
+      
+      this.services.forEach((service, index) => {
+        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id}`;
+        const serviceId = service.service_id || service.id;
+        serviceFilter.innerHTML += `<option value="${serviceId}">${serviceName}</option>`;
+        
+        if (index === 0) {
+          console.log('🔧 OrdersManager: Sample service filter option:', serviceName, 'ID:', serviceId);
+        }
+      });
+      console.log('🔧 OrdersManager: Service filter populated with', serviceFilter.options.length - 1, 'options');
+    }
+    
+    console.log('✅ OrdersManager: populateFilters() completed');
   }
   
   populateModalDropdowns() {
+    console.log('🔄 OrdersManager: populateModalDropdowns() starting');
+    
+    // Only populate if we have data
+    if (!this.customers || !this.locations || !this.services) {
+      console.log('❌ OrdersManager: Missing data for dropdowns');
+      console.log('  - Customers:', this.customers?.length || 0);
+      console.log('  - Locations:', this.locations?.length || 0);
+      console.log('  - Services:', this.services?.length || 0);
+      return;
+    }
+    console.log('✅ OrdersManager: All data available for dropdowns');
+    
     // Populate customer dropdown
     const customerSelect = document.getElementById('customerId');
-    customerSelect.innerHTML = '<option value="">Selectează clientul</option>';
-    this.customers.forEach(customer => {
-      customerSelect.innerHTML += `<option value="${customer.customer_id}">${customer.name} - ${customer.email}</option>`;
-    });
+    console.log('👥 OrdersManager: Customer select element:', customerSelect ? 'Found' : 'NOT FOUND');
+    if (customerSelect) {
+      customerSelect.innerHTML = '<option value="">Selectează clientul</option>';
+      console.log('👥 OrdersManager: Populating customers, count:', this.customers.length);
+      
+      this.customers.forEach((customer, index) => {
+        let customerDisplay = '';
+        if (customer.first_name && customer.last_name) {
+          customerDisplay = `${customer.first_name} ${customer.last_name}`;
+        } else if (customer.name) {
+          customerDisplay = customer.name;
+        } else {
+          customerDisplay = customer.email || `Client #${customer.customer_id}`;
+        }
+        
+        if (customer.email && !customerDisplay.includes(customer.email)) {
+          customerDisplay += ` - ${customer.email}`;
+        }
+        
+        customerSelect.innerHTML += `<option value="${customer.customer_id}">${customerDisplay}</option>`;
+        
+        if (index === 0) {
+          console.log('👥 OrdersManager: Sample customer option:', customerDisplay, 'ID:', customer.customer_id);
+        }
+      });
+      console.log('👥 OrdersManager: Customer dropdown populated with', customerSelect.options.length - 1, 'customers');
+    }
     
     // Populate location dropdown
     const locationSelect = document.getElementById('locationId');
-    locationSelect.innerHTML = '<option value="">Selectează locația</option>';
-    this.locations.forEach(location => {
-      locationSelect.innerHTML += `<option value="${location.location_id}">${location.name}</option>`;
-    });
+    console.log('📍 OrdersManager: Location select element:', locationSelect ? 'Found' : 'NOT FOUND');
+    if (locationSelect) {
+      locationSelect.innerHTML = '<option value="">Selectează locația</option>';
+      console.log('📍 OrdersManager: Populating locations, count:', this.locations.length);
+      
+      this.locations.forEach((location, index) => {
+        const locationName = location.name || location.location_name || `Locație #${location.location_id}`;
+        locationSelect.innerHTML += `<option value="${location.location_id}">${locationName}</option>`;
+        
+        if (index === 0) {
+          console.log('📍 OrdersManager: Sample location option:', locationName, 'ID:', location.location_id);
+        }
+      });
+      console.log('📍 OrdersManager: Location dropdown populated with', locationSelect.options.length - 1, 'locations');
+    }
     
     // Populate service dropdown
     const serviceSelect = document.getElementById('serviceId');
-    serviceSelect.innerHTML = '<option value="">Selectează serviciul</option>';
-    this.services.forEach(service => {
-      serviceSelect.innerHTML += `<option value="${service.service_id}">${service.name} - ${service.price} RON</option>`;
-    });
+    console.log('🔧 OrdersManager: Service select element:', serviceSelect ? 'Found' : 'NOT FOUND');
+    if (serviceSelect) {
+      serviceSelect.innerHTML = '<option value="">Selectează serviciul</option>';
+      console.log('🔧 OrdersManager: Populating services, count:', this.services.length);
+      
+      this.services.forEach((service, index) => {
+        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id}`;
+        const servicePrice = service.price ? ` - ${service.price} RON` : '';
+        serviceSelect.innerHTML += `<option value="${service.service_id}">${serviceName}${servicePrice}</option>`;
+        
+        if (index === 0) {
+          console.log('🔧 OrdersManager: Sample service option:', serviceName, 'ID:', service.service_id);
+        }
+      });
+      console.log('🔧 OrdersManager: Service dropdown populated with', serviceSelect.options.length - 1, 'services');
+    }
+    
+    console.log('✅ OrdersManager: populateModalDropdowns() completed');
   }
   
   displayOrders() {
-    const tbody = document.getElementById('ordersTableBody');
-    const ordersCount = document.getElementById('ordersCount');
+    console.log('📋 OrdersManager: displayOrders() starting');
+    console.log('📋 OrdersManager: Orders to display:', this.filteredOrders.length);
     
-    if (this.filteredOrders.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="no-data">Nu au fost găsite comenzi</td></tr>';
-      ordersCount.textContent = '0 comenzi';
+    const tbody = document.getElementById('ordersTableBody');
+    console.log('📋 OrdersManager: Table tbody element:', tbody ? 'Found' : 'NOT FOUND');
+    
+    if (!tbody) {
+      console.error('❌ OrdersManager: Orders table tbody not found!');
       return;
     }
+
+    if (this.filteredOrders.length === 0) {
+      console.log('📋 OrdersManager: No orders to display');
+      tbody.innerHTML = '<tr><td colspan="8" class="text-center">Nu există comenzi</td></tr>';
+      return;
+    }
+
+    console.log('📋 OrdersManager: Clearing table and adding orders');
+    tbody.innerHTML = '';
     
-    tbody.innerHTML = this.filteredOrders.map(order => `
-      <tr>
+    this.filteredOrders.forEach((order, index) => {
+      console.log(`📋 OrdersManager: Processing order ${index + 1}:`, order);
+      
+      const customerName = this.getCustomerName(order.customer_id);
+      const serviceName = this.getServiceName(order.service_id);
+      const locationName = this.getLocationName(order.location_id);
+      
+      console.log(`📋 OrdersManager: Order ${index + 1} details:`);
+      console.log('  - Customer:', customerName);
+      console.log('  - Service:', serviceName);
+      console.log('  - Location:', locationName);
+      console.log('  - Status:', order.status);
+      console.log('  - Date:', order.scheduled_for);
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
         <td>#${order.order_id}</td>
-        <td>${this.getCustomerName(order.customer_id)}</td>
-        <td>${this.getServiceName(order.service_id)}</td>
-        <td>${this.getLocationName(order.location_id)}</td>
-        <td><span class="status-badge status-${order.status.toLowerCase()}">${this.getStatusLabel(order.status)}</span></td>
-        <td>${this.formatDate(order.created_at)}</td>
-        <td>${order.total_price} RON</td>
+        <td>${customerName}</td>
+        <td>${serviceName}</td>
+        <td>${locationName}</td>
+        <td><span class="status-badge status-${order.status?.toLowerCase() || 'unknown'}">${this.getStatusLabel(order.status)}</span></td>
+        <td>${order.scheduled_for ? this.formatDate(order.scheduled_for) : 'Nu este programată'}</td>
+        <td>${order.total_price || 0} RON</td>
         <td>
-          <div class="action-buttons">
-            <button class="btn-icon" onclick="ordersManager.viewOrder(${order.order_id})" title="Vezi detalii">👁️</button>
-            <button class="btn-icon" onclick="ordersManager.editOrder(${order.order_id})" title="Editează">✏️</button>
-            ${order.status === 'PENDING' ? `<button class="btn-icon btn-danger" onclick="ordersManager.cancelOrder(${order.order_id})" title="Anulează">❌</button>` : ''}
-          </div>
+          <button class="btn-sm btn-primary" onclick="ordersManager.viewOrder(${order.order_id})" title="Vezi detalii">
+            <i class="bi bi-eye"></i>
+          </button>
+          <button class="btn-sm btn-secondary" onclick="ordersManager.editOrder(${order.order_id})" title="Editează">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn-sm btn-danger" onclick="ordersManager.cancelOrder(${order.order_id})" title="Anulează">
+            <i class="bi bi-trash"></i>
+          </button>
         </td>
-      </tr>
-    `).join('');
+      `;
+      tbody.appendChild(row);
+    });
     
-    ordersCount.textContent = `${this.filteredOrders.length} comenzi`;
+    // Update orders count
+    const ordersCount = document.getElementById('ordersCount');
+    if (ordersCount) {
+      ordersCount.textContent = `${this.filteredOrders.length} comenzi`;
+      console.log('📋 OrdersManager: Updated orders count:', this.filteredOrders.length);
+    }
+    
+    // Update stats
+    this.updateStats();
+    
+    console.log('✅ OrdersManager: Orders displayed successfully');
+  }
+
+  updateStats() {
+    console.log('📊 OrdersManager: updateStats() starting');
+    console.log('📊 OrdersManager: Total orders:', this.orders.length);
+    
+    const stats = {
+      pending: this.orders.filter(o => o.status === 'PENDING').length,
+      confirmed: this.orders.filter(o => o.status === 'CONFIRMED').length,
+      completed: this.orders.filter(o => o.status === 'COMPLETED').length,
+      cancelled: this.orders.filter(o => o.status === 'CANCELLED').length
+    };
+    
+    console.log('📊 OrdersManager: Stats breakdown:', stats);
+    
+    // Update stat cards
+    const pendingCount = document.getElementById('pendingCount');
+    const confirmedCount = document.getElementById('confirmedCount');
+    const completedCount = document.getElementById('completedCount');
+    const cancelledCount = document.getElementById('cancelledCount');
+    
+    console.log('📊 OrdersManager: Stat elements found:', {
+      pendingCount: pendingCount ? 'Found' : 'NOT FOUND',
+      confirmedCount: confirmedCount ? 'Found' : 'NOT FOUND',
+      completedCount: completedCount ? 'Found' : 'NOT FOUND',
+      cancelledCount: cancelledCount ? 'Found' : 'NOT FOUND'
+    });
+    
+    if (pendingCount) pendingCount.textContent = stats.pending;
+    if (confirmedCount) confirmedCount.textContent = stats.confirmed;
+    if (completedCount) completedCount.textContent = stats.completed;
+    if (cancelledCount) cancelledCount.textContent = stats.cancelled;
+    
+    console.log('✅ OrdersManager: Stats updated successfully');
   }
 
   // ===== HELPER METHODS =====
   
   getCustomerName(customerId) {
     const customer = this.customers.find(c => c.customer_id === customerId);
-    return customer ? customer.name : `Client #${customerId}`;
+    if (customer) {
+      // Use full name from first_name + last_name or fallback to email
+      if (customer.first_name && customer.last_name) {
+        return `${customer.first_name} ${customer.last_name}`;
+      } else if (customer.name) {
+        return customer.name;
+      } else if (customer.email) {
+        return customer.email;
+      }
+    }
+    return `Client #${customerId}`;
   }
   
   getServiceName(serviceId) {
     const service = this.services.find(s => s.service_id === serviceId);
-    return service ? service.name : `Serviciu #${serviceId}`;
+    return service ? (service.name || service.service_name || `Serviciu #${serviceId}`) : `Serviciu #${serviceId}`;
   }
   
   getLocationName(locationId) {
     const location = this.locations.find(l => l.location_id === locationId);
-    return location ? location.name : `Locație #${locationId}`;
+    return location ? (location.name || location.location_name || `Locație #${locationId}`) : `Locație #${locationId}`;
   }
   
   getStatusLabel(status) {
@@ -300,6 +518,117 @@ class OrdersManager {
     }
   }
   
+  async editOrder(orderId) {
+    try {
+      const response = await authManager.apiRequest(`/orders/${orderId}`);
+      
+      if (response.success) {
+        this.showEditOrderModal(response.data);
+      } else {
+        this.showToast('Eroare la încărcarea comenzii pentru editare', 'error');
+      }
+    } catch (error) {
+      console.error('Error loading order for edit:', error);
+      this.showToast('Eroare la încărcarea comenzii pentru editare', 'error');
+    }
+  }
+
+  async cancelOrder(orderId) {
+    if (!confirm('Sigur doriți să anulați această comandă?')) {
+      return;
+    }
+
+    try {
+      const response = await authManager.apiRequest(`/orders/${orderId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          status: 'CANCELLED'
+        })
+      });
+      
+      if (response.success) {
+        this.showToast('Comanda a fost anulată cu succes', 'success');
+        await this.loadOrders();
+        this.applyFilters();
+      } else {
+        this.showToast(response.error || 'Eroare la anularea comenzii', 'error');
+      }
+    } catch (error) {
+      console.error('Error cancelling order:', error);
+      this.showToast('Eroare la anularea comenzii', 'error');
+    }
+  }
+
+  showEditOrderModal(order) {
+    // Reuse the create order modal but populate it with existing data
+    const modal = document.getElementById('createOrderModal');
+    const title = modal.querySelector('.modal-header h3');
+    const createBtn = modal.querySelector('.btn-new-order');
+    
+    title.textContent = `Editează Comanda #${order.order_id}`;
+    createBtn.textContent = 'Actualizează Comanda';
+    createBtn.onclick = () => this.updateOrder(order.order_id);
+    
+    // Populate form with existing data
+    document.getElementById('customerId').value = order.customer_id || '';
+    document.getElementById('locationId').value = order.location_id || '';
+    document.getElementById('serviceId').value = order.service_id || '';
+    
+    if (order.scheduled_date) {
+      const date = new Date(order.scheduled_date);
+      document.getElementById('scheduledDate').value = date.toISOString().slice(0, 16);
+    }
+    
+    document.getElementById('notes').value = order.notes || '';
+    document.getElementById('needsTransport').checked = order.needs_transport || false;
+    
+    modal.style.display = 'flex';
+  }
+
+  async updateOrder(orderId) {
+    const formData = {
+      customer_id: parseInt(document.getElementById('customerId').value),
+      location_id: parseInt(document.getElementById('locationId').value),
+      service_id: parseInt(document.getElementById('serviceId').value),
+      scheduled_date: document.getElementById('scheduledDate').value || null,
+      notes: document.getElementById('notes').value || null,
+      needs_transport: document.getElementById('needsTransport').checked
+    };
+
+    // Validate required fields
+    if (!formData.customer_id || !formData.location_id || !formData.service_id) {
+      this.showToast('Vă rugăm să completați toate câmpurile obligatorii', 'error');
+      return;
+    }
+
+    try {
+      const response = await authManager.apiRequest(`/orders/${orderId}`, {
+        method: 'PUT',
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.success) {
+        this.showToast('Comanda a fost actualizată cu succes', 'success');
+        this.closeCreateOrderModal();
+        await this.loadOrders();
+        this.applyFilters();
+        
+        // Reset modal for next use
+        const modal = document.getElementById('createOrderModal');
+        const title = modal.querySelector('.modal-header h3');
+        const createBtn = modal.querySelector('.btn-new-order');
+        title.textContent = 'Comandă Nouă';
+        createBtn.textContent = 'Creează Comanda';
+        createBtn.onclick = () => createOrder();
+      } else {
+        this.showToast(response.error || 'Eroare la actualizarea comenzii', 'error');
+      }
+    } catch (error) {
+      console.error('Error updating order:', error);
+      this.showToast('Eroare la actualizarea comenzii', 'error');
+    }
+  }
+
   showOrderDetails(order) {
     const modal = document.getElementById('orderDetailsModal');
     const title = document.getElementById('orderDetailsTitle');
@@ -358,7 +687,38 @@ class OrdersManager {
   // ===== MODAL MANAGEMENT =====
   
   showCreateOrderModal() {
-    document.getElementById('createOrderModal').style.display = 'flex';
+    console.log('📝 OrdersManager: showCreateOrderModal() starting');
+    
+    const modal = document.getElementById('createOrderModal');
+    console.log('📝 OrdersManager: Modal element:', modal ? 'Found' : 'NOT FOUND');
+    
+    // Reset modal to creation mode
+    const title = modal.querySelector('.modal-header h3');
+    const createBtn = modal.querySelector('.btn-new-order');
+    console.log('📝 OrdersManager: Modal elements found:', {
+      title: title ? 'Found' : 'NOT FOUND',
+      createBtn: createBtn ? 'Found' : 'NOT FOUND'
+    });
+    
+    title.textContent = 'Comandă Nouă';
+    createBtn.textContent = 'Creează Comanda';
+    createBtn.onclick = () => createOrder();
+    console.log('📝 OrdersManager: Modal reset to creation mode');
+    
+    // Clear form
+    const form = document.getElementById('createOrderForm');
+    console.log('📝 OrdersManager: Form element:', form ? 'Found' : 'NOT FOUND');
+    form.reset();
+    console.log('📝 OrdersManager: Form reset');
+    
+    // Ensure dropdowns are populated with current data
+    console.log('📝 OrdersManager: About to populate dropdowns');
+    this.populateModalDropdowns();
+    
+    // Show modal
+    console.log('📝 OrdersManager: Showing modal');
+    modal.style.display = 'flex';
+    console.log('✅ OrdersManager: showCreateOrderModal() completed');
   }
   
   closeCreateOrderModal() {
@@ -397,28 +757,223 @@ async function refreshOrders() {
 }
 
 function showCreateOrderModal() {
-  ordersManager.showCreateOrderModal();
+  console.log('🌍 Global showCreateOrderModal() called');
+  
+  if (ordersManager) {
+    console.log('✅ OrdersManager instance found, calling method');
+    ordersManager.showCreateOrderModal();
+  } else {
+    console.error('❌ OrdersManager instance not found!');
+  }
 }
 
 function closeCreateOrderModal() {
-  ordersManager.closeCreateOrderModal();
+  if (ordersManager) {
+    ordersManager.closeCreateOrderModal();
+  }
 }
 
 function closeOrderDetailsModal() {
-  ordersManager.closeOrderDetailsModal();
+  if (ordersManager) {
+    ordersManager.closeOrderDetailsModal();
+  }
 }
 
 function applyFilters() {
   ordersManager.applyFilters();
 }
 
-async function createOrder() {
-  // Implementation for creating new order
-  ordersManager.showToast('Funcționalitatea de creare comenzi va fi implementată', 'info');
+function showUpdateStatusModal() {
+  // Placeholder function for updating order status
+  if (ordersManager) {
+    ordersManager.showToast('Funcționalitatea de actualizare status va fi implementată', 'info');
+  }
 }
 
-// Initialize orders manager when page loads
+async function createOrder() {
+  console.log('➕ createOrder() function called');
+  
+  if (ordersManager) {
+    console.log('➕ OrdersManager instance available');
+    
+    // Get form field values with logging
+    const customerIdField = document.getElementById('customerId');
+    const locationIdField = document.getElementById('locationId');
+    const serviceIdField = document.getElementById('serviceId');
+    const scheduledDateField = document.getElementById('scheduledDate');
+    const notesField = document.getElementById('notes');
+    const needsTransportField = document.getElementById('needsTransport');
+    
+    console.log('➕ Form fields found:', {
+      customerId: customerIdField ? 'Found' : 'NOT FOUND',
+      locationId: locationIdField ? 'Found' : 'NOT FOUND',
+      serviceId: serviceIdField ? 'Found' : 'NOT FOUND',
+      scheduledDate: scheduledDateField ? 'Found' : 'NOT FOUND',
+      notes: notesField ? 'Found' : 'NOT FOUND',
+      needsTransport: needsTransportField ? 'Found' : 'NOT FOUND'
+    });
+    
+    const formData = {
+      customer_id: parseInt(customerIdField?.value),
+      location_id: parseInt(locationIdField?.value),
+      service_id: parseInt(serviceIdField?.value),
+      scheduled_for: scheduledDateField?.value || null,
+      notes: notesField?.value || null,
+      needs_transport: needsTransportField?.checked || false,
+      unit_price: 100 // Default price, should get from service
+    };
+    
+    console.log('➕ Form data prepared:', formData);
+
+    // Validate required fields
+    if (!formData.customer_id || !formData.location_id || !formData.service_id) {
+      console.log('❌ Validation failed - missing required fields');
+      console.log('  - Customer ID:', formData.customer_id);
+      console.log('  - Location ID:', formData.location_id);
+      console.log('  - Service ID:', formData.service_id);
+      ordersManager.showToast('Vă rugăm să completați toate câmpurile obligatorii', 'error');
+      return;
+    }
+    console.log('✅ Validation passed');
+
+    try {
+      console.log('➕ Sending POST request to /orders');
+      const response = await authManager.apiRequest('/orders', {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+      console.log('➕ API response:', response);
+      
+      if (response.success) {
+        console.log('✅ Order created successfully');
+        ordersManager.showToast('Comanda a fost creată cu succes', 'success');
+        ordersManager.closeCreateOrderModal();
+        await ordersManager.loadOrders();
+        ordersManager.applyFilters();
+      } else {
+        console.error('❌ API returned error:', response.error);
+        ordersManager.showToast(response.error || 'Eroare la crearea comenzii', 'error');
+      }
+    } catch (error) {
+      console.error('❌ Exception creating order:', error);
+      ordersManager.showToast('Eroare la crearea comenzii', 'error');
+    }
+  } else {
+    console.error('❌ OrdersManager instance not available');
+  }
+}
+
+// Debug function to check all critical elements
+function debugPageElements() {
+  console.log('🔍 === DEBUGGING PAGE ELEMENTS ===');
+  
+  // Check modal elements
+  const createOrderModal = document.getElementById('createOrderModal');
+  const orderDetailsModal = document.getElementById('orderDetailsModal');
+  
+  console.log('🔍 Modal elements:', {
+    createOrderModal: createOrderModal ? 'Found' : 'NOT FOUND',
+    orderDetailsModal: orderDetailsModal ? 'Found' : 'NOT FOUND'
+  });
+  
+  // Check form elements
+  const createOrderForm = document.getElementById('createOrderForm');
+  const customerId = document.getElementById('customerId');
+  const locationId = document.getElementById('locationId');
+  const serviceId = document.getElementById('serviceId');
+  const scheduledDate = document.getElementById('scheduledDate');
+  const notes = document.getElementById('notes');
+  const needsTransport = document.getElementById('needsTransport');
+  
+  console.log('🔍 Form elements:', {
+    createOrderForm: createOrderForm ? 'Found' : 'NOT FOUND',
+    customerId: customerId ? 'Found' : 'NOT FOUND',
+    locationId: locationId ? 'Found' : 'NOT FOUND',
+    serviceId: serviceId ? 'Found' : 'NOT FOUND',
+    scheduledDate: scheduledDate ? 'Found' : 'NOT FOUND',
+    notes: notes ? 'Found' : 'NOT FOUND',
+    needsTransport: needsTransport ? 'Found' : 'NOT FOUND'
+  });
+  
+  // Check display elements
+  const ordersTableBody = document.getElementById('ordersTableBody');
+  const loadingState = document.getElementById('loadingState');
+  const ordersContent = document.getElementById('ordersContent');
+  const errorState = document.getElementById('errorState');
+  const ordersCount = document.getElementById('ordersCount');
+  
+  console.log('🔍 Display elements:', {
+    ordersTableBody: ordersTableBody ? 'Found' : 'NOT FOUND',
+    loadingState: loadingState ? 'Found' : 'NOT FOUND',
+    ordersContent: ordersContent ? 'Found' : 'NOT FOUND',
+    errorState: errorState ? 'Found' : 'NOT FOUND',
+    ordersCount: ordersCount ? 'Found' : 'NOT FOUND'
+  });
+  
+  // Check stat elements
+  const pendingCount = document.getElementById('pendingCount');
+  const confirmedCount = document.getElementById('confirmedCount');
+  const completedCount = document.getElementById('completedCount');
+  const cancelledCount = document.getElementById('cancelledCount');
+  
+  console.log('🔍 Stat elements:', {
+    pendingCount: pendingCount ? 'Found' : 'NOT FOUND',
+    confirmedCount: confirmedCount ? 'Found' : 'NOT FOUND',
+    completedCount: completedCount ? 'Found' : 'NOT FOUND',
+    cancelledCount: cancelledCount ? 'Found' : 'NOT FOUND'
+  });
+  
+  // Check filter elements
+  const statusFilter = document.getElementById('statusFilter');
+  const locationFilter = document.getElementById('locationFilter');
+  const serviceFilter = document.getElementById('serviceFilter');
+  const dateFilter = document.getElementById('dateFilter');
+  
+  console.log('🔍 Filter elements:', {
+    statusFilter: statusFilter ? 'Found' : 'NOT FOUND',
+    locationFilter: locationFilter ? 'Found' : 'NOT FOUND',
+    serviceFilter: serviceFilter ? 'Found' : 'NOT FOUND',
+    dateFilter: dateFilter ? 'Found' : 'NOT FOUND'
+  });
+  
+  // Check buttons
+  const createOrderBtn = document.querySelector('[onclick="showCreateOrderModal()"]');
+  const refreshBtn = document.querySelector('[onclick="refreshOrders()"]');
+  const toastContainer = document.getElementById('toastContainer');
+  
+  console.log('🔍 Button and other elements:', {
+    createOrderBtn: createOrderBtn ? 'Found' : 'NOT FOUND',
+    refreshBtn: refreshBtn ? 'Found' : 'NOT FOUND',
+    toastContainer: toastContainer ? 'Found' : 'NOT FOUND'
+  });
+  
+  console.log('🔍 === END DEBUG ===');
+}
+
+// Initialize the orders manager when the page loads
 let ordersManager;
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 DOM loaded, starting initialization');
+  
+  // Debug page elements first
+  debugPageElements();
+  
+  console.log('🚀 Initializing OrdersManager');
   ordersManager = new OrdersManager();
+});
+
+// Add event listener for the create order button
+document.addEventListener('DOMContentLoaded', function() {
+  const createOrderBtn = document.querySelector('[onclick="showCreateOrderModal()"]');
+  if (createOrderBtn) {
+    console.log('✅ Create order button found, adding event listener');
+    createOrderBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('🔘 Create order button clicked');
+      showCreateOrderModal();
+    });
+  } else {
+    console.log('❌ Create order button not found');
+  }
 }); 

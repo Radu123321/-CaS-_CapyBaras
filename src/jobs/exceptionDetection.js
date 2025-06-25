@@ -25,7 +25,7 @@ class ExceptionDetection {
     this.errors = [];
     
     try {
-      log.info('Starting exception detection job...');
+      log.info('Starting automated exception detection...');
       
       const results = {
         staffShortages: [],

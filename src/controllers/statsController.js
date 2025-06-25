@@ -404,8 +404,13 @@ class StatsController {
       // Calculate totals and find best performing location
       comparison.summary.totalRevenue = comparison.locations.reduce((sum, l) => sum + l.revenueThisMonth, 0);
       comparison.summary.totalOrders = comparison.locations.reduce((sum, l) => sum + l.ordersThisMonth, 0);
-      comparison.summary.bestPerforming = comparison.locations.reduce((max, l) => 
-        l.revenueThisMonth > (max?.revenueThisMonth || 0) ? l : max, null);
+      
+      // Find best performing location (by revenue)
+      if (comparison.locations.length > 0) {
+        comparison.summary.bestPerforming = comparison.locations.reduce((best, current) => 
+          current.revenueThisMonth > best.revenueThisMonth ? current : best
+        );
+      }
       
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
@@ -418,6 +423,44 @@ class StatsController {
       res.end(JSON.stringify({
         success: false,
         error: 'Failed to get location comparison'
+      }));
+    }
+  }
+  
+  // ===== APPOINTMENT STATS =====
+  
+  async getAppointmentStats(req, res) {
+    try {
+      const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      const period = req.query.period || 'month';
+      
+      // Get basic dashboard data which includes appointment/order stats
+      const dashboardData = await statsService.getDashboardData(locationId);
+      
+      // Extract appointment-related statistics
+      const appointmentStats = {
+        totalAppointments: dashboardData.kpis.find(kpi => kpi.key === 'orders_today')?.value || 0,
+        completedToday: dashboardData.kpis.find(kpi => kpi.key === 'completed_today')?.value || 0,
+        pendingAppointments: dashboardData.kpis.find(kpi => kpi.key === 'pending_orders')?.value || 0,
+        revenueToday: dashboardData.kpis.find(kpi => kpi.key === 'revenue_today')?.value || 0,
+        monthlyTotal: dashboardData.kpis.find(kpi => kpi.key === 'orders_this_month')?.value || 0,
+        monthlyRevenue: dashboardData.kpis.find(kpi => kpi.key === 'revenue_this_month')?.value || 0,
+        locations: dashboardData.summary || []
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: true,
+        data: appointmentStats,
+        period: period,
+        locationId: locationId
+      }));
+    } catch (error) {
+      log.error(`Error getting appointment stats: ${error.message}`);
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Failed to get appointment statistics'
       }));
     }
   }
@@ -586,4 +629,42 @@ class StatsController {
   }
 }
 
-module.exports = new StatsController(); 
+module.exports = new StatsController();
+
+// Add the missing appointment stats method
+module.exports.getAppointmentStats = async function(req, res) {
+  const log = require('../core/logger');
+  try {
+    const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+    const period = req.query.period || 'month';
+    
+    // Get basic dashboard data which includes appointment/order stats
+    const dashboardData = await require('../services/statsService').getDashboardData(locationId);
+    
+    // Extract appointment-related statistics
+    const appointmentStats = {
+      totalAppointments: dashboardData.kpis.find(kpi => kpi.key === 'orders_today')?.value || 0,
+      completedToday: dashboardData.kpis.find(kpi => kpi.key === 'completed_today')?.value || 0,
+      pendingAppointments: dashboardData.kpis.find(kpi => kpi.key === 'pending_orders')?.value || 0,
+      revenueToday: dashboardData.kpis.find(kpi => kpi.key === 'revenue_today')?.value || 0,
+      monthlyTotal: dashboardData.kpis.find(kpi => kpi.key === 'orders_this_month')?.value || 0,
+      monthlyRevenue: dashboardData.kpis.find(kpi => kpi.key === 'revenue_this_month')?.value || 0,
+      locations: dashboardData.summary || []
+    };
+    
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: true,
+      data: appointmentStats,
+      period: period,
+      locationId: locationId
+    }));
+  } catch (error) {
+    log.error(`Error getting appointment stats: ${error.message}`);
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      success: false,
+      error: 'Failed to get appointment statistics'
+    }));
+  }
+}; 

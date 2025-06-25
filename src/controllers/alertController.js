@@ -1,4 +1,4 @@
-const AlertService = require('../services/alertService');
+const alertService = require('../services/alertService');
 const log = require('../core/logger');
 
 /**
@@ -8,7 +8,7 @@ const log = require('../core/logger');
  */
 class AlertController {
     constructor() {
-        this.alertService = new AlertService();
+        this.alertService = alertService;
     }
 
     /**

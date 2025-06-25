@@ -82,6 +82,57 @@ class NotificationRepository {
     return result && result.length > 0 ? result[0] : null;
   }
 
+  // Găsește toate notificările cu filtrare opțională
+  async findAll(filters = {}) {
+    let whereConditions = [];
+    let params = [];
+    let paramCount = 0;
+
+    // Build WHERE clause based on filters
+    if (filters.user_id) {
+      paramCount++;
+      whereConditions.push(`user_id = $${paramCount}`);
+      params.push(filters.user_id);
+    }
+
+    if (filters.type) {
+      paramCount++;
+      whereConditions.push(`type = $${paramCount}`);
+      params.push(filters.type);
+    }
+
+    if (filters.is_read !== undefined) {
+      paramCount++;
+      whereConditions.push(`is_read = $${paramCount}`);
+      params.push(filters.is_read);
+    }
+
+    if (filters.is_sent !== undefined) {
+      paramCount++;
+      whereConditions.push(`is_sent = $${paramCount}`);
+      params.push(filters.is_sent);
+    }
+
+    // Filter out expired notifications
+    whereConditions.push('(expires_at IS NULL OR expires_at > CURRENT_TIMESTAMP)');
+
+    const whereClause = whereConditions.length > 0 ? `WHERE ${whereConditions.join(' AND ')}` : '';
+    const limit = filters.limit ? parseInt(filters.limit) : 50;
+    const offset = filters.offset ? parseInt(filters.offset) : 0;
+
+    const selectSQL = `
+      SELECT notification_id, user_id, type, title, message, related_entity_type,
+             related_entity_id, is_read, is_sent, sent_via, scheduled_for,
+             expires_at, created_at, read_at
+      FROM notifications
+      ${whereClause}
+      ORDER BY created_at DESC
+      LIMIT ${limit} OFFSET ${offset}
+    `;
+
+    return await query(selectSQL, params);
+  }
+
   // Găsește notificările netrimitise programate
   async findPendingScheduled() {
     const selectSQL = `
