@@ -384,7 +384,7 @@ class StatsService {
       const alerts = [];
       
       // Check for critical equipment issues
-      if (equipmentAnalytics.summary.maintenanceOverdue > 0) {
+      if (equipmentAnalytics && equipmentAnalytics.summary && equipmentAnalytics.summary.maintenanceOverdue > 0) {
         alerts.push({
           type: 'EQUIPMENT_MAINTENANCE_OVERDUE',
           severity: 'HIGH',
@@ -393,21 +393,40 @@ class StatsService {
         });
       }
       
-      // Check for low completion rates
-      kpis.forEach(kpi => {
-        if (parseFloat(kpi.completion_rate || 0) < 70) {
+      // Check for low completion rates - handle kpis as object
+      if (kpis && typeof kpis === 'object') {
+        const completionRate = parseFloat(kpis.completion_rate || 0);
+        if (completionRate < 70) {
           alerts.push({
             type: 'LOW_COMPLETION_RATE',
             severity: 'MEDIUM',
-            message: `Low completion rate at ${kpi.location_name}: ${kpi.completion_rate}%`,
-            data: { location: kpi.location_name, rate: kpi.completion_rate }
+            message: `Low completion rate: ${completionRate}%`,
+            data: { rate: completionRate }
           });
         }
-      });
+      }
+      
+      // Check summary for other issues
+      if (summary && Array.isArray(summary)) {
+        summary.forEach(location => {
+          if (location.pending_orders > 20) {
+            alerts.push({
+              type: 'HIGH_PENDING_ORDERS',
+              severity: 'MEDIUM',
+              message: `High number of pending orders at ${location.location_name}: ${location.pending_orders}`,
+              data: { location: location.location_name, count: location.pending_orders }
+            });
+          }
+        });
+      }
       
       // Send alerts if any critical issues found
       for (const alert of alerts) {
-        await alertService.createAlert(alert.type, alert.message, alert.severity, alert.data);
+        try {
+          await alertService.createAlert(alert.type, alert.message, alert.severity, alert.data);
+        } catch (alertError) {
+          log.error(`Failed to create alert: ${alertError.message}`);
+        }
       }
       
     } catch (error) {

@@ -18,12 +18,12 @@ class EquipmentRepository {
             SELECT 
                 e.*,
                 l.name as location_name,
-                COUNT(em.maintenance_id) as maintenance_count,
-                MAX(em.completed_at) as last_completed_maintenance,
-                MIN(CASE WHEN em.status = 'SCHEDULED' THEN em.scheduled_date END) as next_scheduled_maintenance
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
             FROM equipment e
             LEFT JOIN locations l ON e.location_id = l.location_id
-            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
             WHERE 1=1
         `;
         
@@ -40,14 +40,14 @@ class EquipmentRepository {
             params.push(filters.status);
         }
         
-        if (filters.equipment_type) {
-            sql += ` AND e.equipment_type = $${paramIndex++}`;
-            params.push(filters.equipment_type);
+        if (filters.type) {
+            sql += ` AND e.type = $${paramIndex++}`;
+            params.push(filters.type);
         }
         
-        if (filters.manufacturer) {
-            sql += ` AND LOWER(e.manufacturer) LIKE LOWER($${paramIndex++})`;
-            params.push(`%${filters.manufacturer}%`);
+        if (filters.name) {
+            sql += ` AND LOWER(e.name) LIKE LOWER($${paramIndex++})`;
+            params.push(`%${filters.name}%`);
         }
         
         sql += `
@@ -56,7 +56,7 @@ class EquipmentRepository {
         `;
         
         const result = await query(sql, params);
-        return result.rows;
+        return result;
     }
     
     /**
@@ -74,7 +74,7 @@ class EquipmentRepository {
         `;
         
         const result = await query(sql, [equipmentId]);
-        return result.rows[0] || null;
+        return result && result.length > 0 ? result[0] : null;
     }
     
     /**
@@ -82,19 +82,19 @@ class EquipmentRepository {
      */
     async createEquipment(equipmentData) {
         const {
-            location_id, name, status, purchased_on, notes
+            location_id, name, type, status, purchased_date, notes
         } = equipmentData;
         
         const sql = `
-            INSERT INTO equipment (location_id, name, status, purchased_on, notes)
-            VALUES ($1, $2, $3, $4, $5)
+            INSERT INTO equipment (location_id, name, type, status, purchased_date, notes)
+            VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING *
         `;
         
-        const params = [location_id, name, status || 'OPERATIVE', purchased_on, notes];
+        const params = [location_id, name, type, status || 'OPERATIVE', purchased_date, notes];
         
         const result = await query(sql, params);
-        return result.rows[0];
+        return result && result.length > 0 ? result[0] : null;
     }
     
     /**
@@ -105,7 +105,7 @@ class EquipmentRepository {
         const params = [];
         let paramIndex = 1;
         
-        const allowedFields = ['name', 'status', 'purchased_on', 'notes'];
+        const allowedFields = ['name', 'type', 'status', 'purchased_date', 'notes'];
         
         for (const [key, value] of Object.entries(updateData)) {
             if (allowedFields.includes(key) && value !== undefined) {
@@ -128,7 +128,7 @@ class EquipmentRepository {
         `;
         
         const result = await query(sql, params);
-        return result.rows[0] || null;
+        return result && result.length > 0 ? result[0] : null;
     }
     
     /**
@@ -137,7 +137,7 @@ class EquipmentRepository {
     async deleteEquipment(equipmentId) {
         const sql = 'DELETE FROM equipment WHERE equipment_id = $1 RETURNING *';
         const result = await query(sql, [equipmentId]);
-        return result.rows[0] || null;
+        return result && result.length > 0 ? result[0] : null;
     }
     
     // ═══════════════════════════════════════════════════════════════════
@@ -150,19 +150,19 @@ class EquipmentRepository {
     async getMaintenanceHistory(equipmentId, limit = 50) {
         const sql = `
             SELECT 
-                em.*,
+                ms.*,
                 e.name as equipment_name,
                 l.name as location_name
-            FROM equipment_maintenance em
-            JOIN equipment e ON em.equipment_id = e.equipment_id
+            FROM maintenance_schedules ms
+            JOIN equipment e ON ms.equipment_id = e.equipment_id
             JOIN locations l ON e.location_id = l.location_id
-            WHERE em.equipment_id = $1
-            ORDER BY em.started_at DESC
+            WHERE ms.equipment_id = $1
+            ORDER BY ms.scheduled_date DESC
             LIMIT $2
         `;
         
         const result = await query(sql, [equipmentId, limit]);
-        return result.rows;
+        return result || [];
     }
     
     /**
@@ -171,12 +171,12 @@ class EquipmentRepository {
     async getAllMaintenance(filters = {}) {
         let sql = `
             SELECT 
-                em.*,
+                ms.*,
                 e.name as equipment_name,
                 e.status as equipment_status,
                 l.name as location_name
-            FROM equipment_maintenance em
-            JOIN equipment e ON em.equipment_id = e.equipment_id
+            FROM maintenance_schedules ms
+            JOIN equipment e ON ms.equipment_id = e.equipment_id
             JOIN locations l ON e.location_id = l.location_id
             WHERE 1=1
         `;
@@ -190,16 +190,16 @@ class EquipmentRepository {
         }
         
         if (filters.equipment_id) {
-            sql += ` AND em.equipment_id = $${paramIndex++}`;
+            sql += ` AND ms.equipment_id = $${paramIndex++}`;
             params.push(filters.equipment_id);
         }
         
-        if (filters.unplanned !== undefined) {
-            sql += ` AND em.unplanned = $${paramIndex++}`;
-            params.push(filters.unplanned);
+        if (filters.type) {
+            sql += ` AND ms.type = $${paramIndex++}`;
+            params.push(filters.type);
         }
         
-        sql += ` ORDER BY em.started_at DESC`;
+        sql += ` ORDER BY ms.scheduled_date DESC`;
         
         if (filters.limit) {
             sql += ` LIMIT $${paramIndex++}`;
@@ -207,7 +207,7 @@ class EquipmentRepository {
         }
         
         const result = await query(sql, params);
-        return result.rows;
+        return result || [];
     }
     
     /**
@@ -215,19 +215,19 @@ class EquipmentRepository {
      */
     async createMaintenance(maintenanceData) {
         const {
-            equipment_id, started_at, ended_at, description, unplanned
+            equipment_id, type, scheduled_date, description, estimated_cost
         } = maintenanceData;
         
         const sql = `
-            INSERT INTO equipment_maintenance (equipment_id, started_at, ended_at, description, unplanned)
-            VALUES ($1, $2, $3, $4, $5)
+            INSERT INTO maintenance_schedules (equipment_id, type, scheduled_date, description, estimated_cost, status)
+            VALUES ($1, $2, $3, $4, $5, 'SCHEDULED')
             RETURNING *
         `;
         
-        const params = [equipment_id, started_at, ended_at, description, unplanned || false];
+        const params = [equipment_id, type || 'PREVENTIVE', scheduled_date, description, estimated_cost || 0.00];
         
         const result = await query(sql, params);
-        return result.rows[0];
+        return result && result.length > 0 ? result[0] : null;
     }
     
     /**
@@ -238,7 +238,7 @@ class EquipmentRepository {
         const params = [];
         let paramIndex = 1;
         
-        const allowedFields = ['ended_at', 'description'];
+        const allowedFields = ['status', 'completed_at', 'actual_cost', 'notes'];
         
         for (const [key, value] of Object.entries(updateData)) {
             if (allowedFields.includes(key) && value !== undefined) {
@@ -254,14 +254,14 @@ class EquipmentRepository {
         params.push(maintenanceId);
         
         const sql = `
-            UPDATE equipment_maintenance 
+            UPDATE maintenance_schedules 
             SET ${fields.join(', ')}
-            WHERE maint_id = $${paramIndex}
+            WHERE maintenance_id = $${paramIndex}
             RETURNING *
         `;
         
         const result = await query(sql, params);
-        return result.rows[0] || null;
+        return result && result.length > 0 ? result[0] : null;
     }
     
     // ═══════════════════════════════════════════════════════════════════
@@ -295,30 +295,30 @@ class EquipmentRepository {
         `;
         
         const result = await query(sql, params);
-        return result.rows;
+        return result || [];
     }
     
     /**
-     * Get equipment needing maintenance (basic version)
+     * Get equipment needing maintenance (using v2.0 schema)
      */
     async getEquipmentNeedingMaintenance() {
         const sql = `
             SELECT 
                 e.*,
                 l.name as location_name,
-                MAX(em.ended_at) as last_maintenance
+                MAX(ms.completed_at) as last_maintenance
             FROM equipment e
             JOIN locations l ON e.location_id = l.location_id
-            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
-                AND em.ended_at IS NOT NULL
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id 
+                AND ms.completed_at IS NOT NULL
             WHERE e.status = 'OPERATIVE'
             GROUP BY e.equipment_id, l.name
-            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            HAVING MAX(ms.completed_at) < NOW() - INTERVAL '90 days' OR MAX(ms.completed_at) IS NULL
             ORDER BY last_maintenance ASC NULLS FIRST
         `;
         
         const result = await query(sql);
-        return result.rows;
+        return result || [];
     }
 }
 

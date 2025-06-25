@@ -8910,3 +8910,429 @@
 2025-06-25T09:38:24.551Z [ERROR] Error updating weather data:
 2025-06-25T09:38:24.551Z [ERROR] Weather data update job failed:
 2025-06-25T09:38:24.551Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:39:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:39:24.558Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T09:39:24.559Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T09:39:24.559Z [INFO] Starting equipment status check...
+2025-06-25T09:39:24.600Z [ERROR] SQL error after 41ms: relation "equipment_maintenance" does not exist
+2025-06-25T09:39:24.600Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T09:39:24.601Z [ERROR] Error checking equipment status:
+2025-06-25T09:39:24.601Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T09:39:24.601Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 12:40:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:39:24.602Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T09:39:24.602Z [INFO] Starting weather data update job...
+2025-06-25T09:39:24.602Z [INFO] Starting weather data update for all locations...
+2025-06-25T09:39:24.648Z [ERROR] SQL error after 46ms: relation "weather_snapshots" does not exist
+2025-06-25T09:39:24.649Z [ERROR] Failed query: 
+            SELECT 
+                l.location_id,
+                l.name,
+                l.latitude,
+                l.longitude,
+                MAX(ws.captured_at) as last_weather_update,
+                EXTRACT(EPOCH FROM (NOW() - MAX(ws.captured_at)))/3600 as hours_since_update
+            FROM locations l
+            LEFT JOIN weather_snapshots ws ON l.location_id = ws.location_id
+            GROUP BY l.location_id, l.name, l.latitude, l.longitude
+            HAVING MAX(ws.captured_at) IS NULL 
+            OR MAX(ws.captured_at) < NOW() - INTERVAL '2 hours'
+            ORDER BY hours_since_update DESC NULLS FIRST
+        
+2025-06-25T09:39:24.649Z [ERROR] Error updating weather data:
+2025-06-25T09:39:24.650Z [ERROR] Weather data update job failed:
+2025-06-25T09:39:24.650Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:40:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:41:24.586Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T09:41:24.587Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T09:41:24.587Z [ERROR] ExpandRecurrences: Job failed: orderService.getOrdersWithRecurrence is not a function
+2025-06-25T09:41:24.588Z [ERROR] Scheduler: Job 'expandRecurrences' failed: orderService.getOrdersWithRecurrence is not a function
+2025-06-25T09:41:24.588Z [WARN] Scheduler: Job 'expandRecurrences' will retry at Wed Jun 25 2025 12:46:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:41:24.589Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T09:41:24.589Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T09:41:24.589Z [INFO] Starting equipment status check...
+2025-06-25T09:41:24.644Z [ERROR] SQL error after 54ms: relation "equipment_maintenance" does not exist
+2025-06-25T09:41:24.644Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T09:41:24.645Z [ERROR] Error checking equipment status:
+2025-06-25T09:41:24.645Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T09:41:24.645Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 12:42:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:41:24.646Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T09:41:24.646Z [INFO] Starting weather data update job...
+2025-06-25T09:41:24.646Z [INFO] Starting weather data update for all locations...
+2025-06-25T09:41:24.700Z [ERROR] SQL error after 54ms: relation "weather_snapshots" does not exist
+2025-06-25T09:41:24.700Z [ERROR] Failed query: 
+            SELECT 
+                l.location_id,
+                l.name,
+                l.latitude,
+                l.longitude,
+                MAX(ws.captured_at) as last_weather_update,
+                EXTRACT(EPOCH FROM (NOW() - MAX(ws.captured_at)))/3600 as hours_since_update
+            FROM locations l
+            LEFT JOIN weather_snapshots ws ON l.location_id = ws.location_id
+            GROUP BY l.location_id, l.name, l.latitude, l.longitude
+            HAVING MAX(ws.captured_at) IS NULL 
+            OR MAX(ws.captured_at) < NOW() - INTERVAL '2 hours'
+            ORDER BY hours_since_update DESC NULLS FIRST
+        
+2025-06-25T09:41:24.701Z [ERROR] Error updating weather data:
+2025-06-25T09:41:24.701Z [ERROR] Weather data update job failed:
+2025-06-25T09:41:24.702Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:42:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:41:24.702Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T09:41:24.703Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T09:41:24.703Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 12:46:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:42:55.939Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T09:42:55.940Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T09:42:55.942Z [INFO] GET /api/stats/dashboard
+2025-06-25T09:42:55.943Z [INFO] GET /api/stats/system-status
+2025-06-25T09:42:56.183Z [ERROR] Error checking for critical issues: kpis.forEach is not a function
+2025-06-25T09:42:56.231Z [ERROR] Error checking for critical issues: kpis.forEach is not a function
+2025-06-25T09:43:24.610Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T09:43:24.611Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T09:43:24.611Z [INFO] Starting equipment status check...
+2025-06-25T09:43:24.614Z [ERROR] SQL error after 2ms: relation "equipment_maintenance" does not exist
+2025-06-25T09:43:24.614Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T09:43:24.615Z [ERROR] Error checking equipment status:
+2025-06-25T09:43:24.615Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T09:43:24.616Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 12:44:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:24.616Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T09:43:24.616Z [INFO] Starting weather data update job...
+2025-06-25T09:43:24.616Z [INFO] Starting weather data update for all locations...
+2025-06-25T09:43:24.618Z [ERROR] SQL error after 1ms: relation "weather_snapshots" does not exist
+2025-06-25T09:43:24.618Z [ERROR] Failed query: 
+            SELECT 
+                l.location_id,
+                l.name,
+                l.latitude,
+                l.longitude,
+                MAX(ws.captured_at) as last_weather_update,
+                EXTRACT(EPOCH FROM (NOW() - MAX(ws.captured_at)))/3600 as hours_since_update
+            FROM locations l
+            LEFT JOIN weather_snapshots ws ON l.location_id = ws.location_id
+            GROUP BY l.location_id, l.name, l.latitude, l.longitude
+            HAVING MAX(ws.captured_at) IS NULL 
+            OR MAX(ws.captured_at) < NOW() - INTERVAL '2 hours'
+            ORDER BY hours_since_update DESC NULLS FIRST
+        
+2025-06-25T09:43:24.619Z [ERROR] Error updating weather data:
+2025-06-25T09:43:24.619Z [ERROR] Weather data update job failed:
+2025-06-25T09:43:24.620Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:44:24 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.513Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T09:43:41.579Z [INFO] AlertService: SMTP client initialized
+2025-06-25T09:43:41.622Z [INFO] Minimal server listening on port 8000
+2025-06-25T09:43:41.630Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 12:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.631Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 13:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.632Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 12:44:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.632Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 12:44:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.633Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.633Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 12:44:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:43:41.634Z [INFO] Scheduler: Starting...
+2025-06-25T09:43:41.634Z [INFO] Scheduler: Started successfully
+2025-06-25T09:43:41.635Z [INFO] Server and scheduler started successfully
+2025-06-25T09:43:41.725Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 12:43:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:44:17.432Z [INFO] OPTIONS /api/auth/login
+2025-06-25T09:44:17.435Z [INFO] POST /api/auth/login
+2025-06-25T09:44:17.437Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T09:44:17.691Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T09:44:17.692Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T09:44:19.255Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T09:44:19.258Z [INFO] GET /api/stats/dashboard
+2025-06-25T09:44:19.421Z [ERROR] Failed to create alert: alertService.createAlert is not a function
+2025-06-25T09:44:19.429Z [INFO] OPTIONS /api/orders
+2025-06-25T09:44:19.431Z [INFO] GET /api/orders
+2025-06-25T09:44:19.432Z [INFO] GET /api/orders
+2025-06-25T09:44:19.470Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T09:44:19.474Z [INFO] GET /api/stats/system-status
+2025-06-25T09:44:19.486Z [ERROR] Failed to create alert: alertService.createAlert is not a function
+2025-06-25T09:44:19.502Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T09:44:19.506Z [INFO] GET /api/notifications/recent
+2025-06-25T09:44:19.508Z [ERROR] NotificationService: Failed to get notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:19.509Z [ERROR] Error getting recent notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:19.514Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T09:44:19.516Z [INFO] GET /api/stats/performance
+2025-06-25T09:44:22.274Z [INFO] GET /api/orders
+2025-06-25T09:44:22.274Z [INFO] GET /api/orders
+2025-06-25T09:44:22.290Z [INFO] GET /api/stats/system-status
+2025-06-25T09:44:22.301Z [ERROR] Failed to create alert: alertService.createAlert is not a function
+2025-06-25T09:44:22.312Z [INFO] GET /api/notifications/recent
+2025-06-25T09:44:22.313Z [ERROR] NotificationService: Failed to get notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:22.314Z [ERROR] Error getting recent notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:22.318Z [INFO] GET /api/stats/performance
+2025-06-25T09:44:23.052Z [INFO] OPTIONS /api/orders
+2025-06-25T09:44:23.053Z [INFO] OPTIONS /api/customers
+2025-06-25T09:44:23.054Z [INFO] OPTIONS /api/locations
+2025-06-25T09:44:23.055Z [INFO] OPTIONS /api/services
+2025-06-25T09:44:23.057Z [INFO] GET /api/orders
+2025-06-25T09:44:23.058Z [INFO] GET /api/orders
+2025-06-25T09:44:23.059Z [INFO] GET /api/customers
+2025-06-25T09:44:23.060Z [INFO] GET /api/customers
+2025-06-25T09:44:23.063Z [INFO] GET /api/locations
+2025-06-25T09:44:23.064Z [INFO] GET /api/locations
+2025-06-25T09:44:23.066Z [INFO] GET /api/services
+2025-06-25T09:44:23.068Z [INFO] GET /api/services
+2025-06-25T09:44:29.634Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T09:44:29.648Z [INFO] OPTIONS /api/orders
+2025-06-25T09:44:29.650Z [INFO] GET /api/orders
+2025-06-25T09:44:29.650Z [INFO] GET /api/orders
+2025-06-25T09:44:29.674Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T09:44:29.677Z [INFO] GET /api/stats/system-status
+2025-06-25T09:44:29.687Z [ERROR] Failed to create alert: alertService.createAlert is not a function
+2025-06-25T09:44:29.695Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T09:44:29.698Z [INFO] GET /api/notifications/recent
+2025-06-25T09:44:29.699Z [ERROR] NotificationService: Failed to get notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:29.699Z [ERROR] Error getting recent notifications: notificationRepository.findAll is not a function
+2025-06-25T09:44:29.702Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T09:44:29.704Z [INFO] GET /api/stats/performance
+2025-06-25T09:44:31.417Z [INFO] OPTIONS /api/customers
+2025-06-25T09:44:31.420Z [INFO] OPTIONS /api/services
+2025-06-25T09:44:31.421Z [INFO] OPTIONS /api/locations
+2025-06-25T09:44:31.422Z [INFO] GET /api/customers
+2025-06-25T09:44:31.423Z [INFO] GET /api/customers
+2025-06-25T09:44:31.424Z [INFO] GET /api/services
+2025-06-25T09:44:31.425Z [INFO] GET /api/services
+2025-06-25T09:44:31.426Z [INFO] GET /api/locations
+2025-06-25T09:44:31.427Z [INFO] GET /api/locations
+2025-06-25T09:44:31.444Z [INFO] OPTIONS /api/orders
+2025-06-25T09:44:31.447Z [INFO] GET /api/orders
+2025-06-25T09:44:31.448Z [INFO] GET /api/orders
+2025-06-25T09:44:31.466Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:44:31.468Z [INFO] GET /api/stats/appointments
+2025-06-25T09:44:31.469Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:44:41.640Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T09:44:41.641Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T09:44:41.642Z [INFO] Starting equipment status check...
+2025-06-25T09:44:41.644Z [ERROR] SQL error after 2ms: ORDER BY "last_maintenance" is ambiguous
+2025-06-25T09:44:41.644Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(ms.completed_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id 
+                AND ms.completed_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(ms.completed_at) < NOW() - INTERVAL '90 days' OR MAX(ms.completed_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T09:44:41.644Z [ERROR] Error checking equipment status:
+2025-06-25T09:44:41.645Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T09:44:41.645Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 12:45:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:44:41.645Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T09:44:41.645Z [INFO] Starting weather data update job...
+2025-06-25T09:44:41.645Z [INFO] Starting weather data update for all locations...
+2025-06-25T09:44:41.647Z [ERROR] SQL error after 1ms: function pg_catalog.extract(unknown, integer) does not exist
+2025-06-25T09:44:41.648Z [ERROR] Failed query: 
+            SELECT 
+                l.location_id,
+                l.name,
+                l.latitude,
+                l.longitude,
+                MAX(wc.date) as last_weather_update,
+                EXTRACT(DAYS FROM (CURRENT_DATE - MAX(wc.date))) as days_since_update
+            FROM locations l
+            LEFT JOIN weather_conditions wc ON l.location_id = wc.location_id
+            GROUP BY l.location_id, l.name, l.latitude, l.longitude
+            HAVING MAX(wc.date) IS NULL 
+            OR MAX(wc.date) < CURRENT_DATE - INTERVAL '1 days'
+            ORDER BY days_since_update DESC NULLS FIRST
+        
+2025-06-25T09:44:41.648Z [ERROR] Error updating weather data:
+2025-06-25T09:44:41.648Z [ERROR] Weather data update job failed:
+2025-06-25T09:44:41.649Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:45:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:44:41.649Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T09:44:41.650Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T09:44:41.650Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 12:49:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:44:59.618Z [INFO] OPTIONS /api/orders/29
+2025-06-25T09:44:59.620Z [INFO] PUT /api/orders/29
+2025-06-25T09:44:59.621Z [INFO] PUT /api/orders/29
+2025-06-25T09:44:59.632Z [INFO] OrderService: Updated order 29
+2025-06-25T09:44:59.636Z [INFO] OPTIONS /api/orders
+2025-06-25T09:44:59.639Z [INFO] GET /api/orders
+2025-06-25T09:44:59.640Z [INFO] GET /api/orders
+2025-06-25T09:44:59.655Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:44:59.656Z [INFO] GET /api/stats/appointments
+2025-06-25T09:44:59.657Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:45:05.113Z [INFO] OPTIONS /api/orders/29
+2025-06-25T09:45:05.116Z [INFO] PUT /api/orders/29
+2025-06-25T09:45:05.117Z [INFO] PUT /api/orders/29
+2025-06-25T09:45:05.123Z [INFO] OrderService: Updated order 29
+2025-06-25T09:45:05.127Z [INFO] OPTIONS /api/orders
+2025-06-25T09:45:05.130Z [INFO] GET /api/orders
+2025-06-25T09:45:05.131Z [INFO] GET /api/orders
+2025-06-25T09:45:05.143Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:45:05.147Z [INFO] GET /api/stats/appointments
+2025-06-25T09:45:05.148Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:45:09.838Z [INFO] OPTIONS /api/customers
+2025-06-25T09:45:09.839Z [INFO] OPTIONS /api/services
+2025-06-25T09:45:09.840Z [INFO] OPTIONS /api/locations
+2025-06-25T09:45:09.841Z [INFO] GET /api/customers
+2025-06-25T09:45:09.841Z [INFO] GET /api/customers
+2025-06-25T09:45:09.842Z [INFO] GET /api/services
+2025-06-25T09:45:09.843Z [INFO] GET /api/services
+2025-06-25T09:45:09.844Z [INFO] GET /api/locations
+2025-06-25T09:45:09.845Z [INFO] GET /api/locations
+2025-06-25T09:45:09.921Z [INFO] GET /api/orders
+2025-06-25T09:45:09.922Z [INFO] GET /api/orders
+2025-06-25T09:45:09.936Z [INFO] GET /api/stats/appointments
+2025-06-25T09:45:09.937Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:45:19.988Z [INFO] OPTIONS /api/orders
+2025-06-25T09:45:19.989Z [INFO] OPTIONS /api/customers
+2025-06-25T09:45:19.990Z [INFO] OPTIONS /api/services
+2025-06-25T09:45:19.991Z [INFO] OPTIONS /api/locations
+2025-06-25T09:45:19.994Z [INFO] GET /api/orders
+2025-06-25T09:45:19.995Z [INFO] GET /api/orders
+2025-06-25T09:45:19.996Z [INFO] GET /api/customers
+2025-06-25T09:45:19.997Z [INFO] GET /api/customers
+2025-06-25T09:45:19.997Z [INFO] GET /api/services
+2025-06-25T09:45:19.998Z [INFO] GET /api/services
+2025-06-25T09:45:19.999Z [INFO] GET /api/locations
+2025-06-25T09:45:19.999Z [INFO] GET /api/locations
+2025-06-25T09:45:40.942Z [INFO] OPTIONS /api/customers
+2025-06-25T09:45:40.943Z [INFO] OPTIONS /api/services
+2025-06-25T09:45:40.944Z [INFO] OPTIONS /api/locations
+2025-06-25T09:45:40.960Z [INFO] OPTIONS /api/orders
+2025-06-25T09:45:40.962Z [INFO] GET /api/orders
+2025-06-25T09:45:40.963Z [INFO] GET /api/orders
+2025-06-25T09:45:41.004Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:45:41.006Z [INFO] GET /api/stats/appointments
+2025-06-25T09:45:41.007Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:45:41.649Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T09:45:41.651Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T09:45:41.659Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T09:45:41.660Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 12:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:45:41.661Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T09:45:41.661Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T09:45:41.662Z [INFO] Starting equipment status check...
+2025-06-25T09:45:41.664Z [ERROR] SQL error after 2ms: ORDER BY "last_maintenance" is ambiguous
+2025-06-25T09:45:41.665Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(ms.completed_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id 
+                AND ms.completed_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(ms.completed_at) < NOW() - INTERVAL '90 days' OR MAX(ms.completed_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T09:45:41.665Z [ERROR] Error checking equipment status:
+2025-06-25T09:45:41.665Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T09:45:41.666Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 12:46:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:45:41.666Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T09:45:41.667Z [INFO] Starting weather data update job...
+2025-06-25T09:45:41.667Z [INFO] Starting weather data update for all locations...
+2025-06-25T09:45:41.670Z [ERROR] SQL error after 3ms: function pg_catalog.extract(unknown, integer) does not exist
+2025-06-25T09:45:41.671Z [ERROR] Failed query: 
+            SELECT 
+                l.location_id,
+                l.name,
+                l.latitude,
+                l.longitude,
+                MAX(wc.date) as last_weather_update,
+                EXTRACT(DAYS FROM (CURRENT_DATE - MAX(wc.date))) as days_since_update
+            FROM locations l
+            LEFT JOIN weather_conditions wc ON l.location_id = wc.location_id
+            GROUP BY l.location_id, l.name, l.latitude, l.longitude
+            HAVING MAX(wc.date) IS NULL 
+            OR MAX(wc.date) < CURRENT_DATE - INTERVAL '1 days'
+            ORDER BY days_since_update DESC NULLS FIRST
+        
+2025-06-25T09:45:41.672Z [ERROR] Error updating weather data:
+2025-06-25T09:45:41.673Z [ERROR] Weather data update job failed:
+2025-06-25T09:45:41.673Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 12:46:41 GMT+0300 (Eastern European Summer Time)
+2025-06-25T09:46:18.332Z [INFO] OPTIONS /api/customers
+2025-06-25T09:46:18.333Z [INFO] OPTIONS /api/services
+2025-06-25T09:46:18.334Z [INFO] OPTIONS /api/locations
+2025-06-25T09:46:18.335Z [INFO] GET /api/customers
+2025-06-25T09:46:18.335Z [INFO] GET /api/customers
+2025-06-25T09:46:18.336Z [INFO] GET /api/services
+2025-06-25T09:46:18.336Z [INFO] GET /api/services
+2025-06-25T09:46:18.337Z [INFO] GET /api/locations
+2025-06-25T09:46:18.337Z [INFO] GET /api/locations
+2025-06-25T09:46:18.469Z [INFO] OPTIONS /api/orders
+2025-06-25T09:46:18.471Z [INFO] GET /api/orders
+2025-06-25T09:46:18.471Z [INFO] GET /api/orders
+2025-06-25T09:46:18.490Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:46:18.491Z [INFO] GET /api/stats/appointments
+2025-06-25T09:46:18.492Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:46:19.731Z [INFO] GET /api/customers
+2025-06-25T09:46:19.732Z [INFO] GET /api/customers
+2025-06-25T09:46:19.733Z [INFO] GET /api/services
+2025-06-25T09:46:19.733Z [INFO] GET /api/services
+2025-06-25T09:46:19.734Z [INFO] GET /api/locations
+2025-06-25T09:46:19.734Z [INFO] GET /api/locations
+2025-06-25T09:46:19.744Z [INFO] GET /api/orders
+2025-06-25T09:46:19.744Z [INFO] GET /api/orders
+2025-06-25T09:46:19.776Z [INFO] GET /api/stats/appointments
+2025-06-25T09:46:19.777Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:46:29.670Z [INFO] OPTIONS /api/customers
+2025-06-25T09:46:29.670Z [INFO] OPTIONS /api/services
+2025-06-25T09:46:29.671Z [INFO] OPTIONS /api/locations
+2025-06-25T09:46:29.673Z [INFO] GET /api/customers
+2025-06-25T09:46:29.673Z [INFO] GET /api/customers
+2025-06-25T09:46:29.674Z [INFO] GET /api/services
+2025-06-25T09:46:29.674Z [INFO] GET /api/services
+2025-06-25T09:46:29.674Z [INFO] GET /api/locations
+2025-06-25T09:46:29.674Z [INFO] GET /api/locations
+2025-06-25T09:46:29.681Z [INFO] OPTIONS /api/orders
+2025-06-25T09:46:29.683Z [INFO] GET /api/orders
+2025-06-25T09:46:29.684Z [INFO] GET /api/orders
+2025-06-25T09:46:29.701Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:46:29.705Z [INFO] GET /api/stats/appointments
+2025-06-25T09:46:29.705Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T09:46:35.073Z [INFO] OPTIONS /api/customers
+2025-06-25T09:46:35.074Z [INFO] OPTIONS /api/services
+2025-06-25T09:46:35.075Z [INFO] OPTIONS /api/locations
+2025-06-25T09:46:35.077Z [INFO] GET /api/customers
+2025-06-25T09:46:35.077Z [INFO] GET /api/customers
+2025-06-25T09:46:35.078Z [INFO] GET /api/services
+2025-06-25T09:46:35.078Z [INFO] GET /api/services
+2025-06-25T09:46:35.079Z [INFO] GET /api/locations
+2025-06-25T09:46:35.079Z [INFO] GET /api/locations
+2025-06-25T09:46:35.089Z [INFO] OPTIONS /api/orders
+2025-06-25T09:46:35.091Z [INFO] GET /api/orders
+2025-06-25T09:46:35.091Z [INFO] GET /api/orders
+2025-06-25T09:46:35.117Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T09:46:35.119Z [INFO] GET /api/stats/appointments
+2025-06-25T09:46:35.120Z [WARN] Route not found: GET /api/stats/appointments

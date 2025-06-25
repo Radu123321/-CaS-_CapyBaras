@@ -329,6 +329,56 @@ async function getOrderStats(filters = {}) {
   }
 }
 
+async function getOrdersWithRecurrence() {
+  log.debug('OrderService: Getting orders with recurrence');
+  
+  try {
+    return await orderRepository.findWithRecurrence();
+  } catch (error) {
+    log.error(`OrderService: Failed to get orders with recurrence: ${error.message}`);
+    throw error;
+  }
+}
+
+async function getOrderAvailability(date, locationId = null, serviceId = null) {
+  log.debug(`OrderService: Getting order availability for ${date}`);
+  
+  try {
+    // Get available time slots for the given date
+    const availability = await orderRepository.getAvailability(date, locationId, serviceId);
+    
+    // Basic logic for time slots (can be enhanced based on business rules)
+    const timeSlots = [];
+    for (let hour = 8; hour <= 18; hour++) {
+      const timeSlot = `${hour.toString().padStart(2, '0')}:00`;
+      const isAvailable = !availability.some(order => 
+        order.scheduled_time === timeSlot && order.status !== 'CANCELLED'
+      );
+      
+      timeSlots.push({
+        time: timeSlot,
+        available: isAvailable,
+        capacity: isAvailable ? 5 : 0, // Basic capacity logic
+        orders_count: availability.filter(order => 
+          order.scheduled_time === timeSlot && order.status !== 'CANCELLED'
+        ).length
+      });
+    }
+    
+    return {
+      date,
+      locationId,
+      serviceId,
+      timeSlots,
+      totalSlots: timeSlots.length,
+      availableSlots: timeSlots.filter(slot => slot.available).length
+    };
+  } catch (error) {
+    log.error(`OrderService: Failed to get order availability: ${error.message}`);
+    throw error;
+  }
+}
+
 async function getOrderAvailability(date, locationId = null, serviceId = null) {
   log.debug(`OrderService: Getting order availability for ${date}`);
   
@@ -384,6 +434,7 @@ module.exports = {
   cancelOrder,
   searchOrders,
   getOrderStats,
+  getOrdersWithRecurrence,
   getOrderAvailability,
   VALID_ORDER_STATUSES
 }; 
