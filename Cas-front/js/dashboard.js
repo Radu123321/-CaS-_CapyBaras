@@ -642,11 +642,10 @@ class Dashboard {
   }
   
   handleOrderUpdate(order) {
-    // Refresh recent orders
+    // Only refresh recent orders, not entire dashboard stats
     this.loadRecentOrders();
     
-    // Update stats
-    this.loadDashboardStats();
+    console.log('Order update received via WebSocket, refreshing recent orders only');
   }
   
   handleSystemStatusUpdate(status) {
@@ -657,11 +656,15 @@ class Dashboard {
   // ===== PERIODIC REFRESH =====
   
   startPeriodicRefresh() {
-    // Refresh every 5 minutes
+    // Disabled automatic refresh - rely on WebSocket for real-time updates
+    // Only refresh manually or when WebSocket indicates changes
+    console.log('Periodic refresh disabled - using WebSocket for real-time updates');
+    
+    // Optional: Very infrequent refresh as fallback (every 10 minutes)
     this.refreshInterval = setInterval(() => {
-      this.loadDashboardStats();
-      this.loadSystemStatus();
-    }, 5 * 60 * 1000);
+      console.log('Fallback refresh triggered');
+      this.loadSystemStatus(); // Only load system status, not all dashboard data
+    }, 10 * 60 * 1000);
   }
   
   stopPeriodicRefresh() {

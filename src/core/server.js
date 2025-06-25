@@ -323,7 +323,7 @@ function serveStatic(filePath, res) {
       'Cache-Control': ext === '.html' ? 'no-cache, no-store, must-revalidate' : 'public, max-age=3600',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Cache-Control, Pragma, Expires',
       // Security headers
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
@@ -349,7 +349,7 @@ const server = http.createServer(async (req, res) => {
   // Add CORS headers for all requests
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Cache-Control, Pragma, Expires');
   
   // Add security headers for all requests
   res.setHeader('X-Content-Type-Options', 'nosniff');

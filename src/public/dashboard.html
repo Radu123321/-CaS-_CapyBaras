@@ -577,11 +577,13 @@
             // Set up event listeners
             document.getElementById('locationSelect').addEventListener('change', function() {
                 currentLocationId = this.value || null;
+                clearCache(); // Clear cache when location changes
                 refreshDashboard();
             });
             
             document.getElementById('periodSelect').addEventListener('change', function() {
                 currentPeriod = this.value;
+                clearCache(); // Clear cache when period changes
                 refreshDashboard();
             });
         });
@@ -626,16 +628,62 @@
             }
         }
         
+        // Cache for loaded data to avoid redundant requests
+        let dataCache = {
+            dashboard: null,
+            orders: null,
+            resources: null,
+            equipment: null,
+            employees: null,
+            weather: null,
+            alerts: null,
+            lastUpdate: null
+        };
+
+        // Check if data is fresh (less than 2 minutes old)
+        function isDataFresh(cacheKey) {
+            if (!dataCache[cacheKey] || !dataCache.lastUpdate) return false;
+            const now = Date.now();
+            const cacheAge = now - dataCache.lastUpdate;
+            return cacheAge < 2 * 60 * 1000; // 2 minutes
+        }
+
+        // Update cache
+        function updateCache(key, data) {
+            dataCache[key] = data;
+            dataCache.lastUpdate = Date.now();
+        }
+
+        // Enhanced WebSocket message handler
         function handleWebSocketMessage(data) {
-            // Handle real-time updates
+            console.log('WebSocket message received:', data);
+            
+            // Handle real-time updates and invalidate relevant cache
             if (data.type === 'stats_update') {
                 updateKPIs(data.data);
+                // Invalidate dashboard cache
+                dataCache.dashboard = null;
             } else if (data.type === 'alert') {
                 addAlert(data.data);
+                // Invalidate alerts cache
+                dataCache.alerts = null;
             } else if (data.type === 'order_update') {
-                // Refresh order-related charts
+                // Invalidate orders cache and refresh if orders tab is active
+                dataCache.orders = null;
                 if (document.querySelector('.tab-content.active').id === 'orders') {
                     loadOrdersData();
+                }
+            } else if (data.type === 'equipment_update') {
+                // Invalidate equipment cache
+                dataCache.equipment = null;
+                if (document.querySelector('.tab-content.active').id === 'equipment') {
+                    loadEquipmentData();
+                }
+            } else if (data.type === 'inventory_update') {
+                // Invalidate resources cache
+                dataCache.resources = null;
+                if (document.querySelector('.tab-content.active').id === 'resources') {
+                    loadResourcesData();
                 }
             }
         }
@@ -788,6 +836,11 @@
         
         async function loadOrdersData() {
             try {
+                if (isDataFresh('orders')) {
+                    console.log('Using cached orders data');
+                    return;
+                }
+
                 const params = new URLSearchParams();
                 if (currentLocationId) params.append('locationId', currentLocationId);
                 params.append('period', currentPeriod);
@@ -796,6 +849,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('orders', result.data);
                     createOrderVolumeChart(result.data.orders);
                     createAvgOrderValueChart(result.data.orders);
                     createProcessingTimeChart(result.data.orders);
@@ -808,6 +862,11 @@
         
         async function loadResourcesData() {
             try {
+                if (isDataFresh('resources')) {
+                    console.log('Using cached resources data');
+                    return;
+                }
+
                 const params = new URLSearchParams();
                 if (currentLocationId) params.append('locationId', currentLocationId);
                 params.append('period', currentPeriod);
@@ -816,6 +875,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('resources', result.data);
                     createResourceConsumptionChart(result.data.consumption);
                     createResourceEfficiencyChart(result.data.efficiency);
                     createUsagePatternsChart(result.data.patterns);
@@ -828,6 +888,11 @@
         
         async function loadEquipmentData() {
             try {
+                if (isDataFresh('equipment')) {
+                    console.log('Using cached equipment data');
+                    return;
+                }
+
                 const params = new URLSearchParams();
                 if (currentLocationId) params.append('locationId', currentLocationId);
                 
@@ -835,6 +900,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('equipment', result.data);
                     createEquipmentHealthChart(result.data.healthAnalysis);
                     createMaintenanceChart(result.data.maintenanceTrends);
                     createEquipmentEfficiencyChart(result.data.efficiency);
@@ -847,6 +913,11 @@
         
         async function loadEmployeesData() {
             try {
+                if (isDataFresh('employees')) {
+                    console.log('Using cached employees data');
+                    return;
+                }
+
                 const params = new URLSearchParams();
                 if (currentLocationId) params.append('locationId', currentLocationId);
                 params.append('period', currentPeriod);
@@ -855,6 +926,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('employees', result.data);
                     createEmployeeProductivityChart(result.data.productivity);
                     createPerformanceRankingChart(result.data.productivity);
                     createProductivityTrendsChart(result.data.productivity);
@@ -867,6 +939,11 @@
         
         async function loadWeatherData() {
             try {
+                if (isDataFresh('weather')) {
+                    console.log('Using cached weather data');
+                    return;
+                }
+
                 const params = new URLSearchParams();
                 if (currentLocationId) params.append('locationId', currentLocationId);
                 params.append('period', currentPeriod);
@@ -875,6 +952,7 @@
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('weather', result.data);
                     createWeatherImpactChart(result.data.weatherStats);
                     createTemperatureChart(result.data.weatherStats);
                     createWeatherConditionsChart(result.data.impactAnalysis);
@@ -887,10 +965,16 @@
         
         async function loadAlerts() {
             try {
+                if (isDataFresh('alerts')) {
+                    console.log('Using cached alerts data');
+                    return;
+                }
+
                 const response = await fetch('/api/alerts/history?limit=10');
                 const result = await response.json();
                 
                 if (result.success) {
+                    updateCache('alerts', result.data);
                     const alertsList = document.getElementById('alertsList');
                     alertsList.innerHTML = '';
                     
@@ -922,7 +1006,8 @@
                 autoRefreshInterval = null;
                 event.target.textContent = '⏱️ Auto Refresh';
             } else {
-                autoRefreshInterval = setInterval(refreshDashboard, 30000); // 30 seconds
+                // Increased interval to 5 minutes to reduce server load
+                autoRefreshInterval = setInterval(refreshDashboard, 5 * 60 * 1000); // 5 minutes instead of 30 seconds
                 event.target.textContent = '⏹️ Stop Auto';
             }
         }
