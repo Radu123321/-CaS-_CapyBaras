@@ -1,0 +1,79 @@
+Analizând enunțul proiectului și sistemul CaS (Cleaning and Services) existent, iată ce poate să facă fiecare tip de utilizator:
+
+## 👑 **ADMIN (Administrator Sistem)**
+
+### Managementul Complet al Sistemului
+- **Gestionarea utilizatorilor**: Creează, editează, șterge conturi pentru toate tipurile de utilizatori
+- **Configurarea sediilor**: Adaugă/modifică locații geografice, capacități, servicii oferite
+- **Managementul serviciilor**: Definește tipuri de servicii (covoare, autoturisme, îmbrăcăminte, altele)
+- **Configurarea sistemului**: Setări generale, parametri de monitorizare, praguri de alertă
+- **Rapoarte globale**: Statistici complete pentru toate sediile și activitățile
+- **Managementul resurselor**: Configurează tipuri de detergenti, echipamente, consumabile
+- **Monitorizare RSS**: Configurează și gestionează fluxurile RSS pentru fiecare sediu
+
+---
+
+## 👔 **MANAGER (Manager Sediu)**
+
+### Operațiuni Sediu Specific
+- **Monitorizarea sediului**: Vizualizează starea în timp real a sediului său
+- **Gestionarea comenzilor**: Aprobă, modifică, anulează comenzi pentru sediul său
+- **Planificarea activităților**: Programează servicii, inclusiv recurente
+- **Managementul echipei**: Atribuie sarcini angajaților, gestionează programul de lucru
+- **Gestiunea resurselor**: Monitorizează stocurile de detergenti, echipamente, consumabile
+- **Rapoarte sediu**: Statistici pentru sediul său (eficiență, venituri, utilizare resurse)
+- **Managementul transportului**: Organizează transportul de/la domiciliu
+- **Planificarea mentenanței**: Programează reparații și întreținerea echipamentelor
+
+---
+
+## 👷 **EMPLOYEE (Angajat Operațional)**
+
+### Activități Zilnice de Lucru
+- **Vizualizarea sarcinilor**: Vede comenzile atribuite pentru ziua curentă
+- **Actualizarea statusului**: Marchează comenzile ca în progres/finalizate
+- **Raportarea problemelor**: Semnalează defecțiuni echipamente, lipsuri materiale
+- **Gestionarea transportului**: Confirmă ridicarea/livrarea la domiciliu
+- **Înregistrarea consumului**: Raportează utilizarea detergentilor și materialelor
+- **Timesheet**: Înregistrează orele de lucru și activitățile desfășurate
+- **Notificări operaționale**: Primește alerte pentru comenzi urgente sau probleme
+
+---
+
+## 👤 **CUSTOMER (Client)**
+
+### Servicii Self-Service
+- **Programarea serviciilor**: Rezervă servicii pentru covoare, mașini, îmbrăcăminte
+- **Planificare recurentă**: Stabilește servicii regulate (săptămânal, lunar)
+- **Solicitarea transportului**: Programează ridicarea/livrarea la domiciliu
+- **Urmărirea comenzilor**: Monitorizează statusul serviciilor în timp real
+- **Istoric comenzi**: Vizualizează serviciile anterioare și facturarea
+- **Evaluarea serviciilor**: Oferă feedback și rating pentru serviciile primite
+- **Notificări personale**: Primește confirmări, actualizări status, facturi
+- **Selectarea sediului**: Alege sediul preferat în funcție de localizare și servicii
+
+---
+
+## 🔧 **Funcționalități Comune Sistem**
+
+### Monitorizare în Timp Real
+- **Dashboard personalizat** pentru fiecare tip de utilizator
+- **Notificări push** în browser pentru evenimente importante
+- **Alerte email** pentru situații de excepție (pană curent, personal indisponibil)
+- **Fluxuri RSS** pentru consultarea stării sediilor
+- **Integrare meteo** pentru adaptarea serviciilor la condițiile atmosferice
+
+### Raportare și Statistici
+- **Eficiența sediilor** în funcție de condiții meteo și uzura echipamentelor
+- **Consumul de resurse** (detergenti, apă, energie)
+- **Numărul de comenzi** per unitate de timp (zi/lună/an)
+- **Gradul de funcționalitate** al echipamentelor
+- **Statistici financiare** și de performanță
+
+### Gestionarea Excepțiilor
+- **Detectarea automată** a problemelor (echipamente defecte, stocuri epuizate)
+- **Notificări imediate** prin email și browser
+- **Planificarea reparațiilor** și întreținerii preventive
+- **Managementul situațiilor de urgență**
+
+Acest sistem oferă o soluție completă pentru managementul spalatoriilor cu funcționalități adaptate nevoilor fiecărui tip de utilizator, de la operațiuni zilnice la planificare strategică și monitorizare în timp real.

@@ -117,6 +117,12 @@ class Dashboard {
   getQuickActionsByRole(role) {
     const commonActions = [
       {
+        icon: '📅',
+        title: 'Calendar',
+        description: 'Vezi programările în calendar',
+        href: 'calendar.html'
+      },
+      {
         icon: '📊',
         title: 'Rapoarte',
         description: 'Vezi rapoarte și statistici',
@@ -146,16 +152,40 @@ class Dashboard {
           href: 'locations.html'
         },
         {
-          icon: '⚙️',
-          title: 'Configurări',
-          description: 'Setări de sistem',
-          href: 'settings.html'
+          icon: '📋',
+          title: 'Toate Comenzile',
+          description: 'Gestionează toate comenzile',
+          href: 'orders.html'
+        },
+        {
+          icon: '🗓️',
+          title: 'Programări',
+          description: 'Gestionează programările',
+          href: 'appointments.html'
         },
         {
           icon: '🔧',
           title: 'Echipamente',
           description: 'Gestionează echipamentele',
           href: 'equipment.html'
+        },
+        {
+          icon: '👷',
+          title: 'Angajați',
+          description: 'Gestionează echipa',
+          href: 'employees.html'
+        },
+        {
+          icon: '👥',
+          title: 'Clienți',
+          description: 'Gestionează clienții',
+          href: 'customers.html'
+        },
+        {
+          icon: '⚙️',
+          title: 'Configurări',
+          description: 'Setări de sistem',
+          href: 'settings.html'
         }
       ],
       'MANAGER': [
@@ -166,16 +196,40 @@ class Dashboard {
           href: 'orders.html'
         },
         {
+          icon: '🗓️',
+          title: 'Programări',
+          description: 'Gestionează programările',
+          href: 'appointments.html'
+        },
+        {
           icon: '👷',
           title: 'Echipa',
           description: 'Gestionează echipa',
-          href: 'team.html'
+          href: 'employees.html'
         },
         {
           icon: '🔧',
           title: 'Echipamente',
           description: 'Monitorizează echipamentele',
           href: 'equipment.html'
+        },
+        {
+          icon: '👥',
+          title: 'Clienți',
+          description: 'Gestionează clienții',
+          href: 'customers.html'
+        },
+        {
+          icon: '🏢',
+          title: 'Locații',
+          description: 'Vezi locațiile',
+          href: 'locations.html'
+        },
+        {
+          icon: '💰',
+          title: 'Venituri',
+          description: 'Rapoarte financiare',
+          href: 'revenue.html'
         }
       ],
       'EMPLOYEE': [
@@ -186,10 +240,72 @@ class Dashboard {
           href: 'my-orders.html'
         },
         {
+          icon: '🗓️',
+          title: 'Programul Meu',
+          description: 'Vezi programul de lucru',
+          href: 'my-schedule.html'
+        },
+        {
           icon: '✅',
-          title: 'Servicii',
+          title: 'Servicii Active',
           description: 'Actualizează serviciile',
-          href: 'services.html'
+          href: 'active-services.html'
+        },
+        {
+          icon: '⏰',
+          title: 'Pontaj',
+          description: 'Gestionează pontajul',
+          href: 'timesheet.html'
+        },
+        {
+          icon: '🔧',
+          title: 'Echipamente',
+          description: 'Vezi echipamentele',
+          href: 'equipment.html'
+        },
+        {
+          icon: '📝',
+          title: 'Rapoarte Zilnice',
+          description: 'Completează rapoarte',
+          href: 'daily-reports.html'
+        }
+      ],
+      'CUSTOMER': [
+        {
+          icon: '🗓️',
+          title: 'Programează Serviciu',
+          description: 'Creează o programare nouă',
+          href: 'book-service.html'
+        },
+        {
+          icon: '📋',
+          title: 'Comenzile Mele',
+          description: 'Vezi istoricul comenzilor',
+          href: 'my-orders.html'
+        },
+        {
+          icon: '💳',
+          title: 'Facturi',
+          description: 'Vezi facturile și plățile',
+          href: 'invoices.html'
+        },
+        {
+          icon: '⭐',
+          title: 'Evaluări',
+          description: 'Evaluează serviciile',
+          href: 'reviews.html'
+        },
+        {
+          icon: '🏢',
+          title: 'Locații',
+          description: 'Vezi locațiile disponibile',
+          href: 'locations.html'
+        },
+        {
+          icon: '📞',
+          title: 'Contact',
+          description: 'Contactează suportul',
+          href: 'contact.html'
         }
       ]
     };

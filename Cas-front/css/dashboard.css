@@ -43,7 +43,7 @@
 }
 
 .error-card h2 {
-  color: #e74c3c;
+  color: #ef4444;
   margin-bottom: 1rem;
 }
 
@@ -380,7 +380,7 @@
 }
 
 .status-indicator.offline {
-  background-color: #e74c3c;
+  background-color: #ef4444;
 }
 
 /* Notifications */
@@ -549,11 +549,11 @@
 }
 
 .logout-btn {
-  color: #e74c3c !important;
+  color: #ef4444 !important;
 }
 
 .logout-btn:hover {
-  background-color: #fee !important;
+  background-color: #fef2f2 !important;
 }
 
 /* Toast Notifications */
@@ -585,7 +585,7 @@
 }
 
 .toast.error {
-  border-left-color: #e74c3c;
+  border-left-color: #ef4444;
 }
 
 .toast.warning {

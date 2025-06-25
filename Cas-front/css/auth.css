@@ -93,8 +93,8 @@
 
 .form-group input.error,
 .form-group select.error {
-  border-color: #e74c3c;
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
 
 .form-group input.success,
@@ -157,7 +157,7 @@
 
 .strength-fill.weak {
   width: 25%;
-  background-color: #e74c3c;
+  background-color: #ef4444;
 }
 
 .strength-fill.fair {
@@ -390,7 +390,7 @@
 /* Error Messages */
 .error-message {
   display: block;
-  color: #e74c3c;
+  color: #ef4444;
   font-size: 0.8rem;
   margin-top: 0.25rem;
   min-height: 1rem;

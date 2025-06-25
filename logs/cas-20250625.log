@@ -5019,3 +5019,2088 @@
 2025-06-25T06:18:13.972Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
 2025-06-25T06:18:13.973Z [INFO] GET /api/stats/performance
 2025-06-25T06:18:13.973Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.367Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.368Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.387Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.388Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.391Z [INFO] GET /api/orders
+2025-06-25T06:18:14.401Z [INFO] GET /api/locations
+2025-06-25T06:18:14.402Z [INFO] GET /api/locations
+2025-06-25T06:18:14.403Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.404Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.404Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.405Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.407Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.408Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.408Z [INFO] GET /api/orders
+2025-06-25T06:18:14.421Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.422Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.424Z [INFO] GET /api/orders
+2025-06-25T06:18:14.424Z [INFO] GET /api/orders
+2025-06-25T06:18:14.425Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:14.426Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.428Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.429Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.433Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.435Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.436Z [INFO] GET /api/orders
+2025-06-25T06:18:14.438Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.439Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.440Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.441Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.443Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.445Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.446Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.449Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.451Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.451Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.453Z [INFO] GET /api/orders
+2025-06-25T06:18:14.454Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.454Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.455Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.456Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.456Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.457Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.458Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.458Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.459Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.459Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.461Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.462Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.463Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:14.464Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.464Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.465Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:14.467Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:14.469Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:14.472Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:14.472Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:32.158Z [INFO] OPTIONS /api/auth/login
+2025-06-25T06:18:32.160Z [INFO] POST /api/auth/login
+2025-06-25T06:18:32.160Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T06:18:32.339Z [INFO] AuthService: Successful login for client@cas.ro
+2025-06-25T06:18:32.340Z [INFO] Login: Success for user client@cas.ro
+2025-06-25T06:18:33.894Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:18:33.895Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:18:33.896Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:33.900Z [INFO] OPTIONS /api/orders
+2025-06-25T06:18:33.901Z [INFO] GET /api/orders
+2025-06-25T06:18:33.905Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:18:33.909Z [INFO] GET /api/stats/system-status
+2025-06-25T06:18:33.910Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:18:33.914Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:18:33.917Z [INFO] GET /api/notifications/recent
+2025-06-25T06:18:33.917Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:18:33.920Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:18:33.921Z [INFO] GET /api/stats/performance
+2025-06-25T06:18:33.922Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:19:05.035Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T06:19:05.036Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T06:19:05.037Z [INFO] Starting equipment status check...
+2025-06-25T06:19:05.087Z [ERROR] SQL error after 48ms: column em.ended_at does not exist
+2025-06-25T06:19:05.087Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T06:19:05.087Z [ERROR] Error checking equipment status:
+2025-06-25T06:19:05.088Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T06:19:05.088Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 09:20:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:19:05.088Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T06:19:05.088Z [INFO] Starting weather data update job...
+2025-06-25T06:19:05.089Z [INFO] Starting weather data update for all locations...
+2025-06-25T06:19:05.134Z [ERROR] Error updating weather data:
+2025-06-25T06:19:05.135Z [ERROR] Weather data update job failed:
+2025-06-25T06:19:05.135Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 09:20:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:19:05.135Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T06:19:05.135Z [INFO] Starting automated exception detection...
+2025-06-25T06:19:05.136Z [INFO] Running comprehensive exception detection...
+2025-06-25T06:19:05.137Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-25T06:19:05.137Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:19:05.138Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T06:19:05.197Z [ERROR] SQL error after 61ms: column o.id does not exist
+2025-06-25T06:19:05.197Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T06:19:05.198Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T06:19:05.200Z [ERROR] SQL error after 64ms: column l.id does not exist
+2025-06-25T06:19:05.200Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T06:19:05.200Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T06:19:05.281Z [ERROR] SQL error after 145ms: column l.id does not exist
+2025-06-25T06:19:05.282Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:19:05.282Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T06:19:05.282Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T06:19:05.283Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T06:19:05.283Z [INFO] - Staff issues: 0
+2025-06-25T06:19:05.283Z [INFO] - Power issues: 0
+2025-06-25T06:19:05.283Z [INFO] - Equipment issues: 0
+2025-06-25T06:19:05.283Z [INFO] - Transport issues: 0
+2025-06-25T06:19:05.284Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T06:19:05.284Z [INFO] Notification sent via websocket: notif_1750832345284_odh9qkq26
+2025-06-25T06:19:05.284Z [INFO] Exception detection completed successfully in 149ms
+2025-06-25T06:19:05.284Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 09:20:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:20:05.036Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T06:20:05.037Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T06:20:05.078Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T06:20:05.079Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 09:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:20:25.258Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:25.265Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:25.266Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:25.267Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:25.268Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.268Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.276Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.276Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.277Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.277Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.279Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.279Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.282Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.283Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.283Z [INFO] OPTIONS /api/locations
+2025-06-25T06:20:25.294Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:25.295Z [INFO] GET /api/locations
+2025-06-25T06:20:25.296Z [INFO] GET /api/locations
+2025-06-25T06:20:25.298Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:25.299Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:25.300Z [INFO] GET /api/orders
+2025-06-25T06:20:25.303Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:25.309Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:25.310Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.311Z [INFO] GET /api/orders
+2025-06-25T06:20:25.312Z [INFO] GET /api/orders
+2025-06-25T06:20:25.315Z [INFO] GET /api/orders
+2025-06-25T06:20:25.316Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:25.318Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:25.319Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.320Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.321Z [INFO] GET /api/orders
+2025-06-25T06:20:25.324Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.327Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.328Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:25.331Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.332Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.334Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.334Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.336Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:25.340Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.341Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.342Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.342Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.344Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:25.345Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.346Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.347Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.347Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.348Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:25.349Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.349Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.350Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.350Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.354Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.355Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.358Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.359Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.381Z [INFO] GET /api/orders
+2025-06-25T06:20:25.383Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.383Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.385Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:25.386Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.387Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.388Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.390Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:25.391Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:25.391Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.392Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:25.394Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:25.394Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.239Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:39.240Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:39.245Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.245Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.247Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.249Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.251Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.252Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.256Z [INFO] OPTIONS /api/locations
+2025-06-25T06:20:39.259Z [INFO] GET /api/locations
+2025-06-25T06:20:39.259Z [INFO] GET /api/locations
+2025-06-25T06:20:39.271Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:39.272Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:39.273Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:39.275Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.276Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.276Z [INFO] GET /api/orders
+2025-06-25T06:20:39.277Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.278Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.279Z [INFO] GET /api/orders
+2025-06-25T06:20:39.286Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:39.287Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.288Z [INFO] GET /api/orders
+2025-06-25T06:20:39.295Z [INFO] GET /api/orders
+2025-06-25T06:20:39.296Z [INFO] GET /api/orders
+2025-06-25T06:20:39.297Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:39.300Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:39.303Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:39.305Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.305Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.306Z [INFO] GET /api/orders
+2025-06-25T06:20:39.306Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.307Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.307Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.308Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.309Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.309Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.310Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:39.311Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:39.311Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:39.312Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.312Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.313Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.313Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.313Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.314Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.315Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.316Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.317Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:39.318Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.320Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.320Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.321Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:39.322Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.322Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.323Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:39.323Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.324Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.325Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:39.326Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:39.327Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.327Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.328Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.329Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.330Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.331Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.333Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.334Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:39.336Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:39.337Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.175Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.175Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.190Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.191Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.191Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.192Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.200Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.201Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.206Z [INFO] GET /api/orders
+2025-06-25T06:20:44.209Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.210Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.211Z [INFO] GET /api/locations
+2025-06-25T06:20:44.211Z [INFO] GET /api/locations
+2025-06-25T06:20:44.219Z [INFO] GET /api/orders
+2025-06-25T06:20:44.223Z [INFO] GET /api/orders
+2025-06-25T06:20:44.226Z [INFO] GET /api/orders
+2025-06-25T06:20:44.227Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:44.228Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.232Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.232Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.238Z [INFO] GET /api/orders
+2025-06-25T06:20:44.245Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.246Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.247Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.247Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.249Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.250Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.256Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.257Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.258Z [INFO] GET /api/orders
+2025-06-25T06:20:44.258Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.258Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.259Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.259Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.260Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.260Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.261Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.262Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.262Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.262Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.262Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.263Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.265Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.266Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.267Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.267Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.268Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:44.270Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.272Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.273Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.274Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.274Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:44.275Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:44.276Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:44.279Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:44.279Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.062Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:45.064Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:45.070Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.071Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.074Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:20:45.074Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.075Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.077Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.077Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.078Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.078Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.098Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:45.101Z [INFO] OPTIONS /api/locations
+2025-06-25T06:20:45.104Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:45.105Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:45.107Z [INFO] OPTIONS /api/orders
+2025-06-25T06:20:45.109Z [INFO] GET /api/orders
+2025-06-25T06:20:45.110Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.111Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.112Z [INFO] GET /api/locations
+2025-06-25T06:20:45.112Z [INFO] GET /api/locations
+2025-06-25T06:20:45.113Z [INFO] GET /api/orders
+2025-06-25T06:20:45.114Z [INFO] GET /api/orders
+2025-06-25T06:20:45.116Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:20:45.118Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.125Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:45.127Z [INFO] GET /api/orders
+2025-06-25T06:20:45.128Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.129Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.130Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:20:45.136Z [INFO] GET /api/orders
+2025-06-25T06:20:45.137Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.138Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.139Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:45.141Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.141Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.141Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.142Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.144Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:20:45.144Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.145Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.145Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.146Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.146Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:45.148Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.150Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.151Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.153Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.155Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.156Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.156Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:45.158Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:20:45.159Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.160Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.161Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.161Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.163Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.164Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.273Z [INFO] GET /api/orders
+2025-06-25T06:20:45.274Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.275Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.277Z [INFO] GET /api/stats/system-status
+2025-06-25T06:20:45.277Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.278Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.279Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.280Z [INFO] GET /api/notifications/recent
+2025-06-25T06:20:45.281Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:20:45.284Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.285Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:20:45.287Z [INFO] GET /api/stats/performance
+2025-06-25T06:20:45.288Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:21:05.037Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T06:21:05.037Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T06:21:05.038Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T06:21:05.039Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 09:25:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:21:05.039Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T06:21:05.039Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T06:21:05.039Z [INFO] Starting equipment status check...
+2025-06-25T06:21:05.040Z [ERROR] SQL error after 0ms: column em.ended_at does not exist
+2025-06-25T06:21:05.041Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T06:21:05.041Z [ERROR] Error checking equipment status:
+2025-06-25T06:21:05.041Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T06:21:05.041Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 09:22:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:21:05.041Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T06:21:05.042Z [INFO] Starting weather data update job...
+2025-06-25T06:21:05.042Z [INFO] Starting weather data update for all locations...
+2025-06-25T06:21:05.046Z [ERROR] Error updating weather data:
+2025-06-25T06:21:05.047Z [ERROR] Weather data update job failed:
+2025-06-25T06:21:05.047Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 09:22:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:21:05.047Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T06:21:05.048Z [INFO] Starting automated exception detection...
+2025-06-25T06:21:05.048Z [INFO] Running comprehensive exception detection...
+2025-06-25T06:21:05.050Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-25T06:21:05.051Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:21:05.051Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T06:21:05.052Z [ERROR] SQL error after 3ms: column l.id does not exist
+2025-06-25T06:21:05.053Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:21:05.053Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T06:21:05.107Z [ERROR] SQL error after 58ms: column o.id does not exist
+2025-06-25T06:21:05.107Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T06:21:05.108Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T06:21:05.109Z [ERROR] SQL error after 60ms: column l.id does not exist
+2025-06-25T06:21:05.110Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T06:21:05.110Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T06:21:05.111Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T06:21:05.112Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T06:21:05.112Z [INFO] - Staff issues: 0
+2025-06-25T06:21:05.112Z [INFO] - Power issues: 0
+2025-06-25T06:21:05.113Z [INFO] - Equipment issues: 0
+2025-06-25T06:21:05.113Z [INFO] - Transport issues: 0
+2025-06-25T06:21:05.113Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T06:21:05.114Z [INFO] Notification sent via websocket: notif_1750832465113_1occg74ug
+2025-06-25T06:21:05.114Z [INFO] Exception detection completed successfully in 66ms
+2025-06-25T06:21:05.115Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 09:22:05 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.180Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T06:31:45.207Z [INFO] AlertService: SMTP client initialized
+2025-06-25T06:31:45.214Z [INFO] Minimal server listening on port 8000
+2025-06-25T06:31:45.218Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 09:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.218Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 10:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.219Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 09:32:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.219Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 09:32:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.219Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.219Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 09:32:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:45.220Z [INFO] Scheduler: Starting...
+2025-06-25T06:31:45.220Z [INFO] Scheduler: Started successfully
+2025-06-25T06:31:45.220Z [INFO] Server and scheduler started successfully
+2025-06-25T06:31:45.273Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 09:31:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:31:59.005Z [INFO] OPTIONS /api/auth/login
+2025-06-25T06:31:59.009Z [INFO] POST /api/auth/login
+2025-06-25T06:31:59.011Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T06:31:59.201Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T06:31:59.201Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T06:32:00.743Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:32:00.746Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:32:00.747Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:00.756Z [INFO] OPTIONS /api/orders
+2025-06-25T06:32:00.758Z [INFO] GET /api/orders
+2025-06-25T06:32:00.773Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:32:00.777Z [INFO] GET /api/stats/system-status
+2025-06-25T06:32:00.778Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:00.781Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:32:00.783Z [INFO] GET /api/notifications/recent
+2025-06-25T06:32:00.784Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:32:00.789Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:32:00.792Z [INFO] GET /api/stats/performance
+2025-06-25T06:32:00.793Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:04.098Z [INFO] OPTIONS /api/orders
+2025-06-25T06:32:04.102Z [INFO] OPTIONS /api/customers
+2025-06-25T06:32:04.105Z [INFO] OPTIONS /api/services
+2025-06-25T06:32:04.106Z [INFO] OPTIONS /api/locations
+2025-06-25T06:32:04.107Z [INFO] GET /api/orders
+2025-06-25T06:32:04.110Z [INFO] GET /api/customers
+2025-06-25T06:32:04.115Z [INFO] GET /api/customers
+2025-06-25T06:32:04.117Z [INFO] GET /api/services
+2025-06-25T06:32:04.118Z [INFO] GET /api/services
+2025-06-25T06:32:04.121Z [INFO] GET /api/locations
+2025-06-25T06:32:04.122Z [INFO] GET /api/locations
+2025-06-25T06:32:32.310Z [INFO] OPTIONS /api/orders
+2025-06-25T06:32:32.311Z [INFO] POST /api/orders
+2025-06-25T06:32:32.312Z [ERROR] OrderController: Create order failed: customer_id, location_id, and order_items are required
+2025-06-25T06:32:34.044Z [INFO] POST /api/orders
+2025-06-25T06:32:34.045Z [ERROR] OrderController: Create order failed: customer_id, location_id, and order_items are required
+2025-06-25T06:32:45.221Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T06:32:45.222Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T06:32:45.222Z [INFO] Starting equipment status check...
+2025-06-25T06:32:45.265Z [ERROR] SQL error after 43ms: column em.ended_at does not exist
+2025-06-25T06:32:45.266Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T06:32:45.266Z [ERROR] Error checking equipment status:
+2025-06-25T06:32:45.267Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T06:32:45.267Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 09:33:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:32:45.267Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T06:32:45.268Z [INFO] Starting weather data update job...
+2025-06-25T06:32:45.268Z [INFO] Starting weather data update for all locations...
+2025-06-25T06:32:45.313Z [ERROR] Error updating weather data:
+2025-06-25T06:32:45.314Z [ERROR] Weather data update job failed:
+2025-06-25T06:32:45.315Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 09:33:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:32:45.315Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T06:32:45.315Z [INFO] Starting automated exception detection...
+2025-06-25T06:32:45.316Z [INFO] Running comprehensive exception detection...
+2025-06-25T06:32:45.320Z [ERROR] SQL error after 3ms: column l.id does not exist
+2025-06-25T06:32:45.320Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:32:45.321Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T06:32:45.381Z [ERROR] SQL error after 64ms: column l.id does not exist
+2025-06-25T06:32:45.381Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:32:45.382Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T06:32:45.384Z [ERROR] SQL error after 67ms: column o.id does not exist
+2025-06-25T06:32:45.384Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T06:32:45.385Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T06:32:45.385Z [ERROR] SQL error after 68ms: column l.id does not exist
+2025-06-25T06:32:45.386Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T06:32:45.386Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T06:32:45.387Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T06:32:45.387Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T06:32:45.387Z [INFO] - Staff issues: 0
+2025-06-25T06:32:45.387Z [INFO] - Power issues: 0
+2025-06-25T06:32:45.388Z [INFO] - Equipment issues: 0
+2025-06-25T06:32:45.388Z [INFO] - Transport issues: 0
+2025-06-25T06:32:45.389Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T06:32:45.389Z [INFO] Notification sent via websocket: notif_1750833165389_wprrcbj3f
+2025-06-25T06:32:45.390Z [INFO] Exception detection completed successfully in 75ms
+2025-06-25T06:32:45.390Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 09:33:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:32:49.729Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:32:49.743Z [INFO] OPTIONS /api/orders
+2025-06-25T06:32:49.747Z [INFO] GET /api/orders
+2025-06-25T06:32:49.815Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:32:49.817Z [INFO] GET /api/stats/system-status
+2025-06-25T06:32:49.818Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:49.820Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:32:49.822Z [INFO] GET /api/notifications/recent
+2025-06-25T06:32:49.823Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:32:49.825Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:32:49.827Z [INFO] GET /api/stats/performance
+2025-06-25T06:32:49.828Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:51.876Z [INFO] OPTIONS /api/locations
+2025-06-25T06:32:51.877Z [INFO] GET /api/locations
+2025-06-25T06:32:51.878Z [INFO] GET /api/locations
+2025-06-25T06:32:54.324Z [INFO] GET /api/orders
+2025-06-25T06:32:54.332Z [INFO] GET /api/stats/system-status
+2025-06-25T06:32:54.332Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:54.336Z [INFO] GET /api/notifications/recent
+2025-06-25T06:32:54.337Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:32:54.347Z [INFO] GET /api/stats/performance
+2025-06-25T06:32:54.348Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:57.110Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:32:57.121Z [INFO] OPTIONS /api/orders
+2025-06-25T06:32:57.123Z [INFO] GET /api/orders
+2025-06-25T06:32:57.128Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:32:57.131Z [INFO] GET /api/stats/system-status
+2025-06-25T06:32:57.132Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:57.137Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:32:57.139Z [INFO] GET /api/notifications/recent
+2025-06-25T06:32:57.140Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:32:57.145Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:32:57.147Z [INFO] GET /api/stats/performance
+2025-06-25T06:32:57.147Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:59.507Z [INFO] GET /api/orders
+2025-06-25T06:32:59.511Z [INFO] GET /api/stats/system-status
+2025-06-25T06:32:59.512Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:32:59.517Z [INFO] GET /api/notifications/recent
+2025-06-25T06:32:59.517Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:32:59.520Z [INFO] GET /api/stats/performance
+2025-06-25T06:32:59.521Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:00.406Z [INFO] OPTIONS /api/orders
+2025-06-25T06:33:00.410Z [INFO] OPTIONS /api/customers
+2025-06-25T06:33:00.411Z [INFO] OPTIONS /api/services
+2025-06-25T06:33:00.412Z [INFO] OPTIONS /api/locations
+2025-06-25T06:33:00.414Z [INFO] GET /api/orders
+2025-06-25T06:33:00.417Z [INFO] GET /api/customers
+2025-06-25T06:33:00.419Z [INFO] GET /api/customers
+2025-06-25T06:33:00.420Z [INFO] GET /api/services
+2025-06-25T06:33:00.421Z [INFO] GET /api/services
+2025-06-25T06:33:00.425Z [INFO] GET /api/locations
+2025-06-25T06:33:00.426Z [INFO] GET /api/locations
+2025-06-25T06:33:02.328Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:33:02.343Z [INFO] OPTIONS /api/orders
+2025-06-25T06:33:02.345Z [INFO] GET /api/orders
+2025-06-25T06:33:02.360Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:33:02.362Z [INFO] GET /api/stats/system-status
+2025-06-25T06:33:02.363Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:02.365Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:33:02.367Z [INFO] GET /api/notifications/recent
+2025-06-25T06:33:02.368Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:33:02.372Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:33:02.374Z [INFO] GET /api/stats/performance
+2025-06-25T06:33:02.375Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:05.152Z [INFO] GET /api/orders
+2025-06-25T06:33:05.156Z [INFO] GET /api/stats/system-status
+2025-06-25T06:33:05.157Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:05.159Z [INFO] GET /api/notifications/recent
+2025-06-25T06:33:05.160Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:33:05.166Z [INFO] GET /api/stats/performance
+2025-06-25T06:33:05.167Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:09.274Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:33:09.288Z [INFO] OPTIONS /api/orders
+2025-06-25T06:33:09.291Z [INFO] GET /api/orders
+2025-06-25T06:33:09.299Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:33:09.301Z [INFO] GET /api/stats/system-status
+2025-06-25T06:33:09.302Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:33:09.307Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:33:09.310Z [INFO] GET /api/notifications/recent
+2025-06-25T06:33:09.311Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:33:09.313Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:33:09.315Z [INFO] GET /api/stats/performance
+2025-06-25T06:33:09.315Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:34:45.235Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T06:34:45.237Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T06:34:45.238Z [INFO] Starting equipment status check...
+2025-06-25T06:34:45.286Z [ERROR] SQL error after 47ms: column em.ended_at does not exist
+2025-06-25T06:34:45.287Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T06:34:45.287Z [ERROR] Error checking equipment status:
+2025-06-25T06:34:45.288Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T06:34:45.288Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 09:35:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:34:45.288Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T06:34:45.288Z [INFO] Starting weather data update job...
+2025-06-25T06:34:45.289Z [INFO] Starting weather data update for all locations...
+2025-06-25T06:34:45.336Z [ERROR] Error updating weather data:
+2025-06-25T06:34:45.337Z [ERROR] Weather data update job failed:
+2025-06-25T06:34:45.337Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 09:35:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:34:45.337Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T06:34:45.338Z [INFO] Starting automated exception detection...
+2025-06-25T06:34:45.338Z [INFO] Running comprehensive exception detection...
+2025-06-25T06:34:45.340Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-25T06:34:45.340Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:34:45.341Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T06:34:45.399Z [ERROR] SQL error after 60ms: column l.id does not exist
+2025-06-25T06:34:45.400Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T06:34:45.400Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T06:34:45.403Z [ERROR] SQL error after 64ms: column l.id does not exist
+2025-06-25T06:34:45.404Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T06:34:45.405Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T06:34:45.408Z [ERROR] SQL error after 69ms: column o.id does not exist
+2025-06-25T06:34:45.408Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T06:34:45.409Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T06:34:45.409Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T06:34:45.409Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T06:34:45.410Z [INFO] - Staff issues: 0
+2025-06-25T06:34:45.410Z [INFO] - Power issues: 0
+2025-06-25T06:34:45.410Z [INFO] - Equipment issues: 0
+2025-06-25T06:34:45.411Z [INFO] - Transport issues: 0
+2025-06-25T06:34:45.412Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T06:34:45.412Z [INFO] Notification sent via websocket: notif_1750833285411_s5smg4cqf
+2025-06-25T06:34:45.413Z [INFO] Exception detection completed successfully in 74ms
+2025-06-25T06:34:45.413Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 09:35:45 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:35:20.668Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:35:20.675Z [INFO] OPTIONS /api/orders
+2025-06-25T06:35:20.678Z [INFO] GET /api/orders
+2025-06-25T06:35:20.832Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:35:20.833Z [INFO] GET /api/stats/system-status
+2025-06-25T06:35:20.834Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:20.836Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:35:20.837Z [INFO] GET /api/notifications/recent
+2025-06-25T06:35:20.838Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:35:20.841Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:35:20.843Z [INFO] GET /api/stats/performance
+2025-06-25T06:35:20.844Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:27.614Z [INFO] OPTIONS /api/auth/logout
+2025-06-25T06:35:27.615Z [INFO] POST /api/auth/logout
+2025-06-25T06:35:27.616Z [INFO] POST /api/auth/logout
+2025-06-25T06:35:27.617Z [INFO] AuthService: Successful logout
+2025-06-25T06:35:33.728Z [INFO] OPTIONS /api/auth/login
+2025-06-25T06:35:33.730Z [INFO] POST /api/auth/login
+2025-06-25T06:35:33.730Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T06:35:33.929Z [INFO] AuthService: Successful login for manager@cas.ro
+2025-06-25T06:35:33.930Z [INFO] Login: Success for user manager@cas.ro
+2025-06-25T06:35:35.480Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:35:35.482Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:35:35.483Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:35.490Z [INFO] OPTIONS /api/orders
+2025-06-25T06:35:35.493Z [INFO] GET /api/orders
+2025-06-25T06:35:35.500Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:35:35.504Z [INFO] GET /api/stats/system-status
+2025-06-25T06:35:35.505Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:35.510Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:35:35.513Z [INFO] GET /api/notifications/recent
+2025-06-25T06:35:35.513Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:35:35.517Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:35:35.518Z [INFO] GET /api/stats/performance
+2025-06-25T06:35:35.519Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:39.943Z [INFO] GET /api/orders
+2025-06-25T06:35:39.949Z [INFO] GET /api/stats/system-status
+2025-06-25T06:35:39.949Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:39.951Z [INFO] GET /api/notifications/recent
+2025-06-25T06:35:39.952Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:35:39.954Z [INFO] GET /api/stats/performance
+2025-06-25T06:35:39.955Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:42.331Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:35:42.341Z [INFO] OPTIONS /api/orders
+2025-06-25T06:35:42.345Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:35:42.347Z [INFO] GET /api/stats/system-status
+2025-06-25T06:35:42.348Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:42.353Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:35:42.357Z [INFO] GET /api/notifications/recent
+2025-06-25T06:35:42.359Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:35:42.362Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:35:42.364Z [INFO] GET /api/stats/performance
+2025-06-25T06:35:42.364Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:45.234Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T06:35:45.235Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T06:35:45.236Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T06:35:45.236Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 09:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:35:45.730Z [INFO] OPTIONS /api/locations
+2025-06-25T06:35:45.733Z [INFO] GET /api/locations
+2025-06-25T06:35:45.734Z [INFO] GET /api/locations
+2025-06-25T06:35:48.226Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:35:48.242Z [INFO] OPTIONS /api/orders
+2025-06-25T06:35:48.245Z [INFO] GET /api/orders
+2025-06-25T06:35:48.252Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:35:48.256Z [INFO] GET /api/stats/system-status
+2025-06-25T06:35:48.257Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:48.262Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:35:48.263Z [INFO] GET /api/notifications/recent
+2025-06-25T06:35:48.264Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:35:48.266Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:35:48.267Z [INFO] GET /api/stats/performance
+2025-06-25T06:35:48.268Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:35:49.024Z [INFO] OPTIONS /api/customers
+2025-06-25T06:35:49.027Z [INFO] GET /api/customers
+2025-06-25T06:35:49.027Z [INFO] GET /api/customers
+2025-06-25T06:35:49.032Z [INFO] OPTIONS /api/services
+2025-06-25T06:35:49.039Z [INFO] GET /api/services
+2025-06-25T06:35:49.041Z [INFO] GET /api/services
+2025-06-25T06:35:49.045Z [INFO] GET /api/locations
+2025-06-25T06:35:49.046Z [INFO] GET /api/locations
+2025-06-25T06:35:49.197Z [INFO] OPTIONS /api/orders
+2025-06-25T06:35:49.198Z [INFO] GET /api/orders
+2025-06-25T06:35:49.204Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T06:35:49.205Z [INFO] GET /api/stats/appointments
+2025-06-25T06:35:49.206Z [WARN] Route not found: GET /api/stats/appointments
+2025-06-25T06:36:08.785Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:36:08.799Z [INFO] OPTIONS /api/orders
+2025-06-25T06:36:08.802Z [INFO] GET /api/orders
+2025-06-25T06:36:08.809Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:36:08.811Z [INFO] GET /api/stats/system-status
+2025-06-25T06:36:08.812Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:36:08.816Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:36:08.820Z [INFO] GET /api/notifications/recent
+2025-06-25T06:36:08.821Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:36:08.824Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:36:08.826Z [INFO] GET /api/stats/performance
+2025-06-25T06:36:08.826Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:36:28.992Z [INFO] OPTIONS /api/equipment
+2025-06-25T06:36:28.995Z [INFO] OPTIONS /api/locations
+2025-06-25T06:43:21.598Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T06:43:21.625Z [INFO] AlertService: SMTP client initialized
+2025-06-25T06:43:21.634Z [INFO] Minimal server listening on port 8000
+2025-06-25T06:43:21.637Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 09:45:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.638Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 10:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.638Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 09:44:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.638Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 09:44:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.639Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.639Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 09:44:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:21.639Z [INFO] Scheduler: Starting...
+2025-06-25T06:43:21.639Z [INFO] Scheduler: Started successfully
+2025-06-25T06:43:21.639Z [INFO] Server and scheduler started successfully
+2025-06-25T06:43:21.645Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:43:21.651Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:43:21.653Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:43:21.655Z [INFO] GET /api/stats/system-status
+2025-06-25T06:43:21.656Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:21.658Z [INFO] GET /api/notifications/recent
+2025-06-25T06:43:21.659Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:43:21.660Z [INFO] GET /api/stats/system-status
+2025-06-25T06:43:21.661Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:21.662Z [INFO] GET /api/notifications/recent
+2025-06-25T06:43:21.663Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:43:21.664Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:43:21.665Z [INFO] GET /api/notifications/recent
+2025-06-25T06:43:21.666Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:43:21.667Z [INFO] GET /api/stats/performance
+2025-06-25T06:43:21.668Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:21.671Z [INFO] GET /api/stats/performance
+2025-06-25T06:43:21.672Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:21.675Z [INFO] GET /api/stats/performance
+2025-06-25T06:43:21.676Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:21.698Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 09:43:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:43:32.644Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:43:32.648Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:43:32.651Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:43:32.688Z [INFO] OPTIONS /api/equipment
+2025-06-25T06:43:32.692Z [INFO] OPTIONS /api/locations
+2025-06-25T06:43:32.705Z [INFO] OPTIONS /api/orders
+2025-06-25T06:43:32.712Z [INFO] GET /api/equipment
+2025-06-25T06:52:21.411Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T06:52:21.437Z [INFO] AlertService: SMTP client initialized
+2025-06-25T06:52:21.446Z [INFO] Minimal server listening on port 8000
+2025-06-25T06:52:21.449Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 09:55:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.450Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 10:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.450Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 09:53:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.450Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 09:53:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.450Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.450Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 09:53:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:21.451Z [INFO] Scheduler: Starting...
+2025-06-25T06:52:21.451Z [INFO] Scheduler: Started successfully
+2025-06-25T06:52:21.451Z [INFO] Server and scheduler started successfully
+2025-06-25T06:52:21.499Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 09:52:21 GMT+0300 (Eastern European Summer Time)
+2025-06-25T06:52:46.898Z [INFO] OPTIONS /api/auth/login
+2025-06-25T06:52:46.903Z [INFO] POST /api/auth/login
+2025-06-25T06:52:46.905Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T06:52:47.096Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T06:52:47.097Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T06:52:48.647Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T06:52:48.651Z [INFO] GET /api/stats/dashboard
+2025-06-25T06:52:48.652Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:52:48.657Z [INFO] OPTIONS /api/orders
+2025-06-25T06:52:48.659Z [INFO] GET /api/orders
+2025-06-25T06:52:48.676Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T06:52:48.679Z [INFO] GET /api/stats/system-status
+2025-06-25T06:52:48.680Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:52:48.685Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T06:52:48.688Z [INFO] GET /api/notifications/recent
+2025-06-25T06:52:48.689Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:52:48.693Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T06:52:48.696Z [INFO] GET /api/stats/performance
+2025-06-25T06:52:48.697Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:52:52.922Z [INFO] GET /api/orders
+2025-06-25T06:52:52.931Z [INFO] GET /api/stats/system-status
+2025-06-25T06:52:52.932Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:52:52.938Z [INFO] GET /api/notifications/recent
+2025-06-25T06:52:52.939Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T06:52:52.943Z [INFO] GET /api/stats/performance
+2025-06-25T06:52:52.945Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T06:52:54.879Z [INFO] OPTIONS /api/equipment
+2025-06-25T06:52:54.882Z [INFO] OPTIONS /api/locations
+2025-06-25T06:52:54.884Z [INFO] GET /api/equipment
+2025-06-25T07:00:18.923Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T07:00:18.952Z [INFO] AlertService: SMTP client initialized
+2025-06-25T07:00:18.963Z [INFO] Minimal server listening on port 3000
+2025-06-25T07:00:18.967Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 10:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.967Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 11:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.968Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 10:01:18 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.968Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 10:01:18 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.968Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.968Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 10:01:18 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:18.969Z [INFO] Scheduler: Starting...
+2025-06-25T07:00:18.969Z [INFO] Scheduler: Started successfully
+2025-06-25T07:00:18.969Z [INFO] Server and scheduler started successfully
+2025-06-25T07:00:19.130Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 10:00:19 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:00:19.143Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:19.143Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:19.158Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:19.158Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:19.948Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:19.948Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:21.928Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:21.929Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:24.938Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:24.939Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:24.966Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:24.967Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:25.936Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:25.937Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:27.938Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:27.938Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:30.928Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:30.928Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:30.941Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:30.942Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:31.940Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:31.940Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:33.932Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:33.932Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:36.937Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:36.937Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:36.951Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:36.951Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:37.930Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:37.931Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:39.929Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:39.929Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:42.939Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:42.939Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:42.952Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:42.952Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:43.929Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:43.929Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:45.933Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:45.934Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:48.931Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:48.931Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:00:48.945Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:00:48.946Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:07.604Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T07:01:07.628Z [INFO] AlertService: SMTP client initialized
+2025-06-25T07:01:07.634Z [INFO] Minimal server listening on port 3000
+2025-06-25T07:01:07.637Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 10:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.638Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 11:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.638Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 10:02:07 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.639Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 10:02:07 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.639Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.639Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 10:02:07 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.640Z [INFO] Scheduler: Starting...
+2025-06-25T07:01:07.640Z [INFO] Scheduler: Started successfully
+2025-06-25T07:01:07.641Z [INFO] Server and scheduler started successfully
+2025-06-25T07:01:07.685Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 10:01:07 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:01:07.768Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:07.769Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:08.944Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:08.945Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:10.952Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:10.953Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:12.932Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:12.932Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:12.947Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:12.947Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:14.948Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:14.948Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:16.970Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:16.971Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:18.148Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:18.148Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:18.956Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:18.956Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:20.941Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:20.942Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:22.951Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:22.952Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:24.966Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:24.967Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:26.968Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:26.968Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:28.995Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:28.996Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:30.999Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:31.000Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:33.013Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:33.014Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:34.990Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:34.991Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:36.970Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:36.970Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:39.089Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:39.090Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:41.060Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:41.060Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:43.115Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:43.116Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:45.027Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:45.027Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:47.064Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:47.064Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:49.247Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:49.247Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:51.313Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:51.313Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:53.610Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:53.611Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:55.999Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:55.999Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:01:57.199Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:01:57.199Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:02:01.329Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:02:01.330Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:02:03.003Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:02:03.004Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:02:03.468Z [INFO] WebSocket upgrade request: /
+2025-06-25T07:02:03.468Z [WARN] WebSocket upgrade rejected for path: /
+2025-06-25T07:02:11.141Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T07:02:11.163Z [INFO] AlertService: SMTP client initialized
+2025-06-25T07:02:11.173Z [INFO] Minimal server listening on port 8000
+2025-06-25T07:02:11.179Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 10:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.180Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 11:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.180Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 10:03:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.181Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 10:03:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.181Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.181Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 10:03:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:11.182Z [INFO] Scheduler: Starting...
+2025-06-25T07:02:11.182Z [INFO] Scheduler: Started successfully
+2025-06-25T07:02:11.182Z [INFO] Server and scheduler started successfully
+2025-06-25T07:02:11.232Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 10:02:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:02:21.772Z [INFO] OPTIONS /api/auth/login
+2025-06-25T07:02:21.777Z [INFO] POST /api/auth/login
+2025-06-25T07:02:21.778Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T07:02:21.969Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T07:02:21.969Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T07:02:23.507Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:02:23.509Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:02:23.510Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:23.515Z [INFO] OPTIONS /api/orders
+2025-06-25T07:02:23.517Z [INFO] GET /api/orders
+2025-06-25T07:02:23.532Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:02:23.535Z [INFO] GET /api/stats/system-status
+2025-06-25T07:02:23.537Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:23.543Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:02:23.545Z [INFO] GET /api/notifications/recent
+2025-06-25T07:02:23.546Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:02:23.550Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:02:23.554Z [INFO] GET /api/stats/performance
+2025-06-25T07:02:23.555Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:26.770Z [INFO] OPTIONS /api/orders
+2025-06-25T07:02:26.771Z [INFO] OPTIONS /api/customers
+2025-06-25T07:02:26.772Z [INFO] OPTIONS /api/services
+2025-06-25T07:02:26.774Z [INFO] OPTIONS /api/locations
+2025-06-25T07:02:26.775Z [INFO] GET /api/orders
+2025-06-25T07:02:26.777Z [INFO] GET /api/customers
+2025-06-25T07:02:26.779Z [INFO] GET /api/customers
+2025-06-25T07:02:26.783Z [INFO] GET /api/services
+2025-06-25T07:02:26.785Z [INFO] GET /api/services
+2025-06-25T07:02:26.788Z [INFO] GET /api/locations
+2025-06-25T07:02:26.788Z [INFO] GET /api/locations
+2025-06-25T07:02:48.458Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:02:48.475Z [INFO] OPTIONS /api/orders
+2025-06-25T07:02:48.477Z [INFO] GET /api/orders
+2025-06-25T07:02:48.489Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:02:48.492Z [INFO] GET /api/stats/system-status
+2025-06-25T07:02:48.494Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:48.499Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:02:48.501Z [INFO] GET /api/notifications/recent
+2025-06-25T07:02:48.502Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:02:48.506Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:02:48.508Z [INFO] GET /api/stats/performance
+2025-06-25T07:02:48.510Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:48.856Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:02:48.857Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:48.864Z [INFO] GET /api/orders
+2025-06-25T07:02:48.873Z [INFO] GET /api/stats/system-status
+2025-06-25T07:02:48.874Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:48.881Z [INFO] GET /api/notifications/recent
+2025-06-25T07:02:48.882Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:02:48.888Z [INFO] GET /api/stats/performance
+2025-06-25T07:02:48.890Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:49.344Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:02:49.345Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:49.355Z [INFO] GET /api/orders
+2025-06-25T07:02:49.362Z [INFO] GET /api/stats/system-status
+2025-06-25T07:02:49.363Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:49.371Z [INFO] GET /api/notifications/recent
+2025-06-25T07:02:49.373Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:02:49.378Z [INFO] GET /api/stats/performance
+2025-06-25T07:02:49.379Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:02:51.738Z [INFO] OPTIONS /api/auth/logout
+2025-06-25T07:02:51.740Z [INFO] POST /api/auth/logout
+2025-06-25T07:02:51.741Z [INFO] POST /api/auth/logout
+2025-06-25T07:02:51.741Z [INFO] AuthService: Successful logout
+2025-06-25T07:02:59.958Z [INFO] OPTIONS /api/auth/login
+2025-06-25T07:02:59.959Z [INFO] POST /api/auth/login
+2025-06-25T07:02:59.960Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T07:03:00.160Z [INFO] AuthService: Successful login for client@cas.ro
+2025-06-25T07:03:00.161Z [INFO] Login: Success for user client@cas.ro
+2025-06-25T07:03:01.716Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:01.718Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:03:01.719Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:01.725Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:01.727Z [INFO] GET /api/orders
+2025-06-25T07:03:01.735Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:01.737Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:01.738Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:01.744Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:03:01.748Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:01.749Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:01.755Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:03:01.758Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:01.759Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:04.939Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:04.939Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:04.940Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:03:04.941Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:04.941Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:04.942Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:04.942Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:03:04.942Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:05.942Z [INFO] GET /api/orders
+2025-06-25T07:03:05.946Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:05.947Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:05.949Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:05.950Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:05.955Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:05.957Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:06.925Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:06.926Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:06.926Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:03:06.927Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:06.928Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:06.928Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:08.691Z [INFO] OPTIONS /api/services
+2025-06-25T07:03:08.693Z [INFO] GET /api/services
+2025-06-25T07:03:08.694Z [INFO] GET /api/services
+2025-06-25T07:03:08.705Z [INFO] OPTIONS /api/locations
+2025-06-25T07:03:08.708Z [INFO] GET /api/locations
+2025-06-25T07:03:08.709Z [INFO] GET /api/locations
+2025-06-25T07:03:11.196Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T07:03:11.197Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T07:03:11.197Z [INFO] Starting equipment status check...
+2025-06-25T07:03:11.199Z [ERROR] SQL error after 2ms: column em.ended_at does not exist
+2025-06-25T07:03:11.200Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T07:03:11.200Z [ERROR] Error checking equipment status:
+2025-06-25T07:03:11.200Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T07:03:11.200Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 10:04:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:03:11.200Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T07:03:11.201Z [INFO] Starting weather data update job...
+2025-06-25T07:03:11.201Z [INFO] Starting weather data update for all locations...
+2025-06-25T07:03:11.249Z [ERROR] Error updating weather data:
+2025-06-25T07:03:11.250Z [ERROR] Weather data update job failed:
+2025-06-25T07:03:11.250Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 10:04:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:03:11.251Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T07:03:11.251Z [INFO] Starting automated exception detection...
+2025-06-25T07:03:11.252Z [INFO] Running comprehensive exception detection...
+2025-06-25T07:03:11.257Z [ERROR] SQL error after 4ms: column l.id does not exist
+2025-06-25T07:03:11.258Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:03:11.258Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T07:03:11.325Z [ERROR] SQL error after 71ms: column l.id does not exist
+2025-06-25T07:03:11.326Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T07:03:11.327Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T07:03:11.330Z [ERROR] SQL error after 76ms: column o.id does not exist
+2025-06-25T07:03:11.331Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T07:03:11.331Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T07:03:11.332Z [ERROR] SQL error after 79ms: column l.id does not exist
+2025-06-25T07:03:11.333Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:03:11.333Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T07:03:11.334Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T07:03:11.334Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T07:03:11.334Z [INFO] - Staff issues: 0
+2025-06-25T07:03:11.335Z [INFO] - Power issues: 0
+2025-06-25T07:03:11.335Z [INFO] - Equipment issues: 0
+2025-06-25T07:03:11.335Z [INFO] - Transport issues: 0
+2025-06-25T07:03:11.336Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T07:03:11.337Z [INFO] Notification sent via websocket: notif_1750834991336_rzod1ilzl
+2025-06-25T07:03:11.337Z [INFO] Exception detection completed successfully in 86ms
+2025-06-25T07:03:11.338Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 10:04:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:03:13.772Z [INFO] OPTIONS /api/services
+2025-06-25T07:03:13.774Z [INFO] GET /api/services
+2025-06-25T07:03:13.774Z [INFO] GET /api/services
+2025-06-25T07:03:13.841Z [INFO] OPTIONS /api/locations
+2025-06-25T07:03:13.843Z [INFO] GET /api/locations
+2025-06-25T07:03:13.844Z [INFO] GET /api/locations
+2025-06-25T07:03:14.383Z [INFO] GET /api/services
+2025-06-25T07:03:14.384Z [INFO] GET /api/services
+2025-06-25T07:03:14.389Z [INFO] GET /api/locations
+2025-06-25T07:03:14.390Z [INFO] GET /api/locations
+2025-06-25T07:03:16.239Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:16.255Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:16.258Z [INFO] GET /api/orders
+2025-06-25T07:03:16.277Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:16.280Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:16.281Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:16.284Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:03:16.288Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:16.289Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:16.293Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:03:16.296Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:16.297Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:18.912Z [INFO] GET /api/orders
+2025-06-25T07:03:18.919Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:18.919Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:18.923Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:18.924Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:18.927Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:18.928Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:20.889Z [INFO] GET /api/orders
+2025-06-25T07:03:20.893Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:20.894Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:20.899Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:20.900Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:20.904Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:20.904Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:23.465Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:23.475Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:23.477Z [INFO] GET /api/orders
+2025-06-25T07:03:23.483Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:23.484Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:23.485Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:23.490Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:03:23.494Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:23.495Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:23.499Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:03:23.500Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:23.501Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:24.395Z [INFO] OPTIONS /api/locations
+2025-06-25T07:03:24.398Z [INFO] GET /api/locations
+2025-06-25T07:03:24.399Z [INFO] GET /api/locations
+2025-06-25T07:03:28.819Z [INFO] GET /api/locations
+2025-06-25T07:03:28.820Z [INFO] GET /api/locations
+2025-06-25T07:03:29.801Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:29.805Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:03:29.806Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:29.813Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:29.815Z [INFO] GET /api/orders
+2025-06-25T07:03:29.826Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:29.830Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:29.832Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:29.837Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:03:29.840Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:29.841Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:29.846Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:03:29.848Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:29.849Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:31.339Z [INFO] OPTIONS /api/locations
+2025-06-25T07:03:31.340Z [INFO] GET /api/locations
+2025-06-25T07:03:31.341Z [INFO] GET /api/locations
+2025-06-25T07:03:32.756Z [INFO] GET /api/locations
+2025-06-25T07:03:32.757Z [INFO] GET /api/locations
+2025-06-25T07:03:34.413Z [INFO] GET /api/orders
+2025-06-25T07:03:34.420Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:34.421Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:34.427Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:34.428Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:34.433Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:34.434Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:36.712Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:03:36.721Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:36.725Z [INFO] GET /api/orders
+2025-06-25T07:03:36.729Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:03:36.732Z [INFO] GET /api/stats/system-status
+2025-06-25T07:03:36.734Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:36.738Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:03:36.740Z [INFO] GET /api/notifications/recent
+2025-06-25T07:03:36.741Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:03:36.744Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:03:36.746Z [INFO] GET /api/stats/performance
+2025-06-25T07:03:36.746Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:03:37.558Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:37.559Z [INFO] OPTIONS /api/customers
+2025-06-25T07:03:37.560Z [INFO] OPTIONS /api/services
+2025-06-25T07:03:37.561Z [INFO] OPTIONS /api/locations
+2025-06-25T07:03:37.561Z [INFO] GET /api/orders
+2025-06-25T07:03:37.562Z [INFO] GET /api/customers
+2025-06-25T07:03:37.563Z [INFO] GET /api/customers
+2025-06-25T07:03:37.564Z [INFO] GET /api/services
+2025-06-25T07:03:37.565Z [INFO] GET /api/services
+2025-06-25T07:03:37.566Z [INFO] GET /api/locations
+2025-06-25T07:03:37.566Z [INFO] GET /api/locations
+2025-06-25T07:03:50.103Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:50.104Z [INFO] POST /api/orders
+2025-06-25T07:03:50.106Z [ERROR] OrderController: Create order failed: customer_id, location_id, and order_items are required
+2025-06-25T07:03:58.946Z [INFO] OPTIONS /api/orders
+2025-06-25T07:03:58.947Z [INFO] POST /api/orders
+2025-06-25T07:03:58.947Z [ERROR] OrderController: Create order failed: customer_id, location_id, and order_items are required
+2025-06-25T07:04:02.934Z [INFO] POST /api/orders
+2025-06-25T07:04:02.935Z [ERROR] OrderController: Create order failed: customer_id, location_id, and order_items are required
+2025-06-25T07:04:11.208Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T07:04:11.209Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T07:04:11.210Z [INFO] Starting equipment status check...
+2025-06-25T07:04:11.253Z [ERROR] SQL error after 43ms: column em.ended_at does not exist
+2025-06-25T07:04:11.254Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T07:04:11.255Z [ERROR] Error checking equipment status:
+2025-06-25T07:04:11.255Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T07:04:11.256Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 10:05:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:04:38.964Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:04:38.977Z [INFO] OPTIONS /api/orders
+2025-06-25T07:04:38.979Z [INFO] GET /api/orders
+2025-06-25T07:04:39.049Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:04:39.052Z [INFO] GET /api/stats/system-status
+2025-06-25T07:04:39.053Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:39.056Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:04:39.057Z [INFO] GET /api/notifications/recent
+2025-06-25T07:04:39.058Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:04:39.060Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:04:39.062Z [INFO] GET /api/stats/performance
+2025-06-25T07:04:39.063Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:42.946Z [INFO] GET /api/stats/system-status
+2025-06-25T07:04:42.947Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:42.949Z [INFO] GET /api/notifications/recent
+2025-06-25T07:04:42.949Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:04:42.952Z [INFO] GET /api/stats/performance
+2025-06-25T07:04:42.952Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:44.105Z [INFO] OPTIONS /api/orders
+2025-06-25T07:04:44.110Z [INFO] OPTIONS /api/customers
+2025-06-25T07:04:44.111Z [INFO] OPTIONS /api/services
+2025-06-25T07:04:44.111Z [INFO] OPTIONS /api/locations
+2025-06-25T07:04:44.112Z [INFO] GET /api/orders
+2025-06-25T07:04:44.113Z [INFO] GET /api/customers
+2025-06-25T07:04:44.114Z [INFO] GET /api/customers
+2025-06-25T07:04:44.115Z [INFO] GET /api/services
+2025-06-25T07:04:44.115Z [INFO] GET /api/services
+2025-06-25T07:04:44.117Z [INFO] GET /api/locations
+2025-06-25T07:04:44.118Z [INFO] GET /api/locations
+2025-06-25T07:04:46.518Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:04:46.530Z [INFO] OPTIONS /api/orders
+2025-06-25T07:04:46.532Z [INFO] GET /api/orders
+2025-06-25T07:04:46.548Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:04:46.552Z [INFO] GET /api/stats/system-status
+2025-06-25T07:04:46.553Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:46.555Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:04:46.557Z [INFO] GET /api/notifications/recent
+2025-06-25T07:04:46.557Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:04:46.560Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:04:46.564Z [INFO] GET /api/stats/performance
+2025-06-25T07:04:46.565Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:04:52.503Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:04:52.506Z [INFO] GET /api/stats/performance
+2025-06-25T07:04:52.506Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:09.476Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:05:09.487Z [INFO] OPTIONS /api/orders
+2025-06-25T07:05:09.489Z [INFO] GET /api/orders
+2025-06-25T07:05:09.495Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:05:09.497Z [INFO] GET /api/stats/system-status
+2025-06-25T07:05:09.497Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:09.501Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:05:09.505Z [INFO] GET /api/notifications/recent
+2025-06-25T07:05:09.506Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:05:09.509Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:05:09.511Z [INFO] GET /api/stats/performance
+2025-06-25T07:05:09.511Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:11.219Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T07:05:11.221Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T07:05:11.223Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T07:05:11.223Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 10:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:05:11.224Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T07:05:11.224Z [INFO] Starting weather data update job...
+2025-06-25T07:05:11.224Z [INFO] Starting weather data update for all locations...
+2025-06-25T07:05:11.227Z [ERROR] Error updating weather data:
+2025-06-25T07:05:11.227Z [ERROR] Weather data update job failed:
+2025-06-25T07:05:11.228Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 10:06:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:05:11.228Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T07:05:11.228Z [INFO] Starting automated exception detection...
+2025-06-25T07:05:11.228Z [INFO] Running comprehensive exception detection...
+2025-06-25T07:05:11.230Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-25T07:05:11.230Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:05:11.230Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T07:05:11.231Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-25T07:05:11.232Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T07:05:11.232Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T07:05:11.233Z [ERROR] SQL error after 4ms: column l.id does not exist
+2025-06-25T07:05:11.234Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:05:11.235Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T07:05:11.236Z [ERROR] SQL error after 7ms: column o.id does not exist
+2025-06-25T07:05:11.237Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T07:05:11.238Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T07:05:11.238Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T07:05:11.238Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T07:05:11.238Z [INFO] - Staff issues: 0
+2025-06-25T07:05:11.239Z [INFO] - Power issues: 0
+2025-06-25T07:05:11.239Z [INFO] - Equipment issues: 0
+2025-06-25T07:05:11.239Z [INFO] - Transport issues: 0
+2025-06-25T07:05:11.240Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T07:05:11.240Z [INFO] Notification sent via websocket: notif_1750835111240_siw86vi8e
+2025-06-25T07:05:11.240Z [INFO] Exception detection completed successfully in 12ms
+2025-06-25T07:05:11.240Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 10:06:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:05:12.551Z [INFO] GET /api/orders
+2025-06-25T07:05:12.610Z [INFO] GET /api/stats/system-status
+2025-06-25T07:05:12.612Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:12.614Z [INFO] GET /api/notifications/recent
+2025-06-25T07:05:12.615Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:05:12.618Z [INFO] GET /api/stats/performance
+2025-06-25T07:05:12.618Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:18.735Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:05:18.745Z [INFO] OPTIONS /api/orders
+2025-06-25T07:05:18.747Z [INFO] GET /api/orders
+2025-06-25T07:05:18.752Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:05:18.754Z [INFO] GET /api/stats/system-status
+2025-06-25T07:05:18.755Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:05:18.760Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:05:18.763Z [INFO] GET /api/notifications/recent
+2025-06-25T07:05:18.764Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:05:18.767Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:05:18.769Z [INFO] GET /api/stats/performance
+2025-06-25T07:05:18.769Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:06:11.226Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T07:06:11.227Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T07:06:11.278Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T07:06:11.279Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 10:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:06:11.280Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T07:06:11.280Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T07:06:11.280Z [INFO] Starting equipment status check...
+2025-06-25T07:06:11.281Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-25T07:06:11.282Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T07:06:11.283Z [ERROR] Error checking equipment status:
+2025-06-25T07:06:11.283Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T07:06:11.284Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 10:07:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:07:11.230Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T07:07:11.232Z [INFO] Starting weather data update job...
+2025-06-25T07:07:11.233Z [INFO] Starting weather data update for all locations...
+2025-06-25T07:07:11.288Z [ERROR] Error updating weather data:
+2025-06-25T07:07:11.289Z [ERROR] Weather data update job failed:
+2025-06-25T07:07:11.289Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 10:08:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:07:11.290Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T07:07:11.290Z [INFO] Starting automated exception detection...
+2025-06-25T07:07:11.291Z [INFO] Running comprehensive exception detection...
+2025-06-25T07:07:11.294Z [ERROR] SQL error after 3ms: column l.id does not exist
+2025-06-25T07:07:11.294Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:07:11.294Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T07:07:11.356Z [ERROR] SQL error after 64ms: column l.id does not exist
+2025-06-25T07:07:11.356Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:07:11.357Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T07:07:11.359Z [ERROR] SQL error after 68ms: column l.id does not exist
+2025-06-25T07:07:11.359Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T07:07:11.360Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T07:07:11.360Z [ERROR] SQL error after 69ms: column o.id does not exist
+2025-06-25T07:07:11.361Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T07:07:11.361Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T07:07:11.361Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T07:07:11.362Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T07:07:11.362Z [INFO] - Staff issues: 0
+2025-06-25T07:07:11.363Z [INFO] - Power issues: 0
+2025-06-25T07:07:11.363Z [INFO] - Equipment issues: 0
+2025-06-25T07:07:11.364Z [INFO] - Transport issues: 0
+2025-06-25T07:07:11.364Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T07:07:11.365Z [INFO] Notification sent via websocket: notif_1750835231364_wjezh4nga
+2025-06-25T07:07:11.365Z [INFO] Exception detection completed successfully in 75ms
+2025-06-25T07:07:11.365Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 10:08:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:08:04.937Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:08:04.938Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:08:04.939Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:08:04.939Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:08:04.940Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:08:04.940Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:04.941Z [INFO] GET /api/stats/system-status
+2025-06-25T07:08:04.942Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:04.942Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:08:04.943Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:04.944Z [INFO] GET /api/stats/system-status
+2025-06-25T07:08:04.945Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:06.936Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:08:06.937Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:06.937Z [INFO] GET /api/stats/system-status
+2025-06-25T07:08:06.938Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:11.241Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T07:08:11.243Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T07:08:11.244Z [INFO] Starting equipment status check...
+2025-06-25T07:08:11.295Z [ERROR] SQL error after 50ms: column em.ended_at does not exist
+2025-06-25T07:08:11.295Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T07:08:11.296Z [ERROR] Error checking equipment status:
+2025-06-25T07:08:11.296Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T07:08:11.296Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 10:09:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:08:13.787Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T07:08:13.789Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:08:13.789Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:13.798Z [INFO] OPTIONS /api/orders
+2025-06-25T07:08:13.801Z [INFO] GET /api/orders
+2025-06-25T07:08:13.868Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T07:08:13.869Z [INFO] GET /api/stats/system-status
+2025-06-25T07:08:13.870Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:13.873Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T07:08:13.874Z [INFO] GET /api/notifications/recent
+2025-06-25T07:08:13.875Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:08:13.878Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T07:08:13.880Z [INFO] GET /api/stats/performance
+2025-06-25T07:08:13.880Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:14.799Z [INFO] GET /api/stats/dashboard
+2025-06-25T07:08:14.800Z [ERROR] Error getting dashboard: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:14.809Z [INFO] GET /api/orders
+2025-06-25T07:08:14.818Z [INFO] GET /api/stats/system-status
+2025-06-25T07:08:14.820Z [ERROR] Error getting system status: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:08:14.826Z [INFO] GET /api/notifications/recent
+2025-06-25T07:08:14.827Z [ERROR] Error getting recent notifications: Cannot read properties of undefined (reading 'limit')
+2025-06-25T07:08:14.834Z [INFO] GET /api/stats/performance
+2025-06-25T07:08:14.835Z [ERROR] Error getting performance stats: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T07:09:11.245Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T07:09:11.246Z [INFO] Starting weather data update job...
+2025-06-25T07:09:11.246Z [INFO] Starting weather data update for all locations...
+2025-06-25T07:09:11.332Z [ERROR] Error updating weather data:
+2025-06-25T07:09:11.333Z [ERROR] Weather data update job failed:
+2025-06-25T07:09:11.333Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 10:10:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:09:11.333Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T07:09:11.333Z [INFO] Starting automated exception detection...
+2025-06-25T07:09:11.334Z [INFO] Running comprehensive exception detection...
+2025-06-25T07:09:11.336Z [ERROR] SQL error after 2ms: column l.id does not exist
+2025-06-25T07:09:11.336Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:09:11.337Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T07:09:11.422Z [ERROR] SQL error after 88ms: column l.id does not exist
+2025-06-25T07:09:11.422Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T07:09:11.423Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T07:09:11.436Z [ERROR] SQL error after 102ms: column l.id does not exist
+2025-06-25T07:09:11.436Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:09:11.437Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T07:09:11.440Z [ERROR] SQL error after 106ms: column o.id does not exist
+2025-06-25T07:09:11.442Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T07:09:11.442Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T07:09:11.443Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T07:09:11.443Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T07:09:11.443Z [INFO] - Staff issues: 0
+2025-06-25T07:09:11.444Z [INFO] - Power issues: 0
+2025-06-25T07:09:11.444Z [INFO] - Equipment issues: 0
+2025-06-25T07:09:11.444Z [INFO] - Transport issues: 0
+2025-06-25T07:09:11.445Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T07:09:11.445Z [INFO] Notification sent via websocket: notif_1750835351445_szb8m7j7t
+2025-06-25T07:09:11.445Z [INFO] Exception detection completed successfully in 112ms
+2025-06-25T07:09:11.445Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 10:10:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:10:11.259Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T07:10:11.260Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T07:10:11.304Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T07:10:11.305Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 10:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:10:11.305Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T07:10:11.305Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T07:10:11.305Z [INFO] Starting equipment status check...
+2025-06-25T07:10:11.306Z [ERROR] SQL error after 1ms: column em.ended_at does not exist
+2025-06-25T07:10:11.307Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                MAX(em.ended_at) as last_maintenance
+            FROM equipment e
+            JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN equipment_maintenance em ON e.equipment_id = em.equipment_id 
+                AND em.ended_at IS NOT NULL
+            WHERE e.status = 'OPERATIVE'
+            GROUP BY e.equipment_id, l.name
+            HAVING MAX(em.ended_at) < NOW() - INTERVAL '90 days' OR MAX(em.ended_at) IS NULL
+            ORDER BY last_maintenance ASC NULLS FIRST
+        
+2025-06-25T07:10:11.307Z [ERROR] Error checking equipment status:
+2025-06-25T07:10:11.307Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T07:10:11.308Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 10:11:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:11:11.258Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T07:11:11.260Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T07:11:11.305Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T07:11:11.306Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 10:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:11:11.306Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T07:11:11.306Z [INFO] Starting weather data update job...
+2025-06-25T07:11:11.307Z [INFO] Starting weather data update for all locations...
+2025-06-25T07:11:11.309Z [ERROR] Error updating weather data:
+2025-06-25T07:11:11.310Z [ERROR] Weather data update job failed:
+2025-06-25T07:11:11.310Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 10:12:11 GMT+0300 (Eastern European Summer Time)
+2025-06-25T07:11:11.310Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T07:11:11.311Z [INFO] Starting automated exception detection...
+2025-06-25T07:11:11.311Z [INFO] Running comprehensive exception detection...
+2025-06-25T07:11:11.312Z [ERROR] SQL error after 1ms: column l.id does not exist
+2025-06-25T07:11:11.313Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_employees,
+          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees,
+          COUNT(CASE WHEN e.status = 'SICK' THEN 1 END) as sick_employees,
+          COUNT(CASE WHEN e.status = 'VACATION' THEN 1 END) as vacation_employees
+        FROM locations l
+        LEFT JOIN employees e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:11:11.313Z [ERROR] Error detecting staff unavailability: column l.id does not exist
+2025-06-25T07:11:11.379Z [ERROR] SQL error after 68ms: column l.id does not exist
+2025-06-25T07:11:11.380Z [ERROR] Failed query: 
+        SELECT 
+          l.id as location_id,
+          l.name as location_name,
+          COUNT(e.id) as total_equipment,
+          COUNT(CASE WHEN e.status = 'OUT_OF_SERVICE' THEN 1 END) as out_of_service,
+          COUNT(CASE WHEN e.updated_at < NOW() - INTERVAL '2 hours' THEN 1 END) as stale_equipment
+        FROM locations l
+        LEFT JOIN equipment e ON l.id = e.location_id
+       GROUP BY l.id, l.name
+2025-06-25T07:11:11.381Z [ERROR] Error detecting power outage: column l.id does not exist
+2025-06-25T07:11:11.384Z [ERROR] SQL error after 73ms: column l.id does not exist
+2025-06-25T07:11:11.385Z [ERROR] Failed query: 
+        SELECT 
+          e.id,
+          e.name,
+          e.type,
+          e.status,
+          e.location_id,
+          l.name as location_name,
+          EXTRACT(days FROM (NOW() - e.updated_at)) as days_since_update,
+          COUNT(em.id) as recent_maintenance
+        FROM equipment e
+        JOIN locations l ON e.location_id = l.id
+        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id 
+          AND em.created_at >= NOW() - INTERVAL '30 days'
+      
+        GROUP BY e.id, e.name, e.type, e.status, e.location_id, l.name, e.updated_at
+        HAVING e.status = 'OUT_OF_SERVICE' 
+          OR EXTRACT(days FROM (NOW() - e.updated_at)) > 7
+        ORDER BY days_since_update DESC
+      
+2025-06-25T07:11:11.386Z [ERROR] Error detecting equipment failures: column l.id does not exist
+2025-06-25T07:11:11.392Z [ERROR] SQL error after 80ms: column o.id does not exist
+2025-06-25T07:11:11.392Z [ERROR] Failed query: 
+        SELECT 
+          t.id,
+          t.status,
+          t.location_id,
+          l.name as location_name,
+          o.id as order_id,
+          EXTRACT(hours FROM (NOW() - t.created_at)) as hours_since_created,
+          EXTRACT(hours FROM (NOW() - t.updated_at)) as hours_since_updated
+        FROM transports t
+        JOIN orders o ON t.order_id = o.id
+        JOIN locations l ON t.location_id = l.id
+        WHERE t.status IN ('PENDING', 'IN_PROGRESS')
+       ORDER BY t.created_at ASC
+2025-06-25T07:11:11.393Z [ERROR] Error detecting transport issues: column o.id does not exist
+2025-06-25T07:11:11.393Z [INFO] Exception detection completed: 0 issues found
+2025-06-25T07:11:11.393Z [INFO] Exception detection completed: 0 total issues found
+2025-06-25T07:11:11.394Z [INFO] - Staff issues: 0
+2025-06-25T07:11:11.394Z [INFO] - Power issues: 0
+2025-06-25T07:11:11.394Z [INFO] - Equipment issues: 0
+2025-06-25T07:11:11.394Z [INFO] - Transport issues: 0
+2025-06-25T07:11:11.395Z [INFO] Creating notification: SYSTEM_STATUS_OK - LOW - All systems operational - no critical issues detected
+2025-06-25T07:11:11.395Z [INFO] Notification sent via websocket: notif_1750835471395_9q114qd7q
+2025-06-25T07:11:11.396Z [INFO] Exception detection completed successfully in 85ms
+2025-06-25T07:11:11.396Z [INFO] Scheduler: Job 'exceptionDetection' completed, next run: Wed Jun 25 2025 10:12:11 GMT+0300 (Eastern European Summer Time)

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programări - CaS Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    .appointments-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .appointments-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .appointments-title {
+      font-size: 1.75rem;
+      font-weight: bold;
+      color: #1f2937;
+      margin: 0;
+    }
+
+    .appointments-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-new-appointment {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-new-appointment:hover {
+      background: #059669;
+    }
+
+    .btn-calendar {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-calendar:hover {
+      background: #5855eb;
+    }
+
+    .appointments-filters {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      align-items: end;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .filter-label {
+      font-weight: 500;
+      color: #374151;
+      font-size: 0.875rem;
+    }
+
+    .filter-input, .filter-select {
+      padding: 10px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      transition: border-color 0.3s;
+    }
+
+    .filter-input:focus, .filter-select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .btn-filter {
+      background: #6366f1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+      height: fit-content;
+    }
+
+    .btn-filter:hover {
+      background: #5855eb;
+    }
+
+    .btn-reset {
+      background: #f3f4f6;
+      color: #374151;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s;
+      height: fit-content;
+    }
+
+    .btn-reset:hover {
+      background: #e5e7eb;
+    }
+
+    .appointments-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .stat-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1f2937;
+      display: block;
+    }
+
+    .stat-label {
+      color: #6b7280;
+      font-size: 0.875rem;
+      margin-top: 5px;
+    }
+
+    .appointments-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .appointment-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s;
+      border-left: 4px solid #6366f1;
+    }
+
+    .appointment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .appointment-card.status-confirmed {
+      border-left-color: #10b981;
+    }
+
+    .appointment-card.status-in_progress {
+      border-left-color: #3b82f6;
+    }
+
+    .appointment-card.status-completed {
+      border-left-color: #059669;
+    }
+
+    .appointment-card.status-cancelled {
+      border-left-color: #ef4444;
+    }
+
+    .appointment-header {
+      padding: 20px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .appointment-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0 0 5px 0;
+    }
+
+    .appointment-subtitle {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+
+    .appointment-body {
+      padding: 20px;
+    }
+
+    .appointment-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .detail-icon {
+      color: #6b7280;
+      font-size: 1rem;
+    }
+
+    .detail-text {
+      font-size: 0.875rem;
+      color: #374151;
+    }
+
+    .appointment-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .status-pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-confirmed {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-in_progress {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .status-completed {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-cancelled {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .appointment-actions {
+      display: flex;
+      gap: 10px;
+      padding: 0 20px 20px 20px;
+      justify-content: flex-end;
+    }
+
+    .btn-action {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .btn-view {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .btn-view:hover {
+      background: #e5e7eb;
+    }
+
+    .btn-edit {
+      background: #6366f1;
+      color: white;
+    }
+
+    .btn-edit:hover {
+      background: #5855eb;
+    }
+
+    .btn-cancel {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-cancel:hover {
+      background: #dc2626;
+    }
+
+    .btn-complete {
+      background: #10b981;
+      color: white;
+    }
+
+    .btn-complete:hover {
+      background: #059669;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    .empty-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 10px;
+    }
+
+    .empty-description {
+      color: #6b7280;
+      margin-bottom: 30px;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .pagination-btn {
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.3s;
+    }
+
+    .pagination-btn:hover {
+      background: #f9fafb;
+    }
+
+    .pagination-btn.active {
+      background: #6366f1;
+      color: white;
+      border-color: #6366f1;
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f4f6;
+      border-top: 4px solid #6366f1;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .appointments-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .appointments-actions {
+        justify-content: center;
+      }
+
+      .filters-row {
+        grid-template-columns: 1fr;
+      }
+
+      .appointments-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .appointment-details {
+        grid-template-columns: 1fr;
+      }
+
+      .appointment-actions {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .appointments-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="appointments-container">
+    <!-- Header -->
+    <div class="appointments-header">
+      <h1 class="appointments-title">Programări</h1>
+      <div class="appointments-actions">
+        <a href="calendar.html" class="btn-calendar">
+          📅 Calendar
+        </a>
+        <button class="btn-new-appointment" onclick="appointments.showNewAppointmentModal()">
+          ➕ Programare Nouă
+        </button>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="appointments-stats" id="appointmentsStats">
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <span class="stat-number" id="totalAppointments">-</span>
+        <div class="stat-label">Total Programări</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏳</div>
+        <span class="stat-number" id="pendingAppointments">-</span>
+        <div class="stat-label">În Așteptare</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <span class="stat-number" id="confirmedAppointments">-</span>
+        <div class="stat-label">Confirmate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🚀</div>
+        <span class="stat-number" id="todayAppointments">-</span>
+        <div class="stat-label">Astăzi</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="appointments-filters">
+      <div class="filters-row">
+        <div class="filter-group">
+          <label class="filter-label">Status</label>
+          <select id="statusFilter" class="filter-select">
+            <option value="">Toate</option>
+            <option value="pending">În așteptare</option>
+            <option value="confirmed">Confirmat</option>
+            <option value="in_progress">În progres</option>
+            <option value="completed">Finalizat</option>
+            <option value="cancelled">Anulat</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Data de la</label>
+          <input type="date" id="dateFromFilter" class="filter-input">
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Data până la</label>
+          <input type="date" id="dateToFilter" class="filter-input">
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Client</label>
+          <select id="customerFilter" class="filter-select">
+            <option value="">Toți clienții</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Serviciu</label>
+          <select id="serviceFilter" class="filter-select">
+            <option value="">Toate serviciile</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Locație</label>
+          <select id="locationFilter" class="filter-select">
+            <option value="">Toate locațiile</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <button class="btn-filter" onclick="appointments.applyFilters()">Filtrează</button>
+        </div>
+        <div class="filter-group">
+          <button class="btn-reset" onclick="appointments.resetFilters()">Resetează</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Appointments List -->
+    <div class="appointments-grid" id="appointmentsGrid">
+      <!-- Loading placeholder -->
+      <div class="loading-placeholder">Se încarcă programările...</div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination" style="display: none;">
+      <!-- Pagination will be generated here -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <div class="empty-icon">📅</div>
+      <h3 class="empty-title">Nu există programări</h3>
+      <p class="empty-description">Nu au fost găsite programări pentru criteriile selectate.</p>
+      <button class="btn-new-appointment" onclick="appointments.showNewAppointmentModal()">
+        Creează Prima Programare
+      </button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
+  <!-- New Appointment Modal -->
+  <div id="appointmentModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="appointmentModalTitle">Programare Nouă</h3>
+        <button class="modal-close" onclick="appointments.closeAppointmentModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="appointmentForm">
+          <div class="form-group">
+            <label class="form-label" for="appointmentTitle">Titlu *</label>
+            <input type="text" id="appointmentTitle" class="form-input" required placeholder="Ex: Curățenie apartament">
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="appointmentDate">Data *</label>
+              <input type="date" id="appointmentDate" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="appointmentTime">Ora *</label>
+              <input type="time" id="appointmentTime" class="form-input" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="appointmentCustomer">Client *</label>
+              <select id="appointmentCustomer" class="form-select" required>
+                <option value="">Selectează clientul</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="appointmentService">Serviciu *</label>
+              <select id="appointmentService" class="form-select" required>
+                <option value="">Selectează serviciul</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="appointmentLocation">Locație *</label>
+              <select id="appointmentLocation" class="form-select" required>
+                <option value="">Selectează locația</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="appointmentDuration">Durată estimată</label>
+              <select id="appointmentDuration" class="form-select">
+                <option value="60">1 oră</option>
+                <option value="90">1.5 ore</option>
+                <option value="120">2 ore</option>
+                <option value="180">3 ore</option>
+                <option value="240">4 ore</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="appointmentDescription">Descriere</label>
+            <textarea id="appointmentDescription" class="form-textarea" rows="3" placeholder="Detalii suplimentare despre programare..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">
+              <input type="checkbox" id="appointmentRecurring"> Programare recurentă
+            </label>
+          </div>
+          
+          <div id="recurringOptions" style="display: none;">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="recurringType">Frecvența</label>
+                <select id="recurringType" class="form-select">
+                  <option value="weekly">Săptămânal</option>
+                  <option value="monthly">Lunar</option>
+                  <option value="daily">Zilnic</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="recurringEnd">Până la data</label>
+                <input type="date" id="recurringEnd" class="form-input">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="appointments.closeAppointmentModal()">
+          Anulează
+        </button>
+        <button type="button" class="btn btn-primary" onclick="appointments.saveAppointment()">
+          Salvează Programarea
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment Details Modal -->
+  <div id="appointmentDetailsModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="appointmentDetailsTitle">Detalii Programare</h3>
+        <button class="modal-close" onclick="appointments.closeDetailsModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="appointmentDetailsBody">
+        <!-- Details will be populated here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="cancelAppointmentBtn" onclick="appointments.cancelAppointment()" style="display: none;">
+          Anulează Programarea
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="appointments.closeDetailsModal()">
+          Închide
+        </button>
+        <button type="button" class="btn btn-primary" id="editAppointmentBtn" onclick="appointments.editAppointment()" style="display: none;">
+          Editează
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/appointments.js"></script>
+  <script>
+    // Initialize auth manager and appointments
+    const authManager = new AuthManager();
+    let appointments;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      if (authManager.requireAuth()) {
+        appointments = new Appointments();
+      }
+    });
+  </script>
+</body>
+</html> 
