@@ -406,7 +406,11 @@ class MaintenanceController {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       });
-      res.end(JSON.stringify(result));
+      res.end(JSON.stringify({
+        success: true,
+        data: result,
+        message: 'Maintenance schedule deleted successfully'
+      }));
     } catch (error) {
       log.error(`MaintenanceController.deleteMaintenance: ${error.message}`);
       const statusCode = error.message === 'Maintenance schedule not found' ? 404 : 400;

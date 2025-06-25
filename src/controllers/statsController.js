@@ -437,15 +437,48 @@ class StatsController {
       // Get basic dashboard data which includes appointment/order stats
       const dashboardData = await statsService.getDashboardData(locationId);
       
-      // Extract appointment-related statistics
+      // DEBUG: Log the structure of dashboardData
+      log.debug('Dashboard data structure:', {
+        hasKpis: !!dashboardData.kpis,
+        kpisType: typeof dashboardData.kpis,
+        kpisIsArray: Array.isArray(dashboardData.kpis),
+        kpisKeys: dashboardData.kpis ? Object.keys(dashboardData.kpis) : null,
+        hasSummary: !!dashboardData.summary,
+        summaryType: typeof dashboardData.summary,
+        summaryIsArray: Array.isArray(dashboardData.summary)
+      });
+      
+      // Safely handle kpis - it might be an object instead of array
+      const kpis = dashboardData.kpis || {};
+      const summary = dashboardData.summary || [];
+      
+      // Extract appointment-related statistics with safe fallbacks
       const appointmentStats = {
-        totalAppointments: dashboardData.kpis.find(kpi => kpi.key === 'orders_today')?.value || 0,
-        completedToday: dashboardData.kpis.find(kpi => kpi.key === 'completed_today')?.value || 0,
-        pendingAppointments: dashboardData.kpis.find(kpi => kpi.key === 'pending_orders')?.value || 0,
-        revenueToday: dashboardData.kpis.find(kpi => kpi.key === 'revenue_today')?.value || 0,
-        monthlyTotal: dashboardData.kpis.find(kpi => kpi.key === 'orders_this_month')?.value || 0,
-        monthlyRevenue: dashboardData.kpis.find(kpi => kpi.key === 'revenue_this_month')?.value || 0,
-        locations: dashboardData.summary || []
+        totalAppointments: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'orders_today')?.value || 0) :
+          (kpis.total_orders || 0),
+        completedToday: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'completed_today')?.value || 0) :
+          (kpis.completed_orders || 0),
+        pendingAppointments: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'pending_orders')?.value || 0) :
+          (summary.reduce((total, loc) => total + (loc.pending_orders || 0), 0)),
+        revenueToday: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'revenue_today')?.value || 0) :
+          (kpis.total_revenue || 0),
+        monthlyTotal: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'orders_this_month')?.value || 0) :
+          (summary.reduce((total, loc) => total + (loc.total_orders || 0), 0)),
+        monthlyRevenue: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'revenue_this_month')?.value || 0) :
+          (summary.reduce((total, loc) => total + (loc.total_revenue || 0), 0)),
+        confirmedAppointments: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'confirmed_orders')?.value || 0) :
+          (summary.reduce((total, loc) => total + (loc.completed_orders || 0), 0)),
+        todayAppointments: Array.isArray(kpis) ? 
+          (kpis.find(kpi => kpi.key === 'orders_today')?.value || 0) :
+          (kpis.total_orders || 0),
+        locations: summary || []
       };
       
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -457,10 +490,28 @@ class StatsController {
       }));
     } catch (error) {
       log.error(`Error getting appointment stats: ${error.message}`);
-      res.writeHead(500, { 'Content-Type': 'application/json' });
+      log.error(`Error stack: ${error.stack}`);
+      
+      // Return safe fallback data instead of throwing error
+      const fallbackStats = {
+        totalAppointments: 0,
+        completedToday: 0,
+        pendingAppointments: 0,
+        confirmedAppointments: 0,
+        todayAppointments: 0,
+        revenueToday: 0,
+        monthlyTotal: 0,
+        monthlyRevenue: 0,
+        locations: []
+      };
+      
+      res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
-        success: false,
-        error: 'Failed to get appointment statistics'
+        success: true,
+        data: fallbackStats,
+        period: req.query.period || 'month',
+        locationId: req.query.locationId ? parseInt(req.query.locationId) : null,
+        warning: 'Using fallback data due to error in data retrieval'
       }));
     }
   }
@@ -629,42 +680,4 @@ class StatsController {
   }
 }
 
-module.exports = new StatsController();
-
-// Add the missing appointment stats method
-module.exports.getAppointmentStats = async function(req, res) {
-  const log = require('../core/logger');
-  try {
-    const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
-    const period = req.query.period || 'month';
-    
-    // Get basic dashboard data which includes appointment/order stats
-    const dashboardData = await require('../services/statsService').getDashboardData(locationId);
-    
-    // Extract appointment-related statistics
-    const appointmentStats = {
-      totalAppointments: dashboardData.kpis.find(kpi => kpi.key === 'orders_today')?.value || 0,
-      completedToday: dashboardData.kpis.find(kpi => kpi.key === 'completed_today')?.value || 0,
-      pendingAppointments: dashboardData.kpis.find(kpi => kpi.key === 'pending_orders')?.value || 0,
-      revenueToday: dashboardData.kpis.find(kpi => kpi.key === 'revenue_today')?.value || 0,
-      monthlyTotal: dashboardData.kpis.find(kpi => kpi.key === 'orders_this_month')?.value || 0,
-      monthlyRevenue: dashboardData.kpis.find(kpi => kpi.key === 'revenue_this_month')?.value || 0,
-      locations: dashboardData.summary || []
-    };
-    
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      success: true,
-      data: appointmentStats,
-      period: period,
-      locationId: locationId
-    }));
-  } catch (error) {
-    log.error(`Error getting appointment stats: ${error.message}`);
-    res.writeHead(500, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      success: false,
-      error: 'Failed to get appointment statistics'
-    }));
-  }
-}; 
+module.exports = new StatsController(); 

@@ -642,6 +642,20 @@ TEST DETAILS:
 {{systemName}} - Automated Alert System
 Support: {{supportEmail}}`;
     }
+
+    getOrderCompletionTemplate(orderData) {
+        return `Comanda dvs. #${orderData.id} a fost finalizată.
+
+Detalii comandă:
+- Serviciu: ${orderData.service_name}
+- Locația: ${orderData.location_name}
+- Data: ${orderData.scheduled_for}
+- Preț total: ${orderData.total_price} RON
+
+Mulțumim că ați ales serviciile noastre!
+
+Support: {{supportEmail}}`;
+    }
 }
 
 module.exports = EmailTemplates; 

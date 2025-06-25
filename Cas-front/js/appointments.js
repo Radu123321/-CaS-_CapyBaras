@@ -525,23 +525,33 @@ class Appointments {
     try {
       this.showLoading();
       
+      const serviceId = parseInt(document.getElementById('appointmentService').value);
+      
+      // Get the selected service to extract unit_price
+      const selectedService = this.services.find(service => service.service_id === serviceId);
+      if (!selectedService) {
+        this.showToast('Serviciul selectat nu a fost găsit', 'error');
+        return;
+      }
+      
       const formData = {
         title: document.getElementById('appointmentTitle').value,
         scheduled_date: document.getElementById('appointmentDate').value,
         scheduled_time: document.getElementById('appointmentTime').value,
         customer_id: parseInt(document.getElementById('appointmentCustomer').value),
-        service_id: parseInt(document.getElementById('appointmentService').value),
+        service_id: serviceId,
         location_id: parseInt(document.getElementById('appointmentLocation').value),
         description: document.getElementById('appointmentDescription').value,
         duration: parseInt(document.getElementById('appointmentDuration').value),
+        unit_price: parseFloat(selectedService.base_price), // Add unit_price from service
         is_recurring: document.getElementById('appointmentRecurring').checked,
         recurring_type: document.getElementById('recurringType').value,
         recurring_end_date: document.getElementById('recurringEnd').value || null
       };
       
-      // Remove empty values
+      // Remove empty values (but keep 0 values for price and duration)
       Object.keys(formData).forEach(key => {
-        if (formData[key] === '' || formData[key] === null || isNaN(formData[key])) {
+        if (formData[key] === '' || formData[key] === null || (isNaN(formData[key]) && typeof formData[key] === 'number')) {
           delete formData[key];
         }
       });

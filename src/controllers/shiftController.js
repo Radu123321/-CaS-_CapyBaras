@@ -463,7 +463,11 @@ class ShiftController {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       });
-      res.end(JSON.stringify(result));
+      res.end(JSON.stringify({
+        success: true,
+        data: result,
+        message: 'Shift deleted successfully'
+      }));
     } catch (error) {
       log.error(`ShiftController.deleteShift: ${error.message}`);
       const statusCode = error.message === 'Shift not found' ? 404 : 400;

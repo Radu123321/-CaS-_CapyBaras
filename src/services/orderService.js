@@ -26,6 +26,11 @@ async function createOrder(orderData) {
   }
   
   try {
+    // Generate unique order code (max 20 chars for DB constraint)
+    const timestamp = Date.now().toString().slice(-8); // Last 8 digits
+    const randomSuffix = Math.random().toString(36).substring(2, 6).toUpperCase(); // 4 chars
+    const order_code = `O${timestamp}${randomSuffix}`; // O + 8 + 4 = 13 chars total
+    
     // Calculate total amount
     const total_amount = parseFloat(unit_price) * parseInt(quantity);
     
@@ -34,6 +39,7 @@ async function createOrder(orderData) {
       customer_id,
       location_id,
       service_id,
+      order_code,
       quantity: parseInt(quantity),
       unit_price: parseFloat(unit_price),
       total_amount,
@@ -55,7 +61,7 @@ async function createOrder(orderData) {
       await customerRepository.updateStats(customer_id, total_amount);
     }
     
-    log.info(`OrderService: Created order ${order.order_id} for customer ${customer_id}`);
+    log.info(`OrderService: Created order ${order.order_id} with code ${order_code} for customer ${customer_id}`);
     
     return order;
   } catch (error) {
@@ -78,6 +84,11 @@ async function createOrder(orderData) {
       if (error.constraint === 'orders_transport_request_id_fkey') {
         throw new Error('Transport request not found');
       }
+    }
+    
+    // Handle duplicate order_code (very unlikely with timestamp+random)
+    if (error.code === '23505' && error.constraint === 'orders_order_code_key') {
+      throw new Error('Order code generation conflict. Please try again.');
     }
     
     throw error;

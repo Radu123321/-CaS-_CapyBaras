@@ -13,7 +13,10 @@ const { performHandshake } = require('./websocket');
 // REGISTER INITIAL ROUTES
 router.add('GET', '/api/ping', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ status: 'ok' }));
+  res.end(JSON.stringify({ 
+    success: true,
+    data: { status: 'ok', timestamp: new Date().toISOString() }
+  }));
 });
 
 router.add('GET', '/api/scheduler/status', (req, res) => {
@@ -92,6 +95,7 @@ router.add('PUT', '/api/orders/:id/status', orderController.updateOrderStatus);
 router.add('PUT', '/api/orders/:id/assign', orderController.assignEmployee);
 router.add('PUT', '/api/orders/:id/start', orderController.startOrder);
 router.add('PUT', '/api/orders/:id/complete', orderController.completeOrder);
+router.add('PUT', '/api/orders/:id/cancel', orderController.cancelOrder);
 router.add('DELETE', '/api/orders/:id/cancel', orderController.cancelOrder);
 router.add('DELETE', '/api/orders/:id', orderController.cancelOrder);
 
@@ -362,7 +366,10 @@ const server = http.createServer(async (req, res) => {
       
     } catch (err) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
-      return res.end(JSON.stringify({ error: 'Invalid JSON' }));
+      return res.end(JSON.stringify({ 
+        success: false,
+        error: 'Invalid JSON request body' 
+      }));
     }
     return router.dispatch(req.method, pathname, req, res);
   }

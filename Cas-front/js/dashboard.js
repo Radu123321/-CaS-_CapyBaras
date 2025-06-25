@@ -586,7 +586,7 @@ class Dashboard {
     // WebSocket connection for real-time updates
     if (typeof WebSocket !== 'undefined') {
       try {
-        const wsUrl = 'ws://localhost:3000';
+        const wsUrl = 'ws://localhost:8000/ws/status';
         this.websocket = new WebSocket(wsUrl);
         
         this.websocket.onopen = () => {

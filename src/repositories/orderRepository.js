@@ -15,7 +15,7 @@ class OrderRepository {
       item_type,
       item_condition,
       special_instructions,
-      base_price,
+      unit_price,  // Changed from base_price to unit_price
       transport_fee = 0.00,
       additional_fees = 0.00,
       discount = 0.00,
@@ -42,7 +42,8 @@ class OrderRepository {
     const result = await query(insertSQL, [
       customer_id, location_id, service_id, assigned_employee_id, order_code,
       status, priority, item_description, item_type, item_condition, special_instructions,
-      base_price, transport_fee, additional_fees, discount, total_amount,
+      unit_price, // Maps unit_price to base_price column in database
+      transport_fee, additional_fees, discount, total_amount,
       scheduled_date, scheduled_time, estimated_duration, pickup_address, delivery_address
     ]);
     return result && result.length > 0 ? result[0] : null;

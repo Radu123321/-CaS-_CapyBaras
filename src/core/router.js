@@ -45,7 +45,10 @@ function dispatch(method, path, req, res) {
   // 404 fallback
   log.warn(`Route not found: ${method} ${path}`);
   res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ error: 'Not found' }));
+  res.end(JSON.stringify({ 
+    success: false,
+    error: 'Route not found' 
+  }));
 }
 
 // Extract parameters from URL path using route pattern

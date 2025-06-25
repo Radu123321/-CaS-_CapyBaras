@@ -717,10 +717,10 @@ async function completeOrder(req, res) {
   }
 }
 
-// DELETE /api/orders/:id
+// PUT/DELETE /api/orders/:id/cancel
 async function cancelOrder(req, res) {
   const orderId = extractIdFromUrl(req.url);
-  log.info(`DELETE /api/orders/${orderId}`);
+  log.info(`${req.method} /api/orders/${orderId}/cancel`);
   
   if (!orderId) {
     res.writeHead(400, { 

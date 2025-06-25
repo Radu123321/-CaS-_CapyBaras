@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comenzile Mele - CaS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/my-orders.css">
+</head>
+  <body style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); min-height: 100vh; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <!-- Simple top bar -->
+    <div style="background: white; padding: 15px 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin: 0; color: #1f2937; font-size: 1.5rem;">🧹 CaS - Comenzile Mele</h1>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <span id="userWelcome" style="color: #6b7280; font-weight: 500;"></span>
+            <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+            <button onclick="logout()" class="btn btn-secondary">Logout</button>
+        </div>
+    </div>
+
+    <div class="my-orders-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Comenzile Mele</h1>
+            <button class="new-order-btn" onclick="myOrders.showNewOrderModal()">
+                + Comandă Nouă
+            </button>
+        </div>
+
+        <!-- Orders Grid -->
+        <div id="ordersGrid" class="orders-grid">
+            <!-- Orders will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <h3>Nicio comandă găsită</h3>
+            <p>Nu ai încă comenzi plasate. Creează prima ta comandă!</p>
+            <button class="new-order-btn" onclick="myOrders.showNewOrderModal()">
+                Comandă Nouă
+            </button>
+        </div>
+    </div>
+
+    <!-- New Order Modal -->
+    <div id="newOrderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Comandă Nouă</h2>
+                <button class="close" onclick="myOrders.closeNewOrderModal()">&times;</button>
+            </div>
+            
+            <form id="newOrderForm">
+                <div class="form-group">
+                    <label class="form-label" for="orderService">Serviciu *</label>
+                    <select id="orderService" class="form-control" required>
+                        <option value="">Selectează serviciul</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="orderLocation">Locație *</label>
+                    <select id="orderLocation" class="form-control" required>
+                        <option value="">Selectează locația</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="orderDate">Data Programării *</label>
+                        <input type="date" id="orderDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="orderTime">Ora Programării *</label>
+                        <input type="time" id="orderTime" class="form-control" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="orderDuration">Durată Estimată (minute)</label>
+                        <input type="number" id="orderDuration" class="form-control" min="30" max="480" value="60">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="orderQuantity">Cantitate</label>
+                        <input type="number" id="orderQuantity" class="form-control" min="1" max="10" value="1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="orderNotes">Observații</label>
+                    <textarea id="orderNotes" class="form-control" rows="3" placeholder="Detalii suplimentare despre comandă..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        <input type="checkbox" id="orderRecurring" style="margin-right: 8px;">
+                        Comandă recurentă
+                    </label>
+                </div>
+                
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 30px;">
+                    <button type="button" class="btn-secondary" onclick="myOrders.closeNewOrderModal()">
+                        Anulează
+                    </button>
+                    <button type="submit" class="btn-primary">
+                        Creează Comanda
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Details Modal -->
+    <div id="orderDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalii Comandă</h2>
+                <button class="close" onclick="myOrders.closeOrderDetailsModal()">&times;</button>
+            </div>
+            
+            <div id="orderDetailsContent">
+                <!-- Order details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/my-orders.js"></script>
+    
+    <script>
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!authManager.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            myOrders.init();
+        });
+        
+        function logout() {
+            authManager.logout();
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

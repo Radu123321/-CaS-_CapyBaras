@@ -5,8 +5,8 @@ class RSSGenerator {
   constructor(options = {}) {
     this.title = options.title || 'CaS - Cleaning Service Updates';
     this.description = options.description || 'Real-time updates from Cleaning as a Service';
-    this.link = options.link || 'http://localhost:8000';
     this.language = options.language || 'ro-RO';
+    this.link = options.link || 'http://localhost:8000';
     this.managingEditor = options.managingEditor || 'admin@cas.local';
     this.webMaster = options.webMaster || 'webmaster@cas.local';
     this.generator = 'CaS RSS Generator v1.0';
