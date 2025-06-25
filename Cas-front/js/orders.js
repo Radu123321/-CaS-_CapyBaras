@@ -719,6 +719,7 @@ class OrdersManager {
     // Show modal
     const modal = document.getElementById('editStatusModal');
     modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
 
   closeEditStatusModal() {
@@ -826,6 +827,7 @@ class OrdersManager {
     `;
     
     modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
 
   // ===== MODAL MANAGEMENT =====

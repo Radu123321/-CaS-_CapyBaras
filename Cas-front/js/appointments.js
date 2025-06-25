@@ -378,10 +378,13 @@ class Appointments {
     cancelBtn.style.display = canEdit && appointment.status !== 'completed' && appointment.status !== 'cancelled' ? 'inline-block' : 'none';
     
     modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
   
   closeDetailsModal() {
-    document.getElementById('appointmentDetailsModal').style.display = 'none';
+    const modal = document.getElementById('appointmentDetailsModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.selectedAppointment = null;
   }
   
@@ -500,11 +503,15 @@ class Appointments {
   }
   
   showAppointmentModal() {
-    document.getElementById('appointmentModal').style.display = 'flex';
+    const modal = document.getElementById('appointmentModal');
+    modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
   
   closeAppointmentModal() {
-    document.getElementById('appointmentModal').style.display = 'none';
+    const modal = document.getElementById('appointmentModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.resetAppointmentForm();
     this.selectedAppointment = null;
   }
@@ -517,30 +524,64 @@ class Appointments {
   
   async saveAppointment() {
     const form = document.getElementById('appointmentForm');
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    
+    // Manual validation for better UX
+    const title = document.getElementById('appointmentTitle').value.trim();
+    const date = document.getElementById('appointmentDate').value;
+    const time = document.getElementById('appointmentTime').value;
+    const customerId = document.getElementById('appointmentCustomer').value;
+    const serviceId = document.getElementById('appointmentService').value;
+    const locationId = document.getElementById('appointmentLocation').value;
+    
+    if (!title) {
+      this.showToast('Vă rugăm să introduceți titlul programării', 'error');
+      return;
+    }
+    
+    if (!date) {
+      this.showToast('Vă rugăm să selectați data', 'error');
+      return;
+    }
+    
+    if (!time) {
+      this.showToast('Vă rugăm să selectați ora', 'error');
+      return;
+    }
+    
+    if (!customerId) {
+      this.showToast('Vă rugăm să selectați clientul', 'error');
+      return;
+    }
+    
+    if (!serviceId) {
+      this.showToast('Vă rugăm să selectați serviciul', 'error');
+      return;
+    }
+    
+    if (!locationId) {
+      this.showToast('Vă rugăm să selectați locația', 'error');
       return;
     }
     
     try {
       this.showLoading();
       
-      const serviceId = parseInt(document.getElementById('appointmentService').value);
+      const serviceIdInt = parseInt(serviceId);
       
       // Get the selected service to extract unit_price
-      const selectedService = this.services.find(service => service.service_id === serviceId);
+      const selectedService = this.services.find(service => service.service_id === serviceIdInt);
       if (!selectedService) {
         this.showToast('Serviciul selectat nu a fost găsit', 'error');
         return;
       }
       
       const formData = {
-        title: document.getElementById('appointmentTitle').value,
-        scheduled_date: document.getElementById('appointmentDate').value,
-        scheduled_time: document.getElementById('appointmentTime').value,
-        customer_id: parseInt(document.getElementById('appointmentCustomer').value),
-        service_id: serviceId,
-        location_id: parseInt(document.getElementById('appointmentLocation').value),
+        title: title,
+        scheduled_date: date,
+        scheduled_time: time,
+        customer_id: parseInt(customerId),
+        service_id: serviceIdInt,
+        location_id: parseInt(locationId),
         description: document.getElementById('appointmentDescription').value,
         duration: parseInt(document.getElementById('appointmentDuration').value),
         unit_price: parseFloat(selectedService.base_price), // Add unit_price from service

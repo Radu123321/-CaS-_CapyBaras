@@ -49,6 +49,16 @@
       cursor: not-allowed;
     }
 
+    #refreshBtn {
+      background: #10b981;
+      font-size: 1.2rem;
+    }
+
+    #refreshBtn:hover {
+      background: #059669;
+      transform: rotate(180deg);
+    }
+
     .calendar-title {
       font-size: 1.5rem;
       font-weight: bold;
@@ -541,6 +551,7 @@
         <button id="prevBtn" onclick="calendar.previousPeriod()">‹</button>
         <button id="todayBtn" onclick="calendar.goToToday()">Astăzi</button>
         <button id="nextBtn" onclick="calendar.nextPeriod()">›</button>
+        <button id="refreshBtn" onclick="calendar.forceReload()" title="Reîmprospătează datele">🔄</button>
         <h2 class="calendar-title" id="calendarTitle">Ianuarie 2025</h2>
       </div>
       

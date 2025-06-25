@@ -378,6 +378,7 @@ class EquipmentManager {
     `;
     
     modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
 
   // ===== MAINTENANCE MANAGEMENT =====
@@ -388,11 +389,22 @@ class EquipmentManager {
   }
   
   showScheduleMaintenanceModal() {
-    document.getElementById('scheduleMaintenanceModal').style.display = 'flex';
+    const modal = document.getElementById('scheduleMaintenanceModal');
+    modal.style.display = 'flex';
+    modal.classList.add('visible');
+    
+    // Set default date to today
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const defaultDateTime = tomorrow.toISOString().slice(0, 16);
+    document.getElementById('scheduledDate').value = defaultDateTime;
   }
   
   closeScheduleMaintenanceModal() {
-    document.getElementById('scheduleMaintenanceModal').style.display = 'none';
+    const modal = document.getElementById('scheduleMaintenanceModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     document.getElementById('scheduleMaintenanceForm').reset();
   }
   
@@ -403,12 +415,25 @@ class EquipmentManager {
     }
     
     const form = document.getElementById('scheduleMaintenanceForm');
-    const formData = new FormData(form);
+    
+    // Validate required fields
+    const maintenanceType = document.getElementById('maintenanceType').value;
+    const scheduledDate = document.getElementById('scheduledDate').value;
+    
+    if (!maintenanceType) {
+      this.showToast('Vă rugăm să selectați tipul de mentenanță', 'error');
+      return;
+    }
+    
+    if (!scheduledDate) {
+      this.showToast('Vă rugăm să selectați data programată', 'error');
+      return;
+    }
     
     const maintenanceData = {
       equipment_id: this.selectedEquipmentId,
-      maintenance_type: document.getElementById('maintenanceType').value,
-      scheduled_date: document.getElementById('scheduledDate').value,
+      maintenance_type: maintenanceType,
+      scheduled_date: scheduledDate,
       notes: document.getElementById('maintenanceNotes').value,
       estimated_duration: document.getElementById('estimatedDuration').value
     };
@@ -467,21 +492,45 @@ class EquipmentManager {
   // ===== EQUIPMENT MANAGEMENT =====
   
   showAddEquipmentModal() {
-    document.getElementById('addEquipmentModal').style.display = 'flex';
+    const modal = document.getElementById('addEquipmentModal');
+    modal.style.display = 'flex';
+    modal.classList.add('visible');
   }
   
   closeAddEquipmentModal() {
-    document.getElementById('addEquipmentModal').style.display = 'none';
+    const modal = document.getElementById('addEquipmentModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     document.getElementById('addEquipmentForm').reset();
   }
   
   async addEquipment() {
     const form = document.getElementById('addEquipmentForm');
     
+    // Validate required fields
+    const name = document.getElementById('equipmentName').value.trim();
+    const type = document.getElementById('equipmentType').value;
+    const locationId = document.getElementById('equipmentLocationId').value;
+    
+    if (!name) {
+      this.showToast('Vă rugăm să introduceți numele echipamentului', 'error');
+      return;
+    }
+    
+    if (!type) {
+      this.showToast('Vă rugăm să selectați tipul echipamentului', 'error');
+      return;
+    }
+    
+    if (!locationId) {
+      this.showToast('Vă rugăm să selectați locația', 'error');
+      return;
+    }
+    
     const equipmentData = {
-      name: document.getElementById('equipmentName').value,
-      type: document.getElementById('equipmentType').value,
-      location_id: parseInt(document.getElementById('equipmentLocationId').value),
+      name: name,
+      type: type,
+      location_id: parseInt(locationId),
       manufacturer: document.getElementById('manufacturer').value,
       model: document.getElementById('model').value,
       serial_number: document.getElementById('serialNumber').value,
@@ -514,7 +563,9 @@ class EquipmentManager {
   // ===== MODAL MANAGEMENT =====
   
   closeEquipmentDetailsModal() {
-    document.getElementById('equipmentDetailsModal').style.display = 'none';
+    const modal = document.getElementById('equipmentDetailsModal');
+    modal.style.display = 'none';
+    modal.classList.remove('visible');
     this.selectedEquipmentId = null;
   }
 
