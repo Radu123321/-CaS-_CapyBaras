@@ -329,6 +329,16 @@ class OrdersManager {
     console.log('📋 OrdersManager: Clearing table and adding orders');
     tbody.innerHTML = '';
     
+    // Check if current user is admin
+    const userRole = authManager.currentUser?.role;
+    const isAdmin = userRole === 'ADMIN';
+    
+    console.log('👤 OrdersManager: User role check:', {
+      currentUser: authManager.currentUser,
+      userRole: userRole,
+      isAdmin: isAdmin
+    });
+    
     this.filteredOrders.forEach((order, index) => {
       console.log(`📋 OrdersManager: Processing order ${index + 1}:`, order);
       
@@ -343,6 +353,31 @@ class OrdersManager {
       console.log('  - Status:', order.status);
       console.log('  - Date:', order.scheduled_for);
 
+      // Create action buttons based on user role
+      let actionButtons = `
+        <button class="btn-sm btn-primary" onclick="ordersManager.showEditOrderModal(${order.order_id})" title="Editează comanda">
+          Editează
+        </button>
+      `;
+      
+      // Add status edit button for admins (doar pentru schimbarea rapidă de status)
+      if (isAdmin) {
+        actionButtons += `
+          <button class="btn-sm btn-warning" onclick="ordersManager.editOrderStatus(${order.order_id})" title="Schimbă doar status">
+            Status
+          </button>
+        `;
+      }
+      
+      // Add cancel button (available for all roles, but different functionality)
+      if (order.status !== 'CANCELLED' && order.status !== 'COMPLETED') {
+        actionButtons += `
+          <button class="btn-sm btn-danger" onclick="ordersManager.cancelOrder(${order.order_id})" title="Anulează">
+            Anulează
+          </button>
+        `;
+      }
+
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>#${order.order_id}</td>
@@ -352,16 +387,8 @@ class OrdersManager {
         <td><span class="status-badge status-${order.status?.toLowerCase() || 'unknown'}">${this.getStatusLabel(order.status)}</span></td>
         <td>${order.scheduled_for ? this.formatDate(order.scheduled_for) : 'Nu este programată'}</td>
         <td>${order.total_price || 0} RON</td>
-        <td>
-          <button class="btn-sm btn-primary" onclick="ordersManager.viewOrder(${order.order_id})" title="Vezi detalii">
-            <i class="bi bi-eye"></i>
-          </button>
-          <button class="btn-sm btn-secondary" onclick="ordersManager.editOrder(${order.order_id})" title="Editează">
-            <i class="bi bi-pencil"></i>
-          </button>
-          <button class="btn-sm btn-danger" onclick="ordersManager.cancelOrder(${order.order_id})" title="Anulează">
-            <i class="bi bi-trash"></i>
-          </button>
+        <td class="actions-cell">
+          ${actionButtons}
         </td>
       `;
       tbody.appendChild(row);
@@ -388,7 +415,8 @@ class OrdersManager {
       pending: this.orders.filter(o => o.status === 'PENDING').length,
       confirmed: this.orders.filter(o => o.status === 'CONFIRMED').length,
       completed: this.orders.filter(o => o.status === 'COMPLETED').length,
-      cancelled: this.orders.filter(o => o.status === 'CANCELLED').length
+      cancelled: this.orders.filter(o => o.status === 'CANCELLED').length,
+      refunded: this.orders.filter(o => o.status === 'REFUNDED').length
     };
     
     console.log('📊 OrdersManager: Stats breakdown:', stats);
@@ -412,6 +440,7 @@ class OrdersManager {
     if (cancelledCount) cancelledCount.textContent = stats.cancelled;
     
     console.log('✅ OrdersManager: Stats updated successfully');
+    console.log('📊 REFUNDED orders not displayed in UI cards (only 4 cards available), but counted:', stats.refunded);
   }
 
   // ===== HELPER METHODS =====
@@ -447,7 +476,8 @@ class OrdersManager {
       'CONFIRMED': 'Confirmat',
       'IN_PROGRESS': 'În progres',
       'COMPLETED': 'Finalizat',
-      'CANCELLED': 'Anulat'
+      'CANCELLED': 'Anulat',
+      'REFUNDED': 'Rambursat'
     };
     return labels[status] || status;
   }
@@ -518,19 +548,30 @@ class OrdersManager {
     }
   }
   
-  async editOrder(orderId) {
-    try {
-      const response = await authManager.apiRequest(`/orders/${orderId}`);
-      
-      if (response.success) {
-        this.showEditOrderModal(response.data);
-      } else {
-        this.showToast('Eroare la încărcarea comenzii pentru editare', 'error');
-      }
-    } catch (error) {
-      console.error('Error loading order for edit:', error);
-      this.showToast('Eroare la încărcarea comenzii pentru editare', 'error');
+
+
+  async editOrderStatus(orderId) {
+    console.log('🔄 OrdersManager: editOrderStatus() for order:', orderId);
+    
+    const order = this.orders.find(o => o.order_id === orderId);
+    if (!order) {
+      console.error('❌ OrdersManager: Order not found:', orderId);
+      this.showToast('Comanda nu a fost găsită', 'error');
+      return;
     }
+    
+    // Check if user is admin
+    const userRole = authManager.currentUser?.role;
+    console.log('🔄 OrdersManager: Current user role:', userRole);
+    
+    if (userRole !== 'ADMIN') {
+      console.log('❌ OrdersManager: User is not admin, role:', userRole);
+      this.showToast('Doar administratorii pot schimba statusul comenzilor', 'error');
+      return;
+    }
+    
+    console.log('✅ OrdersManager: Admin verification passed, showing status modal');
+    this.showEditStatusModal(order);
   }
 
   async cancelOrder(orderId) {
@@ -559,73 +600,165 @@ class OrdersManager {
     }
   }
 
-  showEditOrderModal(order) {
-    // Reuse the create order modal but populate it with existing data
-    const modal = document.getElementById('createOrderModal');
-    const title = modal.querySelector('.modal-header h3');
-    const createBtn = modal.querySelector('.btn-new-order');
+  showEditOrderModal(orderId) {
+    console.log('✏️ OrdersManager: showEditOrderModal() for order:', orderId);
     
-    title.textContent = `Editează Comanda #${order.order_id}`;
-    createBtn.textContent = 'Actualizează Comanda';
-    createBtn.onclick = () => this.updateOrder(order.order_id);
-    
-    // Populate form with existing data
-    document.getElementById('customerId').value = order.customer_id || '';
-    document.getElementById('locationId').value = order.location_id || '';
-    document.getElementById('serviceId').value = order.service_id || '';
-    
-    if (order.scheduled_date) {
-      const date = new Date(order.scheduled_date);
-      document.getElementById('scheduledDate').value = date.toISOString().slice(0, 16);
+    // Find the order by ID
+    const order = this.orders.find(o => o.order_id === orderId);
+    if (!order) {
+      console.error('❌ OrdersManager: Order not found:', orderId);
+      this.showToast('Comanda nu a fost găsită', 'error');
+      return;
     }
     
-    document.getElementById('notes').value = order.notes || '';
-    document.getElementById('needsTransport').checked = order.needs_transport || false;
+    // Check if user is admin - doar adminii pot edita toate câmpurile
+    const userRole = authManager.currentUser?.role;
+    const isAdmin = userRole === 'ADMIN';
     
+    if (!isAdmin) {
+      // Pentru utilizatori non-admin, doar vizualizează detaliile
+      this.showOrderDetails(order);
+      return;
+    }
+    
+    console.log('✅ OrdersManager: Admin verification passed, showing edit modal');
+    
+    // Close order details modal first
+    this.closeOrderDetailsModal();
+    
+    // Show create order modal in edit mode
+    const modal = document.getElementById('createOrderModal');
+    const title = modal.querySelector('.modal-header h3');
+    const submitBtn = modal.querySelector('.btn-new-order');
+    
+    // Set to edit mode
+    title.textContent = `Editează Comanda #${order.order_id}`;
+    submitBtn.textContent = 'Actualizează Comanda';
+    submitBtn.onclick = () => this.updateOrder(order.order_id);
+    
+    // Populate form with current order data
+    this.populateModalDropdowns();
+    
+    // Show status field for editing
+    document.getElementById('statusFormGroup').style.display = 'block';
+    
+    // Wait for dropdowns to populate, then set values
+    setTimeout(() => {
+      document.getElementById('customerId').value = order.customer_id || '';
+      document.getElementById('locationId').value = order.location_id || '';
+      document.getElementById('serviceId').value = order.service_id || '';
+      
+      // Format scheduled date for datetime-local input
+      if (order.scheduled_date) {
+        const date = new Date(order.scheduled_date);
+        // Format to YYYY-MM-DDTHH:MM
+        const formattedDate = date.getFullYear() + '-' + 
+          String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+          String(date.getDate()).padStart(2, '0') + 'T' + 
+          String(date.getHours()).padStart(2, '0') + ':' + 
+          String(date.getMinutes()).padStart(2, '0');
+        document.getElementById('scheduledDate').value = formattedDate;
+      }
+      
+      document.getElementById('orderStatus').value = order.status || 'PENDING';
+      document.getElementById('notes').value = order.notes || '';
+      document.getElementById('needsTransport').checked = order.needs_transport || false;
+    }, 100);
+    
+    // Show modal
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
+    
+    console.log('✅ OrdersManager: Edit modal shown for order:', order.order_id);
+  }
+
+  showEditStatusModal(order) {
+    console.log('🔄 OrdersManager: showEditStatusModal() for order:', order);
+    
+    // Create modal HTML
+    const modalHtml = `
+      <div id="editStatusModal" class="modal-overlay">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Editează Status - Comanda #${order.order_id}</h3>
+            <button class="modal-close" onclick="ordersManager.closeEditStatusModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="newStatus">Noul status:</label>
+              <select id="newStatus" required>
+                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>În așteptare</option>
+                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmat</option>
+                <option value="IN_PROGRESS" ${order.status === 'IN_PROGRESS' ? 'selected' : ''}>În progres</option>
+                <option value="COMPLETED" ${order.status === 'COMPLETED' ? 'selected' : ''}>Finalizat</option>
+                <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Anulat</option>
+                <option value="REFUNDED" ${order.status === 'REFUNDED' ? 'selected' : ''}>Rambursat</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="statusNotes">Observații (opțional):</label>
+              <textarea id="statusNotes" rows="3" placeholder="Notați motivul schimbării statusului..."></textarea>
+            </div>
+            <div class="status-info">
+              <p><strong>Status actual:</strong> ${this.getStatusLabel(order.status)}</p>
+              <p><strong>Client:</strong> ${this.getCustomerName(order.customer_id)}</p>
+              <p><strong>Serviciu:</strong> ${this.getServiceName(order.service_id)}</p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-back" onclick="ordersManager.closeEditStatusModal()">Anulează</button>
+            <button class="btn-primary" onclick="ordersManager.updateOrderStatus(${order.order_id})">Actualizează Status</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    
+    // Show modal
+    const modal = document.getElementById('editStatusModal');
     modal.style.display = 'flex';
   }
 
-  async updateOrder(orderId) {
-    const formData = {
-      customer_id: parseInt(document.getElementById('customerId').value),
-      location_id: parseInt(document.getElementById('locationId').value),
-      service_id: parseInt(document.getElementById('serviceId').value),
-      scheduled_date: document.getElementById('scheduledDate').value || null,
-      notes: document.getElementById('notes').value || null,
-      needs_transport: document.getElementById('needsTransport').checked
-    };
+  closeEditStatusModal() {
+    const modal = document.getElementById('editStatusModal');
+    if (modal) {
+      modal.remove();
+    }
+  }
 
-    // Validate required fields
-    if (!formData.customer_id || !formData.location_id || !formData.service_id) {
-      this.showToast('Vă rugăm să completați toate câmpurile obligatorii', 'error');
+  async updateOrderStatus(orderId) {
+    console.log('🔄 OrdersManager: updateOrderStatus() for order:', orderId);
+    
+    const newStatus = document.getElementById('newStatus').value;
+    const notes = document.getElementById('statusNotes').value;
+    
+    if (!newStatus) {
+      this.showToast('Vă rugăm să selectați un status', 'error');
       return;
     }
-
+    
     try {
-      const response = await authManager.apiRequest(`/orders/${orderId}`, {
+      const response = await authManager.apiRequest(`/orders/${orderId}/status`, {
         method: 'PUT',
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          status: newStatus,
+          notes: notes
+        })
       });
       
       if (response.success) {
-        this.showToast('Comanda a fost actualizată cu succes', 'success');
-        this.closeCreateOrderModal();
-        await this.loadOrders();
-        this.applyFilters();
-        
-        // Reset modal for next use
-        const modal = document.getElementById('createOrderModal');
-        const title = modal.querySelector('.modal-header h3');
-        const createBtn = modal.querySelector('.btn-new-order');
-        title.textContent = 'Comandă Nouă';
-        createBtn.textContent = 'Creează Comanda';
-        createBtn.onclick = () => createOrder();
+        this.showToast('Statusul comenzii a fost actualizat cu succes', 'success');
+        this.closeEditStatusModal();
+        await this.loadOrders(); // Reload orders
+        this.displayOrders(); // Refresh display
       } else {
-        this.showToast(response.error || 'Eroare la actualizarea comenzii', 'error');
+        this.showToast(response.error || 'Eroare la actualizarea statusului', 'error');
       }
     } catch (error) {
-      console.error('Error updating order:', error);
-      this.showToast('Eroare la actualizarea comenzii', 'error');
+      console.error('❌ OrdersManager: Error updating order status:', error);
+      this.showToast('Eroare la actualizarea statusului', 'error');
     }
   }
 
@@ -635,6 +768,10 @@ class OrdersManager {
     const content = document.getElementById('orderDetailsContent');
     
     title.textContent = `Comandă #${order.order_id}`;
+    
+    // Check if user is admin to show appropriate buttons
+    const userRole = authManager.currentUser?.role;
+    const isAdmin = userRole === 'ADMIN';
     
     content.innerHTML = `
       <div class="order-details">
@@ -681,6 +818,13 @@ class OrdersManager {
       </div>
     `;
     
+    // Update modal footer cu butonul de editare
+    const modalFooter = modal.querySelector('.modal-footer');
+    modalFooter.innerHTML = `
+      <button class="btn-back" onclick="closeOrderDetailsModal()">Închide</button>
+      <button class="btn-primary" onclick="ordersManager.closeOrderDetailsModal(); ordersManager.showEditOrderModal(${order.order_id})">Editează</button>
+    `;
+    
     modal.style.display = 'flex';
   }
 
@@ -711,6 +855,9 @@ class OrdersManager {
     form.reset();
     console.log('📝 OrdersManager: Form reset');
     
+    // Hide status field for new orders
+    document.getElementById('statusFormGroup').style.display = 'none';
+    
     // Ensure dropdowns are populated with current data
     console.log('📝 OrdersManager: About to populate dropdowns');
     this.populateModalDropdowns();
@@ -731,8 +878,11 @@ class OrdersManager {
   
   closeOrderDetailsModal() {
     const modal = document.getElementById('orderDetailsModal');
-    modal.classList.remove('visible');
-    modal.classList.add('hidden');
+    if (modal) {
+      modal.style.display = 'none';
+      modal.classList.remove('visible');
+      modal.classList.add('hidden');
+    }
   }
 
   // ===== TOAST NOTIFICATIONS =====
@@ -751,6 +901,62 @@ class OrdersManager {
         toast.parentNode.removeChild(toast);
       }
     }, duration);
+  }
+
+  async updateOrder(orderId) {
+    console.log('🔄 OrdersManager: updateOrder() for order:', orderId);
+    
+    // Get form field values
+    const customerIdField = document.getElementById('customerId');
+    const locationIdField = document.getElementById('locationId');
+    const serviceIdField = document.getElementById('serviceId');
+    const scheduledDateField = document.getElementById('scheduledDate');
+    const notesField = document.getElementById('notes');
+    const needsTransportField = document.getElementById('needsTransport');
+    
+    const statusField = document.getElementById('orderStatus');
+    
+    const formData = {
+      customer_id: parseInt(customerIdField?.value),
+      location_id: parseInt(locationIdField?.value),
+      service_id: parseInt(serviceIdField?.value),
+      scheduled_for: scheduledDateField?.value || null,
+      status: statusField?.value || 'PENDING',
+      notes: notesField?.value || null,
+      needs_transport: needsTransportField?.checked || false
+    };
+    
+    console.log('🔄 OrdersManager: Update data prepared:', formData);
+
+    // Validate required fields
+    if (!formData.customer_id || !formData.location_id || !formData.service_id) {
+      console.log('❌ Validation failed - missing required fields');
+      this.showToast('Vă rugăm să completați toate câmpurile obligatorii', 'error');
+      return;
+    }
+
+    try {
+      console.log('🔄 Sending PUT request to /orders/' + orderId);
+      const response = await authManager.apiRequest(`/orders/${orderId}`, {
+        method: 'PUT',
+        body: JSON.stringify(formData)
+      });
+      console.log('🔄 API response:', response);
+      
+      if (response.success) {
+        console.log('✅ Order updated successfully');
+        this.showToast('Comanda a fost actualizată cu succes', 'success');
+        this.closeCreateOrderModal();
+        await this.loadOrders();
+        this.displayOrders();
+      } else {
+        console.error('❌ API returned error:', response.error);
+        this.showToast(response.error || 'Eroare la actualizarea comenzii', 'error');
+      }
+    } catch (error) {
+      console.error('❌ Exception updating order:', error);
+      this.showToast('Eroare la actualizarea comenzii', 'error');
+    }
   }
 }
 
@@ -789,9 +995,29 @@ function applyFilters() {
 }
 
 function showUpdateStatusModal() {
-  // Placeholder function for updating order status
-  if (ordersManager) {
-    ordersManager.showToast('Funcționalitatea de actualizare status va fi implementată', 'info');
+  console.log('🔄 showUpdateStatusModal() called from order details modal');
+  
+  // Get the order ID from the modal title or a data attribute
+  const modalTitle = document.getElementById('orderDetailsTitle');
+  const titleText = modalTitle ? modalTitle.textContent : '';
+  
+  // Extract order ID from title like "Detalii Comandă #73"
+  const orderIdMatch = titleText.match(/#(\d+)/);
+  
+  if (orderIdMatch && ordersManager) {
+    const orderId = parseInt(orderIdMatch[1]);
+    console.log('🔄 Extracted order ID:', orderId);
+    
+    // Close the order details modal first
+    ordersManager.closeOrderDetailsModal();
+    
+    // Open the edit status modal
+    ordersManager.editOrderStatus(orderId);
+  } else {
+    console.error('❌ Could not extract order ID from modal title:', titleText);
+    if (ordersManager) {
+      ordersManager.showToast('Nu s-a putut identifica comanda pentru editare', 'error');
+    }
   }
 }
 

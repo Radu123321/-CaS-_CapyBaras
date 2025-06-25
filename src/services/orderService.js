@@ -4,7 +4,7 @@ const customerRepository = require('../repositories/customerRepository');
 const log = require('../core/logger');
 
 // Valid order statuses
-const VALID_ORDER_STATUSES = ['PENDING', 'SCHEDULED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED'];
+const VALID_ORDER_STATUSES = ['PENDING', 'CONFIRMED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED', 'REFUNDED'];
 
 async function createOrder(orderData) {
   const { 

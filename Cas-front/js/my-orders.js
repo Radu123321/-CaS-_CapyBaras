@@ -379,13 +379,7 @@ class MyOrders {
           </div>
         ` : ''}
 
-        <div style="margin-top: 30px; text-align: center;">
-          ${order.status === 'PENDING' ? `
-            <button class="btn-cancel" onclick="myOrders.cancelOrder(${order.order_id}); myOrders.closeOrderDetailsModal();">
-              Anulează Comanda
-            </button>
-          ` : ''}
-        </div>
+
       </div>
     `;
 
