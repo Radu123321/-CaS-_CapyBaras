@@ -92,12 +92,12 @@ class MyOrders {
 
     if (!this.orders || this.orders.length === 0) {
       grid.style.display = 'none';
-      emptyState.style.display = 'block';
+      emptyState.classList.remove('hidden');
       return;
     }
 
     grid.style.display = 'grid';
-    emptyState.style.display = 'none';
+    emptyState.classList.add('hidden');
 
     // Sort orders by creation date (newest first)
     const sortedOrders = [...this.orders].sort((a, b) => 
@@ -567,4 +567,28 @@ window.onclick = function(event) {
   if (event.target === detailsModal) {
     myOrders.closeOrderDetailsModal();
   }
+}
+
+// Initialize page when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  if (!authManager.isAuthenticated()) {
+    window.location.href = 'login.html';
+    return;
+  }
+  
+  myOrders.init();
+  
+  // Add event listeners for buttons
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+  document.getElementById('newOrderBtn').addEventListener('click', () => myOrders.showNewOrderModal());
+  document.getElementById('emptyStateNewOrderBtn').addEventListener('click', () => myOrders.showNewOrderModal());
+  document.getElementById('closeNewOrderModal').addEventListener('click', () => myOrders.closeNewOrderModal());
+  document.getElementById('cancelNewOrderBtn').addEventListener('click', () => myOrders.closeNewOrderModal());
+  document.getElementById('closeOrderDetailsModal').addEventListener('click', () => myOrders.closeOrderDetailsModal());
+});
+
+// Logout function
+function logout() {
+  authManager.logout();
+  window.location.href = 'login.html';
 } 

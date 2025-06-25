@@ -48,20 +48,20 @@ class OrdersManager {
   
   showLoading() {
     document.getElementById('loadingState').style.display = 'flex';
-    document.getElementById('ordersContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('ordersContent').classList.remove('visible');
+    document.getElementById('errorState').classList.add('hidden');
   }
   
   showOrders() {
     document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('ordersContent').style.display = 'block';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('ordersContent').classList.add('visible');
+    document.getElementById('errorState').classList.add('hidden');
   }
   
   showError(message) {
     document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('ordersContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'flex';
+    document.getElementById('ordersContent').classList.remove('visible');
+    document.getElementById('errorState').classList.remove('hidden');
     document.getElementById('errorMessage').textContent = message;
   }
 
@@ -717,17 +717,22 @@ class OrdersManager {
     
     // Show modal
     console.log('📝 OrdersManager: Showing modal');
-    modal.style.display = 'flex';
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
     console.log('✅ OrdersManager: showCreateOrderModal() completed');
   }
   
   closeCreateOrderModal() {
-    document.getElementById('createOrderModal').style.display = 'none';
+    const modal = document.getElementById('createOrderModal');
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
     document.getElementById('createOrderForm').reset();
   }
   
   closeOrderDetailsModal() {
-    document.getElementById('orderDetailsModal').style.display = 'none';
+    const modal = document.getElementById('orderDetailsModal');
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
   }
 
   // ===== TOAST NOTIFICATIONS =====
@@ -963,17 +968,41 @@ document.addEventListener('DOMContentLoaded', function() {
   ordersManager = new OrdersManager();
 });
 
-// Add event listener for the create order button
+// Add event listeners for all buttons
 document.addEventListener('DOMContentLoaded', function() {
-  const createOrderBtn = document.querySelector('[onclick="showCreateOrderModal()"]');
-  if (createOrderBtn) {
-    console.log('✅ Create order button found, adding event listener');
-    createOrderBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('🔘 Create order button clicked');
-      showCreateOrderModal();
-    });
-  } else {
-    console.log('❌ Create order button not found');
-  }
+  // Add event listeners for buttons
+  const buttons = {
+    'createOrderBtn': () => ordersManager?.showCreateOrderModal(),
+    'refreshOrdersBtn': refreshOrders,
+    'closeCreateModalBtn': () => ordersManager?.closeCreateOrderModal(),
+    'cancelCreateOrderBtn': () => ordersManager?.closeCreateOrderModal(),
+    'createOrderSubmitBtn': createOrder,
+    'closeOrderDetailsBtn': () => ordersManager?.closeOrderDetailsModal(),
+    'closeOrderDetailsFooterBtn': () => ordersManager?.closeOrderDetailsModal(),
+    'updateStatusBtn': showUpdateStatusModal,
+    'reloadPageBtn': () => location.reload()
+  };
+
+  // Add event listeners if elements exist
+  Object.keys(buttons).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.addEventListener('click', buttons[id]);
+      console.log(`✅ Event listener added for ${id}`);
+    } else {
+      console.log(`❌ Element not found: ${id}`);
+    }
+  });
+
+  // Add change listeners for filters
+  const filters = ['statusFilter', 'locationFilter', 'serviceFilter', 'dateFilter'];
+  filters.forEach(filterId => {
+    const element = document.getElementById(filterId);
+    if (element) {
+      element.addEventListener('change', applyFilters);
+      console.log(`✅ Change listener added for ${filterId}`);
+    } else {
+      console.log(`❌ Filter element not found: ${filterId}`);
+    }
+  });
 }); 

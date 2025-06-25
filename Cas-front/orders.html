@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/orders.css">
 </head>
 <body>
 
@@ -14,11 +15,11 @@
     <!-- Loading State -->
     <div id="loadingState" class="loading-state">
       <div class="loading-spinner"></div>
-      <p style="margin-top: 20px; color: #6b7280;">Se încarcă comenzile...</p>
+      <p>Se încarcă comenzile...</p>
     </div>
 
     <!-- Orders Content -->
-    <div id="ordersContent" style="display: none;">
+    <div id="ordersContent" class="orders-content">
       
       <!-- Header Section -->
       <div class="orders-header">
@@ -27,10 +28,10 @@
           <p class="orders-subtitle">Administrează și monitorizează toate comenzile</p>
         </div>
         <div class="orders-actions">
-          <button class="btn-new-order" onclick="showCreateOrderModal()">
+          <button class="btn-new-order" id="createOrderBtn">
             <span>➕</span> Comandă Nouă
           </button>
-          <button class="btn-refresh" onclick="refreshOrders()">
+          <button class="btn-refresh" id="refreshOrdersBtn">
             <span>🔄</span> Reîmprospătează
           </button>
           <a href="dashboard.html" class="btn-back">
@@ -69,7 +70,7 @@
         <div class="filters-grid">
           <div class="filter-group">
             <label for="statusFilter">Status</label>
-            <select id="statusFilter" onchange="applyFilters()">
+            <select id="statusFilter">
               <option value="">Toate statusurile</option>
               <option value="PENDING">În așteptare</option>
               <option value="CONFIRMED">Confirmate</option>
@@ -80,19 +81,19 @@
           </div>
           <div class="filter-group">
             <label for="locationFilter">Locație</label>
-            <select id="locationFilter" onchange="applyFilters()">
+            <select id="locationFilter">
               <option value="">Toate locațiile</option>
             </select>
           </div>
           <div class="filter-group">
             <label for="serviceFilter">Serviciu</label>
-            <select id="serviceFilter" onchange="applyFilters()">
+            <select id="serviceFilter">
               <option value="">Toate serviciile</option>
             </select>
           </div>
           <div class="filter-group">
             <label for="dateFilter">Perioada</label>
-            <select id="dateFilter" onchange="applyFilters()">
+            <select id="dateFilter">
               <option value="">Toate perioadele</option>
               <option value="today">Astăzi</option>
               <option value="week">Ultima săptămână</option>
@@ -110,7 +111,7 @@
             <span id="ordersCount">0 comenzi</span>
           </div>
         </div>
-        <div style="overflow-x: auto;">
+        <div class="table-overflow">
           <table class="orders-table">
             <thead>
               <tr>
@@ -136,11 +137,11 @@
     </div>
 
     <!-- Error State -->
-    <div id="errorState" class="error-state" style="display: none;">
+    <div id="errorState" class="error-state hidden">
       <div class="error-card">
         <h2>Eroare la încărcarea comenzilor</h2>
         <p id="errorMessage">A apărut o eroare neașteptată.</p>
-        <button class="btn-refresh" onclick="location.reload()">
+        <button class="btn-refresh" id="reloadPageBtn">
           <span>🔄</span> Reîncarcă Pagina
         </button>
       </div>
@@ -149,11 +150,11 @@
   </div>
 
   <!-- Create Order Modal -->
-  <div id="createOrderModal" class="modal-overlay" style="display: none;">
+  <div id="createOrderModal" class="modal-overlay hidden">
     <div class="modal-content modal-large">
       <div class="modal-header">
         <h3>Comandă Nouă</h3>
-        <button class="modal-close" onclick="closeCreateOrderModal()">&times;</button>
+        <button class="modal-close" id="closeCreateModalBtn">&times;</button>
       </div>
       <div class="modal-body">
         <form id="createOrderForm">
@@ -193,18 +194,18 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn-back" onclick="closeCreateOrderModal()">Anulează</button>
-        <button class="btn-new-order" onclick="createOrder()">Creează Comanda</button>
+        <button class="btn-back" id="cancelCreateOrderBtn">Anulează</button>
+        <button class="btn-new-order" id="createOrderSubmitBtn">Creează Comanda</button>
       </div>
     </div>
   </div>
 
   <!-- Order Details Modal -->
-  <div id="orderDetailsModal" class="modal-overlay" style="display: none;">
+  <div id="orderDetailsModal" class="modal-overlay hidden">
     <div class="modal-content modal-large">
       <div class="modal-header">
         <h3 id="orderDetailsTitle">Detalii Comandă</h3>
-        <button class="modal-close" onclick="closeOrderDetailsModal()">&times;</button>
+        <button class="modal-close" id="closeOrderDetailsBtn">&times;</button>
       </div>
       <div class="modal-body">
         <div id="orderDetailsContent">
@@ -212,8 +213,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn-back" onclick="closeOrderDetailsModal()">Închide</button>
-        <button class="btn-refresh" id="updateOrderStatusBtn" onclick="showUpdateStatusModal()">Actualizează Status</button>
+        <button class="btn-back" id="closeOrderDetailsFooterBtn">Închide</button>
+        <button class="btn-refresh" id="updateStatusBtn">Actualizează Status</button>
       </div>
     </div>
   </div>

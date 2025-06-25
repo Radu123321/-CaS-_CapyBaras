@@ -1,0 +1,35 @@
+/* Orders Page Styles */
+
+/* Loading State */
+.loading-state p {
+    margin-top: 20px;
+    color: #6b7280;
+}
+
+/* Orders Content */
+.orders-content {
+    display: none;
+}
+
+.orders-content.visible {
+    display: block;
+}
+
+/* Error State */
+.error-state.hidden {
+    display: none;
+}
+
+/* Table Styles */
+.table-overflow {
+    overflow-x: auto;
+}
+
+/* Modal Styles */
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-overlay.visible {
+    display: flex;
+} 

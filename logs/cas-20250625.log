@@ -23339,3 +23339,2719 @@
 2025-06-25T19:01:13.847Z [INFO] RSS feeds will be updated on next access
 2025-06-25T19:01:13.847Z [INFO] Alert alert_1750878073846_pp0iecdzt sent via multiple channels: email, websocket, rss
 2025-06-25T19:01:13.847Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:01:14.116Z [INFO] GET /api/services
+2025-06-25T19:01:14.117Z [INFO] GET /api/services
+2025-06-25T19:01:14.117Z [INFO] GET /api/locations
+2025-06-25T19:01:14.119Z [INFO] GET /api/locations
+2025-06-25T19:01:14.164Z [INFO] GET /api/customers
+2025-06-25T19:01:14.164Z [INFO] GET /api/customers
+2025-06-25T19:01:14.165Z [INFO] GET /api/services
+2025-06-25T19:01:14.166Z [INFO] GET /api/services
+2025-06-25T19:01:14.167Z [INFO] GET /api/locations
+2025-06-25T19:01:14.173Z [INFO] GET /api/locations
+2025-06-25T19:01:14.195Z [INFO] GET /api/orders
+2025-06-25T19:01:14.195Z [INFO] GET /api/orders
+2025-06-25T19:01:14.197Z [INFO] GET /api/customers
+2025-06-25T19:01:14.198Z [INFO] GET /api/customers
+2025-06-25T19:01:14.227Z [INFO] GET /api/orders
+2025-06-25T19:01:14.228Z [INFO] GET /api/orders
+2025-06-25T19:01:14.229Z [INFO] GET /api/stats/appointments
+2025-06-25T19:01:14.240Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:14.240Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:14.241Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:01:14.241Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:01:14.241Z [INFO] Alert alert_1750878074240_purcf111w sent via multiple channels: email, websocket, rss
+2025-06-25T19:01:14.242Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:01:27.097Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:01:27.097Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:01:27.099Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:01:27.099Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:01:41.209Z [INFO] OPTIONS /api/customers
+2025-06-25T19:01:41.213Z [INFO] OPTIONS /api/services
+2025-06-25T19:01:41.214Z [INFO] OPTIONS /api/services
+2025-06-25T19:01:41.217Z [INFO] OPTIONS /api/locations
+2025-06-25T19:01:41.218Z [INFO] OPTIONS /api/locations
+2025-06-25T19:01:41.219Z [INFO] GET /api/customers
+2025-06-25T19:01:41.220Z [INFO] GET /api/customers
+2025-06-25T19:01:41.222Z [INFO] GET /api/services
+2025-06-25T19:01:41.222Z [INFO] GET /api/services
+2025-06-25T19:01:41.223Z [INFO] GET /api/locations
+2025-06-25T19:01:41.224Z [INFO] GET /api/locations
+2025-06-25T19:01:41.224Z [INFO] GET /api/services
+2025-06-25T19:01:41.225Z [INFO] GET /api/services
+2025-06-25T19:01:41.226Z [INFO] GET /api/locations
+2025-06-25T19:01:41.226Z [INFO] GET /api/locations
+2025-06-25T19:01:41.235Z [INFO] OPTIONS /api/customers
+2025-06-25T19:01:41.237Z [INFO] OPTIONS /api/orders
+2025-06-25T19:01:41.238Z [INFO] GET /api/customers
+2025-06-25T19:01:41.239Z [INFO] GET /api/customers
+2025-06-25T19:01:41.240Z [INFO] GET /api/orders
+2025-06-25T19:01:41.240Z [INFO] GET /api/orders
+2025-06-25T19:01:41.248Z [INFO] OPTIONS /api/orders
+2025-06-25T19:01:41.251Z [INFO] GET /api/orders
+2025-06-25T19:01:41.252Z [INFO] GET /api/orders
+2025-06-25T19:01:41.264Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:01:41.267Z [INFO] GET /api/stats/appointments
+2025-06-25T19:01:41.275Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:41.276Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:41.276Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:01:41.276Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:01:41.277Z [INFO] Alert alert_1750878101275_1qm6jdg5x sent via multiple channels: email, websocket, rss
+2025-06-25T19:01:41.277Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:01:41.557Z [INFO] GET /api/customers
+2025-06-25T19:01:41.558Z [INFO] GET /api/customers
+2025-06-25T19:01:41.559Z [INFO] GET /api/services
+2025-06-25T19:01:41.559Z [INFO] GET /api/services
+2025-06-25T19:01:41.560Z [INFO] GET /api/locations
+2025-06-25T19:01:41.561Z [INFO] GET /api/locations
+2025-06-25T19:01:41.566Z [INFO] GET /api/services
+2025-06-25T19:01:41.566Z [INFO] GET /api/services
+2025-06-25T19:01:41.568Z [INFO] GET /api/locations
+2025-06-25T19:01:41.569Z [INFO] GET /api/locations
+2025-06-25T19:01:41.583Z [INFO] GET /api/customers
+2025-06-25T19:01:41.586Z [INFO] GET /api/customers
+2025-06-25T19:01:41.588Z [INFO] GET /api/orders
+2025-06-25T19:01:41.588Z [INFO] GET /api/orders
+2025-06-25T19:01:41.593Z [INFO] GET /api/orders
+2025-06-25T19:01:41.594Z [INFO] GET /api/orders
+2025-06-25T19:01:41.606Z [INFO] GET /api/stats/appointments
+2025-06-25T19:01:41.610Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:41.610Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:01:41.611Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:01:41.611Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:01:41.611Z [INFO] Alert alert_1750878101610_auuep94ot sent via multiple channels: email, websocket, rss
+2025-06-25T19:01:41.612Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:02:04.364Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:04.366Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:04.367Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:04.379Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:04.380Z [INFO] GET /api/customers
+2025-06-25T19:02:04.381Z [INFO] GET /api/customers
+2025-06-25T19:02:04.383Z [INFO] GET /api/services
+2025-06-25T19:02:04.384Z [INFO] GET /api/services
+2025-06-25T19:02:04.385Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:04.388Z [INFO] GET /api/locations
+2025-06-25T19:02:04.388Z [INFO] GET /api/locations
+2025-06-25T19:02:04.392Z [INFO] GET /api/services
+2025-06-25T19:02:04.392Z [INFO] GET /api/services
+2025-06-25T19:02:04.396Z [INFO] GET /api/locations
+2025-06-25T19:02:04.397Z [INFO] GET /api/locations
+2025-06-25T19:02:04.404Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:04.405Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:04.407Z [INFO] GET /api/customers
+2025-06-25T19:02:04.407Z [INFO] GET /api/customers
+2025-06-25T19:02:04.408Z [INFO] GET /api/orders
+2025-06-25T19:02:04.409Z [INFO] GET /api/orders
+2025-06-25T19:02:04.412Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:04.416Z [INFO] GET /api/orders
+2025-06-25T19:02:04.416Z [INFO] GET /api/orders
+2025-06-25T19:02:04.425Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:02:04.427Z [INFO] GET /api/stats/appointments
+2025-06-25T19:02:04.431Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:04.432Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:04.432Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:02:04.432Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:02:04.432Z [INFO] Alert alert_1750878124431_w2ar77uu8 sent via multiple channels: email, websocket, rss
+2025-06-25T19:02:04.433Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:02:09.277Z [INFO] GET /api/services
+2025-06-25T19:02:09.278Z [INFO] GET /api/services
+2025-06-25T19:02:09.280Z [INFO] GET /api/locations
+2025-06-25T19:02:09.280Z [INFO] GET /api/locations
+2025-06-25T19:02:09.283Z [INFO] GET /api/customers
+2025-06-25T19:02:09.284Z [INFO] GET /api/customers
+2025-06-25T19:02:09.285Z [INFO] GET /api/services
+2025-06-25T19:02:09.286Z [INFO] GET /api/services
+2025-06-25T19:02:09.287Z [INFO] GET /api/locations
+2025-06-25T19:02:09.287Z [INFO] GET /api/locations
+2025-06-25T19:02:09.291Z [INFO] GET /api/customers
+2025-06-25T19:02:09.292Z [INFO] GET /api/customers
+2025-06-25T19:02:09.298Z [INFO] GET /api/orders
+2025-06-25T19:02:09.299Z [INFO] GET /api/orders
+2025-06-25T19:02:09.299Z [INFO] GET /api/orders
+2025-06-25T19:02:09.300Z [INFO] GET /api/orders
+2025-06-25T19:02:09.314Z [INFO] GET /api/stats/appointments
+2025-06-25T19:02:09.322Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:09.323Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:09.324Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:02:09.324Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:02:09.324Z [INFO] Alert alert_1750878129322_05ctk6lmt sent via multiple channels: email, websocket, rss
+2025-06-25T19:02:09.324Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:02:13.160Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:13.162Z [INFO] GET /api/services
+2025-06-25T19:02:13.163Z [INFO] GET /api/services
+2025-06-25T19:02:13.165Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:13.168Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:13.169Z [INFO] GET /api/locations
+2025-06-25T19:02:13.169Z [INFO] GET /api/locations
+2025-06-25T19:02:13.170Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:13.171Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:13.172Z [INFO] GET /api/customers
+2025-06-25T19:02:13.174Z [INFO] GET /api/customers
+2025-06-25T19:02:13.177Z [INFO] GET /api/services
+2025-06-25T19:02:13.178Z [INFO] GET /api/services
+2025-06-25T19:02:13.179Z [INFO] GET /api/locations
+2025-06-25T19:02:13.180Z [INFO] GET /api/locations
+2025-06-25T19:02:13.187Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:13.189Z [INFO] GET /api/customers
+2025-06-25T19:02:13.189Z [INFO] GET /api/customers
+2025-06-25T19:02:13.196Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:13.197Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:13.198Z [INFO] GET /api/orders
+2025-06-25T19:02:13.199Z [INFO] GET /api/orders
+2025-06-25T19:02:13.199Z [INFO] GET /api/orders
+2025-06-25T19:02:13.200Z [INFO] GET /api/orders
+2025-06-25T19:02:13.214Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:02:13.216Z [INFO] GET /api/stats/appointments
+2025-06-25T19:02:13.221Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:13.221Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:13.221Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:02:13.222Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:02:13.222Z [INFO] Alert alert_1750878133221_19h3nov5p sent via multiple channels: email, websocket, rss
+2025-06-25T19:02:13.222Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:02:27.101Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:02:27.101Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:02:27.101Z [INFO] Starting equipment status check...
+2025-06-25T19:02:27.104Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:02:27.104Z [ERROR] Error checking equipment status:
+2025-06-25T19:02:27.104Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:02:27.105Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:03:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:02:27.105Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:02:27.105Z [INFO] Starting weather data update job...
+2025-06-25T19:02:27.105Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:02:27.106Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:02:27.107Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:02:27.108Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:02:27.108Z [INFO] Weather data update job completed in 3ms
+2025-06-25T19:02:27.108Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:03:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:02:27.109Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T19:02:27.109Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:02:27.109Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:02:27.110Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 22:07:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:02:53.053Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:53.057Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:53.058Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:53.060Z [INFO] GET /api/customers
+2025-06-25T19:02:53.060Z [INFO] GET /api/customers
+2025-06-25T19:02:53.061Z [INFO] GET /api/services
+2025-06-25T19:02:53.062Z [INFO] GET /api/services
+2025-06-25T19:02:53.062Z [INFO] GET /api/locations
+2025-06-25T19:02:53.062Z [INFO] GET /api/locations
+2025-06-25T19:02:53.064Z [INFO] OPTIONS /api/services
+2025-06-25T19:02:53.065Z [INFO] OPTIONS /api/locations
+2025-06-25T19:02:53.069Z [INFO] GET /api/services
+2025-06-25T19:02:53.069Z [INFO] GET /api/services
+2025-06-25T19:02:53.069Z [INFO] GET /api/locations
+2025-06-25T19:02:53.070Z [INFO] GET /api/locations
+2025-06-25T19:02:53.139Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:53.141Z [INFO] GET /api/orders
+2025-06-25T19:02:53.141Z [INFO] GET /api/orders
+2025-06-25T19:02:53.149Z [INFO] OPTIONS /api/customers
+2025-06-25T19:02:53.151Z [INFO] GET /api/customers
+2025-06-25T19:02:53.152Z [INFO] GET /api/customers
+2025-06-25T19:02:53.164Z [INFO] OPTIONS /api/orders
+2025-06-25T19:02:53.166Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:02:53.167Z [INFO] GET /api/orders
+2025-06-25T19:02:53.167Z [INFO] GET /api/orders
+2025-06-25T19:02:53.169Z [INFO] GET /api/stats/appointments
+2025-06-25T19:02:53.255Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:53.256Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:02:53.256Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:02:53.256Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:02:53.256Z [INFO] Alert alert_1750878173255_e3o05n162 sent via multiple channels: email, websocket, rss
+2025-06-25T19:02:53.257Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:03:15.985Z [INFO] OPTIONS /api/customers
+2025-06-25T19:03:15.987Z [INFO] OPTIONS /api/services
+2025-06-25T19:03:15.989Z [INFO] OPTIONS /api/locations
+2025-06-25T19:03:15.991Z [INFO] OPTIONS /api/services
+2025-06-25T19:03:15.993Z [INFO] GET /api/customers
+2025-06-25T19:03:15.994Z [INFO] GET /api/customers
+2025-06-25T19:03:15.996Z [INFO] GET /api/services
+2025-06-25T19:03:15.997Z [INFO] GET /api/services
+2025-06-25T19:03:15.997Z [INFO] GET /api/locations
+2025-06-25T19:03:15.998Z [INFO] GET /api/locations
+2025-06-25T19:03:15.998Z [INFO] OPTIONS /api/locations
+2025-06-25T19:03:16.002Z [INFO] GET /api/services
+2025-06-25T19:03:16.004Z [INFO] GET /api/services
+2025-06-25T19:03:16.005Z [INFO] GET /api/locations
+2025-06-25T19:03:16.006Z [INFO] GET /api/locations
+2025-06-25T19:03:16.012Z [INFO] OPTIONS /api/customers
+2025-06-25T19:03:16.015Z [INFO] GET /api/customers
+2025-06-25T19:03:16.016Z [INFO] GET /api/customers
+2025-06-25T19:03:16.017Z [INFO] OPTIONS /api/orders
+2025-06-25T19:03:16.018Z [INFO] GET /api/orders
+2025-06-25T19:03:16.019Z [INFO] GET /api/orders
+2025-06-25T19:03:16.022Z [INFO] OPTIONS /api/orders
+2025-06-25T19:03:16.025Z [INFO] GET /api/orders
+2025-06-25T19:03:16.025Z [INFO] GET /api/orders
+2025-06-25T19:03:16.034Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:03:16.035Z [INFO] GET /api/stats/appointments
+2025-06-25T19:03:16.044Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:03:16.044Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:03:16.044Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:03:16.045Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:03:16.045Z [INFO] Alert alert_1750878196044_iuiueewj6 sent via multiple channels: email, websocket, rss
+2025-06-25T19:03:16.045Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:03:27.110Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:03:27.110Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:03:27.110Z [INFO] Starting equipment status check...
+2025-06-25T19:03:27.113Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:03:27.113Z [ERROR] Error checking equipment status:
+2025-06-25T19:03:27.113Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:03:27.114Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:04:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:03:27.114Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:03:27.114Z [INFO] Starting weather data update job...
+2025-06-25T19:03:27.115Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:03:27.118Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:03:27.118Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:03:27.120Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:03:27.120Z [INFO] Weather data update job completed in 6ms
+2025-06-25T19:03:27.120Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:04:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:04:27.114Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:04:27.114Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:04:27.115Z [INFO] Starting equipment status check...
+2025-06-25T19:04:27.156Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:04:27.157Z [ERROR] Error checking equipment status:
+2025-06-25T19:04:27.157Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:04:27.158Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:05:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:05:27.125Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:05:27.126Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:05:27.167Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:05:27.168Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:05:27.168Z [INFO] Scheduler: Running job 'checkInventory'
+2025-06-25T19:05:27.168Z [INFO] CheckInventory: Starting inventory monitoring job
+2025-06-25T19:05:27.169Z [ERROR] SQL error after 1ms: column i.quantity does not exist
+2025-06-25T19:05:27.169Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-06-25T19:05:27.170Z [ERROR] Failed to get low stock items: column i.quantity does not exist
+2025-06-25T19:05:27.170Z [ERROR] Failed to get inventory alerts: column i.quantity does not exist
+2025-06-25T19:05:27.170Z [ERROR] CheckInventory: Job failed - column i.quantity does not exist
+2025-06-25T19:05:27.171Z [ERROR] Scheduler: Job 'checkInventory' failed: column i.quantity does not exist
+2025-06-25T19:05:27.171Z [WARN] Scheduler: Job 'checkInventory' will retry at Wed Jun 25 2025 22:10:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:05:27.171Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:05:27.171Z [INFO] Starting weather data update job...
+2025-06-25T19:05:27.172Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:05:27.215Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:05:27.215Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:05:27.217Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:05:27.217Z [INFO] Weather data update job completed in 46ms
+2025-06-25T19:05:27.217Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:06:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:06:13.496Z [INFO] OPTIONS /api/services
+2025-06-25T19:06:13.498Z [INFO] OPTIONS /api/customers
+2025-06-25T19:06:13.498Z [INFO] OPTIONS /api/services
+2025-06-25T19:06:13.499Z [INFO] OPTIONS /api/locations
+2025-06-25T19:06:13.500Z [INFO] GET /api/services
+2025-06-25T19:06:13.500Z [INFO] GET /api/services
+2025-06-25T19:06:13.501Z [INFO] OPTIONS /api/locations
+2025-06-25T19:06:13.502Z [INFO] GET /api/customers
+2025-06-25T19:06:13.503Z [INFO] GET /api/customers
+2025-06-25T19:06:13.504Z [INFO] GET /api/services
+2025-06-25T19:06:13.505Z [INFO] GET /api/services
+2025-06-25T19:06:13.505Z [INFO] GET /api/locations
+2025-06-25T19:06:13.506Z [INFO] GET /api/locations
+2025-06-25T19:06:13.507Z [INFO] GET /api/locations
+2025-06-25T19:06:13.508Z [INFO] GET /api/locations
+2025-06-25T19:06:13.604Z [INFO] OPTIONS /api/customers
+2025-06-25T19:06:13.605Z [INFO] OPTIONS /api/orders
+2025-06-25T19:06:13.606Z [INFO] GET /api/customers
+2025-06-25T19:06:13.607Z [INFO] GET /api/customers
+2025-06-25T19:06:13.607Z [INFO] GET /api/orders
+2025-06-25T19:06:13.607Z [INFO] GET /api/orders
+2025-06-25T19:06:13.615Z [INFO] OPTIONS /api/orders
+2025-06-25T19:06:13.618Z [INFO] GET /api/orders
+2025-06-25T19:06:13.618Z [INFO] GET /api/orders
+2025-06-25T19:06:13.627Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:06:13.629Z [INFO] GET /api/stats/appointments
+2025-06-25T19:06:13.690Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:06:13.690Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:06:13.690Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:06:13.690Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:06:13.691Z [INFO] Alert alert_1750878373689_2mi3ix2x9 sent via multiple channels: email, websocket, rss
+2025-06-25T19:06:13.691Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:06:14.107Z [INFO] GET /api/customers
+2025-06-25T19:06:14.107Z [INFO] GET /api/customers
+2025-06-25T19:06:14.108Z [INFO] GET /api/services
+2025-06-25T19:06:14.108Z [INFO] GET /api/services
+2025-06-25T19:06:14.109Z [INFO] GET /api/locations
+2025-06-25T19:06:14.109Z [INFO] GET /api/locations
+2025-06-25T19:06:14.128Z [INFO] GET /api/services
+2025-06-25T19:06:14.129Z [INFO] GET /api/services
+2025-06-25T19:06:14.129Z [INFO] GET /api/locations
+2025-06-25T19:06:14.130Z [INFO] GET /api/locations
+2025-06-25T19:06:14.136Z [INFO] GET /api/orders
+2025-06-25T19:06:14.137Z [INFO] GET /api/orders
+2025-06-25T19:06:14.138Z [INFO] GET /api/customers
+2025-06-25T19:06:14.139Z [INFO] GET /api/customers
+2025-06-25T19:06:14.154Z [INFO] GET /api/orders
+2025-06-25T19:06:14.155Z [INFO] GET /api/orders
+2025-06-25T19:06:14.157Z [INFO] GET /api/stats/appointments
+2025-06-25T19:06:14.205Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:06:14.206Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:06:14.206Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:06:14.206Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:06:14.206Z [INFO] Alert alert_1750878374205_378l5djxq sent via multiple channels: email, websocket, rss
+2025-06-25T19:06:14.206Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:06:27.136Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:06:27.137Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:06:27.139Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:06:27.139Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:06:27.139Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:06:27.140Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:06:27.140Z [INFO] Starting equipment status check...
+2025-06-25T19:06:27.144Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:06:27.145Z [ERROR] Error checking equipment status:
+2025-06-25T19:06:27.145Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:06:27.145Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:07:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:07:27.151Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:07:27.151Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:07:27.152Z [INFO] Starting equipment status check...
+2025-06-25T19:07:27.194Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:07:27.195Z [ERROR] Error checking equipment status:
+2025-06-25T19:07:27.196Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:07:27.196Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:08:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:07:27.196Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:07:27.196Z [INFO] Starting weather data update job...
+2025-06-25T19:07:27.196Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:07:27.199Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:07:27.199Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:07:27.200Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:07:27.201Z [INFO] Weather data update job completed in 4ms
+2025-06-25T19:07:27.201Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:08:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:07:27.201Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T19:07:27.201Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:07:27.201Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:07:27.201Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 22:12:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:08:29.711Z [INFO] OPTIONS /api/customers
+2025-06-25T19:08:29.712Z [INFO] OPTIONS /api/services
+2025-06-25T19:08:29.714Z [INFO] OPTIONS /api/locations
+2025-06-25T19:08:29.717Z [INFO] OPTIONS /api/services
+2025-06-25T19:08:29.720Z [INFO] OPTIONS /api/locations
+2025-06-25T19:08:29.724Z [INFO] GET /api/customers
+2025-06-25T19:08:29.724Z [INFO] GET /api/customers
+2025-06-25T19:08:29.725Z [INFO] GET /api/services
+2025-06-25T19:08:29.726Z [INFO] GET /api/services
+2025-06-25T19:08:29.726Z [INFO] GET /api/locations
+2025-06-25T19:08:29.727Z [INFO] GET /api/locations
+2025-06-25T19:08:29.728Z [INFO] GET /api/services
+2025-06-25T19:08:29.729Z [INFO] GET /api/services
+2025-06-25T19:08:29.730Z [INFO] GET /api/locations
+2025-06-25T19:08:29.731Z [INFO] GET /api/locations
+2025-06-25T19:08:29.847Z [INFO] OPTIONS /api/customers
+2025-06-25T19:08:29.852Z [INFO] GET /api/customers
+2025-06-25T19:08:29.853Z [INFO] GET /api/customers
+2025-06-25T19:08:29.862Z [INFO] OPTIONS /api/orders
+2025-06-25T19:08:29.864Z [INFO] GET /api/orders
+2025-06-25T19:08:29.865Z [INFO] GET /api/orders
+2025-06-25T19:08:29.867Z [INFO] OPTIONS /api/orders
+2025-06-25T19:08:29.869Z [INFO] GET /api/orders
+2025-06-25T19:08:29.869Z [INFO] GET /api/orders
+2025-06-25T19:08:29.888Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:08:29.891Z [INFO] GET /api/stats/appointments
+2025-06-25T19:08:29.989Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:29.990Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:29.990Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:08:29.990Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:08:29.991Z [INFO] Alert alert_1750878509989_c454l3jxh sent via multiple channels: email, websocket, rss
+2025-06-25T19:08:29.991Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:08:45.945Z [INFO] OPTIONS /api/customers
+2025-06-25T19:08:45.946Z [INFO] OPTIONS /api/services
+2025-06-25T19:08:45.946Z [INFO] OPTIONS /api/locations
+2025-06-25T19:08:45.948Z [INFO] OPTIONS /api/services
+2025-06-25T19:08:45.949Z [INFO] OPTIONS /api/services
+2025-06-25T19:08:45.950Z [INFO] OPTIONS /api/locations
+2025-06-25T19:08:45.951Z [INFO] OPTIONS /api/locations
+2025-06-25T19:08:45.953Z [INFO] GET /api/customers
+2025-06-25T19:08:45.954Z [INFO] GET /api/customers
+2025-06-25T19:08:45.956Z [INFO] GET /api/services
+2025-06-25T19:08:45.957Z [INFO] GET /api/services
+2025-06-25T19:08:45.957Z [INFO] GET /api/locations
+2025-06-25T19:08:45.958Z [INFO] GET /api/locations
+2025-06-25T19:08:45.959Z [INFO] GET /api/services
+2025-06-25T19:08:45.960Z [INFO] GET /api/services
+2025-06-25T19:08:45.961Z [INFO] GET /api/locations
+2025-06-25T19:08:45.962Z [INFO] GET /api/locations
+2025-06-25T19:08:45.966Z [INFO] GET /api/services
+2025-06-25T19:08:45.967Z [INFO] GET /api/services
+2025-06-25T19:08:45.968Z [INFO] GET /api/locations
+2025-06-25T19:08:45.968Z [INFO] GET /api/locations
+2025-06-25T19:08:45.970Z [INFO] OPTIONS /api/orders
+2025-06-25T19:08:45.974Z [INFO] GET /api/orders
+2025-06-25T19:08:45.975Z [INFO] GET /api/orders
+2025-06-25T19:08:45.976Z [INFO] OPTIONS /api/customers
+2025-06-25T19:08:45.978Z [INFO] GET /api/customers
+2025-06-25T19:08:45.978Z [INFO] GET /api/customers
+2025-06-25T19:08:45.989Z [INFO] GET /api/customers
+2025-06-25T19:08:45.990Z [INFO] GET /api/customers
+2025-06-25T19:08:45.991Z [INFO] OPTIONS /api/orders
+2025-06-25T19:08:45.995Z [INFO] GET /api/orders
+2025-06-25T19:08:45.995Z [INFO] GET /api/orders
+2025-06-25T19:08:45.996Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:08:45.997Z [INFO] GET /api/stats/appointments
+2025-06-25T19:08:46.005Z [INFO] GET /api/orders
+2025-06-25T19:08:46.006Z [INFO] GET /api/orders
+2025-06-25T19:08:46.010Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:46.010Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:46.011Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:08:46.011Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:08:46.011Z [INFO] Alert alert_1750878526010_4shkt3lky sent via multiple channels: email, websocket, rss
+2025-06-25T19:08:46.011Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:08:47.196Z [INFO] GET /api/customers
+2025-06-25T19:08:47.197Z [INFO] GET /api/customers
+2025-06-25T19:08:47.198Z [INFO] GET /api/services
+2025-06-25T19:08:47.199Z [INFO] GET /api/services
+2025-06-25T19:08:47.199Z [INFO] GET /api/locations
+2025-06-25T19:08:47.200Z [INFO] GET /api/locations
+2025-06-25T19:08:47.214Z [INFO] GET /api/services
+2025-06-25T19:08:47.214Z [INFO] GET /api/services
+2025-06-25T19:08:47.216Z [INFO] GET /api/locations
+2025-06-25T19:08:47.217Z [INFO] GET /api/locations
+2025-06-25T19:08:47.222Z [INFO] GET /api/services
+2025-06-25T19:08:47.223Z [INFO] GET /api/services
+2025-06-25T19:08:47.225Z [INFO] GET /api/locations
+2025-06-25T19:08:47.225Z [INFO] GET /api/locations
+2025-06-25T19:08:47.227Z [INFO] GET /api/orders
+2025-06-25T19:08:47.227Z [INFO] GET /api/orders
+2025-06-25T19:08:47.233Z [INFO] GET /api/customers
+2025-06-25T19:08:47.233Z [INFO] GET /api/customers
+2025-06-25T19:08:47.242Z [INFO] GET /api/customers
+2025-06-25T19:08:47.243Z [INFO] GET /api/customers
+2025-06-25T19:08:47.245Z [INFO] GET /api/orders
+2025-06-25T19:08:47.245Z [INFO] GET /api/orders
+2025-06-25T19:08:47.254Z [INFO] GET /api/stats/appointments
+2025-06-25T19:08:47.262Z [INFO] GET /api/orders
+2025-06-25T19:08:47.262Z [INFO] GET /api/orders
+2025-06-25T19:08:47.265Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:47.265Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:47.266Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:08:47.266Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:08:47.266Z [INFO] Alert alert_1750878527265_fa424ujbi sent via multiple channels: email, websocket, rss
+2025-06-25T19:08:47.267Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:08:48.995Z [INFO] GET /api/customers
+2025-06-25T19:08:48.996Z [INFO] GET /api/customers
+2025-06-25T19:08:48.997Z [INFO] GET /api/services
+2025-06-25T19:08:48.997Z [INFO] GET /api/services
+2025-06-25T19:08:48.998Z [INFO] GET /api/locations
+2025-06-25T19:08:48.998Z [INFO] GET /api/locations
+2025-06-25T19:08:48.999Z [INFO] GET /api/services
+2025-06-25T19:08:49.000Z [INFO] GET /api/services
+2025-06-25T19:08:49.001Z [INFO] GET /api/locations
+2025-06-25T19:08:49.002Z [INFO] GET /api/locations
+2025-06-25T19:08:49.006Z [INFO] GET /api/locations
+2025-06-25T19:08:49.006Z [INFO] GET /api/locations
+2025-06-25T19:08:49.007Z [INFO] GET /api/services
+2025-06-25T19:08:49.008Z [INFO] GET /api/services
+2025-06-25T19:08:49.010Z [INFO] GET /api/customers
+2025-06-25T19:08:49.010Z [INFO] GET /api/customers
+2025-06-25T19:08:49.017Z [INFO] GET /api/customers
+2025-06-25T19:08:49.018Z [INFO] GET /api/customers
+2025-06-25T19:08:49.019Z [INFO] GET /api/orders
+2025-06-25T19:08:49.021Z [INFO] GET /api/orders
+2025-06-25T19:08:49.022Z [INFO] GET /api/orders
+2025-06-25T19:08:49.023Z [INFO] GET /api/orders
+2025-06-25T19:08:49.034Z [INFO] GET /api/orders
+2025-06-25T19:08:49.035Z [INFO] GET /api/orders
+2025-06-25T19:08:49.038Z [INFO] GET /api/stats/appointments
+2025-06-25T19:08:49.045Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:49.046Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:08:49.046Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:08:49.046Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:08:49.047Z [INFO] Alert alert_1750878529045_jpg5685lo sent via multiple channels: email, websocket, rss
+2025-06-25T19:08:49.047Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:04.678Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:04.679Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:04.679Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:04.681Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:04.682Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:04.683Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:04.684Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:04.685Z [INFO] GET /api/customers
+2025-06-25T19:09:04.686Z [INFO] GET /api/customers
+2025-06-25T19:09:04.687Z [INFO] GET /api/services
+2025-06-25T19:09:04.687Z [INFO] GET /api/services
+2025-06-25T19:09:04.688Z [INFO] GET /api/locations
+2025-06-25T19:09:04.689Z [INFO] GET /api/locations
+2025-06-25T19:09:04.691Z [INFO] GET /api/services
+2025-06-25T19:09:04.691Z [INFO] GET /api/services
+2025-06-25T19:09:04.693Z [INFO] GET /api/locations
+2025-06-25T19:09:04.694Z [INFO] GET /api/locations
+2025-06-25T19:09:04.697Z [INFO] GET /api/services
+2025-06-25T19:09:04.698Z [INFO] GET /api/services
+2025-06-25T19:09:04.699Z [INFO] GET /api/locations
+2025-06-25T19:09:04.699Z [INFO] GET /api/locations
+2025-06-25T19:09:04.701Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:04.702Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:04.703Z [INFO] GET /api/orders
+2025-06-25T19:09:04.704Z [INFO] GET /api/orders
+2025-06-25T19:09:04.704Z [INFO] GET /api/customers
+2025-06-25T19:09:04.705Z [INFO] GET /api/customers
+2025-06-25T19:09:04.708Z [INFO] GET /api/customers
+2025-06-25T19:09:04.708Z [INFO] GET /api/customers
+2025-06-25T19:09:04.710Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:04.715Z [INFO] GET /api/orders
+2025-06-25T19:09:04.716Z [INFO] GET /api/orders
+2025-06-25T19:09:04.722Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:09:04.724Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:04.725Z [INFO] GET /api/orders
+2025-06-25T19:09:04.725Z [INFO] GET /api/orders
+2025-06-25T19:09:04.731Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:04.731Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:04.731Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:04.731Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:04.732Z [INFO] Alert alert_1750878544731_cl5tqscbp sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:04.732Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:04.986Z [INFO] GET /api/customers
+2025-06-25T19:09:04.987Z [INFO] GET /api/customers
+2025-06-25T19:09:04.989Z [INFO] GET /api/services
+2025-06-25T19:09:04.990Z [INFO] GET /api/services
+2025-06-25T19:09:04.990Z [INFO] GET /api/locations
+2025-06-25T19:09:04.991Z [INFO] GET /api/locations
+2025-06-25T19:09:04.999Z [INFO] GET /api/services
+2025-06-25T19:09:05.000Z [INFO] GET /api/services
+2025-06-25T19:09:05.004Z [INFO] GET /api/locations
+2025-06-25T19:09:05.005Z [INFO] GET /api/locations
+2025-06-25T19:09:05.008Z [INFO] GET /api/services
+2025-06-25T19:09:05.009Z [INFO] GET /api/services
+2025-06-25T19:09:05.010Z [INFO] GET /api/locations
+2025-06-25T19:09:05.010Z [INFO] GET /api/locations
+2025-06-25T19:09:05.013Z [INFO] GET /api/customers
+2025-06-25T19:09:05.013Z [INFO] GET /api/customers
+2025-06-25T19:09:05.022Z [INFO] GET /api/orders
+2025-06-25T19:09:05.023Z [INFO] GET /api/orders
+2025-06-25T19:09:05.030Z [INFO] GET /api/customers
+2025-06-25T19:09:05.030Z [INFO] GET /api/customers
+2025-06-25T19:09:05.034Z [INFO] GET /api/orders
+2025-06-25T19:09:05.035Z [INFO] GET /api/orders
+2025-06-25T19:09:05.045Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:05.049Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:05.050Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:05.051Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:05.051Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:05.052Z [INFO] Alert alert_1750878545049_qmzyoel2y sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:05.052Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:05.053Z [INFO] GET /api/orders
+2025-06-25T19:09:05.053Z [INFO] GET /api/orders
+2025-06-25T19:09:06.294Z [INFO] GET /api/services
+2025-06-25T19:09:06.295Z [INFO] GET /api/services
+2025-06-25T19:09:06.304Z [INFO] GET /api/customers
+2025-06-25T19:09:06.305Z [INFO] GET /api/customers
+2025-06-25T19:09:06.306Z [INFO] GET /api/services
+2025-06-25T19:09:06.307Z [INFO] GET /api/services
+2025-06-25T19:09:06.307Z [INFO] GET /api/locations
+2025-06-25T19:09:06.308Z [INFO] GET /api/locations
+2025-06-25T19:09:06.309Z [INFO] GET /api/locations
+2025-06-25T19:09:06.310Z [INFO] GET /api/locations
+2025-06-25T19:09:06.310Z [INFO] GET /api/services
+2025-06-25T19:09:06.311Z [INFO] GET /api/services
+2025-06-25T19:09:06.324Z [INFO] GET /api/locations
+2025-06-25T19:09:06.324Z [INFO] GET /api/locations
+2025-06-25T19:09:06.328Z [INFO] GET /api/customers
+2025-06-25T19:09:06.329Z [INFO] GET /api/customers
+2025-06-25T19:09:06.329Z [INFO] GET /api/orders
+2025-06-25T19:09:06.330Z [INFO] GET /api/orders
+2025-06-25T19:09:06.333Z [INFO] GET /api/customers
+2025-06-25T19:09:06.334Z [INFO] GET /api/customers
+2025-06-25T19:09:06.337Z [INFO] GET /api/orders
+2025-06-25T19:09:06.338Z [INFO] GET /api/orders
+2025-06-25T19:09:06.350Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:06.353Z [INFO] GET /api/orders
+2025-06-25T19:09:06.354Z [INFO] GET /api/orders
+2025-06-25T19:09:06.362Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:06.363Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:06.363Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:06.364Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:06.364Z [INFO] Alert alert_1750878546362_grd6vfquy sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:06.364Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:15.132Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:15.135Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:15.136Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:15.137Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:15.138Z [INFO] GET /api/customers
+2025-06-25T19:09:15.138Z [INFO] GET /api/customers
+2025-06-25T19:09:15.142Z [INFO] GET /api/services
+2025-06-25T19:09:15.142Z [INFO] GET /api/services
+2025-06-25T19:09:15.143Z [INFO] GET /api/locations
+2025-06-25T19:09:15.143Z [INFO] GET /api/locations
+2025-06-25T19:09:15.144Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:15.144Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:15.145Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:15.147Z [INFO] GET /api/services
+2025-06-25T19:09:15.148Z [INFO] GET /api/services
+2025-06-25T19:09:15.149Z [INFO] GET /api/locations
+2025-06-25T19:09:15.150Z [INFO] GET /api/locations
+2025-06-25T19:09:15.152Z [INFO] GET /api/services
+2025-06-25T19:09:15.153Z [INFO] GET /api/services
+2025-06-25T19:09:15.154Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:15.154Z [INFO] GET /api/locations
+2025-06-25T19:09:15.155Z [INFO] GET /api/locations
+2025-06-25T19:09:15.156Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:15.157Z [INFO] GET /api/orders
+2025-06-25T19:09:15.157Z [INFO] GET /api/orders
+2025-06-25T19:09:15.159Z [INFO] GET /api/customers
+2025-06-25T19:09:15.160Z [INFO] GET /api/customers
+2025-06-25T19:09:15.163Z [INFO] GET /api/customers
+2025-06-25T19:09:15.164Z [INFO] GET /api/customers
+2025-06-25T19:09:15.165Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:15.167Z [INFO] GET /api/orders
+2025-06-25T19:09:15.167Z [INFO] GET /api/orders
+2025-06-25T19:09:15.171Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:09:15.172Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:15.176Z [INFO] GET /api/orders
+2025-06-25T19:09:15.177Z [INFO] GET /api/orders
+2025-06-25T19:09:15.179Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:15.179Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:15.180Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:15.180Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:15.180Z [INFO] Alert alert_1750878555179_cm7411nuy sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:15.180Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:15.704Z [INFO] GET /api/customers
+2025-06-25T19:09:15.705Z [INFO] GET /api/customers
+2025-06-25T19:09:15.707Z [INFO] GET /api/services
+2025-06-25T19:09:15.708Z [INFO] GET /api/services
+2025-06-25T19:09:15.710Z [INFO] GET /api/locations
+2025-06-25T19:09:15.711Z [INFO] GET /api/locations
+2025-06-25T19:09:15.712Z [INFO] GET /api/services
+2025-06-25T19:09:15.713Z [INFO] GET /api/services
+2025-06-25T19:09:15.713Z [INFO] GET /api/locations
+2025-06-25T19:09:15.714Z [INFO] GET /api/locations
+2025-06-25T19:09:15.719Z [INFO] GET /api/services
+2025-06-25T19:09:15.720Z [INFO] GET /api/services
+2025-06-25T19:09:15.720Z [INFO] GET /api/locations
+2025-06-25T19:09:15.721Z [INFO] GET /api/locations
+2025-06-25T19:09:15.728Z [INFO] GET /api/orders
+2025-06-25T19:09:15.729Z [INFO] GET /api/orders
+2025-06-25T19:09:15.731Z [INFO] GET /api/customers
+2025-06-25T19:09:15.732Z [INFO] GET /api/customers
+2025-06-25T19:09:15.736Z [INFO] GET /api/customers
+2025-06-25T19:09:15.737Z [INFO] GET /api/customers
+2025-06-25T19:09:15.739Z [INFO] GET /api/orders
+2025-06-25T19:09:15.740Z [INFO] GET /api/orders
+2025-06-25T19:09:15.750Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:15.751Z [INFO] GET /api/orders
+2025-06-25T19:09:15.752Z [INFO] GET /api/orders
+2025-06-25T19:09:15.757Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:15.757Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:15.758Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:15.758Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:15.759Z [INFO] Alert alert_1750878555756_co8hs85s4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:15.759Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:27.172Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:09:27.173Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:09:27.173Z [INFO] Starting equipment status check...
+2025-06-25T19:09:27.177Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:09:27.178Z [ERROR] Error checking equipment status:
+2025-06-25T19:09:27.178Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:09:27.179Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:10:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:09:27.179Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:09:27.179Z [INFO] Starting weather data update job...
+2025-06-25T19:09:27.180Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:09:27.181Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:09:27.182Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:09:27.183Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:09:27.184Z [INFO] Weather data update job completed in 5ms
+2025-06-25T19:09:27.184Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:10:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:09:27.416Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:27.420Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:27.421Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:27.422Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:27.423Z [INFO] GET /api/services
+2025-06-25T19:09:27.424Z [INFO] GET /api/services
+2025-06-25T19:09:27.429Z [INFO] GET /api/customers
+2025-06-25T19:09:27.430Z [INFO] GET /api/customers
+2025-06-25T19:09:27.432Z [INFO] GET /api/services
+2025-06-25T19:09:27.433Z [INFO] GET /api/services
+2025-06-25T19:09:27.433Z [INFO] GET /api/locations
+2025-06-25T19:09:27.434Z [INFO] GET /api/locations
+2025-06-25T19:09:27.439Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:27.442Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:27.443Z [INFO] GET /api/services
+2025-06-25T19:09:27.443Z [INFO] GET /api/services
+2025-06-25T19:09:27.445Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:27.445Z [INFO] GET /api/locations
+2025-06-25T19:09:27.446Z [INFO] GET /api/locations
+2025-06-25T19:09:27.449Z [INFO] GET /api/orders
+2025-06-25T19:09:27.450Z [INFO] GET /api/orders
+2025-06-25T19:09:27.451Z [INFO] GET /api/locations
+2025-06-25T19:09:27.452Z [INFO] GET /api/locations
+2025-06-25T19:09:27.455Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:27.458Z [INFO] GET /api/customers
+2025-06-25T19:09:27.458Z [INFO] GET /api/customers
+2025-06-25T19:09:27.462Z [INFO] GET /api/customers
+2025-06-25T19:09:27.463Z [INFO] GET /api/customers
+2025-06-25T19:09:27.464Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:27.467Z [INFO] GET /api/orders
+2025-06-25T19:09:27.467Z [INFO] GET /api/orders
+2025-06-25T19:09:27.468Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:09:27.470Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:27.476Z [INFO] GET /api/orders
+2025-06-25T19:09:27.477Z [INFO] GET /api/orders
+2025-06-25T19:09:27.479Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:27.480Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:27.481Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:27.481Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:27.482Z [INFO] Alert alert_1750878567479_zbgzxvr7h sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:27.482Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:27.992Z [INFO] GET /api/services
+2025-06-25T19:09:27.993Z [INFO] GET /api/services
+2025-06-25T19:09:28.004Z [INFO] GET /api/customers
+2025-06-25T19:09:28.005Z [INFO] GET /api/customers
+2025-06-25T19:09:28.007Z [INFO] GET /api/services
+2025-06-25T19:09:28.008Z [INFO] GET /api/services
+2025-06-25T19:09:28.010Z [INFO] GET /api/locations
+2025-06-25T19:09:28.011Z [INFO] GET /api/locations
+2025-06-25T19:09:28.012Z [INFO] GET /api/locations
+2025-06-25T19:09:28.013Z [INFO] GET /api/locations
+2025-06-25T19:09:28.014Z [INFO] GET /api/services
+2025-06-25T19:09:28.015Z [INFO] GET /api/services
+2025-06-25T19:09:28.020Z [INFO] GET /api/locations
+2025-06-25T19:09:28.021Z [INFO] GET /api/locations
+2025-06-25T19:09:28.030Z [INFO] GET /api/customers
+2025-06-25T19:09:28.031Z [INFO] GET /api/customers
+2025-06-25T19:09:28.035Z [INFO] GET /api/orders
+2025-06-25T19:09:28.035Z [INFO] GET /api/orders
+2025-06-25T19:09:28.036Z [INFO] GET /api/customers
+2025-06-25T19:09:28.037Z [INFO] GET /api/customers
+2025-06-25T19:09:28.039Z [INFO] GET /api/orders
+2025-06-25T19:09:28.039Z [INFO] GET /api/orders
+2025-06-25T19:09:28.051Z [INFO] GET /api/orders
+2025-06-25T19:09:28.052Z [INFO] GET /api/orders
+2025-06-25T19:09:28.055Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:28.066Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:28.067Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:28.067Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:28.068Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:28.068Z [INFO] Alert alert_1750878568066_t2z1of6y2 sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:28.068Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:39.217Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:39.218Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:39.219Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:39.221Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:39.221Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:39.222Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:39.222Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:39.225Z [INFO] GET /api/customers
+2025-06-25T19:09:39.226Z [INFO] GET /api/customers
+2025-06-25T19:09:39.227Z [INFO] GET /api/services
+2025-06-25T19:09:39.227Z [INFO] GET /api/services
+2025-06-25T19:09:39.228Z [INFO] GET /api/locations
+2025-06-25T19:09:39.229Z [INFO] GET /api/locations
+2025-06-25T19:09:39.233Z [INFO] GET /api/services
+2025-06-25T19:09:39.233Z [INFO] GET /api/services
+2025-06-25T19:09:39.234Z [INFO] GET /api/locations
+2025-06-25T19:09:39.235Z [INFO] GET /api/locations
+2025-06-25T19:09:39.239Z [INFO] GET /api/services
+2025-06-25T19:09:39.240Z [INFO] GET /api/services
+2025-06-25T19:09:39.246Z [INFO] GET /api/locations
+2025-06-25T19:09:39.247Z [INFO] GET /api/locations
+2025-06-25T19:09:39.252Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:39.253Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:39.255Z [INFO] GET /api/orders
+2025-06-25T19:09:39.255Z [INFO] GET /api/orders
+2025-06-25T19:09:39.257Z [INFO] GET /api/customers
+2025-06-25T19:09:39.259Z [INFO] GET /api/customers
+2025-06-25T19:09:39.265Z [INFO] GET /api/customers
+2025-06-25T19:09:39.268Z [INFO] GET /api/customers
+2025-06-25T19:09:39.272Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:39.278Z [INFO] GET /api/orders
+2025-06-25T19:09:39.278Z [INFO] GET /api/orders
+2025-06-25T19:09:39.283Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:09:39.285Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:39.290Z [INFO] GET /api/orders
+2025-06-25T19:09:39.291Z [INFO] GET /api/orders
+2025-06-25T19:09:39.295Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:39.295Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:39.296Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:39.296Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:39.296Z [INFO] Alert alert_1750878579295_nkcuzd2f0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:39.297Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:39.704Z [INFO] GET /api/customers
+2025-06-25T19:09:39.706Z [INFO] GET /api/customers
+2025-06-25T19:09:39.709Z [INFO] GET /api/services
+2025-06-25T19:09:39.710Z [INFO] GET /api/services
+2025-06-25T19:09:39.712Z [INFO] GET /api/locations
+2025-06-25T19:09:39.713Z [INFO] GET /api/locations
+2025-06-25T19:09:39.721Z [INFO] GET /api/services
+2025-06-25T19:09:39.723Z [INFO] GET /api/services
+2025-06-25T19:09:39.725Z [INFO] GET /api/locations
+2025-06-25T19:09:39.726Z [INFO] GET /api/locations
+2025-06-25T19:09:39.731Z [INFO] GET /api/services
+2025-06-25T19:09:39.732Z [INFO] GET /api/services
+2025-06-25T19:09:39.733Z [INFO] GET /api/locations
+2025-06-25T19:09:39.734Z [INFO] GET /api/locations
+2025-06-25T19:09:39.739Z [INFO] GET /api/orders
+2025-06-25T19:09:39.741Z [INFO] GET /api/orders
+2025-06-25T19:09:39.742Z [INFO] GET /api/customers
+2025-06-25T19:09:39.743Z [INFO] GET /api/customers
+2025-06-25T19:09:39.749Z [INFO] GET /api/customers
+2025-06-25T19:09:39.750Z [INFO] GET /api/customers
+2025-06-25T19:09:39.752Z [INFO] GET /api/orders
+2025-06-25T19:09:39.753Z [INFO] GET /api/orders
+2025-06-25T19:09:39.765Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:39.766Z [INFO] GET /api/orders
+2025-06-25T19:09:39.766Z [INFO] GET /api/orders
+2025-06-25T19:09:39.769Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:39.770Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:39.771Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:39.771Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:39.771Z [INFO] Alert alert_1750878579769_rik9o19wv sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:39.772Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:51.673Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:51.674Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:51.675Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:51.678Z [INFO] GET /api/customers
+2025-06-25T19:09:51.679Z [INFO] GET /api/customers
+2025-06-25T19:09:51.681Z [INFO] GET /api/services
+2025-06-25T19:09:51.681Z [INFO] GET /api/services
+2025-06-25T19:09:51.682Z [INFO] GET /api/locations
+2025-06-25T19:09:51.683Z [INFO] GET /api/locations
+2025-06-25T19:09:51.714Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:51.717Z [INFO] GET /api/orders
+2025-06-25T19:09:51.718Z [INFO] GET /api/orders
+2025-06-25T19:09:51.719Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:51.720Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:51.721Z [INFO] OPTIONS /api/services
+2025-06-25T19:09:51.721Z [INFO] OPTIONS /api/locations
+2025-06-25T19:09:51.725Z [INFO] GET /api/services
+2025-06-25T19:09:51.725Z [INFO] GET /api/services
+2025-06-25T19:09:51.726Z [INFO] GET /api/locations
+2025-06-25T19:09:51.727Z [INFO] GET /api/locations
+2025-06-25T19:09:51.730Z [INFO] GET /api/services
+2025-06-25T19:09:51.730Z [INFO] GET /api/services
+2025-06-25T19:09:51.732Z [INFO] GET /api/locations
+2025-06-25T19:09:51.732Z [INFO] GET /api/locations
+2025-06-25T19:09:51.735Z [INFO] OPTIONS /api/customers
+2025-06-25T19:09:51.738Z [INFO] GET /api/customers
+2025-06-25T19:09:51.739Z [INFO] GET /api/customers
+2025-06-25T19:09:51.740Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:09:51.742Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:51.744Z [INFO] GET /api/customers
+2025-06-25T19:09:51.745Z [INFO] GET /api/customers
+2025-06-25T19:09:51.748Z [INFO] OPTIONS /api/orders
+2025-06-25T19:09:51.750Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:51.750Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:51.751Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:51.751Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:51.751Z [INFO] Alert alert_1750878591749_i9t64auin sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:51.752Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:09:51.752Z [INFO] GET /api/orders
+2025-06-25T19:09:51.753Z [INFO] GET /api/orders
+2025-06-25T19:09:51.762Z [INFO] GET /api/orders
+2025-06-25T19:09:51.763Z [INFO] GET /api/orders
+2025-06-25T19:09:52.120Z [INFO] GET /api/customers
+2025-06-25T19:09:52.120Z [INFO] GET /api/customers
+2025-06-25T19:09:52.129Z [INFO] GET /api/services
+2025-06-25T19:09:52.130Z [INFO] GET /api/services
+2025-06-25T19:09:52.132Z [INFO] GET /api/locations
+2025-06-25T19:09:52.132Z [INFO] GET /api/locations
+2025-06-25T19:09:52.137Z [INFO] GET /api/services
+2025-06-25T19:09:52.139Z [INFO] GET /api/services
+2025-06-25T19:09:52.141Z [INFO] GET /api/locations
+2025-06-25T19:09:52.142Z [INFO] GET /api/locations
+2025-06-25T19:09:52.148Z [INFO] GET /api/services
+2025-06-25T19:09:52.149Z [INFO] GET /api/services
+2025-06-25T19:09:52.150Z [INFO] GET /api/locations
+2025-06-25T19:09:52.150Z [INFO] GET /api/locations
+2025-06-25T19:09:52.156Z [INFO] GET /api/customers
+2025-06-25T19:09:52.158Z [INFO] GET /api/customers
+2025-06-25T19:09:52.159Z [INFO] GET /api/orders
+2025-06-25T19:09:52.160Z [INFO] GET /api/orders
+2025-06-25T19:09:52.163Z [INFO] GET /api/customers
+2025-06-25T19:09:52.164Z [INFO] GET /api/customers
+2025-06-25T19:09:52.166Z [INFO] GET /api/orders
+2025-06-25T19:09:52.166Z [INFO] GET /api/orders
+2025-06-25T19:09:52.180Z [INFO] GET /api/orders
+2025-06-25T19:09:52.180Z [INFO] GET /api/orders
+2025-06-25T19:09:52.181Z [INFO] GET /api/stats/appointments
+2025-06-25T19:09:52.186Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:52.187Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:09:52.187Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:09:52.188Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:09:52.188Z [INFO] Alert alert_1750878592186_dkr9nokm1 sent via multiple channels: email, websocket, rss
+2025-06-25T19:09:52.188Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:06.586Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:06.590Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:06.591Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:06.596Z [INFO] GET /api/customers
+2025-06-25T19:10:06.596Z [INFO] GET /api/customers
+2025-06-25T19:10:06.597Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:06.598Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:06.598Z [INFO] GET /api/services
+2025-06-25T19:10:06.599Z [INFO] GET /api/services
+2025-06-25T19:10:06.600Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:06.600Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:06.601Z [INFO] GET /api/locations
+2025-06-25T19:10:06.601Z [INFO] GET /api/locations
+2025-06-25T19:10:06.603Z [INFO] GET /api/services
+2025-06-25T19:10:06.604Z [INFO] GET /api/services
+2025-06-25T19:10:06.605Z [INFO] GET /api/locations
+2025-06-25T19:10:06.606Z [INFO] GET /api/locations
+2025-06-25T19:10:06.609Z [INFO] GET /api/services
+2025-06-25T19:10:06.610Z [INFO] GET /api/services
+2025-06-25T19:10:06.610Z [INFO] GET /api/locations
+2025-06-25T19:10:06.611Z [INFO] GET /api/locations
+2025-06-25T19:10:06.613Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:06.614Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:06.617Z [INFO] GET /api/orders
+2025-06-25T19:10:06.618Z [INFO] GET /api/orders
+2025-06-25T19:10:06.619Z [INFO] GET /api/customers
+2025-06-25T19:10:06.620Z [INFO] GET /api/customers
+2025-06-25T19:10:06.624Z [INFO] GET /api/customers
+2025-06-25T19:10:06.625Z [INFO] GET /api/customers
+2025-06-25T19:10:06.626Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:06.628Z [INFO] GET /api/orders
+2025-06-25T19:10:06.629Z [INFO] GET /api/orders
+2025-06-25T19:10:06.633Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:10:06.635Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:06.639Z [INFO] GET /api/orders
+2025-06-25T19:10:06.639Z [INFO] GET /api/orders
+2025-06-25T19:10:06.640Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:06.640Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:06.641Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:06.641Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:06.641Z [INFO] Alert alert_1750878606640_51jpbp4l5 sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:06.642Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:06.929Z [INFO] GET /api/customers
+2025-06-25T19:10:06.930Z [INFO] GET /api/customers
+2025-06-25T19:10:06.937Z [INFO] GET /api/services
+2025-06-25T19:10:06.938Z [INFO] GET /api/services
+2025-06-25T19:10:06.940Z [INFO] GET /api/locations
+2025-06-25T19:10:06.940Z [INFO] GET /api/locations
+2025-06-25T19:10:06.941Z [INFO] GET /api/services
+2025-06-25T19:10:06.942Z [INFO] GET /api/services
+2025-06-25T19:10:06.945Z [INFO] GET /api/locations
+2025-06-25T19:10:06.946Z [INFO] GET /api/locations
+2025-06-25T19:10:06.950Z [INFO] GET /api/services
+2025-06-25T19:10:06.951Z [INFO] GET /api/services
+2025-06-25T19:10:06.956Z [INFO] GET /api/locations
+2025-06-25T19:10:06.957Z [INFO] GET /api/locations
+2025-06-25T19:10:06.963Z [INFO] GET /api/customers
+2025-06-25T19:10:06.963Z [INFO] GET /api/customers
+2025-06-25T19:10:06.970Z [INFO] GET /api/orders
+2025-06-25T19:10:06.971Z [INFO] GET /api/orders
+2025-06-25T19:10:06.973Z [INFO] GET /api/customers
+2025-06-25T19:10:06.973Z [INFO] GET /api/customers
+2025-06-25T19:10:06.976Z [INFO] GET /api/orders
+2025-06-25T19:10:06.977Z [INFO] GET /api/orders
+2025-06-25T19:10:06.994Z [INFO] GET /api/orders
+2025-06-25T19:10:06.995Z [INFO] GET /api/orders
+2025-06-25T19:10:06.998Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:07.005Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:07.005Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:07.006Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:07.006Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:07.006Z [INFO] Alert alert_1750878607004_s4g5ffewk sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:07.007Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:18.226Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:18.229Z [INFO] GET /api/services
+2025-06-25T19:10:18.229Z [INFO] GET /api/services
+2025-06-25T19:10:18.237Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:18.238Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:18.239Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:18.244Z [INFO] GET /api/customers
+2025-06-25T19:10:18.244Z [INFO] GET /api/customers
+2025-06-25T19:10:18.245Z [INFO] GET /api/services
+2025-06-25T19:10:18.246Z [INFO] GET /api/services
+2025-06-25T19:10:18.247Z [INFO] GET /api/locations
+2025-06-25T19:10:18.247Z [INFO] GET /api/locations
+2025-06-25T19:10:18.248Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:18.249Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:18.250Z [INFO] GET /api/services
+2025-06-25T19:10:18.251Z [INFO] GET /api/services
+2025-06-25T19:10:18.254Z [INFO] GET /api/locations
+2025-06-25T19:10:18.254Z [INFO] GET /api/locations
+2025-06-25T19:10:18.260Z [INFO] GET /api/locations
+2025-06-25T19:10:18.260Z [INFO] GET /api/locations
+2025-06-25T19:10:18.262Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:18.263Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:18.264Z [INFO] GET /api/orders
+2025-06-25T19:10:18.265Z [INFO] GET /api/orders
+2025-06-25T19:10:18.266Z [INFO] GET /api/customers
+2025-06-25T19:10:18.266Z [INFO] GET /api/customers
+2025-06-25T19:10:18.270Z [INFO] GET /api/customers
+2025-06-25T19:10:18.271Z [INFO] GET /api/customers
+2025-06-25T19:10:18.272Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:18.274Z [INFO] GET /api/orders
+2025-06-25T19:10:18.275Z [INFO] GET /api/orders
+2025-06-25T19:10:18.283Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:10:18.285Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:18.287Z [INFO] GET /api/orders
+2025-06-25T19:10:18.288Z [INFO] GET /api/orders
+2025-06-25T19:10:18.291Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:18.292Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:18.292Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:18.292Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:18.293Z [INFO] Alert alert_1750878618291_jhimwxku1 sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:18.293Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:18.568Z [INFO] GET /api/services
+2025-06-25T19:10:18.569Z [INFO] GET /api/services
+2025-06-25T19:10:18.570Z [INFO] GET /api/locations
+2025-06-25T19:10:18.571Z [INFO] GET /api/locations
+2025-06-25T19:10:18.572Z [INFO] GET /api/customers
+2025-06-25T19:10:18.573Z [INFO] GET /api/customers
+2025-06-25T19:10:18.574Z [INFO] GET /api/services
+2025-06-25T19:10:18.575Z [INFO] GET /api/services
+2025-06-25T19:10:18.576Z [INFO] GET /api/locations
+2025-06-25T19:10:18.577Z [INFO] GET /api/locations
+2025-06-25T19:10:18.579Z [INFO] GET /api/services
+2025-06-25T19:10:18.580Z [INFO] GET /api/services
+2025-06-25T19:10:18.597Z [INFO] GET /api/locations
+2025-06-25T19:10:18.598Z [INFO] GET /api/locations
+2025-06-25T19:10:18.604Z [INFO] GET /api/customers
+2025-06-25T19:10:18.605Z [INFO] GET /api/customers
+2025-06-25T19:10:18.606Z [INFO] GET /api/orders
+2025-06-25T19:10:18.606Z [INFO] GET /api/orders
+2025-06-25T19:10:18.610Z [INFO] GET /api/customers
+2025-06-25T19:10:18.610Z [INFO] GET /api/customers
+2025-06-25T19:10:18.612Z [INFO] GET /api/orders
+2025-06-25T19:10:18.612Z [INFO] GET /api/orders
+2025-06-25T19:10:18.625Z [INFO] GET /api/orders
+2025-06-25T19:10:18.626Z [INFO] GET /api/orders
+2025-06-25T19:10:18.628Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:18.635Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:18.636Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:18.636Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:18.636Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:18.637Z [INFO] Alert alert_1750878618635_6qwlqlwd8 sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:18.637Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:27.183Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:10:27.184Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:10:27.186Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:10:27.187Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:10:27.187Z [INFO] Scheduler: Running job 'checkInventory'
+2025-06-25T19:10:27.187Z [INFO] CheckInventory: Starting inventory monitoring job
+2025-06-25T19:10:27.189Z [ERROR] SQL error after 1ms: column i.quantity does not exist
+2025-06-25T19:10:27.190Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-06-25T19:10:27.190Z [ERROR] Failed to get low stock items: column i.quantity does not exist
+2025-06-25T19:10:27.190Z [ERROR] Failed to get inventory alerts: column i.quantity does not exist
+2025-06-25T19:10:27.191Z [ERROR] CheckInventory: Job failed - column i.quantity does not exist
+2025-06-25T19:10:27.191Z [ERROR] Scheduler: Job 'checkInventory' failed: column i.quantity does not exist
+2025-06-25T19:10:27.191Z [WARN] Scheduler: Job 'checkInventory' will retry at Wed Jun 25 2025 22:15:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:10:27.191Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:10:27.191Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:10:27.192Z [INFO] Starting equipment status check...
+2025-06-25T19:10:27.194Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:10:27.195Z [ERROR] Error checking equipment status:
+2025-06-25T19:10:27.196Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:10:27.197Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:11:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:10:32.397Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:32.398Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:32.401Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:32.406Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:32.406Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:32.407Z [INFO] GET /api/customers
+2025-06-25T19:10:32.408Z [INFO] GET /api/customers
+2025-06-25T19:10:32.409Z [INFO] GET /api/services
+2025-06-25T19:10:32.409Z [INFO] GET /api/services
+2025-06-25T19:10:32.410Z [INFO] GET /api/locations
+2025-06-25T19:10:32.410Z [INFO] GET /api/locations
+2025-06-25T19:10:32.410Z [INFO] GET /api/services
+2025-06-25T19:10:32.411Z [INFO] GET /api/services
+2025-06-25T19:10:32.412Z [INFO] GET /api/locations
+2025-06-25T19:10:32.413Z [INFO] GET /api/locations
+2025-06-25T19:10:32.421Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:32.422Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:32.423Z [INFO] GET /api/customers
+2025-06-25T19:10:32.424Z [INFO] GET /api/customers
+2025-06-25T19:10:32.425Z [INFO] GET /api/orders
+2025-06-25T19:10:32.425Z [INFO] GET /api/orders
+2025-06-25T19:10:32.431Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:32.434Z [INFO] GET /api/orders
+2025-06-25T19:10:32.434Z [INFO] GET /api/orders
+2025-06-25T19:10:32.441Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:10:32.445Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:32.449Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:32.450Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:32.451Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:32.451Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:32.451Z [INFO] Alert alert_1750878632449_9m1eshgib sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:32.452Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:32.686Z [INFO] GET /api/services
+2025-06-25T19:10:32.686Z [INFO] GET /api/services
+2025-06-25T19:10:32.692Z [INFO] GET /api/customers
+2025-06-25T19:10:32.692Z [INFO] GET /api/customers
+2025-06-25T19:10:32.694Z [INFO] GET /api/locations
+2025-06-25T19:10:32.695Z [INFO] GET /api/locations
+2025-06-25T19:10:32.696Z [INFO] GET /api/services
+2025-06-25T19:10:32.696Z [INFO] GET /api/services
+2025-06-25T19:10:32.698Z [INFO] GET /api/locations
+2025-06-25T19:10:32.698Z [INFO] GET /api/locations
+2025-06-25T19:10:32.708Z [INFO] GET /api/customers
+2025-06-25T19:10:32.709Z [INFO] GET /api/customers
+2025-06-25T19:10:32.720Z [INFO] GET /api/orders
+2025-06-25T19:10:32.721Z [INFO] GET /api/orders
+2025-06-25T19:10:32.722Z [INFO] GET /api/orders
+2025-06-25T19:10:32.723Z [INFO] GET /api/orders
+2025-06-25T19:10:32.743Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:32.756Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:32.756Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:32.756Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:32.757Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:32.757Z [INFO] Alert alert_1750878632755_7wenzp69c sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:32.757Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:49.746Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:49.747Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:49.748Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:49.754Z [INFO] GET /api/customers
+2025-06-25T19:10:49.754Z [INFO] GET /api/customers
+2025-06-25T19:10:49.756Z [INFO] GET /api/services
+2025-06-25T19:10:49.756Z [INFO] GET /api/services
+2025-06-25T19:10:49.757Z [INFO] GET /api/locations
+2025-06-25T19:10:49.758Z [INFO] GET /api/locations
+2025-06-25T19:10:49.759Z [INFO] OPTIONS /api/services
+2025-06-25T19:10:49.760Z [INFO] OPTIONS /api/locations
+2025-06-25T19:10:49.764Z [INFO] GET /api/services
+2025-06-25T19:10:49.765Z [INFO] GET /api/services
+2025-06-25T19:10:49.766Z [INFO] GET /api/locations
+2025-06-25T19:10:49.766Z [INFO] GET /api/locations
+2025-06-25T19:10:49.774Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:49.775Z [INFO] OPTIONS /api/customers
+2025-06-25T19:10:49.776Z [INFO] GET /api/orders
+2025-06-25T19:10:49.777Z [INFO] GET /api/orders
+2025-06-25T19:10:49.778Z [INFO] GET /api/customers
+2025-06-25T19:10:49.778Z [INFO] GET /api/customers
+2025-06-25T19:10:49.788Z [INFO] OPTIONS /api/orders
+2025-06-25T19:10:49.791Z [INFO] GET /api/orders
+2025-06-25T19:10:49.791Z [INFO] GET /api/orders
+2025-06-25T19:10:49.799Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:10:49.802Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:49.808Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:49.809Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:49.810Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:49.810Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:49.810Z [INFO] Alert alert_1750878649808_eqcbtzbyz sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:49.810Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:50.454Z [INFO] GET /api/customers
+2025-06-25T19:10:50.455Z [INFO] GET /api/customers
+2025-06-25T19:10:50.456Z [INFO] GET /api/services
+2025-06-25T19:10:50.457Z [INFO] GET /api/services
+2025-06-25T19:10:50.458Z [INFO] GET /api/locations
+2025-06-25T19:10:50.459Z [INFO] GET /api/locations
+2025-06-25T19:10:50.462Z [INFO] GET /api/services
+2025-06-25T19:10:50.464Z [INFO] GET /api/services
+2025-06-25T19:10:50.466Z [INFO] GET /api/locations
+2025-06-25T19:10:50.467Z [INFO] GET /api/locations
+2025-06-25T19:10:50.479Z [INFO] GET /api/customers
+2025-06-25T19:10:50.480Z [INFO] GET /api/customers
+2025-06-25T19:10:50.489Z [INFO] GET /api/orders
+2025-06-25T19:10:50.490Z [INFO] GET /api/orders
+2025-06-25T19:10:50.491Z [INFO] GET /api/orders
+2025-06-25T19:10:50.492Z [INFO] GET /api/orders
+2025-06-25T19:10:50.518Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:50.523Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:50.524Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:50.525Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:50.525Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:50.525Z [INFO] Alert alert_1750878650523_8y4kqz48u sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:50.525Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:10:53.199Z [INFO] GET /api/customers
+2025-06-25T19:10:53.200Z [INFO] GET /api/customers
+2025-06-25T19:10:53.201Z [INFO] GET /api/services
+2025-06-25T19:10:53.201Z [INFO] GET /api/services
+2025-06-25T19:10:53.204Z [INFO] GET /api/locations
+2025-06-25T19:10:53.204Z [INFO] GET /api/locations
+2025-06-25T19:10:53.211Z [INFO] GET /api/services
+2025-06-25T19:10:53.212Z [INFO] GET /api/services
+2025-06-25T19:10:53.213Z [INFO] GET /api/locations
+2025-06-25T19:10:53.213Z [INFO] GET /api/locations
+2025-06-25T19:10:53.221Z [INFO] GET /api/orders
+2025-06-25T19:10:53.221Z [INFO] GET /api/orders
+2025-06-25T19:10:53.223Z [INFO] GET /api/customers
+2025-06-25T19:10:53.223Z [INFO] GET /api/customers
+2025-06-25T19:10:53.230Z [INFO] GET /api/orders
+2025-06-25T19:10:53.230Z [INFO] GET /api/orders
+2025-06-25T19:10:53.238Z [INFO] GET /api/stats/appointments
+2025-06-25T19:10:53.305Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:53.306Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:10:53.307Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:10:53.307Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:10:53.307Z [INFO] Alert alert_1750878653305_su5ufjz0u sent via multiple channels: email, websocket, rss
+2025-06-25T19:10:53.307Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:05.387Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:05.388Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:05.389Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:05.391Z [INFO] GET /api/customers
+2025-06-25T19:11:05.392Z [INFO] GET /api/customers
+2025-06-25T19:11:05.393Z [INFO] GET /api/services
+2025-06-25T19:11:05.394Z [INFO] GET /api/services
+2025-06-25T19:11:05.394Z [INFO] GET /api/locations
+2025-06-25T19:11:05.395Z [INFO] GET /api/locations
+2025-06-25T19:11:05.396Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:05.398Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:05.399Z [INFO] GET /api/services
+2025-06-25T19:11:05.399Z [INFO] GET /api/services
+2025-06-25T19:11:05.404Z [INFO] GET /api/locations
+2025-06-25T19:11:05.404Z [INFO] GET /api/locations
+2025-06-25T19:11:05.411Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:05.411Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:05.413Z [INFO] GET /api/orders
+2025-06-25T19:11:05.413Z [INFO] GET /api/orders
+2025-06-25T19:11:05.414Z [INFO] GET /api/customers
+2025-06-25T19:11:05.415Z [INFO] GET /api/customers
+2025-06-25T19:11:05.421Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:05.424Z [INFO] GET /api/orders
+2025-06-25T19:11:05.425Z [INFO] GET /api/orders
+2025-06-25T19:11:05.432Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:11:05.434Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:05.438Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:05.438Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:05.439Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:05.439Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:05.439Z [INFO] Alert alert_1750878665438_okulvsa8c sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:05.440Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:05.997Z [INFO] GET /api/customers
+2025-06-25T19:11:05.998Z [INFO] GET /api/customers
+2025-06-25T19:11:06.000Z [INFO] GET /api/services
+2025-06-25T19:11:06.000Z [INFO] GET /api/services
+2025-06-25T19:11:06.002Z [INFO] GET /api/locations
+2025-06-25T19:11:06.003Z [INFO] GET /api/locations
+2025-06-25T19:11:06.027Z [INFO] GET /api/services
+2025-06-25T19:11:06.029Z [INFO] GET /api/services
+2025-06-25T19:11:06.031Z [INFO] GET /api/locations
+2025-06-25T19:11:06.031Z [INFO] GET /api/locations
+2025-06-25T19:11:06.034Z [INFO] GET /api/orders
+2025-06-25T19:11:06.034Z [INFO] GET /api/orders
+2025-06-25T19:11:06.049Z [INFO] GET /api/customers
+2025-06-25T19:11:06.050Z [INFO] GET /api/customers
+2025-06-25T19:11:06.061Z [INFO] GET /api/orders
+2025-06-25T19:11:06.062Z [INFO] GET /api/orders
+2025-06-25T19:11:06.064Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:06.069Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:06.069Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:06.070Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:06.070Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:06.071Z [INFO] Alert alert_1750878666068_bosy50ppz sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:06.071Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:13.529Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:13.531Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:13.534Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:13.540Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:13.543Z [INFO] GET /api/customers
+2025-06-25T19:11:13.544Z [INFO] GET /api/customers
+2025-06-25T19:11:13.545Z [INFO] GET /api/services
+2025-06-25T19:11:13.546Z [INFO] GET /api/services
+2025-06-25T19:11:13.547Z [INFO] GET /api/locations
+2025-06-25T19:11:13.547Z [INFO] GET /api/locations
+2025-06-25T19:11:13.548Z [INFO] GET /api/services
+2025-06-25T19:11:13.549Z [INFO] GET /api/services
+2025-06-25T19:11:13.554Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:13.558Z [INFO] GET /api/locations
+2025-06-25T19:11:13.559Z [INFO] GET /api/locations
+2025-06-25T19:11:13.564Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:13.566Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:13.567Z [INFO] GET /api/orders
+2025-06-25T19:11:13.569Z [INFO] GET /api/orders
+2025-06-25T19:11:13.571Z [INFO] GET /api/customers
+2025-06-25T19:11:13.571Z [INFO] GET /api/customers
+2025-06-25T19:11:13.578Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:13.580Z [INFO] GET /api/orders
+2025-06-25T19:11:13.581Z [INFO] GET /api/orders
+2025-06-25T19:11:13.586Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:11:13.590Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:13.595Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:13.596Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:13.596Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:13.596Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:13.596Z [INFO] Alert alert_1750878673595_tpka8wze4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:13.597Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:14.343Z [INFO] GET /api/customers
+2025-06-25T19:11:14.343Z [INFO] GET /api/customers
+2025-06-25T19:11:14.344Z [INFO] GET /api/services
+2025-06-25T19:11:14.344Z [INFO] GET /api/services
+2025-06-25T19:11:14.345Z [INFO] GET /api/locations
+2025-06-25T19:11:14.345Z [INFO] GET /api/locations
+2025-06-25T19:11:14.359Z [INFO] GET /api/orders
+2025-06-25T19:11:14.359Z [INFO] GET /api/orders
+2025-06-25T19:11:14.361Z [INFO] GET /api/services
+2025-06-25T19:11:14.362Z [INFO] GET /api/services
+2025-06-25T19:11:14.362Z [INFO] GET /api/locations
+2025-06-25T19:11:14.363Z [INFO] GET /api/locations
+2025-06-25T19:11:14.375Z [INFO] GET /api/customers
+2025-06-25T19:11:14.375Z [INFO] GET /api/customers
+2025-06-25T19:11:14.378Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:14.386Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:14.386Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:14.387Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:14.388Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:14.388Z [INFO] Alert alert_1750878674385_df6bg1mhj sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:14.389Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:14.390Z [INFO] GET /api/orders
+2025-06-25T19:11:14.390Z [INFO] GET /api/orders
+2025-06-25T19:11:23.414Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:23.415Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:23.416Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:23.419Z [INFO] GET /api/customers
+2025-06-25T19:11:23.420Z [INFO] GET /api/customers
+2025-06-25T19:11:23.420Z [INFO] GET /api/services
+2025-06-25T19:11:23.421Z [INFO] GET /api/services
+2025-06-25T19:11:23.421Z [INFO] GET /api/locations
+2025-06-25T19:11:23.422Z [INFO] GET /api/locations
+2025-06-25T19:11:23.438Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:23.440Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:23.442Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:23.446Z [INFO] GET /api/orders
+2025-06-25T19:11:23.448Z [INFO] GET /api/orders
+2025-06-25T19:11:23.449Z [INFO] GET /api/services
+2025-06-25T19:11:23.450Z [INFO] GET /api/services
+2025-06-25T19:11:23.451Z [INFO] GET /api/locations
+2025-06-25T19:11:23.451Z [INFO] GET /api/locations
+2025-06-25T19:11:23.465Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:23.468Z [INFO] GET /api/customers
+2025-06-25T19:11:23.468Z [INFO] GET /api/customers
+2025-06-25T19:11:23.470Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:11:23.474Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:23.480Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:23.484Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:23.484Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:23.485Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:23.485Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:23.485Z [INFO] Alert alert_1750878683483_x0ws57nsd sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:23.485Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:23.486Z [INFO] GET /api/orders
+2025-06-25T19:11:23.487Z [INFO] GET /api/orders
+2025-06-25T19:11:27.196Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:11:27.198Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:11:27.201Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:11:27.202Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:11:27.203Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:11:27.203Z [INFO] Starting weather data update job...
+2025-06-25T19:11:27.203Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:11:27.205Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:11:27.205Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:11:27.206Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:11:27.207Z [INFO] Weather data update job completed in 4ms
+2025-06-25T19:11:27.207Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:12:27 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:11:29.871Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:29.872Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:29.873Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:29.879Z [INFO] GET /api/customers
+2025-06-25T19:11:29.880Z [INFO] GET /api/customers
+2025-06-25T19:11:29.882Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:29.883Z [INFO] GET /api/services
+2025-06-25T19:11:29.883Z [INFO] GET /api/services
+2025-06-25T19:11:29.884Z [INFO] GET /api/locations
+2025-06-25T19:11:29.884Z [INFO] GET /api/locations
+2025-06-25T19:11:29.885Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:29.886Z [INFO] GET /api/locations
+2025-06-25T19:11:29.887Z [INFO] GET /api/locations
+2025-06-25T19:11:29.889Z [INFO] GET /api/services
+2025-06-25T19:11:29.890Z [INFO] GET /api/services
+2025-06-25T19:11:29.896Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:29.897Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:29.899Z [INFO] GET /api/orders
+2025-06-25T19:11:29.900Z [INFO] GET /api/orders
+2025-06-25T19:11:29.902Z [INFO] GET /api/customers
+2025-06-25T19:11:29.902Z [INFO] GET /api/customers
+2025-06-25T19:11:29.910Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:29.912Z [INFO] GET /api/orders
+2025-06-25T19:11:29.913Z [INFO] GET /api/orders
+2025-06-25T19:11:29.920Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:11:29.922Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:29.930Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:29.931Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:29.931Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:29.932Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:29.932Z [INFO] Alert alert_1750878689930_xvqfrvs05 sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:29.932Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:11:52.376Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:52.377Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:52.378Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:52.378Z [INFO] OPTIONS /api/locations
+2025-06-25T19:11:52.379Z [INFO] OPTIONS /api/services
+2025-06-25T19:11:52.381Z [INFO] GET /api/services
+2025-06-25T19:11:52.382Z [INFO] GET /api/services
+2025-06-25T19:11:52.383Z [INFO] GET /api/locations
+2025-06-25T19:11:52.384Z [INFO] GET /api/locations
+2025-06-25T19:11:52.385Z [INFO] GET /api/customers
+2025-06-25T19:11:52.386Z [INFO] GET /api/customers
+2025-06-25T19:11:52.387Z [INFO] GET /api/locations
+2025-06-25T19:11:52.388Z [INFO] GET /api/locations
+2025-06-25T19:11:52.388Z [INFO] GET /api/services
+2025-06-25T19:11:52.389Z [INFO] GET /api/services
+2025-06-25T19:11:52.394Z [INFO] OPTIONS /api/customers
+2025-06-25T19:11:52.397Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:52.397Z [INFO] GET /api/customers
+2025-06-25T19:11:52.398Z [INFO] GET /api/customers
+2025-06-25T19:11:52.399Z [INFO] GET /api/orders
+2025-06-25T19:11:52.399Z [INFO] GET /api/orders
+2025-06-25T19:11:52.404Z [INFO] OPTIONS /api/orders
+2025-06-25T19:11:52.405Z [INFO] GET /api/orders
+2025-06-25T19:11:52.406Z [INFO] GET /api/orders
+2025-06-25T19:11:52.413Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:11:52.416Z [INFO] GET /api/stats/appointments
+2025-06-25T19:11:52.419Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:52.420Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:11:52.420Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:11:52.420Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:11:52.421Z [INFO] Alert alert_1750878712419_5mmgtjhwa sent via multiple channels: email, websocket, rss
+2025-06-25T19:11:52.421Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:00.473Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:00.480Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:00.481Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:00.485Z [INFO] GET /api/customers
+2025-06-25T19:12:00.486Z [INFO] GET /api/customers
+2025-06-25T19:12:00.487Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:00.489Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:00.489Z [INFO] GET /api/locations
+2025-06-25T19:12:00.490Z [INFO] GET /api/locations
+2025-06-25T19:12:00.492Z [INFO] GET /api/services
+2025-06-25T19:12:00.494Z [INFO] GET /api/services
+2025-06-25T19:12:00.499Z [INFO] GET /api/locations
+2025-06-25T19:12:00.500Z [INFO] GET /api/locations
+2025-06-25T19:12:00.501Z [INFO] GET /api/services
+2025-06-25T19:12:00.501Z [INFO] GET /api/services
+2025-06-25T19:12:00.509Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:00.510Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:00.511Z [INFO] GET /api/customers
+2025-06-25T19:12:00.512Z [INFO] GET /api/customers
+2025-06-25T19:12:00.513Z [INFO] GET /api/orders
+2025-06-25T19:12:00.513Z [INFO] GET /api/orders
+2025-06-25T19:12:00.519Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:00.525Z [INFO] GET /api/orders
+2025-06-25T19:12:00.525Z [INFO] GET /api/orders
+2025-06-25T19:12:00.532Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:12:00.534Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:00.539Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:00.540Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:00.541Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:00.541Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:00.541Z [INFO] Alert alert_1750878720538_ynzj1y8ji sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:00.542Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:28.985Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T19:12:29.026Z [INFO] AlertService: SMTP client initialized
+2025-06-25T19:12:29.053Z [INFO] Minimal server listening on port 8000
+2025-06-25T19:12:29.062Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 22:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.063Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 23:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.064Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 22:13:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.065Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 22:13:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.066Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.067Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 22:13:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.068Z [INFO] Scheduler: Starting...
+2025-06-25T19:12:29.069Z [INFO] Scheduler: Started successfully
+2025-06-25T19:12:29.069Z [INFO] Server and scheduler started successfully
+2025-06-25T19:12:29.132Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:29.139Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:29.141Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:29.144Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:29.183Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 22:12:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:12:29.191Z [INFO] GET /api/customers
+2025-06-25T19:12:29.194Z [INFO] GET /api/customers
+2025-06-25T19:12:29.198Z [INFO] GET /api/services
+2025-06-25T19:12:29.199Z [INFO] GET /api/services
+2025-06-25T19:12:29.204Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:29.205Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:29.207Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:29.208Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:29.218Z [INFO] GET /api/services
+2025-06-25T19:12:29.220Z [INFO] GET /api/services
+2025-06-25T19:12:29.222Z [INFO] GET /api/locations
+2025-06-25T19:12:29.223Z [INFO] GET /api/locations
+2025-06-25T19:12:29.224Z [INFO] GET /api/locations
+2025-06-25T19:12:29.224Z [INFO] GET /api/locations
+2025-06-25T19:12:29.335Z [INFO] GET /api/orders
+2025-06-25T19:12:29.336Z [INFO] GET /api/orders
+2025-06-25T19:12:29.337Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:29.339Z [INFO] GET /api/customers
+2025-06-25T19:12:29.340Z [INFO] GET /api/customers
+2025-06-25T19:12:29.356Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:29.358Z [INFO] GET /api/orders
+2025-06-25T19:12:29.359Z [INFO] GET /api/orders
+2025-06-25T19:12:29.373Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:12:29.375Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:29.515Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:29.515Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:29.516Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:29.517Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:29.517Z [INFO] Alert alert_1750878749515_xjlpf20nb sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:29.517Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:35.367Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:35.369Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:35.371Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:35.376Z [INFO] GET /api/customers
+2025-06-25T19:12:35.377Z [INFO] GET /api/customers
+2025-06-25T19:12:35.379Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:35.382Z [INFO] GET /api/services
+2025-06-25T19:12:35.383Z [INFO] GET /api/services
+2025-06-25T19:12:35.384Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:35.386Z [INFO] GET /api/locations
+2025-06-25T19:12:35.386Z [INFO] GET /api/locations
+2025-06-25T19:12:35.388Z [INFO] GET /api/services
+2025-06-25T19:12:35.388Z [INFO] GET /api/services
+2025-06-25T19:12:35.392Z [INFO] GET /api/locations
+2025-06-25T19:12:35.393Z [INFO] GET /api/locations
+2025-06-25T19:12:35.405Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:35.407Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:35.408Z [INFO] GET /api/customers
+2025-06-25T19:12:35.409Z [INFO] GET /api/customers
+2025-06-25T19:12:35.411Z [INFO] GET /api/orders
+2025-06-25T19:12:35.412Z [INFO] GET /api/orders
+2025-06-25T19:12:35.430Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:35.434Z [INFO] GET /api/orders
+2025-06-25T19:12:35.436Z [INFO] GET /api/orders
+2025-06-25T19:12:35.447Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:12:35.450Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:35.464Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:35.464Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:35.465Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:35.465Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:35.466Z [INFO] Alert alert_1750878755464_40t45mgb4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:35.466Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:38.729Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:12:38.739Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:38.742Z [INFO] GET /api/orders
+2025-06-25T19:12:38.743Z [INFO] GET /api/orders
+2025-06-25T19:12:38.774Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:12:38.777Z [INFO] GET /api/stats/system-status
+2025-06-25T19:12:38.788Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:38.789Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:38.790Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:38.791Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:38.791Z [INFO] Alert alert_1750878758788_u1jsyoqtn sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:38.792Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:38.799Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:12:38.804Z [INFO] GET /api/notifications/recent
+2025-06-25T19:12:38.815Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:12:38.820Z [INFO] GET /api/stats/performance
+2025-06-25T19:12:38.836Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:12:38.839Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:12:42.708Z [INFO] OPTIONS /api/auth/logout
+2025-06-25T19:12:42.711Z [INFO] POST /api/auth/logout
+2025-06-25T19:12:42.712Z [INFO] POST /api/auth/logout
+2025-06-25T19:12:42.713Z [INFO] AuthService: User client@cas.ro logged out
+2025-06-25T19:12:42.842Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:42.843Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:42.846Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:42.848Z [INFO] GET /api/customers
+2025-06-25T19:12:42.849Z [INFO] GET /api/customers
+2025-06-25T19:12:42.850Z [INFO] GET /api/services
+2025-06-25T19:12:42.850Z [INFO] GET /api/services
+2025-06-25T19:12:42.851Z [INFO] GET /api/locations
+2025-06-25T19:12:42.851Z [INFO] GET /api/locations
+2025-06-25T19:12:42.866Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:42.869Z [INFO] GET /api/orders
+2025-06-25T19:12:42.870Z [INFO] GET /api/orders
+2025-06-25T19:12:42.895Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:12:42.898Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:42.910Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:42.910Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:42.911Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:42.911Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:42.912Z [INFO] Alert alert_1750878762910_j30gac557 sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:42.912Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:43.231Z [INFO] GET /api/customers
+2025-06-25T19:12:43.233Z [INFO] GET /api/customers
+2025-06-25T19:12:43.234Z [INFO] GET /api/services
+2025-06-25T19:12:43.235Z [INFO] GET /api/services
+2025-06-25T19:12:43.235Z [INFO] GET /api/locations
+2025-06-25T19:12:43.236Z [INFO] GET /api/locations
+2025-06-25T19:12:43.266Z [INFO] GET /api/orders
+2025-06-25T19:12:43.267Z [INFO] GET /api/orders
+2025-06-25T19:12:43.295Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:43.310Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:43.310Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:43.311Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:43.312Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:43.312Z [INFO] Alert alert_1750878763310_lrxy2gucn sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:43.312Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:55.317Z [INFO] OPTIONS /api/customers
+2025-06-25T19:12:55.320Z [INFO] OPTIONS /api/services
+2025-06-25T19:12:55.321Z [INFO] OPTIONS /api/locations
+2025-06-25T19:12:55.325Z [INFO] GET /api/customers
+2025-06-25T19:12:55.327Z [INFO] GET /api/customers
+2025-06-25T19:12:55.328Z [INFO] GET /api/services
+2025-06-25T19:12:55.328Z [INFO] GET /api/services
+2025-06-25T19:12:55.329Z [INFO] GET /api/locations
+2025-06-25T19:12:55.330Z [INFO] GET /api/locations
+2025-06-25T19:12:55.345Z [INFO] OPTIONS /api/orders
+2025-06-25T19:12:55.348Z [INFO] GET /api/orders
+2025-06-25T19:12:55.349Z [INFO] GET /api/orders
+2025-06-25T19:12:55.372Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:12:55.377Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:55.388Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:55.390Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:55.391Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:55.392Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:55.392Z [INFO] Alert alert_1750878775388_i10c755vr sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:55.392Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:55.581Z [INFO] GET /api/customers
+2025-06-25T19:12:55.582Z [INFO] GET /api/customers
+2025-06-25T19:12:55.583Z [INFO] GET /api/services
+2025-06-25T19:12:55.584Z [INFO] GET /api/services
+2025-06-25T19:12:55.585Z [INFO] GET /api/locations
+2025-06-25T19:12:55.585Z [INFO] GET /api/locations
+2025-06-25T19:12:55.600Z [INFO] GET /api/orders
+2025-06-25T19:12:55.601Z [INFO] GET /api/orders
+2025-06-25T19:12:55.624Z [INFO] GET /api/stats/appointments
+2025-06-25T19:12:55.639Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:55.640Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:12:55.641Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:12:55.642Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:12:55.643Z [INFO] Alert alert_1750878775639_r9t6400j5 sent via multiple channels: email, websocket, rss
+2025-06-25T19:12:55.643Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:12:58.428Z [INFO] OPTIONS /api/auth/login
+2025-06-25T19:12:58.430Z [INFO] POST /api/auth/login
+2025-06-25T19:12:58.432Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T19:12:58.607Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T19:12:58.608Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T19:13:00.151Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:13:00.153Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:00.165Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:00.166Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:00.167Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:00.167Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:00.167Z [INFO] Alert alert_1750878780165_xjdizql54 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:00.168Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:00.171Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:00.173Z [INFO] GET /api/orders
+2025-06-25T19:13:00.174Z [INFO] GET /api/orders
+2025-06-25T19:13:00.191Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:13:00.194Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:00.204Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:00.205Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:00.205Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:00.206Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:00.206Z [INFO] Alert alert_1750878780204_wqvi5fmya sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:00.207Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:00.217Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:13:00.219Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:00.227Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:13:00.229Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:00.239Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:00.240Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:02.369Z [INFO] OPTIONS /api/customers
+2025-06-25T19:13:02.371Z [INFO] OPTIONS /api/services
+2025-06-25T19:13:02.372Z [INFO] OPTIONS /api/locations
+2025-06-25T19:13:02.373Z [INFO] GET /api/customers
+2025-06-25T19:13:02.374Z [INFO] GET /api/customers
+2025-06-25T19:13:02.375Z [INFO] GET /api/services
+2025-06-25T19:13:02.375Z [INFO] GET /api/services
+2025-06-25T19:13:02.376Z [INFO] GET /api/locations
+2025-06-25T19:13:02.376Z [INFO] GET /api/locations
+2025-06-25T19:13:02.384Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:02.386Z [INFO] GET /api/orders
+2025-06-25T19:13:02.386Z [INFO] GET /api/orders
+2025-06-25T19:13:02.407Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:13:02.409Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:02.416Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:02.416Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:02.417Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:02.417Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:02.418Z [INFO] Alert alert_1750878782415_iuplzq09n sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:02.418Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:06.033Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:13:06.037Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:06.041Z [INFO] GET /api/orders
+2025-06-25T19:13:06.042Z [INFO] GET /api/orders
+2025-06-25T19:13:06.065Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:13:06.067Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:06.072Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:06.073Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:06.073Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:06.073Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:06.073Z [INFO] Alert alert_1750878786072_mv9xyrq7x sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:06.074Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:06.083Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:13:06.085Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:06.093Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:13:06.102Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:06.112Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:06.113Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:10.020Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:10.035Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.036Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.036Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.037Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.037Z [INFO] Alert alert_1750878790034_hfft0q1ee sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.037Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.044Z [INFO] GET /api/orders
+2025-06-25T19:13:10.044Z [INFO] GET /api/orders
+2025-06-25T19:13:10.062Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:10.072Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.073Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.073Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.074Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.074Z [INFO] Alert alert_1750878790072_lrpj0tfts sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.074Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.084Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:10.096Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:10.113Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:10.115Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:10.177Z [INFO] OPTIONS /api/customers
+2025-06-25T19:13:10.179Z [INFO] OPTIONS /api/services
+2025-06-25T19:13:10.180Z [INFO] OPTIONS /api/locations
+2025-06-25T19:13:10.188Z [INFO] GET /api/customers
+2025-06-25T19:13:10.189Z [INFO] GET /api/customers
+2025-06-25T19:13:10.192Z [INFO] GET /api/services
+2025-06-25T19:13:10.193Z [INFO] GET /api/services
+2025-06-25T19:13:10.195Z [INFO] GET /api/locations
+2025-06-25T19:13:10.197Z [INFO] GET /api/locations
+2025-06-25T19:13:10.211Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:10.217Z [INFO] GET /api/orders
+2025-06-25T19:13:10.218Z [INFO] GET /api/orders
+2025-06-25T19:13:10.243Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:13:10.252Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:10.263Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.265Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.266Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.267Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.268Z [INFO] Alert alert_1750878790263_e03dy85y8 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.269Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.486Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:10.506Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.507Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.508Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.508Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.509Z [INFO] Alert alert_1750878790506_1focxdvsj sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.509Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.523Z [INFO] GET /api/orders
+2025-06-25T19:13:10.524Z [INFO] GET /api/orders
+2025-06-25T19:13:10.542Z [INFO] GET /api/customers
+2025-06-25T19:13:10.543Z [INFO] GET /api/customers
+2025-06-25T19:13:10.544Z [INFO] GET /api/services
+2025-06-25T19:13:10.545Z [INFO] GET /api/services
+2025-06-25T19:13:10.546Z [INFO] GET /api/locations
+2025-06-25T19:13:10.549Z [INFO] GET /api/locations
+2025-06-25T19:13:10.555Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:10.610Z [INFO] GET /api/orders
+2025-06-25T19:13:10.611Z [INFO] GET /api/orders
+2025-06-25T19:13:10.641Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:10.650Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.651Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.653Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.653Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.654Z [INFO] Alert alert_1750878790650_cxhov0a2h sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.654Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.731Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.732Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:10.733Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:10.734Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:10.734Z [INFO] Alert alert_1750878790731_i03lb5ed2 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:10.735Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:10.755Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:10.767Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:10.784Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:10.785Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:29.071Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:13:29.072Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:13:29.072Z [INFO] Starting equipment status check...
+2025-06-25T19:13:29.074Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:13:29.075Z [ERROR] Error checking equipment status:
+2025-06-25T19:13:29.075Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:13:29.075Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:14:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:13:29.075Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:13:29.076Z [INFO] Starting weather data update job...
+2025-06-25T19:13:29.076Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:13:29.077Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:13:29.077Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:13:29.078Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:13:29.078Z [INFO] Weather data update job completed in 2ms
+2025-06-25T19:13:29.078Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:14:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:13:29.078Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T19:13:29.079Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:13:29.079Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:13:29.080Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 22:18:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:13:31.859Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:13:31.863Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:31.866Z [INFO] OPTIONS /api/customers
+2025-06-25T19:13:31.868Z [INFO] OPTIONS /api/services
+2025-06-25T19:13:31.869Z [INFO] OPTIONS /api/locations
+2025-06-25T19:13:31.870Z [INFO] GET /api/customers
+2025-06-25T19:13:31.871Z [INFO] GET /api/customers
+2025-06-25T19:13:31.874Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:31.875Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:31.876Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:31.876Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:31.877Z [INFO] Alert alert_1750878811874_p99t6vler sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:31.877Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:31.878Z [INFO] GET /api/services
+2025-06-25T19:13:31.879Z [INFO] GET /api/services
+2025-06-25T19:13:31.880Z [INFO] GET /api/locations
+2025-06-25T19:13:31.880Z [INFO] GET /api/locations
+2025-06-25T19:13:31.883Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:31.885Z [INFO] GET /api/orders
+2025-06-25T19:13:31.886Z [INFO] GET /api/orders
+2025-06-25T19:13:31.887Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:31.889Z [INFO] GET /api/orders
+2025-06-25T19:13:31.890Z [INFO] GET /api/orders
+2025-06-25T19:13:31.906Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:13:31.908Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:13:31.910Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:31.910Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:31.914Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:31.914Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:31.915Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:31.915Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:31.916Z [INFO] Alert alert_1750878811914_42rjyuru4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:31.916Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:32.061Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:32.061Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:32.062Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:32.062Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:32.062Z [INFO] Alert alert_1750878812060_xhxwlz5a0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:32.062Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:32.071Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:13:32.073Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:32.080Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:13:32.083Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:32.092Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:32.093Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:40.842Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:13:40.844Z [INFO] OPTIONS /api/customers
+2025-06-25T19:13:40.845Z [INFO] OPTIONS /api/services
+2025-06-25T19:13:40.846Z [INFO] OPTIONS /api/locations
+2025-06-25T19:13:40.847Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:40.854Z [INFO] GET /api/customers
+2025-06-25T19:13:40.854Z [INFO] GET /api/customers
+2025-06-25T19:13:40.855Z [INFO] GET /api/services
+2025-06-25T19:13:40.855Z [INFO] GET /api/services
+2025-06-25T19:13:40.856Z [INFO] GET /api/locations
+2025-06-25T19:13:40.857Z [INFO] GET /api/locations
+2025-06-25T19:13:40.858Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.858Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.859Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:40.859Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:40.860Z [INFO] Alert alert_1750878820858_v0fmrcoww sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:40.860Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:40.867Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:40.869Z [INFO] GET /api/orders
+2025-06-25T19:13:40.870Z [INFO] GET /api/orders
+2025-06-25T19:13:40.872Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:40.874Z [INFO] GET /api/orders
+2025-06-25T19:13:40.875Z [INFO] GET /api/orders
+2025-06-25T19:13:40.884Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:13:40.886Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:40.889Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:13:40.892Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:40.894Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.895Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.896Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:40.896Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:40.896Z [INFO] Alert alert_1750878820894_3ropd90m1 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:40.896Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:40.898Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.898Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:40.899Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:40.899Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:40.900Z [INFO] Alert alert_1750878820898_cil55sapc sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:40.900Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:40.909Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:13:40.911Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:40.919Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:13:40.921Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:40.930Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:40.931Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:13:52.554Z [INFO] OPTIONS /api/customers
+2025-06-25T19:13:52.558Z [INFO] OPTIONS /api/services
+2025-06-25T19:13:52.559Z [INFO] OPTIONS /api/locations
+2025-06-25T19:13:52.559Z [INFO] GET /api/customers
+2025-06-25T19:13:52.560Z [INFO] GET /api/customers
+2025-06-25T19:13:52.561Z [INFO] GET /api/services
+2025-06-25T19:13:52.562Z [INFO] GET /api/services
+2025-06-25T19:13:52.562Z [INFO] GET /api/locations
+2025-06-25T19:13:52.563Z [INFO] GET /api/locations
+2025-06-25T19:13:52.565Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:13:52.567Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:13:52.577Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:52.579Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.580Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.580Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:52.582Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:52.583Z [INFO] Alert alert_1750878832579_4nbb1m6bh sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:52.584Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:52.587Z [INFO] GET /api/orders
+2025-06-25T19:13:52.588Z [INFO] GET /api/orders
+2025-06-25T19:13:52.591Z [INFO] OPTIONS /api/orders
+2025-06-25T19:13:52.594Z [INFO] GET /api/orders
+2025-06-25T19:13:52.594Z [INFO] GET /api/orders
+2025-06-25T19:13:52.606Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:13:52.608Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:13:52.609Z [INFO] GET /api/stats/system-status
+2025-06-25T19:13:52.611Z [INFO] GET /api/stats/appointments
+2025-06-25T19:13:52.618Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.619Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.620Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:52.620Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:52.621Z [INFO] Alert alert_1750878832618_m402x1xbf sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:52.621Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:52.622Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.623Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:13:52.623Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:13:52.624Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:13:52.624Z [INFO] Alert alert_1750878832622_kqxh1ndh6 sent via multiple channels: email, websocket, rss
+2025-06-25T19:13:52.624Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:13:52.629Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:13:52.632Z [INFO] GET /api/notifications/recent
+2025-06-25T19:13:52.639Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:13:52.641Z [INFO] GET /api/stats/performance
+2025-06-25T19:13:52.651Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:13:52.652Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:14:29.086Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:14:29.087Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:14:29.087Z [INFO] Starting equipment status check...
+2025-06-25T19:14:29.139Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:14:29.140Z [ERROR] Error checking equipment status:
+2025-06-25T19:14:29.140Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:14:29.141Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:15:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:14:29.141Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:14:29.142Z [INFO] Starting weather data update job...
+2025-06-25T19:14:29.142Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:14:29.145Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:14:29.145Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:14:29.146Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:14:29.146Z [INFO] Weather data update job completed in 4ms
+2025-06-25T19:14:29.146Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:15:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:14:40.757Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:14:40.759Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:14:40.808Z [INFO] OPTIONS /api/customers
+2025-06-25T19:14:40.811Z [INFO] OPTIONS /api/services
+2025-06-25T19:14:40.812Z [INFO] OPTIONS /api/locations
+2025-06-25T19:14:40.813Z [INFO] GET /api/customers
+2025-06-25T19:14:40.813Z [INFO] GET /api/customers
+2025-06-25T19:14:40.814Z [INFO] GET /api/services
+2025-06-25T19:14:40.814Z [INFO] GET /api/services
+2025-06-25T19:14:40.815Z [INFO] GET /api/locations
+2025-06-25T19:14:40.816Z [INFO] GET /api/locations
+2025-06-25T19:14:40.907Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.907Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.908Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:40.908Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:40.908Z [INFO] Alert alert_1750878880907_93m0qncgy sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:40.908Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:40.914Z [INFO] OPTIONS /api/orders
+2025-06-25T19:14:40.916Z [INFO] GET /api/orders
+2025-06-25T19:14:40.917Z [INFO] GET /api/orders
+2025-06-25T19:14:40.929Z [INFO] OPTIONS /api/orders
+2025-06-25T19:14:40.931Z [INFO] GET /api/orders
+2025-06-25T19:14:40.931Z [INFO] GET /api/orders
+2025-06-25T19:14:40.940Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:14:40.942Z [INFO] GET /api/stats/system-status
+2025-06-25T19:14:40.950Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.951Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.952Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:40.952Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:40.952Z [INFO] Alert alert_1750878880950_hnx4a177s sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:40.953Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:40.960Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:14:40.962Z [INFO] GET /api/stats/appointments
+2025-06-25T19:14:40.963Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:14:40.965Z [INFO] GET /api/notifications/recent
+2025-06-25T19:14:40.971Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.972Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:40.972Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:40.972Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:40.973Z [INFO] Alert alert_1750878880971_vx6ys5x9i sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:40.973Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:40.973Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:14:40.975Z [INFO] GET /api/stats/performance
+2025-06-25T19:14:40.985Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:14:40.985Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:14:49.988Z [INFO] OPTIONS /api/customers
+2025-06-25T19:14:49.989Z [INFO] OPTIONS /api/services
+2025-06-25T19:14:49.990Z [INFO] OPTIONS /api/locations
+2025-06-25T19:14:49.991Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:14:49.993Z [INFO] GET /api/customers
+2025-06-25T19:14:49.994Z [INFO] GET /api/customers
+2025-06-25T19:14:49.995Z [INFO] GET /api/services
+2025-06-25T19:14:49.995Z [INFO] GET /api/services
+2025-06-25T19:14:49.997Z [INFO] GET /api/locations
+2025-06-25T19:14:49.998Z [INFO] GET /api/locations
+2025-06-25T19:14:49.999Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:14:50.008Z [INFO] OPTIONS /api/orders
+2025-06-25T19:14:50.012Z [INFO] GET /api/orders
+2025-06-25T19:14:50.012Z [INFO] GET /api/orders
+2025-06-25T19:14:50.036Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:14:50.038Z [INFO] GET /api/stats/appointments
+2025-06-25T19:14:50.046Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.046Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.047Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:50.047Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:50.047Z [INFO] Alert alert_1750878890046_314y8kjvm sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:50.048Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:50.060Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.061Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.061Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:50.061Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:50.062Z [INFO] Alert alert_1750878890060_ikmzggrjg sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:50.062Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:50.067Z [INFO] OPTIONS /api/orders
+2025-06-25T19:14:50.068Z [INFO] GET /api/orders
+2025-06-25T19:14:50.069Z [INFO] GET /api/orders
+2025-06-25T19:14:50.081Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:14:50.082Z [INFO] GET /api/stats/system-status
+2025-06-25T19:14:50.089Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.090Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:14:50.091Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:14:50.091Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:14:50.092Z [INFO] Alert alert_1750878890089_13kvdeh8h sent via multiple channels: email, websocket, rss
+2025-06-25T19:14:50.092Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:14:50.098Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:14:50.101Z [INFO] GET /api/notifications/recent
+2025-06-25T19:14:50.109Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:14:50.112Z [INFO] GET /api/stats/performance
+2025-06-25T19:14:50.122Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:14:50.122Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:15:10.515Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:15:10.517Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:15:10.524Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.525Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.526Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:10.527Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:10.527Z [INFO] Alert alert_1750878910524_chkaplwh0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:10.528Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:10.533Z [INFO] OPTIONS /api/orders
+2025-06-25T19:15:10.536Z [INFO] GET /api/orders
+2025-06-25T19:15:10.537Z [INFO] GET /api/orders
+2025-06-25T19:15:10.542Z [INFO] OPTIONS /api/customers
+2025-06-25T19:15:10.543Z [INFO] OPTIONS /api/services
+2025-06-25T19:15:10.544Z [INFO] OPTIONS /api/locations
+2025-06-25T19:15:10.547Z [INFO] GET /api/customers
+2025-06-25T19:15:10.548Z [INFO] GET /api/customers
+2025-06-25T19:15:10.549Z [INFO] GET /api/services
+2025-06-25T19:15:10.549Z [INFO] GET /api/services
+2025-06-25T19:15:10.550Z [INFO] GET /api/locations
+2025-06-25T19:15:10.550Z [INFO] GET /api/locations
+2025-06-25T19:15:10.557Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:15:10.560Z [INFO] GET /api/stats/system-status
+2025-06-25T19:15:10.561Z [INFO] OPTIONS /api/orders
+2025-06-25T19:15:10.563Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.564Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.564Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:10.565Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:10.565Z [INFO] Alert alert_1750878910563_ne11t9are sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:10.565Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:10.566Z [INFO] GET /api/orders
+2025-06-25T19:15:10.567Z [INFO] GET /api/orders
+2025-06-25T19:15:10.572Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:15:10.575Z [INFO] GET /api/notifications/recent
+2025-06-25T19:15:10.584Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:15:10.584Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:15:10.586Z [INFO] GET /api/stats/appointments
+2025-06-25T19:15:10.587Z [INFO] GET /api/stats/performance
+2025-06-25T19:15:10.590Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.590Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.591Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:10.591Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:10.592Z [INFO] Alert alert_1750878910590_t8b20xa37 sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:10.592Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:10.602Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:15:10.603Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:15:10.679Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:15:10.688Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.689Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.690Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:10.691Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:10.692Z [INFO] Alert alert_1750878910688_xh77dq27t sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:10.692Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:10.698Z [INFO] GET /api/orders
+2025-06-25T19:15:10.699Z [INFO] GET /api/orders
+2025-06-25T19:15:10.714Z [INFO] GET /api/stats/system-status
+2025-06-25T19:15:10.719Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.720Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:10.720Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:10.721Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:10.721Z [INFO] Alert alert_1750878910719_g3lzar02c sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:10.721Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:10.728Z [INFO] GET /api/notifications/recent
+2025-06-25T19:15:10.733Z [INFO] GET /api/stats/performance
+2025-06-25T19:15:10.744Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:15:10.745Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:15:28.613Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:15:28.616Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:15:28.618Z [INFO] OPTIONS /api/customers
+2025-06-25T19:15:28.619Z [INFO] OPTIONS /api/services
+2025-06-25T19:15:28.621Z [INFO] OPTIONS /api/locations
+2025-06-25T19:15:28.624Z [INFO] GET /api/customers
+2025-06-25T19:15:28.625Z [INFO] GET /api/customers
+2025-06-25T19:15:28.626Z [INFO] GET /api/services
+2025-06-25T19:15:28.627Z [INFO] GET /api/services
+2025-06-25T19:15:28.627Z [INFO] GET /api/locations
+2025-06-25T19:15:28.628Z [INFO] GET /api/locations
+2025-06-25T19:15:28.629Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.630Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.630Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.630Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.631Z [INFO] Alert alert_1750878928629_nv9hnh43t sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.631Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.638Z [INFO] OPTIONS /api/orders
+2025-06-25T19:15:28.640Z [INFO] OPTIONS /api/orders
+2025-06-25T19:15:28.641Z [INFO] GET /api/orders
+2025-06-25T19:15:28.641Z [INFO] GET /api/orders
+2025-06-25T19:15:28.642Z [INFO] GET /api/orders
+2025-06-25T19:15:28.642Z [INFO] GET /api/orders
+2025-06-25T19:15:28.656Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:15:28.658Z [INFO] GET /api/stats/system-status
+2025-06-25T19:15:28.659Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:15:28.662Z [INFO] GET /api/stats/appointments
+2025-06-25T19:15:28.664Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.664Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.665Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.665Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.666Z [INFO] Alert alert_1750878928664_3w0801oh6 sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.666Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.673Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:15:28.675Z [INFO] GET /api/notifications/recent
+2025-06-25T19:15:28.682Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:15:28.684Z [INFO] GET /api/stats/performance
+2025-06-25T19:15:28.693Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:15:28.693Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:15:28.839Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.839Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.840Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.841Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.841Z [INFO] Alert alert_1750878928839_3aq8vn249 sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.841Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.884Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:15:28.885Z [INFO] GET /api/customers
+2025-06-25T19:15:28.887Z [INFO] GET /api/customers
+2025-06-25T19:15:28.895Z [INFO] GET /api/services
+2025-06-25T19:15:28.896Z [INFO] GET /api/services
+2025-06-25T19:15:28.897Z [INFO] GET /api/locations
+2025-06-25T19:15:28.898Z [INFO] GET /api/locations
+2025-06-25T19:15:28.899Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.900Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.900Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.901Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.901Z [INFO] Alert alert_1750878928899_em75uddpr sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.901Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.910Z [INFO] GET /api/orders
+2025-06-25T19:15:28.911Z [INFO] GET /api/orders
+2025-06-25T19:15:28.913Z [INFO] GET /api/orders
+2025-06-25T19:15:28.914Z [INFO] GET /api/orders
+2025-06-25T19:15:28.924Z [INFO] GET /api/stats/system-status
+2025-06-25T19:15:28.932Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.933Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.933Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.933Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.933Z [INFO] Alert alert_1750878928932_k0feo35w6 sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.934Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.935Z [INFO] GET /api/stats/appointments
+2025-06-25T19:15:28.942Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.942Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:28.943Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:28.943Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:28.943Z [INFO] Alert alert_1750878928942_paamoaxvr sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:28.943Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:28.944Z [INFO] GET /api/notifications/recent
+2025-06-25T19:15:28.951Z [INFO] GET /api/stats/performance
+2025-06-25T19:15:28.961Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:15:28.961Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:15:29.098Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:15:29.099Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:15:29.100Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:15:29.101Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:15:32.534Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:15:32.539Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.540Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.540Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:32.541Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:32.541Z [INFO] Alert alert_1750878932539_exyumqseb sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:32.542Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:32.549Z [INFO] GET /api/customers
+2025-06-25T19:15:32.550Z [INFO] GET /api/customers
+2025-06-25T19:15:32.551Z [INFO] GET /api/services
+2025-06-25T19:15:32.553Z [INFO] GET /api/services
+2025-06-25T19:15:32.554Z [INFO] GET /api/locations
+2025-06-25T19:15:32.554Z [INFO] GET /api/locations
+2025-06-25T19:15:32.555Z [INFO] GET /api/orders
+2025-06-25T19:15:32.556Z [INFO] GET /api/orders
+2025-06-25T19:15:32.572Z [INFO] GET /api/orders
+2025-06-25T19:15:32.573Z [INFO] GET /api/orders
+2025-06-25T19:15:32.574Z [INFO] GET /api/stats/system-status
+2025-06-25T19:15:32.579Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.579Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.580Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:32.580Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:32.580Z [INFO] Alert alert_1750878932579_ujjgfhdxt sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:32.580Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:32.585Z [INFO] GET /api/notifications/recent
+2025-06-25T19:15:32.589Z [INFO] GET /api/stats/appointments
+2025-06-25T19:15:32.593Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.593Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:15:32.594Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:15:32.594Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:15:32.594Z [INFO] Alert alert_1750878932593_qxtyfvtrd sent via multiple channels: email, websocket, rss
+2025-06-25T19:15:32.595Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:15:32.595Z [INFO] GET /api/stats/performance
+2025-06-25T19:15:32.606Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:15:32.607Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:16:13.521Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:16:13.523Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:16:13.527Z [INFO] OPTIONS /api/customers
+2025-06-25T19:16:13.528Z [INFO] OPTIONS /api/locations
+2025-06-25T19:16:13.528Z [INFO] OPTIONS /api/services
+2025-06-25T19:16:13.531Z [INFO] GET /api/customers
+2025-06-25T19:16:13.533Z [INFO] GET /api/customers
+2025-06-25T19:16:13.534Z [INFO] GET /api/locations
+2025-06-25T19:16:13.535Z [INFO] GET /api/locations
+2025-06-25T19:16:13.536Z [INFO] GET /api/services
+2025-06-25T19:16:13.537Z [INFO] GET /api/services
+2025-06-25T19:16:13.694Z [INFO] OPTIONS /api/orders
+2025-06-25T19:16:13.705Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.707Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.708Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:13.708Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:13.708Z [INFO] Alert alert_1750878973705_y3s5ssp51 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:13.709Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:13.718Z [INFO] GET /api/orders
+2025-06-25T19:16:13.719Z [INFO] GET /api/orders
+2025-06-25T19:16:13.724Z [INFO] OPTIONS /api/orders
+2025-06-25T19:16:13.728Z [INFO] GET /api/orders
+2025-06-25T19:16:13.729Z [INFO] GET /api/orders
+2025-06-25T19:16:13.753Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:16:13.754Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:16:13.754Z [INFO] GET /api/stats/system-status
+2025-06-25T19:16:13.755Z [INFO] GET /api/stats/appointments
+2025-06-25T19:16:13.763Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.764Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.765Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:13.765Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:13.766Z [INFO] Alert alert_1750878973763_5054lsxhq sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:13.766Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:13.771Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.772Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.772Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:13.772Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:13.772Z [INFO] Alert alert_1750878973771_o9jnzh9r4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:13.773Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:13.786Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:16:13.789Z [INFO] GET /api/notifications/recent
+2025-06-25T19:16:13.797Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:16:13.802Z [INFO] GET /api/stats/performance
+2025-06-25T19:16:13.810Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:16:13.811Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:16:13.947Z [INFO] GET /api/customers
+2025-06-25T19:16:13.948Z [INFO] GET /api/customers
+2025-06-25T19:16:13.949Z [INFO] GET /api/services
+2025-06-25T19:16:13.949Z [INFO] GET /api/services
+2025-06-25T19:16:13.950Z [INFO] GET /api/locations
+2025-06-25T19:16:13.950Z [INFO] GET /api/locations
+2025-06-25T19:16:13.955Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:16:13.962Z [INFO] GET /api/orders
+2025-06-25T19:16:13.963Z [INFO] GET /api/orders
+2025-06-25T19:16:13.967Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.967Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.968Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:13.968Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:13.969Z [INFO] Alert alert_1750878973967_fg5d46a22 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:13.969Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:13.975Z [INFO] GET /api/orders
+2025-06-25T19:16:13.975Z [INFO] GET /api/orders
+2025-06-25T19:16:13.983Z [INFO] GET /api/stats/appointments
+2025-06-25T19:16:13.990Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.990Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:13.991Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:13.991Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:13.991Z [INFO] Alert alert_1750878973990_mwe343m42 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:13.991Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:13.992Z [INFO] GET /api/stats/system-status
+2025-06-25T19:16:13.999Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.000Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.000Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.000Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.001Z [INFO] Alert alert_1750878973999_d1jugzlzp sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.001Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.006Z [INFO] GET /api/notifications/recent
+2025-06-25T19:16:14.013Z [INFO] GET /api/stats/performance
+2025-06-25T19:16:14.022Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:16:14.022Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:16:14.139Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:16:14.142Z [INFO] GET /api/customers
+2025-06-25T19:16:14.143Z [INFO] GET /api/customers
+2025-06-25T19:16:14.144Z [INFO] GET /api/services
+2025-06-25T19:16:14.145Z [INFO] GET /api/services
+2025-06-25T19:16:14.145Z [INFO] GET /api/locations
+2025-06-25T19:16:14.146Z [INFO] GET /api/locations
+2025-06-25T19:16:14.154Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.154Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.155Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.155Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.156Z [INFO] Alert alert_1750878974154_z48k6f1ro sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.156Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.161Z [INFO] GET /api/orders
+2025-06-25T19:16:14.162Z [INFO] GET /api/orders
+2025-06-25T19:16:14.162Z [INFO] GET /api/orders
+2025-06-25T19:16:14.163Z [INFO] GET /api/orders
+2025-06-25T19:16:14.187Z [INFO] GET /api/stats/system-status
+2025-06-25T19:16:14.189Z [INFO] GET /api/stats/appointments
+2025-06-25T19:16:14.193Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.194Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.194Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.195Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.195Z [INFO] Alert alert_1750878974193_4vqpzroih sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.196Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.202Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.202Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.202Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.203Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.203Z [INFO] Alert alert_1750878974201_zwaelqpru sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.203Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.204Z [INFO] GET /api/notifications/recent
+2025-06-25T19:16:14.211Z [INFO] GET /api/stats/performance
+2025-06-25T19:16:14.226Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:16:14.226Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:16:14.307Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:16:14.308Z [INFO] GET /api/customers
+2025-06-25T19:16:14.309Z [INFO] GET /api/customers
+2025-06-25T19:16:14.311Z [INFO] GET /api/services
+2025-06-25T19:16:14.311Z [INFO] GET /api/services
+2025-06-25T19:16:14.312Z [INFO] GET /api/locations
+2025-06-25T19:16:14.313Z [INFO] GET /api/locations
+2025-06-25T19:16:14.319Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.320Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.320Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.320Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.321Z [INFO] Alert alert_1750878974319_m876izfif sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.321Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.324Z [INFO] GET /api/orders
+2025-06-25T19:16:14.325Z [INFO] GET /api/orders
+2025-06-25T19:16:14.326Z [INFO] GET /api/orders
+2025-06-25T19:16:14.326Z [INFO] GET /api/orders
+2025-06-25T19:16:14.339Z [INFO] GET /api/stats/system-status
+2025-06-25T19:16:14.345Z [INFO] GET /api/stats/appointments
+2025-06-25T19:16:14.348Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.349Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.349Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.349Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.350Z [INFO] Alert alert_1750878974348_g2a3axxc0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.351Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.356Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.356Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:16:14.357Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:16:14.357Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:16:14.357Z [INFO] Alert alert_1750878974356_vcdo82x65 sent via multiple channels: email, websocket, rss
+2025-06-25T19:16:14.357Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:16:14.359Z [INFO] GET /api/notifications/recent
+2025-06-25T19:16:14.368Z [INFO] GET /api/stats/performance
+2025-06-25T19:16:14.376Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:16:14.377Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:16:29.109Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-25T19:16:29.109Z [INFO] ExpandRecurrences: Starting job
+2025-06-25T19:16:29.110Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-25T19:16:29.111Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Wed Jun 25 2025 22:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:16:29.111Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:16:29.111Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:16:29.112Z [INFO] Starting equipment status check...
+2025-06-25T19:16:29.114Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:16:29.114Z [ERROR] Error checking equipment status:
+2025-06-25T19:16:29.115Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:16:29.115Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:17:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:16:29.115Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:16:29.115Z [INFO] Starting weather data update job...
+2025-06-25T19:16:29.116Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:16:29.117Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:16:29.117Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:16:29.118Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:16:29.118Z [INFO] Weather data update job completed in 3ms
+2025-06-25T19:16:29.118Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:17:29 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:05.092Z [INFO] OPTIONS /api/customers
+2025-06-25T19:17:05.095Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:17:05.095Z [INFO] OPTIONS /api/locations
+2025-06-25T19:17:05.096Z [INFO] OPTIONS /api/services
+2025-06-25T19:17:05.097Z [INFO] GET /api/customers
+2025-06-25T19:17:05.097Z [INFO] GET /api/customers
+2025-06-25T19:17:05.098Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:17:05.101Z [INFO] GET /api/locations
+2025-06-25T19:17:05.102Z [INFO] GET /api/locations
+2025-06-25T19:17:05.102Z [INFO] GET /api/services
+2025-06-25T19:17:05.103Z [INFO] GET /api/services
+2025-06-25T19:17:05.290Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:05.292Z [INFO] GET /api/orders
+2025-06-25T19:17:05.293Z [INFO] GET /api/orders
+2025-06-25T19:17:05.294Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.294Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.295Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.295Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.295Z [INFO] Alert alert_1750879025294_7965a9k51 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.295Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.301Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:05.303Z [INFO] GET /api/orders
+2025-06-25T19:17:05.304Z [INFO] GET /api/orders
+2025-06-25T19:17:05.322Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:17:05.325Z [INFO] GET /api/stats/appointments
+2025-06-25T19:17:05.328Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:17:05.332Z [INFO] GET /api/stats/system-status
+2025-06-25T19:17:05.339Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.340Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.341Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.342Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.342Z [INFO] Alert alert_1750879025339_yq1du6ey4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.343Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.344Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.344Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.345Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.345Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.345Z [INFO] Alert alert_1750879025344_17pt9h6eq sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.346Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.362Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:17:05.366Z [INFO] GET /api/notifications/recent
+2025-06-25T19:17:05.375Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:17:05.419Z [INFO] GET /api/customers
+2025-06-25T19:17:05.419Z [INFO] GET /api/customers
+2025-06-25T19:17:05.420Z [INFO] GET /api/services
+2025-06-25T19:17:05.420Z [INFO] GET /api/services
+2025-06-25T19:17:05.421Z [INFO] GET /api/locations
+2025-06-25T19:17:05.421Z [INFO] GET /api/locations
+2025-06-25T19:17:05.425Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:17:05.440Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.441Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.442Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.442Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.443Z [INFO] Alert alert_1750879025440_raofuuebn sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.443Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.446Z [INFO] GET /api/orders
+2025-06-25T19:17:05.447Z [INFO] GET /api/orders
+2025-06-25T19:17:05.450Z [INFO] GET /api/orders
+2025-06-25T19:17:05.451Z [INFO] GET /api/orders
+2025-06-25T19:17:05.466Z [INFO] GET /api/stats/system-status
+2025-06-25T19:17:05.468Z [INFO] GET /api/stats/appointments
+2025-06-25T19:17:05.475Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.476Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.476Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.476Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.476Z [INFO] Alert alert_1750879025475_9mrw7a0dx sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.477Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.477Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.478Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:05.478Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:05.478Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:05.478Z [INFO] Alert alert_1750879025477_hibbjlqm5 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:05.479Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:05.488Z [INFO] GET /api/notifications/recent
+2025-06-25T19:17:05.498Z [INFO] GET /api/stats/performance
+2025-06-25T19:17:05.505Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:17:05.506Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:17:20.080Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-25T19:17:20.106Z [INFO] AlertService: SMTP client initialized
+2025-06-25T19:17:20.125Z [INFO] Minimal server listening on port 8000
+2025-06-25T19:17:20.128Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Wed Jun 25 2025 22:20:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.129Z [INFO] Scheduler: Job 'checkInventory' added, next run: Wed Jun 25 2025 23:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.129Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Wed Jun 25 2025 22:18:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.129Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Wed Jun 25 2025 22:18:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.129Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Thu Jun 26 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.130Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Wed Jun 25 2025 22:18:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.130Z [INFO] Scheduler: Starting...
+2025-06-25T19:17:20.130Z [INFO] Scheduler: Started successfully
+2025-06-25T19:17:20.130Z [INFO] Server and scheduler started successfully
+2025-06-25T19:17:20.152Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:17:20.156Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:17:20.183Z [INFO] OPTIONS /api/services
+2025-06-25T19:17:20.185Z [INFO] OPTIONS /api/customers
+2025-06-25T19:17:20.187Z [INFO] OPTIONS /api/locations
+2025-06-25T19:17:20.197Z [INFO] PostgreSQL connection successful. Server time: Wed Jun 25 2025 22:17:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:17:20.209Z [INFO] GET /api/services
+2025-06-25T19:17:20.210Z [INFO] GET /api/services
+2025-06-25T19:17:20.211Z [INFO] GET /api/customers
+2025-06-25T19:17:20.211Z [INFO] GET /api/customers
+2025-06-25T19:17:20.213Z [INFO] GET /api/locations
+2025-06-25T19:17:20.213Z [INFO] GET /api/locations
+2025-06-25T19:17:20.301Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.302Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.303Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:20.304Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:20.304Z [INFO] Alert alert_1750879040301_2to0w9ikp sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:20.304Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:20.309Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:20.311Z [INFO] GET /api/orders
+2025-06-25T19:17:20.312Z [INFO] GET /api/orders
+2025-06-25T19:17:20.315Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:20.317Z [INFO] GET /api/orders
+2025-06-25T19:17:20.318Z [INFO] GET /api/orders
+2025-06-25T19:17:20.331Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:17:20.333Z [INFO] GET /api/stats/system-status
+2025-06-25T19:17:20.335Z [INFO] OPTIONS /api/stats/appointments
+2025-06-25T19:17:20.339Z [INFO] GET /api/stats/appointments
+2025-06-25T19:17:20.345Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.345Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.345Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:20.346Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:20.346Z [INFO] Alert alert_1750879040345_dgwqko6e0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:20.346Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:20.350Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.350Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:20.351Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:20.351Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:20.351Z [INFO] Alert alert_1750879040350_lfgiffaa4 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:20.351Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:20.352Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:17:20.355Z [INFO] GET /api/notifications/recent
+2025-06-25T19:17:20.361Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:17:20.363Z [INFO] GET /api/stats/performance
+2025-06-25T19:17:20.376Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:17:20.377Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:17:43.397Z [INFO] OPTIONS /api/auth/login
+2025-06-25T19:17:43.400Z [INFO] POST /api/auth/login
+2025-06-25T19:17:43.402Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T19:17:43.555Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-25T19:17:43.556Z [INFO] Login: Success for user admin@cas.ro
+2025-06-25T19:17:45.134Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:17:45.137Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:17:45.147Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:45.148Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:45.149Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:45.149Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:45.150Z [INFO] Alert alert_1750879065147_9cmhrb5lf sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:45.150Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:45.158Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:45.161Z [INFO] GET /api/orders
+2025-06-25T19:17:45.161Z [INFO] GET /api/orders
+2025-06-25T19:17:45.186Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:17:45.189Z [INFO] GET /api/stats/system-status
+2025-06-25T19:17:45.197Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:45.198Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:45.199Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:45.200Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:45.200Z [INFO] Alert alert_1750879065197_578avnro0 sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:45.200Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:45.206Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:17:45.207Z [INFO] GET /api/notifications/recent
+2025-06-25T19:17:45.212Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:17:45.214Z [INFO] GET /api/stats/performance
+2025-06-25T19:17:45.224Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:17:45.225Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:17:51.822Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:17:51.824Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:17:51.837Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:51.838Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:51.840Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:51.841Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:51.841Z [INFO] Alert alert_1750879071837_x2aj70utl sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:51.842Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:51.855Z [INFO] OPTIONS /api/orders
+2025-06-25T19:17:51.858Z [INFO] GET /api/orders
+2025-06-25T19:17:51.859Z [INFO] GET /api/orders
+2025-06-25T19:17:51.875Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:17:51.877Z [INFO] GET /api/stats/system-status
+2025-06-25T19:17:51.884Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:51.884Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:17:51.885Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:17:51.886Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:17:51.886Z [INFO] Alert alert_1750879071884_emk3ezfxf sent via multiple channels: email, websocket, rss
+2025-06-25T19:17:51.887Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:17:51.891Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:17:51.893Z [INFO] GET /api/notifications/recent
+2025-06-25T19:17:51.898Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:17:51.900Z [INFO] GET /api/stats/performance
+2025-06-25T19:17:51.906Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:17:51.907Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:17:58.013Z [INFO] OPTIONS /api/auth/logout
+2025-06-25T19:17:58.016Z [INFO] POST /api/auth/logout
+2025-06-25T19:17:58.016Z [INFO] POST /api/auth/logout
+2025-06-25T19:17:58.017Z [INFO] AuthService: User admin@cas.ro logged out
+2025-06-25T19:18:05.650Z [INFO] OPTIONS /api/auth/login
+2025-06-25T19:18:05.651Z [INFO] POST /api/auth/login
+2025-06-25T19:18:05.652Z [INFO] POST /api/login or /api/auth/login
+2025-06-25T19:18:05.764Z [INFO] AuthService: Successful login for client@cas.ro
+2025-06-25T19:18:05.765Z [INFO] Login: Success for user client@cas.ro
+2025-06-25T19:18:07.294Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:18:07.296Z [INFO] GET /api/stats/dashboard
+2025-06-25T19:18:07.306Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:07.306Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:07.308Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:18:07.309Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:18:07.309Z [INFO] Alert alert_1750879087306_1djdipr3b sent via multiple channels: email, websocket, rss
+2025-06-25T19:18:07.309Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:18:07.318Z [INFO] OPTIONS /api/orders
+2025-06-25T19:18:07.320Z [INFO] GET /api/orders
+2025-06-25T19:18:07.321Z [INFO] GET /api/orders
+2025-06-25T19:18:07.336Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:18:07.339Z [INFO] GET /api/stats/system-status
+2025-06-25T19:18:07.344Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:07.345Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:07.345Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:18:07.345Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:18:07.346Z [INFO] Alert alert_1750879087344_exd5owhng sent via multiple channels: email, websocket, rss
+2025-06-25T19:18:07.346Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:18:07.351Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:18:07.352Z [INFO] GET /api/notifications/recent
+2025-06-25T19:18:07.359Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:18:07.361Z [INFO] GET /api/stats/performance
+2025-06-25T19:18:07.368Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:18:07.368Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:18:11.568Z [INFO] GET /api/orders
+2025-06-25T19:18:11.569Z [INFO] GET /api/orders
+2025-06-25T19:18:11.585Z [INFO] GET /api/stats/system-status
+2025-06-25T19:18:11.591Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:11.591Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:11.592Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:18:11.593Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:18:11.593Z [INFO] Alert alert_1750879091590_teaa2d9vt sent via multiple channels: email, websocket, rss
+2025-06-25T19:18:11.594Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:18:11.602Z [INFO] GET /api/notifications/recent
+2025-06-25T19:18:11.611Z [INFO] GET /api/stats/performance
+2025-06-25T19:18:11.623Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:18:11.624Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:18:13.186Z [INFO] OPTIONS /api/orders
+2025-06-25T19:18:13.190Z [INFO] OPTIONS /api/customers
+2025-06-25T19:18:13.191Z [INFO] OPTIONS /api/services
+2025-06-25T19:18:13.191Z [INFO] OPTIONS /api/locations
+2025-06-25T19:18:13.192Z [INFO] GET /api/orders
+2025-06-25T19:18:13.193Z [INFO] GET /api/orders
+2025-06-25T19:18:13.194Z [INFO] GET /api/customers
+2025-06-25T19:18:13.194Z [INFO] GET /api/customers
+2025-06-25T19:18:13.195Z [INFO] GET /api/services
+2025-06-25T19:18:13.196Z [INFO] GET /api/services
+2025-06-25T19:18:13.197Z [INFO] GET /api/locations
+2025-06-25T19:18:13.198Z [INFO] GET /api/locations
+2025-06-25T19:18:19.638Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-25T19:18:19.641Z [INFO] OPTIONS /api/orders
+2025-06-25T19:18:19.643Z [INFO] GET /api/orders
+2025-06-25T19:18:19.643Z [INFO] GET /api/orders
+2025-06-25T19:18:19.666Z [INFO] OPTIONS /api/stats/system-status
+2025-06-25T19:18:19.668Z [INFO] GET /api/stats/system-status
+2025-06-25T19:18:19.675Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:19.675Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-25T19:18:19.676Z [INFO] WebSocket alert sent to 0 clients
+2025-06-25T19:18:19.677Z [INFO] RSS feeds will be updated on next access
+2025-06-25T19:18:19.677Z [INFO] Alert alert_1750879099674_3n4w0fpai sent via multiple channels: email, websocket, rss
+2025-06-25T19:18:19.677Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-25T19:18:19.683Z [INFO] OPTIONS /api/notifications/recent
+2025-06-25T19:18:19.684Z [INFO] GET /api/notifications/recent
+2025-06-25T19:18:19.690Z [INFO] OPTIONS /api/stats/performance
+2025-06-25T19:18:19.692Z [INFO] GET /api/stats/performance
+2025-06-25T19:18:19.700Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-25T19:18:19.701Z [INFO] WebSocket handshake completed for location global
+2025-06-25T19:18:20.137Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-25T19:18:20.138Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-25T19:18:20.139Z [INFO] Starting equipment status check...
+2025-06-25T19:18:20.142Z [ERROR] AlertService: Failed to create alert [object Object]: Cannot read properties of undefined (reading 'locationId')
+2025-06-25T19:18:20.142Z [ERROR] Error checking equipment status:
+2025-06-25T19:18:20.142Z [ERROR] CheckEquipmentStatus: Job failed
+2025-06-25T19:18:20.143Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Wed Jun 25 2025 22:19:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:18:20.143Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-25T19:18:20.143Z [INFO] Starting weather data update job...
+2025-06-25T19:18:20.143Z [INFO] Starting weather data update for all locations...
+2025-06-25T19:18:20.144Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-25T19:18:20.145Z [INFO] Starting adverse weather conditions check...
+2025-06-25T19:18:20.146Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-25T19:18:20.146Z [INFO] Weather data update job completed in 3ms
+2025-06-25T19:18:20.146Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Wed Jun 25 2025 22:19:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:18:20.146Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-25T19:18:20.147Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:18:20.147Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-25T19:18:20.147Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Wed Jun 25 2025 22:23:20 GMT+0300 (Eastern European Summer Time)
+2025-06-25T19:18:21.127Z [INFO] OPTIONS /api/services
+2025-06-25T19:18:21.128Z [INFO] OPTIONS /api/locations
+2025-06-25T19:18:21.130Z [INFO] GET /api/services
+2025-06-25T19:18:21.130Z [INFO] GET /api/services
+2025-06-25T19:18:21.131Z [INFO] GET /api/locations
+2025-06-25T19:18:21.131Z [INFO] GET /api/locations
+2025-06-25T19:18:21.147Z [INFO] OPTIONS /api/customers
+2025-06-25T19:18:21.152Z [INFO] GET /api/customers
+2025-06-25T19:18:21.152Z [INFO] GET /api/customers
+2025-06-25T19:18:21.158Z [INFO] OPTIONS /api/orders
+2025-06-25T19:18:21.160Z [INFO] GET /api/orders
+2025-06-25T19:18:21.160Z [INFO] GET /api/orders

@@ -308,4 +308,57 @@
 @keyframes slideInRight {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
+}
+
+/* Body and Layout Styles */
+.my-orders-body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.my-orders-top-bar {
+    background: white;
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my-orders-title {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.5rem;
+}
+
+.my-orders-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.my-orders-welcome {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Empty State */
+.empty-state.hidden {
+    display: none;
+}
+
+/* Form Controls */
+.form-label input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Modal Action Buttons */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
 } 
