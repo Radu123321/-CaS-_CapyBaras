@@ -2,23 +2,24 @@ const { query } = require('../core/psql');
 
 class ServiceRepository {
   async create(serviceData) {
-    const { service_type, description, base_price } = serviceData;
+    const { name, category, description, base_price, duration_minutes, requires_transport } = serviceData;
     
     const insertSQL = `
-      INSERT INTO services (service_type, description, base_price)
-      VALUES ($1, $2, $3)
-      RETURNING service_id, service_type, description, base_price
+      INSERT INTO services (name, category, description, base_price, duration_minutes, requires_transport)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
     `;
     
-    const result = await query(insertSQL, [service_type, description, base_price]);
+    const result = await query(insertSQL, [name, category, description, base_price, duration_minutes || 60, requires_transport || false]);
     return result && result.length > 0 ? result[0] : null;
   }
 
   async findAll() {
     const selectSQL = `
-      SELECT service_id, service_type, description, base_price
+      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
       FROM services
-      ORDER BY service_type, service_id
+      WHERE is_active = true
+      ORDER BY category, name
     `;
     
     return await query(selectSQL);
@@ -26,7 +27,7 @@ class ServiceRepository {
 
   async findById(serviceId) {
     const selectSQL = `
-      SELECT service_id, service_type, description, base_price
+      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active, created_at
       FROM services
       WHERE service_id = $1
     `;
@@ -35,41 +36,51 @@ class ServiceRepository {
     return result && result.length > 0 ? result[0] : null;
   }
 
-  async findByType(serviceType) {
+  async findByCategory(category) {
     const selectSQL = `
-      SELECT service_id, service_type, description, base_price
+      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
       FROM services
-      WHERE service_type = $1
-      ORDER BY service_id
+      WHERE category = $1 AND is_active = true
+      ORDER BY name
     `;
     
-    return await query(selectSQL, [serviceType]);
+    return await query(selectSQL, [category]);
   }
 
   async update(serviceId, serviceData) {
-    const { service_type, description, base_price } = serviceData;
+    const { name, category, description, base_price, duration_minutes, requires_transport, is_active } = serviceData;
     
     const updateSQL = `
       UPDATE services 
-      SET service_type = COALESCE($2, service_type),
-          description = COALESCE($3, description),
-          base_price = COALESCE($4, base_price)
+      SET name = COALESCE($2, name),
+          category = COALESCE($3, category),
+          description = COALESCE($4, description),
+          base_price = COALESCE($5, base_price),
+          duration_minutes = COALESCE($6, duration_minutes),
+          requires_transport = COALESCE($7, requires_transport),
+          is_active = COALESCE($8, is_active),
+          updated_at = CURRENT_TIMESTAMP
       WHERE service_id = $1
-      RETURNING service_id, service_type, description, base_price
+      RETURNING service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
     `;
     
     const result = await query(updateSQL, [
       serviceId,
-      service_type || null,
+      name || null,
+      category || null,
       description || null,
-      base_price || null
+      base_price || null,
+      duration_minutes || null,
+      requires_transport !== undefined ? requires_transport : null,
+      is_active !== undefined ? is_active : null
     ]);
     return result && result.length > 0 ? result[0] : null;
   }
 
   async delete(serviceId) {
     const deleteSQL = `
-      DELETE FROM services 
+      UPDATE services 
+      SET is_active = false
       WHERE service_id = $1
       RETURNING service_id
     `;
@@ -87,34 +98,39 @@ class ServiceRepository {
     return result && result.length > 0;
   }
 
-  async isValidServiceType(serviceType) {
-    const validTypes = ['CARPET', 'CAR_WASH', 'GARMENT', 'OTHER'];
-    return validTypes.includes(serviceType);
+  async isValidCategory(category) {
+    const validCategories = ['CARPET', 'CAR_WASH', 'GARMENT', 'UPHOLSTERY', 'OTHER'];
+    return validCategories.includes(category);
   }
 
-  async getByTypes(serviceTypes) {
-    if (!serviceTypes || serviceTypes.length === 0) {
+  async getByCategories(categories) {
+    if (!categories || categories.length === 0) {
       return [];
     }
     
-    const placeholders = serviceTypes.map((_, index) => `$${index + 1}`).join(',');
+    const placeholders = categories.map((_, index) => `$${index + 1}`).join(',');
     const selectSQL = `
-      SELECT service_id, service_type, description, base_price
+      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
       FROM services
-      WHERE service_type IN (${placeholders})
-      ORDER BY service_type, service_id
+      WHERE category IN (${placeholders}) AND is_active = true
+      ORDER BY category, name
     `;
     
-    return await query(selectSQL, serviceTypes);
+    return await query(selectSQL, categories);
   }
 
   async getCount() {
     const selectSQL = `
-      SELECT COUNT(*) as count FROM services
+      SELECT COUNT(*) as count FROM services WHERE is_active = true
     `;
     
     const result = await query(selectSQL);
     return result && result.length > 0 ? parseInt(result[0].count) : 0;
+  }
+
+  // Metodă pentru compatibilitate cu codul vechi
+  async findByType(serviceType) {
+    return await this.findByCategory(serviceType);
   }
 }
 

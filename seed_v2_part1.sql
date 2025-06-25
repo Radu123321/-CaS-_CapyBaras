@@ -41,38 +41,38 @@ ALTER SEQUENCE customers_customer_id_seq RESTART WITH 1;
 
 -- Parole: admin123, manager123, employee123, client123
 -- Salt: cas_salt_2024
--- Hash: PBKDF2 cu 10000 iterații
+-- Hash: PBKDF2 cu 310000 iterații, 32 bytes key, SHA256
 
 INSERT INTO users (username, email, password_hash, salt, role, first_name, last_name, phone, is_active) VALUES
 -- ADMIN
-('admin', 'admin@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'cas_salt_2024', 'ADMIN', 'Administrator', 'Sistem', '+40721000001', true),
+('admin', 'admin@cas.ro', '88317763a797d9246b2b50c78934f703ae6e9a598b567bf3f543f7ac1a332580', 'cas_salt_2024', 'ADMIN', 'Administrator', 'Sistem', '+40721000001', true),
 
 -- MANAGERI
-('manager1', 'manager.centru@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'cas_salt_2024', 'MANAGER', 'Maria', 'Ionescu', '+40721000002', true),
-('manager2', 'manager.nord@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'cas_salt_2024', 'MANAGER', 'Alexandru', 'Popescu', '+40721000003', true),
-('manager3', 'manager.sud@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 'cas_salt_2024', 'MANAGER', 'Elena', 'Georgescu', '+40721000004', true),
+('manager1', 'manager.centru@cas.ro', '9d682fd209b3b2ed1386bcac02793fae1ec8affb96c68f210c6a6743ed41ed0a', 'cas_salt_2024', 'MANAGER', 'Maria', 'Ionescu', '+40721000002', true),
+('manager2', 'manager.nord@cas.ro', '9d682fd209b3b2ed1386bcac02793fae1ec8affb96c68f210c6a6743ed41ed0a', 'cas_salt_2024', 'MANAGER', 'Alexandru', 'Popescu', '+40721000003', true),
+('manager3', 'manager.sud@cas.ro', '9d682fd209b3b2ed1386bcac02793fae1ec8affb96c68f210c6a6743ed41ed0a', 'cas_salt_2024', 'MANAGER', 'Elena', 'Georgescu', '+40721000004', true),
 
 -- ANGAJAȚI
-('employee1', 'ion.vasile@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'Ion', 'Vasile', '+40721000005', true),
-('employee2', 'ana.marin@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'Ana', 'Marin', '+40721000006', true),
-('employee3', 'mihai.stan@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'Mihai', 'Stan', '+40721000007', true),
-('employee4', 'cristina.radu@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'Cristina', 'Radu', '+40721000008', true),
-('employee5', 'george.nicu@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'George', 'Nicu', '+40721000009', true),
-('employee6', 'diana.pavel@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$25d55ad283aa400af464c76d713c07ad12cc6d8b4eb5965d3b7b3d8b3b8e8b8e', 'cas_salt_2024', 'EMPLOYEE', 'Diana', 'Pavel', '+40721000010', true),
+('employee1', 'ion.vasile@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'Ion', 'Vasile', '+40721000005', true),
+('employee2', 'ana.marin@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'Ana', 'Marin', '+40721000006', true),
+('employee3', 'mihai.stan@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'Mihai', 'Stan', '+40721000007', true),
+('employee4', 'cristina.radu@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'Cristina', 'Radu', '+40721000008', true),
+('employee5', 'george.nicu@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'George', 'Nicu', '+40721000009', true),
+('employee6', 'diana.pavel@cas.ro', 'a84ac860c13713d0158c8d4fd088ae57f3af86e63a8692269517a84305e66ea0', 'cas_salt_2024', 'EMPLOYEE', 'Diana', 'Pavel', '+40721000010', true),
 
 -- CLIENȚI
-('client1', 'client@cas.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Demo', 'Client', '+40721000011', true),
-('andrei.popescu', 'andrei.popescu@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Andrei', 'Popescu', '+40721000012', true),
-('maria.ionescu', 'maria.ionescu@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Maria', 'Ionescu', '+40721000013', true),
-('alex.georgescu', 'alex.georgescu@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Alexandru', 'Georgescu', '+40721000014', true),
-('elena.marin', 'elena.marin@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Elena', 'Marin', '+40721000015', true),
-('cristian.radu', 'cristian.radu@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Cristian', 'Radu', '+40721000016', true),
-('ana.stan', 'ana.stan@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Ana', 'Stan', '+40721000017', true),
-('mihai.pavel', 'mihai.pavel@email.com', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Mihai', 'Pavel', '+40721000018', true),
+('client1', 'client@cas.ro', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Demo', 'Client', '+40721000011', true),
+('andrei.popescu', 'andrei.popescu@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Andrei', 'Popescu', '+40721000012', true),
+('maria.ionescu', 'maria.ionescu@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Maria', 'Ionescu', '+40721000013', true),
+('alex.georgescu', 'alex.georgescu@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Alexandru', 'Georgescu', '+40721000014', true),
+('elena.marin', 'elena.marin@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Elena', 'Marin', '+40721000015', true),
+('cristian.radu', 'cristian.radu@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Cristian', 'Radu', '+40721000016', true),
+('ana.stan', 'ana.stan@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Ana', 'Stan', '+40721000017', true),
+('mihai.pavel', 'mihai.pavel@email.com', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Mihai', 'Pavel', '+40721000018', true),
 
 -- CLIENȚI CORPORATIVI
-('office.clean', 'contact@officeclean.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Office', 'Clean SRL', '+40721000019', true),
-('auto.service', 'contact@autoservice.ro', 'pbkdf2:sha256:10000$cas_salt_2024$ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270', 'cas_salt_2024', 'CUSTOMER', 'Auto', 'Service SA', '+40721000020', true);
+('office.clean', 'contact@officeclean.ro', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Office', 'Clean SRL', '+40721000019', true),
+('auto.service', 'contact@autoservice.ro', '1525242866dc5e9e75b69f7c53f728fa4697a1f62ad50cefe9007d74a346ba8c', 'cas_salt_2024', 'CUSTOMER', 'Auto', 'Service SA', '+40721000020', true);
 
 -- =====================================================
 -- LOCAȚII (Locations)

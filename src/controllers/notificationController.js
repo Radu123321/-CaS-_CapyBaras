@@ -1,4 +1,4 @@
-const notificationService = require('../core/notificationService');
+const notificationService = require('../services/notificationService');
 const log = require('../core/logger');
 
 class NotificationController {
@@ -8,11 +8,30 @@ class NotificationController {
     try {
       const limit = parseInt(req.query.limit) || 10;
       const locationId = req.query.locationId ? parseInt(req.query.locationId) : null;
+      const userId = req.query.userId ? parseInt(req.query.userId) : null;
       
-      // Get recent notifications from the notification service
-      const notifications = notificationService.getRecentNotifications(limit, locationId);
+      // Build filters for recent notifications
+      const filters = {
+        limit,
+        location_id: locationId,
+        user_id: userId,
+        order_by: 'created_at',
+        order_direction: 'DESC'
+      };
       
-      res.writeHead(200, { 'Content-Type': 'application/json' });
+      // Remove null values
+      Object.keys(filters).forEach(key => {
+        if (filters[key] === null || filters[key] === undefined) {
+          delete filters[key];
+        }
+      });
+      
+      const notifications = await notificationService.getAllNotifications(filters);
+      
+      res.writeHead(200, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
       res.end(JSON.stringify({
         success: true,
         data: {
@@ -24,7 +43,10 @@ class NotificationController {
       }));
     } catch (error) {
       log.error(`Error getting recent notifications: ${error.message}`);
-      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.writeHead(500, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
       res.end(JSON.stringify({
         success: false,
         error: 'Failed to get recent notifications'

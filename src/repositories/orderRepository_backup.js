@@ -1,5 +1,4 @@
 const { query } = require('../core/psql');
-const log = require('../core/logger');
 
 class OrderRepository {
   async create(orderData) {
@@ -7,43 +6,29 @@ class OrderRepository {
       customer_id, 
       location_id, 
       service_id, 
+      quantity, 
+      unit_price, 
+      total_amount, 
+      scheduled_for, 
       assigned_employee_id,
-      order_code,
-      status = 'PENDING',
-      priority = 'NORMAL',
-      item_description,
-      item_type,
-      item_condition,
-      special_instructions,
-      base_price,
-      transport_fee = 0.00,
-      additional_fees = 0.00,
-      discount = 0.00,
-      total_amount,
-      scheduled_date,
-      scheduled_time,
-      estimated_duration,
-      pickup_address,
-      delivery_address
+      transport_request_id,
+      notes 
     } = orderData;
     
     const insertSQL = `
-      INSERT INTO orders (
-        customer_id, location_id, service_id, assigned_employee_id, order_code,
-        status, priority, item_description, item_type, item_condition, special_instructions,
-        base_price, transport_fee, additional_fees, discount, total_amount,
-        scheduled_date, scheduled_time, estimated_duration, pickup_address, delivery_address
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
-      RETURNING order_id, customer_id, location_id, service_id, order_code, status, 
-                base_price, transport_fee, total_amount, scheduled_date, scheduled_time, 
-                assigned_employee_id, special_instructions, created_at
+      INSERT INTO orders (customer_id, location_id, service_id, quantity, unit_price, 
+                         total_amount, scheduled_for, assigned_employee_id, 
+                         transport_request_id, notes) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+      RETURNING order_id, customer_id, location_id, service_id, quantity, unit_price,
+                total_amount, status, scheduled_for, assigned_employee_id,
+                transport_request_id, notes, created_at
     `;
     
     const result = await query(insertSQL, [
-      customer_id, location_id, service_id, assigned_employee_id, order_code,
-      status, priority, item_description, item_type, item_condition, special_instructions,
-      base_price, transport_fee, additional_fees, discount, total_amount,
-      scheduled_date, scheduled_time, estimated_duration, pickup_address, delivery_address
+      customer_id, location_id, service_id, quantity, unit_price,
+      total_amount, scheduled_for, assigned_employee_id,
+      transport_request_id, notes
     ]);
     return result && result.length > 0 ? result[0] : null;
   }
@@ -144,7 +129,7 @@ class OrderRepository {
       SELECT o.order_id, o.customer_id, o.location_id, o.service_id, o.order_code,
              o.base_price, o.transport_fee, o.total_amount, o.status, o.scheduled_date, o.scheduled_time,
              o.actual_start_time, o.actual_end_time, o.assigned_employee_id, o.pickup_address, o.delivery_address,
-             o.special_instructions, o.item_description, o.item_type, o.item_condition, o.priority, o.created_at,
+             o.special_instructions, o.item_description, o.item_type, o.item_condition, o.created_at,
              c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name, 
              cu.email as customer_email, cu.phone as customer_phone, c.billing_address,
              l.name as location_name, l.address as location_address,
@@ -195,21 +180,15 @@ class OrderRepository {
   }
 
   async updateStatus(orderId, newStatus, additionalData = {}) {
-    const { actual_start_time, actual_end_time, completed_at } = additionalData;
+    const { started_at, completed_at } = additionalData;
     
     let setClause = 'status = $2';
     const params = [orderId, newStatus];
     let paramIndex = 3;
     
-    if (actual_start_time && newStatus === 'IN_PROGRESS') {
-      setClause += `, actual_start_time = $${paramIndex}`;
-      params.push(actual_start_time);
-      paramIndex++;
-    }
-    
-    if (actual_end_time && newStatus === 'COMPLETED') {
-      setClause += `, actual_end_time = $${paramIndex}`;
-      params.push(actual_end_time);
+    if (started_at && newStatus === 'IN_PROGRESS') {
+      setClause += `, started_at = $${paramIndex}`;
+      params.push(started_at);
       paramIndex++;
     }
     
@@ -221,9 +200,9 @@ class OrderRepository {
     
     const updateSQL = `
       UPDATE orders 
-      SET ${setClause}, updated_at = CURRENT_TIMESTAMP
+      SET ${setClause}
       WHERE order_id = $1
-      RETURNING order_id, status, actual_start_time, actual_end_time, completed_at, scheduled_date
+      RETURNING order_id, status, started_at, completed_at, scheduled_for
     `;
     
     const result = await query(updateSQL, params);
@@ -299,7 +278,7 @@ class OrderRepository {
   }
 
   async getValidStatuses() {
-    return ['PENDING', 'CONFIRMED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED', 'REFUNDED'];
+    return ['PENDING', 'SCHEDULED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED'];
   }
 
   async getCountByStatus(status = null, locationId = null) {
@@ -329,11 +308,10 @@ class OrderRepository {
       ORDER BY 
         CASE status 
           WHEN 'PENDING' THEN 1 
-          WHEN 'CONFIRMED' THEN 2 
+          WHEN 'SCHEDULED' THEN 2 
           WHEN 'IN_PROGRESS' THEN 3 
           WHEN 'COMPLETED' THEN 4 
           WHEN 'CANCELLED' THEN 5 
-          WHEN 'REFUNDED' THEN 6
         END
     `;
     
@@ -348,8 +326,8 @@ class OrderRepository {
 
   async getOrdersByCustomer(customerId) {
     const selectSQL = `
-      SELECT order_id, customer_id, location_id, status, scheduled_date, scheduled_time,
-             pickup_address, delivery_address, special_instructions, total_amount, created_at
+      SELECT order_id, customer_id, location_id, status, scheduled_date, 
+             pickup_address, delivery_address, special_instructions, created_at
       FROM orders
       WHERE customer_id = $1
       ORDER BY created_at DESC
@@ -360,8 +338,8 @@ class OrderRepository {
 
   async getOrdersByLocation(locationId) {
     const selectSQL = `
-      SELECT order_id, customer_id, location_id, status, scheduled_date, scheduled_time,
-             pickup_address, delivery_address, special_instructions, total_amount, created_at
+      SELECT order_id, customer_id, location_id, status, scheduled_for, 
+             recurrence_rule, transport_needed, notes, created_at
       FROM orders
       WHERE location_id = $1
       ORDER BY created_at DESC
@@ -372,9 +350,8 @@ class OrderRepository {
 
   async findByCustomerId(customerId, limit = 20) {
     const selectSQL = `
-      SELECT o.order_id, o.service_id, o.base_price, o.transport_fee, o.total_amount, 
-             o.status, o.scheduled_date, o.scheduled_time, o.actual_start_time, o.actual_end_time, 
-             o.special_instructions, o.created_at,
+      SELECT o.order_id, o.service_id, o.quantity, o.unit_price, o.total_amount, 
+             o.status, o.scheduled_for, o.started_at, o.completed_at, o.notes, o.created_at,
              l.name as location_name, s.name as service_name, s.description as service_description,
              e.employee_code, eu.first_name as employee_first_name, eu.last_name as employee_last_name
       FROM orders o
@@ -404,31 +381,33 @@ class OrderRepository {
     }
     
     if (date_from) {
-      whereClause += ` AND o.scheduled_date >= $${paramIndex}`;
+      whereClause += ` AND o.scheduled_for >= $${paramIndex}`;
       params.push(date_from);
       paramIndex++;
     }
     
     if (date_to) {
-      whereClause += ` AND o.scheduled_date <= $${paramIndex}`;
+      whereClause += ` AND o.scheduled_for <= $${paramIndex}`;
       params.push(date_to);
       paramIndex++;
     }
     
     const selectSQL = `
-      SELECT o.order_id, o.customer_id, o.service_id, o.base_price, o.transport_fee, 
-             o.total_amount, o.status, o.scheduled_date, o.scheduled_time, o.actual_start_time, o.actual_end_time, 
-             o.pickup_address, o.delivery_address, o.special_instructions, o.created_at,
+      SELECT o.order_id, o.customer_id, o.service_id, o.quantity, o.unit_price, 
+             o.total_amount, o.status, o.scheduled_for, o.started_at, o.completed_at, 
+             o.transport_request_id, o.notes, o.created_at,
              c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name, 
              cu.phone as customer_phone,
-             l.name as location_name, s.name as service_name, s.description as service_description
+             l.name as location_name, s.name as service_name, s.description as service_description,
+             tr.pickup_address, tr.delivery_address, tr.status as transport_status
       FROM orders o
       JOIN customers c ON o.customer_id = c.customer_id
       JOIN users cu ON c.user_id = cu.user_id
       JOIN locations l ON o.location_id = l.location_id
       JOIN services s ON o.service_id = s.service_id
+      LEFT JOIN transport_requests tr ON o.transport_request_id = tr.transport_request_id
       ${whereClause}
-      ORDER BY o.scheduled_date ASC, o.created_at DESC
+      ORDER BY o.scheduled_for ASC, o.created_at DESC
       LIMIT $${paramIndex}
     `;
     
@@ -450,30 +429,32 @@ class OrderRepository {
     }
     
     if (date_from) {
-      whereClause += ` AND o.scheduled_date >= $${paramIndex}`;
+      whereClause += ` AND o.scheduled_for >= $${paramIndex}`;
       params.push(date_from);
       paramIndex++;
     }
     
     if (date_to) {
-      whereClause += ` AND o.scheduled_date <= $${paramIndex}`;
+      whereClause += ` AND o.scheduled_for <= $${paramIndex}`;
       params.push(date_to);
       paramIndex++;
     }
     
     const selectSQL = `
-      SELECT o.order_id, o.customer_id, o.service_id, o.base_price, o.transport_fee, 
-             o.total_amount, o.status, o.scheduled_date, o.scheduled_time, o.actual_start_time, o.actual_end_time, 
-             o.pickup_address, o.delivery_address, o.special_instructions, o.created_at,
-             c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name, 
-             cu.phone as customer_phone,
-             s.name as service_name, s.description as service_description
+      SELECT o.order_id, o.customer_id, o.service_id, o.quantity, o.unit_price, 
+             o.total_amount, o.status, o.scheduled_for, o.started_at, o.completed_at, 
+             o.assigned_employee_id, o.transport_request_id, o.notes, o.created_at,
+             c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name,
+             s.name as service_name, s.description as service_description,
+             e.employee_code, eu.first_name as employee_first_name, eu.last_name as employee_last_name
       FROM orders o
       JOIN customers c ON o.customer_id = c.customer_id
       JOIN users cu ON c.user_id = cu.user_id
       JOIN services s ON o.service_id = s.service_id
+      LEFT JOIN employees e ON o.assigned_employee_id = e.employee_id
+      LEFT JOIN users eu ON e.user_id = eu.user_id
       ${whereClause}
-      ORDER BY o.scheduled_date ASC, o.created_at DESC
+      ORDER BY o.scheduled_for ASC, o.created_at DESC
       LIMIT $${paramIndex}
     `;
     
@@ -484,9 +465,9 @@ class OrderRepository {
   async assignEmployee(orderId, employeeId) {
     const updateSQL = `
       UPDATE orders 
-      SET assigned_employee_id = $2, updated_at = CURRENT_TIMESTAMP
+      SET assigned_employee_id = $2
       WHERE order_id = $1
-      RETURNING order_id, assigned_employee_id, updated_at
+      RETURNING order_id, assigned_employee_id
     `;
     
     const result = await query(updateSQL, [orderId, employeeId]);
@@ -495,10 +476,9 @@ class OrderRepository {
 
   async delete(orderId) {
     const deleteSQL = `
-      UPDATE orders 
-      SET status = 'CANCELLED', updated_at = CURRENT_TIMESTAMP
-      WHERE order_id = $1
-      RETURNING order_id, status, updated_at
+      DELETE FROM orders 
+      WHERE order_id = $1 AND status IN ('PENDING', 'SCHEDULED')
+      RETURNING order_id
     `;
     
     const result = await query(deleteSQL, [orderId]);
@@ -506,83 +486,90 @@ class OrderRepository {
   }
 
   async getActiveOrders(locationId = null) {
-    let whereClause = "WHERE o.status IN ('PENDING', 'CONFIRMED', 'IN_PROGRESS')";
+    let whereClause = "WHERE status IN ('PENDING', 'SCHEDULED', 'IN_PROGRESS')";
     const params = [];
     
     if (locationId) {
-      whereClause += ' AND o.location_id = $1';
+      whereClause += ' AND location_id = $1';
       params.push(locationId);
     }
     
     const selectSQL = `
-      SELECT o.order_id, o.customer_id, o.service_id, o.status, o.scheduled_date, o.scheduled_time,
-             o.base_price, o.transport_fee, o.total_amount, o.created_at,
+      SELECT o.order_id, o.customer_id, o.service_id, o.status, o.scheduled_for, 
+             o.total_amount, o.assigned_employee_id,
              c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name,
-             l.name as location_name, s.name as service_name, s.category
+             s.name as service_name, s.category as service_category,
+             e.employee_code, eu.first_name as employee_first_name, eu.last_name as employee_last_name,
+             l.name as location_name
       FROM orders o
       JOIN customers c ON o.customer_id = c.customer_id
       JOIN users cu ON c.user_id = cu.user_id
-      JOIN locations l ON o.location_id = l.location_id
       JOIN services s ON o.service_id = s.service_id
+      JOIN locations l ON o.location_id = l.location_id
+      LEFT JOIN employees e ON o.assigned_employee_id = e.employee_id
+      LEFT JOIN users eu ON e.user_id = eu.user_id
       ${whereClause}
-      ORDER BY o.scheduled_date ASC
+      ORDER BY 
+        CASE o.status 
+          WHEN 'IN_PROGRESS' THEN 1 
+          WHEN 'SCHEDULED' THEN 2 
+          WHEN 'PENDING' THEN 3 
+        END,
+        o.scheduled_for ASC
     `;
     
     return await query(selectSQL, params);
   }
 
   async getStats(filters = {}) {
-    log.debug('OrderRepository: Getting order statistics');
+    const { location_id, date_from, date_to } = filters;
     
-    try {
-      let sql = `
-        SELECT 
-          COUNT(*) as total_orders,
-          COUNT(CASE WHEN status = 'PENDING' THEN 1 END) as pending_orders,
-          COUNT(CASE WHEN status = 'CONFIRMED' THEN 1 END) as confirmed_orders,
-          COUNT(CASE WHEN status = 'IN_PROGRESS' THEN 1 END) as in_progress_orders,
-          COUNT(CASE WHEN status = 'COMPLETED' THEN 1 END) as completed_orders,
-          COUNT(CASE WHEN status = 'CANCELLED' THEN 1 END) as cancelled_orders,
-          COALESCE(SUM(total_amount), 0) as total_revenue,
-          COALESCE(AVG(total_amount), 0) as avg_order_value,
-          COUNT(DISTINCT customer_id) as unique_customers
-        FROM orders
-        WHERE 1=1
-      `;
-      
-      const params = [];
-      let paramIndex = 1;
-      
-      if (filters.location_id) {
-        sql += ` AND location_id = $${paramIndex}`;
-        params.push(filters.location_id);
-        paramIndex++;
-      }
-      
-      if (filters.date_from) {
-        sql += ` AND created_at >= $${paramIndex}`;
-        params.push(filters.date_from);
-        paramIndex++;
-      }
-      
-      if (filters.date_to) {
-        sql += ` AND created_at <= $${paramIndex}`;
-        params.push(filters.date_to);
-        paramIndex++;
-      }
-      
-      const result = await query(sql, params);
-      return result && result.length > 0 ? result[0] : {};
-    } catch (error) {
-      log.error(`OrderRepository: Failed to get stats: ${error.message}`);
-      throw error;
+    let whereClause = 'WHERE 1=1';
+    const params = [];
+    let paramIndex = 1;
+    
+    if (location_id) {
+      whereClause += ` AND location_id = $${paramIndex}`;
+      params.push(location_id);
+      paramIndex++;
     }
+    
+    if (date_from) {
+      whereClause += ` AND created_at >= $${paramIndex}`;
+      params.push(date_from);
+      paramIndex++;
+    }
+    
+    if (date_to) {
+      whereClause += ` AND created_at <= $${paramIndex}`;
+      params.push(date_to);
+      paramIndex++;
+    }
+    
+    const statsSQL = `
+      SELECT 
+        COUNT(*) as total_orders,
+        COUNT(CASE WHEN status = 'PENDING' THEN 1 END) as pending_orders,
+        COUNT(CASE WHEN status = 'SCHEDULED' THEN 1 END) as scheduled_orders,
+        COUNT(CASE WHEN status = 'IN_PROGRESS' THEN 1 END) as in_progress_orders,
+        COUNT(CASE WHEN status = 'COMPLETED' THEN 1 END) as completed_orders,
+        COUNT(CASE WHEN status = 'CANCELLED' THEN 1 END) as cancelled_orders,
+        SUM(total_amount) as total_revenue,
+        AVG(total_amount) as avg_order_value,
+        COUNT(DISTINCT customer_id) as unique_customers,
+        COUNT(CASE WHEN transport_request_id IS NOT NULL THEN 1 END) as orders_with_transport
+      FROM orders
+      ${whereClause}
+    `;
+    
+    const result = await query(statsSQL, params);
+    return result && result.length > 0 ? result[0] : null;
   }
 
   async findWithTransport(filters = {}) {
-    const { status, locationId, limit = 50 } = filters;
+    const { status, location_id, limit = 50 } = filters;
     
-    let whereClause = "WHERE (o.pickup_address IS NOT NULL OR o.delivery_address IS NOT NULL)";
+    let whereClause = 'WHERE o.transport_request_id IS NOT NULL';
     const params = [];
     let paramIndex = 1;
     
@@ -592,70 +579,31 @@ class OrderRepository {
       paramIndex++;
     }
     
-    if (locationId) {
+    if (location_id) {
       whereClause += ` AND o.location_id = $${paramIndex}`;
-      params.push(locationId);
+      params.push(location_id);
       paramIndex++;
     }
     
     const selectSQL = `
-      SELECT o.order_id, o.customer_id, o.service_id, o.status, o.scheduled_date, o.scheduled_time,
-             o.pickup_address, o.delivery_address, o.transport_fee, o.total_amount,
+      SELECT o.order_id, o.customer_id, o.service_id, o.status, o.scheduled_for, 
+             o.total_amount, o.transport_request_id,
              c.customer_code, cu.first_name as customer_first_name, cu.last_name as customer_last_name,
-             l.name as location_name, s.name as service_name
+             s.name as service_name,
+             tr.pickup_address, tr.delivery_address, tr.status as transport_status,
+             tr.pickup_time, tr.delivery_time
       FROM orders o
       JOIN customers c ON o.customer_id = c.customer_id
       JOIN users cu ON c.user_id = cu.user_id
-      JOIN locations l ON o.location_id = l.location_id
       JOIN services s ON o.service_id = s.service_id
+      JOIN transport_requests tr ON o.transport_request_id = tr.transport_request_id
       ${whereClause}
-      ORDER BY o.scheduled_date ASC
+      ORDER BY o.scheduled_for ASC
       LIMIT $${paramIndex}
     `;
     
     params.push(limit);
     return await query(selectSQL, params);
-  }
-
-  async getAvailability(date, locationId = null, serviceId = null) {
-    log.debug(`OrderRepository: Getting availability for ${date}`);
-    
-    try {
-      let sql = `
-        SELECT 
-          order_id,
-          scheduled_date,
-          scheduled_time,
-          status,
-          service_id,
-          location_id
-        FROM orders 
-        WHERE scheduled_date = $1
-      `;
-      
-      const params = [date];
-      let paramIndex = 2;
-      
-      if (locationId) {
-        sql += ` AND location_id = $${paramIndex}`;
-        params.push(locationId);
-        paramIndex++;
-      }
-      
-      if (serviceId) {
-        sql += ` AND service_id = $${paramIndex}`;
-        params.push(serviceId);
-        paramIndex++;
-      }
-      
-      sql += ` ORDER BY scheduled_time`;
-      
-      const result = await query(sql, params);
-      return result || [];
-    } catch (error) {
-      log.error(`OrderRepository: Failed to get availability: ${error.message}`);
-      throw error;
-    }
   }
 }
 

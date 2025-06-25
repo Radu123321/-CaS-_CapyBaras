@@ -1,193 +1,108 @@
+const { query } = require('../core/psql');
 const notificationService = require('../core/notificationService');
-const log = require('../core/logger');
+const { log } = require('../core/logger');
 
 class ExceptionDetection {
   constructor() {
+    this.name = 'Exception Detection';
+    this.schedule = '*/10 * * * *'; // Every 10 minutes
     this.isRunning = false;
     this.lastRun = null;
+    this.results = null;
     this.errors = [];
-    this.successCount = 0;
-    this.detectionResults = {
-      staff: [],
-      power: [],
-      equipment: [],
-      transport: []
-    };
   }
 
+  // ===== MAIN EXECUTION METHOD =====
+  
   async execute() {
     if (this.isRunning) {
-      log.warn('Exception detection already running, skipping...');
+      log.warn('Exception detection job already running, skipping this execution');
       return;
     }
 
     this.isRunning = true;
-    const startTime = Date.now();
+    this.lastRun = new Date();
+    this.errors = [];
     
     try {
-      log.info('Starting automated exception detection...');
+      log.info('Starting exception detection job...');
       
-      // Run comprehensive exception detection
-      const results = await notificationService.runExceptionDetection();
-      
-      // Store results for monitoring
-      this.detectionResults = {
-        staff: results.staffIssues || [],
-        power: results.powerIssues || [],
-        equipment: results.equipmentIssues || [],
-        transport: results.transportIssues || []
+      const results = {
+        staffShortages: [],
+        systemIssues: [],
+        anomalies: [],
+        totalIssuesDetected: 0
       };
-      
-      // Calculate summary
-      const totalIssues = this.detectionResults.staff.length + 
-                         this.detectionResults.power.length + 
-                         this.detectionResults.equipment.length + 
-                         this.detectionResults.transport.length;
-      
-      // Log summary
-      log.info(`Exception detection completed: ${totalIssues} total issues found`);
-      log.info(`- Staff issues: ${this.detectionResults.staff.length}`);
-      log.info(`- Power issues: ${this.detectionResults.power.length}`);
-      log.info(`- Equipment issues: ${this.detectionResults.equipment.length}`);
-      log.info(`- Transport issues: ${this.detectionResults.transport.length}`);
-      
-      // Send summary notification if there are critical issues
-      await this.sendSummaryNotification(totalIssues, results);
-      
-      // Update job status
-      this.lastRun = new Date();
-      this.successCount++;
-      this.errors = []; // Clear errors on successful run
-      
-      const duration = Date.now() - startTime;
-      log.info(`Exception detection completed successfully in ${duration}ms`);
-      
-      return {
-        success: true,
-        totalIssues,
-        results: this.detectionResults,
-        duration,
-        timestamp: this.lastRun
-      };
+
+      // Run all detection methods
+      try {
+        results.staffShortages = await this.detectCriticalStaffShortage();
+        log.info(`Staff shortages detected: ${results.staffShortages.length}`);
+      } catch (error) {
+        log.error(`Error in staff shortage detection: ${error.message}`);
+        this.errors.push(`Staff shortage detection: ${error.message}`);
+      }
+
+      try {
+        results.systemIssues = await this.detectSystemWideIssues();
+        log.info(`System issues detected: ${results.systemIssues.length}`);
+      } catch (error) {
+        log.error(`Error in system issues detection: ${error.message}`);
+        this.errors.push(`System issues detection: ${error.message}`);
+      }
+
+      try {
+        results.anomalies = await this.detectAnomalies();
+        log.info(`Anomalies detected: ${results.anomalies.length}`);
+      } catch (error) {
+        log.error(`Error in anomaly detection: ${error.message}`);
+        this.errors.push(`Anomaly detection: ${error.message}`);
+      }
+
+      // Calculate totals
+      results.totalIssuesDetected = 
+        results.staffShortages.length + 
+        results.systemIssues.length + 
+        results.anomalies.length;
+
+      this.results = results;
+
+      // Send summary if issues found
+      if (results.totalIssuesDetected > 0) {
+        await this.sendSummaryNotification(results.totalIssuesDetected, results);
+      }
+
+      log.info(`Exception detection completed. Total issues: ${results.totalIssuesDetected}`);
       
     } catch (error) {
-      this.errors.push({
-        timestamp: new Date(),
-        error: error.message,
-        stack: error.stack
-      });
-      
-      log.error(`Exception detection failed: ${error.message}`);
-      
-      // Send alert about failed exception detection
-      try {
-        await notificationService.createNotification(
-          'EXCEPTION_DETECTION_FAILED',
-          `Automated exception detection failed: ${error.message}`,
-          'HIGH',
-          { 
-            error: error.message,
-            timestamp: new Date().toISOString(),
-            jobName: 'exceptionDetection'
-          }
-        );
-      } catch (alertError) {
-        log.error(`Failed to send exception detection failure alert: ${alertError.message}`);
-      }
-      
+      log.error(`Critical error in exception detection: ${error.message}`);
+      this.errors.push(`Critical error: ${error.message}`);
       throw error;
-      
     } finally {
       this.isRunning = false;
     }
   }
 
-  async sendSummaryNotification(totalIssues, results) {
-    try {
-      if (totalIssues === 0) {
-        // Send all-clear notification if configured
-        await notificationService.createNotification(
-          'SYSTEM_STATUS_OK',
-          'All systems operational - no critical issues detected',
-          'LOW',
-          {
-            totalIssues: 0,
-            detectionTime: new Date().toISOString(),
-            allClear: true
-          }
-        );
-        return;
-      }
-
-      // Count critical issues
-      const criticalIssues = [
-        ...results.staffIssues.filter(issue => issue.severity === 'CRITICAL'),
-        ...results.powerIssues.filter(issue => issue.severity === 'CRITICAL'),
-        ...results.equipmentIssues.filter(issue => issue.severity === 'CRITICAL'),
-        ...results.transportIssues.filter(issue => issue.severity === 'CRITICAL')
-      ];
-
-      if (criticalIssues.length > 0) {
-        await notificationService.createNotification(
-          'CRITICAL_ISSUES_DETECTED',
-          `${criticalIssues.length} critical issues detected across the system. Immediate attention required.`,
-          'CRITICAL',
-          {
-            totalIssues,
-            criticalIssues: criticalIssues.length,
-            breakdown: {
-              staff: results.staffIssues.length,
-              power: results.powerIssues.length,
-              equipment: results.equipmentIssues.length,
-              transport: results.transportIssues.length
-            },
-            detectionTime: new Date().toISOString()
-          }
-        );
-      } else if (totalIssues > 5) {
-        await notificationService.createNotification(
-          'MULTIPLE_ISSUES_DETECTED',
-          `${totalIssues} issues detected across the system. Review recommended.`,
-          'MEDIUM',
-          {
-            totalIssues,
-            breakdown: {
-              staff: results.staffIssues.length,
-              power: results.powerIssues.length,
-              equipment: results.equipmentIssues.length,
-              transport: results.transportIssues.length
-            },
-            detectionTime: new Date().toISOString()
-          }
-        );
-      }
-    } catch (error) {
-      log.error(`Error sending summary notification: ${error.message}`);
-    }
-  }
-
-  // ===== SPECIFIC DETECTION METHODS =====
+  // ===== DETECTION METHODS =====
 
   async detectCriticalStaffShortage() {
     try {
-      const { query } = require('../core/psql');
-      
       const sql = `
         SELECT 
-          l.id as location_id,
+          l.location_id as location_id,
           l.name as location_name,
-          COUNT(e.id) as total_employees,
-          COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) as active_employees
+          COUNT(e.employee_id) as total_employees,
+          COUNT(CASE WHEN e.is_available = true THEN 1 END) as active_employees
         FROM locations l
-        LEFT JOIN employees e ON l.id = e.location_id
-        GROUP BY l.id, l.name
-        HAVING COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) = 0
-          OR (COUNT(e.id) > 0 AND COUNT(CASE WHEN e.status = 'ACTIVE' THEN 1 END) * 100.0 / COUNT(e.id) < 25)
+        LEFT JOIN employees e ON l.location_id = e.location_id
+        GROUP BY l.location_id, l.name
+        HAVING COUNT(CASE WHEN e.is_available = true THEN 1 END) = 0
+          OR (COUNT(e.employee_id) > 0 AND COUNT(CASE WHEN e.is_available = true THEN 1 END) * 100.0 / COUNT(e.employee_id) < 25)
       `;
       
       const result = await query(sql);
       
-      for (const location of result.rows) {
+      for (const location of result) {
         await notificationService.createNotification(
           'CRITICAL_STAFF_SHORTAGE',
           `URGENT: Critical staff shortage at ${location.location_name}. Only ${location.active_employees}/${location.total_employees} employees available.`,
@@ -204,7 +119,7 @@ class ExceptionDetection {
         );
       }
       
-      return result.rows;
+      return result;
       
     } catch (error) {
       log.error(`Error detecting critical staff shortage: ${error.message}`);
@@ -214,9 +129,7 @@ class ExceptionDetection {
 
   async detectSystemWideIssues() {
     try {
-      const { query } = require('../core/psql');
-      
-      // Check for system-wide patterns
+      // Check for system-wide patterns - using only existing v2.0 tables
       const sql = `
         SELECT 
           'equipment' as issue_type,
@@ -228,28 +141,17 @@ class ExceptionDetection {
         UNION ALL
         
         SELECT 
-          'transport' as issue_type,
-          COUNT(*) as affected_count,
-          COUNT(DISTINCT location_id) as affected_locations
-        FROM transports 
-        WHERE status IN ('PENDING', 'IN_PROGRESS') 
-          AND created_at < NOW() - INTERVAL '8 hours'
-        
-        UNION ALL
-        
-        SELECT 
           'inventory' as issue_type,
           COUNT(*) as affected_count,
           COUNT(DISTINCT location_id) as affected_locations
-        FROM inventory i
-        JOIN resources r ON i.resource_id = r.id
-        WHERE i.quantity <= r.minimum_threshold
+        FROM inventory 
+        WHERE current_stock <= minimum_stock
       `;
       
       const result = await query(sql);
       const systemIssues = [];
       
-      for (const issue of result.rows) {
+      for (const issue of result) {
         const affectedCount = parseInt(issue.affected_count);
         const affectedLocations = parseInt(issue.affected_locations);
         
@@ -288,28 +190,26 @@ class ExceptionDetection {
 
   async detectAnomalies() {
     try {
-      const { query } = require('../core/psql');
-      
       // Detect unusual patterns in the last 24 hours
       const sql = `
         SELECT 
           l.name as location_name,
-          l.id as location_id,
-          COUNT(o.id) as orders_today,
-          AVG(COUNT(o.id)) OVER() as avg_orders,
-          STDDEV(COUNT(o.id)) OVER() as stddev_orders
+          l.location_id as location_id,
+          COUNT(o.order_id) as orders_today,
+          AVG(COUNT(o.order_id)) OVER() as avg_orders,
+          STDDEV(COUNT(o.order_id)) OVER() as stddev_orders
         FROM locations l
-        LEFT JOIN orders o ON l.id = o.location_id 
+        LEFT JOIN orders o ON l.location_id = o.location_id 
           AND o.created_at >= NOW() - INTERVAL '24 hours'
-        GROUP BY l.id, l.name
-        HAVING COUNT(o.id) < (AVG(COUNT(o.id)) OVER() - 2 * STDDEV(COUNT(o.id)) OVER())
-          OR COUNT(o.id) > (AVG(COUNT(o.id)) OVER() + 2 * STDDEV(COUNT(o.id)) OVER())
+        GROUP BY l.location_id, l.name
+        HAVING COUNT(o.order_id) < (AVG(COUNT(o.order_id)) OVER() - 2 * STDDEV(COUNT(o.order_id)) OVER())
+          OR COUNT(o.order_id) > (AVG(COUNT(o.order_id)) OVER() + 2 * STDDEV(COUNT(o.order_id)) OVER())
       `;
       
       const result = await query(sql);
       const anomalies = [];
       
-      for (const location of result.rows) {
+      for (const location of result) {
         const ordersToday = parseInt(location.orders_today);
         const avgOrders = parseFloat(location.avg_orders || 0);
         const deviation = Math.abs(ordersToday - avgOrders);
@@ -368,70 +268,78 @@ class ExceptionDetection {
     }
   }
 
+  async sendSummaryNotification(totalIssues, results) {
+    try {
+      const summary = {
+        totalIssues,
+        staffShortages: results.staffShortages.length,
+        systemIssues: results.systemIssues.length,
+        anomalies: results.anomalies.length,
+        detectionTime: new Date().toISOString()
+      };
+
+      let message = `Exception Detection Summary:\n`;
+      message += `- Total Issues: ${totalIssues}\n`;
+      message += `- Staff Shortages: ${summary.staffShortages}\n`;
+      message += `- System Issues: ${summary.systemIssues}\n`;
+      message += `- Anomalies: ${summary.anomalies}`;
+
+      await notificationService.createNotification(
+        'EXCEPTION_DETECTION_SUMMARY',
+        message,
+        totalIssues > 10 ? 'CRITICAL' : totalIssues > 5 ? 'HIGH' : 'MEDIUM',
+        summary
+      );
+      
+    } catch (error) {
+      log.error(`Error sending summary notification: ${error.message}`);
+    }
+  }
+
   // ===== HEALTH CHECK METHODS =====
   
   getStatus() {
     return {
+      name: this.name,
       isRunning: this.isRunning,
       lastRun: this.lastRun,
-      successCount: this.successCount,
-      errorCount: this.errors.length,
-      recentErrors: this.errors.slice(-5), // Last 5 errors
-      lastResults: this.detectionResults,
-      nextScheduledRun: this.getNextScheduledRun()
+      schedule: this.schedule,
+      errors: this.errors,
+      hasErrors: this.errors.length > 0
     };
   }
 
   getNextScheduledRun() {
-    if (!this.lastRun) {
-      return 'Not scheduled yet';
-    }
+    if (!this.lastRun) return 'Not scheduled';
     
-    // Job runs every 30 minutes
     const nextRun = new Date(this.lastRun);
-    nextRun.setMinutes(nextRun.getMinutes() + 30);
+    nextRun.setMinutes(nextRun.getMinutes() + 10);
     
-    return nextRun.toISOString();
+    return nextRun;
   }
 
   async getHealthCheck() {
-    const status = this.getStatus();
-    const isHealthy = !status.isRunning && 
-                     status.errorCount === 0 && 
-                     status.lastRun && 
-                     (Date.now() - new Date(status.lastRun).getTime()) < 35 * 60 * 1000; // Less than 35 minutes ago
-    
     return {
-      healthy: isHealthy,
-      status: status,
-      message: isHealthy ? 'Exception detection is working properly' : 'Exception detection has issues'
-    };
-  }
-
-  // Manual trigger for testing
-  async triggerManual() {
-    log.info('Manual trigger for exception detection');
-    return await this.execute();
-  }
-
-  // Get detailed results
-  getDetailedResults() {
-    return {
+      status: this.isRunning ? 'running' : 'ready',
       lastRun: this.lastRun,
-      results: this.detectionResults,
-      summary: {
-        totalIssues: Object.values(this.detectionResults).reduce((sum, issues) => sum + issues.length, 0),
-        breakdown: {
-          staff: this.detectionResults.staff.length,
-          power: this.detectionResults.power.length,
-          equipment: this.detectionResults.equipment.length,
-          transport: this.detectionResults.transport.length
-        },
-        criticalIssues: Object.values(this.detectionResults)
-          .flat()
-          .filter(issue => issue.severity === 'CRITICAL').length
-      }
+      nextRun: this.getNextScheduledRun(),
+      errorsCount: this.errors.length,
+      lastResults: this.results ? {
+        totalIssues: this.results.totalIssuesDetected,
+        staffShortages: this.results.staffShortages.length,
+        systemIssues: this.results.systemIssues.length,
+        anomalies: this.results.anomalies.length
+      } : null
     };
+  }
+
+  async triggerManual() {
+    log.info('Manual trigger for exception detection job');
+    await this.execute();
+  }
+
+  getDetailedResults() {
+    return this.results;
   }
 }
 

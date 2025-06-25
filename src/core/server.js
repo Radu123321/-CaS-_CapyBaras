@@ -51,24 +51,47 @@ router.add('DELETE', '/api/services/:id', serviceController.deleteService);
 const customerController = require('../controllers/customerController');
 router.add('GET', '/api/customers', customerController.getAllCustomers);
 router.add('POST', '/api/customers', customerController.createCustomer);
+router.add('GET', '/api/customers/search', customerController.searchCustomers);
+router.add('GET', '/api/customers/vip', customerController.getVIPCustomers);
+router.add('GET', '/api/customers/top', customerController.getTopCustomers);
+router.add('GET', '/api/customers/stats', customerController.getCustomerStats);
+router.add('GET', '/api/customers/code/:code', customerController.getCustomerByCode);
 router.add('GET', '/api/customers/:id', customerController.getCustomerById);
 router.add('PUT', '/api/customers/:id', customerController.updateCustomer);
+router.add('PUT', '/api/customers/:id/loyalty', customerController.updateLoyaltyPoints);
 router.add('DELETE', '/api/customers/:id', customerController.deleteCustomer);
 
 const employeeController = require('../controllers/employeeController');
 router.add('GET', '/api/employees', employeeController.getAllEmployees);
 router.add('POST', '/api/employees', employeeController.createEmployee);
+router.add('GET', '/api/employees/search', employeeController.searchEmployees);
+router.add('GET', '/api/employees/position/:position', employeeController.getEmployeesByPosition);
+router.add('GET', '/api/employees/location/:locationId', employeeController.getEmployeesByLocation);
+router.add('GET', '/api/employees/stats', employeeController.getEmployeeStats);
+router.add('GET', '/api/employees/code/:code', employeeController.getEmployeeByCode);
 router.add('GET', '/api/employees/:id', employeeController.getEmployeeById);
 router.add('PUT', '/api/employees/:id', employeeController.updateEmployee);
+router.add('PUT', '/api/employees/:id/skills', employeeController.addSkill);
+router.add('DELETE', '/api/employees/:id/skills', employeeController.removeSkill);
+router.add('PUT', '/api/employees/:id/availability', employeeController.updateAvailability);
 router.add('DELETE', '/api/employees/:id', employeeController.deleteEmployee);
 router.add('GET', '/api/employees/type/:type', employeeController.getEmployeesByType);
 
 const orderController = require('../controllers/orderController');
 router.add('GET', '/api/orders', orderController.getAllOrders);
 router.add('POST', '/api/orders', orderController.createOrder);
+router.add('GET', '/api/orders/search', orderController.searchOrders);
+router.add('GET', '/api/orders/active', orderController.getActiveOrders);
+router.add('GET', '/api/orders/availability', orderController.getOrderAvailability);
+router.add('GET', '/api/orders/customer/:customerId', orderController.getOrdersByCustomer);
+router.add('GET', '/api/orders/employee/:employeeId', orderController.getOrdersByEmployee);
+router.add('GET', '/api/orders/stats', orderController.getOrderStats);
 router.add('GET', '/api/orders/:id', orderController.getOrderById);
 router.add('PUT', '/api/orders/:id', orderController.updateOrder);
 router.add('PUT', '/api/orders/:id/status', orderController.updateOrderStatus);
+router.add('PUT', '/api/orders/:id/assign', orderController.assignEmployee);
+router.add('PUT', '/api/orders/:id/start', orderController.startOrder);
+router.add('PUT', '/api/orders/:id/complete', orderController.completeOrder);
 router.add('DELETE', '/api/orders/:id/cancel', orderController.cancelOrder);
 
 const transportController = require('../controllers/transportController');
@@ -193,6 +216,72 @@ router.add('POST', '/api/exceptions/detect/equipment', notificationController.de
 router.add('POST', '/api/exceptions/detect/transport', notificationController.detectTransportIssues);
 router.add('POST', '/api/exceptions/detect/all', notificationController.runFullExceptionDetection);
 
+// Shift management routes
+const shiftController = require('../controllers/shiftController');
+router.add('GET', '/api/shifts', shiftController.getAllShifts);
+router.add('POST', '/api/shifts', shiftController.createShift);
+router.add('GET', '/api/shifts/active', shiftController.getActiveShifts);
+router.add('GET', '/api/shifts/today', shiftController.getTodayScheduled);
+router.add('GET', '/api/shifts/statuses', shiftController.getValidStatuses);
+router.add('GET', '/api/shifts/stats', shiftController.getShiftStats);
+router.add('GET', '/api/shifts/attendance', shiftController.getAttendanceReport);
+router.add('GET', '/api/shifts/weekly/:locationId', shiftController.getWeeklySchedule);
+router.add('GET', '/api/shifts/employee/:employeeId', shiftController.getShiftsByEmployee);
+router.add('GET', '/api/shifts/location/:locationId', shiftController.getShiftsByLocation);
+router.add('GET', '/api/shifts/:id', shiftController.getShiftById);
+router.add('PUT', '/api/shifts/:id', shiftController.updateShift);
+router.add('PUT', '/api/shifts/:id/status', shiftController.updateShiftStatus);
+router.add('PUT', '/api/shifts/:id/start', shiftController.startShift);
+router.add('PUT', '/api/shifts/:id/end', shiftController.endShift);
+router.add('DELETE', '/api/shifts/:id', shiftController.deleteShift);
+
+// Maintenance management routes
+const maintenanceController = require('../controllers/maintenanceController');
+router.add('GET', '/api/maintenance', maintenanceController.getAllMaintenance);
+router.add('POST', '/api/maintenance', maintenanceController.createMaintenance);
+router.add('GET', '/api/maintenance/today', maintenanceController.getTodayScheduled);
+router.add('GET', '/api/maintenance/overdue', maintenanceController.getOverdue);
+router.add('GET', '/api/maintenance/urgent', maintenanceController.getUrgent);
+router.add('GET', '/api/maintenance/types', maintenanceController.getMaintenanceTypes);
+router.add('GET', '/api/maintenance/priorities', maintenanceController.getPriorityLevels);
+router.add('GET', '/api/maintenance/stats', maintenanceController.getMaintenanceStats);
+router.add('GET', '/api/maintenance/upcoming', maintenanceController.getUpcomingSchedule);
+router.add('GET', '/api/maintenance/equipment/:equipmentId', maintenanceController.getMaintenanceByEquipment);
+router.add('GET', '/api/maintenance/:id', maintenanceController.getMaintenanceById);
+router.add('PUT', '/api/maintenance/:id', maintenanceController.updateMaintenance);
+router.add('PUT', '/api/maintenance/:id/start', maintenanceController.startMaintenance);
+router.add('PUT', '/api/maintenance/:id/complete', maintenanceController.completeMaintenance);
+router.add('DELETE', '/api/maintenance/:id', maintenanceController.deleteMaintenance);
+
+// Recurring schedule management routes
+const recurrenceController = require('../controllers/recurrenceController');
+router.add('GET', '/api/recurrences', recurrenceController.getAllRecurrences);
+router.add('POST', '/api/recurrences', recurrenceController.createRecurrence);
+router.add('GET', '/api/recurrences/due', recurrenceController.getDueRecurrences);
+router.add('GET', '/api/recurrences/expired', recurrenceController.getExpiredRecurrences);
+router.add('GET', '/api/recurrences/stats', recurrenceController.getRecurrenceStats);
+router.add('GET', '/api/recurrences/stats/patterns', recurrenceController.getStatsByPattern);
+router.add('GET', '/api/recurrences/customer/:customerId', recurrenceController.getRecurrencesByCustomer);
+router.add('GET', '/api/recurrences/:id', recurrenceController.getRecurrenceById);
+router.add('PUT', '/api/recurrences/:id', recurrenceController.updateRecurrence);
+router.add('PUT', '/api/recurrences/:id/status', recurrenceController.updateActiveStatus);
+router.add('POST', '/api/recurrences/process', recurrenceController.processRecurrences);
+router.add('POST', '/api/recurrences/deactivate-expired', recurrenceController.deactivateExpired);
+router.add('DELETE', '/api/recurrences/:id', recurrenceController.deleteRecurrence);
+
+// Exception and incident management routes
+const exceptionController = require('../controllers/exceptionController');
+router.add('GET', '/api/exceptions', exceptionController.getAllExceptions);
+router.add('POST', '/api/exceptions', exceptionController.createException);
+router.add('GET', '/api/exceptions/active', exceptionController.getActiveExceptions);
+router.add('GET', '/api/exceptions/critical', exceptionController.getCriticalExceptions);
+router.add('GET', '/api/exceptions/types', exceptionController.getExceptionTypes);
+router.add('GET', '/api/exceptions/stats', exceptionController.getExceptionStats);
+router.add('GET', '/api/exceptions/:id', exceptionController.getExceptionById);
+router.add('PUT', '/api/exceptions/:id', exceptionController.updateException);
+router.add('PUT', '/api/exceptions/:id/resolve', exceptionController.resolveException);
+router.add('DELETE', '/api/exceptions/:id', exceptionController.deleteException);
+
 // Helper to serve static files
 function serveStatic(filePath, res) {
   fs.stat(filePath, (err, stats) => {
@@ -243,7 +332,7 @@ function serveStatic(filePath, res) {
 
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
-  const { pathname } = parsedUrl;
+  const { pathname, query } = parsedUrl;
   log.info(`${req.method} ${pathname}`);
 
   // Add CORS headers for all requests
@@ -262,6 +351,13 @@ const server = http.createServer(async (req, res) => {
   if (pathname.startsWith('/api/')) {
     try {
       req.body = await parseRequest(req);
+      
+      // Add query parameters to request object
+      req.query = query || {};
+      
+      // Add parsed URL for route parameter extraction
+      req.parsedUrl = parsedUrl;
+      
     } catch (err) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       return res.end(JSON.stringify({ error: 'Invalid JSON' }));
@@ -271,6 +367,9 @@ const server = http.createServer(async (req, res) => {
   
   // RSS feeds
   if (pathname.startsWith('/rss')) {
+    // Add query parameters for RSS feeds too
+    req.query = query || {};
+    req.parsedUrl = parsedUrl;
     return router.dispatch(req.method, pathname, req, res);
   }
 

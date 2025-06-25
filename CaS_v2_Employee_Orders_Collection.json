@@ -1,0 +1,431 @@
+{
+	"name": "👷 Employee Management v2.0",
+	"description": "Enhanced employee management with skills tracking and location assignment",
+	"item": [
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/employees?limit=20&location_id={{locationId}}&position=CLEANER",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						},
+						{
+							"key": "position",
+							"value": "CLEANER"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": {{userId}},\n    \"position\": \"CLEANER\",\n    \"hourly_rate\": 28.50,\n    \"hire_date\": \"2025-06-25\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"carpet_cleaning\", \"window_cleaning\", \"car_wash\", \"upholstery_cleaning\"],\n    \"is_available\": true,\n    \"notes\": \"Experienced cleaner with 3 years in the industry\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/employees",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees"]
+				}
+			}
+		},
+		{
+			"name": "Get Employee by Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/code/EMP-000001",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "code", "EMP-000001"]
+				}
+			}
+		},
+		{
+			"name": "Get Employees by Position",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/position/CLEANER?location_id={{locationId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "position", "CLEANER"],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Employees by Location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/location/{{locationId}}?is_available=true",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "location", "{{locationId}}"],
+					"query": [
+						{
+							"key": "is_available",
+							"value": "true"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Search Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/search?query=maria&skills=carpet_cleaning&location_id={{locationId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "maria"
+						},
+						{
+							"key": "skills",
+							"value": "carpet_cleaning"
+						},
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Add Skill to Employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skill\": \"pressure_washing\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/{{employeeId}}/skills",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "{{employeeId}}", "skills"]
+				}
+			}
+		},
+		{
+			"name": "Remove Skill from Employee",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"skill\": \"window_cleaning\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/{{employeeId}}/skills",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "{{employeeId}}", "skills"]
+				}
+			}
+		},
+		{
+			"name": "Update Employee Availability",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"is_available\": false,\n    \"reason\": \"On vacation until next week\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/employees/{{employeeId}}/availability",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "employees", "{{employeeId}}", "availability"]
+				}
+			}
+		}
+	]
+},
+{
+	"name": "📋 Order Management v2.0",
+	"description": "Simplified order management with single service per order and employee assignment",
+	"item": [
+		{
+			"name": "Get All Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders?limit=20&status=PENDING&location_id={{locationId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "status",
+							"value": "PENDING"
+						},
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"customer_id\": {{customerId}},\n    \"location_id\": {{locationId}},\n    \"service_id\": {{serviceId}},\n    \"quantity\": 1,\n    \"unit_price\": 150.00,\n    \"scheduled_date\": \"2025-06-26\",\n    \"scheduled_time\": \"10:00\",\n    \"pickup_address\": \"Str. Clientului Nr. 123, Bucuresti\",\n    \"delivery_address\": \"Str. Clientului Nr. 123, Bucuresti\",\n    \"special_instructions\": \"Please handle with care - expensive carpet\",\n    \"transport_required\": true\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orders",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders"]
+				}
+			}
+		},
+		{
+			"name": "Get Order by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/{{orderId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "{{orderId}}"]
+				}
+			}
+		},
+		{
+			"name": "Get Orders by Customer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/customer/{{customerId}}?limit=10&status=COMPLETED",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "customer", "{{customerId}}"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "COMPLETED"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Orders by Employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/employee/{{employeeId}}?limit=10&status=IN_PROGRESS",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "employee", "{{employeeId}}"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "status",
+							"value": "IN_PROGRESS"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Active Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/active?location_id={{locationId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "active"],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Search Orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/search?query=carpet&service_type=CARPET_CLEANING&date_from=2025-06-01&date_to=2025-06-30",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "carpet"
+						},
+						{
+							"key": "service_type",
+							"value": "CARPET_CLEANING"
+						},
+						{
+							"key": "date_from",
+							"value": "2025-06-01"
+						},
+						{
+							"key": "date_to",
+							"value": "2025-06-30"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Assign Employee to Order",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"assigned_employee_id\": {{employeeId}},\n    \"assignment_notes\": \"Assigned based on carpet cleaning expertise\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/{{orderId}}/assign",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "{{orderId}}", "assign"]
+				}
+			}
+		},
+		{
+			"name": "Start Order",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"started_at\": \"2025-06-26T10:00:00Z\",\n    \"notes\": \"Order started on time, customer present\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/{{orderId}}/start",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "{{orderId}}", "start"]
+				}
+			}
+		},
+		{
+			"name": "Complete Order",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"completed_at\": \"2025-06-26T12:30:00Z\",\n    \"completion_notes\": \"Service completed successfully, customer satisfied\",\n    \"quality_rating\": 5\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/{{orderId}}/complete",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "{{orderId}}", "complete"]
+				}
+			}
+		},
+		{
+			"name": "Update Order Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"IN_PROGRESS\",\n    \"status_notes\": \"Work in progress, estimated completion in 2 hours\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/orders/{{orderId}}/status",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "orders", "{{orderId}}", "status"]
+				}
+			}
+		}
+	]
+} 

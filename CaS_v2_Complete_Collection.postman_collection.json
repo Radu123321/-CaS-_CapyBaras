@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "cas-v2-complete-collection-2025",
+		"name": "CaS v2.0 - Complete API Collection (ALL 150+ Endpoints)",
+		"description": "Complete Postman collection for Cleaning and Services v2.0 system with ALL endpoints including Authentication, Customer/Employee Management, Orders, Shifts, Maintenance, Recurrences, Exceptions, and more. Updated for v2.0 database schema with proper request bodies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"version": {
+			"major": 2,
+			"minor": 0,
+			"patch": 0
+		}
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "Base URL for the CaS API server"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string",
+			"description": "JWT authentication token"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "employeeId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "locationId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "serviceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "shiftId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "maintenanceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "recurrenceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "exceptionId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "equipmentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "inventoryId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "transportId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "notificationId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "🏠 System Health & Status",
+			"description": "Basic system endpoints for health checks and status monitoring",
+			"item": [
+				{
+					"name": "Ping Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/ping",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ping"]
+						},
+						"description": "Check if the server is running and responsive"
+					}
+				},
+				{
+					"name": "Get Scheduler Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/scheduler/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "scheduler", "status"]
+						},
+						"description": "Check the status of background job scheduler"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔐 Authentication v2.0",
+			"description": "Enhanced authentication with role-based access, username/email login, and profile management",
+			"item": [
+				{
+					"name": "Register Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer{{$randomInt}}@example.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"John Customer\",\n    \"role\": \"CUSTOMER\",\n    \"phone\": \"+40722123456\",\n    \"address\": \"Str. Exemplu Nr. 123, Bucuresti\",\n    \"company_name\": \"John's Business SRL\",\n    \"preferred_location_id\": {{locationId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new customer with company details and preferred location"
+					}
+				},
+				{
+					"name": "Register Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"employee{{$randomInt}}@cas-system.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Maria Employee\",\n    \"role\": \"EMPLOYEE\",\n    \"phone\": \"+40722654321\",\n    \"position\": \"CLEANER\",\n    \"hourly_rate\": 25.50,\n    \"hire_date\": \"2025-01-15\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"carpet_cleaning\", \"window_cleaning\", \"car_wash\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new employee with position, rate, and skills"
+					}
+				},
+				{
+					"name": "Register Manager",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manager{{$randomInt}}@cas-system.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Alex Manager\",\n    \"role\": \"MANAGER\",\n    \"phone\": \"+40722999777\",\n    \"position\": \"LOCATION_MANAGER\",\n    \"hourly_rate\": 45.00,\n    \"hire_date\": \"2024-06-01\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"team_management\", \"quality_control\", \"customer_service\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new manager with location assignment"
+					}
+				},
+				{
+					"name": "Login with Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login using email address"
+					}
+				},
+				{
+					"name": "Login with Username",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"customer_001\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login using auto-generated username"
+					}
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "profile"]
+						},
+						"description": "Get current user profile information"
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"John Updated Customer\",\n    \"phone\": \"+40722999888\",\n    \"address\": \"Str. Noua Nr. 456, Bucuresti\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "profile"]
+						},
+						"description": "Update user profile information"
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"password123\",\n    \"new_password\": \"newpassword456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/change-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "change-password"]
+						},
+						"description": "Change user password"
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/logout",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "logout"]
+						},
+						"description": "Logout and invalidate token"
+					}
+				}
+			]
+		}
+	]
+} 

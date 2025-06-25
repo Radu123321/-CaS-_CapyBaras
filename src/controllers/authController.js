@@ -7,7 +7,22 @@ async function register(req, res) {
   try {
     log.debug(`Register request body: ${JSON.stringify(req.body)}`);
     
-    const { email, password, firstName, lastName, phone, role, locationId } = req.body;
+    const { 
+      email, 
+      password, 
+      username,
+      firstName, 
+      lastName, 
+      phone, 
+      role, 
+      locationId,
+      companyName,
+      billingAddress,
+      position,
+      hourlyRate,
+      skills,
+      preferredContactMethod
+    } = req.body;
     
     // Validation
     if (!email || !password || !firstName || !lastName) {
@@ -50,14 +65,76 @@ async function register(req, res) {
       return;
     }
     
+    // Username validation if provided
+    if (username) {
+      if (username.length < 3 || username.length > 20) {
+        res.writeHead(400, { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ 
+          success: false,
+          error: 'Username must be between 3 and 20 characters' 
+        }));
+        return;
+      }
+      
+      if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+        res.writeHead(400, { 
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ 
+          success: false,
+          error: 'Username can only contain letters, numbers, and underscores' 
+        }));
+        return;
+      }
+    }
+    
+    // Role validation
+    const validRoles = ['ADMIN', 'MANAGER', 'EMPLOYEE', 'CUSTOMER'];
+    const userRole = role || 'CUSTOMER';
+    if (!validRoles.includes(userRole)) {
+      res.writeHead(400, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Invalid role. Must be one of: ' + validRoles.join(', ')
+      }));
+      return;
+    }
+    
+    // Location validation for employees and managers
+    if (['EMPLOYEE', 'MANAGER'].includes(userRole) && !locationId) {
+      res.writeHead(400, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({ 
+        success: false,
+        error: 'Location ID is required for employees and managers'
+      }));
+      return;
+    }
+    
     const userData = {
       email: email.toLowerCase().trim(),
       password,
+      username: username?.trim() || null,
       firstName: firstName.trim(),
       lastName: lastName.trim(),
       phone: phone?.trim() || null,
-      role: role || 'EMPLOYEE',
-      locationId: locationId || null
+      role: userRole,
+      locationId: locationId || null,
+      companyName: companyName?.trim() || null,
+      billingAddress: billingAddress?.trim() || null,
+      position: position?.trim() || null,
+      hourlyRate: hourlyRate ? parseFloat(hourlyRate) : null,
+      skills: Array.isArray(skills) ? skills : (skills ? [skills] : []),
+      preferredContactMethod: preferredContactMethod || 'EMAIL'
     };
     
     log.debug(`Register: Processing user ${userData.email}`);
@@ -72,13 +149,7 @@ async function register(req, res) {
     res.end(JSON.stringify({
       success: true,
       message: 'Registration successful! You can now login.',
-      data: {
-        userId: result.userId,
-        email: result.email,
-        firstName: result.firstName,
-        lastName: result.lastName,
-        role: result.role
-      }
+      data: result
     }));
   } catch (error) {
     log.error(`Register error: ${error.message}`);
@@ -88,7 +159,10 @@ async function register(req, res) {
     
     if (error.message.includes('already exists') || error.message.includes('duplicate')) {
       statusCode = 409;
-      errorMessage = 'An account with this email already exists';
+      errorMessage = error.message;
+    } else if (error.message.includes('required')) {
+      statusCode = 400;
+      errorMessage = error.message;
     }
     
     res.writeHead(statusCode, { 
@@ -108,26 +182,29 @@ async function login(req, res) {
   try {
     log.debug(`Login request body: ${JSON.stringify(req.body)}`);
     
-    const { email, password } = req.body;
+    const { identifier, email, username, password } = req.body;
     
-    if (!email || !password) {
-      log.warn('Login: Missing email or password');
+    // Support multiple ways to login
+    const loginIdentifier = identifier || email || username;
+    
+    if (!loginIdentifier || !password) {
+      log.warn('Login: Missing login credentials');
       res.writeHead(400, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       });
       res.end(JSON.stringify({ 
         success: false,
-        error: 'Email and password are required' 
+        error: 'Email/username and password are required' 
       }));
       return;
     }
     
-    log.debug(`Login: Processing user ${email}`);
+    log.debug(`Login: Processing user ${loginIdentifier}`);
     
-    const result = await authService.loginUser(email.toLowerCase().trim(), password);
+    const result = await authService.loginUser(loginIdentifier.toLowerCase().trim(), password);
     
-    log.info(`Login: Success for user ${email}`);
+    log.info(`Login: Success for user ${loginIdentifier}`);
     res.writeHead(200, { 
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
@@ -144,10 +221,12 @@ async function login(req, res) {
     log.error(`Login error: ${error.message}`);
     
     let statusCode = 401;
-    let errorMessage = 'Invalid email or password';
+    let errorMessage = 'Invalid credentials';
     
     if (error.message.includes('not found')) {
-      errorMessage = 'No account found with this email';
+      errorMessage = 'No account found with this email/username';
+    } else if (error.message.includes('Invalid password')) {
+      errorMessage = 'Invalid password';
     }
     
     res.writeHead(statusCode, { 
@@ -214,6 +293,18 @@ async function getProfile(req, res) {
     
     const user = await authService.getUserFromToken(token);
     
+    if (!user) {
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Invalid or expired token'
+      }));
+      return;
+    }
+    
     res.writeHead(200, { 
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
@@ -224,20 +315,169 @@ async function getProfile(req, res) {
     }));
   } catch (error) {
     log.error(`Get profile error: ${error.message}`);
-    res.writeHead(401, { 
+    res.writeHead(500, { 
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
     res.end(JSON.stringify({
       success: false,
-      error: 'Invalid or expired token'
+      error: 'Failed to get profile'
     }));
   }
 }
 
-module.exports = { 
-  register, 
-  login, 
-  logout, 
-  getProfile 
+async function changePassword(req, res) {
+  log.info('POST /api/auth/change-password');
+  
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+    
+    if (!token) {
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'No token provided'
+      }));
+      return;
+    }
+    
+    const payload = authService.verifyToken(token);
+    if (!payload) {
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Invalid or expired token'
+      }));
+      return;
+    }
+    
+    const { currentPassword, newPassword } = req.body;
+    
+    if (!currentPassword || !newPassword) {
+      res.writeHead(400, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Current password and new password are required'
+      }));
+      return;
+    }
+    
+    if (newPassword.length < 6) {
+      res.writeHead(400, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'New password must be at least 6 characters long'
+      }));
+      return;
+    }
+    
+    await authService.changePassword(payload.userId, currentPassword, newPassword);
+    
+    res.writeHead(200, { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      success: true,
+      message: 'Password changed successfully'
+    }));
+  } catch (error) {
+    log.error(`Change password error: ${error.message}`);
+    
+    let statusCode = 500;
+    let errorMessage = 'Failed to change password';
+    
+    if (error.message.includes('incorrect')) {
+      statusCode = 400;
+      errorMessage = error.message;
+    }
+    
+    res.writeHead(statusCode, { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      success: false,
+      error: errorMessage
+    }));
+  }
+}
+
+async function updateProfile(req, res) {
+  log.info('PUT /api/auth/profile');
+  
+  try {
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
+    
+    if (!token) {
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'No token provided'
+      }));
+      return;
+    }
+    
+    const payload = authService.verifyToken(token);
+    if (!payload) {
+      res.writeHead(401, { 
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: false,
+        error: 'Invalid or expired token'
+      }));
+      return;
+    }
+    
+    const profileData = req.body;
+    
+    await authService.updateProfile(payload.userId, profileData);
+    
+    res.writeHead(200, { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      success: true,
+      message: 'Profile updated successfully'
+    }));
+  } catch (error) {
+    log.error(`Update profile error: ${error.message}`);
+    res.writeHead(500, { 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      success: false,
+      error: 'Failed to update profile'
+    }));
+  }
+}
+
+module.exports = {
+  register,
+  login,
+  logout,
+  getProfile,
+  changePassword,
+  updateProfile
 }; 

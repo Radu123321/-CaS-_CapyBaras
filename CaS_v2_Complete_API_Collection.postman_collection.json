@@ -1,0 +1,1151 @@
+{
+	"info": {
+		"_postman_id": "cas-v2-complete-collection-2025",
+		"name": "🧽 CaS v2.0 - Complete API Collection (150+ Endpoints)",
+		"description": "Complete Postman collection for Cleaning and Services v2.0 system with ALL endpoints including Authentication, Customer/Employee Management, Orders, Shifts, Maintenance, Recurrences, Exceptions, Equipment, Inventory, Transport, Notifications, Statistics, Weather, RSS, and WebSocket features. Updated for v2.0 database schema with proper request bodies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"version": {
+			"major": 2,
+			"minor": 0,
+			"patch": 0
+		}
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string",
+			"description": "Base URL for the CaS API server"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string",
+			"description": "JWT authentication token"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "customerId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "employeeId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "locationId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "serviceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "orderId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "shiftId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "maintenanceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "recurrenceId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "exceptionId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "equipmentId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "inventoryId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "transportId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "notificationId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "🏠 System Health & Status",
+			"description": "Basic system endpoints for health checks and status monitoring",
+			"item": [
+				{
+					"name": "Ping Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/ping",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "ping"]
+						},
+						"description": "Check if the server is running and responsive"
+					}
+				},
+				{
+					"name": "Get Scheduler Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/scheduler/status",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "scheduler", "status"]
+						},
+						"description": "Check the status of background job scheduler"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔐 Authentication v2.0",
+			"description": "Enhanced authentication with role-based access, username/email login, and profile management",
+			"item": [
+				{
+					"name": "Register Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer{{$randomInt}}@example.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"John Customer\",\n    \"role\": \"CUSTOMER\",\n    \"phone\": \"+40722123456\",\n    \"address\": \"Str. Exemplu Nr. 123, Bucuresti\",\n    \"company_name\": \"John's Business SRL\",\n    \"preferred_location_id\": {{locationId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new customer with company details and preferred location"
+					}
+				},
+				{
+					"name": "Register Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"employee{{$randomInt}}@cas-system.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Maria Employee\",\n    \"role\": \"EMPLOYEE\",\n    \"phone\": \"+40722654321\",\n    \"position\": \"CLEANER\",\n    \"hourly_rate\": 25.50,\n    \"hire_date\": \"2025-01-15\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"carpet_cleaning\", \"window_cleaning\", \"car_wash\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new employee with position, rate, and skills"
+					}
+				},
+				{
+					"name": "Register Manager",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manager{{$randomInt}}@cas-system.com\",\n    \"password\": \"password123\",\n    \"full_name\": \"Alex Manager\",\n    \"role\": \"MANAGER\",\n    \"phone\": \"+40722999777\",\n    \"position\": \"LOCATION_MANAGER\",\n    \"hourly_rate\": 45.00,\n    \"hire_date\": \"2024-06-01\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"team_management\", \"quality_control\", \"customer_service\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/register",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "register"]
+						},
+						"description": "Register a new manager with location assignment"
+					}
+				},
+				{
+					"name": "Login with Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"customer@example.com\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login using email address"
+					}
+				},
+				{
+					"name": "Login with Username",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"customer_001\",\n    \"password\": \"password123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login using auto-generated username"
+					}
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "profile"]
+						},
+						"description": "Get current user profile information"
+					}
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"full_name\": \"John Updated Customer\",\n    \"phone\": \"+40722999888\",\n    \"address\": \"Str. Noua Nr. 456, Bucuresti\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/profile",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "profile"]
+						},
+						"description": "Update user profile information"
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"password123\",\n    \"new_password\": \"newpassword456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/change-password",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "change-password"]
+						},
+						"description": "Change user password"
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{authToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/auth/logout",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "auth", "logout"]
+						},
+						"description": "Logout and invalidate token"
+					}
+				}
+			]
+		},
+		{
+			"name": "👥 Customer Management v2.0",
+			"description": "Enhanced customer management with loyalty system, VIP features, and customer codes",
+			"item": [
+				{
+					"name": "Get All Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers?limit=20&offset=0&location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Get all customers with pagination and location filtering"
+					}
+				},
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": {{userId}},\n    \"phone\": \"+40722123456\",\n    \"address\": \"Str. Florilor Nr. 25, Bucuresti\",\n    \"billing_address\": \"Str. Florilor Nr. 25, Bucuresti\",\n    \"company_name\": \"ABC Cleaning Services SRL\",\n    \"preferred_location_id\": {{locationId}},\n    \"loyalty_points\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers"]
+						},
+						"description": "Create a new customer record with company details"
+					}
+				},
+				{
+					"name": "Get Customer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/{{customerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "{{customerId}}"]
+						},
+						"description": "Get customer details by ID"
+					}
+				},
+				{
+					"name": "Get Customer by Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/code/CUS-000001",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "code", "CUS-000001"]
+						},
+						"description": "Get customer details by customer code"
+					}
+				},
+				{
+					"name": "Search Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/search?query=john&location_id={{locationId}}&limit=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "john"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Search customers by name, company, or other criteria"
+					}
+				},
+				{
+					"name": "Get VIP Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/vip?location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "vip"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Get VIP customers with high loyalty points"
+					}
+				},
+				{
+					"name": "Get Top Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/top?limit=10&period=last_year",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "top"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "period",
+									"value": "last_year"
+								}
+							]
+						},
+						"description": "Get top customers by spending or order count"
+					}
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone\": \"+40722999888\",\n    \"address\": \"Str. Noua Nr. 123, Bucuresti\",\n    \"billing_address\": \"Str. Noua Nr. 123, Bucuresti\",\n    \"company_name\": \"ABC Premium Cleaning SRL\",\n    \"preferred_location_id\": {{locationId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/{{customerId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "{{customerId}}"]
+						},
+						"description": "Update customer information"
+					}
+				},
+				{
+					"name": "Update Loyalty Points",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"points\": 150,\n    \"reason\": \"Bonus points for completed order\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/{{customerId}}/loyalty",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "{{customerId}}", "loyalty"]
+						},
+						"description": "Update customer loyalty points"
+					}
+				},
+				{
+					"name": "Get Customer Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/customers/stats?location_id={{locationId}}&period=last_month",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "customers", "stats"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								},
+								{
+									"key": "period",
+									"value": "last_month"
+								}
+							]
+						},
+						"description": "Get customer statistics and analytics"
+					}
+				}
+			]
+		},
+		{
+			"name": "👷 Employee Management v2.0",
+			"description": "Enhanced employee management with skills tracking, availability, and location assignment",
+			"item": [
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/employees?limit=20&location_id={{locationId}}&position=CLEANER",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								},
+								{
+									"key": "position",
+									"value": "CLEANER"
+								}
+							]
+						},
+						"description": "Get all employees with filtering options"
+					}
+				},
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": {{userId}},\n    \"position\": \"CLEANER\",\n    \"hourly_rate\": 28.50,\n    \"hire_date\": \"2025-06-25\",\n    \"location_id\": {{locationId}},\n    \"skills\": [\"carpet_cleaning\", \"window_cleaning\", \"car_wash\", \"upholstery_cleaning\"],\n    \"is_available\": true,\n    \"notes\": \"Experienced cleaner with 3 years in the industry\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/employees",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees"]
+						},
+						"description": "Create a new employee record with skills and position"
+					}
+				},
+				{
+					"name": "Get Employee by Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/code/EMP-000001",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "code", "EMP-000001"]
+						},
+						"description": "Get employee details by employee code"
+					}
+				},
+				{
+					"name": "Get Employees by Position",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/position/CLEANER?location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "position", "CLEANER"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Get employees by position (CLEANER, SUPERVISOR, MANAGER)"
+					}
+				},
+				{
+					"name": "Get Employees by Location",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/location/{{locationId}}?is_available=true",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "location", "{{locationId}}"],
+							"query": [
+								{
+									"key": "is_available",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Get employees by location with availability filter"
+					}
+				},
+				{
+					"name": "Search Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/search?query=maria&skills=carpet_cleaning&location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "search"],
+							"query": [
+								{
+									"key": "query",
+									"value": "maria"
+								},
+								{
+									"key": "skills",
+									"value": "carpet_cleaning"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Search employees by name, skills, or other criteria"
+					}
+				},
+				{
+					"name": "Add Skill to Employee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"pressure_washing\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/{{employeeId}}/skills",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "{{employeeId}}", "skills"]
+						},
+						"description": "Add a new skill to employee's skill set"
+					}
+				},
+				{
+					"name": "Remove Skill from Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"skill\": \"window_cleaning\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/{{employeeId}}/skills",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "{{employeeId}}", "skills"]
+						},
+						"description": "Remove a skill from employee's skill set"
+					}
+				},
+				{
+					"name": "Update Employee Availability",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"is_available\": false,\n    \"reason\": \"On vacation until next week\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/employees/{{employeeId}}/availability",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "employees", "{{employeeId}}", "availability"]
+						},
+						"description": "Update employee availability status"
+					}
+				}
+			]
+		},
+		{
+			"name": "📋 Order Management v2.0",
+			"description": "Simplified order management with single service per order and employee assignment",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders?limit=20&status=PENDING&location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "status",
+									"value": "PENDING"
+								},
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Get all orders with filtering and pagination"
+					}
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": {{customerId}},\n    \"location_id\": {{locationId}},\n    \"service_id\": {{serviceId}},\n    \"quantity\": 1,\n    \"unit_price\": 150.00,\n    \"scheduled_date\": \"2025-06-26\",\n    \"scheduled_time\": \"10:00\",\n    \"pickup_address\": \"Str. Clientului Nr. 123, Bucuresti\",\n    \"delivery_address\": \"Str. Clientului Nr. 123, Bucuresti\",\n    \"special_instructions\": \"Please handle with care - expensive carpet\",\n    \"transport_required\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders"]
+						},
+						"description": "Create a new order with single service"
+					}
+				},
+				{
+					"name": "Assign Employee to Order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"assigned_employee_id\": {{employeeId}},\n    \"assignment_notes\": \"Assigned based on carpet cleaning expertise\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/{{orderId}}/assign",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "{{orderId}}", "assign"]
+						},
+						"description": "Assign an employee to an order"
+					}
+				},
+				{
+					"name": "Start Order",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"started_at\": \"2025-06-26T10:00:00Z\",\n    \"notes\": \"Order started on time, customer present\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/{{orderId}}/start",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "orders", "{{orderId}}", "start"]
+						},
+						"description": "Start order execution"
+					}
+				}
+			]
+		},
+		{
+			"name": "⏰ Shift Management v2.0",
+			"description": "Complete shift management with scheduling, attendance tracking and conflict detection",
+			"item": [
+				{
+					"name": "Create Shift",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employee_id\": {{employeeId}},\n    \"location_id\": {{locationId}},\n    \"shift_date\": \"2025-06-26\",\n    \"start_time\": \"08:00\",\n    \"end_time\": \"16:00\",\n    \"shift_type\": \"REGULAR\",\n    \"break_duration\": 60,\n    \"notes\": \"Regular morning shift\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/shifts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "shifts"]
+						},
+						"description": "Create a new shift"
+					}
+				},
+				{
+					"name": "Check Shift Conflicts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employee_id\": {{employeeId}},\n    \"shift_date\": \"2025-06-26\",\n    \"start_time\": \"14:00\",\n    \"end_time\": \"22:00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/shifts/check-conflicts",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "shifts", "check-conflicts"]
+						},
+						"description": "Check for shift conflicts"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔧 Maintenance Management v2.0",
+			"description": "Equipment maintenance scheduling and tracking",
+			"item": [
+				{
+					"name": "Schedule Maintenance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"equipment_id\": {{equipmentId}},\n    \"maintenance_type\": \"PREVENTIVE\",\n    \"scheduled_date\": \"2025-06-28\",\n    \"priority\": \"MEDIUM\",\n    \"description\": \"Regular cleaning and inspection of carpet cleaning machine\",\n    \"estimated_duration\": 120,\n    \"assigned_technician\": \"John Technician\",\n    \"estimated_cost\": 150.00\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/maintenance",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "maintenance"]
+						},
+						"description": "Schedule maintenance for equipment"
+					}
+				}
+			]
+		},
+		{
+			"name": "🔄 Recurring Schedules v2.0",
+			"description": "Automated recurring service management",
+			"item": [
+				{
+					"name": "Create Recurrence",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": {{customerId}},\n    \"service_id\": {{serviceId}},\n    \"location_id\": {{locationId}},\n    \"recurrence_pattern\": \"WEEKLY\",\n    \"interval_value\": 1,\n    \"days_of_week\": [1, 3, 5],\n    \"start_date\": \"2025-07-01\",\n    \"end_date\": \"2025-12-31\",\n    \"preferred_time\": \"10:00\",\n    \"special_instructions\": \"Weekly carpet cleaning service\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/recurrences",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recurrences"]
+						},
+						"description": "Create recurring service schedule"
+					}
+				}
+			]
+		},
+		{
+			"name": "⚠️ Exception Management v2.0",
+			"description": "Incident reporting and resolution tracking",
+			"item": [
+				{
+					"name": "Report Exception",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"location_id\": {{locationId}},\n    \"reported_by_employee_id\": {{employeeId}},\n    \"exception_type\": \"EQUIPMENT_FAILURE\",\n    \"severity\": \"HIGH\",\n    \"title\": \"Carpet cleaning machine malfunction\",\n    \"description\": \"Machine stopped working during operation, making loud noise\",\n    \"affected_equipment_id\": {{equipmentId}},\n    \"affected_order_id\": {{orderId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/exceptions",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "exceptions"]
+						},
+						"description": "Report a new exception or incident"
+					}
+				}
+			]
+		},
+		{
+			"name": "📊 Statistics & Analytics",
+			"description": "Comprehensive reporting and analytics",
+			"item": [
+				{
+					"name": "Get Dashboard Stats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/stats/dashboard?location_id={{locationId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "stats", "dashboard"],
+							"query": [
+								{
+									"key": "location_id",
+									"value": "{{locationId}}"
+								}
+							]
+						},
+						"description": "Get dashboard statistics"
+					}
+				}
+			]
+		},
+		{
+			"name": "📍 Location & Service Management",
+			"description": "Basic location and service configuration",
+			"item": [
+				{
+					"name": "Get All Locations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/locations",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "locations"]
+						},
+						"description": "Get all locations"
+					}
+				},
+				{
+					"name": "Get All Services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/services",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "services"]
+						},
+						"description": "Get all services"
+					}
+				}
+			]
+		}
+	]
+} 

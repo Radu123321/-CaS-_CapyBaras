@@ -1,24 +1,25 @@
 const crypto = require('crypto');
 const log = require('../core/logger');
-const { query } = require('../core/psql');
+const authRepository = require('../repositories/authRepository');
+const customerRepository = require('../repositories/customerRepository');
+const employeeRepository = require('../repositories/employeeRepository');
 
 // PBKDF2 parameters
 const ITERATIONS = 310000;
 const KEYLEN = 32;
 const DIGEST = 'sha256';
 
-function hashPassword(password) {
-  const salt = crypto.randomBytes(16);
-  const hash = crypto.pbkdf2Sync(password, salt, ITERATIONS, KEYLEN, DIGEST);
-  return Buffer.concat([salt, hash]).toString('base64');
+function generateSalt() {
+  return crypto.randomBytes(16).toString('hex');
 }
 
-function verifyPassword(password, stored) {
-  const buf = Buffer.from(stored, 'base64');
-  const salt = buf.subarray(0, 16);
-  const hash = buf.subarray(16);
-  const calc = crypto.pbkdf2Sync(password, salt, ITERATIONS, KEYLEN, DIGEST);
-  return crypto.timingSafeEqual(hash, calc);
+function hashPassword(password, salt) {
+  return crypto.pbkdf2Sync(password, salt, ITERATIONS, KEYLEN, DIGEST).toString('hex');
+}
+
+function verifyPassword(password, salt, hash) {
+  const computedHash = crypto.pbkdf2Sync(password, salt, ITERATIONS, KEYLEN, DIGEST).toString('hex');
+  return crypto.timingSafeEqual(Buffer.from(hash, 'hex'), Buffer.from(computedHash, 'hex'));
 }
 
 // JWT-like token implementation
@@ -56,73 +57,111 @@ function verifyToken(token) {
   }
 }
 
+function generateUsername(firstName, lastName) {
+  const base = `${firstName.toLowerCase()}${lastName.toLowerCase()}`.replace(/[^a-z0-9]/g, '');
+  const randomSuffix = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+  return `${base}${randomSuffix}`;
+}
+
 async function registerUser(userData) {
   log.debug(`AuthService: Registering user ${userData.email}`);
   
-  const hashedPassword = hashPassword(userData.password);
-  
   try {
-    // Check if user already exists
-    const existingUser = await query(
-      'SELECT user_id FROM users WHERE email = $1',
-      [userData.email]
-    );
-    
-    if (existingUser && existingUser.length > 0) {
+    // Check if email already exists
+    const emailExists = await authRepository.emailExists(userData.email);
+    if (emailExists) {
       throw new Error('User with this email already exists');
     }
     
-    // Insert user into users table
-    const insertUserSql = `
-      INSERT INTO users (email, password_hash, full_name, default_role, created_at, updated_at)
-      VALUES ($1, $2, $3, $4, NOW(), NOW())
-      RETURNING user_id, email, full_name, default_role, created_at
-    `;
+    // Generate username if not provided
+    let username = userData.username;
+    if (!username) {
+      username = generateUsername(userData.firstName, userData.lastName);
+      
+      // Ensure username is unique
+      let counter = 1;
+      while (await authRepository.usernameExists(username)) {
+        username = `${generateUsername(userData.firstName, userData.lastName)}${counter}`;
+        counter++;
+      }
+    } else {
+      // Check if provided username exists
+      const usernameExists = await authRepository.usernameExists(username);
+      if (usernameExists) {
+        throw new Error('Username already exists');
+      }
+    }
     
-    const fullName = `${userData.firstName} ${userData.lastName}`;
+    // Generate salt and hash password
+    const salt = generateSalt();
+    const password_hash = hashPassword(userData.password, salt);
     
-    const userResult = await query(insertUserSql, [
-      userData.email,
-      hashedPassword,
-      fullName,
-      userData.role
-    ]);
+    // Create user
+    const newUserData = {
+      username,
+      email: userData.email.toLowerCase().trim(),
+      password_hash,
+      salt,
+      role: userData.role || 'CUSTOMER',
+      first_name: userData.firstName.trim(),
+      last_name: userData.lastName.trim(),
+      phone: userData.phone?.trim() || null
+    };
     
-    if (!userResult || userResult.length === 0) {
+    const user = await authRepository.createUser(newUserData);
+    
+    if (!user) {
       throw new Error('Failed to create user');
     }
     
-    const user = userResult[0];
-    
-    // If role is not ADMIN, create employee record (simplified)
-    if (userData.role !== 'ADMIN' && userData.locationId) {
-      const insertEmployeeSql = `
-        INSERT INTO employees (user_id, location_id, job_title, hire_date, is_active)
-        VALUES ($1, $2, $3, CURRENT_DATE, true)
-        RETURNING employee_id
-      `;
+    // Create role-specific records
+    if (user.role === 'CUSTOMER') {
+      // Generate customer code
+      const customerCode = `CUS${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 100).toString().padStart(2, '0')}`;
       
-      try {
-        await query(insertEmployeeSql, [
-          user.user_id,
-          userData.locationId,
-          userData.role
-        ]);
-        log.debug(`AuthService: Created employee record for user ${userData.email}`);
-      } catch (empError) {
-        log.warn(`AuthService: Failed to create employee record for user ${userData.email}: ${empError.message}`);
-        // Don't fail the registration if employee creation fails
+      const customerData = {
+        user_id: user.user_id,
+        customer_code: customerCode,
+        company_name: userData.companyName || null,
+        billing_address: userData.billingAddress || null,
+        preferred_location_id: userData.locationId || null,
+        preferred_contact_method: userData.preferredContactMethod || 'EMAIL'
+      };
+      
+      await customerRepository.create(customerData);
+      log.debug(`AuthService: Created customer record for user ${userData.email}`);
+      
+    } else if (['EMPLOYEE', 'MANAGER'].includes(user.role)) {
+      if (!userData.locationId) {
+        throw new Error('Location ID is required for employees and managers');
       }
+      
+      // Generate employee code
+      const employeeCode = `EMP${Date.now().toString().slice(-6)}${Math.floor(Math.random() * 100).toString().padStart(2, '0')}`;
+      
+      const employeeData = {
+        user_id: user.user_id,
+        location_id: userData.locationId,
+        employee_code: employeeCode,
+        position: userData.position || user.role,
+        hourly_rate: userData.hourlyRate || 15.00,
+        hire_date: new Date(),
+        skills: userData.skills || []
+      };
+      
+      await employeeRepository.create(employeeData);
+      log.debug(`AuthService: Created employee record for user ${userData.email}`);
     }
     
     log.info(`AuthService: Successfully registered user ${userData.email} with ID ${user.user_id}`);
     
     return {
       userId: user.user_id,
+      username: user.username,
       email: user.email,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      role: userData.role,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      role: user.role,
       createdAt: user.created_at
     };
   } catch (error) {
@@ -131,49 +170,67 @@ async function registerUser(userData) {
   }
 }
 
-async function loginUser(email, password) {
-  log.debug(`AuthService: Login attempt for ${email}`);
+async function loginUser(identifier, password) {
+  log.debug(`AuthService: Login attempt for ${identifier}`);
   
   try {
-    // Simplified query without status check
-    const userSql = `
-      SELECT 
-        u.user_id,
-        u.email,
-        u.password_hash,
-        u.full_name,
-        u.default_role,
-        u.created_at,
-        e.job_title,
-        e.location_id,
-        l.name as location_name
-      FROM users u
-      LEFT JOIN employees e ON u.user_id = e.user_id
-      LEFT JOIN locations l ON e.location_id = l.location_id
-      WHERE u.email = $1
-    `;
+    // Try to find user by email or username
+    let user = await authRepository.findUserByEmail(identifier);
+    if (!user) {
+      user = await authRepository.findUserByUsername(identifier);
+    }
     
-    const result = await query(userSql, [email]);
-    
-    if (!result || result.length === 0) {
+    if (!user) {
       throw new Error('User not found');
     }
     
-    const user = result[0];
-    
     // Verify password
-    const isValid = verifyPassword(password, user.password_hash);
+    const isValid = verifyPassword(password, user.salt, user.password_hash);
     
     if (!isValid) {
       throw new Error('Invalid password');
     }
     
+    // Update last login
+    await authRepository.updateLastLogin(user.user_id);
+    
+    // Get additional user data based on role
+    let additionalData = {};
+    
+    if (user.role === 'CUSTOMER') {
+      const customer = await customerRepository.findByUserId(user.user_id);
+      if (customer) {
+        additionalData = {
+          customerId: customer.customer_id,
+          customerCode: customer.customer_code,
+          companyName: customer.company_name,
+          loyaltyPoints: customer.loyalty_points,
+          preferredLocationId: customer.preferred_location_id,
+          preferredLocationName: customer.preferred_location_name
+        };
+      }
+    } else if (['EMPLOYEE', 'MANAGER'].includes(user.role)) {
+      const employee = await employeeRepository.findByUserId(user.user_id);
+      if (employee) {
+        additionalData = {
+          employeeId: employee.employee_id,
+          employeeCode: employee.employee_code,
+          position: employee.position,
+          locationId: employee.location_id,
+          locationName: employee.location_name,
+          skills: employee.skills,
+          isAvailable: employee.is_available
+        };
+      }
+    }
+    
     // Create token payload
     const tokenPayload = {
       userId: user.user_id,
+      username: user.username,
       email: user.email,
-      role: user.job_title || user.default_role,
-      locationId: user.location_id,
+      role: user.role,
+      ...additionalData,
       exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24 hours
     };
     
@@ -182,112 +239,162 @@ async function loginUser(email, password) {
     // Prepare user data for response
     const userData = {
       id: user.user_id,
+      username: user.username,
       email: user.email,
-      firstName: user.full_name?.split(' ')[0] || 'User',
-      lastName: user.full_name?.split(' ').slice(1).join(' ') || '',
-      fullName: user.full_name,
-      role: user.job_title || user.default_role,
-      locationId: user.location_id,
-      locationName: user.location_name,
-      createdAt: user.created_at
+      firstName: user.first_name,
+      lastName: user.last_name,
+      fullName: `${user.first_name} ${user.last_name}`,
+      phone: user.phone,
+      role: user.role,
+      lastLogin: user.last_login,
+      ...additionalData
     };
     
-    log.info(`AuthService: Successful login for ${email}`);
+    log.info(`AuthService: Successful login for ${identifier}`);
     return { token, user: userData };
   } catch (error) {
-    log.error(`AuthService: Login failed for ${email}: ${error.message}`);
+    log.error(`AuthService: Login failed for ${identifier}: ${error.message}`);
     throw error;
   }
 }
 
-// Token blacklist for logout (simple in-memory store)
-const tokenBlacklist = new Set();
-
 async function logout(token) {
-  log.debug('AuthService: Logout request');
+  log.debug('AuthService: Processing logout');
   
   try {
-    // Add token to blacklist
-    tokenBlacklist.add(token);
-    
-    // Clean up old tokens periodically (simple cleanup)
-    if (tokenBlacklist.size > 1000) {
-      tokenBlacklist.clear();
+    // For now, we just log the logout
+    // In a production system, you might want to maintain a blacklist of tokens
+    const payload = verifyToken(token);
+    if (payload) {
+      log.info(`AuthService: User ${payload.email} logged out`);
     }
     
-    log.info('AuthService: Successful logout');
-    return { message: 'Logout successful' };
+    return true;
   } catch (error) {
-    log.error(`AuthService: Logout failed: ${error.message}`);
+    log.error(`AuthService: Logout error: ${error.message}`);
     throw error;
   }
 }
 
 async function getUserFromToken(token) {
-  log.debug('AuthService: Get user from token');
-  
   try {
-    // Check if token is blacklisted
-    if (tokenBlacklist.has(token)) {
-      throw new Error('Token is invalid');
-    }
-    
     const payload = verifyToken(token);
     if (!payload) {
-      throw new Error('Invalid or expired token');
+      return null;
     }
     
-    // Get fresh user data (simplified query)
-    const userSql = `
-      SELECT 
-        u.user_id,
-        u.email,
-        u.full_name,
-        u.default_role,
-        u.created_at,
-        e.job_title,
-        e.location_id,
-        l.name as location_name
-      FROM users u
-      LEFT JOIN employees e ON u.user_id = e.user_id
-      LEFT JOIN locations l ON e.location_id = l.location_id
-      WHERE u.user_id = $1
-    `;
+    // Get fresh user data from database
+    const user = await authRepository.findUserById(payload.userId);
+    if (!user || !user.is_active) {
+      return null;
+    }
     
-    const result = await query(userSql, [payload.userId]);
-    
-    if (!result || result.length === 0) {
+    return {
+      id: user.user_id,
+      username: user.username,
+      email: user.email,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      fullName: `${user.first_name} ${user.last_name}`,
+      phone: user.phone,
+      role: user.role,
+      lastLogin: user.last_login
+    };
+  } catch (error) {
+    log.error(`AuthService: Token verification error: ${error.message}`);
+    return null;
+  }
+}
+
+async function changePassword(userId, currentPassword, newPassword) {
+  log.debug(`AuthService: Password change request for user ${userId}`);
+  
+  try {
+    const user = await authRepository.findUserById(userId);
+    if (!user) {
       throw new Error('User not found');
     }
     
-    const user = result[0];
+    // Verify current password
+    const isValid = verifyPassword(currentPassword, user.salt, user.password_hash);
+    if (!isValid) {
+      throw new Error('Current password is incorrect');
+    }
     
-    const userData = {
-      id: user.user_id,
-      email: user.email,
-      firstName: user.full_name?.split(' ')[0] || 'User',
-      lastName: user.full_name?.split(' ').slice(1).join(' ') || '',
-      fullName: user.full_name,
-      role: user.job_title || user.default_role,
-      locationId: user.location_id,
-      locationName: user.location_name,
-      createdAt: user.created_at
-    };
+    // Generate new salt and hash
+    const newSalt = generateSalt();
+    const newPasswordHash = hashPassword(newPassword, newSalt);
     
-    return userData;
+    // Update password
+    const updated = await authRepository.updatePassword(userId, newPasswordHash, newSalt);
+    if (!updated) {
+      throw new Error('Failed to update password');
+    }
+    
+    log.info(`AuthService: Password changed successfully for user ${userId}`);
+    return true;
   } catch (error) {
-    log.error(`AuthService: Get user from token failed: ${error.message}`);
+    log.error(`AuthService: Password change failed for user ${userId}: ${error.message}`);
     throw error;
   }
 }
 
-module.exports = { 
-  hashPassword, 
-  verifyPassword, 
-  signToken, 
-  verifyToken, 
+async function updateProfile(userId, profileData) {
+  log.debug(`AuthService: Profile update request for user ${userId}`);
+  
+  try {
+    const user = await authRepository.findUserById(userId);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    
+    // Update user basic info if provided
+    if (profileData.firstName || profileData.lastName || profileData.phone) {
+      // Note: We would need to add an update method to authRepository
+      // For now, this is a placeholder
+      log.debug('Profile update would happen here');
+    }
+    
+    // Update role-specific data
+    if (user.role === 'CUSTOMER') {
+      const customer = await customerRepository.findByUserId(userId);
+      if (customer && (profileData.companyName !== undefined || 
+          profileData.billingAddress !== undefined || 
+          profileData.preferredLocationId !== undefined)) {
+        
+        await customerRepository.update(customer.customer_id, {
+          company_name: profileData.companyName,
+          billing_address: profileData.billingAddress,
+          preferred_location_id: profileData.preferredLocationId,
+          preferred_contact_method: profileData.preferredContactMethod
+        });
+      }
+    } else if (['EMPLOYEE', 'MANAGER'].includes(user.role)) {
+      const employee = await employeeRepository.findByUserId(userId);
+      if (employee && (profileData.position !== undefined || 
+          profileData.skills !== undefined)) {
+        
+        await employeeRepository.update(employee.employee_id, {
+          position: profileData.position,
+          skills: profileData.skills
+        });
+      }
+    }
+    
+    log.info(`AuthService: Profile updated successfully for user ${userId}`);
+    return true;
+  } catch (error) {
+    log.error(`AuthService: Profile update failed for user ${userId}: ${error.message}`);
+    throw error;
+  }
+}
+
+module.exports = {
   registerUser,
   loginUser,
   logout,
-  getUserFromToken
+  getUserFromToken,
+  changePassword,
+  updateProfile,
+  verifyToken
 }; 

@@ -9,14 +9,13 @@ class StatsRepository {
       let sql = `
         SELECT 
           DATE_TRUNC($1, o.created_at) as period,
-          COUNT(o.id) as order_count,
-          SUM(s.price) as total_revenue,
-          AVG(s.price) as avg_order_value,
+          COUNT(o.order_id) as order_count,
+          SUM(o.total_amount) as total_revenue,
+          AVG(o.total_amount) as avg_order_value,
           l.name as location_name,
-          l.id as location_id
+          l.location_id as location_id
         FROM orders o
-        JOIN services s ON o.service_id = s.id
-        JOIN locations l ON o.location_id = l.id
+        JOIN locations l ON o.location_id = l.location_id
       `;
       
       const params = [period];
@@ -42,12 +41,12 @@ class StatsRepository {
       }
       
       sql += `
-        GROUP BY DATE_TRUNC($1, o.created_at), l.id, l.name
+        GROUP BY DATE_TRUNC($1, o.created_at), l.location_id, l.name
         ORDER BY period DESC, l.name
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting orders per period: ${error.message}`);
       throw error;
@@ -59,11 +58,11 @@ class StatsRepository {
       let sql = `
         SELECT 
           o.status,
-          COUNT(o.id) as count,
-          ROUND(COUNT(o.id) * 100.0 / SUM(COUNT(o.id)) OVER(), 2) as percentage,
+          COUNT(o.order_id) as count,
+          ROUND(COUNT(o.order_id) * 100.0 / SUM(COUNT(o.order_id)) OVER(), 2) as percentage,
           l.name as location_name
         FROM orders o
-        JOIN locations l ON o.location_id = l.id
+        JOIN locations l ON o.location_id = l.location_id
         WHERE o.created_at >= NOW() - INTERVAL '1 ${period}'
       `;
       
@@ -74,12 +73,12 @@ class StatsRepository {
       }
       
       sql += `
-        GROUP BY o.status, l.id, l.name
+        GROUP BY o.status, l.location_id, l.name
         ORDER BY count DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting orders by status: ${error.message}`);
       throw error;
@@ -94,31 +93,30 @@ class StatsRepository {
         SELECT 
           r.name as resource_name,
           r.type as resource_type,
-          SUM(it.quantity_used) as total_consumed,
-          AVG(it.quantity_used) as avg_per_transaction,
-          COUNT(it.id) as transaction_count,
+          SUM(rc.quantity_consumed) as total_consumed,
+          AVG(rc.quantity_consumed) as avg_per_transaction,
+          COUNT(rc.consumption_id) as transaction_count,
           l.name as location_name,
-          l.id as location_id
-        FROM inventory_transactions it
-        JOIN resources r ON it.resource_id = r.id
-        JOIN locations l ON it.location_id = l.id
-        WHERE it.transaction_type = 'CONSUME'
-          AND it.created_at >= NOW() - INTERVAL '1 ${period}'
+          l.location_id as location_id
+        FROM resource_consumption rc
+        JOIN resources r ON rc.resource_id = r.resource_id
+        JOIN locations l ON rc.location_id = l.location_id
+        WHERE rc.consumption_date >= NOW() - INTERVAL '1 ${period}'
       `;
       
       const params = [];
       if (locationId) {
-        sql += ' AND it.location_id = $1';
+        sql += ' AND rc.location_id = $1';
         params.push(locationId);
       }
       
       sql += `
-        GROUP BY r.id, r.name, r.type, l.id, l.name
+        GROUP BY r.resource_id, r.name, r.type, l.location_id, l.name
         ORDER BY total_consumed DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting resource consumption: ${error.message}`);
       throw error;
@@ -131,34 +129,34 @@ class StatsRepository {
         SELECT 
           r.name as resource_name,
           r.type as resource_type,
-          COALESCE(SUM(it.quantity_used), 0) as total_consumed,
-          COALESCE(SUM(CASE WHEN o.status = 'COMPLETED' THEN it.quantity_used ELSE 0 END), 0) as efficient_usage,
+          COALESCE(SUM(ord.quantity_used), 0) as total_consumed,
+          COALESCE(SUM(CASE WHEN o.status = 'COMPLETED' THEN ord.quantity_used ELSE 0 END), 0) as efficient_usage,
           CASE 
-            WHEN SUM(it.quantity_used) > 0 THEN 
-              ROUND(SUM(CASE WHEN o.status = 'COMPLETED' THEN it.quantity_used ELSE 0 END) * 100.0 / SUM(it.quantity_used), 2)
+            WHEN SUM(ord.quantity_used) > 0 THEN 
+              ROUND(SUM(CASE WHEN o.status = 'COMPLETED' THEN ord.quantity_used ELSE 0 END) * 100.0 / SUM(ord.quantity_used), 2)
             ELSE 0 
           END as efficiency_percentage,
           l.name as location_name
         FROM resources r
-        LEFT JOIN inventory_transactions it ON r.id = it.resource_id AND it.transaction_type = 'CONSUME'
-        LEFT JOIN orders o ON it.order_id = o.id
-        LEFT JOIN locations l ON it.location_id = l.id
-        WHERE it.created_at >= NOW() - INTERVAL '1 month' OR it.created_at IS NULL
+        LEFT JOIN order_resources ord ON r.resource_id = ord.resource_id
+        LEFT JOIN orders o ON ord.order_id = o.order_id
+        LEFT JOIN locations l ON o.location_id = l.location_id
+        WHERE o.created_at >= NOW() - INTERVAL '1 month' OR o.created_at IS NULL
       `;
       
       const params = [];
       if (locationId) {
-        sql += ' AND (it.location_id = $1 OR it.location_id IS NULL)';
+        sql += ' AND (o.location_id = $1 OR o.location_id IS NULL)';
         params.push(locationId);
       }
       
       sql += `
-        GROUP BY r.id, r.name, r.type, l.id, l.name
+        GROUP BY r.resource_id, r.name, r.type, l.location_id, l.name
         ORDER BY efficiency_percentage DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting resource efficiency: ${error.message}`);
       throw error;
@@ -175,18 +173,18 @@ class StatsRepository {
           e.type as equipment_type,
           e.status,
           EXTRACT(days FROM (NOW() - e.created_at)) as age_days,
-          COUNT(em.id) as maintenance_count,
-          COALESCE(MAX(em.completed_at), e.created_at) as last_maintenance,
-          EXTRACT(days FROM (NOW() - COALESCE(MAX(em.completed_at), e.created_at))) as days_since_maintenance,
+          COUNT(ms.maintenance_id) as maintenance_count,
+          COALESCE(MAX(ms.completed_at), e.created_at) as last_maintenance,
+          EXTRACT(days FROM (NOW() - COALESCE(MAX(ms.completed_at), e.created_at))) as days_since_maintenance,
           CASE 
             WHEN e.status = 'OPERATIVE' THEN 100
-            WHEN e.status = 'UNDER_MAINTENANCE' THEN 50
+            WHEN e.status = 'MAINTENANCE' THEN 50
             ELSE 0
           END as efficiency_score,
           l.name as location_name
         FROM equipment e
-        JOIN locations l ON e.location_id = l.id
-        LEFT JOIN equipment_maintenance em ON e.id = em.equipment_id AND em.completed_at IS NOT NULL
+        JOIN locations l ON e.location_id = l.location_id
+        LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id AND ms.completed_at IS NOT NULL
       `;
       
       const params = [];
@@ -196,12 +194,12 @@ class StatsRepository {
       }
       
       sql += `
-        GROUP BY e.id, e.name, e.type, e.status, e.created_at, l.name
+        GROUP BY e.equipment_id, e.name, e.type, e.status, e.created_at, l.name
         ORDER BY efficiency_score DESC, age_days ASC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting equipment efficiency: ${error.message}`);
       throw error;
@@ -212,31 +210,33 @@ class StatsRepository {
     try {
       let sql = `
         SELECT 
-          DATE_TRUNC('${period}', em.created_at) as period,
-          COUNT(em.id) as maintenance_count,
-          COUNT(CASE WHEN em.maintenance_type = 'SCHEDULED' THEN 1 END) as scheduled_count,
-          COUNT(CASE WHEN em.maintenance_type = 'EMERGENCY' THEN 1 END) as emergency_count,
-          AVG(EXTRACT(days FROM (em.completed_at - em.created_at))) as avg_duration_days,
+          DATE_TRUNC($1, ms.scheduled_date) as period,
+          COUNT(ms.maintenance_id) as total_maintenance,
+          COUNT(CASE WHEN ms.status = 'COMPLETED' THEN 1 END) as completed_maintenance,
+          COUNT(CASE WHEN ms.type = 'PREVENTIVE' THEN 1 END) as preventive_count,
+          COUNT(CASE WHEN ms.type = 'CORRECTIVE' THEN 1 END) as corrective_count,
+          COUNT(CASE WHEN ms.type = 'EMERGENCY' THEN 1 END) as emergency_count,
+          AVG(ms.actual_cost) as avg_cost,
           l.name as location_name
-        FROM equipment_maintenance em
-        JOIN equipment e ON em.equipment_id = e.id
-        JOIN locations l ON e.location_id = l.id
-        WHERE em.created_at >= NOW() - INTERVAL '6 months'
+        FROM maintenance_schedules ms
+        JOIN equipment e ON ms.equipment_id = e.equipment_id
+        JOIN locations l ON e.location_id = l.location_id
+        WHERE ms.scheduled_date >= NOW() - INTERVAL '1 ${period}'
       `;
       
-      const params = [];
+      const params = [period];
       if (locationId) {
-        sql += ' AND e.location_id = $1';
+        sql += ' AND e.location_id = $2';
         params.push(locationId);
       }
       
       sql += `
-        GROUP BY DATE_TRUNC('${period}', em.created_at), l.id, l.name
+        GROUP BY DATE_TRUNC($1, ms.scheduled_date), l.location_id, l.name
         ORDER BY period DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting maintenance trends: ${error.message}`);
       throw error;
@@ -249,22 +249,23 @@ class StatsRepository {
     try {
       let sql = `
         SELECT 
-          e.first_name || ' ' || e.last_name as employee_name,
-          e.type as employee_type,
-          COUNT(o.id) as orders_handled,
-          SUM(s.price) as revenue_generated,
-          AVG(s.price) as avg_order_value,
-          COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) as completed_orders,
-          CASE 
-            WHEN COUNT(o.id) > 0 THEN 
-              ROUND(COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) * 100.0 / COUNT(o.id), 2)
-            ELSE 0 
-          END as completion_rate,
+          u.first_name || ' ' || u.last_name as employee_name,
+          e.position,
+          COUNT(o.order_id) as orders_completed,
+          SUM(o.total_amount) as revenue_generated,
+          AVG(EXTRACT(EPOCH FROM (o.actual_end_time - o.actual_start_time))/3600) as avg_hours_per_order,
+          COUNT(es.shift_id) as shifts_worked,
+          SUM(es.total_hours) as total_hours_worked,
           l.name as location_name
         FROM employees e
-        JOIN locations l ON e.location_id = l.id
-        LEFT JOIN orders o ON e.id = o.assigned_employee_id AND o.created_at >= NOW() - INTERVAL '1 ${period}'
-        LEFT JOIN services s ON o.service_id = s.id
+        JOIN users u ON e.user_id = u.user_id
+        JOIN locations l ON e.location_id = l.location_id
+        LEFT JOIN orders o ON e.employee_id = o.assigned_employee_id 
+          AND o.status = 'COMPLETED' 
+          AND o.completed_at >= NOW() - INTERVAL '1 ${period}'
+        LEFT JOIN employee_shifts es ON e.employee_id = es.employee_id 
+          AND es.status = 'COMPLETED'
+          AND es.shift_date >= NOW() - INTERVAL '1 ${period}'
       `;
       
       const params = [];
@@ -274,12 +275,12 @@ class StatsRepository {
       }
       
       sql += `
-        GROUP BY e.id, e.first_name, e.last_name, e.type, l.name
-        ORDER BY revenue_generated DESC NULLS LAST
+        GROUP BY e.employee_id, u.first_name, u.last_name, e.position, l.location_id, l.name
+        ORDER BY orders_completed DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting employee productivity: ${error.message}`);
       throw error;
@@ -292,37 +293,31 @@ class StatsRepository {
     try {
       let sql = `
         SELECT 
-          ws.condition,
-          ws.temperature,
-          ws.humidity,
-          ws.wind_speed,
-          COUNT(o.id) as order_count,
-          AVG(s.price) as avg_order_value,
-          SUM(s.price) as total_revenue,
-          COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) as completed_orders,
-          COUNT(CASE WHEN o.status = 'CANCELLED' THEN 1 END) as cancelled_orders,
+          wc.weather_type,
+          COUNT(o.order_id) as orders_affected,
+          AVG(o.total_amount) as avg_order_value,
+          SUM(o.total_amount) as total_revenue,
           l.name as location_name
-        FROM weather_snapshots ws
-        JOIN locations l ON ws.location_id = l.id
-        LEFT JOIN orders o ON ws.location_id = o.location_id 
-          AND DATE(ws.timestamp) = DATE(o.created_at)
-          AND o.created_at >= NOW() - INTERVAL '1 ${period}'
-        LEFT JOIN services s ON o.service_id = s.id
+        FROM weather_conditions wc
+        JOIN locations l ON wc.location_id = l.location_id
+        LEFT JOIN orders o ON wc.location_id = o.location_id 
+          AND DATE(o.created_at) = wc.date
+        WHERE wc.date >= NOW() - INTERVAL '1 ${period}'
       `;
       
       const params = [];
       if (locationId) {
-        sql += ' WHERE ws.location_id = $1';
+        sql += ' AND wc.location_id = $1';
         params.push(locationId);
       }
       
       sql += `
-        GROUP BY ws.condition, ws.temperature, ws.humidity, ws.wind_speed, l.name
-        ORDER BY order_count DESC
+        GROUP BY wc.weather_type, l.location_id, l.name
+        ORDER BY orders_affected DESC
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting weather impact stats: ${error.message}`);
       throw error;
@@ -336,17 +331,15 @@ class StatsRepository {
       let sql = `
         SELECT 
           s.name as service_name,
-          s.type as service_type,
-          s.price as service_price,
-          COUNT(o.id) as order_count,
-          SUM(s.price) as total_revenue,
-          ROUND(SUM(s.price) * 100.0 / SUM(SUM(s.price)) OVER(), 2) as revenue_percentage,
+          s.category,
+          COUNT(o.order_id) as order_count,
+          SUM(o.total_amount) as total_revenue,
+          AVG(o.total_amount) as avg_order_value,
           l.name as location_name
         FROM services s
-        LEFT JOIN orders o ON s.id = o.service_id 
+        LEFT JOIN orders o ON s.service_id = o.service_id 
           AND o.created_at >= NOW() - INTERVAL '1 ${period}'
-          AND o.status = 'COMPLETED'
-        LEFT JOIN locations l ON o.location_id = l.id
+        LEFT JOIN locations l ON o.location_id = l.location_id
       `;
       
       const params = [];
@@ -356,12 +349,12 @@ class StatsRepository {
       }
       
       sql += `
-        GROUP BY s.id, s.name, s.type, s.price, l.name
+        GROUP BY s.service_id, s.name, s.category, l.location_id, l.name
         ORDER BY total_revenue DESC NULLS LAST
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting revenue by service: ${error.message}`);
       throw error;
@@ -372,53 +365,39 @@ class StatsRepository {
   
   async getDashboardSummary(locationId = null) {
     try {
-      const today = new Date().toISOString().split('T')[0];
-      const thisMonth = new Date();
-      thisMonth.setDate(1);
-      
       let sql = `
         SELECT 
-          -- Today's stats
-          COUNT(CASE WHEN DATE(o.created_at) = $1 THEN 1 END) as orders_today,
-          SUM(CASE WHEN DATE(o.created_at) = $1 AND o.status = 'COMPLETED' THEN s.price ELSE 0 END) as revenue_today,
-          
-          -- This month's stats
-          COUNT(CASE WHEN o.created_at >= $2 THEN 1 END) as orders_this_month,
-          SUM(CASE WHEN o.created_at >= $2 AND o.status = 'COMPLETED' THEN s.price ELSE 0 END) as revenue_this_month,
-          
-          -- Status distribution
+          COUNT(o.order_id) as total_orders,
           COUNT(CASE WHEN o.status = 'PENDING' THEN 1 END) as pending_orders,
-          COUNT(CASE WHEN o.status = 'IN_PROGRESS' THEN 1 END) as in_progress_orders,
+          COUNT(CASE WHEN o.status = 'IN_PROGRESS' THEN 1 END) as active_orders,
           COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) as completed_orders,
-          COUNT(CASE WHEN o.status = 'CANCELLED' THEN 1 END) as cancelled_orders,
-          
-          -- Equipment status
-          COUNT(DISTINCT CASE WHEN e.status = 'OPERATIVE' THEN e.id END) as operative_equipment,
-          COUNT(DISTINCT CASE WHEN e.status = 'OUT_OF_SERVICE' THEN e.id END) as out_of_service_equipment,
-          COUNT(DISTINCT CASE WHEN e.status = 'UNDER_MAINTENANCE' THEN e.id END) as maintenance_equipment,
-          
-          -- Location info
-          l.name as location_name,
-          l.id as location_id
+          COALESCE(SUM(o.total_amount), 0) as total_revenue,
+          COUNT(DISTINCT o.customer_id) as unique_customers,
+          COUNT(DISTINCT e.employee_id) as active_employees,
+          COUNT(DISTINCT eq.equipment_id) as total_equipment,
+          COUNT(CASE WHEN eq.status = 'OPERATIVE' THEN 1 END) as operative_equipment,
+          l.name as location_name
         FROM locations l
-        LEFT JOIN orders o ON l.id = o.location_id
-        LEFT JOIN services s ON o.service_id = s.id
-        LEFT JOIN equipment e ON l.id = e.location_id
+        LEFT JOIN orders o ON l.location_id = o.location_id 
+          AND o.created_at >= CURRENT_DATE - INTERVAL '30 days'
+        LEFT JOIN employees e ON l.location_id = e.location_id 
+          AND e.is_available = true
+        LEFT JOIN equipment eq ON l.location_id = eq.location_id
       `;
       
-      const params = [today, thisMonth.toISOString()];
+      const params = [];
       if (locationId) {
-        sql += ' WHERE l.id = $3';
+        sql += ' WHERE l.location_id = $1';
         params.push(locationId);
       }
       
       sql += `
-        GROUP BY l.id, l.name
+        GROUP BY l.location_id, l.name
         ORDER BY l.name
       `;
       
       const result = await query(sql, params);
-      return result.rows;
+      return result;
     } catch (error) {
       log.error(`Error getting dashboard summary: ${error.message}`);
       throw error;
@@ -431,46 +410,36 @@ class StatsRepository {
     try {
       let sql = `
         SELECT 
-          -- Order KPIs
-          COUNT(o.id) as total_orders,
+          COUNT(o.order_id) as total_orders,
           COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) as completed_orders,
-          ROUND(COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) * 100.0 / NULLIF(COUNT(o.id), 0), 2) as completion_rate,
-          
-          -- Revenue KPIs
-          SUM(CASE WHEN o.status = 'COMPLETED' THEN s.price ELSE 0 END) as total_revenue,
-          AVG(CASE WHEN o.status = 'COMPLETED' THEN s.price END) as avg_order_value,
-          
-          -- Efficiency KPIs
-          AVG(EXTRACT(days FROM (o.updated_at - o.created_at))) as avg_order_duration_days,
-          COUNT(DISTINCT e.id) as active_employees,
-          ROUND(COUNT(o.id) / NULLIF(COUNT(DISTINCT e.id), 0), 2) as orders_per_employee,
-          
-          -- Equipment KPIs
-          COUNT(DISTINCT eq.id) as total_equipment,
-          COUNT(DISTINCT CASE WHEN eq.status = 'OPERATIVE' THEN eq.id END) as operative_equipment,
-          ROUND(COUNT(DISTINCT CASE WHEN eq.status = 'OPERATIVE' THEN eq.id END) * 100.0 / NULLIF(COUNT(DISTINCT eq.id), 0), 2) as equipment_uptime,
-          
-          l.name as location_name
-        FROM locations l
-        LEFT JOIN orders o ON l.id = o.location_id AND o.created_at >= NOW() - INTERVAL '1 ${period}'
-        LEFT JOIN services s ON o.service_id = s.id
-        LEFT JOIN employees e ON l.id = e.location_id
-        LEFT JOIN equipment eq ON l.id = eq.location_id
+          ROUND(COUNT(CASE WHEN o.status = 'COMPLETED' THEN 1 END) * 100.0 / NULLIF(COUNT(o.order_id), 0), 2) as completion_rate,
+          COALESCE(AVG(EXTRACT(EPOCH FROM (o.actual_end_time - o.actual_start_time))/3600), 0) as avg_completion_time,
+          COALESCE(SUM(o.total_amount), 0) as total_revenue,
+          COALESCE(AVG(o.total_amount), 0) as avg_order_value,
+          COUNT(DISTINCT o.customer_id) as unique_customers,
+          COUNT(DISTINCT e.employee_id) as active_staff
+        FROM orders o
+        LEFT JOIN employees e ON o.assigned_employee_id = e.employee_id
+        WHERE o.created_at >= NOW() - INTERVAL '1 ${period}'
       `;
       
       const params = [];
       if (locationId) {
-        sql += ' WHERE l.id = $1';
+        sql += ' AND o.location_id = $1';
         params.push(locationId);
       }
       
-      sql += `
-        GROUP BY l.id, l.name
-        ORDER BY total_revenue DESC NULLS LAST
-      `;
-      
       const result = await query(sql, params);
-      return result.rows;
+      return result && result.length > 0 ? result[0] : {
+        total_orders: 0,
+        completed_orders: 0,
+        completion_rate: 0,
+        avg_completion_time: 0,
+        total_revenue: 0,
+        avg_order_value: 0,
+        unique_customers: 0,
+        active_staff: 0
+      };
     } catch (error) {
       log.error(`Error getting performance KPIs: ${error.message}`);
       throw error;

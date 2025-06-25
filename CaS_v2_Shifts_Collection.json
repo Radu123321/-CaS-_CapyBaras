@@ -1,0 +1,276 @@
+{
+	"name": "⏰ Shift Management v2.0",
+	"description": "Complete shift management with scheduling, attendance tracking and conflict detection",
+	"item": [
+		{
+			"name": "Get All Shifts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts?limit=20&location_id={{locationId}}&date=2025-06-26",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						},
+						{
+							"key": "date",
+							"value": "2025-06-26"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Shift",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"employee_id\": {{employeeId}},\n    \"location_id\": {{locationId}},\n    \"shift_date\": \"2025-06-26\",\n    \"start_time\": \"08:00\",\n    \"end_time\": \"16:00\",\n    \"shift_type\": \"REGULAR\",\n    \"break_duration\": 60,\n    \"notes\": \"Regular morning shift\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts"]
+				}
+			}
+		},
+		{
+			"name": "Get Shift by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/{{shiftId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "{{shiftId}}"]
+				}
+			}
+		},
+		{
+			"name": "Get Shifts by Employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/employee/{{employeeId}}?date_from=2025-06-01&date_to=2025-06-30",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "employee", "{{employeeId}}"],
+					"query": [
+						{
+							"key": "date_from",
+							"value": "2025-06-01"
+						},
+						{
+							"key": "date_to",
+							"value": "2025-06-30"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Shifts by Location",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/location/{{locationId}}?date=2025-06-26&status=SCHEDULED",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "location", "{{locationId}}"],
+					"query": [
+						{
+							"key": "date",
+							"value": "2025-06-26"
+						},
+						{
+							"key": "status",
+							"value": "SCHEDULED"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Active Shifts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/active?location_id={{locationId}}",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "active"],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Start Shift",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"actual_start_time\": \"08:05\",\n    \"start_notes\": \"Started 5 minutes late due to traffic\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/{{shiftId}}/start",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "{{shiftId}}", "start"]
+				}
+			}
+		},
+		{
+			"name": "End Shift",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"actual_end_time\": \"16:10\",\n    \"end_notes\": \"Finished current task before leaving\",\n    \"overtime_hours\": 0.17\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/{{shiftId}}/end",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "{{shiftId}}", "end"]
+				}
+			}
+		},
+		{
+			"name": "Update Shift Status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"CANCELLED\",\n    \"status_notes\": \"Employee called in sick\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/{{shiftId}}/status",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "{{shiftId}}", "status"]
+				}
+			}
+		},
+		{
+			"name": "Check Shift Conflicts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"employee_id\": {{employeeId}},\n    \"shift_date\": \"2025-06-26\",\n    \"start_time\": \"14:00\",\n    \"end_time\": \"22:00\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/check-conflicts",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "check-conflicts"]
+				}
+			}
+		},
+		{
+			"name": "Get Weekly Schedule",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/weekly?employee_id={{employeeId}}&week_start=2025-06-23",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "weekly"],
+					"query": [
+						{
+							"key": "employee_id",
+							"value": "{{employeeId}}"
+						},
+						{
+							"key": "week_start",
+							"value": "2025-06-23"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Shift Statistics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/stats?location_id={{locationId}}&period=last_month",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "stats"],
+					"query": [
+						{
+							"key": "location_id",
+							"value": "{{locationId}}"
+						},
+						{
+							"key": "period",
+							"value": "last_month"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Record Attendance",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"attendance_status\": \"PRESENT\",\n    \"check_in_time\": \"08:05\",\n    \"attendance_notes\": \"On time\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/shifts/{{shiftId}}/attendance",
+					"host": ["{{baseUrl}}"],
+					"path": ["api", "shifts", "{{shiftId}}", "attendance"]
+				}
+			}
+		}
+	]
+} 
