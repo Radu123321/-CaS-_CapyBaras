@@ -34,6 +34,17 @@ async function createOrder(orderData) {
     // Calculate total amount
     const total_amount = parseFloat(unit_price) * parseInt(quantity);
     
+    // Process scheduled_for into scheduled_date and scheduled_time
+    let scheduled_date = null;
+    let scheduled_time = null;
+    if (scheduled_for) {
+      const scheduledDateTime = new Date(scheduled_for);
+      if (!isNaN(scheduledDateTime.getTime())) {
+        scheduled_date = scheduledDateTime.toISOString().split('T')[0]; // YYYY-MM-DD
+        scheduled_time = scheduledDateTime.toTimeString().split(' ')[0].substring(0, 5); // HH:MM
+      }
+    }
+    
     // Create the order using repository
     const orderCreateData = {
       customer_id,
@@ -44,7 +55,8 @@ async function createOrder(orderData) {
       unit_price: parseFloat(unit_price),
       total_amount,
       assigned_employee_id: assigned_employee_id || null,
-      scheduled_for: scheduled_for ? new Date(scheduled_for) : null,
+      scheduled_date,
+      scheduled_time,
       transport_request_id: transport_request_id || null,
       notes: notes?.trim() || null,
       status: 'PENDING'
@@ -213,6 +225,23 @@ async function updateOrder(orderId, orderData) {
   log.debug(`OrderService: Updating order ${orderId}`);
   
   try {
+    // Process scheduled_for into scheduled_date and scheduled_time if provided
+    if (orderData.scheduled_for !== undefined) {
+      if (orderData.scheduled_for) {
+        const scheduledDateTime = new Date(orderData.scheduled_for);
+        if (!isNaN(scheduledDateTime.getTime())) {
+          orderData.scheduled_date = scheduledDateTime.toISOString().split('T')[0]; // YYYY-MM-DD
+          orderData.scheduled_time = scheduledDateTime.toTimeString().split(' ')[0].substring(0, 5); // HH:MM
+        }
+      } else {
+        // If scheduled_for is null/empty, clear the scheduled date and time
+        orderData.scheduled_date = null;
+        orderData.scheduled_time = null;
+      }
+      // Remove scheduled_for as it's not a database column
+      delete orderData.scheduled_for;
+    }
+
     // Recalculate total if quantity or unit_price changed
     if (orderData.quantity !== undefined || orderData.unit_price !== undefined) {
       const currentOrder = await orderRepository.findById(orderId);

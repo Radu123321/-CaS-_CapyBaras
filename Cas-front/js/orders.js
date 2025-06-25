@@ -342,9 +342,9 @@ class OrdersManager {
     this.filteredOrders.forEach((order, index) => {
       console.log(`📋 OrdersManager: Processing order ${index + 1}:`, order);
       
-      const customerName = this.getCustomerName(order.customer_id);
-      const serviceName = this.getServiceName(order.service_id);
-      const locationName = this.getLocationName(order.location_id);
+      const customerName = this.getCustomerNameFromOrder(order);
+      const serviceName = this.getServiceNameFromOrder(order);
+      const locationName = this.getLocationNameFromOrder(order);
       
       console.log(`📋 OrdersManager: Order ${index + 1} details:`);
       console.log('  - Customer:', customerName);
@@ -385,8 +385,8 @@ class OrdersManager {
         <td>${serviceName}</td>
         <td>${locationName}</td>
         <td><span class="status-badge status-${order.status?.toLowerCase() || 'unknown'}">${this.getStatusLabel(order.status)}</span></td>
-        <td>${order.scheduled_for ? this.formatDate(order.scheduled_for) : 'Nu este programată'}</td>
-        <td>${order.total_price || 0} RON</td>
+        <td>${this.getScheduledDateTime(order)}</td>
+        <td>${this.getTotalPriceFromOrder(order)}</td>
         <td class="actions-cell">
           ${actionButtons}
         </td>
@@ -472,14 +472,14 @@ class OrdersManager {
   
   getStatusLabel(status) {
     const labels = {
-      'PENDING': 'În așteptare',
-      'CONFIRMED': 'Confirmat',
-      'IN_PROGRESS': 'În progres',
-      'COMPLETED': 'Finalizat',
-      'CANCELLED': 'Anulat',
-      'REFUNDED': 'Rambursat'
+      'PENDING': '⏳ În așteptare',
+      'CONFIRMED': '✅ Confirmat',
+      'IN_PROGRESS': '🔄 În progres',
+      'COMPLETED': '✅ Finalizat',
+      'CANCELLED': '❌ Anulat',
+      'REFUNDED': '💰 Rambursat'
     };
-    return labels[status] || status;
+    return labels[status] || `❓ ${status}`;
   }
   
   formatDate(dateString) {
@@ -548,8 +548,6 @@ class OrdersManager {
     }
   }
   
-
-
   async editOrderStatus(orderId) {
     console.log('🔄 OrdersManager: editOrderStatus() for order:', orderId);
     
@@ -778,35 +776,35 @@ class OrdersManager {
       <div class="order-details">
         <div class="details-grid">
           <div class="detail-item">
-            <label>Client:</label>
-            <span>${this.getCustomerName(order.customer_id)}</span>
+            <label>👤 Client:</label>
+            <span>${this.getCustomerNameFromOrder(order)}</span>
           </div>
           <div class="detail-item">
-            <label>Serviciu:</label>
-            <span>${this.getServiceName(order.service_id)}</span>
+            <label>💼 Serviciu:</label>
+            <span>${this.getServiceNameFromOrder(order)}</span>
           </div>
           <div class="detail-item">
-            <label>Locație:</label>
-            <span>${this.getLocationName(order.location_id)}</span>
+            <label>🏢 Locație:</label>
+            <span>${this.getLocationNameFromOrder(order)}</span>
           </div>
           <div class="detail-item">
-            <label>Status:</label>
+            <label>📊 Status:</label>
             <span class="status-badge status-${order.status.toLowerCase()}">${this.getStatusLabel(order.status)}</span>
           </div>
           <div class="detail-item">
-            <label>Data creării:</label>
+            <label>📅 Data creării:</label>
             <span>${this.formatDate(order.created_at)}</span>
           </div>
           <div class="detail-item">
-            <label>Data programată:</label>
-            <span>${order.scheduled_date ? this.formatDate(order.scheduled_date) : 'Nu este programată'}</span>
+            <label>⏰ Data programată:</label>
+            <span>${this.getScheduledDateTime(order)}</span>
           </div>
           <div class="detail-item">
-            <label>Preț total:</label>
-            <span>${order.total_price} RON</span>
+            <label>💰 Preț total:</label>
+            <span>${this.getTotalPriceFromOrder(order)}</span>
           </div>
           <div class="detail-item">
-            <label>Transport:</label>
+            <label>🚚 Transport:</label>
             <span>${order.needs_transport ? 'Da' : 'Nu'}</span>
           </div>
           ${order.notes ? `
@@ -959,6 +957,48 @@ class OrdersManager {
       console.error('❌ Exception updating order:', error);
       this.showToast('Eroare la actualizarea comenzii', 'error');
     }
+  }
+
+  // Helper function to get customer name from order data (when joined)
+  getCustomerNameFromOrder(order) {
+    if (order.customer_first_name && order.customer_last_name) {
+      return `${order.customer_first_name} ${order.customer_last_name}`;
+    } else if (order.customer_name) {
+      return order.customer_name;
+    } else if (order.customer_email) {
+      return order.customer_email;
+    }
+    return this.getCustomerName(order.customer_id);
+  }
+
+  // Helper function to get service name from order data (when joined)
+  getServiceNameFromOrder(order) {
+    return order.service_name || this.getServiceName(order.service_id);
+  }
+
+  // Helper function to get location name from order data (when joined)
+  getLocationNameFromOrder(order) {
+    return order.location_name || this.getLocationName(order.location_id);
+  }
+
+  // Helper function to get total price from order
+  getTotalPriceFromOrder(order) {
+    if (order.total_amount) {
+      return `${order.total_amount} RON`;
+    } else if (order.base_price) {
+      return `${order.base_price} RON`;
+    }
+    return 'Preț nespecificat';
+  }
+
+  // Helper function to get scheduled date and time
+  getScheduledDateTime(order) {
+    if (order.scheduled_date) {
+      const date = this.formatDate(order.scheduled_date);
+      const time = order.scheduled_time || '';
+      return time ? `${date} ${time}` : date;
+    }
+    return 'Data nespecificată';
   }
 }
 

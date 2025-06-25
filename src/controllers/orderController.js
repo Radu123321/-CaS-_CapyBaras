@@ -13,7 +13,9 @@ async function createOrder(req, res) {
       quantity,
       unit_price,
       assigned_employee_id,
-      scheduled_for, 
+      scheduled_for,
+      scheduled_date,
+      scheduled_time,
       transport_request_id,
       notes
     } = req.body;
@@ -30,6 +32,16 @@ async function createOrder(req, res) {
       return;
     }
     
+    // Handle both scheduled_for (datetime) and scheduled_date + scheduled_time (separate fields)
+    let finalScheduledFor = null;
+    if (scheduled_for) {
+      finalScheduledFor = scheduled_for;
+    } else if (scheduled_date && scheduled_time) {
+      finalScheduledFor = `${scheduled_date}T${scheduled_time}:00`;
+    } else if (scheduled_date) {
+      finalScheduledFor = `${scheduled_date}T09:00:00`; // Default time if only date provided
+    }
+    
     const orderData = {
       customer_id: parseInt(customer_id),
       location_id: parseInt(location_id),
@@ -37,7 +49,7 @@ async function createOrder(req, res) {
       quantity: quantity ? parseInt(quantity) : 1,
       unit_price: parseFloat(unit_price),
       assigned_employee_id: assigned_employee_id ? parseInt(assigned_employee_id) : null,
-      scheduled_for: scheduled_for || null,
+      scheduled_for: finalScheduledFor,
       transport_request_id: transport_request_id ? parseInt(transport_request_id) : null,
       notes: notes?.trim() || null
     };
@@ -419,6 +431,8 @@ async function updateOrder(req, res) {
       unit_price,
       assigned_employee_id,
       scheduled_for,
+      scheduled_date,
+      scheduled_time,
       transport_request_id,
       notes
     } = req.body;
@@ -428,7 +442,19 @@ async function updateOrder(req, res) {
     if (quantity !== undefined) orderData.quantity = parseInt(quantity);
     if (unit_price !== undefined) orderData.unit_price = parseFloat(unit_price);
     if (assigned_employee_id !== undefined) orderData.assigned_employee_id = assigned_employee_id ? parseInt(assigned_employee_id) : null;
-    if (scheduled_for !== undefined) orderData.scheduled_for = scheduled_for;
+    
+    // Handle both scheduled_for (datetime) and scheduled_date + scheduled_time (separate fields)
+    if (scheduled_for !== undefined) {
+      orderData.scheduled_for = scheduled_for;
+    } else if (scheduled_date !== undefined || scheduled_time !== undefined) {
+      // If either scheduled_date or scheduled_time is provided, handle the combination
+      if (scheduled_date && scheduled_time) {
+        orderData.scheduled_for = `${scheduled_date}T${scheduled_time}:00`;
+      } else if (scheduled_date) {
+        orderData.scheduled_for = `${scheduled_date}T09:00:00`; // Default time
+      }
+    }
+    
     if (transport_request_id !== undefined) orderData.transport_request_id = transport_request_id ? parseInt(transport_request_id) : null;
     if (notes !== undefined) orderData.notes = notes?.trim() || null;
     

@@ -6,11 +6,21 @@ class Appointments {
     this.customers = [];
     this.services = [];
     this.locations = [];
+    this.employees = [];
+    this.filteredAppointments = [];
     this.currentPage = 1;
     this.itemsPerPage = 10;
     this.totalItems = 0;
-    this.filters = {};
+    this.totalPages = 0;
     this.selectedAppointment = null;
+    this.filters = {
+      status: '',
+      customer: '',
+      service: '',
+      location: '',
+      dateFrom: '',
+      dateTo: ''
+    };
     
     this.init();
   }
@@ -181,10 +191,10 @@ class Appointments {
     return `
       <div class="appointment-card ${statusClass}">
         <div class="appointment-header">
-          <h3 class="appointment-title">${appointment.title || appointment.service_name || 'Programare'}</h3>
+          <h3 class="appointment-title">${appointment.title || this.getServiceName(appointment)}</h3>
           <p class="appointment-subtitle">
-            ${appointment.customer_name || 'Client necunoscut'} • 
-            ${this.formatDate(appointment.scheduled_date)} ${appointment.scheduled_time || ''}
+            ${this.getCustomerName(appointment)} • 
+            ${this.getScheduledDateTime(appointment)}
           </p>
         </div>
         
@@ -192,33 +202,32 @@ class Appointments {
           <div class="appointment-details">
             <div class="detail-item">
               <span class="detail-icon">📅</span>
-              <span class="detail-text">${this.formatDate(appointment.scheduled_date)}</span>
+              <span class="detail-text">${appointment.scheduled_date ? this.formatDate(appointment.scheduled_date) : 'Data nespecificată'}</span>
             </div>
             <div class="detail-item">
               <span class="detail-icon">⏰</span>
               <span class="detail-text">${appointment.scheduled_time || 'Oră nespecificată'}</span>
             </div>
             <div class="detail-item">
+              <span class="detail-icon">📊</span>
+              <span class="detail-text">${this.getStatusLabel(appointment.status || 'pending')}</span>
+            </div>
+            <div class="detail-item">
               <span class="detail-icon">👤</span>
-              <span class="detail-text">${appointment.customer_name || 'Client necunoscut'}</span>
+              <span class="detail-text">${this.getCustomerName(appointment)}</span>
             </div>
             <div class="detail-item">
               <span class="detail-icon">🏢</span>
-              <span class="detail-text">${appointment.location_name || 'Locație nespecificată'}</span>
+              <span class="detail-text">${this.getLocationName(appointment)}</span>
             </div>
             <div class="detail-item">
               <span class="detail-icon">💼</span>
-              <span class="detail-text">${appointment.service_name || 'Serviciu nespecificat'}</span>
+              <span class="detail-text">${this.getServiceName(appointment)}</span>
             </div>
             <div class="detail-item">
               <span class="detail-icon">💰</span>
-              <span class="detail-text">${appointment.total_price ? appointment.total_price + ' RON' : 'Preț nespecificat'}</span>
+              <span class="detail-text">${this.getTotalPrice(appointment)}</span>
             </div>
-          </div>
-          
-          <div class="appointment-status ${statusClass}">
-            <span class="status-indicator">●</span>
-            ${this.getStatusLabel(appointment.status || 'pending')}
           </div>
         </div>
         
@@ -305,7 +314,7 @@ class Appointments {
     const editBtn = document.getElementById('editAppointmentBtn');
     const cancelBtn = document.getElementById('cancelAppointmentBtn');
     
-    title.textContent = appointment.title || appointment.service_name || 'Detalii Programare';
+    title.textContent = appointment.title || this.getServiceName(appointment);
     
     // Populate details
     body.innerHTML = `
@@ -313,16 +322,16 @@ class Appointments {
         <div class="detail-section">
           <h4>Informații Generale</h4>
           <div class="detail-row">
-            <strong>Titlu:</strong> ${appointment.title || appointment.service_name || 'Nespecificat'}
+            <strong>Titlu:</strong> ${appointment.title || this.getServiceName(appointment)}
           </div>
           <div class="detail-row">
-            <strong>Data:</strong> ${this.formatDate(appointment.scheduled_date)}
+            <strong>📅 Data:</strong> ${appointment.scheduled_date ? this.formatDate(appointment.scheduled_date) : 'Data nespecificată'}
           </div>
           <div class="detail-row">
-            <strong>Ora:</strong> ${appointment.scheduled_time || 'Nespecificată'}
+            <strong>⏰ Ora:</strong> ${appointment.scheduled_time || 'Oră nespecificată'}
           </div>
           <div class="detail-row">
-            <strong>Status:</strong> 
+            <strong>📊 Status:</strong> 
             <span class="appointment-status status-${(appointment.status || 'pending').toLowerCase()}">
               ${this.getStatusLabel(appointment.status || 'pending')}
             </span>
@@ -332,23 +341,23 @@ class Appointments {
         <div class="detail-section">
           <h4>Client & Serviciu</h4>
           <div class="detail-row">
-            <strong>Client:</strong> ${appointment.customer_name || 'Necunoscut'}
+            <strong>👤 Client:</strong> ${this.getCustomerName(appointment)}
           </div>
           <div class="detail-row">
-            <strong>Serviciu:</strong> ${appointment.service_name || 'Nespecificat'}
+            <strong>💼 Serviciu:</strong> ${this.getServiceName(appointment)}
           </div>
           <div class="detail-row">
-            <strong>Locație:</strong> ${appointment.location_name || 'Nespecificată'}
+            <strong>🏢 Locație:</strong> ${this.getLocationName(appointment)}
           </div>
           <div class="detail-row">
-            <strong>Preț:</strong> ${appointment.total_price ? appointment.total_price + ' RON' : 'Nespecificat'}
+            <strong>💰 Preț:</strong> ${this.getTotalPrice(appointment)}
           </div>
         </div>
         
-        ${appointment.description ? `
+        ${appointment.description || appointment.special_instructions ? `
           <div class="detail-section">
             <h4>Descriere</h4>
-            <p>${appointment.description}</p>
+            <p>${appointment.description || appointment.special_instructions}</p>
           </div>
         ` : ''}
         
@@ -369,7 +378,7 @@ class Appointments {
       </div>
     `;
     
-    // Show/hide action buttons
+    // Show/hide action buttons based on permissions
     const user = authManager.currentUser;
     const canEdit = user.role === 'ADMIN' || user.role === 'MANAGER' || 
                    (user.role === 'EMPLOYEE' && appointment.assigned_employee_id === user.id);
@@ -377,6 +386,7 @@ class Appointments {
     editBtn.style.display = canEdit ? 'inline-block' : 'none';
     cancelBtn.style.display = canEdit && appointment.status !== 'completed' && appointment.status !== 'cancelled' ? 'inline-block' : 'none';
     
+    // Show modal
     modal.style.display = 'flex';
     modal.classList.add('visible');
   }
@@ -577,14 +587,14 @@ class Appointments {
       
       const formData = {
         title: title,
-        scheduled_date: date,
-        scheduled_time: time,
         customer_id: parseInt(customerId),
         service_id: serviceIdInt,
         location_id: parseInt(locationId),
-        description: document.getElementById('appointmentDescription').value,
-        duration: parseInt(document.getElementById('appointmentDuration').value),
-        unit_price: parseFloat(selectedService.base_price), // Add unit_price from service
+        scheduled_for: `${date}T${time}:00`, // Combine date and time for backend
+        special_instructions: document.getElementById('appointmentDescription').value,
+        estimated_duration: parseInt(document.getElementById('appointmentDuration').value) || 60,
+        unit_price: parseFloat(selectedService.base_price), // Send unit_price to backend
+        total_amount: parseFloat(selectedService.base_price), // Set total_amount as well
         is_recurring: document.getElementById('appointmentRecurring').checked,
         recurring_type: document.getElementById('recurringType').value,
         recurring_end_date: document.getElementById('recurringEnd').value || null
@@ -618,9 +628,13 @@ class Appointments {
           'success'
         );
         this.closeAppointmentModal();
-        await this.loadAppointments();
+        
+        // Add a small delay to ensure server has processed the operation
+        setTimeout(async () => {
+          await this.loadAppointments();
+        }, 500);
       } else {
-        this.showToast(response.message || 'Eroare la salvarea programării', 'error');
+        this.showToast('Eroare la salvarea programării', 'error');
       }
     } catch (error) {
       console.error('Error saving appointment:', error);
@@ -780,13 +794,13 @@ class Appointments {
   
   getStatusLabel(status) {
     const statuses = {
-      'pending': 'În așteptare',
-      'confirmed': 'Confirmat',
-      'in_progress': 'În progres',
-      'completed': 'Finalizat',
-      'cancelled': 'Anulat'
+      'pending': '⏳ În așteptare',
+      'confirmed': '✅ Confirmat',
+      'in_progress': '🔄 În progres',
+      'completed': '✅ Finalizat',
+      'cancelled': '❌ Anulat'
     };
-    return statuses[status] || status;
+    return statuses[status] || `❓ ${status}`;
   }
   
   showError(message) {
@@ -825,6 +839,44 @@ class Appointments {
         toast.remove();
       }
     }, duration);
+  }
+
+  // Helper functions for data mapping
+  getCustomerName(appointment) {
+    if (appointment.customer_first_name && appointment.customer_last_name) {
+      return `${appointment.customer_first_name} ${appointment.customer_last_name}`;
+    } else if (appointment.customer_name) {
+      return appointment.customer_name;
+    } else if (appointment.customer_email) {
+      return appointment.customer_email;
+    }
+    return `Client #${appointment.customer_id}`;
+  }
+
+  getServiceName(appointment) {
+    return appointment.service_name || `Serviciu #${appointment.service_id}`;
+  }
+
+  getLocationName(appointment) {
+    return appointment.location_name || `Locație #${appointment.location_id}`;
+  }
+
+  getTotalPrice(appointment) {
+    if (appointment.total_amount) {
+      return `${appointment.total_amount} RON`;
+    } else if (appointment.base_price) {
+      return `${appointment.base_price} RON`;
+    }
+    return 'Preț nespecificat';
+  }
+
+  getScheduledDateTime(appointment) {
+    if (appointment.scheduled_date) {
+      const date = this.formatDate(appointment.scheduled_date);
+      const time = appointment.scheduled_time || '';
+      return time ? `${date} ${time}` : date;
+    }
+    return 'Data nespecificată';
   }
 }
 

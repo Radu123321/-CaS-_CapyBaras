@@ -9,6 +9,7 @@ class Calendar {
     this.services = [];
     this.locations = [];
     this.selectedEvent = null;
+    this.viewDate = new Date();
     
     this.monthNames = [
       'Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie',
@@ -101,6 +102,51 @@ class Calendar {
       document.getElementById('recurringOptions').style.display = 
         e.target.checked ? 'block' : 'none';
     });
+
+    // Modal close events
+    this.setupModalEvents();
+  }
+
+  setupModalEvents() {
+    // Event modal close
+    const eventModal = document.getElementById('eventModal');
+    const appointmentModal = document.getElementById('appointmentModal');
+
+    // Close on overlay click
+    eventModal.addEventListener('click', (e) => {
+      if (e.target === eventModal) {
+        this.closeEventDetailsModal();
+      }
+    });
+
+    appointmentModal.addEventListener('click', (e) => {
+      if (e.target === appointmentModal) {
+        this.closeAppointmentModal();
+      }
+    });
+
+    // Close on X button click
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const modal = e.target.closest('.modal-overlay');
+        if (modal.id === 'eventModal') {
+          this.closeEventDetailsModal();
+        } else if (modal.id === 'appointmentModal') {
+          this.closeAppointmentModal();
+        }
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (eventModal.style.display === 'flex') {
+          this.closeEventDetailsModal();
+        } else if (appointmentModal.style.display === 'flex') {
+          this.closeAppointmentModal();
+        }
+      }
+    });
   }
 
   // ===== VIEW MANAGEMENT =====
@@ -163,29 +209,57 @@ class Calendar {
   // ===== MONTH VIEW =====
   
   renderMonthView() {
-    const grid = document.getElementById('calendarGrid');
-    grid.innerHTML = '';
+    const monthGrid = document.getElementById('calendarGrid');
+    if (!monthGrid) {
+      console.error('Calendar grid element not found');
+      return;
+    }
+    monthGrid.innerHTML = '';
     
-    // Add day headers
-    this.dayNamesShort.forEach(day => {
-      const header = document.createElement('div');
-      header.className = 'calendar-day-header';
-      header.textContent = day;
-      grid.appendChild(header);
-    });
+    const year = this.viewDate.getFullYear();
+    const month = this.viewDate.getMonth();
     
-    // Get first day of month and calculate calendar grid
-    const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
-    const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0);
-    const startDate = this.getWeekStart(firstDay);
+    // Get first day of month and adjust for Monday start
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - ((firstDay.getDay() + 6) % 7));
     
     // Generate 42 days (6 weeks)
     for (let i = 0; i < 42; i++) {
-      const date = new Date(startDate);
-      date.setDate(date.getDate() + i);
+      const currentDate = new Date(startDate);
+      currentDate.setDate(startDate.getDate() + i);
       
-      const dayElement = this.createDayElement(date, firstDay.getMonth());
-      grid.appendChild(dayElement);
+      const dayElement = document.createElement('div');
+      dayElement.className = 'calendar-day';
+      
+      if (currentDate.getMonth() !== month) {
+        dayElement.classList.add('other-month');
+      }
+      
+      if (this.isToday(currentDate)) {
+        dayElement.classList.add('today');
+      }
+      
+      dayElement.innerHTML = `
+        <div class="day-number">${currentDate.getDate()}</div>
+        <div class="day-events"></div>
+      `;
+      
+      // Add events for this day
+      const dayEvents = this.getEventsForDate(currentDate);
+      const eventsContainer = dayElement.querySelector('.day-events');
+      
+      dayEvents.forEach(event => {
+        const eventElement = document.createElement('div');
+        eventElement.className = `calendar-event status-${(event.status || 'pending').toLowerCase()}`;
+        eventElement.textContent = event.title || this.getServiceName(event);
+        eventElement.onclick = () => this.showEventDetails(event);
+        eventsContainer.appendChild(eventElement);
+      });
+      
+      dayElement.onclick = () => this.selectDate(currentDate);
+      monthGrid.appendChild(dayElement);
     }
   }
   
@@ -252,111 +326,162 @@ class Calendar {
   renderWeekView() {
     const weekHeader = document.getElementById('weekHeader');
     const weekBody = document.getElementById('weekBody');
-    
+    if (!weekHeader || !weekBody) {
+      console.error('Week view elements not found');
+      return;
+    }
     weekHeader.innerHTML = '';
     weekBody.innerHTML = '';
     
-    // Generate week header
-    const timeHeader = document.createElement('div');
-    timeHeader.className = 'week-time-header';
-    timeHeader.textContent = 'Ora';
-    weekHeader.appendChild(timeHeader);
+    // Get start of week (Monday)
+    const startOfWeek = new Date(this.viewDate);
+    const day = startOfWeek.getDay();
+    const diff = startOfWeek.getDate() - day + (day === 0 ? -6 : 1);
+    startOfWeek.setDate(diff);
     
-    const weekStart = this.getWeekStart(this.currentDate);
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(weekStart);
-      date.setDate(date.getDate() + i);
-      
-      const dayHeader = document.createElement('div');
-      dayHeader.className = 'week-day-header';
-      dayHeader.textContent = `${this.dayNamesShort[date.getDay()]} ${date.getDate()}`;
-      
-      if (this.isToday(date)) {
-        dayHeader.style.background = '#eff6ff';
-        dayHeader.style.color = '#1d4ed8';
-      }
-      
-      weekHeader.appendChild(dayHeader);
+    // Create time slots
+    const timeSlots = [];
+    for (let hour = 8; hour < 20; hour++) {
+      timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
+      timeSlots.push(`${hour.toString().padStart(2, '0')}:30`);
     }
     
-    // Generate time slots (8 AM to 8 PM)
-    for (let hour = 8; hour < 20; hour++) {
-      // Time label
-      const timeSlot = document.createElement('div');
-      timeSlot.className = 'week-time-slot';
-      timeSlot.textContent = `${hour}:00`;
-      weekBody.appendChild(timeSlot);
+    // Create header
+    weekHeader.innerHTML = '<div class="time-column">Ora</div>';
+    
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(startOfWeek.getDate() + i);
+      const dayName = date.toLocaleDateString('ro-RO', { weekday: 'short' });
+      const dayNumber = date.getDate();
       
-      // Day slots for this hour
-      for (let day = 0; day < 7; day++) {
-        const date = new Date(weekStart);
-        date.setDate(date.getDate() + day);
-        date.setHours(hour, 0, 0, 0);
+      weekHeader.innerHTML += `
+        <div class="day-column ${this.isToday(date) ? 'today' : ''}">
+          <div class="day-name">${dayName}</div>
+          <div class="day-number">${dayNumber}</div>
+        </div>
+      `;
+    }
+    
+    // Create time rows
+    timeSlots.forEach(time => {
+      const row = document.createElement('div');
+      row.className = 'week-row';
+      row.innerHTML = `<div class="time-column">${time}</div>`;
+      
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(startOfWeek);
+        date.setDate(startOfWeek.getDate() + i);
         
-        const daySlot = document.createElement('div');
-        daySlot.className = 'week-day-slot';
-        daySlot.addEventListener('click', () => {
-          this.selectDateTime(date);
-        });
+        const cell = document.createElement('div');
+        cell.className = 'day-column time-slot';
+        cell.onclick = () => this.selectTimeSlot(date, time);
         
-        // Add events for this hour
-        const hourEvents = this.getEventsForHour(date);
-        hourEvents.forEach(event => {
+        // Add events for this time slot
+        const slotEvents = this.getEventsForTimeSlot(date, time);
+        slotEvents.forEach(event => {
           const eventElement = document.createElement('div');
-          eventElement.className = 'week-event';
-          eventElement.textContent = event.title || event.service_name || 'Eveniment';
-          eventElement.addEventListener('click', (e) => {
+          eventElement.className = `calendar-event status-${(event.status || 'pending').toLowerCase()}`;
+          eventElement.textContent = event.title || this.getServiceName(event);
+          eventElement.onclick = (e) => {
             e.stopPropagation();
             this.showEventDetails(event);
-          });
-          daySlot.appendChild(eventElement);
+          };
+          cell.appendChild(eventElement);
         });
         
-        weekBody.appendChild(daySlot);
+        row.appendChild(cell);
       }
-    }
+      
+      weekBody.appendChild(row);
+    });
   }
 
   // ===== DAY VIEW =====
   
   renderDayView() {
     const dayBody = document.getElementById('dayBody');
+    if (!dayBody) {
+      console.error('Day view element not found');
+      return;
+    }
     dayBody.innerHTML = '';
     
-    // Generate time slots (8 AM to 8 PM)
-    for (let hour = 8; hour < 20; hour++) {
-      // Time label
-      const timeSlot = document.createElement('div');
-      timeSlot.className = 'day-time-slot';
-      timeSlot.textContent = `${hour}:00`;
-      dayBody.appendChild(timeSlot);
+    // Create day schedule container
+    const scheduleContainer = document.createElement('div');
+    scheduleContainer.className = 'day-schedule';
+    
+    // Get events for this day
+    const dayEvents = this.getEventsForDate(this.viewDate);
+    
+    if (dayEvents.length === 0) {
+      scheduleContainer.innerHTML = `
+        <div class="no-events">
+          <div class="no-events-icon">📅</div>
+          <h3>Nu există programări pentru această zi</h3>
+          <p>Fă click pe "Programare Nouă" pentru a adăuga o programare.</p>
+          <button class="btn btn-primary" onclick="calendar.showNewAppointmentModal()">
+            + Programare Nouă
+          </button>
+        </div>
+      `;
+    } else {
+      // Create events list
+      const eventsList = document.createElement('div');
+      eventsList.className = 'day-events-list';
       
-      // Content slot
-      const contentSlot = document.createElement('div');
-      contentSlot.className = 'day-content-slot';
-      
-      const dateTime = new Date(this.currentDate);
-      dateTime.setHours(hour, 0, 0, 0);
-      
-      contentSlot.addEventListener('click', () => {
-        this.selectDateTime(dateTime);
+      // Sort events by time
+      dayEvents.sort((a, b) => {
+        const timeA = a.scheduled_time || '00:00';
+        const timeB = b.scheduled_time || '00:00';
+        return timeA.localeCompare(timeB);
       });
       
-      // Add events for this hour
-      const hourEvents = this.getEventsForHour(dateTime);
-      hourEvents.forEach(event => {
-        const eventElement = document.createElement('div');
-        eventElement.className = 'week-event';
-        eventElement.textContent = event.title || event.service_name || 'Eveniment';
-        eventElement.addEventListener('click', (e) => {
-          e.stopPropagation();
-          this.showEventDetails(event);
-        });
-        contentSlot.appendChild(eventElement);
+      dayEvents.forEach(event => {
+        const eventCard = document.createElement('div');
+        eventCard.className = `day-event-card status-${(event.status || 'pending').toLowerCase()}`;
+        
+        eventCard.innerHTML = `
+          <div class="event-time">
+            <div class="time-display">${event.scheduled_time || 'Oră nespecificată'}</div>
+            <div class="status-indicator">
+              <span class="status-badge status-${(event.status || 'pending').toLowerCase()}">
+                ${this.getStatusLabel(event.status || 'pending')}
+              </span>
+            </div>
+          </div>
+          <div class="event-content">
+            <div class="event-title">${event.title || this.getServiceName(event)}</div>
+            <div class="event-details-preview">
+              <div class="detail-item">
+                <span class="detail-icon">👤</span>
+                <span class="detail-text">${this.getCustomerName(event)}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">🏢</span>
+                <span class="detail-text">${this.getLocationName(event)}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-icon">💰</span>
+                <span class="detail-text">${this.getTotalPrice(event)}</span>
+              </div>
+            </div>
+          </div>
+                     <div class="event-actions">
+             <button class="btn-icon" title="Vezi detalii">
+               👁️
+             </button>
+           </div>
+        `;
+        
+        eventCard.addEventListener('click', () => this.showEventDetails(event));
+        eventsList.appendChild(eventCard);
       });
       
-      dayBody.appendChild(contentSlot);
+      scheduleContainer.appendChild(eventsList);
     }
+    
+    dayBody.appendChild(scheduleContainer);
   }
 
   // ===== EVENT MANAGEMENT =====
@@ -381,6 +506,19 @@ class Calendar {
       return false;
     });
   }
+
+  getEventsForTimeSlot(date, timeSlot) {
+    const events = this.getEventsForDate(date);
+    const [hour, minute] = timeSlot.split(':').map(Number);
+    
+    return events.filter(event => {
+      if (event.scheduled_time) {
+        const [eventHour, eventMinute] = event.scheduled_time.split(':').map(Number);
+        return eventHour === hour && Math.abs(eventMinute - minute) < 30;
+      }
+      return false;
+    });
+  }
   
   async showEventDetails(event) {
     this.selectedEvent = event;
@@ -388,72 +526,72 @@ class Calendar {
     const modal = document.getElementById('eventModal');
     const title = document.getElementById('eventModalTitle');
     const body = document.getElementById('eventModalBody');
-    const editBtn = document.getElementById('editEventBtn');
-    const deleteBtn = document.getElementById('deleteEventBtn');
     
-    title.textContent = event.title || event.service_name || 'Detalii Eveniment';
+    title.textContent = event.title || this.getServiceName(event);
     
-    // Populate event details
     body.innerHTML = `
       <div class="event-details">
-        <div class="detail-row">
-          <strong>Tip:</strong> ${this.getEventTypeLabel(event.type || 'order')}
+        <div class="detail-section">
+          <h4>Informații Generale</h4>
+          <div class="detail-row">
+            <strong>📋 Titlu:</strong> ${event.title || this.getServiceName(event)}
+          </div>
+          <div class="detail-row">
+            <strong>📅 Data:</strong> ${event.scheduled_date ? this.formatDate(event.scheduled_date) : 'Data nespecificată'}
+          </div>
+          <div class="detail-row">
+            <strong>⏰ Ora:</strong> ${event.scheduled_time || 'Oră nespecificată'}
+          </div>
+          <div class="detail-row">
+            <strong>📊 Status:</strong> 
+            <span class="event-status status-${(event.status || 'pending').toLowerCase()}">
+              ${this.getStatusLabel(event.status || 'pending')}
+            </span>
+          </div>
         </div>
-        <div class="detail-row">
-          <strong>Data:</strong> ${this.formatDate(new Date(event.scheduled_date || event.created_at))}
+        
+        ${event.customer_id ? `
+          <div class="detail-section">
+            <h4>Client & Serviciu</h4>
+            <div class="detail-row">
+              <strong>👤 Client:</strong> ${this.getCustomerName(event)}
+            </div>
+            <div class="detail-row">
+              <strong>💼 Serviciu:</strong> ${this.getServiceName(event)}
+            </div>
+            <div class="detail-row">
+              <strong>🏢 Locație:</strong> ${this.getLocationName(event)}
+            </div>
+            <div class="detail-row">
+              <strong>💰 Preț:</strong> ${this.getTotalPrice(event)}
+            </div>
+          </div>
+        ` : ''}
+        
+        ${event.description || event.special_instructions ? `
+          <div class="detail-section">
+            <h4>Descriere</h4>
+            <p>${event.description || event.special_instructions}</p>
+          </div>
+        ` : ''}
+        
+        <div class="detail-section">
+          <h4>Detalii Tehnice</h4>
+          <div class="detail-row">
+            <strong>🆔 ID:</strong> ${event.order_id || event.id}
+          </div>
+          <div class="detail-row">
+            <strong>📅 Creat la:</strong> ${this.formatDateTime(event.created_at)}
+          </div>
         </div>
-        ${event.scheduled_time ? `
-          <div class="detail-row">
-            <strong>Ora:</strong> ${event.scheduled_time}
-          </div>
-        ` : ''}
-        ${event.customer_name ? `
-          <div class="detail-row">
-            <strong>Client:</strong> ${event.customer_name}
-          </div>
-        ` : ''}
-        ${event.service_name ? `
-          <div class="detail-row">
-            <strong>Serviciu:</strong> ${event.service_name}
-          </div>
-        ` : ''}
-        ${event.location_name ? `
-          <div class="detail-row">
-            <strong>Locație:</strong> ${event.location_name}
-          </div>
-        ` : ''}
-        ${event.description ? `
-          <div class="detail-row">
-            <strong>Descriere:</strong> ${event.description}
-          </div>
-        ` : ''}
-        <div class="detail-row">
-          <strong>Status:</strong> 
-          <span class="status-badge status-${(event.status || 'pending').toLowerCase()}">
-            ${this.getStatusLabel(event.status || 'pending')}
-          </span>
-        </div>
-        ${event.total_price ? `
-          <div class="detail-row">
-            <strong>Preț:</strong> ${event.total_price} RON
-          </div>
-        ` : ''}
       </div>
     `;
-    
-    // Show/hide action buttons based on user role and event ownership
-    const user = authManager.currentUser;
-    const canEdit = user.role === 'ADMIN' || user.role === 'MANAGER' || 
-                   (user.role === 'EMPLOYEE' && event.assigned_employee_id === user.id);
-    
-    editBtn.style.display = canEdit ? 'inline-block' : 'none';
-    deleteBtn.style.display = canEdit ? 'inline-block' : 'none';
     
     modal.style.display = 'flex';
     modal.classList.add('visible');
   }
   
-  closeEventModal() {
+  closeEventDetailsModal() {
     const modal = document.getElementById('eventModal');
     modal.style.display = 'none';
     modal.classList.remove('visible');
@@ -463,28 +601,35 @@ class Calendar {
   async editEvent() {
     if (!this.selectedEvent) return;
     
-    // Pre-populate form with event data
-    document.getElementById('appointmentTitle').value = this.selectedEvent.title || this.selectedEvent.service_name || '';
-    document.getElementById('appointmentType').value = this.selectedEvent.type || 'meeting';
+    // Store the event being edited (don't lose reference)
+    const eventToEdit = this.selectedEvent;
     
-    const eventDate = new Date(this.selectedEvent.scheduled_date || this.selectedEvent.created_at);
-    document.getElementById('appointmentDate').value = this.formatDateString(eventDate);
-    document.getElementById('appointmentTime').value = this.selectedEvent.scheduled_time || '09:00';
-    document.getElementById('appointmentDescription').value = this.selectedEvent.description || '';
+    document.getElementById('appointmentModalTitle').textContent = 'Editează Evenimentul';
+    document.getElementById('appointmentTitle').value = eventToEdit.title || this.getServiceName(eventToEdit);
     
-    if (this.selectedEvent.customer_id) {
-      document.getElementById('appointmentCustomer').value = this.selectedEvent.customer_id;
-    }
-    if (this.selectedEvent.service_id) {
-      document.getElementById('appointmentService').value = this.selectedEvent.service_id;
-    }
-    if (this.selectedEvent.location_id) {
-      document.getElementById('appointmentLocation').value = this.selectedEvent.location_id;
+    if (eventToEdit.scheduled_date) {
+      document.getElementById('appointmentDate').value = eventToEdit.scheduled_date;
     }
     
-    // Change modal title and show appointment modal
-    document.getElementById('appointmentModalTitle').textContent = 'Editează Programarea';
-    this.closeEventModal();
+    if (eventToEdit.scheduled_time) {
+      document.getElementById('appointmentTime').value = eventToEdit.scheduled_time;
+    }
+    
+    document.getElementById('appointmentType').value = eventToEdit.customer_id ? 'meeting' : 'event';
+    this.toggleAppointmentType();
+    
+    if (eventToEdit.customer_id) {
+      document.getElementById('appointmentCustomer').value = eventToEdit.customer_id;
+      document.getElementById('appointmentService').value = eventToEdit.service_id;
+      document.getElementById('appointmentLocation').value = eventToEdit.location_id;
+    }
+    
+    document.getElementById('appointmentDescription').value = eventToEdit.description || eventToEdit.special_instructions || '';
+    document.getElementById('appointmentDuration').value = eventToEdit.estimated_duration || 60;
+    
+    this.closeEventDetailsModal();
+    // Keep the selected event reference for saving
+    this.selectedEvent = eventToEdit;
     this.showAppointmentModal();
   }
   
@@ -504,7 +649,7 @@ class Calendar {
       
       if (response.success) {
         this.showToast('Programarea a fost ștearsă cu succes', 'success');
-        this.closeEventModal();
+        this.closeEventDetailsModal();
         
         // Add a small delay to ensure server has processed the deletion
         setTimeout(async () => {
@@ -525,6 +670,9 @@ class Calendar {
   // ===== APPOINTMENT MODAL =====
   
   showNewAppointmentModal() {
+    // Clear selected event for new appointment
+    this.selectedEvent = null;
+    
     document.getElementById('appointmentModalTitle').textContent = 'Programare Nouă';
     this.resetAppointmentForm();
     
@@ -549,6 +697,8 @@ class Calendar {
     modal.style.display = 'none';
     modal.classList.remove('visible');
     this.resetAppointmentForm();
+    // Clear selected event when closing modal
+    this.selectedEvent = null;
   }
   
   resetAppointmentForm() {
@@ -573,21 +723,17 @@ class Calendar {
   }
   
   async saveAppointment() {
-    const form = document.getElementById('appointmentForm');
-    
-    // Manual validation for better UX
     const title = document.getElementById('appointmentTitle').value.trim();
     const type = document.getElementById('appointmentType').value;
     const date = document.getElementById('appointmentDate').value;
     const time = document.getElementById('appointmentTime').value;
     
-    if (!title) {
-      this.showToast('Vă rugăm să introduceți titlul programării', 'error');
-      return;
-    }
+    // Debug log to track edit vs create
+    const isEditing = !!this.selectedEvent;
+    console.log('saveAppointment called - isEditing:', isEditing, 'selectedEvent:', this.selectedEvent);
     
-    if (!type) {
-      this.showToast('Vă rugăm să selectați tipul programării', 'error');
+    if (!title) {
+      this.showToast('Vă rugăm să introduceți titlul', 'error');
       return;
     }
     
@@ -601,38 +747,15 @@ class Calendar {
       return;
     }
     
-    // For client appointments, validate required fields
-    if (type === 'meeting') {
-      const customerId = document.getElementById('appointmentCustomer').value;
-      const serviceId = document.getElementById('appointmentService').value;
-      const locationId = document.getElementById('appointmentLocation').value;
-      
-      if (!customerId) {
-        this.showToast('Vă rugăm să selectați clientul pentru programările cu clienți', 'error');
-        return;
-      }
-      
-      if (!serviceId) {
-        this.showToast('Vă rugăm să selectați serviciul pentru programările cu clienți', 'error');
-        return;
-      }
-      
-      if (!locationId) {
-        this.showToast('Vă rugăm să selectați locația pentru programările cu clienți', 'error');
-        return;
-      }
-    }
-    
     try {
       this.showLoading();
       
       const formData = {
         title: title,
         type: type,
-        scheduled_date: date,
-        scheduled_time: time,
-        duration: parseInt(document.getElementById('appointmentDuration').value) || 60,
-        description: document.getElementById('appointmentDescription').value,
+        scheduled_for: `${date}T${time}:00`,
+        estimated_duration: parseInt(document.getElementById('appointmentDuration').value) || 60,
+        special_instructions: document.getElementById('appointmentDescription').value,
         is_recurring: document.getElementById('appointmentRecurring').checked,
         recurring_type: document.getElementById('recurringType').value,
         recurring_end_date: document.getElementById('recurringEnd').value || null
@@ -644,7 +767,12 @@ class Calendar {
         const serviceId = parseInt(document.getElementById('appointmentService').value);
         const locationId = parseInt(document.getElementById('appointmentLocation').value);
         
-        // Get the selected service to extract unit_price
+        if (!customerId || !serviceId || !locationId) {
+          this.showToast('Pentru întâlniri cu clienți, toate câmpurile sunt obligatorii', 'error');
+          return;
+        }
+        
+        // Get the selected service to extract base_price
         const selectedService = this.services.find(service => service.service_id === serviceId);
         if (!selectedService) {
           this.showToast('Serviciul selectat nu a fost găsit', 'error');
@@ -655,6 +783,7 @@ class Calendar {
         formData.service_id = serviceId;
         formData.location_id = locationId;
         formData.unit_price = parseFloat(selectedService.base_price);
+        formData.total_amount = parseFloat(selectedService.base_price);
       }
       
       // Remove empty values (but keep 0 values for price and duration)
@@ -680,10 +809,9 @@ class Calendar {
       }
       
       if (response.success) {
-        this.showToast(
-          this.selectedEvent ? 'Programarea a fost actualizată cu succes' : 'Programarea a fost creată cu succes',
-          'success'
-        );
+        const successMessage = isEditing ? 'Programarea a fost actualizată cu succes' : 'Programarea a fost creată cu succes';
+        console.log('Success message:', successMessage);
+        this.showToast(successMessage, 'success');
         this.closeAppointmentModal();
         
         // Add a small delay to ensure server has processed the operation
@@ -847,13 +975,13 @@ class Calendar {
   
   getStatusLabel(status) {
     const statuses = {
-      'pending': 'În așteptare',
-      'confirmed': 'Confirmat',
-      'in_progress': 'În progres',
-      'completed': 'Finalizat',
-      'cancelled': 'Anulat'
+      'pending': '⏳ În așteptare',
+      'confirmed': '✅ Confirmat',
+      'in_progress': '🔄 În progres',
+      'completed': '✅ Finalizat',
+      'cancelled': '❌ Anulat'
     };
-    return statuses[status] || status;
+    return statuses[status] || `❓ ${status}`;
   }
   
   showDayEvents(date, events) {
@@ -910,6 +1038,66 @@ class Calendar {
     } finally {
       this.hideLoading();
     }
+  }
+
+  // Helper functions for data mapping
+  getCustomerName(event) {
+    if (event.customer_first_name && event.customer_last_name) {
+      return `${event.customer_first_name} ${event.customer_last_name}`;
+    } else if (event.customer_name) {
+      return event.customer_name;
+    } else if (event.customer_email) {
+      return event.customer_email;
+    }
+    return event.customer_id ? `Client #${event.customer_id}` : 'Client necunoscut';
+  }
+
+  getServiceName(event) {
+    return event.service_name || (event.service_id ? `Serviciu #${event.service_id}` : 'Serviciu nespecificat');
+  }
+
+  getLocationName(event) {
+    return event.location_name || (event.location_id ? `Locație #${event.location_id}` : 'Locație nespecificată');
+  }
+
+  getTotalPrice(event) {
+    if (event.total_amount) {
+      return `${event.total_amount} RON`;
+    } else if (event.base_price) {
+      return `${event.base_price} RON`;
+    }
+    return 'Preț nespecificat';
+  }
+
+  getScheduledDateTime(event) {
+    if (event.scheduled_date) {
+      const date = this.formatDate(event.scheduled_date);
+      const time = event.scheduled_time || '';
+      return time ? `${date} ${time}` : date;
+    }
+    return 'Data nespecificată';
+  }
+
+  formatDateTime(date) {
+    return this.formatDate(new Date(date));
+  }
+
+  toggleAppointmentType() {
+    const type = document.getElementById('appointmentType').value;
+    if (type === 'meeting') {
+      document.getElementById('customerGroup').style.display = 'block';
+      document.getElementById('serviceGroup').style.display = 'block';
+    } else {
+      document.getElementById('customerGroup').style.display = 'none';
+      document.getElementById('serviceGroup').style.display = 'none';
+    }
+  }
+
+  selectTimeSlot(date, time) {
+    this.currentDate = new Date(date);
+    this.currentDate.setHours(parseInt(time.split(':')[0]));
+    this.currentDate.setMinutes(parseInt(time.split(':')[1]));
+    this.render();
   }
 }
 
@@ -1028,6 +1216,206 @@ const toastStyles = `
     background: #fee2e2;
     color: #991b1b;
   }
+
+  /* Day View Styles */
+  .day-schedule {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .no-events {
+    text-align: center;
+    padding: 80px 40px;
+    color: #64748b;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .no-events-icon {
+    font-size: 5rem;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+
+  .no-events h3 {
+    margin: 0 0 16px 0;
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .no-events p {
+    margin: 0 0 32px 0;
+    font-size: 1.125rem;
+    color: #64748b;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .day-events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .day-event-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid #f1f5f9;
+    border-left: 4px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 16px;
+  }
+
+  .day-event-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+    border-color: #e2e8f0;
+  }
+
+  .day-event-card.status-pending {
+    border-left-color: #f59e0b;
+  }
+
+  .day-event-card.status-confirmed {
+    border-left-color: #10b981;
+  }
+
+  .day-event-card.status-in_progress {
+    border-left-color: #3b82f6;
+  }
+
+  .day-event-card.status-completed {
+    border-left-color: #10b981;
+  }
+
+  .day-event-card.status-cancelled {
+    border-left-color: #ef4444;
+    opacity: 0.7;
+  }
+
+  .event-time {
+    flex-shrink: 0;
+    text-align: center;
+    min-width: 140px;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 16px 12px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .time-display {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .status-indicator .status-badge {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .event-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .event-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+
+  .event-details-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .event-details-preview .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 4px 0;
+  }
+
+  .event-details-preview .detail-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .event-actions {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-icon {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+
+  .btn-icon:hover {
+    background-color: #e2e8f0;
+    border-color: #cbd5e1;
+    transform: scale(1.05);
+  }
+
+  @media (max-width: 768px) {
+    .day-event-card {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .event-time {
+      width: 100%;
+      text-align: left;
+      min-width: auto;
+    }
+
+    .event-details-preview {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
 `;
 
 // Inject styles
@@ -1036,4 +1424,10 @@ if (!document.getElementById('calendar-toast-styles')) {
   style.id = 'calendar-toast-styles';
   style.textContent = toastStyles;
   document.head.appendChild(style);
-} 
+}
+
+// Initialize calendar when DOM is loaded
+let calendar;
+document.addEventListener('DOMContentLoaded', () => {
+  calendar = new Calendar();
+});
