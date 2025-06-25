@@ -208,17 +208,17 @@ async function scheduleMaintenance(req, res) {
         
         const maintenanceData = {
             equipment_id: equipmentId,
-            started_at: req.body.started_at,
-            ended_at: req.body.ended_at,
-            description: req.body.description,
-            unplanned: req.body.unplanned || false
+            type: req.body.maintenance_type || req.body.type || 'PREVENTIVE',
+            scheduled_date: req.body.scheduled_date || req.body.started_at,
+            description: req.body.description || req.body.notes,
+            estimated_cost: req.body.estimated_cost || 0
         };
         
-        if (!maintenanceData.started_at) {
+        if (!maintenanceData.scheduled_date) {
             res.writeHead(400, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
             res.end(JSON.stringify({
                 success: false,
-                error: 'Start time is required'
+                error: 'Scheduled date is required'
             }));
             return;
         }

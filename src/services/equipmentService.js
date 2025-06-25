@@ -72,12 +72,12 @@ class EquipmentService {
             logger.info(`Equipment created: ${equipment.name} (ID: ${equipment.equipment_id})`);
             
             // Create welcome alert
-            await alertService.createAlert({
-                location_id: equipment.location_id,
-                severity: 'INFO',
-                alert_type: 'EQUIPMENT_ADDED',
+            await alertService.createAlert('EQUIPMENT_ADDED', {
+                locationId: equipment.location_id,
                 title: 'New Equipment Added',
                 message: `New equipment "${equipment.name}" has been added to the system`
+            }, {
+                severity: 'INFO'
             });
             
             return equipment;
@@ -101,7 +101,9 @@ class EquipmentService {
             
             // Check for status changes that need alerts
             if (updateData.status && updateData.status !== existingEquipment.status) {
-                await this.handleStatusChange(updatedEquipment, existingEquipment.status, updateData.status);
+                // Get the full equipment data again to ensure we have location_id
+                const fullEquipmentData = await equipmentRepository.getEquipmentById(equipmentId);
+                await this.handleStatusChange(fullEquipmentData, existingEquipment.status, updateData.status);
             }
             
             logger.info(`Equipment updated: ${updatedEquipment.name} (ID: ${equipmentId})`);
@@ -127,12 +129,12 @@ class EquipmentService {
             logger.info(`Equipment deleted: ${equipment.name} (ID: ${equipmentId})`);
             
             // Create deletion alert
-            await alertService.createAlert({
-                location_id: equipment.location_id,
-                severity: 'WARNING',
-                alert_type: 'EQUIPMENT_REMOVED',
+            await alertService.createAlert('EQUIPMENT_REMOVED', {
+                locationId: equipment.location_id,
                 title: 'Equipment Removed',
                 message: `Equipment "${equipment.name}" has been removed from the system`
+            }, {
+                severity: 'WARNING'
             });
             
             return deletedEquipment;
@@ -152,8 +154,8 @@ class EquipmentService {
     async scheduleMaintenance(maintenanceData) {
         try {
             // Validate required fields
-            if (!maintenanceData.equipment_id || !maintenanceData.started_at) {
-                throw new Error('Equipment ID and start time are required');
+            if (!maintenanceData.equipment_id || !maintenanceData.scheduled_date) {
+                throw new Error('Equipment ID and scheduled date are required');
             }
             
             const equipment = await equipmentRepository.getEquipmentById(maintenanceData.equipment_id);
@@ -165,7 +167,7 @@ class EquipmentService {
             const maintenance = await equipmentRepository.createMaintenance(maintenanceData);
             
             // Update equipment status if maintenance is starting now
-            if (new Date(maintenanceData.started_at) <= new Date()) {
+            if (new Date(maintenanceData.scheduled_date) <= new Date()) {
                 await equipmentRepository.updateEquipment(maintenanceData.equipment_id, {
                     status: 'UNDER_MAINTENANCE'
                 });
@@ -174,12 +176,12 @@ class EquipmentService {
             logger.info(`Maintenance scheduled for equipment: ${equipment.name} (ID: ${maintenanceData.equipment_id})`);
             
             // Create maintenance alert
-            await alertService.createAlert({
-                location_id: equipment.location_id,
-                severity: maintenanceData.unplanned ? 'WARNING' : 'INFO',
-                alert_type: 'MAINTENANCE_SCHEDULED',
-                title: `${maintenanceData.unplanned ? 'Emergency' : 'Scheduled'} Maintenance`,
-                message: `Maintenance ${maintenanceData.unplanned ? 'emergency' : 'scheduled'} for equipment "${equipment.name}"`
+            await alertService.createAlert('MAINTENANCE_SCHEDULED', {
+                locationId: equipment.location_id,
+                title: `${maintenanceData.type === 'CORRECTIVE' ? 'Emergency' : 'Scheduled'} Maintenance`,
+                message: `Maintenance ${maintenanceData.type === 'CORRECTIVE' ? 'emergency' : 'scheduled'} for equipment "${equipment.name}"`
+            }, {
+                severity: maintenanceData.type === 'CORRECTIVE' ? 'WARNING' : 'INFO'
             });
             
             return maintenance;
@@ -214,12 +216,12 @@ class EquipmentService {
             logger.info(`Maintenance completed for equipment: ${equipment.name} (ID: ${maintenance.equipment_id})`);
             
             // Create completion alert
-            await alertService.createAlert({
-                location_id: equipment.location_id,
-                severity: 'INFO',
-                alert_type: 'MAINTENANCE_COMPLETED',
+            await alertService.createAlert('MAINTENANCE_COMPLETED', {
+                locationId: equipment.location_id,
                 title: 'Maintenance Completed',
                 message: `Maintenance completed for equipment "${equipment.name}". Equipment is now operational.`
+            }, {
+                severity: 'INFO'
             });
             
             return maintenance;
@@ -266,12 +268,12 @@ class EquipmentService {
             let alertsGenerated = 0;
             
             for (const item of needingMaintenance) {
-                await alertService.createAlert({
-                    location_id: item.location_id,
-                    severity: 'WARNING',
-                    alert_type: 'MAINTENANCE_DUE',
+                await alertService.createAlert('MAINTENANCE_DUE', {
+                    locationId: item.location_id,
                     title: 'Maintenance Due',
                     message: `Equipment "${item.name}" requires maintenance. Last maintenance: ${item.last_maintenance ? new Date(item.last_maintenance).toLocaleDateString() : 'Never'}`
+                }, {
+                    severity: 'WARNING'
                 });
                 alertsGenerated++;
             }
@@ -445,12 +447,12 @@ class EquipmentService {
             'OPERATIVE': 'INFO'
         };
         
-        await alertService.createAlert({
-            location_id: equipment.location_id,
-            severity: severityMap[newStatus] || 'INFO',
-            alert_type: 'EQUIPMENT_STATUS_CHANGE',
+        await alertService.createAlert('EQUIPMENT_STATUS_CHANGE', {
+            locationId: equipment.location_id,
             title: 'Equipment Status Changed',
             message: `Equipment "${equipment.name}" status changed from ${oldStatus} to ${newStatus}`
+        }, {
+            severity: severityMap[newStatus] || 'INFO'
         });
     }
     

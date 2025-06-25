@@ -290,9 +290,9 @@ router.add('DELETE', '/api/exceptions/:id', exceptionController.deleteException)
 
 // Helper to serve static files
 function serveStatic(filePath, res) {
-  fs.stat(filePath, (err, stats) => {
-    if (err || !stats.isFile()) {
-      log.warn(`Static not found: ${filePath}`);
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      log.error(`File not found: ${filePath}`);
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end('Not found');
       return;
@@ -339,6 +339,159 @@ function serveStatic(filePath, res) {
     });
     stream.pipe(res);
   });
+}
+
+function serveNotImplementedPage(requestedPath, res) {
+  const pageName = path.basename(requestedPath, '.html');
+  const pageDisplayName = pageName.charAt(0).toUpperCase() + pageName.slice(1);
+  
+  const html = `<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcționalitate în dezvoltare - CaS</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        .not-implemented-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        .not-implemented-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .not-implemented-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+        }
+        
+        .not-implemented-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .not-implemented-message {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="not-implemented-container">
+        <div class="not-implemented-card">
+            <div class="not-implemented-icon">🚧</div>
+            <h1 class="not-implemented-title">${pageDisplayName}</h1>
+            <p class="not-implemented-message">
+                Această funcționalitate este în curs de dezvoltare și va fi disponibilă în curând. 
+                Vă mulțumim pentru răbdare!
+            </p>
+            <button class="back-button" onclick="goBack()">← Înapoi</button>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script>
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = '/';
+            }
+        }
+        
+        function showToast(message, type = 'info', duration = 5000) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = \`toast toast-\${type}\`;
+            
+            const icons = {
+                success: '✅',
+                error: '❌',
+                warning: '⚠️',
+                info: 'ℹ️'
+            };
+            
+            toast.innerHTML = \`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.2rem;">\${icons[type]}</span>
+                    <div style="flex: 1;">
+                        <div style="font-weight: 600; margin-bottom: 2px;">\${message}</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Funcționalitatea va fi disponibilă în curând</div>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; opacity: 0.6;">&times;</button>
+                </div>
+            \`;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto-remove after duration
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, duration);
+        }
+        
+        // Show toast notification when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            showToast('Pagina ${pageDisplayName} este în dezvoltare', 'warning', 8000);
+        });
+    </script>
+</body>
+</html>`;
+
+  res.writeHead(200, { 
+    'Content-Type': 'text/html; charset=utf-8',
+    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Cache-Control, Pragma, Expires',
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
+  });
+  
+  res.end(html);
 }
 
 const server = http.createServer(async (req, res) => {
@@ -410,9 +563,15 @@ const server = http.createServer(async (req, res) => {
       const htmlPath = filePath + '.html';
       fs.stat(htmlPath, (htmlErr, htmlStats) => {
         if (htmlErr || !htmlStats.isFile()) {
-          // If still not found, serve index.html for SPA routing
-          const indexPath = path.join(frontendDir, 'index.html');
-          serveStatic(indexPath, res);
+          // Check if it's a request for an HTML page that doesn't exist
+          if (pathname.endsWith('.html') || (!path.extname(pathname) && pathname !== '/')) {
+            // Serve not implemented page with toast notification
+            serveNotImplementedPage(pathname, res);
+          } else {
+            // For other files (CSS, JS, images), serve index.html for SPA routing
+            const indexPath = path.join(frontendDir, 'index.html');
+            serveStatic(indexPath, res);
+          }
         } else {
           serveStatic(htmlPath, res);
         }
