@@ -50,32 +50,38 @@ class EquipmentController {
             const equipmentId = parseInt(req.params.id);
             
             if (isNaN(equipmentId)) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Invalid equipment ID'
-                });
+                }));
+                return;
             }
             
             const equipment = await equipmentService.getEquipmentById(equipmentId);
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: equipment
-            });
+            }));
         } catch (error) {
             logger.error(`Error in getEquipmentById (${req.params.id}):`, error);
             
             if (error.message === 'Equipment not found') {
-                return res.status(404).json({
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: error.message
-                });
+                }));
+                return;
             }
             
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -95,25 +101,29 @@ class EquipmentController {
             
             // Validate required fields
             if (!equipmentData.location_id || !equipmentData.name) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Location ID and name are required'
-                });
+                }));
+                return;
             }
             
             const equipment = await equipmentService.createEquipment(equipmentData);
             
-            res.status(201).json({
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: equipment,
                 message: 'Equipment created successfully'
-            });
+            }));
         } catch (error) {
             logger.error('Error in createEquipment:', error);
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -126,10 +136,12 @@ class EquipmentController {
             const equipmentId = parseInt(req.params.id);
             
             if (isNaN(equipmentId)) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Invalid equipment ID'
-                });
+                }));
+                return;
             }
             
             const updateData = {};
@@ -142,33 +154,39 @@ class EquipmentController {
             });
             
             if (Object.keys(updateData).length === 0) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'No valid fields to update'
-                });
+                }));
+                return;
             }
             
             const equipment = await equipmentService.updateEquipment(equipmentId, updateData);
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: equipment,
                 message: 'Equipment updated successfully'
-            });
+            }));
         } catch (error) {
             logger.error(`Error in updateEquipment (${req.params.id}):`, error);
             
             if (error.message === 'Equipment not found') {
-                return res.status(404).json({
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: error.message
-                });
+                }));
+                return;
             }
             
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -181,10 +199,12 @@ class EquipmentController {
             const equipmentId = parseInt(req.params.id);
             
             if (isNaN(equipmentId)) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Invalid equipment ID'
-                });
+                }));
+                return;
             }
             
             const maintenanceData = {
@@ -196,33 +216,39 @@ class EquipmentController {
             };
             
             if (!maintenanceData.started_at) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Start time is required'
-                });
+                }));
+                return;
             }
             
             const maintenance = await equipmentService.scheduleMaintenance(maintenanceData);
             
-            res.status(201).json({
+            res.writeHead(201, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: maintenance,
                 message: 'Maintenance scheduled successfully'
-            });
+            }));
         } catch (error) {
             logger.error(`Error in scheduleMaintenance (${req.params.id}):`, error);
             
             if (error.message === 'Equipment not found') {
-                return res.status(404).json({
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: error.message
-                });
+                }));
+                return;
             }
             
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -235,10 +261,12 @@ class EquipmentController {
             const maintenanceId = parseInt(req.params.id);
             
             if (isNaN(maintenanceId)) {
-                return res.status(400).json({
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: 'Invalid maintenance ID'
-                });
+                }));
+                return;
             }
             
             const completionData = {
@@ -248,25 +276,29 @@ class EquipmentController {
             
             const maintenance = await equipmentService.completeMaintenance(maintenanceId, completionData);
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: maintenance,
                 message: 'Maintenance completed successfully'
-            });
+            }));
         } catch (error) {
             logger.error(`Error in completeMaintenance (${req.params.id}):`, error);
             
             if (error.message === 'Maintenance record not found') {
-                return res.status(404).json({
+                res.writeHead(404, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({
                     success: false,
                     error: error.message
-                });
+                }));
+                return;
             }
             
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -278,17 +310,19 @@ class EquipmentController {
         try {
             const result = await equipmentService.checkEquipmentStatus();
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: result,
                 message: 'Equipment status check completed'
-            });
+            }));
         } catch (error) {
             logger.error('Error in checkEquipmentStatus:', error);
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     
@@ -302,16 +336,18 @@ class EquipmentController {
             
             const summary = await equipmentService.getDashboardSummary(locationId);
             
-            res.json({
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: true,
                 data: summary
-            });
+            }));
         } catch (error) {
             logger.error('Error in getDashboard:', error);
-            res.status(500).json({
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({
                 success: false,
                 error: error.message
-            });
+            }));
         }
     }
     

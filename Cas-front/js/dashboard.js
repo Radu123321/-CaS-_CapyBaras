@@ -72,13 +72,13 @@ class CaSDashboard {
     document.getElementById('dashboardContent').style.display = 'none';
     document.getElementById('errorState').style.display = 'none';
   }
-
+  
   showDashboard() {
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboardContent').style.display = 'block';
     document.getElementById('errorState').style.display = 'none';
   }
-
+  
   showError(message) {
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboardContent').style.display = 'none';
@@ -264,7 +264,7 @@ class CaSDashboard {
       <div class="widget-header">
         <h3>Servicii (${services.length})</h3>
         <button onclick="dashboard.showAddServiceModal()" class="btn-add">+ Adaugă</button>
-      </div>
+          </div>
       <div class="widget-content">
         ${services.map(service => `
           <div class="service-item" data-id="${service.service_id}">
@@ -272,15 +272,15 @@ class CaSDashboard {
               <h4>${this.getServiceTypeLabel(service.service_type)}</h4>
               <p>${service.description}</p>
               <span class="service-price">${service.base_price} RON</span>
-            </div>
+          </div>
             <div class="service-actions">
               <button onclick="dashboard.editService(${service.service_id})" class="btn-edit">✏️</button>
               <button onclick="dashboard.deleteService(${service.service_id})" class="btn-delete">🗑️</button>
-            </div>
+          </div>
           </div>
         `).join('')}
-      </div>
-    `;
+          </div>
+        `;
   }
 
   getServiceTypeLabel(type) {
@@ -313,7 +313,7 @@ class CaSDashboard {
       <div class="widget-header">
         <h3>Comenzi Recente</h3>
         <button onclick="dashboard.showAllOrders()" class="btn-view-all">Vezi toate</button>
-      </div>
+            </div>
       <div class="widget-content">
         ${orders.length > 0 ? orders.map(order => `
           <div class="order-item" data-id="${order.order_id}">
@@ -324,7 +324,7 @@ class CaSDashboard {
                 <p>Locație: ${order.location_name || 'N/A'}</p>
                 <p>Data: ${this.formatDate(order.created_at)}</p>
                 ${order.total_price ? `<p>Total: ${order.total_price} RON</p>` : ''}
-              </div>
+          </div>
             </div>
             <div class="order-status">
               <span class="status-badge ${order.status.toLowerCase()}">${this.getOrderStatusLabel(order.status)}</span>
@@ -425,7 +425,7 @@ class CaSDashboard {
       <div class="widget-header">
         <h3>Status Echipamente</h3>
         <button onclick="dashboard.showEquipmentManagement()" class="btn-manage">Gestionează</button>
-      </div>
+          </div>
       <div class="widget-content">
         <div class="status-summary">
           <div class="status-item operative">
@@ -435,25 +435,25 @@ class CaSDashboard {
           <div class="status-item maintenance">
             <span class="count">${statusCounts.UNDER_MAINTENANCE || 0}</span>
             <span class="label">În Mentenanță</span>
-          </div>
+        </div>
           <div class="status-item offline">
             <span class="count">${statusCounts.OUT_OF_SERVICE || 0}</span>
             <span class="label">Defecte</span>
+      </div>
           </div>
-        </div>
         <div class="equipment-list">
           ${equipment.slice(0, 5).map(eq => `
             <div class="equipment-item">
               <span class="equipment-name">${eq.name}</span>
               <span class="equipment-location">${eq.location_name}</span>
               <span class="equipment-status ${eq.status.toLowerCase()}">${eq.status}</span>
-            </div>
+          </div>
           `).join('')}
         </div>
       </div>
     `;
   }
-
+  
   // ===== STATUS SISTEM =====
   async loadSystemStatus() {
     try {
@@ -484,7 +484,7 @@ class CaSDashboard {
       <div class="widget-header">
         <h3>Status Sistem</h3>
         <button onclick="dashboard.refreshSystemStatus()" class="btn-refresh">🔄</button>
-      </div>
+          </div>
       <div class="widget-content">
         <div class="status-grid">
           <div class="status-item">
@@ -517,31 +517,31 @@ class CaSDashboard {
   setupWebSocket() {
     try {
       const wsUrl = 'ws://localhost:8000/ws';
-      this.websocket = new WebSocket(wsUrl);
-      
-      this.websocket.onopen = () => {
-        console.log('WebSocket connected');
-        this.showToast('Conectat la actualizări în timp real', 'success');
-      };
-      
-      this.websocket.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        this.handleWebSocketMessage(message);
-      };
-      
-      this.websocket.onclose = () => {
-        console.log('WebSocket disconnected');
+        this.websocket = new WebSocket(wsUrl);
+        
+        this.websocket.onopen = () => {
+          console.log('WebSocket connected');
+          this.showToast('Conectat la actualizări în timp real', 'success');
+        };
+        
+        this.websocket.onmessage = (event) => {
+          const message = JSON.parse(event.data);
+          this.handleWebSocketMessage(message);
+        };
+        
+        this.websocket.onclose = () => {
+          console.log('WebSocket disconnected');
         setTimeout(() => this.setupWebSocket(), 5000); // Reconnect
-      };
-      
-      this.websocket.onerror = (error) => {
-        console.error('WebSocket error:', error);
-      };
-    } catch (error) {
-      console.error('WebSocket setup error:', error);
+        };
+        
+        this.websocket.onerror = (error) => {
+          console.error('WebSocket error:', error);
+        };
+      } catch (error) {
+        console.error('WebSocket setup error:', error);
     }
   }
-
+  
   handleWebSocketMessage(message) {
     switch (message.type) {
       case 'order_update':
@@ -1094,7 +1094,7 @@ class CaSDashboard {
       modal.remove();
     }
   }
-
+  
   showToast(message, type = 'info', duration = 5000) {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
@@ -1162,12 +1162,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Funcții pentru butoanele din HTML
 async function refreshRecentOrders() {
-  await dashboard.loadRecentOrders();
+    await dashboard.loadRecentOrders();
 }
 
 async function refreshSystemStatus() {
-  await dashboard.loadSystemStatus();
-}
+    await dashboard.loadSystemStatus();
+  }
 
 function showAllOrders() {
   window.location.href = 'orders.html';
@@ -1204,7 +1204,7 @@ async function sendTestAlert() {
     if (response.success) {
       dashboard.showToast('Email de test trimis cu succes', 'success');
     }
-  } catch (error) {
+        } catch (error) {
     dashboard.showToast('Eroare la trimiterea email-ului de test', 'error');
   }
 }

@@ -632,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     gap: var(--space-3);
   }
-  
+
   .hero-actions {
     flex-direction: column;
   }
@@ -649,7 +649,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .footer-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -780,8 +780,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   color: #64748b;
   line-height: 1.7;
-  font-size: 1rem;
-}
+    font-size: 1rem;
+  }
 
 .about-values {
   margin-top: var(--space-12);
@@ -792,7 +792,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #1e293b;
   margin-bottom: var(--space-8);
   font-size: 2rem;
-  text-align: center;
+    text-align: center;
   font-weight: 600;
 }
 
@@ -1236,8 +1236,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes slideUp {
   to {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
   }
 }
 
