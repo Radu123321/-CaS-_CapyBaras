@@ -1273,4 +1273,4 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log(`❌ Filter element not found: ${filterId}`);
     }
   });
-}); 
+}); }); 

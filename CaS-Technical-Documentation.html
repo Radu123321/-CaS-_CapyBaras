@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CaS - Cleaning as Service Documentation</title>
+    <link rel="stylesheet" href="./Scholarly HTML_files/scholarly.min.css">
+    <script src="./Scholarly HTML_files/scholarly.min.js.download"></script>
+  </head>
+  <body prefix="schema: http://schema.org">
+    <header>
+      <div class="banner">
+        <div class="status">Technical Documentation</div>
+      </div>
+      <h1>CaS - Cleaning as Service</h1>
+    </header>
+
+    <div role="contentinfo">
+      <dl>
+        <dt>Authors</dt>
+        <dd>
+          CaS Development Team
+        </dd>
+        <dt>Version</dt>
+        <dd>2.0.0</dd>
+        <dt>Last Updated</dt>
+        <dd>June 2025</dd>
+        <dt>License</dt>
+        <dd>
+          <a href="http://creativecommons.org/licenses/by/4.0/">CC-BY</a>
+        </dd>
+      </dl>
+    </div>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+      <h2><span>1. </span>Abstract</h2>
+      <p>
+        CaS (Cleaning as a Service) is a comprehensive web platform for managing cleaning services.
+        This document describes the technical architecture, APIs, and core functionalities of the system,
+        providing complete documentation for developers and integrators.
+      </p>
+    </section>
+
+    <section id="introduction" role="doc-introduction">
+      <h2><span>2. </span>Introduction</h2>
+      <p>
+        In today's digital era, managing cleaning services requires robust and user-friendly software solutions.
+        CaS addresses this need by providing a complete web platform that enables:
+      </p>
+      <ul>
+        <li>Efficient management of appointments and services</li>
+        <li>Real-time equipment and resource monitoring</li>
+        <li>Employee and work schedule management</li>
+        <li>Simplified customer interaction</li>
+        <li>Detailed reporting and analysis</li>
+      </ul>
+    </section>
+
+    <section id="structure">
+      <h2><span>3. </span>System Architecture</h2>
+      
+      <section id="frontend-architecture">
+        <h3><span>3.1 </span>Frontend Architecture</h3>
+        <p>
+          The user interface is built using standard web technologies:
+        </p>
+        <ul>
+          <li>HTML5 for structure</li>
+          <li>CSS3 for styling and layout</li>
+          <li>Vanilla JavaScript for functionality and interactivity</li>
+        </ul>
+        <p>
+          The frontend architecture follows a modular pattern, with each page having its own dedicated JavaScript
+          and CSS files. The code is organized in the following structure:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode">
+          <pre><code>
+Cas-front/
+  ├── js/
+  │   ├── auth.js         # Authentication and session management
+  │   ├── appointments.js # Appointment handling
+  │   ├── calendar.js     # Calendar visualization
+  │   ├── dashboard.js    # Dashboard and statistics
+  │   ├── equipment.js    # Equipment management
+  │   ├── locations.js    # Location management
+  │   └── orders.js       # Order processing
+  ├── css/
+  │   ├── style.css      # Global styles
+  │   ├── auth.css       # Authentication styles
+  │   └── dashboard.css  # Dashboard styles
+  └── html/              # Application pages</code></pre>
+        </figure>
+      </section>
+
+      <section id="backend-architecture">
+        <h3><span>3.2 </span>Backend Architecture</h3>
+        <p>
+          The server is implemented in Node.js and uses:
+        </p>
+        <ul>
+          <li>PostgreSQL for database</li>
+          <li>JWT for authentication</li>
+        </ul>
+        <p>
+          The backend structure follows the MVC architecture:
+        </p>
+        <figure typeof="schema:SoftwareSourceCode">
+          <pre><code>
+src/
+  ├── controllers/    # Business logic
+  ├── services/      # Reusable services
+  ├── repositories/  # Data access
+  ├── core/          # Core functionality
+  └── jobs/          # Scheduled jobs</code></pre>
+        </figure>
+      </section>
+    </section>
+
+    <section id="api-documentation">
+      <h2><span>4. </span>API Documentation</h2>
+      
+      <section id="auth-endpoints">
+        <h3><span>4.1 </span>Authentication Endpoints</h3>
+        <table>
+          <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Response</th>
+          </tr>
+          <tr>
+            <td><code>/api/auth/register</code></td>
+            <td>POST</td>
+            <td>Register new user</td>
+            <td>
+              <pre>
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "full_name": "John Doe"
+}</pre>
+            </td>
+            <td>
+              <pre>
+{
+  "success": true,
+  "data": {
+    "user_id": 1,
+    "email": "user@example.com",
+    "token": "jwt_token"
+  }
+}</pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="orders-endpoints">
+        <h3><span>4.2 </span>Orders Management</h3>
+        <table>
+          <tr>
+            <th>Endpoint</th>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Parameters</th>
+            <th>Response</th>
+          </tr>
+          <tr>
+            <td><code>/api/orders</code></td>
+            <td>GET</td>
+            <td>List all orders</td>
+            <td>
+              Query params:
+              <ul>
+                <li>status (optional)</li>
+                <li>date_from (optional)</li>
+                <li>date_to (optional)</li>
+              </ul>
+            </td>
+            <td>
+              <pre>
+{
+  "success": true,
+  "data": [{
+    "order_id": 1,
+    "status": "PENDING",
+    "service_type": "CARPET_CLEANING"
+  }]
+}</pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+    </section>
+
+    <section id="database">
+      <h2><span>5. </span>Database Schema</h2>
+      
+      <section id="main-tables">
+        <h3><span>5.1 </span>Main Tables</h3>
+        <ul>
+          <li><strong>users</strong> - System users (ADMIN, MANAGER, EMPLOYEE, CUSTOMER)</li>
+          <li><strong>locations</strong> - Cleaning locations with GPS coordinates</li>
+          <li><strong>services</strong> - Available services (carpets, cars, clothing)</li>
+          <li><strong>equipment</strong> - Equipment with wear monitoring and maintenance</li>
+          <li><strong>resources</strong> - Resources/consumables (detergents, chemicals)</li>
+          <li><strong>inventory</strong> - Stock per location with automatic alerts</li>
+          <li><strong>orders</strong> - Orders with transport and recurring scheduling</li>
+        </ul>
+      </section>
+
+      <section id="linking-tables">
+        <h3><span>5.2 </span>Linking Tables</h3>
+        <ul>
+          <li><strong>service_resources</strong> - Required resources per service</li>
+          <li><strong>location_services</strong> - Available services per location</li>
+          <li><strong>order_resources</strong> - Resources consumed per order</li>
+        </ul>
+      </section>
+    </section>
+
+    <section id="roles">
+      <h2><span>6. </span>Roles and Permissions</h2>
+      
+      <section id="admin-role">
+        <h3><span>6.1 </span>Administrator (ADMIN)</h3>
+        <ul>
+          <li>Complete user management</li>
+          <li>Location and service configuration</li>
+          <li>Global resource management</li>
+          <li>Access to all reports and statistics</li>
+        </ul>
+      </section>
+
+      <section id="employee-role">
+        <h3><span>6.2 </span>Employee</h3>
+        <ul>
+          <li>View and update tasks</li>
+          <li>Report issues</li>
+          <li>Transport management</li>
+          <li>Material consumption recording</li>
+        </ul>
+      </section>
+
+      <section id="customer-role">
+        <h3><span>6.3 </span>Customer</h3>
+        <ul>
+          <li>Service scheduling</li>
+          <li>Order tracking</li>
+          <li>History viewing</li>
+          <li>Feedback provision</li>
+        </ul>
+      </section>
+    </section>
+
+    <section id="security">
+      <h2><span>7. </span>Security</h2>
+      <p>
+        The system implements the following security measures:
+      </p>
+      <ul>
+        <li>JWT Authentication with refresh tokens</li>
+        <li>Sensitive data encryption</li>
+        <li>API rate limiting</li>
+        <li>Input validation and data sanitization</li>
+        <li>Logging and audit trail</li>
+      </ul>
+    </section>
+
+    <section id="monitoring">
+      <h2><span>8. </span>Monitoring and Logging</h2>
+      <p>
+        The system implements extensive logging for:
+      </p>
+      <ul>
+        <li>User activity</li>
+        <li>Errors and exceptions</li>
+        <li>System performance</li>
+        <li>API access</li>
+      </ul>
+      <p>
+        Logs are stored in structured format and can be accessed through the admin interface.
+      </p>
+    </section>
+
+    <section id="deployment">
+      <h2><span>9. </span>Deployment</h2>
+      <p>
+        The application can be deployed using:
+      </p>
+      <ul>
+        <li>Docker containers</li>
+        <li>Kubernetes for orchestration</li>
+        <li>Automated CI/CD pipeline</li>
+        <li>Monitoring and alerting</li>
+      </ul>
+    </section>
+
+  </body>
+</html> 

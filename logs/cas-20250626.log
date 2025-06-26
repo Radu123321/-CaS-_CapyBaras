@@ -3383,3 +3383,747 @@
 2025-06-26T00:50:56.498Z [INFO] GET /api/stats/performance
 2025-06-26T00:50:56.508Z [INFO] WebSocket upgrade request: /ws/status
 2025-06-26T00:50:56.508Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:35:17.676Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-26T01:35:17.701Z [INFO] AlertService: SMTP client initialized
+2025-06-26T01:35:17.718Z [INFO] Minimal server listening on port 8000
+2025-06-26T01:35:17.722Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Thu Jun 26 2025 04:35:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.723Z [INFO] Scheduler: Job 'checkInventory' added, next run: Thu Jun 26 2025 05:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.723Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Thu Jun 26 2025 04:36:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.724Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Thu Jun 26 2025 04:36:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.724Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Fri Jun 27 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.724Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Thu Jun 26 2025 04:36:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.725Z [INFO] Scheduler: Starting...
+2025-06-26T01:35:17.725Z [INFO] Scheduler: Started successfully
+2025-06-26T01:35:17.725Z [INFO] Server and scheduler started successfully
+2025-06-26T01:35:17.777Z [INFO] PostgreSQL connection successful. Server time: Thu Jun 26 2025 04:35:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:35:17.834Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:35:17.836Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:35:18.309Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:35:18.309Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:35:35.111Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-26T01:35:35.114Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:35:35.238Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:35.238Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:35.238Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.239Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.239Z [INFO] Alert alert_1750901735237_0zb0ch4x5 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.239Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:35:35.239Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.239Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.240Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.240Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.240Z [INFO] Alert alert_1750901735239_7h3bxuhdp sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.240Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.240Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.240Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.240Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.241Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.241Z [INFO] Alert alert_1750901735240_jgyxkn0d4 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.241Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.241Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.242Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.242Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.242Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.242Z [INFO] Alert alert_1750901735241_q431jxih0 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.242Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.248Z [INFO] OPTIONS /api/orders
+2025-06-26T01:35:35.251Z [INFO] GET /api/orders
+2025-06-26T01:35:35.251Z [INFO] GET /api/orders
+2025-06-26T01:35:35.272Z [INFO] OPTIONS /api/stats/system-status
+2025-06-26T01:35:35.275Z [INFO] GET /api/stats/system-status
+2025-06-26T01:35:35.282Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:35.282Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:35.282Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.283Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.283Z [INFO] Alert alert_1750901735282_4g96308g0 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.283Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:35:35.283Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.283Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.284Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.284Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.284Z [INFO] Alert alert_1750901735283_44n0ezqyb sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.284Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.284Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.285Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.285Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.285Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.286Z [INFO] Alert alert_1750901735284_51gb26wt4 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.286Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.286Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.286Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:35.287Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:35.287Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:35.287Z [INFO] Alert alert_1750901735286_0dufhgo7g sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:35.287Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:35.297Z [INFO] OPTIONS /api/notifications/recent
+2025-06-26T01:35:35.298Z [INFO] GET /api/notifications/recent
+2025-06-26T01:35:35.306Z [INFO] OPTIONS /api/stats/performance
+2025-06-26T01:35:35.308Z [INFO] GET /api/stats/performance
+2025-06-26T01:35:35.317Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:35:35.318Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:35:37.157Z [INFO] OPTIONS /api/auth/logout
+2025-06-26T01:35:37.159Z [INFO] POST /api/auth/logout
+2025-06-26T01:35:37.159Z [INFO] POST /api/auth/logout
+2025-06-26T01:35:37.160Z [INFO] AuthService: User admin@cas.ro logged out
+2025-06-26T01:35:43.844Z [INFO] OPTIONS /api/auth/login
+2025-06-26T01:35:43.846Z [INFO] POST /api/auth/login
+2025-06-26T01:35:43.847Z [INFO] POST /api/login or /api/auth/login
+2025-06-26T01:35:44.033Z [INFO] AuthService: Successful login for admin@cas.ro
+2025-06-26T01:35:44.034Z [INFO] Login: Success for user admin@cas.ro
+2025-06-26T01:35:45.589Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-26T01:35:45.591Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:35:45.602Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:45.602Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:45.603Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.603Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.603Z [INFO] Alert alert_1750901745601_i9o89j4po sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.603Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:35:45.603Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.604Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.604Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.604Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.604Z [INFO] Alert alert_1750901745603_4e2nzeoh9 sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.605Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.607Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.608Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.609Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.610Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.610Z [INFO] Alert alert_1750901745607_ekfpdm0wr sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.611Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.612Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.612Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.613Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.613Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.614Z [INFO] Alert alert_1750901745612_5xkb8jlvw sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.614Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.620Z [INFO] OPTIONS /api/orders
+2025-06-26T01:35:45.622Z [INFO] GET /api/orders
+2025-06-26T01:35:45.622Z [INFO] GET /api/orders
+2025-06-26T01:35:45.638Z [INFO] OPTIONS /api/stats/system-status
+2025-06-26T01:35:45.639Z [INFO] GET /api/stats/system-status
+2025-06-26T01:35:45.650Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:45.651Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:35:45.652Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.652Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.653Z [INFO] Alert alert_1750901745650_6097sdbyv sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.653Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:35:45.653Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.654Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.655Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.655Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.655Z [INFO] Alert alert_1750901745653_u2ytyyonf sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.656Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.656Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.657Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.658Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.658Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.659Z [INFO] Alert alert_1750901745656_9vmodnfkg sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.659Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.660Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.660Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:35:45.661Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:35:45.662Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:35:45.662Z [INFO] Alert alert_1750901745660_4julfzsma sent via multiple channels: email, websocket, rss
+2025-06-26T01:35:45.663Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:35:45.672Z [INFO] OPTIONS /api/notifications/recent
+2025-06-26T01:35:45.675Z [INFO] GET /api/notifications/recent
+2025-06-26T01:35:45.683Z [INFO] OPTIONS /api/stats/performance
+2025-06-26T01:35:45.685Z [INFO] GET /api/stats/performance
+2025-06-26T01:35:45.697Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:35:45.698Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:35:47.559Z [INFO] OPTIONS /api/orders
+2025-06-26T01:35:47.561Z [INFO] OPTIONS /api/customers
+2025-06-26T01:35:47.561Z [INFO] OPTIONS /api/locations
+2025-06-26T01:35:47.562Z [INFO] GET /api/orders
+2025-06-26T01:35:47.562Z [INFO] GET /api/orders
+2025-06-26T01:35:47.563Z [INFO] OPTIONS /api/services
+2025-06-26T01:35:47.564Z [INFO] GET /api/customers
+2025-06-26T01:35:47.564Z [INFO] GET /api/customers
+2025-06-26T01:35:47.565Z [INFO] GET /api/locations
+2025-06-26T01:35:47.566Z [INFO] GET /api/locations
+2025-06-26T01:35:47.567Z [INFO] GET /api/services
+2025-06-26T01:35:47.568Z [INFO] GET /api/services
+2025-06-26T01:35:52.917Z [INFO] OPTIONS /api/orders
+2025-06-26T01:35:52.918Z [INFO] OPTIONS /api/orders/114
+2025-06-26T01:35:52.920Z [INFO] POST /api/orders
+2025-06-26T01:35:52.921Z [INFO] POST /api/orders
+2025-06-26T01:35:52.925Z [INFO] PUT /api/orders/114
+2025-06-26T01:35:52.926Z [INFO] PUT /api/orders/114
+2025-06-26T01:35:52.932Z [INFO] OrderService: Created order 126 with code O017529227MK9 for customer 1
+2025-06-26T01:35:52.934Z [INFO] OrderService: Updated order 114
+2025-06-26T01:35:52.937Z [INFO] GET /api/orders
+2025-06-26T01:35:52.938Z [INFO] GET /api/orders
+2025-06-26T01:35:52.942Z [INFO] GET /api/orders
+2025-06-26T01:35:52.943Z [INFO] GET /api/orders
+2025-06-26T01:36:17.736Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-26T01:36:17.737Z [INFO] ExpandRecurrences: Starting job
+2025-06-26T01:36:17.738Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-26T01:36:17.739Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Thu Jun 26 2025 04:40:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:36:17.739Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-26T01:36:17.739Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-26T01:36:17.740Z [INFO] Starting equipment status check...
+2025-06-26T01:36:17.746Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.746Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.747Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.747Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.747Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:36:17.747Z [INFO] Alert alert_1750901777746_pvxrdjljj sent via multiple channels: email, websocket, rss
+2025-06-26T01:36:17.748Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:36:17.748Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.748Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.749Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.749Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.749Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:36:17.749Z [INFO] Alert alert_1750901777748_4l2zucwxx sent via multiple channels: email, websocket, rss
+2025-06-26T01:36:17.750Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:36:17.750Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.750Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.751Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.751Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.752Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:36:17.753Z [INFO] Alert alert_1750901777750_umwcsf5t9 sent via multiple channels: email, websocket, rss
+2025-06-26T01:36:17.753Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:36:17.754Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.754Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.755Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.755Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.755Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:36:17.755Z [INFO] Alert alert_1750901777754_n44271kzk sent via multiple channels: email, websocket, rss
+2025-06-26T01:36:17.755Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:36:17.756Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.756Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:36:17.757Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.757Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:36:17.757Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:36:17.758Z [INFO] Alert alert_1750901777756_rp4wvybqv sent via multiple channels: email, websocket, rss
+2025-06-26T01:36:17.758Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:36:17.758Z [INFO] Equipment status check completed. Generated 5 alerts.
+2025-06-26T01:36:17.758Z [INFO] CheckEquipmentStatus: Job completed in 18ms
+2025-06-26T01:36:17.759Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Thu Jun 26 2025 04:37:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:36:17.759Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-26T01:36:17.759Z [INFO] Starting weather data update job...
+2025-06-26T01:36:17.760Z [INFO] Starting weather data update for all locations...
+2025-06-26T01:36:17.764Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-26T01:36:17.765Z [INFO] Starting adverse weather conditions check...
+2025-06-26T01:36:17.766Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-26T01:36:17.767Z [INFO] Weather data update job completed in 8ms
+2025-06-26T01:36:17.767Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Thu Jun 26 2025 04:37:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:36:17.767Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-26T01:36:17.768Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-26T01:36:17.768Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-26T01:36:17.768Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Thu Jun 26 2025 04:41:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:37:35.407Z [INFO] OPTIONS /api/orders
+2025-06-26T01:37:35.408Z [INFO] OPTIONS /api/orders
+2025-06-26T01:37:35.409Z [INFO] OPTIONS /api/customers
+2025-06-26T01:37:35.410Z [INFO] OPTIONS /api/customers
+2025-06-26T01:37:35.410Z [INFO] OPTIONS /api/services
+2025-06-26T01:37:35.411Z [INFO] OPTIONS /api/locations
+2025-06-26T01:37:35.412Z [INFO] OPTIONS /api/locations
+2025-06-26T01:37:35.414Z [INFO] OPTIONS /api/services
+2025-06-26T01:37:35.415Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-26T01:37:35.416Z [INFO] GET /api/orders
+2025-06-26T01:37:35.417Z [INFO] GET /api/orders
+2025-06-26T01:37:35.417Z [INFO] GET /api/orders
+2025-06-26T01:37:35.418Z [INFO] GET /api/orders
+2025-06-26T01:37:35.419Z [INFO] GET /api/customers
+2025-06-26T01:37:35.420Z [INFO] GET /api/customers
+2025-06-26T01:37:35.421Z [INFO] GET /api/customers
+2025-06-26T01:37:35.421Z [INFO] GET /api/customers
+2025-06-26T01:37:35.424Z [INFO] GET /api/services
+2025-06-26T01:37:35.425Z [INFO] GET /api/services
+2025-06-26T01:37:35.425Z [INFO] GET /api/locations
+2025-06-26T01:37:35.426Z [INFO] GET /api/locations
+2025-06-26T01:37:35.529Z [INFO] GET /api/locations
+2025-06-26T01:37:35.530Z [INFO] GET /api/locations
+2025-06-26T01:37:35.534Z [INFO] GET /api/services
+2025-06-26T01:37:35.535Z [INFO] GET /api/services
+2025-06-26T01:37:35.536Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:37:35.624Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:35.624Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:35.625Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.625Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.625Z [INFO] Alert alert_1750901855624_n7h7soh4a sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.625Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:37:35.625Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.626Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.626Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.626Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.626Z [INFO] Alert alert_1750901855625_9pr0o35g2 sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.626Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.627Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.627Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.627Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.627Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.628Z [INFO] Alert alert_1750901855627_tqff45wmr sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.628Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.628Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.628Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.628Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.629Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.629Z [INFO] Alert alert_1750901855628_w0swrz0xr sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.629Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.634Z [INFO] OPTIONS /api/orders
+2025-06-26T01:37:35.635Z [INFO] GET /api/orders
+2025-06-26T01:37:35.636Z [INFO] GET /api/orders
+2025-06-26T01:37:35.647Z [INFO] OPTIONS /api/stats/system-status
+2025-06-26T01:37:35.649Z [INFO] GET /api/stats/system-status
+2025-06-26T01:37:35.654Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:35.655Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:35.655Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.655Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.655Z [INFO] Alert alert_1750901855654_vuffj5dfp sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.655Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:37:35.656Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.656Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.656Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.657Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.657Z [INFO] Alert alert_1750901855656_nvdbp3ami sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.657Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.657Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.658Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.658Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.658Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.658Z [INFO] Alert alert_1750901855657_1b8ric3ut sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.658Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.658Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.659Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:35.659Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:35.659Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:35.659Z [INFO] Alert alert_1750901855658_exyux6xdu sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:35.659Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:35.665Z [INFO] OPTIONS /api/notifications/recent
+2025-06-26T01:37:35.666Z [INFO] GET /api/notifications/recent
+2025-06-26T01:37:35.674Z [INFO] OPTIONS /api/stats/performance
+2025-06-26T01:37:35.676Z [INFO] GET /api/stats/performance
+2025-06-26T01:37:35.684Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:37:35.685Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:37:36.666Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:37:36.670Z [INFO] OPTIONS /api/orders
+2025-06-26T01:37:36.674Z [INFO] OPTIONS /api/customers
+2025-06-26T01:37:36.675Z [INFO] OPTIONS /api/services
+2025-06-26T01:37:36.676Z [INFO] OPTIONS /api/locations
+2025-06-26T01:37:36.678Z [INFO] GET /api/orders
+2025-06-26T01:37:36.679Z [INFO] GET /api/orders
+2025-06-26T01:37:36.680Z [INFO] GET /api/customers
+2025-06-26T01:37:36.680Z [INFO] GET /api/customers
+2025-06-26T01:37:36.681Z [INFO] GET /api/services
+2025-06-26T01:37:36.682Z [INFO] GET /api/services
+2025-06-26T01:37:36.682Z [INFO] GET /api/locations
+2025-06-26T01:37:36.683Z [INFO] GET /api/locations
+2025-06-26T01:37:36.684Z [INFO] GET /api/orders
+2025-06-26T01:37:36.685Z [INFO] GET /api/orders
+2025-06-26T01:37:36.686Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:36.686Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:36.687Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.687Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.688Z [INFO] Alert alert_1750901856686_1rwtwq5rp sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.688Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:37:36.688Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.689Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.689Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.690Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.690Z [INFO] Alert alert_1750901856688_vyygw3fre sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.691Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.691Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.692Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.692Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.692Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.693Z [INFO] Alert alert_1750901856691_q2gifte4y sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.693Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.694Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.694Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.695Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.695Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.696Z [INFO] Alert alert_1750901856694_lu4snwwx9 sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.696Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.699Z [INFO] GET /api/customers
+2025-06-26T01:37:36.700Z [INFO] GET /api/customers
+2025-06-26T01:37:36.702Z [INFO] GET /api/locations
+2025-06-26T01:37:36.702Z [INFO] GET /api/locations
+2025-06-26T01:37:36.703Z [INFO] GET /api/services
+2025-06-26T01:37:36.704Z [INFO] GET /api/services
+2025-06-26T01:37:36.705Z [INFO] GET /api/orders
+2025-06-26T01:37:36.706Z [INFO] GET /api/orders
+2025-06-26T01:37:36.716Z [INFO] GET /api/stats/system-status
+2025-06-26T01:37:36.723Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:36.724Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:37:36.724Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.725Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.725Z [INFO] Alert alert_1750901856723_27y1hsz27 sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.726Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:37:36.726Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.726Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.727Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.727Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.728Z [INFO] Alert alert_1750901856726_g0ycxh6gg sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.728Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.729Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.729Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.729Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.730Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.730Z [INFO] Alert alert_1750901856729_pm3f0b7fw sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.730Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.731Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.731Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:37:36.732Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:37:36.732Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:37:36.732Z [INFO] Alert alert_1750901856731_11jq8hb1g sent via multiple channels: email, websocket, rss
+2025-06-26T01:37:36.733Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:37:36.741Z [INFO] GET /api/notifications/recent
+2025-06-26T01:37:36.748Z [INFO] GET /api/stats/performance
+2025-06-26T01:37:36.756Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:37:36.756Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:38:17.761Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-26T01:38:17.762Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-26T01:38:17.763Z [INFO] Starting equipment status check...
+2025-06-26T01:38:17.820Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.820Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.821Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.822Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.822Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:17.822Z [INFO] Alert alert_1750901897820_12oha67jz sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:17.823Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:38:17.824Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.824Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.824Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.825Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.825Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:17.825Z [INFO] Alert alert_1750901897823_xbk00bmz3 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:17.826Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:38:17.826Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.827Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.828Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.828Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.829Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:17.829Z [INFO] Alert alert_1750901897826_z609dedp1 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:17.830Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:38:17.830Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.831Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.831Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.832Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.832Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:17.833Z [INFO] Alert alert_1750901897830_om9ofgrum sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:17.833Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:38:17.834Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.834Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:38:17.835Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.835Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:38:17.835Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:17.836Z [INFO] Alert alert_1750901897834_p0gcebsz1 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:17.836Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:38:17.836Z [INFO] Equipment status check completed. Generated 5 alerts.
+2025-06-26T01:38:17.836Z [INFO] CheckEquipmentStatus: Job completed in 73ms
+2025-06-26T01:38:17.837Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Thu Jun 26 2025 04:39:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:38:17.837Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-26T01:38:17.837Z [INFO] Starting weather data update job...
+2025-06-26T01:38:17.837Z [INFO] Starting weather data update for all locations...
+2025-06-26T01:38:17.839Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-26T01:38:17.839Z [INFO] Starting adverse weather conditions check...
+2025-06-26T01:38:17.840Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-26T01:38:17.840Z [INFO] Weather data update job completed in 3ms
+2025-06-26T01:38:17.841Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Thu Jun 26 2025 04:39:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:38:29.100Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-26T01:38:29.107Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:38:29.111Z [INFO] OPTIONS /api/orders
+2025-06-26T01:38:29.118Z [INFO] OPTIONS /api/customers
+2025-06-26T01:38:29.119Z [INFO] OPTIONS /api/services
+2025-06-26T01:38:29.119Z [INFO] OPTIONS /api/locations
+2025-06-26T01:38:29.120Z [INFO] OPTIONS /api/orders
+2025-06-26T01:38:29.121Z [INFO] OPTIONS /api/customers
+2025-06-26T01:38:29.125Z [INFO] OPTIONS /api/locations
+2025-06-26T01:38:29.128Z [INFO] OPTIONS /api/services
+2025-06-26T01:38:29.132Z [INFO] GET /api/orders
+2025-06-26T01:38:29.132Z [INFO] GET /api/orders
+2025-06-26T01:38:29.133Z [INFO] GET /api/customers
+2025-06-26T01:38:29.134Z [INFO] GET /api/customers
+2025-06-26T01:38:29.134Z [INFO] GET /api/services
+2025-06-26T01:38:29.135Z [INFO] GET /api/services
+2025-06-26T01:38:29.136Z [INFO] GET /api/locations
+2025-06-26T01:38:29.137Z [INFO] GET /api/locations
+2025-06-26T01:38:29.137Z [INFO] GET /api/orders
+2025-06-26T01:38:29.138Z [INFO] GET /api/orders
+2025-06-26T01:38:29.154Z [INFO] GET /api/customers
+2025-06-26T01:38:29.154Z [INFO] GET /api/customers
+2025-06-26T01:38:29.201Z [INFO] GET /api/locations
+2025-06-26T01:38:29.202Z [INFO] GET /api/locations
+2025-06-26T01:38:29.204Z [INFO] GET /api/services
+2025-06-26T01:38:29.205Z [INFO] GET /api/services
+2025-06-26T01:38:29.306Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:29.306Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:29.307Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.307Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.307Z [INFO] Alert alert_1750901909306_5mnx2zqa1 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.307Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:29.307Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.307Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.308Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.308Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.308Z [INFO] Alert alert_1750901909307_astgb9ntp sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.308Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.308Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.308Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.308Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.309Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.309Z [INFO] Alert alert_1750901909308_ouzm73bmi sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.309Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.309Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.309Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.310Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.310Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.310Z [INFO] Alert alert_1750901909309_oaabtzn37 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.310Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.316Z [INFO] OPTIONS /api/orders
+2025-06-26T01:38:29.317Z [INFO] GET /api/orders
+2025-06-26T01:38:29.318Z [INFO] GET /api/orders
+2025-06-26T01:38:29.329Z [INFO] OPTIONS /api/stats/system-status
+2025-06-26T01:38:29.331Z [INFO] GET /api/stats/system-status
+2025-06-26T01:38:29.340Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:29.341Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:29.341Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.341Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.341Z [INFO] Alert alert_1750901909340_jy119ysgq sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.341Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:29.342Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.342Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.342Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.342Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.342Z [INFO] Alert alert_1750901909342_yjacijbk1 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.343Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.343Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.344Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.344Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.345Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.345Z [INFO] Alert alert_1750901909343_a0gyk6byk sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.345Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.346Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.346Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:29.346Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:29.347Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:29.347Z [INFO] Alert alert_1750901909345_eovqg9xxb sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:29.347Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:29.352Z [INFO] OPTIONS /api/notifications/recent
+2025-06-26T01:38:29.353Z [INFO] GET /api/notifications/recent
+2025-06-26T01:38:29.362Z [INFO] OPTIONS /api/stats/performance
+2025-06-26T01:38:29.365Z [INFO] GET /api/stats/performance
+2025-06-26T01:38:29.372Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:38:29.372Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:38:30.453Z [INFO] OPTIONS /api/orders
+2025-06-26T01:38:30.455Z [INFO] OPTIONS /api/customers
+2025-06-26T01:38:30.455Z [INFO] OPTIONS /api/services
+2025-06-26T01:38:30.456Z [INFO] OPTIONS /api/locations
+2025-06-26T01:38:30.463Z [INFO] GET /api/orders
+2025-06-26T01:38:30.464Z [INFO] GET /api/orders
+2025-06-26T01:38:30.465Z [INFO] GET /api/customers
+2025-06-26T01:38:30.466Z [INFO] GET /api/customers
+2025-06-26T01:38:30.467Z [INFO] GET /api/services
+2025-06-26T01:38:30.467Z [INFO] GET /api/services
+2025-06-26T01:38:30.468Z [INFO] GET /api/locations
+2025-06-26T01:38:30.469Z [INFO] GET /api/locations
+2025-06-26T01:38:30.469Z [INFO] GET /api/orders
+2025-06-26T01:38:30.470Z [INFO] GET /api/orders
+2025-06-26T01:38:30.471Z [INFO] GET /api/customers
+2025-06-26T01:38:30.471Z [INFO] GET /api/customers
+2025-06-26T01:38:30.479Z [INFO] GET /api/locations
+2025-06-26T01:38:30.480Z [INFO] GET /api/locations
+2025-06-26T01:38:30.481Z [INFO] GET /api/services
+2025-06-26T01:38:30.481Z [INFO] GET /api/services
+2025-06-26T01:38:30.482Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:38:30.496Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:30.497Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:30.498Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.499Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.499Z [INFO] Alert alert_1750901910496_r8mt08g3f sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.499Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:30.500Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.500Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.500Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.501Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.501Z [INFO] Alert alert_1750901910500_950eb1tlt sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.501Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.501Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.502Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.502Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.502Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.503Z [INFO] Alert alert_1750901910501_jqgn42mjo sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.503Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.503Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.504Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.504Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.504Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.505Z [INFO] Alert alert_1750901910503_9nuxzdcrx sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.505Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.510Z [INFO] GET /api/orders
+2025-06-26T01:38:30.511Z [INFO] GET /api/orders
+2025-06-26T01:38:30.522Z [INFO] GET /api/stats/system-status
+2025-06-26T01:38:30.532Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:30.532Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:30.533Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.533Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.533Z [INFO] Alert alert_1750901910532_ewjv7vs2u sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.533Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:30.534Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.534Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.534Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.534Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.535Z [INFO] Alert alert_1750901910534_fifr4wuyo sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.535Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.535Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.535Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.536Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.536Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.536Z [INFO] Alert alert_1750901910535_odvurgg5k sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.536Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.537Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.537Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:30.537Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:30.537Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:30.538Z [INFO] Alert alert_1750901910537_q391fbucz sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:30.538Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:30.546Z [INFO] GET /api/notifications/recent
+2025-06-26T01:38:30.553Z [INFO] GET /api/stats/performance
+2025-06-26T01:38:30.564Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:38:30.565Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:38:31.826Z [INFO] GET /api/orders
+2025-06-26T01:38:31.827Z [INFO] GET /api/orders
+2025-06-26T01:38:31.828Z [INFO] GET /api/customers
+2025-06-26T01:38:31.828Z [INFO] GET /api/customers
+2025-06-26T01:38:31.828Z [INFO] GET /api/locations
+2025-06-26T01:38:31.829Z [INFO] GET /api/locations
+2025-06-26T01:38:31.830Z [INFO] GET /api/services
+2025-06-26T01:38:31.830Z [INFO] GET /api/services
+2025-06-26T01:38:31.830Z [INFO] OPTIONS /api/orders
+2025-06-26T01:38:31.831Z [INFO] OPTIONS /api/customers
+2025-06-26T01:38:31.834Z [INFO] OPTIONS /api/services
+2025-06-26T01:38:31.835Z [INFO] OPTIONS /api/locations
+2025-06-26T01:38:31.839Z [INFO] GET /api/stats/dashboard
+2025-06-26T01:38:31.841Z [INFO] GET /api/orders
+2025-06-26T01:38:31.844Z [INFO] GET /api/orders
+2025-06-26T01:38:31.844Z [INFO] GET /api/customers
+2025-06-26T01:38:31.845Z [INFO] GET /api/customers
+2025-06-26T01:38:31.846Z [INFO] GET /api/services
+2025-06-26T01:38:31.846Z [INFO] GET /api/services
+2025-06-26T01:38:31.848Z [INFO] GET /api/locations
+2025-06-26T01:38:31.848Z [INFO] GET /api/locations
+2025-06-26T01:38:31.858Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:31.859Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:31.860Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.860Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.861Z [INFO] Alert alert_1750901911857_djgt8h6y0 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.861Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:31.862Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.863Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.863Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.864Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.864Z [INFO] Alert alert_1750901911862_uk2k7ehrt sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.865Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.865Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.865Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.866Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.867Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.867Z [INFO] Alert alert_1750901911865_fjkbp6zve sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.868Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.868Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.869Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.869Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.869Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.870Z [INFO] Alert alert_1750901911868_yz3kitwk6 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.870Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.877Z [INFO] GET /api/orders
+2025-06-26T01:38:31.877Z [INFO] GET /api/orders
+2025-06-26T01:38:31.887Z [INFO] GET /api/stats/system-status
+2025-06-26T01:38:31.897Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:31.897Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T01:38:31.898Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.898Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.898Z [INFO] Alert alert_1750901911897_2tp4k17as sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.899Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T01:38:31.899Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.899Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.899Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.900Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.900Z [INFO] Alert alert_1750901911899_pb8xtvkkn sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.900Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.900Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.900Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.901Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.901Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.901Z [INFO] Alert alert_1750901911900_2ikk7xapx sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.902Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.902Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.903Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T01:38:31.903Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T01:38:31.904Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:38:31.904Z [INFO] Alert alert_1750901911902_cm189rk78 sent via multiple channels: email, websocket, rss
+2025-06-26T01:38:31.905Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T01:38:31.913Z [INFO] GET /api/notifications/recent
+2025-06-26T01:38:31.920Z [INFO] GET /api/stats/performance
+2025-06-26T01:38:31.931Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:38:31.931Z [INFO] WebSocket handshake completed for location global
+2025-06-26T01:40:17.781Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-26T01:40:17.781Z [INFO] ExpandRecurrences: Starting job
+2025-06-26T01:40:17.824Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-26T01:40:17.825Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Thu Jun 26 2025 04:40:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:40:17.825Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-26T01:40:17.826Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-26T01:40:17.826Z [INFO] Starting equipment status check...
+2025-06-26T01:40:17.831Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.832Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.832Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.832Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.833Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:40:17.833Z [INFO] Alert alert_1750902017831_ore8z0h4u sent via multiple channels: email, websocket, rss
+2025-06-26T01:40:17.833Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:40:17.833Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.834Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.834Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.835Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.835Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:40:17.835Z [INFO] Alert alert_1750902017833_54lfsex5r sent via multiple channels: email, websocket, rss
+2025-06-26T01:40:17.835Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:40:17.836Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.836Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.836Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.837Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.837Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:40:17.837Z [INFO] Alert alert_1750902017836_w5z3xlt3i sent via multiple channels: email, websocket, rss
+2025-06-26T01:40:17.837Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:40:17.837Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.837Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.838Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.838Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.839Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:40:17.839Z [INFO] Alert alert_1750902017837_hamtv8ajm sent via multiple channels: email, websocket, rss
+2025-06-26T01:40:17.840Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:40:17.840Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.841Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T01:40:17.841Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.841Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T01:40:17.841Z [INFO] RSS feeds will be updated on next access
+2025-06-26T01:40:17.841Z [INFO] Alert alert_1750902017840_38ucwez4q sent via multiple channels: email, websocket, rss
+2025-06-26T01:40:17.842Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T01:40:17.842Z [INFO] Equipment status check completed. Generated 5 alerts.
+2025-06-26T01:40:17.842Z [INFO] CheckEquipmentStatus: Job completed in 16ms
+2025-06-26T01:40:17.843Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Thu Jun 26 2025 04:41:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:40:17.843Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-26T01:40:17.844Z [INFO] Starting weather data update job...
+2025-06-26T01:40:17.844Z [INFO] Starting weather data update for all locations...
+2025-06-26T01:40:17.846Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-26T01:40:17.847Z [INFO] Starting adverse weather conditions check...
+2025-06-26T01:40:17.848Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-26T01:40:17.848Z [INFO] Weather data update job completed in 4ms
+2025-06-26T01:40:17.848Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Thu Jun 26 2025 04:41:17 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.150Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-26T01:58:02.175Z [INFO] AlertService: SMTP client initialized
+2025-06-26T01:58:02.195Z [INFO] Minimal server listening on port 8000
+2025-06-26T01:58:02.201Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Thu Jun 26 2025 05:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.202Z [INFO] Scheduler: Job 'checkInventory' added, next run: Thu Jun 26 2025 05:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.202Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Thu Jun 26 2025 04:59:02 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.203Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Thu Jun 26 2025 04:59:02 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.203Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Fri Jun 27 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.203Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Thu Jun 26 2025 04:59:02 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:02.204Z [INFO] Scheduler: Starting...
+2025-06-26T01:58:02.204Z [INFO] Scheduler: Started successfully
+2025-06-26T01:58:02.204Z [INFO] Server and scheduler started successfully
+2025-06-26T01:58:02.253Z [INFO] PostgreSQL connection successful. Server time: Thu Jun 26 2025 04:58:02 GMT+0300 (Eastern European Summer Time)
+2025-06-26T01:58:03.324Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T01:58:03.325Z [INFO] WebSocket handshake completed for location global

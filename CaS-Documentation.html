@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <title>CaS (Cleaning as a Service) - Documentație Tehnică</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2em;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+    h1, h2, h3 { color: #1a1a1a; }
+    code { 
+      background: #f5f5f5;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    }
+    pre { 
+      background: #f5f5f5;
+      padding: 1em;
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th { background: #f5f5f5; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>CaS (Cleaning as a Service)</h1>
+  <h2>Documentație Tehnică</h2>
+  
+  <section role="contentinfo">
+    <h2>Autori</h2>
+    <ul>
+      <li>Echipa de Dezvoltare CaS</li>
+    </ul>
+  </section>
+</header>
+
+<section>
+  <h2>Abstract</h2>
+  <p>
+    CaS (Cleaning as a Service) este o platformă web modernă pentru managementul serviciilor de curățenie. 
+    Sistemul oferă o soluție completă pentru gestionarea programărilor, echipamentelor, angajaților și clienților 
+    într-un mod eficient și scalabil. Această documentație descrie arhitectura tehnică, componentele și 
+    funcționalitățile sistemului.
+  </p>
+</section>
+
+<section>
+  <h2>Introducere</h2>
+  <p>
+    În era digitală actuală, managementul serviciilor de curățenie necesită soluții software robuste și 
+    ușor de utilizat. CaS răspunde acestei nevoi oferind o platformă web completă care permite:
+  </p>
+  <ul>
+    <li>Gestionarea eficientă a programărilor și serviciilor</li>
+    <li>Monitorizarea în timp real a echipamentelor și resurselor</li>
+    <li>Managementul angajaților și al programului de lucru</li>
+    <li>Interacțiune simplificată cu clienții</li>
+    <li>Raportare și analiză detaliată</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Arhitectură</h2>
+  
+  <section>
+    <h3>Frontend</h3>
+    <p>
+      Interfața utilizator este construită folosind tehnologii web standard:
+    </p>
+    <ul>
+      <li>HTML5 pentru structură</li>
+      <li>CSS3 pentru stilizare și layout</li>
+      <li>JavaScript vanilla pentru funcționalitate și interactivitate</li>
+    </ul>
+    <p>
+      Arhitectura frontend urmează un model modular, cu fiecare pagină având propriile fișiere JavaScript 
+      și CSS dedicate. Codul este organizat în următoarea structură:
+    </p>
+    <pre>
+Cas-front/
+  ├── js/
+  │   ├── auth.js         # Autentificare și management sesiune
+  │   ├── appointments.js # Gestionare programări
+  │   ├── calendar.js     # Vizualizare calendar
+  │   ├── dashboard.js    # Dashboard și statistici
+  │   ├── equipment.js    # Management echipamente
+  │   ├── locations.js    # Gestionare locații
+  │   └── orders.js       # Procesare comenzi
+  ├── css/
+  │   ├── style.css      # Stiluri globale
+  │   ├── auth.css       # Stiluri autentificare
+  │   └── dashboard.css  # Stiluri dashboard
+  └── html/              # Pagini aplicație</pre>
+  </section>
+
+  <section>
+    <h3>Backend</h3>
+    <p>
+      Serverul este implementat în Node.js și folosește:
+    </p>
+    <ul>
+      <li>Express.js pentru rutare și middleware</li>
+      <li>PostgreSQL pentru baza de date</li>
+      <li>JWT pentru autentificare</li>
+    </ul>
+    <p>
+      Structura backend-ului urmează arhitectura MVC:
+    </p>
+    <pre>
+src/
+  ├── controllers/    # Logica de business
+  ├── services/      # Servicii reutilizabile
+  ├── repositories/  # Acces la date
+  ├── core/          # Funcționalități core
+  └── jobs/          # Jobs programate</pre>
+  </section>
+</section>
+
+<section>
+  <h2>Roluri și Permisiuni</h2>
+  
+  <section>
+    <h3>Administrator (ADMIN)</h3>
+    <ul>
+      <li>Gestionarea completă a utilizatorilor</li>
+      <li>Configurarea sediilor și serviciilor</li>
+      <li>Managementul resurselor la nivel global</li>
+      <li>Acces la toate rapoartele și statisticile</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h3>Manager</h3>
+    <ul>
+      <li>Monitorizarea sediului specific</li>
+      <li>Gestionarea comenzilor și programărilor</li>
+      <li>Managementul echipei și al programului</li>
+      <li>Raportare la nivel de sediu</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h3>Angajat</h3>
+    <ul>
+      <li>Vizualizarea și actualizarea sarcinilor</li>
+      <li>Raportarea problemelor</li>
+      <li>Gestionarea transportului</li>
+      <li>Înregistrarea consumului de materiale</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h3>Client</h3>
+    <ul>
+      <li>Programarea serviciilor</li>
+      <li>Urmărirea comenzilor</li>
+      <li>Vizualizarea istoricului</li>
+      <li>Oferirea de feedback</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>Funcționalități Principale</h2>
+  
+  <section>
+    <h3>Autentificare și Securitate</h3>
+    <p>
+      Sistemul folosește JWT (JSON Web Tokens) pentru autentificare și management de sesiune. 
+      Implementarea include:
+    </p>
+    <ul>
+      <li>Login/Register cu validare</li>
+      <li>Sesiuni persistente cu localStorage/sessionStorage</li>
+      <li>Protecție CSRF și XSS</li>
+      <li>Rate limiting pentru API-uri</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h3>Management Programări</h3>
+    <p>
+      Modulul de programări oferă:
+    </p>
+    <ul>
+      <li>Calendar interactiv</li>
+      <li>Programări recurente</li>
+      <li>Notificări automate</li>
+      <li>Gestionare conflicte</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h3>Monitorizare Echipamente</h3>
+    <p>
+      Sistemul permite:
+    </p>
+    <ul>
+      <li>Urmărirea stării în timp real</li>
+      <li>Planificarea mentenanței</li>
+      <li>Alertare automată</li>
+      <li>Istoric intervenții</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <h2>API și Integrări</h2>
+  <p>
+    Sistemul expune un API RESTful complet documentat pentru integrări externe. 
+    Principalele endpoint-uri includ:
+  </p>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Metodă</th>
+      <th>Descriere</th>
+    </tr>
+    <tr>
+      <td>/api/auth/*</td>
+      <td>POST</td>
+      <td>Autentificare și management utilizatori</td>
+    </tr>
+    <tr>
+      <td>/api/appointments/*</td>
+      <td>GET/POST/PUT/DELETE</td>
+      <td>Gestionare programări</td>
+    </tr>
+    <tr>
+      <td>/api/equipment/*</td>
+      <td>GET/POST/PUT/DELETE</td>
+      <td>Management echipamente</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Monitorizare și Logging</h2>
+  <p>
+    Sistemul implementează logging extensiv pentru:
+  </p>
+  <ul>
+    <li>Activitatea utilizatorilor</li>
+    <li>Erori și excepții</li>
+    <li>Performanța sistemului</li>
+    <li>Accesul la API</li>
+  </ul>
+  <p>
+    Logurile sunt stocate în format structurat și pot fi accesate prin interfața de administrare.
+  </p>
+</section>
+
+<section id="api-routes">
+  <h2>API Routes și Endpoints</h2>
+  
+  <section>
+    <h3>🏠 System Endpoints</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/ping</code></td>
+        <td>GET</td>
+        <td>Verifică starea serverului</td>
+        <td>-</td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "status": "ok",
+    "timestamp": "2025-06-20T10:00:00Z"
+  }
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/scheduler/status</code></td>
+        <td>GET</td>
+        <td>Verifică starea scheduler-ului</td>
+        <td>-</td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "active": true,
+    "jobs": ["expandRecurrences", "checkInventory"]
+  }
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>🔐 Autentificare și Autorizare</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/register</code></td>
+        <td>POST</td>
+        <td>Înregistrare utilizator nou</td>
+        <td>
+          <pre>
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "full_name": "John Doe"
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "user_id": 1,
+    "email": "user@example.com",
+    "token": "jwt_token"
+  }
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/login</code></td>
+        <td>POST</td>
+        <td>Autentificare utilizator</td>
+        <td>
+          <pre>
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "token": "jwt_token",
+    "user": {
+      "id": 1,
+      "email": "user@example.com",
+      "role": "CUSTOMER"
+    }
+  }
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>🌤️ Weather Management</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/weather</code></td>
+        <td>POST</td>
+        <td>Adaugă date meteo pentru o locație</td>
+        <td>
+          <pre>
+{
+  "location_id": 1,
+  "temperature_c": 25.5,
+  "humidity_pct": 65,
+  "condition": "partly cloudy",
+  "wind_speed": 12.3,
+  "precipitation": 0.0
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "weather_id": 1,
+    "location_id": 1,
+    "temperature_c": 25.5
+  }
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/weather/current</code></td>
+        <td>GET</td>
+        <td>Obține condițiile meteo curente pentru toate locațiile</td>
+        <td>-</td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": [{
+    "location_id": 1,
+    "temperature_c": 25.5,
+    "condition": "partly cloudy"
+  }]
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>🔧 Equipment Management</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/equipment</code></td>
+        <td>GET</td>
+        <td>Lista toate echipamentele</td>
+        <td>
+          Query params:
+          <ul>
+            <li>location_id (opțional)</li>
+            <li>status (opțional)</li>
+          </ul>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": [{
+    "equipment_id": 1,
+    "name": "Industrial Vacuum XL-2000",
+    "status": "OPERATIVE"
+  }]
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/equipment/check-status</code></td>
+        <td>POST</td>
+        <td>Verifică starea echipamentelor</td>
+        <td>-</td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "checked": 10,
+    "issues_found": 1
+  }
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>📦 Inventory Management</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/inventory</code></td>
+        <td>GET</td>
+        <td>Lista tot inventarul</td>
+        <td>-</td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": [{
+    "inventory_id": 1,
+    "resource_id": 1,
+    "current_stock": 50
+  }]
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/inventory/consume</code></td>
+        <td>POST</td>
+        <td>Înregistrează consumul de resurse</td>
+        <td>
+          <pre>
+{
+  "order_id": 1,
+  "location_id": 1,
+  "resources": [{
+    "resource_id": 1,
+    "quantity_used": 5
+  }]
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "consumed": [{
+      "resource_id": 1,
+      "quantity": 5
+    }]
+  }
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>🚨 Alert System</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/api/alerts/equipment-failure</code></td>
+        <td>POST</td>
+        <td>Raportează defecțiune echipament</td>
+        <td>
+          <pre>
+{
+  "location_id": 1,
+  "equipment_name": "Vacuum XL-2000",
+  "failure_type": "Motor malfunction",
+  "severity": "CRITICAL"
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "alert_id": 1,
+    "notifications_sent": 3
+  }
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/alerts/history</code></td>
+        <td>GET</td>
+        <td>Istoricul alertelor</td>
+        <td>
+          Query params:
+          <ul>
+            <li>limit (default: 50)</li>
+            <li>severity (opțional)</li>
+          </ul>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": [{
+    "alert_id": 1,
+    "type": "EQUIPMENT_FAILURE",
+    "severity": "CRITICAL"
+  }]
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>🌐 WebSocket API</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/ws/status</code></td>
+        <td>WebSocket</td>
+        <td>Stream de actualizări în timp real</td>
+        <td>
+          <pre>
+Headers:
+{
+  "Authorization": "Bearer token"
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "type": "STATUS_UPDATE",
+  "data": {
+    "order_id": 1,
+    "status": "COMPLETED"
+  }
+}
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>/api/websocket/broadcast</code></td>
+        <td>POST</td>
+        <td>Trimite mesaj către toți clienții</td>
+        <td>
+          <pre>
+{
+  "message": "System maintenance",
+  "type": "ANNOUNCEMENT",
+  "priority": "HIGH"
+}
+          </pre>
+        </td>
+        <td>
+          <pre>
+{
+  "success": true,
+  "data": {
+    "recipients": 50
+  }
+}
+          </pre>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h3>📡 RSS Feeds</h3>
+    <table>
+      <tr>
+        <th>Endpoint</th>
+        <th>Metodă</th>
+        <th>Descriere</th>
+        <th>Parametri</th>
+        <th>Format Răspuns</th>
+      </tr>
+      <tr>
+        <td><code>/rss</code></td>
+        <td>GET</td>
+        <td>Feed RSS general</td>
+        <td>-</td>
+        <td>XML RSS 2.0</td>
+      </tr>
+      <tr>
+        <td><code>/rss/orders</code></td>
+        <td>GET</td>
+        <td>Feed RSS comenzi</td>
+        <td>-</td>
+        <td>XML RSS 2.0</td>
+      </tr>
+    </table>
+  </section>
+</section>
+
+<section id="database-schema">
+  <h2>Schema Bazei de Date</h2>
+  
+  <h3>Tabele Principale</h3>
+  <ul>
+    <li><strong>users</strong> - Utilizatori sistem (ADMIN, MANAGER, EMPLOYEE, CUSTOMER)</li>
+    <li><strong>locations</strong> - Sedii/locații spălătorii cu coordonate GPS</li>
+    <li><strong>services</strong> - Servicii oferite (covoare, mașini, îmbrăcăminte)</li>
+    <li><strong>equipment</strong> - Echipamente cu monitorizare uzură și mentenanță</li>
+    <li><strong>resources</strong> - Resurse/consumabile (detergenți, chimicale)</li>
+    <li><strong>inventory</strong> - Stocuri per locație cu alerte automate</li>
+    <li><strong>orders</strong> - Comenzi cu transport și programare recurentă</li>
+  </ul>
+
+  <h3>Tabele de Legătură</h3>
+  <ul>
+    <li><strong>service_resources</strong> - Resurse necesare per serviciu</li>
+    <li><strong>location_services</strong> - Servicii disponibile per locație</li>
+    <li><strong>order_resources</strong> - Resurse consumate per comandă</li>
+  </ul>
+
+  <h3>Tabele de Monitorizare</h3>
+  <ul>
+    <li><strong>weather_conditions</strong> - Condiții meteo cu impact asupra operațiunilor</li>
+    <li><strong>equipment_usage_logs</strong> - Logs utilizare echipamente</li>
+    <li><strong>maintenance_schedules</strong> - Programări mentenanță</li>
+    <li><strong>exception_reports</strong> - Rapoarte excepții</li>
+  </ul>
+
+  <h3>Tabele de Notificare</h3>
+  <ul>
+    <li><strong>notifications</strong> - Sistem notificări multi-canal</li>
+    <li><strong>rss_feeds</strong> - Fluxuri RSS pentru consultarea stării sediilor</li>
+    <li><strong>inventory_alerts</strong> - Alerte stoc</li>
+  </ul>
+</section>
+
+<section id="test-scenarios">
+  <h2>Scenarii de Testare</h2>
+
+  <h3>Autentificare și Autorizare</h3>
+  <ul>
+    <li>Înregistrare utilizator nou cu date valide</li>
+    <li>Încercare înregistrare cu email existent</li>
+    <li>Login cu credențiale corecte</li>
+    <li>Login cu credențiale incorecte</li>
+    <li>Verificare token JWT invalid</li>
+  </ul>
+
+  <h3>Managementul Comenzilor</h3>
+  <ul>
+    <li>Creare comandă nouă cu toate detaliile</li>
+    <li>Actualizare status comandă</li>
+    <li>Alocare angajat la comandă</li>
+    <li>Anulare comandă</li>
+    <li>Verificare conflicte programare</li>
+  </ul>
+
+  <h3>Inventory și Resurse</h3>
+  <ul>
+    <li>Verificare stoc disponibil</li>
+    <li>Înregistrare consum resurse</li>
+    <li>Alertă stoc minim</li>
+    <li>Reaprovizionare stoc</li>
+  </ul>
+
+  <h3>Monitorizare Echipamente</h3>
+  <ul>
+    <li>Înregistrare echipament nou</li>
+    <li>Programare mentenanță</li>
+    <li>Raportare defecțiune</li>
+    <li>Verificare istoric utilizare</li>
+  </ul>
+
+  <h3>Notificări și Alerte</h3>
+  <ul>
+    <li>Trimitere notificare email</li>
+    <li>Broadcast WebSocket</li>
+    <li>Generare feed RSS</li>
+    <li>Alertă critică sistem</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Concluzii</h2>
+  <p>
+    CaS oferă o soluție completă și modernă pentru managementul serviciilor de curățenie, 
+    cu accent pe:
+  </p>
+  <ul>
+    <li>Experiență utilizator optimizată</li>
+    <li>Arhitectură modulară și scalabilă</li>
+    <li>Securitate și performanță</li>
+    <li>Integrabilitate cu sisteme externe</li>
+  </ul>
+  <p>
+    Platforma este în continuă dezvoltare, cu focus pe îmbunătățirea funcționalităților 
+    existente și adăugarea de caracteristici noi bazate pe feedback-ul utilizatorilor.
+  </p>
+</section>
+
+</body>
+</html> 
