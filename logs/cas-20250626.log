@@ -1,0 +1,280 @@
+2025-06-26T00:10:12.401Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-26T00:10:12.428Z [INFO] AlertService: SMTP client initialized
+2025-06-26T00:10:12.446Z [INFO] Minimal server listening on port 8000
+2025-06-26T00:10:12.453Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Thu Jun 26 2025 03:10:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.454Z [INFO] Scheduler: Job 'checkInventory' added, next run: Thu Jun 26 2025 04:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.454Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Thu Jun 26 2025 03:11:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.455Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Thu Jun 26 2025 03:11:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.456Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Fri Jun 27 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.456Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Thu Jun 26 2025 03:11:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.457Z [INFO] Scheduler: Starting...
+2025-06-26T00:10:12.457Z [INFO] Scheduler: Started successfully
+2025-06-26T00:10:12.457Z [INFO] Server and scheduler started successfully
+2025-06-26T00:10:12.508Z [INFO] PostgreSQL connection successful. Server time: Thu Jun 26 2025 03:10:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:10:12.683Z [INFO] OPTIONS /api/orders
+2025-06-26T00:10:12.686Z [INFO] OPTIONS /api/customers
+2025-06-26T00:10:12.687Z [INFO] OPTIONS /api/services
+2025-06-26T00:10:12.688Z [INFO] OPTIONS /api/locations
+2025-06-26T00:10:12.689Z [INFO] GET /api/orders
+2025-06-26T00:10:12.690Z [INFO] GET /api/orders
+2025-06-26T00:10:12.692Z [INFO] GET /api/customers
+2025-06-26T00:10:12.692Z [INFO] GET /api/customers
+2025-06-26T00:10:12.695Z [INFO] GET /api/services
+2025-06-26T00:10:12.696Z [INFO] GET /api/services
+2025-06-26T00:10:12.697Z [INFO] GET /api/locations
+2025-06-26T00:10:12.698Z [INFO] GET /api/locations
+2025-06-26T00:10:16.632Z [INFO] OPTIONS /api/orders
+2025-06-26T00:10:16.635Z [INFO] GET /api/orders
+2025-06-26T00:10:16.636Z [INFO] GET /api/orders
+2025-06-26T00:10:16.640Z [INFO] OPTIONS /api/customers
+2025-06-26T00:10:16.644Z [INFO] OPTIONS /api/services
+2025-06-26T00:10:16.646Z [INFO] OPTIONS /api/locations
+2025-06-26T00:10:16.678Z [INFO] GET /api/customers
+2025-06-26T00:10:16.678Z [INFO] GET /api/customers
+2025-06-26T00:10:16.679Z [INFO] GET /api/services
+2025-06-26T00:10:16.680Z [INFO] GET /api/services
+2025-06-26T00:10:16.680Z [INFO] GET /api/locations
+2025-06-26T00:10:16.681Z [INFO] GET /api/locations
+2025-06-26T00:10:41.097Z [INFO] OPTIONS /api/orders
+2025-06-26T00:10:41.100Z [INFO] POST /api/orders
+2025-06-26T00:10:41.102Z [INFO] POST /api/orders
+2025-06-26T00:10:46.586Z [INFO] OPTIONS /api/orders
+2025-06-26T00:10:46.588Z [INFO] POST /api/orders
+2025-06-26T00:10:46.589Z [INFO] POST /api/orders
+2025-06-26T00:11:12.465Z [INFO] Scheduler: Running job 'expandRecurrences'
+2025-06-26T00:11:12.466Z [INFO] ExpandRecurrences: Starting job
+2025-06-26T00:11:12.519Z [INFO] ExpandRecurrences: Job completed, created 0 new recurring orders
+2025-06-26T00:11:12.520Z [INFO] Scheduler: Job 'expandRecurrences' completed, next run: Thu Jun 26 2025 03:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:12.521Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-26T00:11:12.522Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-26T00:11:12.523Z [INFO] Starting equipment status check...
+2025-06-26T00:11:12.530Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.530Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.532Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.532Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.532Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.533Z [INFO] Alert alert_1750896672529_xr995dfj7 sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.533Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.533Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.534Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.534Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.535Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.535Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.535Z [INFO] Alert alert_1750896672533_9wej3wkwc sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.536Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.537Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.538Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.538Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.539Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.539Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.540Z [INFO] Alert alert_1750896672537_epj7ep6sd sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.540Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.540Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.540Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.541Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.541Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.541Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.541Z [INFO] Alert alert_1750896672540_h85wksa8z sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.542Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.542Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.542Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.543Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.543Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.543Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.543Z [INFO] Alert alert_1750896672542_35wbhod3a sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.544Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.544Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.544Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:11:12.544Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.544Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:11:12.545Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:11:12.545Z [INFO] Alert alert_1750896672544_vjc4v49sn sent via multiple channels: email, websocket, rss
+2025-06-26T00:11:12.545Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:11:12.545Z [INFO] Equipment status check completed. Generated 6 alerts.
+2025-06-26T00:11:12.545Z [INFO] CheckEquipmentStatus: Job completed in 22ms
+2025-06-26T00:11:12.546Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Thu Jun 26 2025 03:12:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:12.546Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-26T00:11:12.546Z [INFO] Starting weather data update job...
+2025-06-26T00:11:12.547Z [INFO] Starting weather data update for all locations...
+2025-06-26T00:11:12.549Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-26T00:11:12.550Z [INFO] Starting adverse weather conditions check...
+2025-06-26T00:11:12.552Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-26T00:11:12.552Z [INFO] Weather data update job completed in 6ms
+2025-06-26T00:11:12.553Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Thu Jun 26 2025 03:12:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:12.553Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-26T00:11:12.554Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-26T00:11:12.555Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-26T00:11:12.555Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Thu Jun 26 2025 03:16:12 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.654Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-26T00:11:50.676Z [INFO] AlertService: SMTP client initialized
+2025-06-26T00:11:50.690Z [INFO] Minimal server listening on port 8000
+2025-06-26T00:11:50.695Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Thu Jun 26 2025 03:15:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.696Z [INFO] Scheduler: Job 'checkInventory' added, next run: Thu Jun 26 2025 04:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.696Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Thu Jun 26 2025 03:12:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.697Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Thu Jun 26 2025 03:12:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.698Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Fri Jun 27 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.698Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Thu Jun 26 2025 03:12:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:50.699Z [INFO] Scheduler: Starting...
+2025-06-26T00:11:50.699Z [INFO] Scheduler: Started successfully
+2025-06-26T00:11:50.699Z [INFO] Server and scheduler started successfully
+2025-06-26T00:11:50.746Z [INFO] PostgreSQL connection successful. Server time: Thu Jun 26 2025 03:11:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:11:57.743Z [INFO] OPTIONS /api/orders
+2025-06-26T00:11:57.748Z [INFO] OPTIONS /api/customers
+2025-06-26T00:11:57.750Z [INFO] OPTIONS /api/services
+2025-06-26T00:11:57.751Z [INFO] OPTIONS /api/locations
+2025-06-26T00:11:57.752Z [INFO] GET /api/orders
+2025-06-26T00:11:57.753Z [INFO] GET /api/orders
+2025-06-26T00:11:57.757Z [INFO] GET /api/customers
+2025-06-26T00:11:57.758Z [INFO] GET /api/customers
+2025-06-26T00:11:57.760Z [INFO] GET /api/services
+2025-06-26T00:11:57.761Z [INFO] GET /api/services
+2025-06-26T00:11:57.763Z [INFO] GET /api/locations
+2025-06-26T00:11:57.764Z [INFO] GET /api/locations
+2025-06-26T00:12:03.717Z [INFO] OPTIONS /api/stats/dashboard
+2025-06-26T00:12:03.720Z [INFO] GET /api/stats/dashboard
+2025-06-26T00:12:03.836Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T00:12:03.836Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T00:12:03.837Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.839Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.839Z [INFO] Alert alert_1750896723835_zkcnbc5f6 sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.840Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T00:12:03.840Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.841Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.842Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.842Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.843Z [INFO] Alert alert_1750896723840_eniv8st5d sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.843Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T00:12:03.843Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.844Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.844Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.844Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.845Z [INFO] Alert alert_1750896723843_m0sm99iqv sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.845Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T00:12:03.849Z [INFO] OPTIONS /api/orders
+2025-06-26T00:12:03.850Z [INFO] GET /api/orders
+2025-06-26T00:12:03.851Z [INFO] GET /api/orders
+2025-06-26T00:12:03.864Z [INFO] OPTIONS /api/stats/system-status
+2025-06-26T00:12:03.866Z [INFO] GET /api/stats/system-status
+2025-06-26T00:12:03.879Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T00:12:03.879Z [ERROR] Failed to send email alert: Email template not found for alert type: LOW_COMPLETION_RATE
+2025-06-26T00:12:03.880Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.880Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.881Z [INFO] Alert alert_1750896723879_kxf9rywkb sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.881Z [INFO] AlertService: Alert LOW_COMPLETION_RATE created and sent successfully
+2025-06-26T00:12:03.882Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.882Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.883Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.883Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.884Z [INFO] Alert alert_1750896723882_q4hcv95nr sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.884Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T00:12:03.885Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.885Z [ERROR] Failed to send email alert: Email template not found for alert type: HIGH_PENDING_ORDERS
+2025-06-26T00:12:03.886Z [INFO] WebSocket alert sent to 0 clients
+2025-06-26T00:12:03.886Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:03.886Z [INFO] Alert alert_1750896723885_6bhgq10vw sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:03.886Z [INFO] AlertService: Alert HIGH_PENDING_ORDERS created and sent successfully
+2025-06-26T00:12:03.898Z [INFO] OPTIONS /api/notifications/recent
+2025-06-26T00:12:03.900Z [INFO] GET /api/notifications/recent
+2025-06-26T00:12:03.910Z [INFO] OPTIONS /api/stats/performance
+2025-06-26T00:12:03.912Z [INFO] GET /api/stats/performance
+2025-06-26T00:12:03.923Z [INFO] WebSocket upgrade request: /ws/status
+2025-06-26T00:12:03.926Z [INFO] WebSocket handshake completed for location global
+2025-06-26T00:12:06.268Z [INFO] OPTIONS /api/orders
+2025-06-26T00:12:06.271Z [INFO] OPTIONS /api/locations
+2025-06-26T00:12:06.272Z [INFO] OPTIONS /api/customers
+2025-06-26T00:12:06.273Z [INFO] OPTIONS /api/services
+2025-06-26T00:12:06.274Z [INFO] GET /api/orders
+2025-06-26T00:12:06.275Z [INFO] GET /api/orders
+2025-06-26T00:12:06.276Z [INFO] GET /api/locations
+2025-06-26T00:12:06.277Z [INFO] GET /api/locations
+2025-06-26T00:12:06.277Z [INFO] GET /api/customers
+2025-06-26T00:12:06.277Z [INFO] GET /api/customers
+2025-06-26T00:12:06.278Z [INFO] GET /api/services
+2025-06-26T00:12:06.278Z [INFO] GET /api/services
+2025-06-26T00:12:29.528Z [INFO] OPTIONS /api/orders
+2025-06-26T00:12:29.529Z [INFO] POST /api/orders
+2025-06-26T00:12:29.531Z [INFO] POST /api/orders
+2025-06-26T00:12:35.018Z [INFO] OPTIONS /api/orders
+2025-06-26T00:12:35.019Z [INFO] OPTIONS /api/customers
+2025-06-26T00:12:35.019Z [INFO] OPTIONS /api/services
+2025-06-26T00:12:35.020Z [INFO] OPTIONS /api/locations
+2025-06-26T00:12:35.021Z [INFO] GET /api/orders
+2025-06-26T00:12:35.022Z [INFO] GET /api/orders
+2025-06-26T00:12:35.024Z [INFO] GET /api/customers
+2025-06-26T00:12:35.025Z [INFO] GET /api/customers
+2025-06-26T00:12:35.027Z [INFO] GET /api/services
+2025-06-26T00:12:35.029Z [INFO] GET /api/services
+2025-06-26T00:12:35.030Z [INFO] GET /api/locations
+2025-06-26T00:12:35.031Z [INFO] GET /api/locations
+2025-06-26T00:12:36.335Z [INFO] OPTIONS /api/orders
+2025-06-26T00:12:36.336Z [INFO] OPTIONS /api/customers
+2025-06-26T00:12:36.337Z [INFO] OPTIONS /api/services
+2025-06-26T00:12:36.340Z [INFO] OPTIONS /api/locations
+2025-06-26T00:12:36.342Z [INFO] GET /api/orders
+2025-06-26T00:12:36.343Z [INFO] GET /api/orders
+2025-06-26T00:12:36.345Z [INFO] GET /api/customers
+2025-06-26T00:12:36.346Z [INFO] GET /api/customers
+2025-06-26T00:12:36.346Z [INFO] GET /api/services
+2025-06-26T00:12:36.347Z [INFO] GET /api/services
+2025-06-26T00:12:36.347Z [INFO] GET /api/locations
+2025-06-26T00:12:36.348Z [INFO] GET /api/locations
+2025-06-26T00:12:50.706Z [INFO] Scheduler: Running job 'checkEquipmentStatus'
+2025-06-26T00:12:50.707Z [INFO] CheckEquipmentStatus: Starting equipment monitoring job
+2025-06-26T00:12:50.707Z [INFO] Starting equipment status check...
+2025-06-26T00:12:50.709Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.710Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.710Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.710Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.710Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.710Z [INFO] Alert alert_1750896770709_zcayulte4 sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.710Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.711Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.711Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.711Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.711Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.711Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.711Z [INFO] Alert alert_1750896770711_vouyo4x8c sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.712Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.712Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.712Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.712Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.712Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.712Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.712Z [INFO] Alert alert_1750896770712_47moujoiv sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.713Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.713Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.713Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.713Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.713Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.714Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.714Z [INFO] Alert alert_1750896770713_pu1zy3mp9 sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.714Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.714Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.715Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.716Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.717Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.717Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.717Z [INFO] Alert alert_1750896770714_fjdwf9dcu sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.718Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.718Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.718Z [ERROR] Failed to send email alert: Email template not found for alert type: MAINTENANCE_DUE
+2025-06-26T00:12:50.719Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.719Z [ERROR] Failed to send WebSocket alert: broadcastToLocation is not a function
+2025-06-26T00:12:50.719Z [INFO] RSS feeds will be updated on next access
+2025-06-26T00:12:50.719Z [INFO] Alert alert_1750896770718_y0iqy4upy sent via multiple channels: email, websocket, rss
+2025-06-26T00:12:50.719Z [INFO] AlertService: Alert MAINTENANCE_DUE created and sent successfully
+2025-06-26T00:12:50.719Z [INFO] Equipment status check completed. Generated 6 alerts.
+2025-06-26T00:12:50.720Z [INFO] CheckEquipmentStatus: Job completed in 13ms
+2025-06-26T00:12:50.720Z [INFO] Scheduler: Job 'checkEquipmentStatus' completed, next run: Thu Jun 26 2025 03:13:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:12:50.721Z [INFO] Scheduler: Running job 'updateWeatherData'
+2025-06-26T00:12:50.722Z [INFO] Starting weather data update job...
+2025-06-26T00:12:50.723Z [INFO] Starting weather data update for all locations...
+2025-06-26T00:12:50.727Z [INFO] Weather data update completed. Updated 0 locations.
+2025-06-26T00:12:50.727Z [INFO] Starting adverse weather conditions check...
+2025-06-26T00:12:50.728Z [INFO] Adverse weather check completed. Generated 0 alerts.
+2025-06-26T00:12:50.728Z [INFO] Weather data update job completed in 6ms
+2025-06-26T00:12:50.728Z [INFO] Scheduler: Job 'updateWeatherData' completed, next run: Thu Jun 26 2025 03:13:50 GMT+0300 (Eastern European Summer Time)
+2025-06-26T00:12:50.729Z [INFO] Scheduler: Running job 'exceptionDetection'
+2025-06-26T00:12:50.729Z [ERROR] ExceptionDetection job error: Cannot read properties of undefined (reading 'error')
+2025-06-26T00:12:50.729Z [ERROR] Scheduler: Job 'exceptionDetection' failed: Cannot read properties of undefined (reading 'error')
+2025-06-26T00:12:50.729Z [WARN] Scheduler: Job 'exceptionDetection' will retry at Thu Jun 26 2025 03:17:50 GMT+0300 (Eastern European Summer Time)
