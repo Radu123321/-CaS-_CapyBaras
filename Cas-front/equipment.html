@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/auth.css">
   <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/equipment.css">
 </head>
 <body>
 
@@ -18,7 +19,7 @@
     </div>
 
     <!-- Equipment Content -->
-    <div id="equipmentContent" class="dashboard-content" style="display: none;">
+    <div id="equipmentContent" class="dashboard-content">
       
       <!-- Header Section -->
       <section class="page-header">
@@ -28,13 +29,13 @@
             <p>Monitorizează și administrează echipamentele din toate locațiile</p>
           </div>
           <div class="header-actions">
-            <button class="btn btn-success" onclick="showAddEquipmentModal()">
+            <button class="btn btn-success" id="addEquipmentBtn">
               <span>➕</span> Echipament Nou
             </button>
-            <button class="btn btn-primary" onclick="checkAllEquipmentStatus()">
+            <button class="btn btn-primary" id="checkStatusBtn">
               <span>🔍</span> Verifică Status
             </button>
-            <button class="btn btn-secondary" onclick="refreshEquipment()">
+            <button class="btn btn-secondary" id="refreshBtn">
               <span>🔄</span> Reîmprospătează
             </button>
             <a href="dashboard.html" class="btn btn-outline">
@@ -84,7 +85,7 @@
           <div class="filters-grid">
             <div class="filter-group">
               <label for="statusFilter">Status</label>
-              <select id="statusFilter" onchange="applyFilters()">
+              <select id="statusFilter">
                 <option value="">Toate</option>
                 <option value="OPERATIVE">Operațional</option>
                 <option value="MAINTENANCE">În mentenanță</option>
@@ -93,13 +94,13 @@
             </div>
             <div class="filter-group">
               <label for="locationFilter">Locație</label>
-              <select id="locationFilter" onchange="applyFilters()">
+              <select id="locationFilter">
                 <option value="">Toate locațiile</option>
               </select>
             </div>
             <div class="filter-group">
               <label for="typeFilter">Tip</label>
-              <select id="typeFilter" onchange="applyFilters()">
+              <select id="typeFilter">
                 <option value="">Toate tipurile</option>
                 <option value="WASHING_MACHINE">Mașină de spălat</option>
                 <option value="DRYER">Uscător</option>
@@ -110,7 +111,7 @@
             </div>
             <div class="filter-group">
               <label for="maintenanceFilter">Mentenanță</label>
-              <select id="maintenanceFilter" onchange="applyFilters()">
+              <select id="maintenanceFilter">
                 <option value="">Toate</option>
                 <option value="overdue">Întârziată</option>
                 <option value="due_soon">Programată</option>
@@ -131,22 +132,22 @@
     </div>
 
     <!-- Error State -->
-    <div id="errorState" class="error-state" style="display: none;">
+    <div id="errorState" class="error-state">
       <div class="error-card">
         <h2>Eroare la încărcarea echipamentelor</h2>
         <p id="errorMessage">A apărut o eroare neașteptată.</p>
-        <button class="btn" onclick="location.reload()">Reîncarcă Pagina</button>
+        <button class="btn" id="reloadBtn">Reîncarcă Pagina</button>
       </div>
     </div>
 
   </main>
 
   <!-- Equipment Details Modal -->
-  <div id="equipmentDetailsModal" class="modal-overlay" style="display: none;">
+  <div id="equipmentDetailsModal" class="modal-overlay">
     <div class="modal-content modal-large">
       <div class="modal-header">
         <h3 id="equipmentDetailsTitle">Detalii Echipament</h3>
-        <button class="modal-close" onclick="closeEquipmentDetailsModal()">&times;</button>
+        <button class="modal-close" id="closeDetailsBtn">&times;</button>
       </div>
       <div class="modal-body">
         <div id="equipmentDetailsContent">
@@ -154,19 +155,19 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeEquipmentDetailsModal()">Închide</button>
-        <button class="btn btn-warning" id="scheduleMaintenanceBtn" onclick="showScheduleMaintenanceModal()">Programează Mentenanță</button>
-        <button class="btn btn-primary" id="updateStatusBtn" onclick="showUpdateStatusModal()">Actualizează Status</button>
+        <button class="btn btn-secondary" id="closeDetailsFooterBtn">Închide</button>
+        <button class="btn btn-warning" id="scheduleMaintenanceBtn">Programează Mentenanță</button>
+        <button class="btn btn-primary" id="updateStatusBtn">Actualizează Status</button>
       </div>
     </div>
   </div>
 
   <!-- Schedule Maintenance Modal -->
-  <div id="scheduleMaintenanceModal" class="modal-overlay" style="display: none;">
+  <div id="scheduleMaintenanceModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
         <h3>Programează Mentenanță</h3>
-        <button class="modal-close" onclick="closeScheduleMaintenanceModal()">&times;</button>
+        <button class="modal-close" id="closeMaintenanceBtn">&times;</button>
       </div>
       <div class="modal-body">
         <form id="scheduleMaintenanceForm">
@@ -194,8 +195,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeScheduleMaintenanceModal()">Anulează</button>
-        <button class="btn btn-primary" onclick="scheduleMaintenance()">Programează</button>
+        <button class="btn btn-secondary" id="cancelMaintenanceBtn">Anulează</button>
+        <button class="btn btn-primary" id="scheduleMaintenanceSubmitBtn">Programează</button>
       </div>
     </div>
   </div>
@@ -268,11 +269,10 @@
   <!-- Notification Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
+  <!-- Load scripts in correct order -->
   <script src="js/auth.js"></script>
+  <script src="js/page-init.js"></script>
   <script src="js/equipment.js"></script>
-  <script>
-    // Initialize auth manager
-    const authManager = new AuthManager();
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html> 

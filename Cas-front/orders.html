@@ -138,7 +138,7 @@
     </div>
 
     <!-- Error State -->
-    <div id="errorState" class="error-state hidden">
+    <div id="errorState" class="error-state">
       <div class="error-card">
         <h2>Eroare la încărcarea comenzilor</h2>
         <p id="errorMessage">A apărut o eroare neașteptată.</p>
@@ -151,7 +151,7 @@
   </div>
 
   <!-- Create Order Modal -->
-  <div id="createOrderModal" class="modal-overlay hidden">
+  <div id="createOrderModal" class="modal-overlay">
     <div class="modal-content modal-large">
       <div class="modal-header">
         <h3>Comandă Nouă</h3>
@@ -182,7 +182,7 @@
               <label for="scheduledDate">Data programată</label>
               <input type="datetime-local" id="scheduledDate">
             </div>
-            <div class="form-group" id="statusFormGroup" style="display: none;">
+            <div class="form-group" id="statusFormGroup">
               <label for="orderStatus">Status</label>
               <select id="orderStatus">
                 <option value="PENDING">În așteptare</option>
@@ -197,46 +197,40 @@
               <label for="notes">Observații</label>
               <textarea id="notes" rows="3" placeholder="Observații suplimentare..."></textarea>
             </div>
-            <div class="form-group">
-              <label for="needsTransport">
-                <input type="checkbox" id="needsTransport"> Necesită transport
-              </label>
-            </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn-back" id="cancelCreateOrderBtn">Anulează</button>
-        <button class="btn-new-order" id="createOrderSubmitBtn">Creează Comanda</button>
+        <button class="btn-secondary" id="cancelCreateBtn">Anulează</button>
+        <button class="btn-primary" id="submitCreateBtn">Creează Comandă</button>
       </div>
     </div>
   </div>
 
-  <!-- Order Details Modal -->
-  <div id="orderDetailsModal" class="modal-overlay hidden">
+  <!-- View/Edit Order Modal -->
+  <div id="editOrderModal" class="modal-overlay">
     <div class="modal-content modal-large">
       <div class="modal-header">
-        <h3 id="orderDetailsTitle">Detalii Comandă</h3>
-        <button class="modal-close" id="closeOrderDetailsBtn">&times;</button>
+        <h3>Detalii Comandă</h3>
+        <button class="modal-close" id="closeEditModalBtn">&times;</button>
       </div>
       <div class="modal-body">
-        <div id="orderDetailsContent">
-          <!-- Order details will be loaded here -->
-        </div>
+        <form id="editOrderForm">
+          <!-- Form fields will be populated dynamically -->
+        </form>
       </div>
       <div class="modal-footer">
-        <button class="btn-back" id="closeOrderDetailsFooterBtn">Închide</button>
-        <button class="btn-refresh" id="updateStatusBtn">Actualizează Status</button>
+        <button class="btn-danger" id="deleteOrderBtn">Șterge</button>
+        <button class="btn-secondary" id="cancelEditBtn">Anulează</button>
+        <button class="btn-primary" id="submitEditBtn">Salvează Modificările</button>
       </div>
     </div>
   </div>
 
-  <!-- Notification Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <!-- Scripts -->
+  <!-- Load scripts in correct order -->
   <script src="js/auth.js"></script>
+  <script src="js/page-init.js"></script>
   <script src="js/orders.js"></script>
-
+  <script src="js/main.js"></script>
 </body>
 </html> 

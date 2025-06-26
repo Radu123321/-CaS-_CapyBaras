@@ -72,4 +72,66 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener('load', () => {
     setTimeout(handleImageLoading, 1000);
   });
+
+  // Get current page name from URL
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  
+  console.log('🚀 Initializing page:', currentPage);
+  
+  // Initialize page based on URL
+  switch (currentPage) {
+    case 'login.html':
+      initLoginPage();
+      break;
+      
+    case 'register.html':
+      initRegisterPage();
+      break;
+      
+    case 'dashboard.html':
+      initDashboardPage();
+      break;
+      
+    case 'book-service.html':
+      initBookServicePage();
+      break;
+      
+    case 'calendar.html':
+      initCalendarPage();
+      break;
+      
+    case 'orders.html':
+      initOrdersPage();
+      break;
+      
+    case 'my-orders.html':
+      initOrdersPage(); // Reuses orders page initialization
+      break;
+      
+    case 'equipment.html':
+      initEquipmentPage();
+      break;
+      
+    case 'locations.html':
+      initLocationsPage();
+      break;
+      
+    case 'appointments.html':
+      initAppointmentsPage();
+      break;
+      
+    case 'multiwash.html':
+      initMultiWashPage();
+      break;
+      
+    case 'index.html':
+    case '':
+      initIndexPage();
+      break;
+      
+    default:
+      console.warn('⚠️ No initialization found for page:', currentPage);
+      // Still initialize auth for all pages
+      getAuthManager();
+  }
 });

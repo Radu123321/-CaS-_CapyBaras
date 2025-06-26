@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/my-orders.css">
 </head>
-  <body class="my-orders-body">
+<body class="my-orders-body">
     <!-- Simple top bar -->
     <div class="my-orders-top-bar">
         <h1 class="my-orders-title">🧹 CaS - Comenzile Mele</h1>
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Empty State -->
-        <div id="emptyState" class="empty-state hidden">
+        <div id="emptyState" class="empty-state">
             <h3>Nicio comandă găsită</h3>
             <p>Nu ai încă comenzi plasate. Creează prima ta comandă!</p>
             <button class="new-order-btn" id="emptyStateNewOrderBtn">
@@ -134,8 +134,10 @@
     <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
 
-    <!-- Scripts -->
+    <!-- Load scripts in correct order -->
     <script src="js/auth.js"></script>
+    <script src="js/page-init.js"></script>
     <script src="js/my-orders.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html> 

@@ -211,21 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function setFormLoading(loading = true) {
-    const submitBtn = loginForm.querySelector('button[type="submit"]');
-    const inputs = loginForm.querySelectorAll('input');
+    const loginBtn = document.getElementById('loginBtn');
+    const btnText = loginBtn.querySelector('.btn-text');
+    const btnLoading = loginBtn.querySelector('.btn-loading');
     
     if (loading) {
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> Logging in...';
-      }
-      inputs.forEach(input => input.disabled = true);
+      loginBtn.disabled = true;
+      btnText.style.opacity = '0';
+      btnLoading.classList.add('visible');
     } else {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = submitBtn.dataset.originalText || 'Login';
-      }
-      inputs.forEach(input => input.disabled = false);
+      loginBtn.disabled = false;
+      btnText.style.opacity = '1';
+      btnLoading.classList.remove('visible');
     }
   }
   
@@ -238,37 +235,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function showAlert(message, type = 'info') {
-    // Remove existing alerts
-    const existingAlerts = document.querySelectorAll('.alert');
-    existingAlerts.forEach(alert => alert.remove());
+    const container = document.getElementById('alertContainer');
+    const alert = document.getElementById('alertMessage');
     
-    // Create alert element
-    const alert = document.createElement('div');
+    alert.textContent = message;
     alert.className = `alert alert-${type}`;
-    alert.innerHTML = `
-      <span>${message}</span>
-      <button type="button" class="alert-close">&times;</button>
-    `;
+    container.classList.add('visible');
     
-    // Add to page
-    document.body.appendChild(alert);
-    
-    // Auto remove
+    // Auto hide after 5 seconds
     setTimeout(() => {
-      if (alert.parentNode) {
-        alert.parentNode.removeChild(alert);
-      }
+      container.classList.remove('visible');
     }, 5000);
-    
-    // Manual close
-    const closeBtn = alert.querySelector('.alert-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        if (alert.parentNode) {
-          alert.parentNode.removeChild(alert);
-        }
-      });
-    }
   }
 
   // ===== AUTO-FOCUS =====

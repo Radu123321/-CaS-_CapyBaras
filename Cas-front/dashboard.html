@@ -18,7 +18,7 @@
     </div>
 
     <!-- Dashboard Content -->
-    <div id="dashboardContent" class="dashboard-content" style="display: none;">
+    <div id="dashboardContent" class="dashboard-content">
       
       <!-- Welcome Section -->
       <section class="welcome-section">
@@ -26,7 +26,7 @@
           <div class="welcome-text">
             <h1 id="welcomeTitle">Bun venit, <span class="user-name">Utilizator</span>!</h1>
             <p id="welcomeSubtitle">Dashboard Angajat</p>
-            <button onclick="authManager.logout()" class="btn logout-btn dashboard-logout">Logout</button>
+            <button id="logoutBtn" class="btn logout-btn dashboard-logout">Logout</button>
           </div>
           <div class="welcome-stats">
             <div class="stat-item">
@@ -61,7 +61,7 @@
           <div class="widget" id="recentOrdersWidget">
             <div class="widget-header">
               <h3>Comenzi Recente</h3>
-              <button class="widget-refresh" onclick="refreshRecentOrders()">🔄</button>
+              <button class="widget-refresh" id="refreshOrdersBtn">🔄</button>
             </div>
             <div class="widget-content">
               <div class="orders-list" id="recentOrdersList">
@@ -77,7 +77,7 @@
           <div class="widget" id="systemStatusWidget">
             <div class="widget-header">
               <h3>Status Sistem</h3>
-              <button class="widget-refresh" onclick="refreshSystemStatus()">🔄</button>
+              <button class="widget-refresh" id="refreshStatusBtn">🔄</button>
             </div>
             <div class="widget-content">
               <div class="status-items" id="systemStatusList">
@@ -90,7 +90,7 @@
           <div class="widget" id="notificationsWidget">
             <div class="widget-header">
               <h3>Notificări</h3>
-              <button class="widget-refresh" onclick="refreshNotifications()">🔄</button>
+              <button class="widget-refresh" id="refreshNotificationsBtn">🔄</button>
             </div>
             <div class="widget-content">
               <div class="notifications-list" id="notificationsList">
@@ -98,7 +98,7 @@
               </div>
             </div>
             <div class="widget-footer">
-              <button class="widget-link" onclick="clearAllNotifications()">Marchează toate ca citite</button>
+              <button class="widget-link" id="clearNotificationsBtn">Marchează toate ca citite</button>
             </div>
           </div>
 
@@ -107,12 +107,12 @@
             <div class="widget-header">
               <h3>Performanță Săptămânală</h3>
               <div class="widget-controls">
-                <select id="performancePeriod" onchange="updatePerformanceChart()">
+                <select id="performancePeriod">
                   <option value="7">Ultimele 7 zile</option>
                   <option value="30">Ultimele 30 zile</option>
                   <option value="90">Ultimele 90 zile</option>
                 </select>
-                <button class="widget-refresh" onclick="refreshPerformanceChart()">🔄</button>
+                <button class="widget-refresh" id="refreshChartBtn">🔄</button>
               </div>
             </div>
             <div class="widget-content">
@@ -131,11 +131,11 @@
     </div>
 
     <!-- Error State -->
-    <div id="errorState" class="error-state" style="display: none;">
+    <div id="errorState" class="error-state">
       <div class="error-card">
         <h2>Eroare la încărcarea dashboard-ului</h2>
         <p id="errorMessage">A apărut o eroare neașteptată.</p>
-        <button class="btn" onclick="location.reload()">Reîncarcă Pagina</button>
+        <button class="btn" id="reloadBtn">Reîncarcă Pagina</button>
       </div>
     </div>
 
@@ -145,27 +145,26 @@
   <div id="toastContainer" class="toast-container"></div>
 
   <!-- Confirmation Modal -->
-  <div id="confirmModal" class="modal-overlay" style="display: none;">
+  <div id="confirmModal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
         <h3 id="confirmTitle">Confirmare</h3>
-        <button class="modal-close" onclick="closeConfirmModal()">&times;</button>
+        <button class="modal-close" id="closeConfirmBtn">&times;</button>
       </div>
       <div class="modal-body">
         <p id="confirmMessage">Ești sigur că vrei să continui?</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" onclick="closeConfirmModal()">Anulează</button>
-        <button class="btn" id="confirmButton" onclick="confirmAction()">Confirmă</button>
+        <button class="btn btn-secondary" id="cancelConfirmBtn">Anulează</button>
+        <button class="btn" id="confirmActionBtn">Confirmă</button>
       </div>
     </div>
   </div>
 
+  <!-- Load scripts in correct order -->
   <script src="js/auth.js"></script>
+  <script src="js/page-init.js"></script>
   <script src="js/dashboard.js"></script>
-  <script>
-    // Initialize auth manager
-    const authManager = new AuthManager();
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html> 

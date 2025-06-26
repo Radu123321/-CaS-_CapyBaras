@@ -309,13 +309,20 @@ class BookingWizard {
     const nextBtn = document.getElementById('nextBtn');
     const confirmBtn = document.getElementById('confirmBtn');
     
-    prevBtn.style.display = this.currentStep > 1 ? 'block' : 'none';
-    nextBtn.style.display = this.currentStep < this.totalSteps ? 'block' : 'none';
-    confirmBtn.style.display = this.currentStep === this.totalSteps ? 'block' : 'none';
+    // Previous button
+    if (this.currentStep > 1) {
+      prevBtn.classList.add('visible');
+    } else {
+      prevBtn.classList.remove('visible');
+    }
     
-    // Enable/disable next button based on selection
-    if (nextBtn.style.display !== 'none') {
-      nextBtn.disabled = !this.canProceedToNextStep();
+    // Next/Confirm buttons
+    if (this.currentStep === 4) {
+      nextBtn.style.display = 'none';
+      confirmBtn.classList.add('visible');
+    } else {
+      nextBtn.style.display = 'inline-block';
+      confirmBtn.classList.remove('visible');
     }
   }
   
@@ -403,7 +410,7 @@ class BookingWizard {
     document.getElementById('bookingIdDisplay').textContent = `ID Programare: #${orderId}`;
     
     // Show success message
-    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('successMessage').classList.add('visible');
     
     // Scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -432,11 +439,11 @@ class BookingWizard {
   }
   
   showLoading() {
-    document.getElementById('loadingOverlay').style.display = 'flex';
+    document.getElementById('loadingOverlay').classList.add('visible');
   }
   
   hideLoading() {
-    document.getElementById('loadingOverlay').style.display = 'none';
+    document.getElementById('loadingOverlay').classList.remove('visible');
   }
   
   showToast(message, type = 'info', duration = 5000) {

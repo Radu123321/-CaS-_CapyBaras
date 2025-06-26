@@ -240,21 +240,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function setFormLoading(loading = true) {
-    const submitBtn = registerForm.querySelector('button[type="submit"]');
-    const inputs = registerForm.querySelectorAll('input, select');
+    const registerBtn = document.getElementById('registerBtn');
+    const btnText = registerBtn.querySelector('.btn-text');
+    const btnLoading = registerBtn.querySelector('.btn-loading');
     
     if (loading) {
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> Creating Account...';
-      }
-      inputs.forEach(input => input.disabled = true);
+      registerBtn.disabled = true;
+      btnText.style.opacity = '0';
+      btnLoading.classList.add('visible');
     } else {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = submitBtn.dataset.originalText || 'Create Account';
-      }
-      inputs.forEach(input => input.disabled = false);
+      registerBtn.disabled = false;
+      btnText.style.opacity = '1';
+      btnLoading.classList.remove('visible');
     }
   }
   
@@ -267,37 +264,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function showAlert(message, type = 'info') {
-    // Remove existing alerts
-    const existingAlerts = document.querySelectorAll('.alert');
-    existingAlerts.forEach(alert => alert.remove());
+    const container = document.getElementById('alertContainer');
+    const alert = document.getElementById('alertMessage');
     
-    // Create alert element
-    const alert = document.createElement('div');
+    alert.textContent = message;
     alert.className = `alert alert-${type}`;
-    alert.innerHTML = `
-      <span>${message}</span>
-      <button type="button" class="alert-close">&times;</button>
-    `;
+    container.classList.add('visible');
     
-    // Add to page
-    document.body.appendChild(alert);
-    
-    // Auto remove
+    // Auto hide after 5 seconds
     setTimeout(() => {
-      if (alert.parentNode) {
-        alert.parentNode.removeChild(alert);
-      }
+      container.classList.remove('visible');
     }, 5000);
-    
-    // Manual close
-    const closeBtn = alert.querySelector('.alert-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        if (alert.parentNode) {
-          alert.parentNode.removeChild(alert);
-        }
-      });
-    }
   }
 
   // ===== INITIALIZATION =====

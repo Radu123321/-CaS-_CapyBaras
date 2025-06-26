@@ -10,11 +10,20 @@ class AuthManager {
   // ===== INITIALIZATION =====
   
   init() {
-    // Check for existing session
-    this.loadSession();
+    console.log('🔐 Initializing AuthManager');
     
-    // Set up API request interceptor
-    this.setupRequestInterceptor();
+    try {
+      // Check for existing session
+      this.loadSession();
+      
+      // Set up API request interceptor
+      this.setupRequestInterceptor();
+      
+      console.log('✅ AuthManager initialized successfully');
+    } catch (error) {
+      console.error('❌ Error initializing AuthManager:', error);
+      this.clearSession();
+    }
   }
 
   // ===== SESSION MANAGEMENT =====
@@ -175,7 +184,7 @@ class AuthManager {
     };
     
     try {
-      console.log('Making API request to:', url, mergedOptions);
+      console.log('Making API request to:', url);
       
       const response = await fetch(url, mergedOptions);
       const data = await response.json();
@@ -242,26 +251,9 @@ class AuthManager {
   }
   
   updateUserDisplay() {
-    // Update user name displays
     const userNameElements = document.querySelectorAll('.user-name');
     userNameElements.forEach(el => {
-      // Use fullName if available, otherwise combine firstName and lastName
-      const displayName = this.currentUser.fullName || 
-                         `${this.currentUser.firstName || ''} ${this.currentUser.lastName || ''}`.trim() ||
-                         'User';
-      el.textContent = displayName;
-    });
-    
-    // Update user email displays
-    const userEmailElements = document.querySelectorAll('.user-email');
-    userEmailElements.forEach(el => {
-      el.textContent = this.currentUser.email;
-    });
-    
-    // Update user role displays
-    const userRoleElements = document.querySelectorAll('.user-role');
-    userRoleElements.forEach(el => {
-      el.textContent = this.currentUser.role;
+      el.textContent = `${this.currentUser.firstName} ${this.currentUser.lastName}`;
     });
   }
 
@@ -365,61 +357,6 @@ class AuthManager {
     this.showAlert(message, 'info', duration);
   }
 
-  // ===== FORM HELPER METHODS =====
-  
-  setFieldError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    // Remove existing error
-    this.clearFieldError(fieldId);
-    
-    // Add error class
-    field.classList.add('error');
-    
-    // Add error message
-    const errorElement = document.createElement('div');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    errorElement.id = `${fieldId}-error`;
-    
-    field.parentNode.insertBefore(errorElement, field.nextSibling);
-  }
-  
-  clearFieldError(fieldId) {
-    const field = document.getElementById(fieldId);
-    if (!field) return;
-    
-    field.classList.remove('error');
-    
-    const errorElement = document.getElementById(`${fieldId}-error`);
-    if (errorElement) {
-      errorElement.remove();
-    }
-  }
-  
-  setFormLoading(formId, loading = true) {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const inputs = form.querySelectorAll('input, select, textarea');
-    
-    if (loading) {
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner"></span> Loading...';
-      }
-      inputs.forEach(input => input.disabled = true);
-    } else {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = submitBtn.dataset.originalText || 'Submit';
-      }
-      inputs.forEach(input => input.disabled = false);
-    }
-  }
-
   // ===== API HELPER METHODS =====
   
   async getLocations() {
@@ -454,11 +391,4 @@ window.authManager = new AuthManager();
 // Initialize auth manager when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   window.authManager.init();
-});
-
-// ===== DEMO ACCOUNTS =====
-window.demoAccounts = {
-  admin: { email: 'admin@cas.ro', password: 'admin123' },
-  manager: { email: 'manager@cas.ro', password: 'manager123' },
-  employee: { email: 'employee@cas.ro', password: 'employee123' }
-}; 
+}); 

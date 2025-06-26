@@ -498,4 +498,29 @@
   .form-actions {
     flex-direction: column;
   }
+}
+
+/* Initially hidden elements */
+#prevBtn,
+#confirmBtn,
+#successMessage,
+#loadingOverlay {
+  display: none;
+}
+
+/* Show when needed */
+#prevBtn.visible,
+#confirmBtn.visible,
+#successMessage.visible,
+#loadingOverlay.visible {
+  display: block;
+}
+
+#prevBtn.visible,
+#confirmBtn.visible {
+  display: inline-block;
+}
+
+#loadingOverlay.visible {
+  display: flex;
 } 

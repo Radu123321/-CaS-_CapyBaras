@@ -6,6 +6,7 @@ class LocationsManager {
     this.selectedLocationId = null;
     
     this.init();
+    this.setupEventListeners();
   }
 
   // ===== INITIALIZATION =====
@@ -32,25 +33,66 @@ class LocationsManager {
     }
   }
 
+  setupEventListeners() {
+    // Header buttons
+    document.getElementById('addLocationBtn').addEventListener('click', () => this.showAddLocationModal());
+    document.getElementById('refreshBtn').addEventListener('click', () => this.refreshLocations());
+    document.getElementById('reloadBtn').addEventListener('click', () => location.reload());
+
+    // Add location modal
+    document.getElementById('closeAddModalBtn').addEventListener('click', () => this.closeAddLocationModal());
+    document.getElementById('cancelAddBtn').addEventListener('click', () => this.closeAddLocationModal());
+    document.getElementById('submitAddBtn').addEventListener('click', () => this.addLocation());
+
+    // Location details modal
+    document.getElementById('closeDetailsBtn').addEventListener('click', () => this.closeLocationDetailsModal());
+    document.getElementById('closeDetailsFooterBtn').addEventListener('click', () => this.closeLocationDetailsModal());
+    document.getElementById('editLocationBtn').addEventListener('click', () => this.editLocation());
+  }
+
   // ===== LOADING AND ERROR STATES =====
   
   showLoading() {
-    document.getElementById('loadingState').style.display = 'flex';
-    document.getElementById('locationsContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('loadingState').classList.add('visible');
+    document.getElementById('locationsContent').classList.remove('visible');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showLocations() {
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('locationsContent').style.display = 'block';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('loadingState').classList.remove('visible');
+    document.getElementById('locationsContent').classList.add('visible');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showError(message) {
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('locationsContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'flex';
+    document.getElementById('loadingState').classList.remove('visible');
+    document.getElementById('locationsContent').classList.remove('visible');
+    document.getElementById('errorState').classList.add('visible');
     document.getElementById('errorMessage').textContent = message;
+  }
+
+  // ===== MODAL MANAGEMENT =====
+
+  showAddLocationModal() {
+    const modal = document.getElementById('addLocationModal');
+    modal.classList.add('visible');
+  }
+
+  closeAddLocationModal() {
+    const modal = document.getElementById('addLocationModal');
+    modal.classList.remove('visible');
+    document.getElementById('addLocationForm').reset();
+  }
+
+  showLocationDetailsModal() {
+    const modal = document.getElementById('locationDetailsModal');
+    modal.classList.add('visible');
+  }
+
+  closeLocationDetailsModal() {
+    const modal = document.getElementById('locationDetailsModal');
+    modal.classList.remove('visible');
+    this.selectedLocationId = null;
   }
 
   // ===== DATA LOADING =====
@@ -114,15 +156,29 @@ class LocationsManager {
           </div>
         </div>
         <div class="location-actions">
-          <button class="btn btn-sm btn-primary" onclick="locationsManager.viewLocation(${location.location_id})">
+          <button class="btn btn-sm btn-primary" data-location-id="${location.location_id}" data-action="view">
             Vezi Detalii
           </button>
-          <button class="btn btn-sm btn-secondary" onclick="locationsManager.editLocationModal(${location.location_id})">
+          <button class="btn btn-sm btn-secondary" data-location-id="${location.location_id}" data-action="edit">
             Editează
           </button>
         </div>
       </div>
     `).join('');
+
+    // Add event listeners for location actions
+    grid.querySelectorAll('[data-action]').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const locationId = parseInt(e.target.dataset.locationId);
+        const action = e.target.dataset.action;
+        
+        if (action === 'view') {
+          this.viewLocation(locationId);
+        } else if (action === 'edit') {
+          this.editLocationModal(locationId);
+        }
+      });
+    });
   }
 
   // ===== HELPER METHODS =====
@@ -198,36 +254,22 @@ class LocationsManager {
       </div>
     `;
     
-    modal.style.display = 'flex';
+    this.showLocationDetailsModal();
   }
 
-  // ===== LOCATION MANAGEMENT =====
-  
-  showAddLocationModal() {
-    document.getElementById('addLocationModal').style.display = 'flex';
-  }
-  
-  closeAddLocationModal() {
-    document.getElementById('addLocationModal').style.display = 'none';
-    document.getElementById('addLocationForm').reset();
-  }
-  
+  // ===== LOCATION CRUD OPERATIONS =====
+
   async addLocation() {
-    const locationData = {
-      name: document.getElementById('locationName').value,
-      address: document.getElementById('locationAddress').value,
-      city: document.getElementById('locationCity').value,
-      phone: document.getElementById('locationPhone').value,
-      email: document.getElementById('locationEmail').value,
-      notes: document.getElementById('locationNotes').value
-    };
-    
+    const form = document.getElementById('addLocationForm');
+    const formData = new FormData(form);
+    const locationData = Object.fromEntries(formData);
+
     try {
       const response = await authManager.apiRequest('/locations', {
         method: 'POST',
         body: JSON.stringify(locationData)
       });
-      
+
       if (response.success) {
         this.showToast('Locația a fost adăugată cu succes', 'success');
         this.closeAddLocationModal();
@@ -241,36 +283,76 @@ class LocationsManager {
     }
   }
 
-  // ===== MODAL MANAGEMENT =====
-  
-  closeLocationDetailsModal() {
-    document.getElementById('locationDetailsModal').style.display = 'none';
-    this.selectedLocationId = null;
+  async editLocationModal(locationId) {
+    try {
+      const response = await authManager.apiRequest(`/locations/${locationId}`);
+      
+      if (response.success) {
+        // Populate edit form
+        const location = response.data;
+        this.selectedLocationId = locationId;
+        
+        // Show edit modal
+        this.showLocationDetailsModal();
+      } else {
+        this.showToast('Eroare la încărcarea detaliilor locației', 'error');
+      }
+    } catch (error) {
+      console.error('Error loading location details:', error);
+      this.showToast('Eroare la încărcarea detaliilor locației', 'error');
+    }
   }
-  
-  editLocationModal(locationId) {
-    this.showToast('Funcționalitatea de editare va fi implementată', 'info');
+
+  async editLocation() {
+    if (!this.selectedLocationId) {
+      this.showToast('Nu a fost selectată nicio locație', 'error');
+      return;
+    }
+
+    const form = document.getElementById('editLocationForm');
+    const formData = new FormData(form);
+    const locationData = Object.fromEntries(formData);
+
+    try {
+      const response = await authManager.apiRequest(`/locations/${this.selectedLocationId}`, {
+        method: 'PUT',
+        body: JSON.stringify(locationData)
+      });
+
+      if (response.success) {
+        this.showToast('Locația a fost actualizată cu succes', 'success');
+        this.closeLocationDetailsModal();
+        await this.loadLocations();
+      } else {
+        this.showToast(response.error || 'Eroare la actualizarea locației', 'error');
+      }
+    } catch (error) {
+      console.error('Error updating location:', error);
+      this.showToast('Eroare la actualizarea locației', 'error');
+    }
   }
-  
-  editLocation() {
-    this.showToast('Funcționalitatea de editare va fi implementată', 'info');
+
+  async refreshLocations() {
+    try {
+      await this.loadLocations();
+      this.showToast('Lista de locații a fost actualizată', 'success');
+    } catch (error) {
+      console.error('Error refreshing locations:', error);
+      this.showToast('Eroare la reîmprospătarea listei de locații', 'error');
+    }
   }
 
   // ===== TOAST NOTIFICATIONS =====
-  
+
   showToast(message, type = 'info', duration = 5000) {
-    const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     toast.textContent = message;
     
-    container.appendChild(toast);
+    document.body.appendChild(toast);
     
-    // Auto remove after duration
     setTimeout(() => {
-      if (toast.parentNode) {
-        toast.parentNode.removeChild(toast);
-      }
+      toast.remove();
     }, duration);
   }
 }

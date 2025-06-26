@@ -47,21 +47,21 @@ class OrdersManager {
   // ===== LOADING AND ERROR STATES =====
   
   showLoading() {
-    document.getElementById('loadingState').style.display = 'flex';
+    document.getElementById('loadingState').classList.add('visible');
     document.getElementById('ordersContent').classList.remove('visible');
-    document.getElementById('errorState').classList.add('hidden');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showOrders() {
-    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('loadingState').classList.remove('visible');
     document.getElementById('ordersContent').classList.add('visible');
-    document.getElementById('errorState').classList.add('hidden');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showError(message) {
-    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('loadingState').classList.remove('visible');
     document.getElementById('ordersContent').classList.remove('visible');
-    document.getElementById('errorState').classList.remove('hidden');
+    document.getElementById('errorState').classList.add('visible');
     document.getElementById('errorMessage').textContent = message;
   }
 
@@ -638,7 +638,7 @@ class OrdersManager {
     this.populateModalDropdowns();
     
     // Show status field for editing
-    document.getElementById('statusFormGroup').style.display = 'block';
+    this.showStatusFormGroup();
     
     // Wait for dropdowns to populate, then set values
     setTimeout(() => {
@@ -856,7 +856,7 @@ class OrdersManager {
     console.log('📝 OrdersManager: Form reset');
     
     // Hide status field for new orders
-    document.getElementById('statusFormGroup').style.display = 'none';
+    this.hideStatusFormGroup();
     
     // Ensure dropdowns are populated with current data
     console.log('📝 OrdersManager: About to populate dropdowns');
@@ -872,7 +872,6 @@ class OrdersManager {
   closeCreateOrderModal() {
     const modal = document.getElementById('createOrderModal');
     modal.classList.remove('visible');
-    modal.classList.add('hidden');
     document.getElementById('createOrderForm').reset();
   }
   
@@ -999,6 +998,16 @@ class OrdersManager {
       return time ? `${date} ${time}` : date;
     }
     return 'Data nespecificată';
+  }
+
+  // ===== FORM GROUP VISIBILITY =====
+
+  showStatusFormGroup() {
+    document.getElementById('statusFormGroup').classList.add('visible');
+  }
+
+  hideStatusFormGroup() {
+    document.getElementById('statusFormGroup').classList.remove('visible');
   }
 }
 

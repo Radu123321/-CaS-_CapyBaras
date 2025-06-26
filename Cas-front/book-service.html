@@ -124,20 +124,20 @@
 
       <!-- Navigation -->
       <div class="form-actions">
-        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="bookingWizard.previousStep()" style="display: none;">
+        <button type="button" class="btn btn-secondary" id="prevBtn" onclick="bookingWizard.previousStep()">
           ← Înapoi
         </button>
         <button type="button" class="btn btn-primary" id="nextBtn" onclick="bookingWizard.nextStep()">
           Continuă →
         </button>
-        <button type="button" class="btn btn-primary" id="confirmBtn" onclick="bookingWizard.confirmBooking()" style="display: none;">
+        <button type="button" class="btn btn-primary" id="confirmBtn" onclick="bookingWizard.confirmBooking()">
           Confirmă Programarea
         </button>
       </div>
     </div>
 
     <!-- Success Message -->
-    <div class="success-message" id="successMessage" style="display: none;">
+    <div class="success-message" id="successMessage">
       <div class="success-icon">🎉</div>
       <h2 class="success-title">Programarea a fost confirmată!</h2>
       <p class="success-description">
@@ -152,7 +152,7 @@
     </div>
 
     <!-- Loading Overlay -->
-    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+    <div id="loadingOverlay" class="loading-overlay">
       <div class="loading-spinner"></div>
     </div>
   </div>
@@ -160,18 +160,10 @@
   <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
+  <!-- Load scripts in correct order -->
   <script src="js/auth.js"></script>
+  <script src="js/page-init.js"></script>
   <script src="js/book-service.js"></script>
-  <script>
-    // Initialize auth manager and booking wizard
-    const authManager = new AuthManager();
-    let bookingWizard;
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      if (authManager.requireAuth()) {
-        bookingWizard = new BookingWizard();
-      }
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html> 

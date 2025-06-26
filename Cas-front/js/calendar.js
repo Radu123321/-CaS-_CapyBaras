@@ -99,8 +99,7 @@ class Calendar {
     
     // Recurring checkbox
     document.getElementById('appointmentRecurring').addEventListener('change', (e) => {
-      document.getElementById('recurringOptions').style.display = 
-        e.target.checked ? 'block' : 'none';
+      document.getElementById('recurringOptions').classList.toggle('visible', e.target.checked);
     });
 
     // Modal close events
@@ -140,9 +139,9 @@ class Calendar {
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (eventModal.style.display === 'flex') {
+        if (eventModal.classList.contains('visible')) {
           this.closeEventDetailsModal();
-        } else if (appointmentModal.style.display === 'flex') {
+        } else if (appointmentModal.classList.contains('visible')) {
           this.closeAppointmentModal();
         }
       }
@@ -160,9 +159,13 @@ class Calendar {
     });
     
     // Show/hide views
-    document.getElementById('monthView').style.display = view === 'month' ? 'block' : 'none';
-    document.getElementById('weekView').style.display = view === 'week' ? 'block' : 'none';
-    document.getElementById('dayView').style.display = view === 'day' ? 'block' : 'none';
+    const monthView = document.getElementById('monthView');
+    const weekView = document.getElementById('weekView');
+    const dayView = document.getElementById('dayView');
+    
+    monthView.classList.toggle('visible', view === 'month');
+    weekView.classList.toggle('visible', view === 'week');
+    dayView.classList.toggle('visible', view === 'day');
     
     this.render();
   }
@@ -522,78 +525,24 @@ class Calendar {
   
   async showEventDetails(event) {
     this.selectedEvent = event;
-    
     const modal = document.getElementById('eventModal');
-    const title = document.getElementById('eventModalTitle');
-    const body = document.getElementById('eventModalBody');
+    const deleteBtn = document.getElementById('deleteEventBtn');
+    const editBtn = document.getElementById('editEventBtn');
     
-    title.textContent = event.title || this.getServiceName(event);
+    // Show/hide action buttons based on permissions
+    const canEdit = this.canEditEvent(event);
+    deleteBtn.classList.toggle('visible', canEdit);
+    editBtn.classList.toggle('visible', canEdit);
     
-    body.innerHTML = `
-      <div class="event-details">
-        <div class="detail-section">
-          <h4>Informații Generale</h4>
-          <div class="detail-row">
-            <strong>📋 Titlu:</strong> ${event.title || this.getServiceName(event)}
-          </div>
-          <div class="detail-row">
-            <strong>📅 Data:</strong> ${event.scheduled_date ? this.formatDate(event.scheduled_date) : 'Data nespecificată'}
-          </div>
-          <div class="detail-row">
-            <strong>⏰ Ora:</strong> ${event.scheduled_time || 'Oră nespecificată'}
-          </div>
-          <div class="detail-row">
-            <strong>📊 Status:</strong> 
-            <span class="event-status status-${(event.status || 'pending').toLowerCase()}">
-              ${this.getStatusLabel(event.status || 'pending')}
-            </span>
-          </div>
-        </div>
-        
-        ${event.customer_id ? `
-          <div class="detail-section">
-            <h4>Client & Serviciu</h4>
-            <div class="detail-row">
-              <strong>👤 Client:</strong> ${this.getCustomerName(event)}
-            </div>
-            <div class="detail-row">
-              <strong>💼 Serviciu:</strong> ${this.getServiceName(event)}
-            </div>
-            <div class="detail-row">
-              <strong>🏢 Locație:</strong> ${this.getLocationName(event)}
-            </div>
-            <div class="detail-row">
-              <strong>💰 Preț:</strong> ${this.getTotalPrice(event)}
-            </div>
-          </div>
-        ` : ''}
-        
-        ${event.description || event.special_instructions ? `
-          <div class="detail-section">
-            <h4>Descriere</h4>
-            <p>${event.description || event.special_instructions}</p>
-          </div>
-        ` : ''}
-        
-        <div class="detail-section">
-          <h4>Detalii Tehnice</h4>
-          <div class="detail-row">
-            <strong>🆔 ID:</strong> ${event.order_id || event.id}
-          </div>
-          <div class="detail-row">
-            <strong>📅 Creat la:</strong> ${this.formatDateTime(event.created_at)}
-          </div>
-        </div>
-      </div>
-    `;
+    // Populate event details
+    this.populateEventDetails(event);
     
-    modal.style.display = 'flex';
+    // Show modal
     modal.classList.add('visible');
   }
   
   closeEventDetailsModal() {
     const modal = document.getElementById('eventModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     this.selectedEvent = null;
   }
@@ -616,7 +565,7 @@ class Calendar {
     }
     
     document.getElementById('appointmentType').value = eventToEdit.customer_id ? 'meeting' : 'event';
-    this.toggleAppointmentType();
+    this.handleAppointmentTypeChange(eventToEdit.customer_id ? 'meeting' : 'event');
     
     if (eventToEdit.customer_id) {
       document.getElementById('appointmentCustomer').value = eventToEdit.customer_id;
@@ -670,42 +619,26 @@ class Calendar {
   // ===== APPOINTMENT MODAL =====
   
   showNewAppointmentModal() {
-    // Clear selected event for new appointment
-    this.selectedEvent = null;
-    
-    document.getElementById('appointmentModalTitle').textContent = 'Programare Nouă';
     this.resetAppointmentForm();
-    
-    const modal = document.getElementById('appointmentModal');
-    modal.style.display = 'flex';
-    modal.classList.add('visible');
-    
-    // Set default date and time
-    const now = new Date();
-    document.getElementById('appointmentDate').value = this.formatDateString(now);
-    document.getElementById('appointmentTime').value = '09:00';
+    this.showAppointmentModal();
   }
   
   showAppointmentModal() {
     const modal = document.getElementById('appointmentModal');
-    modal.style.display = 'flex';
     modal.classList.add('visible');
   }
   
   closeAppointmentModal() {
     const modal = document.getElementById('appointmentModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     this.resetAppointmentForm();
-    // Clear selected event when closing modal
-    this.selectedEvent = null;
   }
   
   resetAppointmentForm() {
     document.getElementById('appointmentForm').reset();
-    document.getElementById('customerGroup').style.display = 'none';
-    document.getElementById('serviceGroup').style.display = 'none';
-    document.getElementById('recurringOptions').style.display = 'none';
+    document.getElementById('customerGroup').classList.remove('visible');
+    document.getElementById('serviceGroup').classList.remove('visible');
+    document.getElementById('recurringOptions').classList.remove('visible');
     document.getElementById('appointmentRecurring').checked = false;
   }
   
@@ -713,13 +646,8 @@ class Calendar {
     const customerGroup = document.getElementById('customerGroup');
     const serviceGroup = document.getElementById('serviceGroup');
     
-    if (type === 'meeting') {
-      customerGroup.style.display = 'block';
-      serviceGroup.style.display = 'block';
-    } else {
-      customerGroup.style.display = 'none';
-      serviceGroup.style.display = 'none';
-    }
+    customerGroup.classList.toggle('visible', type === 'appointment');
+    serviceGroup.classList.toggle('visible', type === 'appointment');
   }
   
   async saveAppointment() {
@@ -991,11 +919,13 @@ class Calendar {
   }
   
   showLoading() {
-    document.getElementById('loadingOverlay').style.display = 'flex';
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.classList.add('visible');
   }
   
   hideLoading() {
-    document.getElementById('loadingOverlay').style.display = 'none';
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.classList.remove('visible');
   }
   
   showToast(message, type = 'info', duration = 5000) {
@@ -1080,17 +1010,6 @@ class Calendar {
 
   formatDateTime(date) {
     return this.formatDate(new Date(date));
-  }
-
-  toggleAppointmentType() {
-    const type = document.getElementById('appointmentType').value;
-    if (type === 'meeting') {
-      document.getElementById('customerGroup').style.display = 'block';
-      document.getElementById('serviceGroup').style.display = 'block';
-    } else {
-      document.getElementById('customerGroup').style.display = 'none';
-      document.getElementById('serviceGroup').style.display = 'none';
-    }
   }
 
   selectTimeSlot(date, time) {

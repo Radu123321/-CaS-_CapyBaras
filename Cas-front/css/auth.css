@@ -590,4 +590,18 @@
   transform: translateY(-50%);
   color: #27ae60;
   font-weight: bold;
+}
+
+/* Initially hidden elements */
+.auth-required,
+.btn-loading,
+.alert-container {
+  display: none;
+}
+
+/* Show when needed */
+.auth-required.visible,
+.btn-loading.visible,
+.alert-container.visible {
+  display: block;
 } 

@@ -14,9 +14,9 @@
       <a href="login.html" class="btn">Login</a>
       <a href="register.html" class="btn">Register</a>
     </div>
-    <div class="auth-required" style="display: none;">
+    <div class="auth-required">
       <span class="user-welcome">Bun venit, <span class="user-name"></span>!</span>
-      <button onclick="authManager.logout()" class="btn logout-btn">Logout</button>
+      <button id="logoutBtn" class="btn logout-btn">Logout</button>
     </div>
   </div>
 
@@ -70,11 +70,9 @@
 
   <a href="index.html" class="btn back-btn center-btn">← Înapoi la Acasă</a>
 
+  <!-- Load scripts in correct order -->
   <script src="js/auth.js"></script>
-  <script>
-    // Initialize auth manager
-    const authManager = new AuthManager();
-  </script>
-
+  <script src="js/page-init.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

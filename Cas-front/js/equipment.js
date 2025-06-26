@@ -8,6 +8,7 @@ class EquipmentManager {
     this.selectedEquipmentId = null;
     
     this.init();
+    this.setupEventListeners();
   }
 
   // ===== INITIALIZATION =====
@@ -34,24 +35,49 @@ class EquipmentManager {
     }
   }
 
+  setupEventListeners() {
+    // Header buttons
+    document.getElementById('addEquipmentBtn').addEventListener('click', () => this.showAddEquipmentModal());
+    document.getElementById('checkStatusBtn').addEventListener('click', () => this.checkAllEquipmentStatus());
+    document.getElementById('refreshBtn').addEventListener('click', () => this.refreshEquipment());
+    document.getElementById('reloadBtn').addEventListener('click', () => location.reload());
+
+    // Filter dropdowns
+    document.getElementById('statusFilter').addEventListener('change', () => this.applyFilters());
+    document.getElementById('locationFilter').addEventListener('change', () => this.applyFilters());
+    document.getElementById('typeFilter').addEventListener('change', () => this.applyFilters());
+    document.getElementById('maintenanceFilter').addEventListener('change', () => this.applyFilters());
+
+    // Equipment details modal
+    document.getElementById('closeDetailsBtn').addEventListener('click', () => this.closeEquipmentDetailsModal());
+    document.getElementById('closeDetailsFooterBtn').addEventListener('click', () => this.closeEquipmentDetailsModal());
+    document.getElementById('scheduleMaintenanceBtn').addEventListener('click', () => this.showScheduleMaintenanceModal());
+    document.getElementById('updateStatusBtn').addEventListener('click', () => this.showUpdateStatusModal());
+
+    // Schedule maintenance modal
+    document.getElementById('closeMaintenanceBtn').addEventListener('click', () => this.closeScheduleMaintenanceModal());
+    document.getElementById('cancelMaintenanceBtn').addEventListener('click', () => this.closeScheduleMaintenanceModal());
+    document.getElementById('scheduleMaintenanceSubmitBtn').addEventListener('click', () => this.scheduleMaintenance());
+  }
+
   // ===== LOADING AND ERROR STATES =====
   
   showLoading() {
-    document.getElementById('loadingState').style.display = 'flex';
-    document.getElementById('equipmentContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('loadingState').classList.add('visible');
+    document.getElementById('equipmentContent').classList.remove('visible');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showEquipment() {
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('equipmentContent').style.display = 'block';
-    document.getElementById('errorState').style.display = 'none';
+    document.getElementById('loadingState').classList.remove('visible');
+    document.getElementById('equipmentContent').classList.add('visible');
+    document.getElementById('errorState').classList.remove('visible');
   }
   
   showError(message) {
-    document.getElementById('loadingState').style.display = 'none';
-    document.getElementById('equipmentContent').style.display = 'none';
-    document.getElementById('errorState').style.display = 'flex';
+    document.getElementById('loadingState').classList.remove('visible');
+    document.getElementById('equipmentContent').classList.remove('visible');
+    document.getElementById('errorState').classList.add('visible');
     document.getElementById('errorMessage').textContent = message;
   }
 
@@ -377,7 +403,6 @@ class EquipmentManager {
       </div>
     `;
     
-    modal.style.display = 'flex';
     modal.classList.add('visible');
   }
 
@@ -390,7 +415,6 @@ class EquipmentManager {
   
   showScheduleMaintenanceModal() {
     const modal = document.getElementById('scheduleMaintenanceModal');
-    modal.style.display = 'flex';
     modal.classList.add('visible');
     
     // Set default date to today
@@ -403,7 +427,6 @@ class EquipmentManager {
   
   closeScheduleMaintenanceModal() {
     const modal = document.getElementById('scheduleMaintenanceModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     document.getElementById('scheduleMaintenanceForm').reset();
   }
@@ -493,13 +516,11 @@ class EquipmentManager {
   
   showAddEquipmentModal() {
     const modal = document.getElementById('addEquipmentModal');
-    modal.style.display = 'flex';
     modal.classList.add('visible');
   }
   
   closeAddEquipmentModal() {
     const modal = document.getElementById('addEquipmentModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     document.getElementById('addEquipmentForm').reset();
   }
@@ -564,7 +585,6 @@ class EquipmentManager {
   
   closeEquipmentDetailsModal() {
     const modal = document.getElementById('equipmentDetailsModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     this.selectedEquipmentId = null;
   }

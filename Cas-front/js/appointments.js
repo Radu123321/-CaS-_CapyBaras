@@ -28,60 +28,80 @@ class Appointments {
   // ===== INITIALIZATION =====
   
   async init() {
+    console.log('🚀 Appointments: Starting initialization');
+    
+    // Check authentication
+    if (!authManager.requireAuth()) {
+      console.log('❌ Appointments: Authentication check failed');
+      return;
+    }
+    console.log('✅ Appointments: Authentication check passed');
+
     try {
+      // Show loading state
+      console.log('⏳ Appointments: Showing loading state');
       this.showLoading();
       
       // Load initial data
+      console.log('📊 Appointments: Loading initial data');
       await this.loadInitialData();
+      console.log('✅ Appointments: Initial data loaded successfully');
       
       // Setup event listeners
+      console.log('🎯 Appointments: Setting up event listeners');
       this.setupEventListeners();
+      console.log('✅ Appointments: Event listeners set up successfully');
       
-      // Load appointments
-      await this.loadAppointments();
+      // Show appointments content
+      console.log('📋 Appointments: Showing appointments content');
+      this.loadAppointments();
+      console.log('🎉 Appointments: Initialization completed successfully');
       
-      this.hideLoading();
     } catch (error) {
-      console.error('Appointments initialization error:', error);
-      this.showToast('Eroare la încărcarea programărilor', 'error');
-      this.hideLoading();
+      console.error('❌ Appointments: Initialization error:', error);
+      this.showError('Nu s-a putut încărca pagina de programări. Vă rugăm să reîncărcați pagina.');
     }
   }
   
   async loadInitialData() {
     try {
-      // Load customers, services, locations in parallel
-      const [customersResponse, servicesResponse, locationsResponse] = await Promise.all([
-        authManager.apiRequest('/customers'),
-        authManager.apiRequest('/services'),
-        authManager.apiRequest('/locations')
-      ]);
-      
+      // Load customers
+      const customersResponse = await authManager.apiRequest('/customers');
       if (customersResponse.success) {
-        this.customers = customersResponse.data || [];
-        this.populateCustomerFilters();
+        this.customers = customersResponse.data;
+        this.populateCustomerSelect();
       }
-      
+
+      // Load services
+      const servicesResponse = await authManager.apiRequest('/services');
       if (servicesResponse.success) {
-        this.services = servicesResponse.data || [];
-        this.populateServiceFilters();
+        this.services = servicesResponse.data;
+        this.populateServiceSelect();
       }
-      
+
+      // Load locations
+      const locationsResponse = await authManager.apiRequest('/locations');
       if (locationsResponse.success) {
-        this.locations = locationsResponse.data || [];
-        this.populateLocationFilters();
+        this.locations = locationsResponse.data;
+        this.populateLocationSelect();
       }
-      
+
+      // Load employees
+      const employeesResponse = await authManager.apiRequest('/employees');
+      if (employeesResponse.success) {
+        this.employees = employeesResponse.data;
+        this.populateEmployeeSelect();
+      }
     } catch (error) {
       console.error('Error loading initial data:', error);
+      throw error;
     }
   }
   
   setupEventListeners() {
     // Recurring checkbox
     document.getElementById('appointmentRecurring').addEventListener('change', (e) => {
-      document.getElementById('recurringOptions').style.display = 
-        e.target.checked ? 'block' : 'none';
+      document.getElementById('recurringOptions').classList.toggle('visible', e.target.checked);
     });
     
     // Filter changes
@@ -99,32 +119,29 @@ class Appointments {
     try {
       this.showLoading();
       
-      // Build query parameters
-      const params = new URLSearchParams({
+      const queryParams = new URLSearchParams({
         page: this.currentPage,
-        limit: this.itemsPerPage,
-        include_customer: true,
-        include_service: true,
-        include_location: true,
+        per_page: this.itemsPerPage,
         ...this.filters
       });
       
-      const response = await authManager.apiRequest(`/orders?${params}`);
+      const response = await authManager.apiRequest(`/appointments?${queryParams}`);
       
       if (response.success) {
-        this.appointments = response.data || [];
-        this.totalItems = response.total || this.appointments.length;
+        this.appointments = response.data.appointments;
+        this.totalItems = response.data.total;
+        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
         
         this.renderAppointments();
         this.renderPagination();
         this.updateStats();
       } else {
-        this.showError('Nu s-au putut încărca programările');
+        this.showError('Nu s-au putut încărca programările.');
       }
       
     } catch (error) {
       console.error('Error loading appointments:', error);
-      this.showError('Eroare la încărcarea programărilor');
+      this.showError('A apărut o eroare la încărcarea programărilor.');
     } finally {
       this.hideLoading();
     }
@@ -166,90 +183,43 @@ class Appointments {
     const emptyState = document.getElementById('emptyState');
     
     if (this.appointments.length === 0) {
-      grid.style.display = 'none';
-      emptyState.style.display = 'block';
+      grid.classList.remove('visible');
+      emptyState.classList.add('visible');
       return;
     }
     
-    grid.style.display = 'grid';
-    emptyState.style.display = 'none';
+    grid.classList.add('visible');
+    emptyState.classList.remove('visible');
     
     grid.innerHTML = this.appointments.map(appointment => this.createAppointmentCard(appointment)).join('');
   }
   
   createAppointmentCard(appointment) {
-    const statusClass = `status-${(appointment.status || 'pending').toLowerCase()}`;
-    const user = authManager.currentUser;
-    
-    // Check permissions
-    const canEdit = user.role === 'ADMIN' || user.role === 'MANAGER' || 
-                   (user.role === 'EMPLOYEE' && appointment.assigned_employee_id === user.id);
-    
-    const canCancel = canEdit && appointment.status !== 'completed' && appointment.status !== 'cancelled';
-    const canComplete = canEdit && appointment.status === 'in_progress';
-    
     return `
-      <div class="appointment-card ${statusClass}">
+      <div class="appointment-card" onclick="appointments.viewAppointment('${appointment.id}')">
         <div class="appointment-header">
           <h3 class="appointment-title">${appointment.title || this.getServiceName(appointment)}</h3>
-          <p class="appointment-subtitle">
-            ${this.getCustomerName(appointment)} • 
-            ${this.getScheduledDateTime(appointment)}
-          </p>
+          <span class="appointment-status status-${(appointment.status || 'pending').toLowerCase()}">
+            ${this.getStatusLabel(appointment.status || 'pending')}
+          </span>
         </div>
-        
-        <div class="appointment-body">
-          <div class="appointment-details">
-            <div class="detail-item">
-              <span class="detail-icon">📅</span>
-              <span class="detail-text">${appointment.scheduled_date ? this.formatDate(appointment.scheduled_date) : 'Data nespecificată'}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">⏰</span>
-              <span class="detail-text">${appointment.scheduled_time || 'Oră nespecificată'}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">📊</span>
-              <span class="detail-text">${this.getStatusLabel(appointment.status || 'pending')}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">👤</span>
-              <span class="detail-text">${this.getCustomerName(appointment)}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">🏢</span>
-              <span class="detail-text">${this.getLocationName(appointment)}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">💼</span>
-              <span class="detail-text">${this.getServiceName(appointment)}</span>
-            </div>
-            <div class="detail-item">
-              <span class="detail-icon">💰</span>
-              <span class="detail-text">${this.getTotalPrice(appointment)}</span>
-            </div>
+        <div class="appointment-info">
+          <div class="info-row">
+            <span>📅 Data:</span>
+            <span>${appointment.scheduled_date ? this.formatDate(appointment.scheduled_date) : 'Data nespecificată'}</span>
           </div>
-        </div>
-        
-        <div class="appointment-actions">
-          <button class="btn-action btn-view" onclick="appointments.viewAppointment(${appointment.order_id})">
-            👁️ Vezi
-          </button>
-          ${canEdit ? `
-            <button class="btn-action btn-edit" onclick="appointments.editAppointment(${appointment.order_id})">
-              ✏️ Editează
-            </button>
-          ` : ''}
-          ${canComplete ? `
-            <button class="btn-action btn-complete" onclick="appointments.completeAppointment(${appointment.order_id})">
-              ✅ Finalizează
-            </button>
-          ` : ''}
-          ${canCancel ? `
-            <button class="btn-action btn-cancel" onclick="appointments.cancelAppointment(${appointment.order_id})">
-              ❌ Anulează
-            </button>
-          ` : ''}
+          <div class="info-row">
+            <span>⏰ Ora:</span>
+            <span>${appointment.scheduled_time || 'Oră nespecificată'}</span>
+          </div>
+          <div class="info-row">
+            <span>👤 Client:</span>
+            <span>${this.getCustomerName(appointment)}</span>
+          </div>
+          <div class="info-row">
+            <span>📍 Locație:</span>
+            <span>${this.getLocationName(appointment)}</span>
+          </div>
         </div>
       </div>
     `;
@@ -257,32 +227,30 @@ class Appointments {
   
   renderPagination() {
     const pagination = document.getElementById('pagination');
-    const totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-    
-    if (totalPages <= 1) {
-      pagination.style.display = 'none';
+    if (!pagination) return;
+
+    if (this.totalPages <= 1) {
+      pagination.classList.remove('visible');
       return;
     }
+
+    pagination.classList.add('visible');
     
-    pagination.style.display = 'flex';
-    
-    let paginationHTML = '';
+    let html = '';
     
     // Previous button
-    paginationHTML += `
-      <button class="pagination-btn" onclick="appointments.goToPage(${this.currentPage - 1})" 
+    html += `
+      <button class="pagination-btn" 
+              onclick="appointments.goToPage(${this.currentPage - 1})"
               ${this.currentPage === 1 ? 'disabled' : ''}>
-        ‹ Anterior
+        ◀
       </button>
     `;
     
     // Page numbers
-    const startPage = Math.max(1, this.currentPage - 2);
-    const endPage = Math.min(totalPages, this.currentPage + 2);
-    
-    for (let i = startPage; i <= endPage; i++) {
-      paginationHTML += `
-        <button class="pagination-btn ${i === this.currentPage ? 'active' : ''}" 
+    for (let i = 1; i <= this.totalPages; i++) {
+      html += `
+        <button class="pagination-btn ${i === this.currentPage ? 'active' : ''}"
                 onclick="appointments.goToPage(${i})">
           ${i}
         </button>
@@ -290,20 +258,21 @@ class Appointments {
     }
     
     // Next button
-    paginationHTML += `
-      <button class="pagination-btn" onclick="appointments.goToPage(${this.currentPage + 1})" 
-              ${this.currentPage === totalPages ? 'disabled' : ''}>
-        Următor ›
+    html += `
+      <button class="pagination-btn"
+              onclick="appointments.goToPage(${this.currentPage + 1})"
+              ${this.currentPage === this.totalPages ? 'disabled' : ''}>
+        ▶
       </button>
     `;
     
-    pagination.innerHTML = paginationHTML;
+    pagination.innerHTML = html;
   }
 
   // ===== APPOINTMENT ACTIONS =====
   
   async viewAppointment(appointmentId) {
-    const appointment = this.appointments.find(a => a.order_id === appointmentId);
+    const appointment = this.appointments.find(a => a.id === appointmentId);
     if (!appointment) return;
     
     this.selectedAppointment = appointment;
@@ -347,53 +316,36 @@ class Appointments {
             <strong>💼 Serviciu:</strong> ${this.getServiceName(appointment)}
           </div>
           <div class="detail-row">
-            <strong>🏢 Locație:</strong> ${this.getLocationName(appointment)}
+            <strong>📍 Locație:</strong> ${this.getLocationName(appointment)}
           </div>
-          <div class="detail-row">
-            <strong>💰 Preț:</strong> ${this.getTotalPrice(appointment)}
-          </div>
-        </div>
-        
-        ${appointment.description || appointment.special_instructions ? `
-          <div class="detail-section">
-            <h4>Descriere</h4>
-            <p>${appointment.description || appointment.special_instructions}</p>
-          </div>
-        ` : ''}
-        
-        <div class="detail-section">
-          <h4>Detalii Tehnice</h4>
-          <div class="detail-row">
-            <strong>ID Comandă:</strong> ${appointment.order_id}
-          </div>
-          <div class="detail-row">
-            <strong>Creat la:</strong> ${this.formatDateTime(appointment.created_at)}
-          </div>
-          ${appointment.updated_at ? `
+          ${appointment.employee_id ? `
             <div class="detail-row">
-              <strong>Actualizat la:</strong> ${this.formatDateTime(appointment.updated_at)}
+              <strong>👷 Angajat:</strong> ${this.getEmployeeName(appointment)}
             </div>
           ` : ''}
         </div>
+        
+        ${appointment.description ? `
+          <div class="detail-section">
+            <h4>Descriere</h4>
+            <div class="detail-row">
+              ${appointment.description}
+            </div>
+          </div>
+        ` : ''}
       </div>
     `;
     
-    // Show/hide action buttons based on permissions
-    const user = authManager.currentUser;
-    const canEdit = user.role === 'ADMIN' || user.role === 'MANAGER' || 
-                   (user.role === 'EMPLOYEE' && appointment.assigned_employee_id === user.id);
-    
-    editBtn.style.display = canEdit ? 'inline-block' : 'none';
-    cancelBtn.style.display = canEdit && appointment.status !== 'completed' && appointment.status !== 'cancelled' ? 'inline-block' : 'none';
+    // Show/hide action buttons based on status
+    editBtn.classList.toggle('visible', ['pending', 'confirmed'].includes(appointment.status));
+    cancelBtn.classList.toggle('visible', ['pending', 'confirmed'].includes(appointment.status));
     
     // Show modal
-    modal.style.display = 'flex';
     modal.classList.add('visible');
   }
   
   closeDetailsModal() {
     const modal = document.getElementById('appointmentDetailsModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     this.selectedAppointment = null;
   }
@@ -402,7 +354,7 @@ class Appointments {
     let appointment;
     
     if (appointmentId) {
-      appointment = this.appointments.find(a => a.order_id === appointmentId);
+      appointment = this.appointments.find(a => a.id === appointmentId);
     } else {
       appointment = this.selectedAppointment;
     }
@@ -416,13 +368,11 @@ class Appointments {
     document.getElementById('appointmentCustomer').value = appointment.customer_id || '';
     document.getElementById('appointmentService').value = appointment.service_id || '';
     document.getElementById('appointmentLocation').value = appointment.location_id || '';
+    document.getElementById('appointmentEmployee').value = appointment.employee_id || '';
     document.getElementById('appointmentDescription').value = appointment.description || '';
     
     // Set modal title
     document.getElementById('appointmentModalTitle').textContent = 'Editează Programarea';
-    
-    // Store appointment for update
-    this.selectedAppointment = appointment;
     
     // Close details modal if open
     this.closeDetailsModal();
@@ -431,64 +381,28 @@ class Appointments {
     this.showAppointmentModal();
   }
   
-  async completeAppointment(appointmentId) {
-    if (!confirm('Ești sigur că vrei să marchezi această programare ca finalizată?')) {
-      return;
-    }
+  async cancelAppointment() {
+    if (!this.selectedAppointment) return;
+    
+    if (!confirm('Sigur doriți să anulați această programare?')) return;
     
     try {
       this.showLoading();
       
-      const response = await authManager.apiRequest(`/orders/${appointmentId}`, {
-        method: 'PUT',
-        body: JSON.stringify({ status: 'completed' })
+      const response = await authManager.apiRequest(`/appointments/${this.selectedAppointment.id}/cancel`, {
+        method: 'POST'
       });
       
       if (response.success) {
-        this.showToast('Programarea a fost marcată ca finalizată', 'success');
-        await this.loadAppointments();
-      } else {
-        this.showToast('Eroare la actualizarea programării', 'error');
-      }
-    } catch (error) {
-      console.error('Error completing appointment:', error);
-      this.showToast('Eroare la actualizarea programării', 'error');
-    } finally {
-      this.hideLoading();
-    }
-  }
-  
-  async cancelAppointment(appointmentId) {
-    let id = appointmentId;
-    
-    if (!id && this.selectedAppointment) {
-      id = this.selectedAppointment.order_id;
-    }
-    
-    if (!id) return;
-    
-    if (!confirm('Ești sigur că vrei să anulezi această programare?')) {
-      return;
-    }
-    
-    try {
-      this.showLoading();
-      
-      const response = await authManager.apiRequest(`/orders/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ status: 'cancelled' })
-      });
-      
-      if (response.success) {
-        this.showToast('Programarea a fost anulată', 'success');
+        this.showSuccess('Programarea a fost anulată cu succes.');
         this.closeDetailsModal();
-        await this.loadAppointments();
+        this.loadAppointments();
       } else {
-        this.showToast('Eroare la anularea programării', 'error');
+        this.showError('Nu s-a putut anula programarea.');
       }
     } catch (error) {
       console.error('Error cancelling appointment:', error);
-      this.showToast('Eroare la anularea programării', 'error');
+      this.showError('A apărut o eroare la anularea programării.');
     } finally {
       this.hideLoading();
     }
@@ -497,8 +411,8 @@ class Appointments {
   // ===== APPOINTMENT MODAL =====
   
   showNewAppointmentModal() {
-    document.getElementById('appointmentModalTitle').textContent = 'Programare Nouă';
     this.resetAppointmentForm();
+    document.getElementById('appointmentModalTitle').textContent = 'Programare Nouă';
     this.selectedAppointment = null;
     
     // Set default date and time
@@ -514,13 +428,11 @@ class Appointments {
   
   showAppointmentModal() {
     const modal = document.getElementById('appointmentModal');
-    modal.style.display = 'flex';
     modal.classList.add('visible');
   }
   
   closeAppointmentModal() {
     const modal = document.getElementById('appointmentModal');
-    modal.style.display = 'none';
     modal.classList.remove('visible');
     this.resetAppointmentForm();
     this.selectedAppointment = null;
@@ -528,117 +440,59 @@ class Appointments {
   
   resetAppointmentForm() {
     document.getElementById('appointmentForm').reset();
-    document.getElementById('recurringOptions').style.display = 'none';
+    document.getElementById('recurringOptions').classList.remove('visible');
     document.getElementById('appointmentRecurring').checked = false;
   }
   
   async saveAppointment() {
     const form = document.getElementById('appointmentForm');
-    
-    // Manual validation for better UX
-    const title = document.getElementById('appointmentTitle').value.trim();
-    const date = document.getElementById('appointmentDate').value;
-    const time = document.getElementById('appointmentTime').value;
-    const customerId = document.getElementById('appointmentCustomer').value;
-    const serviceId = document.getElementById('appointmentService').value;
-    const locationId = document.getElementById('appointmentLocation').value;
-    
-    if (!title) {
-      this.showToast('Vă rugăm să introduceți titlul programării', 'error');
+    if (!form.checkValidity()) {
+      form.reportValidity();
       return;
     }
     
-    if (!date) {
-      this.showToast('Vă rugăm să selectați data', 'error');
-      return;
-    }
-    
-    if (!time) {
-      this.showToast('Vă rugăm să selectați ora', 'error');
-      return;
-    }
-    
-    if (!customerId) {
-      this.showToast('Vă rugăm să selectați clientul', 'error');
-      return;
-    }
-    
-    if (!serviceId) {
-      this.showToast('Vă rugăm să selectați serviciul', 'error');
-      return;
-    }
-    
-    if (!locationId) {
-      this.showToast('Vă rugăm să selectați locația', 'error');
-      return;
-    }
+    const appointmentData = {
+      title: document.getElementById('appointmentTitle').value,
+      scheduled_date: document.getElementById('appointmentDate').value,
+      scheduled_time: document.getElementById('appointmentTime').value,
+      customer_id: document.getElementById('appointmentCustomer').value,
+      service_id: document.getElementById('appointmentService').value,
+      location_id: document.getElementById('appointmentLocation').value,
+      employee_id: document.getElementById('appointmentEmployee').value || null,
+      description: document.getElementById('appointmentDescription').value,
+      recurring: document.getElementById('appointmentRecurring').checked,
+      recurring_frequency: document.getElementById('recurringFrequency').value,
+      recurring_count: parseInt(document.getElementById('recurringCount').value, 10)
+    };
     
     try {
       this.showLoading();
       
-      const serviceIdInt = parseInt(serviceId);
+      const endpoint = this.selectedAppointment ? 
+        `/appointments/${this.selectedAppointment.id}` : 
+        '/appointments';
       
-      // Get the selected service to extract unit_price
-      const selectedService = this.services.find(service => service.service_id === serviceIdInt);
-      if (!selectedService) {
-        this.showToast('Serviciul selectat nu a fost găsit', 'error');
-        return;
-      }
+      const method = this.selectedAppointment ? 'PUT' : 'POST';
       
-      const formData = {
-        title: title,
-        customer_id: parseInt(customerId),
-        service_id: serviceIdInt,
-        location_id: parseInt(locationId),
-        scheduled_for: `${date}T${time}:00`, // Combine date and time for backend
-        special_instructions: document.getElementById('appointmentDescription').value,
-        estimated_duration: parseInt(document.getElementById('appointmentDuration').value) || 60,
-        unit_price: parseFloat(selectedService.base_price), // Send unit_price to backend
-        total_amount: parseFloat(selectedService.base_price), // Set total_amount as well
-        is_recurring: document.getElementById('appointmentRecurring').checked,
-        recurring_type: document.getElementById('recurringType').value,
-        recurring_end_date: document.getElementById('recurringEnd').value || null
-      };
-      
-      // Remove empty values (but keep 0 values for price and duration)
-      Object.keys(formData).forEach(key => {
-        if (formData[key] === '' || formData[key] === null || (isNaN(formData[key]) && typeof formData[key] === 'number')) {
-          delete formData[key];
-        }
+      const response = await authManager.apiRequest(endpoint, {
+        method,
+        body: JSON.stringify(appointmentData)
       });
       
-      let response;
-      if (this.selectedAppointment) {
-        // Update existing appointment
-        response = await authManager.apiRequest(`/orders/${this.selectedAppointment.order_id}`, {
-          method: 'PUT',
-          body: JSON.stringify(formData)
-        });
-      } else {
-        // Create new appointment
-        response = await authManager.apiRequest('/orders', {
-          method: 'POST',
-          body: JSON.stringify(formData)
-        });
-      }
-      
       if (response.success) {
-        this.showToast(
-          this.selectedAppointment ? 'Programarea a fost actualizată cu succes' : 'Programarea a fost creată cu succes',
-          'success'
+        this.showSuccess(
+          this.selectedAppointment ? 
+          'Programarea a fost actualizată cu succes.' : 
+          'Programarea a fost creată cu succes.'
         );
         this.closeAppointmentModal();
-        
-        // Add a small delay to ensure server has processed the operation
-        setTimeout(async () => {
-          await this.loadAppointments();
-        }, 500);
+        this.loadAppointments();
       } else {
-        this.showToast('Eroare la salvarea programării', 'error');
+        this.showError('Nu s-a putut salva programarea.');
       }
     } catch (error) {
       console.error('Error saving appointment:', error);
-      this.showToast('Eroare la salvarea programării', 'error');
+      this.showError('A apărut o eroare la salvarea programării.');
     } finally {
       this.hideLoading();
     }
@@ -647,21 +501,14 @@ class Appointments {
   // ===== FILTERS =====
   
   applyFilters() {
-    this.filters = {};
-    
-    const status = document.getElementById('statusFilter').value;
-    const dateFrom = document.getElementById('dateFromFilter').value;
-    const dateTo = document.getElementById('dateToFilter').value;
-    const customer = document.getElementById('customerFilter').value;
-    const service = document.getElementById('serviceFilter').value;
-    const location = document.getElementById('locationFilter').value;
-    
-    if (status) this.filters.status = status;
-    if (dateFrom) this.filters.date_from = dateFrom;
-    if (dateTo) this.filters.date_to = dateTo;
-    if (customer) this.filters.customer_id = customer;
-    if (service) this.filters.service_id = service;
-    if (location) this.filters.location_id = location;
+    this.filters = {
+      status: document.getElementById('statusFilter').value,
+      date_from: document.getElementById('dateFromFilter').value,
+      date_to: document.getElementById('dateToFilter').value,
+      customer_id: document.getElementById('customerFilter').value,
+      service_id: document.getElementById('serviceFilter').value,
+      location_id: document.getElementById('locationFilter').value
+    };
     
     this.currentPage = 1;
     this.loadAppointments();
@@ -693,190 +540,135 @@ class Appointments {
 
   // ===== DATA POPULATION =====
   
-  populateCustomerFilters() {
-    const filterSelect = document.getElementById('customerFilter');
-    const modalSelect = document.getElementById('appointmentCustomer');
-    
-    // Clear existing options
-    filterSelect.innerHTML = '<option value="">Toți clienții</option>';
-    modalSelect.innerHTML = '<option value="">Selectează clientul</option>';
-    
-    this.customers.forEach(customer => {
-      const optionText = `${customer.first_name} ${customer.last_name}`;
-      
-      // Filter select
-      const filterOption = document.createElement('option');
-      filterOption.value = customer.customer_id;
-      filterOption.textContent = optionText;
-      filterSelect.appendChild(filterOption);
-      
-      // Modal select
-      const modalOption = document.createElement('option');
-      modalOption.value = customer.customer_id;
-      modalOption.textContent = optionText;
-      modalSelect.appendChild(modalOption);
+  populateCustomerSelect() {
+    const customerSelects = ['customerFilter', 'appointmentCustomer'];
+    customerSelects.forEach(selectId => {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+
+      select.innerHTML = '<option value="">Selectează clientul</option>';
+      this.customers.forEach(customer => {
+        const option = document.createElement('option');
+        option.value = customer.id;
+        option.textContent = `${customer.name} (${customer.email})`;
+        select.appendChild(option);
+      });
     });
   }
   
-  populateServiceFilters() {
-    const filterSelect = document.getElementById('serviceFilter');
-    const modalSelect = document.getElementById('appointmentService');
-    
-    // Clear existing options
-    filterSelect.innerHTML = '<option value="">Toate serviciile</option>';
-    modalSelect.innerHTML = '<option value="">Selectează serviciul</option>';
-    
-    this.services.forEach(service => {
-      const optionText = `${service.description} - ${service.base_price} RON`;
-      
-      // Filter select
-      const filterOption = document.createElement('option');
-      filterOption.value = service.service_id;
-      filterOption.textContent = service.description;
-      filterSelect.appendChild(filterOption);
-      
-      // Modal select
-      const modalOption = document.createElement('option');
-      modalOption.value = service.service_id;
-      modalOption.textContent = optionText;
-      modalSelect.appendChild(modalOption);
+  populateServiceSelect() {
+    const serviceSelects = ['serviceFilter', 'appointmentService'];
+    serviceSelects.forEach(selectId => {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+
+      select.innerHTML = '<option value="">Selectează serviciul</option>';
+      this.services.forEach(service => {
+        const option = document.createElement('option');
+        option.value = service.id;
+        option.textContent = service.name;
+        select.appendChild(option);
+      });
     });
   }
   
-  populateLocationFilters() {
-    const filterSelect = document.getElementById('locationFilter');
-    const modalSelect = document.getElementById('appointmentLocation');
-    
-    // Clear existing options
-    filterSelect.innerHTML = '<option value="">Toate locațiile</option>';
-    modalSelect.innerHTML = '<option value="">Selectează locația</option>';
-    
-    this.locations.forEach(location => {
-      // Filter select
-      const filterOption = document.createElement('option');
-      filterOption.value = location.location_id;
-      filterOption.textContent = location.name;
-      filterSelect.appendChild(filterOption);
-      
-      // Modal select
-      const modalOption = document.createElement('option');
-      modalOption.value = location.location_id;
-      modalOption.textContent = location.name;
-      modalSelect.appendChild(modalOption);
+  populateLocationSelect() {
+    const locationSelects = ['locationFilter', 'appointmentLocation'];
+    locationSelects.forEach(selectId => {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+
+      select.innerHTML = '<option value="">Selectează locația</option>';
+      this.locations.forEach(location => {
+        const option = document.createElement('option');
+        option.value = location.id;
+        option.textContent = location.name;
+        select.appendChild(option);
+      });
     });
   }
 
-  // ===== UTILITY FUNCTIONS =====
+  populateEmployeeSelect() {
+    const select = document.getElementById('appointmentEmployee');
+    if (!select) return;
+
+    select.innerHTML = '<option value="">Selectează angajatul</option>';
+    this.employees.forEach(employee => {
+      const option = document.createElement('option');
+      option.value = employee.id;
+      option.textContent = employee.name;
+      select.appendChild(option);
+    });
+  }
+
+  // ===== HELPER FUNCTIONS =====
   
-  formatDate(dateString) {
-    if (!dateString) return 'Dată nespecificată';
-    
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ro-RO', {
+  getCustomerName(appointment) {
+    const customer = this.customers.find(c => c.id === appointment.customer_id);
+    return customer ? customer.name : 'Client necunoscut';
+  }
+
+  getServiceName(appointment) {
+    const service = this.services.find(s => s.id === appointment.service_id);
+    return service ? service.name : 'Serviciu necunoscut';
+  }
+
+  getLocationName(appointment) {
+    const location = this.locations.find(l => l.id === appointment.location_id);
+    return location ? location.name : 'Locație necunoscută';
+  }
+
+  getEmployeeName(appointment) {
+    const employee = this.employees.find(e => e.id === appointment.employee_id);
+    return employee ? employee.name : 'Angajat necunoscut';
+  }
+
+  getStatusLabel(status) {
+    const labels = {
+      pending: 'În Așteptare',
+      confirmed: 'Confirmat',
+      cancelled: 'Anulat'
+    };
+    return labels[status] || status;
+  }
+  
+  formatDate(date) {
+    return new Date(date).toLocaleDateString('ro-RO', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
   }
-  
-  formatDateTime(dateString) {
-    if (!dateString) return 'Dată nespecificată';
-    
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ro-RO', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  }
-  
-  getStatusLabel(status) {
-    const statuses = {
-      'pending': '⏳ În așteptare',
-      'confirmed': '✅ Confirmat',
-      'in_progress': '🔄 În progres',
-      'completed': '✅ Finalizat',
-      'cancelled': '❌ Anulat'
-    };
-    return statuses[status] || `❓ ${status}`;
-  }
-  
-  showError(message) {
-    const grid = document.getElementById('appointmentsGrid');
-    grid.innerHTML = `
-      <div class="error-message">
-        <h3>Eroare</h3>
-        <p>${message}</p>
-        <button onclick="appointments.loadAppointments()" class="btn btn-primary">Reîncarcă</button>
-      </div>
-    `;
-  }
+
+  // ===== UI FEEDBACK =====
   
   showLoading() {
-    document.getElementById('loadingOverlay').style.display = 'flex';
+    document.getElementById('loadingOverlay').classList.add('visible');
   }
   
   hideLoading() {
-    document.getElementById('loadingOverlay').style.display = 'none';
+    document.getElementById('loadingOverlay').classList.remove('visible');
   }
   
-  showToast(message, type = 'info', duration = 5000) {
-    const container = document.getElementById('toastContainer') || document.body;
+  showSuccess(message) {
+    this.showToast(message, 'success');
+  }
+  
+  showError(message) {
+    this.showToast(message, 'error');
+  }
+  
+  showToast(message, type = 'info') {
+    const container = document.getElementById('toastContainer');
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.innerHTML = `
-      <span class="toast-message">${message}</span>
-      <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
-    `;
+    toast.textContent = message;
     
     container.appendChild(toast);
     
-    // Auto remove after duration
     setTimeout(() => {
-      if (toast.parentElement) {
-        toast.remove();
-      }
-    }, duration);
-  }
-
-  // Helper functions for data mapping
-  getCustomerName(appointment) {
-    if (appointment.customer_first_name && appointment.customer_last_name) {
-      return `${appointment.customer_first_name} ${appointment.customer_last_name}`;
-    } else if (appointment.customer_name) {
-      return appointment.customer_name;
-    } else if (appointment.customer_email) {
-      return appointment.customer_email;
-    }
-    return `Client #${appointment.customer_id}`;
-  }
-
-  getServiceName(appointment) {
-    return appointment.service_name || `Serviciu #${appointment.service_id}`;
-  }
-
-  getLocationName(appointment) {
-    return appointment.location_name || `Locație #${appointment.location_id}`;
-  }
-
-  getTotalPrice(appointment) {
-    if (appointment.total_amount) {
-      return `${appointment.total_amount} RON`;
-    } else if (appointment.base_price) {
-      return `${appointment.base_price} RON`;
-    }
-    return 'Preț nespecificat';
-  }
-
-  getScheduledDateTime(appointment) {
-    if (appointment.scheduled_date) {
-      const date = this.formatDate(appointment.scheduled_date);
-      const time = appointment.scheduled_time || '';
-      return time ? `${date} ${time}` : date;
-    }
-    return 'Data nespecificată';
+      toast.remove();
+    }, 5000);
   }
 }
 

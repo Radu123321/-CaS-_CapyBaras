@@ -547,4 +547,39 @@
     flex-wrap: wrap;
     gap: 10px;
   }
+}
+
+/* Initially hidden elements */
+.loading-overlay,
+.modal-overlay,
+#customerGroup,
+#serviceGroup,
+#recurringOptions,
+#deleteEventBtn,
+#editEventBtn,
+#monthView,
+#weekView,
+#dayView {
+  display: none;
+}
+
+/* Show when needed */
+.loading-overlay.visible,
+.modal-overlay.visible,
+#customerGroup.visible,
+#serviceGroup.visible,
+#recurringOptions.visible,
+#deleteEventBtn.visible,
+#editEventBtn.visible {
+  display: block;
+}
+
+/* Special display for views */
+#monthView.visible {
+  display: grid;
+}
+
+#weekView.visible,
+#dayView.visible {
+  display: flex;
 } 

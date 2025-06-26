@@ -16,8 +16,17 @@
 }
 
 /* Error State */
-.error-state.hidden {
+.error-state,
+.modal-overlay,
+#statusFormGroup {
     display: none;
+}
+
+/* Show when needed */
+.error-state.visible,
+.modal-overlay.visible,
+#statusFormGroup.visible {
+    display: block;
 }
 
 /* Table Styles */
