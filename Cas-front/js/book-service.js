@@ -21,6 +21,12 @@ class BookingWizard {
     try {
       this.showLoading();
       
+      // Check if user is authenticated
+      if (!authManager.currentUser) {
+        window.location.href = 'login.html?redirect=book-service.html';
+        return;
+      }
+      
       // Load initial data
       await this.loadServices();
       await this.loadLocations();
@@ -331,20 +337,43 @@ class BookingWizard {
       if (!this.selectedService || !this.selectedDate || !this.selectedTime || !this.selectedLocation) {
         throw new Error('Date incomplete pentru programare');
       }
+
+      // Validate user is logged in
+      if (!authManager.currentUser) {
+        throw new Error('Trebuie să fiți autentificat pentru a face o programare');
+      }
       
       // Get additional info
       const phone = document.getElementById('customerPhone').value;
       const specialRequests = document.getElementById('specialRequests').value;
+
+      // Get customer_id using the same logic as in my-orders.js
+      let customerId = authManager.currentUser.customer_id;
+      
+      if (!customerId) {
+        const userId = authManager.currentUser.user_id || authManager.currentUser.id;
+        const customerResponse = await authManager.apiRequest(`/customers?user_id=${userId}`);
+        
+        if (!customerResponse.success || !customerResponse.data || customerResponse.data.length === 0) {
+          throw new Error('Nu s-a găsit clientul asociat cu acest cont. Vă rugăm să contactați suportul.');
+        }
+        
+        customerId = customerResponse.data[0].customer_id;
+      }
       
       // Prepare booking data
       const bookingData = {
-        service_id: this.selectedService.service_id,
-        location_id: this.selectedLocation.location_id,
+        service_id: parseInt(this.selectedService.service_id),
+        location_id: parseInt(this.selectedLocation.location_id),
         scheduled_date: this.selectedDate,
         scheduled_time: this.selectedTime,
         description: specialRequests || `Programare pentru ${this.selectedService.description}`,
-        customer_phone: phone
+        customer_phone: phone,
+        customer_id: customerId,
+        unit_price: this.selectedService.base_price
       };
+      
+      console.log('Sending booking data:', bookingData);
       
       // Submit booking
       const response = await authManager.apiRequest('/orders', {
@@ -355,7 +384,7 @@ class BookingWizard {
       if (response.success) {
         this.showSuccessMessage(response.data.order_id || 'N/A');
       } else {
-        throw new Error(response.message || 'Eroare la crearea programării');
+        throw new Error(response.message || response.error || 'Eroare la crearea programării');
       }
       
     } catch (error) {
