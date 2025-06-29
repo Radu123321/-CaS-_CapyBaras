@@ -3,7 +3,7 @@ const log = require('../core/logger');
 
 class MaintenanceController {
   constructor() {
-    this.maintenanceService = new MaintenanceService();
+    this.maintenanceService = MaintenanceService;
   }
 
   // Creează programare de mentenanță

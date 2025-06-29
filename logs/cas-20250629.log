@@ -1545,3 +1545,69 @@
 2025-06-29T19:13:38.054Z [INFO] [REQ] GET /api/equipment
 2025-06-29T19:13:38.055Z [INFO] [REQ] GET /api/locations
 2025-06-29T19:13:38.055Z [INFO] GET /api/locations
+2025-06-29T21:15:07.953Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:15:08.046Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:15:08.056Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:15:08.187Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:15:08 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:16:00.472Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:16:00.519Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:16:00.522Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:16:00.592Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:16:00 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:19:01.690Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:19:01.739Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:19:01.742Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:19:01.812Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:19:01 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:23:02.527Z [INFO] [REQ] GET /api/ping
+2025-06-29T21:23:02.599Z [INFO] [REQ] GET /api/scheduler/status
+2025-06-29T21:23:02.626Z [INFO] [REQ] GET /api/locations
+2025-06-29T21:23:02.627Z [INFO] GET /api/locations
+2025-06-29T21:23:02.703Z [ERROR] Get locations error: Cannot read properties of undefined (reading 'length')
+2025-06-29T21:24:24.978Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:24:25.034Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:24:25.039Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:24:25.110Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:24:25 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:24:40.675Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:24:40.806Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:24:40 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:25:11.183Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:25:11.312Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:25:11 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:25:41.638Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:25:41.759Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:25:41 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:26:12.200Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:28:27.250Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:28:27.424Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:28:27 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:29:18.461Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:29:18.590Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:29:18 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:30:11.916Z [INFO] [REQ] GET /api/locations
+2025-06-29T21:30:11.918Z [INFO] GET /api/locations
+2025-06-29T21:30:12.096Z [ERROR] Get locations error: Cannot read properties of undefined (reading 'length')
+2025-06-29T21:30:35.526Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:30:35.604Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:30:35.614Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:30:35.697Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:30:35 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:30:46.308Z [INFO] [REQ] GET /api/ping
+2025-06-29T21:30:51.866Z [INFO] [REQ] GET /api/locations
+2025-06-29T21:30:51.867Z [INFO] GET /api/locations
+2025-06-29T21:31:01.494Z [INFO] [REQ] GET /api/customers
+2025-06-29T21:31:01.494Z [INFO] GET /api/customers
+2025-06-29T21:31:01.495Z [ERROR] Get customers error: customerService.getAllCustomers is not a function
+2025-06-29T21:31:41.551Z [INFO] [REQ] GET /api/customers
+2025-06-29T21:31:41.551Z [INFO] GET /api/customers
+2025-06-29T21:31:41.552Z [ERROR] Get customers error: customerService.getAllCustomers is not a function
+2025-06-29T21:31:51.988Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:31:52.036Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:31:52.040Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:31:52.102Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:31:52 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:33:24.035Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:33:24.108Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:33:24 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:34:06.125Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:34:06.217Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:34:06.223Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:34:06.321Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:34:06 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:34:13.180Z [INFO] [REQ] GET /api/customers
+2025-06-29T21:34:13.183Z [INFO] GET /api/customers
+2025-06-29T21:34:51.309Z [INFO] [REQ] GET /api/employees
+2025-06-29T21:34:51.309Z [INFO] GET /api/employees
+2025-06-29T21:34:51.310Z [ERROR] Get employees error: employeeService.getAllEmployees is not a function
+2025-06-29T21:35:04.809Z [INFO] [REQ] GET /api/employees
+2025-06-29T21:35:04.810Z [INFO] GET /api/employees
+2025-06-29T21:35:04.810Z [ERROR] Get employees error: employeeService.getAllEmployees is not a function

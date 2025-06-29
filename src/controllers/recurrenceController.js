@@ -3,7 +3,7 @@ const log = require('../core/logger');
 
 class RecurrenceController {
   constructor() {
-    this.recurrenceService = new RecurrenceService();
+    this.recurrenceService = RecurrenceService;
   }
 
   // Creează programare recurentă

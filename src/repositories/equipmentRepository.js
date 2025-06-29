@@ -1,11 +1,15 @@
-const { query } = require('../core/psql');
+const Base = require('./_base');
+const pool = require('../core/psql');
 
 /**
  * Equipment Repository
  * Handles all database operations for equipment and maintenance
  */
-class EquipmentRepository {
-    
+class EquipmentRepository extends Base {
+    constructor() {
+        super('equipment');
+    }
+
     // ═══════════════════════════════════════════════════════════════════
     // EQUIPMENT CRUD OPERATIONS
     // ═══════════════════════════════════════════════════════════════════
@@ -55,8 +59,8 @@ class EquipmentRepository {
             ORDER BY e.location_id, e.name
         `;
         
-        const result = await query(sql, params);
-        return result;
+        const result = await pool.query(sql, params);
+        return result.rows;
     }
     
     /**
@@ -73,8 +77,8 @@ class EquipmentRepository {
             WHERE e.equipment_id = $1
         `;
         
-        const result = await query(sql, [equipmentId]);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, [equipmentId]);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     /**
@@ -93,8 +97,8 @@ class EquipmentRepository {
         
         const params = [location_id, name, type, status || 'OPERATIVE', purchased_date, notes];
         
-        const result = await query(sql, params);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, params);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     /**
@@ -127,8 +131,8 @@ class EquipmentRepository {
             RETURNING *
         `;
         
-        const result = await query(sql, params);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, params);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     /**
@@ -136,8 +140,8 @@ class EquipmentRepository {
      */
     async deleteEquipment(equipmentId) {
         const sql = 'DELETE FROM equipment WHERE equipment_id = $1 RETURNING *';
-        const result = await query(sql, [equipmentId]);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, [equipmentId]);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     // ═══════════════════════════════════════════════════════════════════
@@ -161,8 +165,8 @@ class EquipmentRepository {
             LIMIT $2
         `;
         
-        const result = await query(sql, [equipmentId, limit]);
-        return result || [];
+        const result = await pool.query(sql, [equipmentId, limit]);
+        return result.rows || [];
     }
     
     /**
@@ -206,8 +210,8 @@ class EquipmentRepository {
             params.push(filters.limit);
         }
         
-        const result = await query(sql, params);
-        return result || [];
+        const result = await pool.query(sql, params);
+        return result.rows || [];
     }
     
     /**
@@ -226,8 +230,8 @@ class EquipmentRepository {
         
         const params = [equipment_id, type || 'PREVENTIVE', scheduled_date, description, estimated_cost || 0.00];
         
-        const result = await query(sql, params);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, params);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     /**
@@ -260,8 +264,8 @@ class EquipmentRepository {
             RETURNING *
         `;
         
-        const result = await query(sql, params);
-        return result && result.length > 0 ? result[0] : null;
+        const result = await pool.query(sql, params);
+        return result.rows.length > 0 ? result.rows[0] : null;
     }
     
     // ═══════════════════════════════════════════════════════════════════
@@ -294,8 +298,8 @@ class EquipmentRepository {
             ORDER BY l.name, e.status
         `;
         
-        const result = await query(sql, params);
-        return result || [];
+        const result = await pool.query(sql, params);
+        return result.rows || [];
     }
     
     /**
@@ -317,8 +321,34 @@ class EquipmentRepository {
             ORDER BY MAX(ms.completed_at) ASC NULLS FIRST
         `;
         
-        const result = await query(sql);
-        return result || [];
+        const result = await pool.query(sql);
+        return result.rows || [];
+    }
+
+    // list global or by branch
+    list(branchId = null) {
+        return pool.query(
+            `SELECT e.*, b.name AS branch_name, t.description AS type_desc
+               FROM equipment e
+               JOIN branches b ON b.id = e.branch_id
+               LEFT JOIN equipment_types t ON t.code = e.type_code
+              WHERE ($1::int IS NULL OR e.branch_id=$1)
+              ORDER BY e.id`, [branchId]
+        ).then(r => r.rows);
+    }
+
+    async create(eq) {
+        const cols = `branch_id,type_code,name,model,serial_no,purchase_date,warranty_until,status,usage_unit_code,notes`;
+        const vals = [
+            eq.branchId, eq.typeCode, eq.name, eq.model, eq.serialNo,
+            eq.purchaseDate, eq.warrantyUntil, eq.status || 'OPERATIONAL',
+            eq.usageUnitCode || 'h', eq.notes
+        ];
+        return this.insert(cols, vals);
+    }
+
+    updateStatus(id, status, notes = '') {
+        return this.patch(id, 'status=$2, notes=$3', [status, notes]);
     }
 }
 

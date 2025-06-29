@@ -1,53 +1,84 @@
-const { query } = require('../core/psql');
+const Base = require('./_base');
+const pool = require('../core/psql');
 const log = require('../core/logger');
 
-class OrderRepository {
-  async create(orderData) {
-    const { 
-      customer_id, 
-      location_id, 
-      service_id, 
-      assigned_employee_id,
-      order_code,
-      status = 'PENDING',
-      priority = 'NORMAL',
-      item_description,
-      item_type,
-      item_condition,
-      special_instructions,
-      unit_price,  // Changed from base_price to unit_price
-      transport_fee = 0.00,
-      additional_fees = 0.00,
-      discount = 0.00,
-      total_amount,
-      scheduled_date,
-      scheduled_time,
-      estimated_duration,
-      pickup_address,
-      delivery_address
-    } = orderData;
-    
-    const insertSQL = `
-      INSERT INTO orders (
-        customer_id, location_id, service_id, assigned_employee_id, order_code,
-        status, priority, item_description, item_type, item_condition, special_instructions,
-        base_price, transport_fee, additional_fees, discount, total_amount,
-        scheduled_date, scheduled_time, estimated_duration, pickup_address, delivery_address
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21)
-      RETURNING order_id, customer_id, location_id, service_id, order_code, status, 
-                base_price, transport_fee, total_amount, scheduled_date, scheduled_time, 
-                assigned_employee_id, special_instructions, created_at
-    `;
-    
-    const result = await query(insertSQL, [
-      customer_id, location_id, service_id, assigned_employee_id, order_code,
-      status, priority, item_description, item_type, item_condition, special_instructions,
-      unit_price, // Maps unit_price to base_price column in database
-      transport_fee, additional_fees, discount, total_amount,
-      scheduled_date, scheduled_time, estimated_duration, pickup_address, delivery_address
-    ]);
-    return result && result.length > 0 ? result[0] : null;
+class OrderRepository extends Base {
+  constructor() { super('orders'); }
+
+  /**
+   * List orders with optional filters
+   * @param {Object} f filters {status, branchId, limit=50, offset=0}
+   */
+  async list({ status = null, branchId = null, limit = 50, offset = 0 } = {}) {
+    const { rows } = await pool.query(
+      `SELECT o.*, c.email    AS customer_email,
+              b.name         AS branch_name
+         FROM orders o
+         JOIN users c   ON c.id = o.customer_id
+         JOIN branches b ON b.id = o.branch_id
+        WHERE ($1::text IS NULL  OR o.status=$1)
+          AND ($2::int  IS NULL  OR o.branch_id=$2)
+        ORDER BY o.created_at DESC
+        LIMIT $3 OFFSET $4`,
+      [status, branchId, limit, offset]);
+    return rows;
   }
+
+  /**
+   * Create a new order with items & assignments in one transaction
+   * @param {Object} header main order fields
+   * @param {Array}  items  [{serviceId, qty, priceUnit}]
+   * @param {Array}  employees [{employeeId, roleCode}]
+   */
+  async create(header, items = [], employees = []) {
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      const { rows } = await client.query(
+        `INSERT INTO orders
+           (customer_id, branch_id, status, scheduled_start, scheduled_end,
+            total_price, currency_code, created_via, notes)
+         VALUES ($1,$2,'NEW',$3,$4,$5,$6,'ADMIN',$7)
+         RETURNING id`,
+        [
+          header.customerId, header.branchId, header.start, header.end,
+          header.total, header.currency || 'RON', header.notes
+        ]);
+      const orderId = rows[0].id;
+
+      // order_items
+      let seq = 1;
+      for (const it of items) {
+        await client.query(
+          `INSERT INTO order_items
+             (order_id, seq_no, service_id, qty, price_unit, price_total)
+           VALUES ($1,$2,$3,$4,$5,$6)`,
+          [orderId, seq++, it.serviceId, it.qty, it.priceUnit, it.qty * it.priceUnit]);
+      }
+
+      // assignments
+      for (const a of employees) {
+        await client.query(
+          `INSERT INTO order_assignments (order_id, employee_id, role_code)
+           VALUES ($1,$2,$3)`,
+          [orderId, a.employeeId, a.roleCode]);
+      }
+
+      await client.query('COMMIT');
+      return orderId;
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
+  updateStatus(id, status) {
+    return this.patch(id, 'status=$2', [status]);
+  }
+
+  delete(id) { return super.remove(id); }
 
   async createOrderItem(orderItemData) {
     const { order_id, service_id, quantity, price } = orderItemData;
@@ -58,8 +89,8 @@ class OrderRepository {
       RETURNING order_id, service_id, quantity, price
     `;
     
-    const result = await query(insertSQL, [order_id, service_id, quantity, price]);
-    return result && result.length > 0 ? result[0] : null;
+    const result = await pool.query(insertSQL, [order_id, service_id, quantity, price]);
+    return result && result.rows.length > 0 ? result.rows[0] : null;
   }
 
   async findAll(filters = {}) {
@@ -137,7 +168,7 @@ class OrderRepository {
     `;
     
     params.push(limit, offset);
-    return await query(selectSQL, params);
+    return await pool.query(selectSQL, params);
   }
 
   async findById(orderId) {
@@ -161,8 +192,8 @@ class OrderRepository {
       WHERE o.order_id = $1
     `;
     
-    const result = await query(selectSQL, [orderId]);
-    return result && result.length > 0 ? result[0] : null;
+    const result = await pool.query(selectSQL, [orderId]);
+    return result && result.rows.length > 0 ? result.rows[0] : null;
   }
 
   async findOrderItems(orderId) {
@@ -175,7 +206,7 @@ class OrderRepository {
       ORDER BY oi.service_id
     `;
     
-    return await query(selectSQL, [orderId]);
+    return await pool.query(selectSQL, [orderId]);
   }
 
   async findOrderItemsByOrderIds(orderIds) {
@@ -192,43 +223,7 @@ class OrderRepository {
       ORDER BY oi.service_id
     `;
     
-    return await query(selectSQL, [orderIds]);
-  }
-
-  async updateStatus(orderId, newStatus, additionalData = {}) {
-    const { actual_start_time, actual_end_time, completed_at } = additionalData;
-    
-    let setClause = 'status = $2';
-    const params = [orderId, newStatus];
-    let paramIndex = 3;
-    
-    if (actual_start_time && newStatus === 'IN_PROGRESS') {
-      setClause += `, actual_start_time = $${paramIndex}`;
-      params.push(actual_start_time);
-      paramIndex++;
-    }
-    
-    if (actual_end_time && newStatus === 'COMPLETED') {
-      setClause += `, actual_end_time = $${paramIndex}`;
-      params.push(actual_end_time);
-      paramIndex++;
-    }
-    
-    if (completed_at && newStatus === 'COMPLETED') {
-      setClause += `, completed_at = $${paramIndex}`;
-      params.push(completed_at);
-      paramIndex++;
-    }
-    
-    const updateSQL = `
-      UPDATE orders 
-      SET ${setClause}, updated_at = CURRENT_TIMESTAMP
-      WHERE order_id = $1
-      RETURNING order_id, status, actual_start_time, actual_end_time, completed_at, scheduled_date
-    `;
-    
-    const result = await query(updateSQL, params);
-    return result && result.length > 0 ? result[0] : null;
+    return await pool.query(selectSQL, [orderIds]);
   }
 
   async update(orderId, orderData) {
@@ -270,14 +265,14 @@ class OrderRepository {
                 special_instructions, pickup_address, delivery_address, updated_at
     `;
     
-    const result = await query(updateSQL, [
+    const result = await pool.query(updateSQL, [
       orderId, service_id || null, base_price || null, transport_fee || null,
       total_amount || null, scheduled_date || null, scheduled_time || null, 
       assigned_employee_id || null, special_instructions || null,
       pickup_address || null, delivery_address || null, item_description || null,
       item_type || null, item_condition || null
     ]);
-    return result && result.length > 0 ? result[0] : null;
+    return result && result.rows.length > 0 ? result.rows[0] : null;
   }
 
   async findWithRecurrence() {
@@ -290,13 +285,13 @@ class OrderRepository {
       ORDER BY scheduled_date
     `;
     
-    return await query(selectSQL);
+    return await pool.query(selectSQL);
   }
 
   async exists(orderId) {
     const selectSQL = `SELECT 1 FROM orders WHERE order_id = $1`;
-    const result = await query(selectSQL, [orderId]);
-    return result && result.length > 0;
+    const result = await pool.query(selectSQL, [orderId]);
+    return result && result.rows.length > 0;
   }
 
   async getValidStatuses() {
@@ -338,13 +333,13 @@ class OrderRepository {
         END
     `;
     
-    const result = await query(selectSQL, params);
+    const result = await pool.query(selectSQL, params);
     
     if (status) {
-      return result && result.length > 0 ? parseInt(result[0].count) : 0;
+      return result && result.rows.length > 0 ? parseInt(result.rows[0].count) : 0;
     }
     
-    return result || [];
+    return result && result.rows || [];
   }
 
   async getOrdersByCustomer(customerId) {
@@ -356,7 +351,7 @@ class OrderRepository {
       ORDER BY created_at DESC
     `;
     
-    return await query(selectSQL, [customerId]);
+    return await pool.query(selectSQL, [customerId]);
   }
 
   async getOrdersByLocation(locationId) {
@@ -368,7 +363,7 @@ class OrderRepository {
       ORDER BY created_at DESC
     `;
     
-    return await query(selectSQL, [locationId]);
+    return await pool.query(selectSQL, [locationId]);
   }
 
   async findByCustomerId(customerId, limit = 20) {
@@ -388,7 +383,7 @@ class OrderRepository {
       LIMIT $2
     `;
     
-    return await query(selectSQL, [customerId, limit]);
+    return await pool.query(selectSQL, [customerId, limit]);
   }
 
   async findByEmployeeId(employeeId, filters = {}) {
@@ -434,7 +429,7 @@ class OrderRepository {
     `;
     
     params.push(limit);
-    return await query(selectSQL, params);
+    return await pool.query(selectSQL, params);
   }
 
   async findByLocationId(locationId, filters = {}) {
@@ -479,7 +474,7 @@ class OrderRepository {
     `;
     
     params.push(limit);
-    return await query(selectSQL, params);
+    return await pool.query(selectSQL, params);
   }
 
   async assignEmployee(orderId, employeeId) {
@@ -490,20 +485,8 @@ class OrderRepository {
       RETURNING order_id, assigned_employee_id, updated_at
     `;
     
-    const result = await query(updateSQL, [orderId, employeeId]);
-    return result && result.length > 0 ? result[0] : null;
-  }
-
-  async delete(orderId) {
-    const deleteSQL = `
-      UPDATE orders 
-      SET status = 'CANCELLED', updated_at = CURRENT_TIMESTAMP
-      WHERE order_id = $1
-      RETURNING order_id, status, updated_at
-    `;
-    
-    const result = await query(deleteSQL, [orderId]);
-    return result && result.length > 0;
+    const result = await pool.query(updateSQL, [orderId, employeeId]);
+    return result && result.rows.length > 0 ? result.rows[0] : null;
   }
 
   async getActiveOrders(locationId = null) {
@@ -529,7 +512,7 @@ class OrderRepository {
       ORDER BY o.scheduled_date ASC
     `;
     
-    return await query(selectSQL, params);
+    return await pool.query(selectSQL, params);
   }
 
   async getStats(filters = {}) {
@@ -572,8 +555,8 @@ class OrderRepository {
         paramIndex++;
       }
       
-      const result = await query(sql, params);
-      return result && result.length > 0 ? result[0] : {};
+      const result = await pool.query(sql, params);
+      return result && result.rows.length > 0 ? result.rows[0] : {};
     } catch (error) {
       log.error(`OrderRepository: Failed to get stats: ${error.message}`);
       throw error;
@@ -615,7 +598,7 @@ class OrderRepository {
     `;
     
     params.push(limit);
-    return await query(selectSQL, params);
+    return await pool.query(selectSQL, params);
   }
 
   async getAvailability(date, locationId = null, serviceId = null) {
@@ -651,8 +634,8 @@ class OrderRepository {
       
       sql += ` ORDER BY scheduled_time`;
       
-      const result = await query(sql, params);
-      return result || [];
+      const result = await pool.query(sql, params);
+      return result && result.rows || [];
     } catch (error) {
       log.error(`OrderRepository: Failed to get availability: ${error.message}`);
       throw error;

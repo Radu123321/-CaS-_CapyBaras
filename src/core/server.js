@@ -9,6 +9,7 @@ const { parseRequest } = require('./json');
 const log = require('./logger');
 const scheduler = require('./scheduler');
 const { performHandshake } = require('./websocket');
+const { auth } = require('./middleware');
 
 // Toggle to enable/disable built-in WebSocket support
 const WEBSOCKET_ENABLED = false;
@@ -345,6 +346,15 @@ function serveStatic(filePath, res) {
 }
 
 const server = http.createServer(async (req, res) => {
+  // response helpers
+  res.json = (status, payload) => {
+    if (typeof status !== 'number') { payload = status; status = 200; }
+    res.writeHead(status, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(payload));
+  };
+  res.unauth = () => res.json(401, { success: false, error: 'Unauthorized' });
+  res.forbid  = () => res.json(403, { success: false, error: 'Forbidden' });
+
   const parsedUrl = url.parse(req.url, true);
   const { pathname, query } = parsedUrl;
   log.info(`[REQ] ${req.method} ${pathname}`);

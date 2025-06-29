@@ -3,7 +3,7 @@ const log = require('../core/logger');
 
 class ShiftController {
   constructor() {
-    this.shiftService = new ShiftService();
+    this.shiftService = ShiftService; // service is plain object
   }
 
   // Creează un schimb nou

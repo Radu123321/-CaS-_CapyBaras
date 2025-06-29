@@ -4,51 +4,57 @@ const log = require('./logger');
 // Now supports parameterized routes like /api/locations/:id
 
 const routes = {};
+const globalMiddlewares = [];
 
 function key(method, path) {
   return `${method.toUpperCase()} ${path}`;
 }
 
-function add(method, path, handler) {
+/**
+ * Register a route.
+ * Signature options:
+ *   add('GET','/path', handler)
+ *   add('POST','/path', [mw1,mw2], handler)
+ */
+function add(method, path, middlewares, handler) {
+  if (typeof middlewares === 'function') {
+    handler = middlewares;
+    middlewares = [];
+  }
+  if (!Array.isArray(middlewares)) middlewares = [middlewares].filter(Boolean);
+  routes[key(method, path)] = { handler, middlewares };
   log.debug(`Route registered: ${method.toUpperCase()} ${path}`);
-  routes[key(method, path)] = handler;
 }
 
+function use(mw) { globalMiddlewares.push(mw); }
+
 function dispatch(method, path, req, res) {
-  const routeKey = key(method, path);
-  
-  // Initialize params object
   req.params = {};
-  
-  // First try exact match
+  const routeKey = key(method, path);
+
+  // exact
   if (routes[routeKey]) {
-    log.debug(`Dispatching ${method} ${path} (exact match)`);
-    return routes[routeKey](req, res);
+    return runChain([...globalMiddlewares, ...routes[routeKey].middlewares, routes[routeKey].handler], req, res);
   }
-  
-  // Try pattern matching for parameterized routes
-  for (const registeredRoute in routes) {
-    if (registeredRoute.startsWith(method.toUpperCase())) {
-      const registeredPath = registeredRoute.substring(method.length + 1);
-      
-      // Check if this is a parameterized route match
-      const params = extractParams(path, registeredPath);
-      if (params !== null) {
-        // Add extracted parameters to request
-        req.params = params;
-        log.debug(`Dispatching ${method} ${path} (pattern match: ${registeredPath}), params:`, params);
-        return routes[registeredRoute](req, res);
-      }
+  // param match
+  for (const rk in routes) {
+    if (!rk.startsWith(method.toUpperCase())) continue;
+    const registeredPath = rk.substring(method.length + 1);
+    const params = extractParams(path, registeredPath);
+    if (params) {
+      req.params = params;
+      const { handler, middlewares } = routes[rk];
+      return runChain([...globalMiddlewares, ...middlewares, handler], req, res);
     }
   }
-  
-  // 404 fallback
-  log.warn(`Route not found: ${method} ${path}`);
   res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ 
-    success: false,
-    error: 'Route not found' 
-  }));
+  res.end(JSON.stringify({ success: false, error: 'Route not found' }));
+}
+
+function runChain(chain, req, res, idx = 0) {
+  if (idx >= chain.length) return; // done
+  const next = () => runChain(chain, req, res, idx + 1);
+  chain[idx](req, res, next);
 }
 
 // Extract parameters from URL path using route pattern
@@ -87,4 +93,4 @@ function matchesPattern(actualPath, patternPath) {
   return extractParams(actualPath, patternPath) !== null;
 }
 
-module.exports = { add, dispatch }; 
+module.exports = { add, dispatch, use }; 
