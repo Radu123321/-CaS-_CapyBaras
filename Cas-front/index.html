@@ -20,44 +20,7 @@
   
   <title>CaS Management - Redirecting...</title>
   <link rel="stylesheet" href="css/style.css">
-  <style>
-    .redirect-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-    }
-    
-    .redirect-spinner {
-      width: 50px;
-      height: 50px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .redirect-message {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    .redirect-subtext {
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-  </style>
+  <link rel="stylesheet" href="css/redirect.css">
 </head>
 <body>
 
@@ -68,22 +31,6 @@
   </div>
 
   <script src="js/auth.js"></script>
-  <script>
-    // Initialize auth manager and handle redirect
-    document.addEventListener('DOMContentLoaded', () => {
-      const authManager = new AuthManager();
-      
-      // Small delay to allow auth manager to initialize
-      setTimeout(() => {
-        if (authManager.isAuthenticated()) {
-          // User is logged in, redirect to dashboard
-          window.location.href = 'dashboard.html';
-        } else {
-          // User is not logged in, redirect to login
-          window.location.href = 'login.html';
-        }
-      }, 500);
-    });
-  </script>
+  <script src="js/redirect.js"></script>
 </body>
 </html>

@@ -716,16 +716,6 @@
 
   <script src="js/auth.js"></script>
   <script src="js/appointments.js"></script>
-  <script>
-    // Initialize auth manager and appointments
-    const authManager = new AuthManager();
-    let appointments;
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      if (authManager.requireAuth()) {
-        appointments = new Appointments();
-      }
-    });
-  </script>
+  <script src="js/appointments-init.js"></script>
 </body>
 </html> 

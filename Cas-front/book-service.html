@@ -664,16 +664,6 @@
 
   <script src="js/auth.js"></script>
   <script src="js/book-service.js"></script>
-  <script>
-    // Initialize auth manager and booking wizard
-    const authManager = new AuthManager();
-    let bookingWizard;
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      if (authManager.requireAuth()) {
-        bookingWizard = new BookingWizard();
-      }
-    });
-  </script>
+  <script src="js/book-service-init.js"></script>
 </body>
 </html> 

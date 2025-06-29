@@ -757,16 +757,7 @@
 
   <script src="js/auth.js"></script>
   <script src="js/calendar.js"></script>
-  <script>
-    // Initialize auth manager and calendar
-    const authManager = new AuthManager();
-    let calendar;
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      if (authManager.requireAuth()) {
-        calendar = new Calendar();
-      }
-    });
-  </script>
+  <script src="js/calendar-init.js"></script>
+  <!-- AuthManager instantiated in js/auth.js -->
 </body>
 </html> 

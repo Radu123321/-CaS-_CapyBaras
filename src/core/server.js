@@ -347,7 +347,7 @@ function serveStatic(filePath, res) {
 const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const { pathname, query } = parsedUrl;
-  log.info(`${req.method} ${pathname}`);
+  log.info(`[REQ] ${req.method} ${pathname}`);
 
   // Add CORS headers for all requests
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -449,9 +449,10 @@ if (WEBSOCKET_ENABLED) {
   });
 }
 
-server.listen(config.port, () => {
-  log.info(`Minimal server listening on port ${config.port}`);
-  
+// ===== Scheduler Toggle =====
+const SCHEDULER_ENABLED = false; // Set true when you want background jobs to run
+
+if (SCHEDULER_ENABLED) {
   // Start scheduler and add jobs
   const expandRecurrences = require('../jobs/expandRecurrences');
   const checkInventory = require('../jobs/checkInventory');
@@ -459,42 +460,28 @@ server.listen(config.port, () => {
   const updateWeatherData = require('../jobs/updateWeatherData');
   const generateDailyStats = require('../jobs/generateDailyStats');
   const exceptionDetection = require('../jobs/exceptionDetection');
-  
-  scheduler.addJob('expandRecurrences', '*/5 * * * *', expandRecurrences.expandRecurrences || expandRecurrences); // Every 5 minutes
-  scheduler.addJob('checkInventory', '0 * * * *', checkInventory.checkInventory); // Every hour
+
+  scheduler.addJob('expandRecurrences', '*/5 * * * *', expandRecurrences.expandRecurrences || expandRecurrences);
+  scheduler.addJob('checkInventory', '0 * * * *', checkInventory.checkInventory);
   scheduler.addJob('checkEquipmentStatus', '0 */6 * * *', async () => {
-    try {
-      await checkEquipmentStatus.execute();
-    } catch (error) {
-      log.error(`CheckEquipmentStatus job error: ${error.message}`);
-      throw error;
-    }
-  }); // Every 6 hours
+    try { await checkEquipmentStatus.execute(); } catch (error) { log.error(`CheckEquipmentStatus job error: ${error.message}`); throw error; }
+  });
   scheduler.addJob('updateWeatherData', '0 */3 * * *', async () => {
-    try {
-      await updateWeatherData.execute();
-    } catch (error) {
-      log.error(`UpdateWeatherData job error: ${error.message}`);
-      throw error;
-    }
-  }); // Every 3 hours
+    try { await updateWeatherData.execute(); } catch (error) { log.error(`UpdateWeatherData job error: ${error.message}`); throw error; }
+  });
   scheduler.addJob('generateDailyStats', '0 0 * * *', async () => {
-    try {
-      await generateDailyStats.execute();
-    } catch (error) {
-      log.error(`GenerateDailyStats job error: ${error.message}`);
-      throw error;
-    }
-  }); // Daily at midnight
+    try { await generateDailyStats.execute(); } catch (error) { log.error(`GenerateDailyStats job error: ${error.message}`); throw error; }
+  });
   scheduler.addJob('exceptionDetection', '*/30 * * * *', async () => {
-    try {
-      await exceptionDetection.execute();
-    } catch (error) {
-      log.error(`ExceptionDetection job error: ${error.message}`);
-      throw error;
-    }
-  }); // Every 30 minutes
+    try { await exceptionDetection.execute(); } catch (error) { log.error(`ExceptionDetection job error: ${error.message}`); throw error; }
+  });
+
   scheduler.start();
-  
   log.info('Server and scheduler started successfully');
+} else {
+  log.info('Scheduler disabled – background jobs will not run');
+}
+
+server.listen(config.port, () => {
+  log.info(`Minimal server listening on port ${config.port}`);
 }); 

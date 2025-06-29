@@ -2,6 +2,11 @@ const SMTPClient = require('../core/smtpClient');
 const EmailTemplates = require('../core/emailTemplates');
 const log = require('../core/logger');
 
+const WEBSOCKET_NOTIFICATIONS_ENABLED = false;
+const EMAIL_NOTIFICATIONS_ENABLED = false;
+const RSS_NOTIFICATIONS_ENABLED = false;
+const ALERTS_ENABLED = false;
+
 /**
  * Enhanced Alert Service
  * Handles multi-channel notifications: Email + WebSocket + RSS
@@ -181,6 +186,11 @@ class AlertService {
      * Multi-channel alert sending
      */
     async _sendMultiChannelAlert(alertData) {
+        if (!ALERTS_ENABLED) {
+            log.debug('Alerts disabled – skipping alert creation');
+            return { disabled: true };
+        }
+
         const alertId = this._generateAlertId();
         const results = {
             alertId,
@@ -255,6 +265,15 @@ class AlertService {
      * Send email alert
      */
     async _sendEmailAlert(alertData, customRecipients = null) {
+        if (!ALERTS_ENABLED) {
+            return { disabled: true };
+        }
+
+        if (!EMAIL_NOTIFICATIONS_ENABLED) {
+            log.debug('Email alerts disabled – skipping send');
+            return { disabled: true };
+        }
+
         if (!this.smtpClient) {
             throw new Error('SMTP client not configured');
         }
@@ -300,6 +319,11 @@ class AlertService {
      * Send WebSocket alert
      */
     async _sendWebSocketAlert(alertData) {
+        if (!WEBSOCKET_NOTIFICATIONS_ENABLED) {
+            log.debug('WebSocket alerts disabled – skipping broadcast');
+            return { clientsNotified: 0, disabled: true };
+        }
+
         try {
             // Import WebSocket controller dynamically to avoid circular dependencies
             const { broadcastToAll, broadcastToLocation } = require('../controllers/websocketController');
@@ -337,6 +361,10 @@ class AlertService {
      * Update RSS feeds with alert
      */
     async _updateRSSFeeds(alertData) {
+        if (!RSS_NOTIFICATIONS_ENABLED) {
+            return { disabled: true };
+        }
+
         try {
             // RSS feeds are automatically updated when accessed
             // This is a placeholder for future RSS feed caching/updating logic

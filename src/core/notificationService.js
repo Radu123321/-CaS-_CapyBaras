@@ -2,6 +2,10 @@ const alertService = require('../services/alertService');
 const { broadcastToAll, broadcastToLocation } = require('./websocket');
 const log = require('./logger');
 
+const WEBSOCKET_NOTIFICATIONS_ENABLED = false;
+const EMAIL_NOTIFICATIONS_ENABLED = false;
+const RSS_NOTIFICATIONS_ENABLED = false;
+
 class NotificationService {
   constructor() {
     this.subscribers = new Map(); // WebSocket clients that want notifications
@@ -164,6 +168,10 @@ class NotificationService {
   // ===== CHANNEL IMPLEMENTATIONS =====
   
   async sendEmailNotification(notification) {
+    if (!EMAIL_NOTIFICATIONS_ENABLED) {
+      return { disabled: true };
+    }
+    
     try {
       // Use existing alert service for email
       await alertService.createAlert(
@@ -180,6 +188,11 @@ class NotificationService {
   }
   
   async sendWebSocketNotification(notification) {
+    if (!WEBSOCKET_NOTIFICATIONS_ENABLED) {
+      log.debug('WebSocket notifications disabled – skipping');
+      return { disabled: true };
+    }
+    
     try {
       const wsMessage = {
         type: 'notification',
@@ -206,6 +219,10 @@ class NotificationService {
   }
   
   async sendBrowserNotification(notification) {
+    if (!WEBSOCKET_NOTIFICATIONS_ENABLED) {
+      return { disabled: true };
+    }
+    
     try {
       // Send browser notification data to WebSocket clients
       // The frontend will handle the actual browser notification API
@@ -247,6 +264,10 @@ class NotificationService {
   }
   
   async sendRSSNotification(notification) {
+    if (!RSS_NOTIFICATIONS_ENABLED) {
+      return { disabled: true };
+    }
+    
     try {
       // RSS notifications are handled by the RSS service
       // This is just for tracking purposes
