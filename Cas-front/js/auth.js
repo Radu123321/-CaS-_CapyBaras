@@ -5,6 +5,7 @@ class AuthManager {
     this.apiBaseUrl = 'http://localhost:8000/api';
     this.currentUser = null;
     this.token = null;
+    this.serverOfflineVisible = false;
     
     // Initialize on page load
     this.init();
@@ -179,22 +180,35 @@ class AuthManager {
     
     try {
       console.log('Making API request to:', url, mergedOptions);
-      
+
       const response = await fetch(url, mergedOptions);
-      const data = await response.json();
-      
+
+      // Any successful fetch hides offline banner (if shown)
+      this._hideOfflineBanner();
+
+      // If server returned no content / error HTML when down, attempt safe JSON parse
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (_err) {
+        // ignore JSON parse errors for non-JSON responses
+      }
+
       console.log('API response:', data);
-      
+
       // Handle token expiration
       if (response.status === 401 && this.token) {
         console.log('Token expired, clearing session');
         this.clearSession();
         throw new Error('Authentication expired');
       }
-      
+
       return data;
     } catch (error) {
       console.error('API request error:', error);
+
+      this._redirectToOfflinePage();
+
       throw error;
     }
   }
@@ -448,6 +462,46 @@ class AuthManager {
       console.error('Error fetching user profile:', error);
       return null;
     }
+  }
+
+  /** OFFLINE HANDLING **/
+  _injectOfflineStyles() {
+    if (document.getElementById('offline-css')) return;
+    const link = document.createElement('link');
+    link.id = 'offline-css';
+    link.rel = 'stylesheet';
+    link.href = 'css/offline.css';
+    document.head.appendChild(link);
+  }
+
+  _patchGlobalFetch() {
+    if (window.__fetchPatched) return;
+    window.__fetchPatched = true;
+    const originalFetch = window.fetch.bind(window);
+    const self = this;
+    window.fetch = async (...args) => {
+      try {
+        const response = await originalFetch(...args);
+        // Hide banner on any successful response
+        self._hideOfflineBanner();
+        return response;
+      } catch (err) {
+        self._showOfflineBanner();
+        throw err;
+      }
+    };
+  }
+
+  _redirectToOfflinePage() {
+    // prevent redirect loop
+    if (window.location.pathname.endsWith('offline.html')) return;
+    // Remember the last visited page to come back later
+    sessionStorage.setItem('cas_last_page', window.location.pathname + window.location.search);
+    window.location.href = 'offline.html';
+  }
+
+  _hideOfflineBanner() {
+    // no-op now
   }
 }
 

@@ -1,137 +1,58 @@
-const { query } = require('../core/psql');
+const pool = require('../core/psql');
 
-class ServiceRepository {
-  async create(serviceData) {
-    const { name, category, description, base_price, duration_minutes, requires_transport } = serviceData;
-    
-    const insertSQL = `
-      INSERT INTO services (name, category, description, base_price, duration_minutes, requires_transport)
-      VALUES ($1, $2, $3, $4, $5, $6)
-      RETURNING service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
-    `;
-    
-    const result = await query(insertSQL, [name, category, description, base_price, duration_minutes || 60, requires_transport || false]);
-    return result && result.length > 0 ? result[0] : null;
-  }
+/**
+ * Service Repository – schema v3
+ * Covers CRUD for services + requirements
+ */
+module.exports = {
+  /** Return all services with category description */
+  async list() {
+    const { rows } = await pool.query(
+      `SELECT s.*, c.description AS category_desc
+         FROM services s
+         JOIN service_categories c ON c.code = s.category_code
+        ORDER BY s.id`);
+    return rows;
+  },
 
-  async findAll() {
-    const selectSQL = `
-      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
-      FROM services
-      WHERE is_active = true
-      ORDER BY category, name
-    `;
-    
-    return await query(selectSQL);
-  }
+  /**
+   * Create service with requirements (atomic)
+   * @param {Object} svc   {categoryCode,name,description,basePrice,currencyCode,avgDurationMin}
+   * @param {Array}  reqs  [{resourceType,resourceCode,qty,unitCode}]
+   * @returns new service id
+   */
+  async create(svc, reqs = []) {
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      const { rows } = await client.query(
+        `INSERT INTO services
+           (category_code,name,description,base_price,currency_code,avg_duration_min)
+         VALUES ($1,$2,$3,$4,$5,$6)
+         RETURNING id`,
+        [
+          svc.categoryCode, svc.name, svc.description || null, svc.basePrice,
+          svc.currencyCode || 'RON', svc.avgDurationMin
+        ]);
+      const serviceId = rows[0].id;
 
-  async findById(serviceId) {
-    const selectSQL = `
-      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active, created_at
-      FROM services
-      WHERE service_id = $1
-    `;
-    
-    const result = await query(selectSQL, [serviceId]);
-    return result && result.length > 0 ? result[0] : null;
-  }
-
-  async findByCategory(category) {
-    const selectSQL = `
-      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
-      FROM services
-      WHERE category = $1 AND is_active = true
-      ORDER BY name
-    `;
-    
-    return await query(selectSQL, [category]);
-  }
-
-  async update(serviceId, serviceData) {
-    const { name, category, description, base_price, duration_minutes, requires_transport, is_active } = serviceData;
-    
-    const updateSQL = `
-      UPDATE services 
-      SET name = COALESCE($2, name),
-          category = COALESCE($3, category),
-          description = COALESCE($4, description),
-          base_price = COALESCE($5, base_price),
-          duration_minutes = COALESCE($6, duration_minutes),
-          requires_transport = COALESCE($7, requires_transport),
-          is_active = COALESCE($8, is_active),
-          updated_at = CURRENT_TIMESTAMP
-      WHERE service_id = $1
-      RETURNING service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
-    `;
-    
-    const result = await query(updateSQL, [
-      serviceId,
-      name || null,
-      category || null,
-      description || null,
-      base_price || null,
-      duration_minutes || null,
-      requires_transport !== undefined ? requires_transport : null,
-      is_active !== undefined ? is_active : null
-    ]);
-    return result && result.length > 0 ? result[0] : null;
-  }
-
-  async delete(serviceId) {
-    const deleteSQL = `
-      UPDATE services 
-      SET is_active = false
-      WHERE service_id = $1
-      RETURNING service_id
-    `;
-    
-    const result = await query(deleteSQL, [serviceId]);
-    return result && result.length > 0;
-  }
-
-  async exists(serviceId) {
-    const selectSQL = `
-      SELECT 1 FROM services WHERE service_id = $1
-    `;
-    
-    const result = await query(selectSQL, [serviceId]);
-    return result && result.length > 0;
-  }
-
-  async isValidCategory(category) {
-    const validCategories = ['CARPET', 'CAR_WASH', 'GARMENT', 'UPHOLSTERY', 'OTHER'];
-    return validCategories.includes(category);
-  }
-
-  async getByCategories(categories) {
-    if (!categories || categories.length === 0) {
-      return [];
+      for (const r of reqs) {
+        await client.query(
+          `INSERT INTO services_requirements
+             (service_id,resource_type,resource_code,qty_needed,unit_code)
+           VALUES ($1,$2,$3,$4,$5)`,
+          [serviceId, r.resourceType, r.resourceCode, r.qty, r.unitCode]);
+      }
+      await client.query('COMMIT');
+      return serviceId;
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
     }
-    
-    const placeholders = categories.map((_, index) => `$${index + 1}`).join(',');
-    const selectSQL = `
-      SELECT service_id, name, category, description, base_price, duration_minutes, requires_transport, is_active
-      FROM services
-      WHERE category IN (${placeholders}) AND is_active = true
-      ORDER BY category, name
-    `;
-    
-    return await query(selectSQL, categories);
-  }
+  },
 
-  async getCount() {
-    const selectSQL = `
-      SELECT COUNT(*) as count FROM services WHERE is_active = true
-    `;
-    
-    const result = await query(selectSQL);
-    return result && result.length > 0 ? parseInt(result[0].count) : 0;
-  }
-
-  // Metodă pentru compatibilitate cu codul vechi
-  async findByType(serviceType) {
-    return await this.findByCategory(serviceType);
-  }
-}
-
-module.exports = new ServiceRepository(); 
+  /** delete service and cascade requirements */
+  delete: id => pool.query('DELETE FROM services WHERE id=$1', [id]),
+}; 
