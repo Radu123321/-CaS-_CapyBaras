@@ -10,6 +10,9 @@ const log = require('./logger');
 const scheduler = require('./scheduler');
 const { performHandshake } = require('./websocket');
 
+// Toggle to enable/disable built-in WebSocket support
+const WEBSOCKET_ENABLED = false;
+
 // REGISTER INITIAL ROUTES
 router.add('GET', '/api/ping', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -423,26 +426,28 @@ const server = http.createServer(async (req, res) => {
   });
 });
 
-// Handle WebSocket upgrade requests
-server.on('upgrade', (request, socket, head) => {
-  const parsedUrl = url.parse(request.url, true);
-  const { pathname } = parsedUrl;
-  
-  log.info(`WebSocket upgrade request: ${pathname}`);
-  
-  // Only handle WebSocket requests to /ws/status
-  if (pathname === '/ws/status') {
-    try {
-      performHandshake(request, socket, head);
-    } catch (error) {
-      log.error(`WebSocket handshake failed: ${error.message}`);
-      socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+// Handle WebSocket upgrade requests only if explicitly enabled
+if (WEBSOCKET_ENABLED) {
+  server.on('upgrade', (request, socket, head) => {
+    const parsedUrl = url.parse(request.url, true);
+    const { pathname } = parsedUrl;
+    
+    log.info(`WebSocket upgrade request: ${pathname}`);
+    
+    // Only handle WebSocket requests to /ws/status
+    if (pathname === '/ws/status') {
+      try {
+        performHandshake(request, socket, head);
+      } catch (error) {
+        log.error(`WebSocket handshake failed: ${error.message}`);
+        socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+      }
+    } else {
+      log.warn(`WebSocket upgrade rejected for path: ${pathname}`);
+      socket.end('HTTP/1.1 404 Not Found\r\n\r\n');
     }
-  } else {
-    log.warn(`WebSocket upgrade rejected for path: ${pathname}`);
-    socket.end('HTTP/1.1 404 Not Found\r\n\r\n');
-  }
-});
+  });
+}
 
 server.listen(config.port, () => {
   log.info(`Minimal server listening on port ${config.port}`);

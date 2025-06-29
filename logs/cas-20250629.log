@@ -1,0 +1,13 @@
+2025-06-29T18:04:38.410Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T18:04:38.432Z [INFO] AlertService: SMTP client initialized
+2025-06-29T18:04:38.449Z [INFO] Minimal server listening on port 8000
+2025-06-29T18:04:38.453Z [INFO] Scheduler: Job 'expandRecurrences' added, next run: Sun Jun 29 2025 21:05:00 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.454Z [INFO] Scheduler: Job 'checkInventory' added, next run: Sun Jun 29 2025 22:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.454Z [INFO] Scheduler: Job 'checkEquipmentStatus' added, next run: Sun Jun 29 2025 21:05:38 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.454Z [INFO] Scheduler: Job 'updateWeatherData' added, next run: Sun Jun 29 2025 21:05:38 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.454Z [INFO] Scheduler: Job 'generateDailyStats' added, next run: Mon Jun 30 2025 00:00:00 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.455Z [INFO] Scheduler: Job 'exceptionDetection' added, next run: Sun Jun 29 2025 21:05:38 GMT+0300 (Eastern European Summer Time)
+2025-06-29T18:04:38.455Z [INFO] Scheduler: Starting...
+2025-06-29T18:04:38.455Z [INFO] Scheduler: Started successfully
+2025-06-29T18:04:38.455Z [INFO] Server and scheduler started successfully
+2025-06-29T18:04:38.504Z [INFO] PostgreSQL connection successful. Server time: Sun Jun 29 2025 21:04:38 GMT+0300 (Eastern European Summer Time)

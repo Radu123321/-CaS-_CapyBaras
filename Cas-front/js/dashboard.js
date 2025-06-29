@@ -583,6 +583,8 @@ class Dashboard {
   // ===== REAL-TIME UPDATES =====
   
   setupRealTimeUpdates() {
+    // WebSocket disabled – exit early
+    return;
     // WebSocket connection for real-time updates
     if (typeof WebSocket !== 'undefined') {
       try {
