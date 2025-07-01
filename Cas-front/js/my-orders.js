@@ -108,36 +108,46 @@ class MyOrders {
   }
 
   createOrderCard(order) {
-    const statusClass = `status-${order.status.toLowerCase().replace(/\s+/g, '_')}`;
-    const statusLabel = this.getStatusLabel(order.status);
-    
+    const statusClass = `status-${(order.status || 'N/A').toLowerCase().replace(/\s+/g, '_')}`;
+    const statusLabel = this.getStatusLabel(order.status || 'N/A');
+
+    const svcObj = this.services.find(s => (s.service_id ?? s.id) == order.service_id) || {};
+    const locObj = this.locations.find(l => (l.location_id ?? l.id ?? l.branch_id) == (order.location_id || order.branch_id)) || {};
+    const price = order.total_price || order.total_amount || order.base_price || svcObj.base_price || 0;
+
+    // scheduled_start as ISO string? split date & time
+    let schedDate = order.scheduled_date || (order.scheduled_start ? order.scheduled_start.split('T')[0] : null);
+    let schedTime = order.scheduled_time || (order.scheduled_start ? order.scheduled_start.split('T')[1]?.substring(0,5) : null);
+
+    const oid = order.order_id || order.id;
+
     return `
       <div class="order-card">
         <div class="order-header">
-          <div class="order-id">Comanda #${order.order_code || order.order_id}</div>
+          <div class="order-id">Comanda #${oid ?? 'N/A'}</div>
           <div class="order-status ${statusClass}">${statusLabel}</div>
         </div>
         
         <div class="order-details">
           <div class="detail-item">
             <div class="detail-label">Serviciu</div>
-            <div class="detail-value">${order.service_name || 'N/A'}</div>
+            <div class="detail-value">${svcObj.description || svcObj.name || order.service_name || 'N/A'}</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Locație</div>
-            <div class="detail-value">${order.location_name || 'N/A'}</div>
+            <div class="detail-value">${locObj.name || order.location_name || 'N/A'}</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Data Programării</div>
-            <div class="detail-value">${this.formatDate(order.scheduled_date)}</div>
+            <div class="detail-value">${this.formatDate(schedDate)}</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Ora</div>
-            <div class="detail-value">${order.scheduled_time || 'N/A'}</div>
+            <div class="detail-value">${schedTime || 'N/A'}</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Preț</div>
-            <div class="detail-value">${order.total_amount || order.base_price || 0} RON</div>
+            <div class="detail-value">${price} RON</div>
           </div>
           <div class="detail-item">
             <div class="detail-label">Data Creării</div>
@@ -146,17 +156,10 @@ class MyOrders {
         </div>
         
         <div class="order-actions">
-          <button class="btn-small btn-view" onclick="myOrders.viewOrderDetails(${order.order_id})">
-            Detalii
-          </button>
-          ${order.status === 'PENDING' ? `
-            <button class="btn-small btn-cancel" onclick="myOrders.cancelOrder(${order.order_id})">
-              Anulează
-            </button>
-          ` : ''}
+          <button class="btn-small btn-view" onclick="myOrders.viewOrderDetails(${oid})">Detalii</button>
+          ${order.status === 'PENDING' ? `<button class="btn-small btn-cancel" onclick="myOrders.cancelOrder(${oid})">Anulează</button>` : ''}
         </div>
-      </div>
-    `;
+      </div>`;
   }
 
   // Modal Management
@@ -532,20 +535,23 @@ class MyOrders {
 
   async getCustomerIdForUser() {
     try {
-      // Try to get from user object first
+      // 1) dacă utilizatorul are customer_id ataşat ⇒ foloseşte-l
       if (this.currentUser.customer_id) {
         return this.currentUser.customer_id;
       }
 
-      // Get customer record by user_id
-      const response = await authManager.apiRequest(`/customers?user_id=${this.currentUser.user_id || this.currentUser.id}`);
-      
-      if (response.success && response.data && response.data.length > 0) {
-        return response.data[0].customer_id;
+      // 2) Dacă rolul este CUSTOMER, în schema v3 orders.customer_id referă direct la users.id
+      if (this.currentUser.role === 'CUSTOMER' || this.currentUser.role === 'USER') {
+        return this.currentUser.id || this.currentUser.user_id;
       }
 
-      // Fallback: try to create customer profile for this user
-      console.warn('No customer record found for user, this should not happen for CUSTOMER role users');
+      // 3) Încearcă să găseşti un client records mapat pe user_id (compatibil cu schema v2)
+      const response = await authManager.apiRequest(`/customers?user_id=${this.currentUser.user_id || this.currentUser.id}`);
+      if (response.success && response.data && response.data.length > 0) {
+        return response.data[0].customer_id || response.data[0].id;
+      }
+
+      console.warn('No customer record found for user – returning null');
       return null;
     } catch (error) {
       console.error('Error getting customer_id:', error);

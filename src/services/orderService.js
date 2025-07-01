@@ -33,7 +33,9 @@ module.exports = {
         await inventoryService.addTransaction(u);
       }
     } catch(err){
-      throw new Error('Insufficient inventory');
+      // Instead of blocking order creation, just log warning
+      console.warn('Inventory reservation failed:', err.message);
+      // continue without reservation – inventory will be adjusted later by staff
     }
     // Try to create order in repo
     try {

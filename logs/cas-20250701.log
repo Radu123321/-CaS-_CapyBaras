@@ -245,3 +245,881 @@
 2025-07-01T17:37:10.743Z [INFO] Scheduler disabled – background jobs will not run
 2025-07-01T17:37:10.748Z [INFO] Minimal server listening on port 8000
 2025-07-01T17:37:10.850Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 20:37:10 GMT+0300 (Ora de vară a Europei de Est)
+2025-07-01T17:43:09.123Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T17:43:09.170Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T17:43:09.174Z [INFO] Minimal server listening on port 8000
+2025-07-01T17:43:09.231Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 20:43:09 GMT+0300 (Ora de vară a Europei de Est)
+2025-07-01T17:55:25.943Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T17:55:25.951Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T17:55:25.956Z [INFO] POST /api/auth/login
+2025-07-01T17:55:25.958Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T17:55:26.104Z [ERROR] Login error: Invalid credentials
+2025-07-01T17:55:28.173Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T17:55:28.175Z [INFO] POST /api/auth/login
+2025-07-01T17:55:28.176Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T17:55:28.179Z [ERROR] Login error: Invalid credentials
+2025-07-01T17:56:04.531Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T17:56:04.534Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T17:56:04.536Z [INFO] POST /api/auth/login
+2025-07-01T17:56:04.536Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T17:56:04.631Z [INFO] Login: Success for user cust1@cas.local
+2025-07-01T17:56:06.224Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T17:56:06.230Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T17:56:06.232Z [INFO] GET /api/stats/dashboard
+2025-07-01T17:56:06.311Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T17:56:06.315Z [INFO] [REQ] GET /api/orders
+2025-07-01T17:56:06.317Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T17:56:06.318Z [INFO] GET /api/orders
+2025-07-01T17:56:06.366Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T17:56:06.369Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T17:56:06.370Z [INFO] GET /api/stats/system-status
+2025-07-01T17:56:06.382Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T17:56:06.384Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T17:56:06.386Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T17:56:06.392Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T17:56:06.397Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T17:56:06.398Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T17:56:14.089Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T17:56:14.090Z [INFO] [REQ] GET /api/services
+2025-07-01T17:56:14.091Z [INFO] GET /api/services
+2025-07-01T17:56:14.092Z [INFO] GET /api/services
+2025-07-01T17:56:14.106Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T17:56:14.110Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:56:14.112Z [INFO] GET /api/locations
+2025-07-01T17:56:14.112Z [INFO] GET /api/locations
+2025-07-01T17:56:27.398Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T17:56:27.400Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T17:56:27.401Z [INFO] GET /api/orders/availability?date=2025-07-19
+2025-07-01T17:56:27.403Z [INFO] GET /api/orders/availability
+2025-07-01T17:56:27.413Z [ERROR] SQL error after 9ms: column "order_id" does not exist
+2025-07-01T17:56:27.413Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T17:56:27.414Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T17:56:27.415Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T17:56:42.747Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T17:56:42.750Z [INFO] [REQ] POST /api/orders
+2025-07-01T17:56:42.751Z [INFO] POST /api/orders
+2025-07-01T17:56:42.753Z [INFO] POST /api/orders
+2025-07-01T17:58:43.662Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T17:58:43.666Z [INFO] [REQ] GET /api/services
+2025-07-01T17:58:43.666Z [INFO] GET /api/services
+2025-07-01T17:58:43.667Z [INFO] GET /api/services
+2025-07-01T17:58:43.758Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T17:58:43.761Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:58:43.762Z [INFO] GET /api/locations
+2025-07-01T17:58:43.762Z [INFO] GET /api/locations
+2025-07-01T17:58:44.932Z [INFO] [REQ] GET /api/services
+2025-07-01T17:58:44.933Z [INFO] GET /api/services
+2025-07-01T17:58:44.934Z [INFO] GET /api/services
+2025-07-01T17:58:44.944Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:58:44.944Z [INFO] GET /api/locations
+2025-07-01T17:58:44.945Z [INFO] GET /api/locations
+2025-07-01T17:59:12.421Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T17:59:12.425Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T17:59:12.427Z [INFO] GET /api/stats/dashboard
+2025-07-01T17:59:12.507Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T17:59:12.509Z [INFO] [REQ] GET /api/orders
+2025-07-01T17:59:12.510Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T17:59:12.511Z [INFO] GET /api/orders
+2025-07-01T17:59:12.533Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T17:59:12.537Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T17:59:12.539Z [INFO] GET /api/stats/system-status
+2025-07-01T17:59:12.559Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T17:59:12.561Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T17:59:12.563Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T17:59:12.574Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T17:59:12.577Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T17:59:12.578Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T17:59:14.656Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T17:59:14.658Z [INFO] [REQ] GET /api/services
+2025-07-01T17:59:14.659Z [INFO] GET /api/services
+2025-07-01T17:59:14.659Z [INFO] GET /api/services
+2025-07-01T17:59:14.664Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T17:59:14.666Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:59:14.667Z [INFO] GET /api/locations
+2025-07-01T17:59:14.667Z [INFO] GET /api/locations
+2025-07-01T17:59:22.059Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T17:59:22.062Z [INFO] [REQ] GET /api/services
+2025-07-01T17:59:22.063Z [INFO] GET /api/services
+2025-07-01T17:59:22.063Z [INFO] GET /api/services
+2025-07-01T17:59:22.069Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T17:59:22.072Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:59:22.073Z [INFO] GET /api/locations
+2025-07-01T17:59:22.074Z [INFO] GET /api/locations
+2025-07-01T17:59:22.985Z [INFO] [REQ] GET /api/services
+2025-07-01T17:59:22.986Z [INFO] GET /api/services
+2025-07-01T17:59:22.987Z [INFO] GET /api/services
+2025-07-01T17:59:22.991Z [INFO] [REQ] GET /api/locations
+2025-07-01T17:59:22.992Z [INFO] GET /api/locations
+2025-07-01T17:59:22.992Z [INFO] GET /api/locations
+2025-07-01T17:59:35.849Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T17:59:35.852Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T17:59:35.852Z [INFO] GET /api/orders/availability?date=2025-07-09
+2025-07-01T17:59:35.852Z [INFO] GET /api/orders/availability
+2025-07-01T17:59:35.855Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T17:59:35.856Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T17:59:35.857Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T17:59:35.857Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:00:01.199Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:00:01.202Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:00:01.204Z [INFO] POST /api/orders
+2025-07-01T18:00:01.206Z [INFO] POST /api/orders
+2025-07-01T18:00:02.276Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:00:02.277Z [INFO] POST /api/orders
+2025-07-01T18:00:02.277Z [INFO] POST /api/orders
+2025-07-01T18:00:58.929Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:00:58.932Z [INFO] [REQ] GET /api/services
+2025-07-01T18:00:58.933Z [INFO] GET /api/services
+2025-07-01T18:00:58.933Z [INFO] GET /api/services
+2025-07-01T18:00:58.998Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:00:59.000Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:00:59.001Z [INFO] GET /api/locations
+2025-07-01T18:00:59.001Z [INFO] GET /api/locations
+2025-07-01T18:01:15.781Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:01:15.783Z [INFO] [REQ] GET /api/services
+2025-07-01T18:01:15.784Z [INFO] GET /api/services
+2025-07-01T18:01:15.784Z [INFO] GET /api/services
+2025-07-01T18:01:15.791Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:01:15.793Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:01:15.794Z [INFO] GET /api/locations
+2025-07-01T18:01:15.794Z [INFO] GET /api/locations
+2025-07-01T18:01:24.115Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:01:24.118Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:01:24.119Z [INFO] GET /api/orders/availability?date=2025-07-25
+2025-07-01T18:01:24.120Z [INFO] GET /api/orders/availability
+2025-07-01T18:01:24.124Z [ERROR] SQL error after 4ms: column "order_id" does not exist
+2025-07-01T18:01:24.125Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:01:24.126Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:01:24.127Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:01:34.958Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:01:34.960Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:01:34.962Z [INFO] POST /api/orders
+2025-07-01T18:01:34.962Z [INFO] POST /api/orders
+2025-07-01T18:01:35.815Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:01:35.817Z [INFO] POST /api/orders
+2025-07-01T18:01:35.818Z [INFO] POST /api/orders
+2025-07-01T18:01:38.574Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:01:38.575Z [INFO] POST /api/orders
+2025-07-01T18:01:38.575Z [INFO] POST /api/orders
+2025-07-01T18:02:52.833Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:02:52.837Z [INFO] [REQ] GET /api/services
+2025-07-01T18:02:52.839Z [INFO] GET /api/services
+2025-07-01T18:02:52.839Z [INFO] GET /api/services
+2025-07-01T18:02:52.905Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:02:52.906Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:02:52.907Z [INFO] GET /api/locations
+2025-07-01T18:02:52.907Z [INFO] GET /api/locations
+2025-07-01T18:03:00.105Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:03:00.110Z [INFO] [REQ] GET /api/services
+2025-07-01T18:03:00.112Z [INFO] GET /api/services
+2025-07-01T18:03:00.112Z [INFO] GET /api/services
+2025-07-01T18:03:00.121Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:03:00.126Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:03:00.127Z [INFO] GET /api/locations
+2025-07-01T18:03:00.128Z [INFO] GET /api/locations
+2025-07-01T18:03:08.604Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:03:08.608Z [INFO] [REQ] GET /api/services
+2025-07-01T18:03:08.608Z [INFO] GET /api/services
+2025-07-01T18:03:08.608Z [INFO] GET /api/services
+2025-07-01T18:03:08.614Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:03:08.617Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:03:08.618Z [INFO] GET /api/locations
+2025-07-01T18:03:08.618Z [INFO] GET /api/locations
+2025-07-01T18:04:22.080Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:04:22.083Z [INFO] [REQ] GET /api/services
+2025-07-01T18:04:22.084Z [INFO] GET /api/services
+2025-07-01T18:04:22.085Z [INFO] GET /api/services
+2025-07-01T18:04:22.159Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:04:22.162Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:04:22.163Z [INFO] GET /api/locations
+2025-07-01T18:04:22.163Z [INFO] GET /api/locations
+2025-07-01T18:04:22.900Z [INFO] [REQ] GET /api/services
+2025-07-01T18:04:22.901Z [INFO] GET /api/services
+2025-07-01T18:04:22.902Z [INFO] GET /api/services
+2025-07-01T18:04:22.911Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:04:22.912Z [INFO] GET /api/locations
+2025-07-01T18:04:22.913Z [INFO] GET /api/locations
+2025-07-01T18:04:36.230Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:04:36.233Z [INFO] [REQ] GET /api/services
+2025-07-01T18:04:36.234Z [INFO] GET /api/services
+2025-07-01T18:04:36.235Z [INFO] GET /api/services
+2025-07-01T18:04:36.242Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:04:36.244Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:04:36.244Z [INFO] GET /api/locations
+2025-07-01T18:04:36.244Z [INFO] GET /api/locations
+2025-07-01T18:06:46.070Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:06:46.074Z [INFO] [REQ] GET /api/services
+2025-07-01T18:06:46.075Z [INFO] GET /api/services
+2025-07-01T18:06:46.075Z [INFO] GET /api/services
+2025-07-01T18:06:46.135Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:06:46.137Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:06:46.137Z [INFO] GET /api/locations
+2025-07-01T18:06:46.137Z [INFO] GET /api/locations
+2025-07-01T18:07:04.636Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:07:04.639Z [INFO] [REQ] GET /api/services
+2025-07-01T18:07:04.640Z [INFO] GET /api/services
+2025-07-01T18:07:04.641Z [INFO] GET /api/services
+2025-07-01T18:07:04.647Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:07:04.651Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:07:04.652Z [INFO] GET /api/locations
+2025-07-01T18:07:04.652Z [INFO] GET /api/locations
+2025-07-01T18:07:13.945Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:07:13.949Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:07:13.950Z [INFO] GET /api/orders/availability?date=2025-07-11
+2025-07-01T18:07:13.950Z [INFO] GET /api/orders/availability
+2025-07-01T18:07:13.954Z [ERROR] SQL error after 3ms: column "order_id" does not exist
+2025-07-01T18:07:13.955Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:07:13.956Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:07:13.957Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:07:28.609Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:07:28.611Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:07:28.612Z [INFO] POST /api/orders
+2025-07-01T18:07:28.613Z [INFO] POST /api/orders
+2025-07-01T18:07:29.663Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:07:29.665Z [INFO] POST /api/orders
+2025-07-01T18:07:29.669Z [INFO] POST /api/orders
+2025-07-01T18:08:58.345Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:08:58.350Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:08:58.353Z [INFO] POST /api/orders
+2025-07-01T18:08:58.354Z [INFO] POST /api/orders
+2025-07-01T18:09:18.474Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:09:18.477Z [INFO] [REQ] GET /api/services
+2025-07-01T18:09:18.478Z [INFO] GET /api/services
+2025-07-01T18:09:18.478Z [INFO] GET /api/services
+2025-07-01T18:09:18.664Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:09:18.666Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:09:18.667Z [INFO] GET /api/locations
+2025-07-01T18:09:18.667Z [INFO] GET /api/locations
+2025-07-01T18:09:22.115Z [INFO] [REQ] GET /api/services
+2025-07-01T18:09:22.116Z [INFO] GET /api/services
+2025-07-01T18:09:22.117Z [INFO] GET /api/services
+2025-07-01T18:09:22.133Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:09:22.134Z [INFO] GET /api/locations
+2025-07-01T18:09:22.135Z [INFO] GET /api/locations
+2025-07-01T18:09:22.930Z [INFO] [REQ] GET /api/services
+2025-07-01T18:09:22.932Z [INFO] GET /api/services
+2025-07-01T18:09:22.932Z [INFO] GET /api/services
+2025-07-01T18:09:22.943Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:09:22.944Z [INFO] GET /api/locations
+2025-07-01T18:09:22.944Z [INFO] GET /api/locations
+2025-07-01T18:09:37.594Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:09:37.598Z [INFO] [REQ] GET /api/services
+2025-07-01T18:09:37.599Z [INFO] GET /api/services
+2025-07-01T18:09:37.600Z [INFO] GET /api/services
+2025-07-01T18:09:37.613Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:09:37.618Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:09:37.620Z [INFO] GET /api/locations
+2025-07-01T18:09:37.621Z [INFO] GET /api/locations
+2025-07-01T18:10:08.059Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:10:08.064Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:10:08.065Z [INFO] GET /api/orders/availability?date=2025-07-12
+2025-07-01T18:10:08.066Z [INFO] GET /api/orders/availability
+2025-07-01T18:10:08.156Z [ERROR] SQL error after 89ms: column "order_id" does not exist
+2025-07-01T18:10:08.157Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:10:08.157Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:10:08.158Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:10:19.442Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:10:19.446Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:10:19.447Z [INFO] POST /api/orders
+2025-07-01T18:10:19.447Z [INFO] POST /api/orders
+2025-07-01T18:10:41.084Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:10:41.085Z [INFO] GET /api/orders
+2025-07-01T18:10:41.125Z [INFO] [REQ] GET /favicon.ico
+2025-07-01T18:13:08.866Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:13:08.870Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:13:08.872Z [INFO] POST /api/orders
+2025-07-01T18:13:08.873Z [INFO] POST /api/orders
+2025-07-01T18:14:22.128Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:14:22.133Z [INFO] [REQ] GET /api/services
+2025-07-01T18:14:22.135Z [INFO] GET /api/services
+2025-07-01T18:14:22.136Z [INFO] GET /api/services
+2025-07-01T18:14:22.216Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:14:22.219Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:14:22.221Z [INFO] GET /api/locations
+2025-07-01T18:14:22.221Z [INFO] GET /api/locations
+2025-07-01T18:14:22.728Z [INFO] [REQ] GET /api/services
+2025-07-01T18:14:22.729Z [INFO] GET /api/services
+2025-07-01T18:14:22.730Z [INFO] GET /api/services
+2025-07-01T18:14:22.746Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:14:22.748Z [INFO] GET /api/locations
+2025-07-01T18:14:22.749Z [INFO] GET /api/locations
+2025-07-01T18:15:22.398Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:15:22.402Z [INFO] [REQ] GET /api/services
+2025-07-01T18:15:22.404Z [INFO] GET /api/services
+2025-07-01T18:15:22.405Z [INFO] GET /api/services
+2025-07-01T18:15:22.489Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:15:22.491Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:15:22.492Z [INFO] GET /api/locations
+2025-07-01T18:15:22.492Z [INFO] GET /api/locations
+2025-07-01T18:15:44.711Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:15:44.714Z [INFO] [REQ] GET /api/services
+2025-07-01T18:15:44.715Z [INFO] GET /api/services
+2025-07-01T18:15:44.716Z [INFO] GET /api/services
+2025-07-01T18:15:44.724Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:15:44.727Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:15:44.727Z [INFO] GET /api/locations
+2025-07-01T18:15:44.728Z [INFO] GET /api/locations
+2025-07-01T18:16:00.123Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:16:00.126Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:16:00.127Z [INFO] GET /api/orders/availability?date=2025-07-26
+2025-07-01T18:16:00.128Z [INFO] GET /api/orders/availability
+2025-07-01T18:16:00.132Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T18:16:00.133Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:16:00.134Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:16:00.135Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:16:10.248Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:16:10.251Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:16:10.254Z [INFO] POST /api/orders
+2025-07-01T18:16:10.254Z [INFO] POST /api/orders
+2025-07-01T18:16:10.377Z [ERROR] OrderController: Create order failed: Insufficient inventory
+2025-07-01T18:16:14.587Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:16:14.588Z [INFO] POST /api/orders
+2025-07-01T18:16:14.589Z [INFO] POST /api/orders
+2025-07-01T18:16:14.595Z [ERROR] OrderController: Create order failed: Insufficient inventory
+2025-07-01T18:17:11.007Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:17:11.012Z [INFO] [REQ] GET /api/services
+2025-07-01T18:17:11.013Z [INFO] GET /api/services
+2025-07-01T18:17:11.014Z [INFO] GET /api/services
+2025-07-01T18:17:11.114Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:17:11.118Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:17:11.119Z [INFO] GET /api/locations
+2025-07-01T18:17:11.120Z [INFO] GET /api/locations
+2025-07-01T18:17:41.799Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:17:41.802Z [INFO] [REQ] GET /api/services
+2025-07-01T18:17:41.803Z [INFO] GET /api/services
+2025-07-01T18:17:41.805Z [INFO] GET /api/services
+2025-07-01T18:17:41.897Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:17:41.899Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:17:41.900Z [INFO] GET /api/locations
+2025-07-01T18:17:41.900Z [INFO] GET /api/locations
+2025-07-01T18:17:49.026Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:17:49.031Z [INFO] [REQ] GET /api/services
+2025-07-01T18:17:49.032Z [INFO] GET /api/services
+2025-07-01T18:17:49.033Z [INFO] GET /api/services
+2025-07-01T18:17:49.049Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:17:49.052Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:17:49.053Z [INFO] GET /api/locations
+2025-07-01T18:17:49.054Z [INFO] GET /api/locations
+2025-07-01T18:18:16.340Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T18:18:16.385Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T18:18:16.390Z [INFO] Minimal server listening on port 8000
+2025-07-01T18:18:16.447Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 21:18:16 GMT+0300 (Ora de vară a Europei de Est)
+2025-07-01T18:19:07.304Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T18:19:07.309Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T18:19:07.310Z [INFO] POST /api/auth/login
+2025-07-01T18:19:07.312Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T18:19:07.508Z [ERROR] Login error: Invalid credentials
+2025-07-01T18:19:21.687Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T18:19:21.689Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T18:19:21.690Z [INFO] POST /api/auth/login
+2025-07-01T18:19:21.690Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T18:19:21.692Z [INFO] Login: Success for user cust1@cas.local
+2025-07-01T18:19:22.129Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:19:22.132Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:19:22.132Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:19:22.189Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:19:22.191Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:19:22.191Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:19:22.192Z [INFO] GET /api/orders
+2025-07-01T18:19:22.211Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:19:22.214Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:19:22.215Z [INFO] GET /api/stats/system-status
+2025-07-01T18:19:22.221Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:19:22.223Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:19:22.224Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:19:22.228Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:19:22.230Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:19:22.231Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:19:23.123Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:19:23.123Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:19:23.129Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:19:23.130Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:19:23.130Z [INFO] GET /api/orders
+2025-07-01T18:19:23.137Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:19:23.138Z [INFO] GET /api/stats/system-status
+2025-07-01T18:19:23.144Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:19:23.145Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:19:23.149Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:19:23.150Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:19:23.976Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:19:23.978Z [INFO] [REQ] GET /api/services
+2025-07-01T18:19:23.979Z [INFO] GET /api/services
+2025-07-01T18:19:23.980Z [INFO] GET /api/services
+2025-07-01T18:19:23.989Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:19:23.991Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:19:23.993Z [INFO] GET /api/locations
+2025-07-01T18:19:23.994Z [INFO] GET /api/locations
+2025-07-01T18:19:34.836Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:19:34.840Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:19:34.841Z [INFO] GET /api/orders/availability?date=2025-07-17
+2025-07-01T18:19:34.841Z [INFO] GET /api/orders/availability
+2025-07-01T18:19:34.844Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T18:19:34.846Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:19:34.847Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:19:34.847Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:19:44.965Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:19:44.968Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:19:44.969Z [INFO] POST /api/orders
+2025-07-01T18:19:44.970Z [INFO] POST /api/orders
+2025-07-01T18:19:56.453Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:19:56.455Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:19:56.456Z [INFO] [REQ] GET /api/services
+2025-07-01T18:19:56.457Z [INFO] GET /api/services
+2025-07-01T18:19:56.457Z [INFO] GET /api/services
+2025-07-01T18:19:56.458Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:19:56.459Z [INFO] GET /api/locations
+2025-07-01T18:19:56.459Z [INFO] GET /api/locations
+2025-07-01T18:19:56.529Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:19:56.531Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:19:56.531Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:19:56.532Z [INFO] GET /api/customers
+2025-07-01T18:20:00.284Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:00.285Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:00.286Z [INFO] GET /api/customers
+2025-07-01T18:20:01.936Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:20:01.939Z [INFO] [REQ] GET /api/services
+2025-07-01T18:20:01.941Z [INFO] GET /api/services
+2025-07-01T18:20:01.941Z [INFO] GET /api/services
+2025-07-01T18:20:01.948Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:20:01.952Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:20:01.952Z [INFO] GET /api/locations
+2025-07-01T18:20:01.953Z [INFO] GET /api/locations
+2025-07-01T18:20:02.642Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:20:02.647Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:20:02.648Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:20:02.661Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:20:02.665Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:20:02.666Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:20:02.666Z [INFO] GET /api/orders
+2025-07-01T18:20:02.678Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:20:02.680Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:20:02.680Z [INFO] GET /api/stats/system-status
+2025-07-01T18:20:02.684Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:20:02.685Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:20:02.685Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:20:02.690Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:20:02.693Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:20:02.693Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:20:04.078Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:20:04.079Z [INFO] GET /api/locations
+2025-07-01T18:20:04.079Z [INFO] GET /api/locations
+2025-07-01T18:20:04.080Z [INFO] [REQ] GET /api/services
+2025-07-01T18:20:04.080Z [INFO] GET /api/services
+2025-07-01T18:20:04.081Z [INFO] GET /api/services
+2025-07-01T18:20:04.088Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:20:04.091Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:04.091Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:04.092Z [INFO] GET /api/customers
+2025-07-01T18:20:05.425Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:05.426Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:05.427Z [INFO] GET /api/customers
+2025-07-01T18:20:06.796Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:20:06.798Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:20:06.809Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:20:06.810Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:20:06.810Z [INFO] GET /api/orders
+2025-07-01T18:20:06.816Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:20:06.817Z [INFO] GET /api/stats/system-status
+2025-07-01T18:20:06.824Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:20:06.824Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:20:06.828Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:20:06.829Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:20:13.260Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:20:13.261Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:20:13.262Z [INFO] [REQ] GET /api/services
+2025-07-01T18:20:13.263Z [INFO] GET /api/services
+2025-07-01T18:20:13.263Z [INFO] GET /api/services
+2025-07-01T18:20:13.264Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:20:13.264Z [INFO] GET /api/locations
+2025-07-01T18:20:13.264Z [INFO] GET /api/locations
+2025-07-01T18:20:13.268Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:20:13.271Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:13.272Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:13.272Z [INFO] GET /api/customers
+2025-07-01T18:20:14.299Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:14.300Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:14.300Z [INFO] GET /api/customers
+2025-07-01T18:20:15.301Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:20:15.302Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:20:15.303Z [INFO] GET /api/customers
+2025-07-01T18:20:17.353Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:20:17.356Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:20:17.357Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:20:17.369Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:20:17.372Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:20:17.373Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:20:17.373Z [INFO] GET /api/orders
+2025-07-01T18:20:17.381Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:20:17.382Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:20:17.383Z [INFO] GET /api/stats/system-status
+2025-07-01T18:20:17.388Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:20:17.391Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:20:17.392Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:20:17.394Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:20:17.396Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:20:17.396Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:20:19.460Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:20:19.462Z [INFO] [REQ] GET /api/services
+2025-07-01T18:20:19.463Z [INFO] GET /api/services
+2025-07-01T18:20:19.463Z [INFO] GET /api/services
+2025-07-01T18:20:19.467Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:20:19.470Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:20:19.471Z [INFO] GET /api/locations
+2025-07-01T18:20:19.472Z [INFO] GET /api/locations
+2025-07-01T18:20:40.656Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:20:40.661Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:20:40.663Z [INFO] GET /api/orders/availability?date=2025-07-17
+2025-07-01T18:20:40.664Z [INFO] GET /api/orders/availability
+2025-07-01T18:20:40.668Z [ERROR] SQL error after 3ms: column "order_id" does not exist
+2025-07-01T18:20:40.668Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:20:40.669Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:20:40.670Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:20:49.270Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:20:49.272Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:20:49.273Z [INFO] POST /api/orders
+2025-07-01T18:20:49.274Z [INFO] POST /api/orders
+2025-07-01T18:21:07.042Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:21:07.046Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:21:07.049Z [INFO] [REQ] GET /api/services
+2025-07-01T18:21:07.050Z [INFO] GET /api/services
+2025-07-01T18:21:07.051Z [INFO] GET /api/services
+2025-07-01T18:21:07.052Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:21:07.052Z [INFO] GET /api/locations
+2025-07-01T18:21:07.053Z [INFO] GET /api/locations
+2025-07-01T18:21:07.115Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:21:07.117Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:21:07.117Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:21:07.117Z [INFO] GET /api/customers
+2025-07-01T18:21:10.101Z [INFO] [REQ] GET /api/services
+2025-07-01T18:21:10.102Z [INFO] GET /api/services
+2025-07-01T18:21:10.103Z [INFO] GET /api/services
+2025-07-01T18:21:10.104Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:21:10.104Z [INFO] GET /api/locations
+2025-07-01T18:21:10.105Z [INFO] GET /api/locations
+2025-07-01T18:21:10.111Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:21:10.112Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:21:10.113Z [INFO] GET /api/customers
+2025-07-01T18:21:52.954Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:21:52.956Z [INFO] [REQ] GET /api/services
+2025-07-01T18:21:52.957Z [INFO] GET /api/services
+2025-07-01T18:21:52.957Z [INFO] GET /api/services
+2025-07-01T18:21:53.026Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:21:53.029Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:21:53.030Z [INFO] GET /api/locations
+2025-07-01T18:21:53.030Z [INFO] GET /api/locations
+2025-07-01T18:22:04.266Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:22:04.269Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:22:04.269Z [INFO] GET /api/orders/availability?date=2025-08-17
+2025-07-01T18:22:04.270Z [INFO] GET /api/orders/availability
+2025-07-01T18:22:04.272Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T18:22:04.272Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:22:04.274Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:22:04.276Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:22:11.988Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:22:11.992Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:22:11.993Z [INFO] POST /api/orders
+2025-07-01T18:22:11.993Z [INFO] POST /api/orders
+2025-07-01T18:23:15.037Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:23:15.038Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:23:15.039Z [INFO] [REQ] GET /api/services
+2025-07-01T18:23:15.039Z [INFO] GET /api/services
+2025-07-01T18:23:15.040Z [INFO] GET /api/services
+2025-07-01T18:23:15.041Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:23:15.042Z [INFO] GET /api/locations
+2025-07-01T18:23:15.042Z [INFO] GET /api/locations
+2025-07-01T18:23:15.129Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:23:15.133Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:23:15.135Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:23:15.135Z [INFO] GET /api/customers
+2025-07-01T18:23:47.283Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:23:47.286Z [INFO] [REQ] GET /api/services
+2025-07-01T18:23:47.287Z [INFO] GET /api/services
+2025-07-01T18:23:47.288Z [INFO] GET /api/services
+2025-07-01T18:23:47.354Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:23:47.355Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:23:47.355Z [INFO] GET /api/locations
+2025-07-01T18:23:47.356Z [INFO] GET /api/locations
+2025-07-01T18:24:00.525Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:24:00.528Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:24:00.529Z [INFO] GET /api/orders/availability?date=2025-09-17
+2025-07-01T18:24:00.529Z [INFO] GET /api/orders/availability
+2025-07-01T18:24:00.532Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T18:24:00.532Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:24:00.534Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:24:00.537Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:24:08.819Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:24:08.821Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:24:08.822Z [INFO] POST /api/orders
+2025-07-01T18:24:08.823Z [INFO] POST /api/orders
+2025-07-01T18:24:22.108Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:24:22.110Z [INFO] [REQ] GET /api/services
+2025-07-01T18:24:22.111Z [INFO] GET /api/services
+2025-07-01T18:24:22.111Z [INFO] GET /api/services
+2025-07-01T18:24:22.120Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:24:22.122Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:24:22.123Z [INFO] GET /api/locations
+2025-07-01T18:24:22.123Z [INFO] GET /api/locations
+2025-07-01T18:24:23.115Z [INFO] [REQ] GET /api/services
+2025-07-01T18:24:23.116Z [INFO] GET /api/services
+2025-07-01T18:24:23.116Z [INFO] GET /api/services
+2025-07-01T18:24:23.125Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:24:23.125Z [INFO] GET /api/locations
+2025-07-01T18:24:23.126Z [INFO] GET /api/locations
+2025-07-01T18:24:39.569Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T18:24:39.573Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T18:24:39.574Z [INFO] GET /api/orders/availability?date=2025-08-12
+2025-07-01T18:24:39.574Z [INFO] GET /api/orders/availability
+2025-07-01T18:24:39.577Z [ERROR] SQL error after 2ms: column "order_id" does not exist
+2025-07-01T18:24:39.578Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T18:24:39.578Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T18:24:39.579Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T18:24:51.209Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:24:51.213Z [INFO] [REQ] POST /api/orders
+2025-07-01T18:24:51.214Z [INFO] POST /api/orders
+2025-07-01T18:24:51.215Z [INFO] POST /api/orders
+2025-07-01T18:24:58.357Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:24:58.359Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:24:58.360Z [INFO] [REQ] GET /api/services
+2025-07-01T18:24:58.361Z [INFO] GET /api/services
+2025-07-01T18:24:58.361Z [INFO] GET /api/services
+2025-07-01T18:24:58.362Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:24:58.363Z [INFO] GET /api/locations
+2025-07-01T18:24:58.363Z [INFO] GET /api/locations
+2025-07-01T18:24:58.445Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T18:24:58.449Z [INFO] [REQ] GET /api/customers
+2025-07-01T18:24:58.449Z [INFO] GET /api/customers?user_id=107
+2025-07-01T18:24:58.450Z [INFO] GET /api/customers
+2025-07-01T18:26:29.917Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:26:29.920Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:26:29.922Z [INFO] [REQ] GET /api/services
+2025-07-01T18:26:29.923Z [INFO] GET /api/services
+2025-07-01T18:26:29.923Z [INFO] GET /api/services
+2025-07-01T18:26:29.925Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:26:29.926Z [INFO] GET /api/locations
+2025-07-01T18:26:29.926Z [INFO] GET /api/locations
+2025-07-01T18:26:30.023Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:26:30.027Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:26:30.027Z [INFO] GET /api/orders?customer_id=107
+2025-07-01T18:26:30.028Z [INFO] GET /api/orders
+2025-07-01T18:26:50.318Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:26:50.322Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:26:50.324Z [INFO] [REQ] GET /api/services
+2025-07-01T18:26:50.325Z [INFO] GET /api/services
+2025-07-01T18:26:50.325Z [INFO] GET /api/services
+2025-07-01T18:26:50.327Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:26:50.328Z [INFO] GET /api/locations
+2025-07-01T18:26:50.329Z [INFO] GET /api/locations
+2025-07-01T18:26:50.347Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:26:50.354Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:26:50.355Z [INFO] GET /api/orders?customer_id=107
+2025-07-01T18:26:50.356Z [INFO] GET /api/orders
+2025-07-01T18:28:46.686Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:28:46.687Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:28:46.689Z [INFO] [REQ] GET /api/services
+2025-07-01T18:28:46.689Z [INFO] GET /api/services
+2025-07-01T18:28:46.690Z [INFO] GET /api/services
+2025-07-01T18:28:46.690Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:28:46.691Z [INFO] GET /api/locations
+2025-07-01T18:28:46.691Z [INFO] GET /api/locations
+2025-07-01T18:28:46.763Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:28:46.766Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:28:46.767Z [INFO] GET /api/orders?customer_id=107
+2025-07-01T18:28:46.767Z [INFO] GET /api/orders
+2025-07-01T18:29:22.135Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T18:29:22.136Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T18:29:22.138Z [INFO] [REQ] GET /api/services
+2025-07-01T18:29:22.138Z [INFO] GET /api/services
+2025-07-01T18:29:22.138Z [INFO] GET /api/services
+2025-07-01T18:29:22.140Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:29:22.140Z [INFO] GET /api/locations
+2025-07-01T18:29:22.141Z [INFO] GET /api/locations
+2025-07-01T18:29:22.305Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:29:22.307Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:29:22.307Z [INFO] GET /api/orders?customer_id=107
+2025-07-01T18:29:22.308Z [INFO] GET /api/orders
+2025-07-01T18:29:22.940Z [INFO] [REQ] GET /api/services
+2025-07-01T18:29:22.941Z [INFO] GET /api/services
+2025-07-01T18:29:22.941Z [INFO] GET /api/services
+2025-07-01T18:29:22.942Z [INFO] [REQ] GET /api/locations
+2025-07-01T18:29:22.943Z [INFO] GET /api/locations
+2025-07-01T18:29:22.944Z [INFO] GET /api/locations
+2025-07-01T18:29:22.953Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:29:22.954Z [INFO] GET /api/orders?customer_id=107
+2025-07-01T18:29:22.954Z [INFO] GET /api/orders
+2025-07-01T18:30:14.486Z [INFO] [REQ] OPTIONS /api/auth/logout
+2025-07-01T18:30:14.490Z [INFO] [REQ] POST /api/auth/logout
+2025-07-01T18:30:14.492Z [INFO] POST /api/auth/logout
+2025-07-01T18:30:14.493Z [INFO] POST /api/auth/logout
+2025-07-01T18:30:55.832Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T18:30:55.837Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T18:30:55.838Z [INFO] POST /api/auth/login
+2025-07-01T18:30:55.839Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T18:30:55.942Z [INFO] Login: Success for user cust1@cas.local
+2025-07-01T18:30:57.511Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:30:57.514Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:30:57.514Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:30:57.597Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:30:57.599Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:30:57.599Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:30:57.600Z [INFO] GET /api/orders
+2025-07-01T18:30:57.617Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:30:57.621Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:30:57.622Z [INFO] GET /api/stats/system-status
+2025-07-01T18:30:57.632Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:30:57.635Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:30:57.636Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:30:57.642Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:30:57.645Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:30:57.645Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:34:07.449Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:34:07.452Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:34:07.453Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:34:07.544Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:34:07.548Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:34:07.548Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:34:07.548Z [INFO] GET /api/orders
+2025-07-01T18:34:07.559Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:34:07.563Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:34:07.563Z [INFO] GET /api/stats/system-status
+2025-07-01T18:34:07.571Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:34:07.574Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:34:07.575Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:34:07.581Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:34:07.585Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:34:07.585Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:34:18.442Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T18:34:18.447Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:34:18.448Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:34:18.465Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T18:34:18.471Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:34:18.472Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:34:18.474Z [INFO] GET /api/orders
+2025-07-01T18:34:18.489Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T18:34:18.495Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:34:18.495Z [INFO] GET /api/stats/system-status
+2025-07-01T18:34:18.505Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T18:34:18.509Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:34:18.510Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:34:18.519Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T18:34:18.522Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:34:18.522Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T18:34:22.167Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T18:34:22.169Z [INFO] GET /api/stats/dashboard
+2025-07-01T18:34:22.187Z [INFO] [REQ] GET /api/orders
+2025-07-01T18:34:22.188Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T18:34:22.189Z [INFO] GET /api/orders
+2025-07-01T18:34:22.206Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T18:34:22.208Z [INFO] GET /api/stats/system-status
+2025-07-01T18:34:22.221Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T18:34:22.223Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T18:34:22.232Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T18:34:22.233Z [INFO] GET /api/stats/performance?days=7
