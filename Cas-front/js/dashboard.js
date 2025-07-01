@@ -191,14 +191,14 @@ class Dashboard {
           icon: '📦',
           title: 'Import Stoc',
           description: 'Reîncarcă inventar din CSV',
-          href: '#',
+          href: 'javascript:void(0)',
           onclick: 'openImportModal()'
         },
         {
           icon: '📊',
           title: 'Inventar',
           description: 'Vezi stoc pe filiale',
-          href: '#',
+          href: 'javascript:void(0)',
           onclick: 'openInventoryModal()'
         }
       ],
@@ -1002,6 +1002,7 @@ async function openImportModal(){
 function closeImportModal(){
   document.getElementById('importModal').style.display='none';
   document.getElementById('importFileInput').value='';
+  document.getElementById('importFileName').textContent='(niciun fișier)';
 }
 
 async function submitImportCsv(){
@@ -1021,6 +1022,14 @@ async function submitImportCsv(){
     else{dashboard.showToast(data.error||'Eroare import','error');}
   }catch(err){console.error(err);dashboard.showToast('Eroare rețea','error');}
 }
+
+// update chosen file label
+document.addEventListener('change',e=>{
+  if(e.target.id==='importFileInput'){
+    const f=e.target.files[0];
+    document.getElementById('importFileName').textContent=f?f.name:'(niciun fișier)';
+  }
+});
 
 // ===== INVENTORY VIEW MODAL =====
 async function openInventoryModal(){

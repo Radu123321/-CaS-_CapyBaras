@@ -194,7 +194,13 @@
       <div class="modal-body">
         <label for="importBranchSelect">Filială:</label>
         <select id="importBranchSelect" onchange="renderImportInventory(this.value)"></select>
-        <div id="importInvWrapper" style="max-height:300px;overflow:auto;margin-top:10px;">
+        <div style="margin-top:12px;">
+          <input type="file" id="importFileInput" accept=".csv,text/csv" style="display:none;" />
+          <button class="btn" type="button" onclick="document.getElementById('importFileInput').click()">Alege fișier CSV</button>
+          <span id="importFileName" style="margin-left:8px; font-size:14px;">(niciun fișier)</span>
+        </div>
+
+        <div id="importInvWrapper" style="max-height:250px;overflow:auto;margin-top:15px;">
           <table id="importInvTable" class="crud-table" style="width:100%;">
             <thead><tr><th>Item</th><th>Cantitate</th><th>U.M.</th><th>Min</th><th>Expiră</th></tr></thead>
             <tbody></tbody>
