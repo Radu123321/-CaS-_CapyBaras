@@ -145,21 +145,30 @@ async function updateLocation(req, res) {
   }
   
   try {
-    const { name, address, latitude, longitude, timezone, is_active } = req.body;
+    const { name, address, city, latitude, longitude, timezone, is_active } = req.body;
     
-    if (!name || !address) {
-      res.writeHead(400, { 
+    // Build update object dynamically; only include supplied fields
+    const locationData = { };
+    if (name !== undefined) locationData.name = name;
+    if (address !== undefined) locationData.address = address;
+    if (city !== undefined) locationData.city = city;
+    if (latitude !== undefined) locationData.lat = latitude;
+    if (longitude !== undefined) locationData.lon = longitude;
+    if (timezone !== undefined) locationData.timezone = timezone;
+    if (is_active !== undefined) locationData.is_active = is_active;
+    
+    if (Object.keys(locationData).length === 0) {
+      res.writeHead(400, {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       });
-      res.end(JSON.stringify({ 
+      res.end(JSON.stringify({
         success: false,
-        error: 'Name and address are required' 
+        error: 'No valid fields supplied for update'
       }));
       return;
     }
     
-    const locationData = { name, address, latitude, longitude, timezone, is_active };
     const updatedLocation = await locationService.updateLocation(locationId, locationData);
     
     if (updatedLocation) {
@@ -215,7 +224,7 @@ async function deleteLocation(req, res) {
   try {
     const deleted = await locationService.deleteLocation(locationId);
     
-    if (deleted) {
+    if (deleted === true) {
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -223,6 +232,15 @@ async function deleteLocation(req, res) {
       res.end(JSON.stringify({ 
         success: true,
         message: 'Location deleted successfully' 
+      }));
+    } else if (deleted === 'soft') {
+      res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      res.end(JSON.stringify({
+        success: true,
+        message: 'Location had related data, marked inactive instead'
       }));
     } else {
       res.writeHead(404, { 
