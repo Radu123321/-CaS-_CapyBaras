@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html prefix="schema: http://schema.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaS v3 – Cleaning & Scheduling System</title>
+  <link rel="stylesheet" href="../Scholarly HTML_files/scholarly.min.css" />
+</head>
+<body>
+<header>
+  <h1 property="schema:name">CaS v3 – Cleaning &amp; Scheduling System</h1>
+  <p role="doc-subtitle" property="schema:alternateName">Open-source multi-branch management platform</p>
+  <div role="contentinfo">
+    <p><strong>Authors:</strong> Dragoi Andrei  &amp; Tanasa Radu </p>
+    <p><strong>Version:</strong> 2025-07-01</p>
+    <p><strong>License:</strong> MIT</p>
+  </div>
+</header>
+
+<!-- ===== 1. ABSTRACT ===== -->
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+  <h2><span>1. </span>Abstract</h2>
+  <p>
+    CaS v3 este o platformă Node.js & PostgreSQL pentru administrarea operaţiunilor unui lanţ
+    de spălătorii / curăţătorii.  Oferă module pentru programări clienţi, gestiune stocuri de
+    consumabile, mentenanţă echipamente, ture personal şi raportări în timp real prin WebSocket
+    şi RSS.  Front-end-ul este livrat ca pagini HTML/JS statice pentru compatibilitate offline.
+  </p>
+</section>
+
+<!-- ===== 2. INTRODUCTION ===== -->
+<section id="introduction" role="doc-introduction">
+  <h2><span>2. </span>Introduction</h2>
+  <p>
+    Sectorul <em>car wash &amp; cleaning</em> implică resurse multiple – personal, echipamente,
+    stocuri de detergenţi – distribuite pe mai multe filiale.  CaS v3 unifică aceste procese
+    într-un singur sistem: clienţii pot face rezervări online, managerii urmăresc inventarul
+    şi programările, iar echipa tehnică primeşte alerte de mentenanţă.  Arhitectura modulară
+    (Controllers → Services → Repositories) permite extindere rapidă (ex.: integrarea meteo
+    sau email-alerting).
+  </p>
+</section>
+
+<!-- ===== 3. STRUCTURE ===== -->
+<section id="structure">
+  <h2><span>3. </span>Structure</h2>
+  <p>
+    Sistemul urmează o arhitectură pe straturi precum în figura 1.
+  </p>
+  <figure typeof="schema:ImageObject" id="fig-arch">
+    <pre>
+Browser ⇄ Front-End JS ⇄ AuthManager ⇄ REST API
+                                  │
+           ┌───────────────────────┴───────────────────────┐
+           │                 Node Core                     │
+           │  Controllers → Services → Repositories → PG16 │
+           └───────────────────────┬───────────────────────┘
+                                   ↕
+                         Jobs Scheduler (cron)   
+    </pre>
+    <figcaption>Fig 1. Arhitectura CaS v3.</figcaption>
+  </figure>
+
+  <!-- 3.1 Database Highlights -->
+  <section id="db">
+    <h3><span>3.1 </span>Database</h3>
+    <p>Tabele cheie din <code>createschema_v3.sql</code>:</p>
+    <ul>
+      <li><strong>orders</strong>(id, customer_id, branch_id, status, scheduled_start, …)</li>
+      <li><strong>inventory_stocks</strong>(id, branch_id, item_code, qty_on_hand, …)</li>
+      <li><strong>equipment</strong>(id, branch_id, type_code, status, …)</li>
+      <li><strong>audit_log</strong> – trigger <code>audit_if_diff()</code></li>
+    </ul>
+  </section>
+
+  <!-- 3.2 API Surface -->
+  <section id="api">
+    <h3><span>3.2 </span>REST API</h3>
+    <p>Endpoint-uri relevante:</p>
+    <ul>
+      <li><code>POST /api/auth/login</code> → JWT</li>
+      <li><code>POST /api/orders</code> – creare comandă</li>
+      <li><code>PUT  /api/orders/:id</code> – update status / detalii</li>
+      <li><code>GET  /api/inventory/export</code> – CSV live</li>
+    </ul>
+  </section>
+
+  <!-- 3.3 Route Map (server.js) -->
+  <section id="routes">
+    <h3><span>3.3 </span>Route Map</h3>
+    <p>Serverul expune peste 120 de rute REST; mai jos sunt grupate pe module (vezi <code>src/core/server.js</code>):</p>
+    <ul>
+      <li><strong>Auth</strong>: <code>POST /api/auth/login</code>, <code>/logout</code>, <code>/profile</code></li>
+      <li><strong>Locations</strong>: <code>GET /api/locations</code>, <code>POST /api/locations</code>, <code>PUT /api/locations/:id</code></li>
+      <li><strong>Services</strong>: CRUD la <code>/api/services</code></li>
+      <li><strong>Customers</strong>: căutare, top, VIP – <code>/api/customers/*</code></li>
+      <li><strong>Employees</strong>: filtre pe poziţii, skill-uri – <code>/api/employees/*</code></li>
+      <li><strong>Orders</strong>: listare, status flow, assign employee, availability – <code>/api/orders/*</code></li>
+      <li><strong>Transports</strong>: pick-up/delivery – <code>/api/transports/*</code></li>
+      <li><strong>Inventory</strong>: stoc, restock, CSV import/export – <code>/api/inventory/*</code></li>
+      <li><strong>Equipment</strong>: dashboard, mentenanţă – <code>/api/equipment/*</code></li>
+      <li><strong>Shifts</strong>: program angajaţi – <code>/api/shifts/*</code></li>
+      <li><strong>Maintenance</strong>: task-uri utilaje – <code>/api/maintenance/*</code></li>
+      <li><strong>Recurrences</strong>: comenzi recurente – <code>/api/recurrences/*</code></li>
+      <li><strong>Exceptions</strong>: incident management – <code>/api/exceptions/*</code></li>
+      <li><strong>Alerts</strong>: email / WebSocket alerts – <code>/api/alerts/*</code></li>
+      <li><strong>Notifications</strong>: browser push – <code>/api/notifications/*</code></li>
+      <li><strong>Weather</strong>: snapshot &amp; impact – <code>/api/weather/*</code></li>
+      <li><strong>Stats</strong>: KPI, trend-uri – <code>/api/stats/*</code></li>
+      <li><strong>WebSocket</strong>: stats &amp; broadcast – <code>/api/websocket/*</code></li>
+      <li><strong>RSS</strong>: feed-uri – <code>/rss</code>, <code>/rss/location/:id</code></li>
+    </ul>
+  </section>
+</section>
+
+<!-- ===== 4. ROADMAP ===== -->
+<section id="roadmap">
+  <h2><span>4. </span>Roadmap Q3-2025</h2>
+  <ul>
+    <li>SMTP Email alerts pentru echipamente &amp; stocuri</li>
+    <li>Dashboard analytics cu Chart.js</li>
+    <li>Integrare meteo pentru ajustare programări</li>
+    <li>PWA + Service Worker notificări offline</li>
+  </ul>
+</section>
+
+<!-- References section removed as per request -->
+
+</body>
+</html> 
