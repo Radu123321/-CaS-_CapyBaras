@@ -43,13 +43,17 @@ function buildUserModal(mode='create', row={}){
       </div>
       <div class="modal-body">
         ${isCreate? '<div class="form-group"><label class="form-label">Email</label><input type="email" id="uEmail" class="form-control" placeholder="utilizator@example.com" required></div>' : ''}
-        ${isCreate? '<div class="form-group"><label class="form-label">Rol</label><select id="uRole" class="form-control"><option value="EMPLOYEE">EMPLOYEE</option><option value="MANAGER">MANAGER</option><option value="ADMIN">ADMIN</option><option value="CUSTOMER">CUSTOMER</option></select></div>' : ''}
-        ${isCreate? (()=>{
-          const opts = branchesData.map(b=>{
-            const id=b.id||b.location_id; const n=b.name||b.location_name||('Filiala #'+id);
+        ${isCreate? '<div class="form-group"><label class="form-label">Rol</label><select id="uRole" class="form-control"><option value="EMPLOYEE">EMPLOYEE</option><option value="MANAGER">MANAGER</option><option value="ADMIN">ADMIN</option><option value="CUSTOMER">CUSTOMER</option></select></div>' : `<div class=\"form-group\"><label class=\"form-label\">Rol</label><select id=\"uRoleE\" class=\"form-control\"><option value=\"EMPLOYEE\">EMPLOYEE</option><option value=\"MANAGER\">MANAGER</option><option value=\"ADMIN\">ADMIN</option><option value=\"CUSTOMER\">CUSTOMER</option></select></div>`}
+        ${(() => {
+          const opts = branchesData.map(b => {
+            const id = b.id || b.location_id; const n = b.name || b.location_name || ('Filiala #' + id);
             return `<option value="${id}">${n}</option>`;}).join('');
-          return `<div class=\"form-group\"><label class=\"form-label\">Filială</label><select id=\"uBranchSel\" class=\"form-control\"><option value=\"\">(fără)</option>${opts}</select></div>`;
-        })() : ''}
+          if(isCreate){
+            return `<div class=\"form-group\"><label class=\"form-label\">Filială</label><select id=\"uBranchSel\" class=\"form-control\"><option value=\"\">(fără)</option>${opts}</select></div>`;
+          }else{
+            return `<div class=\"form-group\"><label class=\"form-label\">Filială</label><select id=\"uBranchSelE\" class=\"form-control\"><option value=\"\">(fără)</option>${opts}</select></div>`;
+          }
+        })()}
         <div class="form-group"><label class="form-label">Prenume</label><input type="text" id="uFirst" class="form-control" placeholder="Prenume" value="${row.first_name||''}" required></div>
         <div class="form-group"><label class="form-label">Nume</label><input type="text" id="uLast" class="form-control" placeholder="Nume" value="${row.last_name||''}" required></div>
         <div class="form-group"><label class="form-label">Telefon</label><input type="text" id="uPhone" class="form-control" placeholder="07xx xxx xxx" value="${row.phone||''}" ></div>
@@ -82,6 +86,10 @@ async function submitUserModal(modalId, mode, userId){
     const br=getVal('uBranchSel');
     if(br) payload.branch_id=parseInt(br);
     payload.password = getVal('uPwd')||'changeme';
+  } else {
+    payload.role = getVal('uRoleE') || undefined;
+    const br=getVal('uBranchSelE');
+    if(br) payload.branch_id=parseInt(br); else if(br==='') payload.branch_id=null;
   }
 
   // Basic validation
@@ -107,7 +115,14 @@ async function createUser(){
 async function editUser(row){
   const id=buildUserModal('edit',row);
   document.getElementById(id).style.display='flex';
-  setTimeout(()=>document.getElementById(id)?.classList.add('visible'),10);
+  setTimeout(()=>{
+    document.getElementById(id)?.classList.add('visible');
+    // preselect role & branch
+    const roleSel=document.querySelector(`#${id} #uRoleE`);
+    if(roleSel) roleSel.value=row.role||'EMPLOYEE';
+    const brSel=document.querySelector(`#${id} #uBranchSelE`);
+    if(brSel && row.branch_id){ brSel.value=row.branch_id; }
+  },10);
 }
 
 async function deleteUser(row){
