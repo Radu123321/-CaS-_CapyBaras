@@ -227,51 +227,46 @@ class OrderRepository extends Base {
   }
 
   async update(orderId, orderData) {
-    const { 
-      service_id, 
-      base_price, 
-      transport_fee, 
-      total_amount, 
-      scheduled_date, 
-      scheduled_time,
+    const {
+      customer_id,
+      branch_id,
+      status,
+      scheduled_start,
+      scheduled_end,
+      notes,
+      // legacy / optional fields for compatibility
+      quantity,
+      unit_price,
       assigned_employee_id,
-      special_instructions,
-      pickup_address,
-      delivery_address,
-      item_description,
-      item_type,
-      item_condition
+      transport_request_id
     } = orderData;
-    
+
     const updateSQL = `
-      UPDATE orders 
-      SET service_id = COALESCE($2, service_id),
-          base_price = COALESCE($3, base_price),
-          transport_fee = COALESCE($4, transport_fee),
-          total_amount = COALESCE($5, total_amount),
-          scheduled_date = COALESCE($6, scheduled_date),
-          scheduled_time = COALESCE($7, scheduled_time),
+      UPDATE orders
+      SET customer_id     = COALESCE($2, customer_id),
+          branch_id       = COALESCE($3, branch_id),
+          status          = COALESCE($4, status),
+          scheduled_start = COALESCE($5, scheduled_start),
+          scheduled_end   = COALESCE($6, scheduled_end),
+          notes           = COALESCE($7, notes),
+          -- optional legacy fields (ignored by v3 schema if not present)
           assigned_employee_id = COALESCE($8, assigned_employee_id),
-          special_instructions = COALESCE($9, special_instructions),
-          pickup_address = COALESCE($10, pickup_address),
-          delivery_address = COALESCE($11, delivery_address),
-          item_description = COALESCE($12, item_description),
-          item_type = COALESCE($13, item_type),
-          item_condition = COALESCE($14, item_condition),
-          updated_at = CURRENT_TIMESTAMP
+          updated_at      = CURRENT_TIMESTAMP
       WHERE id = $1
-      RETURNING id AS order_id, customer_id, location_id AS branch_id, service_id, base_price, transport_fee,
-                total_amount, status, scheduled_date AS scheduled_start, scheduled_time, assigned_employee_id, 
-                special_instructions, pickup_address, delivery_address, updated_at
-    `;
-    
+      RETURNING id AS order_id, customer_id, branch_id, status,
+                scheduled_start, scheduled_end, total_price, notes, updated_at`;
+
     const result = await pool.query(updateSQL, [
-      orderId, service_id || null, base_price || null, transport_fee || null,
-      total_amount || null, scheduled_date || null, scheduled_time || null, 
-      assigned_employee_id || null, special_instructions || null,
-      pickup_address || null, delivery_address || null, item_description || null,
-      item_type || null, item_condition || null
+      orderId,
+      customer_id || null,
+      branch_id   || null,
+      status      || null,
+      scheduled_start || null,
+      scheduled_end   || null,
+      notes       || null,
+      assigned_employee_id || null
     ]);
+
     return result && result.rows.length > 0 ? result.rows[0] : null;
   }
 

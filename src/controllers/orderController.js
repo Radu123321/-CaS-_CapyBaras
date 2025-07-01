@@ -414,23 +414,48 @@ async function updateOrder(req, res) {
   }
   
   try {
-    const { 
+    // Allow full editability (admin can change any column)
+    const {
+      customer_id,
+      location_id,
+      branch_id,
+      service_id,
+      status,
       quantity,
       unit_price,
       assigned_employee_id,
       scheduled_for,
+      scheduled_start,
+      scheduled_end,
       transport_request_id,
       notes
     } = req.body;
-    
+
     const orderData = {};
-    
-    if (quantity !== undefined) orderData.quantity = parseInt(quantity);
+
+    // Map/validate numeric & optional fields
+    if (customer_id !== undefined) orderData.customer_id = parseInt(customer_id);
+    // Accept both location_id and branch_id aliases
+    if (location_id !== undefined) orderData.branch_id = parseInt(location_id);
+    if (branch_id !== undefined)  orderData.branch_id = parseInt(branch_id);
+    if (service_id !== undefined) orderData.service_id = parseInt(service_id);
+    if (status !== undefined)     orderData.status = status;
+
+    if (quantity !== undefined)   orderData.quantity = parseInt(quantity);
     if (unit_price !== undefined) orderData.unit_price = parseFloat(unit_price);
-    if (assigned_employee_id !== undefined) orderData.assigned_employee_id = assigned_employee_id ? parseInt(assigned_employee_id) : null;
-    if (scheduled_for !== undefined) orderData.scheduled_for = scheduled_for;
-    if (transport_request_id !== undefined) orderData.transport_request_id = transport_request_id ? parseInt(transport_request_id) : null;
-    if (notes !== undefined) orderData.notes = notes?.trim() || null;
+    if (assigned_employee_id !== undefined) {
+      orderData.assigned_employee_id = assigned_employee_id ? parseInt(assigned_employee_id) : null;
+    }
+
+    // Scheduled time – front-end may send scheduled_for OR scheduled_start
+    if (scheduled_for !== undefined)   orderData.scheduled_start = scheduled_for;
+    if (scheduled_start !== undefined) orderData.scheduled_start = scheduled_start;
+    if (scheduled_end !== undefined)   orderData.scheduled_end = scheduled_end;
+
+    if (transport_request_id !== undefined) {
+      orderData.transport_request_id = transport_request_id ? parseInt(transport_request_id) : null;
+    }
+    if (notes !== undefined)      orderData.notes = notes?.trim() || null;
     
     log.debug(`OrderController: Updating order ${orderId}`);
     

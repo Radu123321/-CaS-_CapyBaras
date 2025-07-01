@@ -97,13 +97,17 @@ class OrdersManager {
   async loadOrders() {
     console.log('📋 OrdersManager: loadOrders() starting');
     try {
-      console.log('📋 OrdersManager: Making API request to /orders');
-      const response = await authManager.apiRequest('/orders');
+      console.log('📋 OrdersManager: Making API request to /orders?limit=1000');
+      const response = await authManager.apiRequest('/orders?limit=1000');
       console.log('📋 OrdersManager: Orders API response:', response);
       
       if (response.success) {
         this.orders = (response.data || []).map(o => {
+          // Normalize field names coming from backend v3
           if(!o.order_id && o.id) o.order_id = o.id;
+          if(!o.location_id && (o.branch_id !== undefined)) o.location_id = o.branch_id;
+          // unify schedule field
+          if(!o.scheduled_for && o.scheduled_start) o.scheduled_for = o.scheduled_start;
           return o;
         });
         this.filteredOrders = [...this.orders];
@@ -214,8 +218,8 @@ class OrdersManager {
       console.log('🔧 OrdersManager: Populating service filter with', this.services.length, 'services');
       
       this.services.forEach((service, index) => {
-        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id}`;
-        const serviceId = service.service_id || service.id;
+        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id ?? service.id}`;
+        const serviceId = service.service_id ?? service.id;
         serviceFilter.innerHTML += `<option value="${serviceId}">${serviceName}</option>`;
         
         if (index === 0) {
@@ -262,10 +266,11 @@ class OrdersManager {
           customerDisplay += ` - ${customer.email}`;
         }
         
-        customerSelect.innerHTML += `<option value="${customer.customer_id}">${customerDisplay}</option>`;
+        const custId = customer.customer_id ?? customer.id ?? customer.user_id;
+        customerSelect.innerHTML += `<option value="${custId}">${customerDisplay}</option>`;
         
         if (index === 0) {
-          console.log('👥 OrdersManager: Sample customer option:', customerDisplay, 'ID:', customer.customer_id);
+          console.log('👥 OrdersManager: Sample customer option:', customerDisplay, 'ID:', custId);
         }
       });
       console.log('👥 OrdersManager: Customer dropdown populated with', customerSelect.options.length - 1, 'customers');
@@ -280,10 +285,11 @@ class OrdersManager {
       
       this.locations.forEach((location, index) => {
         const locationName = location.name || location.location_name || `Locație #${location.location_id}`;
-        locationSelect.innerHTML += `<option value="${location.location_id}">${locationName}</option>`;
+        const locId = location.location_id ?? location.id ?? location.branch_id;
+        locationSelect.innerHTML += `<option value="${locId}">${locationName}</option>`;
         
         if (index === 0) {
-          console.log('📍 OrdersManager: Sample location option:', locationName, 'ID:', location.location_id);
+          console.log('📍 OrdersManager: Sample location option:', locationName, 'ID:', locId);
         }
       });
       console.log('📍 OrdersManager: Location dropdown populated with', locationSelect.options.length - 1, 'locations');
@@ -297,12 +303,13 @@ class OrdersManager {
       console.log('🔧 OrdersManager: Populating services, count:', this.services.length);
       
       this.services.forEach((service, index) => {
-        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id}`;
+        const serviceName = service.name || service.service_name || `Serviciu #${service.service_id ?? service.id}`;
         const servicePrice = service.price ? ` - ${service.price} RON` : '';
-        serviceSelect.innerHTML += `<option value="${service.service_id}">${serviceName}${servicePrice}</option>`;
+        const serviceId = service.service_id ?? service.id;
+        serviceSelect.innerHTML += `<option value="${serviceId}">${serviceName}${servicePrice}</option>`;
         
         if (index === 0) {
-          console.log('🔧 OrdersManager: Sample service option:', serviceName, 'ID:', service.service_id);
+          console.log('🔧 OrdersManager: Sample service option:', serviceName, 'ID:', serviceId);
         }
       });
       console.log('🔧 OrdersManager: Service dropdown populated with', serviceSelect.options.length - 1, 'services');
@@ -415,11 +422,10 @@ class OrdersManager {
     console.log('📊 OrdersManager: Total orders:', this.orders.length);
     
     const stats = {
-      pending: this.orders.filter(o => o.status === 'PENDING').length,
-      confirmed: this.orders.filter(o => o.status === 'CONFIRMED').length,
+      scheduled: this.orders.filter(o => ['NEW','SCHEDULED'].includes(o.status)).length,
+      inProgress: this.orders.filter(o => o.status === 'IN_PROGRESS').length,
       completed: this.orders.filter(o => o.status === 'COMPLETED').length,
-      cancelled: this.orders.filter(o => o.status === 'CANCELLED').length,
-      refunded: this.orders.filter(o => o.status === 'REFUNDED').length
+      cancelled: this.orders.filter(o => o.status === 'CANCELLED').length
     };
     
     console.log('📊 OrdersManager: Stats breakdown:', stats);
@@ -437,13 +443,12 @@ class OrdersManager {
       cancelledCount: cancelledCount ? 'Found' : 'NOT FOUND'
     });
     
-    if (pendingCount) pendingCount.textContent = stats.pending;
-    if (confirmedCount) confirmedCount.textContent = stats.confirmed;
+    if (pendingCount) pendingCount.textContent = stats.scheduled;
+    if (confirmedCount) confirmedCount.textContent = stats.inProgress;
     if (completedCount) completedCount.textContent = stats.completed;
     if (cancelledCount) cancelledCount.textContent = stats.cancelled;
     
     console.log('✅ OrdersManager: Stats updated successfully');
-    console.log('📊 REFUNDED orders not displayed in UI cards (only 4 cards available), but counted:', stats.refunded);
   }
 
   // ===== HELPER METHODS =====
@@ -475,12 +480,11 @@ class OrdersManager {
   
   getStatusLabel(status) {
     const labels = {
-      'PENDING': 'În așteptare',
-      'CONFIRMED': 'Confirmat',
+      'NEW': 'Nouă',
+      'SCHEDULED': 'Programată',
       'IN_PROGRESS': 'În progres',
       'COMPLETED': 'Finalizat',
-      'CANCELLED': 'Anulat',
-      'REFUNDED': 'Rambursat'
+      'CANCELLED': 'Anulat'
     };
     return labels[status] || status;
   }
@@ -681,12 +685,11 @@ class OrdersManager {
             <div class="form-group">
               <label for="newStatus">Noul status:</label>
               <select id="newStatus" required>
-                <option value="PENDING" ${order.status === 'PENDING' ? 'selected' : ''}>În așteptare</option>
-                <option value="CONFIRMED" ${order.status === 'CONFIRMED' ? 'selected' : ''}>Confirmat</option>
+                <option value="NEW" ${order.status === 'NEW' ? 'selected' : ''}>Nouă</option>
+                <option value="SCHEDULED" ${order.status === 'SCHEDULED' ? 'selected' : ''}>Programată</option>
                 <option value="IN_PROGRESS" ${order.status === 'IN_PROGRESS' ? 'selected' : ''}>În progres</option>
                 <option value="COMPLETED" ${order.status === 'COMPLETED' ? 'selected' : ''}>Finalizat</option>
                 <option value="CANCELLED" ${order.status === 'CANCELLED' ? 'selected' : ''}>Anulat</option>
-                <option value="REFUNDED" ${order.status === 'REFUNDED' ? 'selected' : ''}>Rambursat</option>
               </select>
             </div>
             <div class="form-group">
