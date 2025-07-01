@@ -4,6 +4,11 @@ class CustomerRepository extends Base {
   constructor() { super('users'); }
 
   list(branchId = null) {
+    const pool = require('../core/psql');
+    // Add soft-delete column if it was not yet created (v3 migrated schema)
+    // This keeps compatibility with earlier code that filters on `active`.
+    pool.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS active BOOLEAN DEFAULT TRUE');
+
     const params = ['CUSTOMER'];
     let where = 'role = $1 AND active = true';
     if (branchId !== null) {

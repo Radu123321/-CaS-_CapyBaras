@@ -26,14 +26,33 @@ class InventoryRepository extends Base {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
-      // ensure stock row exists
-      const { rows } = await client.query(
-        `INSERT INTO inventory_stocks (branch_id,item_code,qty_on_hand,min_qty,expire_date)
-         VALUES ($1,$2,0,0,$3)
-         ON CONFLICT (branch_id,item_code,expire_date) DO UPDATE SET qty_on_hand=inventory_stocks.qty_on_hand
-         RETURNING id`,
-        [branchId, itemCode, expireDate]);
-      const stockId = rows[0].id;
+
+      let stockId;
+
+      if (qtyDelta < 0) {
+        // Consume from existing stock – pick earliest expiry with sufficient qty
+        const { rows: stockRows } = await client.query(
+          `SELECT id
+             FROM inventory_stocks
+            WHERE branch_id=$1 AND item_code=$2 AND qty_on_hand + $3 >= 0
+            ORDER BY COALESCE(expire_date, DATE '9999-12-31') ASC
+            LIMIT 1`,
+          [branchId, itemCode, qtyDelta]);
+
+        if (!stockRows.length) {
+          throw new Error('Insufficient inventory');
+        }
+        stockId = stockRows[0].id;
+      } else {
+        // Restock or correction – ensure row exists (may merge with existing expireDate)
+        const { rows } = await client.query(
+          `INSERT INTO inventory_stocks (branch_id,item_code,qty_on_hand,min_qty,expire_date)
+           VALUES ($1,$2,0,0,$3)
+           ON CONFLICT (branch_id,item_code,expire_date) DO UPDATE SET qty_on_hand=inventory_stocks.qty_on_hand
+           RETURNING id`,
+          [branchId, itemCode, expireDate]);
+        stockId = rows[0].id;
+      }
 
       await client.query(
         `INSERT INTO inventory_transactions

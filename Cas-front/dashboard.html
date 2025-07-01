@@ -161,6 +161,53 @@
     </div>
   </div>
 
+  <!-- Inventory Modal -->
+  <div id="inventoryModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width:800px;">
+      <div class="modal-header">
+        <h3>Stoc pe locație</h3>
+        <button class="modal-close" onclick="closeInventoryModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="invBranchSelect">Filială:</label>
+        <select id="invBranchSelect" onchange="loadInventoryForBranch(this.value)"></select>
+        <div id="invTableWrapper" style="max-height:400px;overflow:auto;margin-top:10px;">
+          <table id="invTable" class="crud-table" style="width:100%;">
+            <thead><tr><th>Item</th><th>Cantitate</th><th>U.M.</th><th>Min</th><th>Expiră</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeInventoryModal()">Închide</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Inventory Modal -->
+  <div id="importModal" class="modal-overlay" style="display:none;">
+    <div class="modal-content" style="max-width:600px;">
+      <div class="modal-header">
+        <h3>Import stoc din CSV</h3>
+        <button class="modal-close" onclick="closeImportModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="importBranchSelect">Filială:</label>
+        <select id="importBranchSelect" onchange="renderImportInventory(this.value)"></select>
+        <div id="importInvWrapper" style="max-height:300px;overflow:auto;margin-top:10px;">
+          <table id="importInvTable" class="crud-table" style="width:100%;">
+            <thead><tr><th>Item</th><th>Cantitate</th><th>U.M.</th><th>Min</th><th>Expiră</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeImportModal()">Anulează</button>
+        <button class="btn" onclick="submitImportCsv()">Importă</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/auth.js"></script>
   <script src="js/dashboard.js"></script>
   <!-- AuthManager instantiated in js/auth.js -->

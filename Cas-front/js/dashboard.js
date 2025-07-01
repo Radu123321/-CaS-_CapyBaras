@@ -186,6 +186,20 @@ class Dashboard {
           title: 'Configurări',
           description: 'Setări de sistem',
           href: 'settings.html'
+        },
+        {
+          icon: '📦',
+          title: 'Import Stoc',
+          description: 'Reîncarcă inventar din CSV',
+          href: '#',
+          onclick: 'openImportModal()'
+        },
+        {
+          icon: '📊',
+          title: 'Inventar',
+          description: 'Vezi stoc pe filiale',
+          href: '#',
+          onclick: 'openInventoryModal()'
         }
       ],
       'MANAGER': [
@@ -969,4 +983,92 @@ window.addEventListener('beforeunload', () => {
   if (dashboard) {
     dashboard.destroy();
   }
-}); 
+});
+
+// ===== INVENTORY CSV IMPORT (modal) =====
+async function openImportModal(){
+  const modal=document.getElementById('importModal');
+  modal.style.display='flex';
+  const sel=document.getElementById('importBranchSelect');
+  if(sel.options.length===0){
+    try{
+      const resp=await authManager.apiRequest('/locations');
+      if(resp.success){
+        sel.innerHTML=resp.data.map(l=>`<option value="${l.id}">${l.name}</option>`).join('');
+      }
+    }catch(err){console.error(err);}  }
+}
+
+function closeImportModal(){
+  document.getElementById('importModal').style.display='none';
+  document.getElementById('importFileInput').value='';
+}
+
+async function submitImportCsv(){
+  const branchId=document.getElementById('importBranchSelect').value;
+  const fileInput=document.getElementById('importFileInput');
+  const file=fileInput.files[0];
+  if(!file){dashboard.showToast('Alege un fișier CSV','warning');return;}
+  try{
+    const csv=await file.text();
+    const resp=await fetch(`${authManager.apiBaseUrl}/inventory/import/${branchId}`,{
+      method:'POST',
+      headers:{'Authorization':`Bearer ${authManager.token}`},
+      body:csv
+    });
+    const data=await resp.json();
+    if(data.success){dashboard.showToast(`Import reușit: ${data.imported}`,'success');closeImportModal();}
+    else{dashboard.showToast(data.error||'Eroare import','error');}
+  }catch(err){console.error(err);dashboard.showToast('Eroare rețea','error');}
+}
+
+// ===== INVENTORY VIEW MODAL =====
+async function openInventoryModal(){
+  const modal=document.getElementById('inventoryModal');
+  modal.style.display='flex';
+  // populate branches dropdown if empty
+  const sel=document.getElementById('invBranchSelect');
+  if(sel.options.length===0){
+    try{
+      const resp=await authManager.apiRequest('/locations');
+      if(resp.success){
+        sel.innerHTML=resp.data.map(l=>`<option value="${l.id}">${l.name}</option>`).join('');
+      }
+    }catch(err){console.error('branches fetch',err);}
+  }
+  // load first branch inventory
+  if(sel.value) loadInventoryForBranch(sel.value);
+}
+
+function closeInventoryModal(){
+  document.getElementById('inventoryModal').style.display='none';
+}
+
+async function renderInventoryTable(branchId, tableSelector){
+  const tbody=document.querySelector(`${tableSelector} tbody`);
+  tbody.innerHTML='<tr><td colspan="5">Se încarcă...</td></tr>';
+  try{
+    const resp=await authManager.apiRequest(`/inventory/location/${branchId}?include_zero=true`);
+    if(resp.success){
+      const rows = resp.data.rows || resp.data;
+      tbody.innerHTML=rows.map(r=>
+        `<tr><td>${r.item_name||r.item_code}</td><td>${r.qty_on_hand}</td><td>${r.unit_code||''}</td><td>${r.min_qty}</td><td>${r.expire_date||''}</td></tr>`
+      ).join('') || '<tr><td colspan="5">Nicio resursă</td></tr>';
+    }else{
+      tbody.innerHTML=`<tr><td colspan="5">Eroare: ${resp.error}</td></tr>`;
+    }
+  }catch(err){
+    console.error(err);
+    tbody.innerHTML='<tr><td colspan="5">Eroare la comunicare</td></tr>';
+  }
+}
+
+// Existing stock modal loader wraps above
+async function loadInventoryForBranch(branchId){
+  renderInventoryTable(branchId,'#invTable');
+}
+
+// For import modal
+async function renderImportInventory(branchId){
+  renderInventoryTable(branchId,'#importInvTable');
+} 

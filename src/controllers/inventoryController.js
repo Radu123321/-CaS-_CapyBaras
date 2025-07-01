@@ -1,5 +1,6 @@
 const log = require('../core/logger');
 const inventoryService = require('../services/inventoryService');
+const { parseRequest } = require('../core/json');
 
 // ==================== RESOURCES ====================
 
@@ -359,6 +360,71 @@ function extractIdFromUrl(url, type) {
   return match ? parseInt(match[1]) : null;
 }
 
+async function readRawBody(req){
+  return new Promise((resolve,reject)=>{
+    let chunks=[];
+    req.on('data',c=>chunks.push(c));
+    req.on('end',()=>resolve(Buffer.concat(chunks).toString('utf8')));
+    req.on('error',reject);
+  });
+}
+
+// GET /api/inventory/export/:id
+async function exportInventoryCsv(req,res){
+  const branchId = extractIdFromUrl(req.url,'location') || req.params.id;
+  if(!branchId){return res.status(400).json({success:false,error:'Branch id required'});}  
+  try{
+    const data = await inventoryService.getInventoryByLocation(branchId,true);
+    const rows = data.rows || data;
+    let csv='item_code,qty_on_hand,expire_date\n';
+    rows.forEach(r=>{csv+=`${r.item_code},${r.qty_on_hand},${r.expire_date||''}\n`;});
+    res.writeHead(200,{'Content-Type':'text/csv','Content-Disposition':`attachment; filename=inventory_${branchId}.csv`});
+    res.end(csv);
+  }catch(e){
+    log.error(e);
+    res.status(500).json({success:false,error:'export failed'});
+  }
+}
+
+// POST /api/inventory/import/:id
+async function importInventoryCsv(req,res){
+  const branchId = req.params.id || extractIdFromUrl(req.url,'location');
+  if(!branchId) return res.status(400).json({success:false,error:'Branch id required'});
+  try{
+    const raw = await readRawBody(req);
+    const lines = raw.trim().split(/\r?\n/);
+    if(lines.length<2){
+      return res.status(400).json({success:false,error:'CSV empty'});
+    }
+
+    let imported = 0;
+    for(let i=1;i<lines.length;i++){
+      const [code,qtyStr,exp] = lines[i].split(',');
+      const qty = parseFloat(qtyStr);
+      if(!code || isNaN(qty) || qty===0) continue;
+
+      try{
+        await inventoryService.addTransaction({
+          branchId: parseInt(branchId),
+          itemCode: code.trim(),
+          qtyDelta: qty,
+          expireDate: exp ? (exp.trim()||null) : null,
+          reason: 'RESTOCK',
+          userId: req.user?.id || null
+        });
+        imported++;
+      }catch(txErr){
+        log.error(`Import row failed (${code}): ${txErr.message}`);
+      }
+    }
+
+    res.json({success:true,imported});
+  }catch(e){
+    log.error(e);
+    res.status(500).json({success:false,error:'import failed'});
+  }
+}
+
 module.exports = {
   getAllResources,
   createResource,
@@ -368,5 +434,7 @@ module.exports = {
   restockResources,
   consumeResourcesForOrder,
   getInventoryAlerts,
-  getLowStockItems
+  getLowStockItems,
+  exportInventoryCsv,
+  importInventoryCsv
 }; 

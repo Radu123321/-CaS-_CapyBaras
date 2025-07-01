@@ -1243,4 +1243,38 @@
 .detail-item{display:flex;justify-content:space-between}
 .equipment-actions{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap}
 .equipment-actions .btn-sm{padding:4px 8px;font-size:.75rem}
-@media(max-width:768px){.equipment-grid{grid-template-columns:1fr}} 
+@media(max-width:768px){.equipment-grid{grid-template-columns:1fr}}
+
+/* === Inventory / Import Tables === */
+.crud-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+.crud-table th, .crud-table td {
+  padding: 6px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+.crud-table th {
+  background: linear-gradient(90deg,#6a7bff,#8d5bff);
+  color:#fff;
+  position: sticky;
+  top:0;
+}
+.crud-table tbody tr:nth-child(even){background:#fafafa;}
+
+/* Modal scrollbar tweak */
+#invTableWrapper, #importInvWrapper{
+  scrollbar-width: thin;
+  scrollbar-color: #aaa transparent;
+}
+#invTableWrapper::-webkit-scrollbar, #importInvWrapper::-webkit-scrollbar{
+  height:8px;
+  width:8px;
+}
+#invTableWrapper::-webkit-scrollbar-thumb, #importInvWrapper::-webkit-scrollbar-thumb{
+  background:#aaa;
+  border-radius:4px;
+} 
