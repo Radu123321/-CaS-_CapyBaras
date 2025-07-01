@@ -88,7 +88,8 @@ class EquipmentManager {
           branch_id: row.branch_id,
           branch_name: row.branch_name,
           model: row.model,
-          usage_hours: row.usage_counter,
+          usage_hours: (row.usage_counter !== null && row.usage_counter !== undefined) ? Number(row.usage_counter) : 0,
+          usage_unit: row.usage_unit_code || 'h',
           last_maintenance: row.last_completed_maintenance,
           next_maintenance: row.next_scheduled_maintenance,
           notes: row.notes,
@@ -172,18 +173,20 @@ class EquipmentManager {
           <p class="equipment-location">${this.getLocationName(equipment.branch_id)}</p>
         </div>
         <div class="equipment-details">
+          ${equipment.model ? `
           <div class="detail-item">
             <span class="detail-label">Model:</span>
-            <span class="detail-value">${equipment.model || 'N/A'}</span>
-          </div>
+            <span class="detail-value">${equipment.model}</span>
+          </div>` : ''}
           <div class="detail-item">
             <span class="detail-label">Ultima mentenanță:</span>
             <span class="detail-value">${this.getLastMaintenanceText(equipment)}</span>
           </div>
+          ${equipment.usage_hours > 0 ? `
           <div class="detail-item">
             <span class="detail-label">Utilizare:</span>
-            <span class="detail-value">${equipment.usage_hours || 0}h</span>
-          </div>
+            <span class="detail-value">${this.formatUsage(equipment.usage_hours, equipment.usage_unit)}</span>
+          </div>` : ''}
         </div>
         <div class="equipment-actions">
           <button class="btn btn-sm btn-primary" onclick="equipmentManager.viewEquipment(${equipment.id})">
@@ -217,6 +220,7 @@ class EquipmentManager {
       'DRYER': 'Uscător',
       'IRON': 'Fier de călcat',
       'VACUUM': 'Aspirator',
+      'PRESSURE': 'Aparat presiune',
       'OTHER': 'Altele'
     };
     return labels[type] || type;
@@ -242,7 +246,11 @@ class EquipmentManager {
   }
   
   getLastMaintenanceText(equipment) {
-    // Prefer completed maintenance; fall back to next scheduled
+    // If echipament este în mentenanță acum și nu există mentenanță finalizată
+    if (!equipment.last_maintenance && equipment.status === 'MAINTENANCE') {
+      return 'În curs';
+    }
+
     if (equipment.last_maintenance) {
       const lastMaintenance = new Date(equipment.last_maintenance);
       const now = new Date();
@@ -263,6 +271,13 @@ class EquipmentManager {
   formatDate(dateString) {
     const date = new Date(dateString);
     return date.toLocaleDateString('ro-RO') + ' ' + date.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  // Format usage hours with 2 decimals and unit (defaults to h)
+  formatUsage(value, unit = 'h') {
+    const num = parseFloat(value);
+    if (!isFinite(num)) return `0${unit}`;
+    return `${num.toFixed(2)}${unit}`;
   }
 
   // ===== FILTERING =====
@@ -324,7 +339,8 @@ class EquipmentManager {
           branch_id: data.branch_id,
           branch_name: data.branch_name,
           model: data.model,
-          usage_hours: data.usage_counter,
+          usage_hours: (data.usage_counter !== null && data.usage_counter !== undefined) ? Number(data.usage_counter) : 0,
+          usage_unit: data.usage_unit_code || 'h',
           last_maintenance: data.last_completed_maintenance,
           next_maintenance: data.next_scheduled_maintenance,
           manufacturer: data.manufacturer,
@@ -375,10 +391,11 @@ class EquipmentManager {
             <label>Producător:</label>
             <span>${equipment.manufacturer || 'N/A'}</span>
           </div>
+          ${equipment.model ? `
           <div class="detail-item">
             <label>Model:</label>
-            <span>${equipment.model || 'N/A'}</span>
-          </div>
+            <span>${equipment.model}</span>
+          </div>` : ''}
           <div class="detail-item">
             <label>Număr de serie:</label>
             <span>${equipment.serial_number || 'N/A'}</span>
@@ -391,10 +408,11 @@ class EquipmentManager {
             <label>Garanție până la:</label>
             <span>${equipment.warranty_expiry ? this.formatDate(equipment.warranty_expiry) : 'N/A'}</span>
           </div>
+          ${equipment.usage_hours > 0 ? `
           <div class="detail-item">
             <label>Ore de utilizare:</label>
-            <span>${equipment.usage_hours || 0}h</span>
-          </div>
+            <span>${this.formatUsage(equipment.usage_hours, equipment.usage_unit)}</span>
+          </div>` : ''}
           <div class="detail-item">
             <label>Ultima mentenanță:</label>
             <span>${equipment.last_maintenance ? this.formatDate(equipment.last_maintenance) : 'Niciodată'}</span>

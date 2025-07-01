@@ -60,7 +60,19 @@ class LocationsManager {
       const response = await authManager.apiRequest('/locations');
       
       if (response.success) {
-        this.locations = response.data || [];
+        this.locations = (response.data || []).map(loc=>({
+          id: loc.location_id || loc.id || loc.id_branch || loc.id, // fallback
+          location_id: loc.id || loc.location_id || loc.id_branch || loc.id,
+          name: loc.name,
+          address: loc.address,
+          city: loc.city,
+          phone: loc.phone,
+          email: loc.email,
+          created_at: loc.created_at,
+          updated_at: loc.updated_at,
+          is_active: loc.is_active !== false // default true if missing
+        }));
+        this.updateDashboardStats();
         this.displayLocations();
       } else {
         throw new Error(response.error || 'Failed to load locations');
@@ -82,12 +94,16 @@ class LocationsManager {
       return;
     }
     
+    const isAdmin = authManager.currentUser?.role === 'ADMIN';
+    
     grid.innerHTML = this.locations.map(location => `
       <div class="location-card">
         <div class="location-header">
           <div class="location-icon">🏢</div>
           <div class="location-status">
-            <span class="status-badge status-active">Activă</span>
+            <span class="status-badge ${location.is_active ? 'status-active' : 'status-inactive'}">
+              ${location.is_active ? 'Activă' : 'Inactivă'}
+            </span>
           </div>
         </div>
         <div class="location-info">
@@ -114,12 +130,17 @@ class LocationsManager {
           </div>
         </div>
         <div class="location-actions">
-          <button class="btn btn-sm btn-primary" onclick="locationsManager.viewLocation(${location.location_id})">
+          <button class="btn btn-sm btn-primary" onclick="locationsManager.viewLocation(${location.id})">
             Vezi Detalii
           </button>
-          <button class="btn btn-sm btn-secondary" onclick="locationsManager.editLocationModal(${location.location_id})">
+          ${isAdmin ? `
+          <button class="btn btn-sm btn-secondary" onclick="locationsManager.editLocationModal(${location.id})">
             Editează
           </button>
+          <button class="btn btn-sm btn-warning" onclick="locationsManager.toggleActive(${location.id})">
+            ${location.is_active ? 'Dezactivează' : 'Activează'}
+          </button>
+          <button class="btn btn-sm btn-danger" onclick="locationsManager.deleteLocation(${location.id})">Șterge</button>` : ''}
         </div>
       </div>
     `).join('');
@@ -154,7 +175,7 @@ class LocationsManager {
     const title = document.getElementById('locationDetailsTitle');
     const content = document.getElementById('locationDetailsContent');
     
-    this.selectedLocationId = location.location_id;
+    this.selectedLocationId = location.location_id || location.id;
     title.textContent = location.name;
     
     content.innerHTML = `
@@ -249,11 +270,53 @@ class LocationsManager {
   }
   
   editLocationModal(locationId) {
-    this.showToast('Funcționalitatea de editare va fi implementată', 'info');
+    this.showEditLocationModal(locationId);
   }
   
-  editLocation() {
-    this.showToast('Funcționalitatea de editare va fi implementată', 'info');
+  showEditLocationModal(locationId){
+    const loc = this.locations.find(l=>l.location_id===locationId);
+    if(!loc)return;
+    this.selectedLocationId = locationId;
+    document.getElementById('editLocationName').value = loc.name;
+    document.getElementById('editLocationAddress').value = loc.address;
+    document.getElementById('editLocationCity').value = loc.city;
+    document.getElementById('editLocationPhone').value = loc.phone||'';
+    document.getElementById('editLocationEmail').value = loc.email||'';
+    document.getElementById('editLocationNotes').value = loc.notes||'';
+    document.getElementById('editLocationModal').style.display='flex';
+  }
+
+  closeEditLocationModal(){
+    document.getElementById('editLocationModal').style.display='none';
+    this.selectedLocationId=null;
+  }
+
+  async editLocation(){
+    if(!this.selectedLocationId){return;}
+    const locationData={
+      name:document.getElementById('editLocationName').value,
+      address:document.getElementById('editLocationAddress').value,
+      city:document.getElementById('editLocationCity').value,
+      phone:document.getElementById('editLocationPhone').value,
+      email:document.getElementById('editLocationEmail').value,
+      notes:document.getElementById('editLocationNotes').value
+    };
+    try{
+      const response=await authManager.apiRequest(`/locations/${this.selectedLocationId}`,{
+        method:'PUT',
+        body:JSON.stringify(locationData)
+      });
+      if(response.success){
+        this.showToast('Locația a fost actualizată', 'success');
+        this.closeEditLocationModal();
+        await this.loadLocations();
+      }else{
+        this.showToast(response.error||'Eroare la actualizare', 'error');
+      }
+    }catch(err){
+      console.error('editLocation error',err);
+      this.showToast('Eroare la actualizare', 'error');
+    }
   }
 
   // ===== TOAST NOTIFICATIONS =====
@@ -273,11 +336,60 @@ class LocationsManager {
       }
     }, duration);
   }
+
+  updateDashboardStats() {
+    const total = this.locations.length;
+    const active = this.locations.filter(l=>l.is_active).length;
+    document.getElementById('totalLocations').textContent = `${active}/${total}`;
+  }
+
+  async toggleActive(locationId){
+    try{
+      const loc = this.locations.find(l=>l.location_id===locationId);
+      if(!loc){return;}
+      const newStatus = !loc.is_active;
+      const response = await authManager.apiRequest(`/locations/${locationId}`,{
+        method:'PUT',
+        body: JSON.stringify({
+          is_active: newStatus
+        })
+      });
+      if(response.success){
+        this.showToast(`Locația a fost ${newStatus?'activată':'dezactivată'}`, 'success');
+        await this.loadLocations();
+        this.updateDashboardStats();
+      }else{
+        this.showToast(response.error||'Eroare la actualizare status', 'error');
+      }
+    }catch(err){
+      console.error('toggleActive error',err);
+      this.showToast('Eroare la actualizare status', 'error');
+    }
+  }
+
+  async deleteLocation(locationId){
+    if(!confirm('Ești sigur că vrei să ștergi locația?')) return;
+    try{
+      const response = await authManager.apiRequest(`/locations/${locationId}`,{method:'DELETE'});
+      if(response.success){
+        const msg = response.message || 'Locația a fost ștearsă';
+        this.showToast(msg, 'success');
+        await this.loadLocations();
+        this.updateDashboardStats();
+      }else{
+        this.showToast(response.error||'Eroare la ștergere', 'error');
+      }
+    }catch(err){
+      console.error('deleteLocation error',err);
+      this.showToast('Eroare la ștergere', 'error');
+    }
+  }
 }
 
 // Global functions for HTML onclick handlers
 async function refreshLocations() {
   await locationsManager.loadLocations();
+  locationsManager.updateDashboardStats();
   locationsManager.showToast('Locațiile au fost reîmprospătate', 'success');
 }
 

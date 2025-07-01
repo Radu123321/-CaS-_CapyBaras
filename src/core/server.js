@@ -42,11 +42,15 @@ router.add('POST', '/api/auth/logout', authController.logout);
 router.add('GET', '/api/auth/profile', authController.getProfile);
 
 const locationController = require('../controllers/locationController');
-router.add('GET', '/api/locations', locationController.getAllLocations);
-router.add('POST', '/api/locations', locationController.createLocation);
-router.add('GET', '/api/locations/:id', locationController.getLocationById);
-router.add('PUT', '/api/locations/:id', locationController.updateLocation);
-router.add('DELETE', '/api/locations/:id', locationController.deleteLocation);
+const { auth: requireAuth } = require('../core/middleware');
+
+router.add('GET',  '/api/locations', locationController.getAllLocations);
+router.add('GET',  '/api/locations/:id', locationController.getLocationById);
+
+// Admin-only modifications
+router.add('POST',   '/api/locations',          [requireAuth('ADMIN')], locationController.createLocation);
+router.add('PUT',    '/api/locations/:id',      [requireAuth('ADMIN')], locationController.updateLocation);
+router.add('DELETE', '/api/locations/:id',      [requireAuth('ADMIN')], locationController.deleteLocation);
 
 const serviceController = require('../controllers/serviceController');
 router.add('GET', '/api/services', serviceController.getAllServices);

@@ -34,17 +34,48 @@ module.exports = {
     return rows[0];
   },
 
-  /** update branch by id */
+  /** update branch by id (partial) */
   async update(id, data) {
-    const { name, address, city, lat, lon, timezone, phone } = data;
-    const { rows } = await pool.query(
-      `UPDATE branches SET
-         name=$2,address=$3,city=$4,lat=$5,lon=$6,timezone=$7,phone=$8
-       WHERE id=$1 RETURNING *`,
-      [id, name, address, city, lat, lon, timezone, phone]
-    );
+    const allowed=['name','address','city','lat','lon','timezone','phone','is_active'];
+    const setParts=[]; const params=[id];
+    let idx=2;
+    for(const key of allowed){
+      if(data[key]!==undefined){
+        setParts.push(`${key} = $${idx}`);
+        params.push(data[key]);
+        idx++;
+      }
+    }
+    if(setParts.length===0) return this.get(id);
+    const sql=`UPDATE branches SET ${setParts.join(', ')} WHERE id=$1 RETURNING *`;
+    const { rows } = await pool.query(sql, params);
     return rows[0];
   },
 
-  remove: id => pool.query('DELETE FROM branches WHERE id=$1', [id])
+  /**
+   * Remove branch; returns:
+   *   true   – hard-deleted
+   *   'soft' – FK restriction, performed soft delete (is_active=false)
+   *   false  – id not found
+   */
+  async remove(id) {
+    try {
+      const result = await pool.query('DELETE FROM branches WHERE id=$1', [id]);
+      if (result.rowCount === 1) return true; // hard delete ok
+      return false; // not found
+    } catch (err) {
+      // Foreign key violation → fall back to soft delete
+      if (err.code === '23503') { // FK constraint
+        const soft = await pool.query('UPDATE branches SET is_active=false WHERE id=$1 RETURNING *', [id]);
+        return soft.rowCount === 1 ? 'soft' : false;
+      }
+      throw err; // propagate other errors
+    }
+  },
+
+  /** get branch by id */
+  async get(id) {
+    const { rows } = await pool.query('SELECT * FROM branches WHERE id=$1', [id]);
+    return rows[0] || null;
+  }
 }; 
