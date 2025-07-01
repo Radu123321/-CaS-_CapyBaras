@@ -1,6 +1,7 @@
 // ==== USERS MANAGEMENT PAGE ====
 
-async function loadUsers(){
+// Legacy CRUD-table loader (unused after redesign) – kept for reference
+async function legacyLoadUsers(){
   const content=document.getElementById('content');
   const resp=await authManager.apiRequest('/users');
   if(resp.success){
@@ -113,9 +114,150 @@ async function deleteUser(row){
   }catch(e){console.error(e);alert('Eroare');}
 }
 
+// ==== NEW USERS PAGE LOGIC (dashboard-style) ====
+
+let usersData=[];
+let branchesData=[];
+let filteredUsers=[];
+
+function injectRoleBadgesCss(){
+  if(document.getElementById('userRoleBadgesCss')) return;
+  const style=document.createElement('style');
+  style.id='userRoleBadgesCss';
+  style.textContent=`
+    .status-admin{background:#2563eb;color:#fff;padding:2px 6px;border-radius:12px;font-size:12px;}
+    .status-manager{background:#10b981;color:#fff;padding:2px 6px;border-radius:12px;font-size:12px;}
+    .status-employee{background:#f59e0b;color:#fff;padding:2px 6px;border-radius:12px;font-size:12px;}
+    .status-customer{background:#6b7280;color:#fff;padding:2px 6px;border-radius:12px;font-size:12px;}
+  `;
+  document.head.appendChild(style);
+}
+
+function showLoading(){
+  document.getElementById('loadingState').style.display='flex';
+  document.getElementById('usersContent').classList.remove('visible');
+  document.getElementById('errorState').classList.add('hidden');
+}
+
+function showContent(){
+  document.getElementById('loadingState').style.display='none';
+  document.getElementById('usersContent').classList.add('visible');
+}
+
+function showError(msg){
+  document.getElementById('loadingState').style.display='none';
+  document.getElementById('usersContent').classList.remove('visible');
+  document.getElementById('errorState').classList.remove('hidden');
+  document.getElementById('errorMessage').textContent=msg||'Eroare';
+}
+
+async function loadBranches(){
+  try{
+    const resp=await authManager.apiRequest('/locations');
+    branchesData=resp.success? (resp.data||[]) : [];
+    populateBranchFilter();
+  }catch(e){console.error(e);branchesData=[];}
+}
+
+function populateBranchFilter(){
+  const sel=document.getElementById('branchFilter');
+  if(!sel) return;
+  sel.innerHTML='<option value="">Toate filialele</option>';
+  branchesData.forEach(b=>{
+    const id=b.id||b.location_id;
+    const name=b.name||b.location_name||('Filiala #'+id);
+    sel.innerHTML+=`<option value="${id}">${name}</option>`;
+  });
+}
+
+async function loadUsers(){
+  showLoading();
+  try{
+    const resp=await authManager.apiRequest('/users');
+    if(!resp.success) throw new Error(resp.error||'Eroare');
+    usersData=resp.data||[];
+    applyUsersFilters();
+    showContent();
+  }catch(e){
+    console.error(e);
+    showError(e.message||'Eroare');
+  }
+}
+
+function getBranchName(id){
+  const b=branchesData.find(x=>(x.id||x.location_id)==id);
+  return b? (b.name||b.location_name||('Filiala #'+id)) : '';
+}
+
+function updateStats(){
+  const c={ADMIN:0,MANAGER:0,EMPLOYEE:0,CUSTOMER:0};
+  usersData.forEach(u=>{if(c[u.role]!=null) c[u.role]++;});
+  document.getElementById('adminsCount').textContent=c.ADMIN;
+  document.getElementById('managersCount').textContent=c.MANAGER;
+  document.getElementById('employeesCount').textContent=c.EMPLOYEE;
+  document.getElementById('customersCount').textContent=c.CUSTOMER;
+}
+
+function applyUsersFilters(){
+  const role=document.getElementById('roleFilter').value;
+  const br=document.getElementById('branchFilter').value;
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  filteredUsers=usersData.filter(u=>{
+    if(role && u.role!==role) return false;
+    if(br && String(u.branch_id||'')!==br) return false;
+    if(q){
+      const name=((u.first_name||'')+' '+(u.last_name||'')).toLowerCase();
+      if(!(u.email.toLowerCase().includes(q) || name.includes(q))) return false;
+    }
+    return true;
+  });
+  renderUsersTable();
+  document.getElementById('usersCount').textContent=`${filteredUsers.length} utilizatori`;
+  updateStats();
+}
+
+function renderUsersTable(){
+  const tbody=document.getElementById('usersTableBody');
+  if(!tbody) return;
+  if(filteredUsers.length===0){
+    tbody.innerHTML='<tr><td colspan="8" class="no-data">Niciun utilizator găsit</td></tr>';
+    return;
+  }
+  tbody.innerHTML=filteredUsers.map(u=>{
+    const name=`${u.first_name||''} ${u.last_name||''}`.trim();
+    const roleBadge=`<span class="status-badge status-${u.role.toLowerCase()}">${u.role}</span>`;
+    const branch=getBranchName(u.branch_id);
+    const created=(u.created_at||'').split('T')[0];
+    return `<tr>
+      <td>${u.id}</td>
+      <td>${u.email}</td>
+      <td>${name}</td>
+      <td>${roleBadge}</td>
+      <td>${branch||'-'}</td>
+      <td>${u.phone||''}</td>
+      <td>${created}</td>
+      <td class="actions-cell">
+         <button class="btn-sm btn-secondary" onclick="editUser({id:${u.id},first_name:'${(u.first_name||'').replace(/'/g,"\'")}',last_name:'${(u.last_name||'').replace(/'/g,"\'")}',phone:'${(u.phone||'').replace(/'/g,"\'")}'})">Edit</button>
+         <button class="btn-sm btn-danger" onclick="deleteUser({id:${u.id}})">Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function addEventListeners(){
+  document.getElementById('roleFilter').addEventListener('change',applyUsersFilters);
+  document.getElementById('branchFilter').addEventListener('change',applyUsersFilters);
+  document.getElementById('searchInput').addEventListener('input',applyUsersFilters);
+  document.getElementById('refreshUsersBtn').addEventListener('click',loadUsers);
+  document.getElementById('createUserBtn').addEventListener('click',createUser);
+  document.getElementById('reloadPageBtn').addEventListener('click',()=>location.reload());
+}
+
 document.addEventListener('DOMContentLoaded',async()=>{
   if(!authManager.isAuthenticated()||authManager.currentUser.role!=='ADMIN'){
     window.location.href='dashboard.html';return;
   }
-  await loadUsers();
+  injectRoleBadgesCss();
+  addEventListeners();
+  await Promise.all([loadBranches(), loadUsers()]);
 }); 

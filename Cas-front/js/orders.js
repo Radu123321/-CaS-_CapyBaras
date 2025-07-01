@@ -102,7 +102,10 @@ class OrdersManager {
       console.log('📋 OrdersManager: Orders API response:', response);
       
       if (response.success) {
-        this.orders = response.data || [];
+        this.orders = (response.data || []).map(o => {
+          if(!o.order_id && o.id) o.order_id = o.id;
+          return o;
+        });
         this.filteredOrders = [...this.orders];
         console.log('✅ OrdersManager: Orders loaded successfully:', this.orders.length, 'orders');
         console.log('📋 OrdersManager: Sample order data:', this.orders[0] || 'No orders');
@@ -579,25 +582,16 @@ class OrdersManager {
       return;
     }
 
-    try {
-      const response = await authManager.apiRequest(`/orders/${orderId}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          status: 'CANCELLED'
-        })
-      });
-      
-      if (response.success) {
-        this.showToast('Comanda a fost anulată cu succes', 'success');
+    try{
+      const resp=await authManager.apiRequest(`/orders/${orderId}/status`,{method:'PUT',body:JSON.stringify({status:'CANCELLED'})});
+      if(resp.success){
+        this.showToast('Comanda a fost anulată cu succes','success');
         await this.loadOrders();
-        this.applyFilters();
-      } else {
-        this.showToast(response.error || 'Eroare la anularea comenzii', 'error');
+        this.displayOrders();
+      }else{
+        this.showToast(resp.error||'Eroare la anulare','error');
       }
-    } catch (error) {
-      console.error('Error cancelling order:', error);
-      this.showToast('Eroare la anularea comenzii', 'error');
-    }
+    }catch(e){console.error(e);this.showToast('Eroare la anulare','error');}
   }
 
   showEditOrderModal(orderId) {

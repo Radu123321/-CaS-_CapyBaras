@@ -1,6 +1,7 @@
 // ==== CUSTOMERS PAGE ====
 
-async function loadCustomers(){
+// Legacy loader (CRUD-table) – kept for reference
+async function legacyLoadCustomers(){
   const content=document.getElementById('content');
   const resp=await authManager.apiRequest('/customers');
   if(resp.success){
@@ -10,6 +11,122 @@ async function loadCustomers(){
       onDelete: deleteCustomer
     });
   } else content.textContent=resp.error||'Eroare';
+}
+
+// ==== NEW RESPONSIVE LOGIC ====
+
+let customersData=[];
+let branchesData=[];
+let filteredCustomers=[];
+
+function showLoading(){
+  document.getElementById('loadingState').style.display='flex';
+  document.getElementById('customersContent').classList.remove('visible');
+  document.getElementById('errorState').classList.add('hidden');
+}
+
+function showContent(){
+  document.getElementById('loadingState').style.display='none';
+  document.getElementById('customersContent').classList.add('visible');
+}
+
+function showError(msg){
+  document.getElementById('loadingState').style.display='none';
+  document.getElementById('customersContent').classList.remove('visible');
+  document.getElementById('errorState').classList.remove('hidden');
+  document.getElementById('errorMessage').textContent=msg||'Eroare';
+}
+
+async function loadBranches(){
+  try{
+    const resp=await authManager.apiRequest('/locations');
+    branchesData=resp.success?(resp.data||[]):[];
+    const sel=document.getElementById('branchFilter');
+    if(sel){
+      sel.innerHTML='<option value="">Toate filialele</option>';
+      branchesData.forEach(b=>{
+        const id=b.id||b.location_id;
+        const nm=b.name||b.location_name||('Filiala #'+id);
+        sel.innerHTML+=`<option value="${id}">${nm}</option>`;
+      });
+    }
+  }catch(e){console.error(e);branchesData=[];}
+}
+
+async function loadCustomers(){
+  showLoading();
+  try{
+    const resp=await authManager.apiRequest('/customers');
+    if(!resp.success) throw new Error(resp.error||'Eroare');
+    customersData=resp.data||[];
+    applyFilters();
+    showContent();
+  }catch(e){console.error(e);showError(e.message||'Eroare');}
+}
+
+function getBranchName(id){
+  const b=branchesData.find(x=>(x.id||x.location_id)==id);
+  return b? (b.name||b.location_name||('Filiala #'+id)) : '';
+}
+
+function updateStats(){
+  document.getElementById('customersTotalCount').textContent=customersData.length;
+
+  // Hide branch filter if not applicable
+  const hasBranch=customersData.some(c=>c.branch_id);
+  const filterGroup=document.querySelector('.filter-group label[for="branchFilter"]')?.parentElement;
+  if(filterGroup){filterGroup.style.display=hasBranch?'flex':'none';}
+}
+
+function applyFilters(){
+  const branchSel=document.getElementById('branchFilter');
+  const br=branchSel?branchSel.value:'';
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  filteredCustomers=customersData.filter(c=>{
+    if(branchSel && br && String(c.branch_id||'')!==br) return false;
+    if(q){
+      const name=((c.first_name||'')+' '+(c.last_name||'')).toLowerCase();
+      if(!(c.email.toLowerCase().includes(q) || name.includes(q))) return false;
+    }
+    return true;
+  });
+  renderCustomersTable();
+  document.getElementById('customersCount').textContent=`${filteredCustomers.length} clienți`;
+  updateStats();
+}
+
+function renderCustomersTable(){
+  const tbody=document.getElementById('customersTableBody');
+  if(!tbody) return;
+  if(filteredCustomers.length===0){
+    tbody.innerHTML='<tr><td colspan="7" class="no-data">Niciun client găsit</td></tr>';
+    return;
+  }
+  tbody.innerHTML=filteredCustomers.map(c=>{
+    const name=`${c.first_name||''} ${c.last_name||''}`.trim();
+    const branch=getBranchName(c.branch_id);
+    const created=(c.created_at||'').split('T')[0];
+    return `<tr>
+      <td>${c.id}</td>
+      <td>${c.email}</td>
+      <td>${name}</td>
+      <td>${branch||'-'}</td>
+      <td>${c.phone||''}</td>
+      <td>${created}</td>
+      <td class="actions-cell">
+        <button class="btn-sm btn-secondary" onclick="editCustomer({id:${c.id},first_name:'${(c.first_name||'').replace(/'/g,"\'")}',last_name:'${(c.last_name||'').replace(/'/g,"\'")}',phone:'${(c.phone||'').replace(/'/g,"\'")}'})">Edit</button>
+        <button class="btn-sm btn-danger" onclick="deleteCustomer({id:${c.id}})">Delete</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function addPageEvents(){
+  document.getElementById('branchFilter').addEventListener('change',applyFilters);
+  document.getElementById('searchInput').addEventListener('input',applyFilters);
+  document.getElementById('refreshCustomersBtn').addEventListener('click',loadCustomers);
+  document.getElementById('createCustomerBtn').addEventListener('click',createCustomer);
+  document.getElementById('reloadPageBtn').addEventListener('click',()=>location.reload());
 }
 
 // ==== MODAL HELPERS ====
@@ -90,9 +207,9 @@ async function deleteCustomer(row){
 }
 
 document.addEventListener('DOMContentLoaded',async()=>{
-  if (!authManager.isAuthenticated() || authManager.currentUser.role !== 'ADMIN') {
-    window.location.href = 'dashboard.html';
-    return;
+  if(!authManager.isAuthenticated()||authManager.currentUser.role!=='ADMIN'){
+    window.location.href='dashboard.html';return;
   }
-  await loadCustomers();
+  addPageEvents();
+  await Promise.all([loadBranches(), loadCustomers()]);
 }); 
