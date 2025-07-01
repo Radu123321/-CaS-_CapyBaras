@@ -79,7 +79,21 @@ class EquipmentManager {
       const response = await authManager.apiRequest('/equipment');
       
       if (response.success) {
-        this.equipment = response.data || [];
+        // Normalize records from API for easier use in UI
+        this.equipment = (response.data || []).map(row => ({
+          id: row.id,
+          name: row.name,
+          status: row.status,
+          type: row.type_code,
+          branch_id: row.branch_id,
+          branch_name: row.branch_name,
+          model: row.model,
+          usage_hours: row.usage_counter,
+          last_maintenance: row.last_completed_maintenance,
+          next_maintenance: row.next_scheduled_maintenance,
+          notes: row.notes,
+          updated_at: row.updated_at
+        }));
         this.filteredEquipment = [...this.equipment];
       } else {
         throw new Error(response.error || 'Failed to load equipment');
@@ -107,31 +121,33 @@ class EquipmentManager {
   // ===== DISPLAY METHODS =====
   
   populateFilters() {
-    // Populate location filter
+    // Populate location filter (branches)
     const locationFilter = document.getElementById('locationFilter');
     locationFilter.innerHTML = '<option value="">Toate locațiile</option>';
     this.locations.forEach(location => {
-      locationFilter.innerHTML += `<option value="${location.location_id}">${location.name}</option>`;
+      locationFilter.innerHTML += `<option value="${location.id}">${location.name}</option>`;
     });
     
     // Populate add equipment modal location dropdown
     const equipmentLocationSelect = document.getElementById('equipmentLocationId');
-    equipmentLocationSelect.innerHTML = '<option value="">Selectează locația</option>';
-    this.locations.forEach(location => {
-      equipmentLocationSelect.innerHTML += `<option value="${location.location_id}">${location.name}</option>`;
-    });
+    if (equipmentLocationSelect) {
+      equipmentLocationSelect.innerHTML = '<option value="">Selectează locația</option>';
+      this.locations.forEach(location => {
+        equipmentLocationSelect.innerHTML += `<option value="${location.id}">${location.name}</option>`;
+      });
+    }
   }
   
   updateDashboardStats() {
     const total = this.equipment.length;
-    const operative = this.equipment.filter(eq => eq.status === 'OPERATIVE').length;
+    const operative = this.equipment.filter(eq => eq.status === 'OPERATIONAL').length;
     const maintenance = this.equipment.filter(eq => eq.status === 'MAINTENANCE').length;
-    const outOfService = this.equipment.filter(eq => eq.status === 'OUT_OF_SERVICE').length;
+    const broken = this.equipment.filter(eq => eq.status === 'BROKEN').length;
     
     document.getElementById('totalEquipment').textContent = total;
     document.getElementById('operativeEquipment').textContent = operative;
     document.getElementById('maintenanceEquipment').textContent = maintenance;
-    document.getElementById('outOfServiceEquipment').textContent = outOfService;
+    document.getElementById('outOfServiceEquipment').textContent = broken;
   }
   
   displayEquipment() {
@@ -153,7 +169,7 @@ class EquipmentManager {
         <div class="equipment-info">
           <h3 class="equipment-name">${equipment.name}</h3>
           <p class="equipment-type">${this.getTypeLabel(equipment.type)}</p>
-          <p class="equipment-location">${this.getLocationName(equipment.location_id)}</p>
+          <p class="equipment-location">${this.getLocationName(equipment.branch_id)}</p>
         </div>
         <div class="equipment-details">
           <div class="detail-item">
@@ -170,21 +186,13 @@ class EquipmentManager {
           </div>
         </div>
         <div class="equipment-actions">
-          <button class="btn btn-sm btn-primary" onclick="equipmentManager.viewEquipment(${equipment.equipment_id})">
+          <button class="btn btn-sm btn-primary" onclick="equipmentManager.viewEquipment(${equipment.id})">
             Vezi Detalii
           </button>
-          <button class="btn btn-sm btn-secondary" onclick="equipmentManager.scheduleMaintenanceForEquipment(${equipment.equipment_id})">
+          <button class="btn btn-sm btn-secondary" onclick="equipmentManager.scheduleMaintenanceForEquipment(${equipment.id})">
             Mentenanță
           </button>
-          ${equipment.status === 'OPERATIVE' ? 
-            `<button class="btn btn-sm btn-warning" onclick="equipmentManager.markAsOutOfService(${equipment.equipment_id})">
-              Marchează Defect
-            </button>` : 
-            equipment.status === 'OUT_OF_SERVICE' ?
-            `<button class="btn btn-sm btn-success" onclick="equipmentManager.markAsOperative(${equipment.equipment_id})">
-              Marchează Operațional
-            </button>` : ''
-          }
+          <button class="btn btn-sm btn-warning" onclick="equipmentManager.showStatusModal(${equipment.id})">Status</button>
         </div>
       </div>
     `).join('');
@@ -214,34 +222,42 @@ class EquipmentManager {
     return labels[type] || type;
   }
   
-  getStatusLabel(status) {
-    const labels = {
-      'OPERATIVE': 'Operațional',
+  getStatusOptions() {
+    return {
+      'OPERATIONAL': 'Operațional',
       'MAINTENANCE': 'În mentenanță',
-      'OUT_OF_SERVICE': 'Defect'
+      'BROKEN': 'Defect',
+      'RETIRED': 'Retras'
     };
-    return labels[status] || status;
   }
   
-  getLocationName(locationId) {
-    const location = this.locations.find(l => l.location_id === locationId);
-    return location ? location.name : `Locație #${locationId}`;
+  getStatusLabel(status) {
+    const STATUS_LABELS = this.getStatusOptions();
+    return STATUS_LABELS[status] || status;
+  }
+  
+  getLocationName(branchId) {
+    const location = this.locations.find(l => l.id === branchId || l.location_id === branchId);
+    return location ? location.name : `Locație #${branchId}`;
   }
   
   getLastMaintenanceText(equipment) {
-    if (!equipment.last_maintenance) {
-      return 'Niciodată';
+    // Prefer completed maintenance; fall back to next scheduled
+    if (equipment.last_maintenance) {
+      const lastMaintenance = new Date(equipment.last_maintenance);
+      const now = new Date();
+      const daysDiff = Math.floor((now - lastMaintenance) / (1000 * 60 * 60 * 24));
+      if (daysDiff === 0) return 'Astăzi';
+      if (daysDiff === 1) return 'Ieri';
+      if (daysDiff < 30) return `Acum ${daysDiff} zile`;
+      if (daysDiff < 365) return `Acum ${Math.floor(daysDiff / 30)} luni`;
+      return `Acum ${Math.floor(daysDiff / 365)} ani`;
     }
-    
-    const lastMaintenance = new Date(equipment.last_maintenance);
-    const now = new Date();
-    const daysDiff = Math.floor((now - lastMaintenance) / (1000 * 60 * 60 * 24));
-    
-    if (daysDiff === 0) return 'Astăzi';
-    if (daysDiff === 1) return 'Ieri';
-    if (daysDiff < 30) return `Acum ${daysDiff} zile`;
-    if (daysDiff < 365) return `Acum ${Math.floor(daysDiff / 30)} luni`;
-    return `Acum ${Math.floor(daysDiff / 365)} ani`;
+    if (equipment.next_maintenance) {
+      const nextM = new Date(equipment.next_maintenance);
+      return `Programată ${nextM.toLocaleDateString('ro-RO')} ${nextM.toLocaleTimeString('ro-RO',{hour:'2-digit',minute:'2-digit'})}`;
+    }
+    return 'Niciodată';
   }
   
   formatDate(dateString) {
@@ -261,8 +277,8 @@ class EquipmentManager {
       // Status filter
       if (statusFilter && equipment.status !== statusFilter) return false;
       
-      // Location filter
-      if (locationFilter && equipment.location_id !== parseInt(locationFilter)) return false;
+      // Location filter (branch)
+      if (locationFilter && equipment.branch_id !== parseInt(locationFilter)) return false;
       
       // Type filter
       if (typeFilter && equipment.type !== typeFilter) return false;
@@ -298,7 +314,27 @@ class EquipmentManager {
       const response = await authManager.apiRequest(`/equipment/${equipmentId}`);
       
       if (response.success) {
-        this.showEquipmentDetails(response.data);
+        // Normalize backend record same as list
+        const data = response.data;
+        const equipment = {
+          id: data.id,
+          name: data.name,
+          status: data.status,
+          type: data.type_code,
+          branch_id: data.branch_id,
+          branch_name: data.branch_name,
+          model: data.model,
+          usage_hours: data.usage_counter,
+          last_maintenance: data.last_completed_maintenance,
+          next_maintenance: data.next_scheduled_maintenance,
+          manufacturer: data.manufacturer,
+          serial_number: data.serial_no,
+          purchase_date: data.purchase_date,
+          warranty_expiry: data.warranty_until,
+          updated_at: data.updated_at,
+          notes: data.notes
+        };
+        this.showEquipmentDetails(equipment);
       } else {
         this.showToast('Eroare la încărcarea detaliilor echipamentului', 'error');
       }
@@ -313,7 +349,7 @@ class EquipmentManager {
     const title = document.getElementById('equipmentDetailsTitle');
     const content = document.getElementById('equipmentDetailsContent');
     
-    this.selectedEquipmentId = equipment.equipment_id;
+    this.selectedEquipmentId = equipment.id;
     title.textContent = `${equipment.name}`;
     
     content.innerHTML = `
@@ -333,7 +369,7 @@ class EquipmentManager {
           </div>
           <div class="detail-item">
             <label>Locație:</label>
-            <span>${this.getLocationName(equipment.location_id)}</span>
+            <span>${this.getLocationName(equipment.branch_id)}</span>
           </div>
           <div class="detail-item">
             <label>Producător:</label>
@@ -363,6 +399,11 @@ class EquipmentManager {
             <label>Ultima mentenanță:</label>
             <span>${equipment.last_maintenance ? this.formatDate(equipment.last_maintenance) : 'Niciodată'}</span>
           </div>
+          ${equipment.next_maintenance ? `
+          <div class="detail-item">
+            <label>Mentenanță programată:</label>
+            <span>${this.formatDate(equipment.next_maintenance)}</span>
+          </div>` : ''}
           <div class="detail-item">
             <label>Ultima actualizare:</label>
             <span>${this.formatDate(equipment.updated_at)}</span>
@@ -431,11 +472,9 @@ class EquipmentManager {
     }
     
     const maintenanceData = {
-      equipment_id: this.selectedEquipmentId,
-      maintenance_type: maintenanceType,
-      scheduled_date: scheduledDate,
-      notes: document.getElementById('maintenanceNotes').value,
-      estimated_duration: document.getElementById('estimatedDuration').value
+      started_at: scheduledDate,
+      description: document.getElementById('maintenanceNotes').value,
+      unplanned: maintenanceType === 'EMERGENCY'
     };
     
     try {
@@ -460,12 +499,44 @@ class EquipmentManager {
 
   // ===== STATUS MANAGEMENT =====
   
-  async markAsOutOfService(equipmentId) {
-    await this.updateEquipmentStatus(equipmentId, 'OUT_OF_SERVICE');
+  showStatusModal(equipmentId) {
+    const eq = this.equipment.find(e => e.id === equipmentId);
+    if (!eq) return;
+    const statusOptions = this.getStatusOptions();
+    const modal = `
+      <div id="eqStatusModal" class="modal-overlay">
+        <div class="modal-content modal-small">
+          <div class="modal-header">
+            <h3>Schimbă status – ${eq.name}</h3>
+            <button class="modal-close" onclick="document.getElementById('eqStatusModal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Status nou</label>
+              <select id="eqNewStatus" class="form-control">
+                ${Object.keys(statusOptions).map(s => `<option value="${s}" ${s === eq.status ? 'selected' : ''}>${statusOptions[s]}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Notițe</label>
+              <textarea id="eqNotes" class="form-control" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="document.getElementById('eqStatusModal').remove()">Anulează</button>
+            <button class="btn btn-primary" onclick="equipmentManager.confirmStatusChange(${equipmentId})">Actualizează</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modal);
+    setTimeout(() => document.getElementById('eqStatusModal').classList.add('visible'), 10);
   }
   
-  async markAsOperative(equipmentId) {
-    await this.updateEquipmentStatus(equipmentId, 'OPERATIVE');
+  async confirmStatusChange(id) {
+    const newStatus = document.getElementById('eqNewStatus').value;
+    await this.updateEquipmentStatus(id, newStatus);
+    document.getElementById('eqStatusModal')?.remove();
   }
   
   async updateEquipmentStatus(equipmentId, status) {
@@ -530,7 +601,7 @@ class EquipmentManager {
     const equipmentData = {
       name: name,
       type: type,
-      location_id: parseInt(locationId),
+      branch_id: parseInt(locationId),
       manufacturer: document.getElementById('manufacturer').value,
       model: document.getElementById('model').value,
       serial_number: document.getElementById('serialNumber').value,

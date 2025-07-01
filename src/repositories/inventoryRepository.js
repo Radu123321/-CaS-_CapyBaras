@@ -1,7 +1,54 @@
-const psql = require('../core/psql');
+const Base = require('./_base');
+const pool = require('../core/psql');
 const log = require('../core/logger');
 
-class InventoryRepository {
+class InventoryRepository extends Base {
+  constructor() { super('inventory_stocks'); }
+
+  /**
+   * List current stock for a branch
+   */
+  listStock(branchId) {
+    return pool.query(
+      `SELECT s.*, i.name, i.unit_code
+         FROM inventory_stocks s
+         JOIN consumable_items i USING(item_code)
+        WHERE s.branch_id=$1
+        ORDER BY item_code, expire_date`, [branchId]
+    ).then(r => r.rows);
+  }
+
+  /**
+   * Restock or correction (qty can be negative)
+   * If stock row doesn't exist, it will be created first.
+   */
+  async addTransaction({ branchId, itemCode, qtyDelta, expireDate = null, reason = 'RESTOCK', userId }) {
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+      // ensure stock row exists
+      const { rows } = await client.query(
+        `INSERT INTO inventory_stocks (branch_id,item_code,qty_on_hand,min_qty,expire_date)
+         VALUES ($1,$2,0,0,$3)
+         ON CONFLICT (branch_id,item_code,expire_date) DO UPDATE SET qty_on_hand=inventory_stocks.qty_on_hand
+         RETURNING id`,
+        [branchId, itemCode, expireDate]);
+      const stockId = rows[0].id;
+
+      await client.query(
+        `INSERT INTO inventory_transactions
+           (stock_id, qty_delta, reason_code, created_by)
+         VALUES ($1,$2,$3,$4)`,
+        [stockId, qtyDelta, reason, userId]);
+      await client.query('COMMIT');
+    } catch (e) {
+      await client.query('ROLLBACK');
+      throw e;
+    } finally {
+      client.release();
+    }
+  }
+
   // ==================== RESOURCES ====================
   
   async getAllResources() {
@@ -12,7 +59,7 @@ class InventoryRepository {
       ORDER BY kind, name
     `;
     
-    return await psql.query(query);
+    return await pool.query(query);
   }
   
   async getResourceById(resourceId) {
@@ -22,7 +69,7 @@ class InventoryRepository {
       WHERE resource_id = $1
     `;
     
-    const result = await psql.query(query, [resourceId]);
+    const result = await pool.query(query, [resourceId]);
     return result[0] || null;
   }
   
@@ -35,7 +82,7 @@ class InventoryRepository {
       RETURNING resource_id, name, kind, unit, unit_cost
     `;
     
-    const result = await psql.query(query, [name, kind, unit, unit_cost || 0]);
+    const result = await pool.query(query, [name, kind, unit, unit_cost || 0]);
     return result[0];
   }
   
@@ -52,7 +99,7 @@ class InventoryRepository {
       RETURNING resource_id, name, kind, unit, unit_cost
     `;
     
-    const result = await psql.query(query, [resourceId, name, kind, unit, unit_cost]);
+    const result = await pool.query(query, [resourceId, name, kind, unit, unit_cost]);
     return result[0] || null;
   }
   
@@ -68,7 +115,7 @@ class InventoryRepository {
       WHERE resource_id = $1
     `;
     
-    const usageResult = await psql.query(checkQuery, [resourceId]);
+    const usageResult = await pool.query(checkQuery, [resourceId]);
     const totalUsage = usageResult.reduce((sum, row) => sum + parseInt(row.usage_count), 0);
     
     if (totalUsage > 0) {
@@ -76,74 +123,65 @@ class InventoryRepository {
     }
     
     const query = `DELETE FROM resources WHERE resource_id = $1`;
-    const result = await psql.query(query, [resourceId]);
+    const result = await pool.query(query, [resourceId]);
     
     return result.rowCount > 0;
   }
   
   // ==================== INVENTORY ====================
   
-  async getInventoryByLocation(locationId, includeZero = false) {
-    const whereClause = includeZero ? '' : 'AND i.quantity > 0';
-    
+  async getInventoryByLocation(branchId, includeZero = false) {
+    const whereClause = includeZero ? '' : 'AND s.qty_on_hand > 0';
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.location_id = $1 ${whereClause}
-      ORDER BY r.kind, r.name
-    `;
-    
-    return await psql.query(query, [locationId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.branch_id = $1 ${whereClause}
+       ORDER BY c.name`;
+    return await pool.query(query, [branchId]);
   }
   
-  async getInventoryByResource(resourceId) {
+  async getInventoryByResource(itemCode) {
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.resource_id = $1 AND i.quantity > 0
-      ORDER BY l.name
-    `;
-    
-    return await psql.query(query, [resourceId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty,
+             s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.item_code = $1 AND s.qty_on_hand > 0
+       ORDER BY b.name`;
+    return await pool.query(query, [itemCode]);
   }
   
   async getAllInventory(includeZero = false) {
-    const whereClause = includeZero ? '' : 'WHERE i.quantity > 0';
-    
+    const whereClause = includeZero ? '' : 'WHERE s.qty_on_hand > 0';
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      ${whereClause}
-      ORDER BY l.name, r.kind, r.name
-    `;
-    
-    return await psql.query(query);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+        ${whereClause}
+        ORDER BY b.name, c.name`;
+    return await pool.query(query);
   }
   
-  async getInventoryItem(locationId, resourceId) {
+  async getInventoryItem(branchId, itemCode) {
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.location_id = $1 AND i.resource_id = $2
-    `;
-    
-    const result = await psql.query(query, [locationId, resourceId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.branch_id = $1 AND s.item_code = $2`;
+    const result = await pool.query(query, [branchId, itemCode]);
     return result[0] || null;
   }
   
@@ -158,7 +196,7 @@ class InventoryRepository {
       RETURNING location_id, resource_id, quantity, updated_at
     `;
     
-    const result = await psql.query(query, [locationId, resourceId, quantity]);
+    const result = await pool.query(query, [locationId, resourceId, quantity]);
     return result[0];
   }
   
@@ -173,7 +211,7 @@ class InventoryRepository {
       RETURNING location_id, resource_id, quantity, updated_at
     `;
     
-    const result = await psql.query(query, [locationId, resourceId, adjustment]);
+    const result = await pool.query(query, [locationId, resourceId, adjustment]);
     return result[0];
   }
   
@@ -189,7 +227,7 @@ class InventoryRepository {
       ORDER BY r.kind, r.name
     `;
     
-    return await psql.query(query, [orderId]);
+    return await pool.query(query, [orderId]);
   }
   
   async addOrderResourceUsage(orderId, resourceId, quantity) {
@@ -201,7 +239,7 @@ class InventoryRepository {
       RETURNING order_id, resource_id, quantity
     `;
     
-    const result = await psql.query(query, [orderId, resourceId, quantity]);
+    const result = await pool.query(query, [orderId, resourceId, quantity]);
     return result[0];
   }
   
@@ -216,7 +254,7 @@ class InventoryRepository {
       params = [orderId];
     }
     
-    const result = await psql.query(query, params);
+    const result = await pool.query(query, params);
     return result.rowCount > 0;
   }
   
@@ -244,7 +282,7 @@ class InventoryRepository {
     
     try {
       // Execute transaction
-      await psql.transaction(queries);
+      await pool.transaction(queries);
       return true;
     } catch (error) {
       log.error(`Failed to consume resources: ${error.message}`);
@@ -275,7 +313,7 @@ class InventoryRepository {
     }
     
     try {
-      await psql.transaction(queries);
+      await pool.transaction(queries);
       return true;
     } catch (error) {
       log.error(`Failed to restock resources: ${error.message}`);
@@ -285,19 +323,19 @@ class InventoryRepository {
   
   // ==================== LOW STOCK ALERTS ====================
   
-  async getLowStockItems(threshold = 10) {
+  async getLowStockItems(threshold = 100) {
+    // v3 schema: inventory_stocks (branch_id, item_code, qty_on_hand, min_qty)
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.quantity <= $1 AND i.quantity >= 0
-      ORDER BY i.quantity ASC, l.name, r.name
-    `;
-    
-    return await psql.query(query, [threshold]);
+      SELECT s.branch_id, b.name AS branch_name,
+             s.item_code, c.name AS item_name, c.unit_code,
+             s.qty_on_hand, s.min_qty,
+             (s.qty_on_hand - s.min_qty) AS diff
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.qty_on_hand <= s.min_qty + $1
+       ORDER BY diff ASC, b.name, c.name`;
+    return await pool.query(query, [threshold]);
   }
   
   async getOutOfStockItems() {
@@ -312,7 +350,7 @@ class InventoryRepository {
       ORDER BY l.name, r.name
     `;
     
-    return await psql.query(query);
+    return await pool.query(query);
   }
 }
 

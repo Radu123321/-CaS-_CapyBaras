@@ -352,10 +352,12 @@ async function getDashboard(req, res) {
  */
 async function getEquipmentStatuses(req, res) {
     try {
+        // Align with schema v3 status codes
         const statuses = [
-            'OPERATIVE',
-            'OUT_OF_SERVICE', 
-            'UNDER_MAINTENANCE'
+            'OPERATIONAL',  // equipment working normally
+            'MAINTENANCE', // scheduled or ongoing maintenance
+            'BROKEN',      // broken / requires repair
+            'RETIRED'      // decommissioned, no longer in use
         ];
         
         res.json({

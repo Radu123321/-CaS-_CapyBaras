@@ -9,6 +9,7 @@ const { parseRequest } = require('./json');
 const log = require('./logger');
 const scheduler = require('./scheduler');
 const { performHandshake } = require('./websocket');
+const { auth, logReq, branchScope } = require('./middleware');
 
 // Toggle to enable/disable built-in WebSocket support
 const WEBSOCKET_ENABLED = false;
@@ -291,6 +292,47 @@ router.add('PUT', '/api/exceptions/:id', exceptionController.updateException);
 router.add('PUT', '/api/exceptions/:id/resolve', exceptionController.resolveException);
 router.add('DELETE', '/api/exceptions/:id', exceptionController.deleteException);
 
+const userController = require('../controllers/userController');
+router.add('GET','/api/users', userController.listUsers);
+router.add('POST','/api/users', userController.createUser);
+router.add('GET','/api/users/:id', userController.getUser);
+router.add('PUT','/api/users/:id', userController.updateUser);
+router.add('DELETE','/api/users/:id', userController.deleteUser);
+
+// ----------------------------------------------------------
+// Global middlewares (logging + auth)
+// These are registered AFTER all routes so they apply to every
+// registered path but can still examine req.url for public routes.
+// ----------------------------------------------------------
+
+// Basic request log
+router.use(logReq);
+
+// Protect all API routes except the explicitly public ones
+router.use((req, res, next) => {
+  // List of public (unauthenticated) endpoints
+  const publicPaths = [
+    '/api/ping',
+    '/api/auth/login',
+    '/api/auth/register',
+    '/api/auth/logout',
+    '/api/scheduler/status'
+  ];
+
+  const path = req.url.split('?')[0];
+
+  // Allow CORS pre-flight and public endpoints without auth
+  if (req.method === 'OPTIONS' || publicPaths.includes(path)) {
+    return next();
+  }
+
+  // For everything else require a valid JWT
+  return auth()(req, res, next);
+});
+
+// Branch scope restriction for MANAGER role (must run after auth)
+router.use(branchScope());
+
 // Helper to serve static files
 function serveStatic(filePath, res) {
   fs.stat(filePath, (err, stats) => {
@@ -345,6 +387,20 @@ function serveStatic(filePath, res) {
 }
 
 const server = http.createServer(async (req, res) => {
+  // response helpers
+  res.json = (status, payload) => {
+    if (typeof status !== 'number') { payload = status; status = 200; }
+    res.writeHead(status, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(payload));
+  };
+
+  // Express-like helper so that controller code can use res.status(400).json({...})
+  res.status = (code = 200) => ({
+    json: payload => res.json(code, payload)
+  });
+  res.unauth = () => res.json(401, { success: false, error: 'Unauthorized' });
+  res.forbid  = () => res.json(403, { success: false, error: 'Forbidden' });
+
   const parsedUrl = url.parse(req.url, true);
   const { pathname, query } = parsedUrl;
   log.info(`[REQ] ${req.method} ${pathname}`);

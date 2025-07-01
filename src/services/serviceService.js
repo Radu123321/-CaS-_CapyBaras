@@ -1,91 +1,36 @@
-const log = require('../core/logger');
-const serviceRepository = require('../repositories/serviceRepository');
+const repo = require('../repositories/serviceRepository');
 
-async function createService(serviceData) {
-  const { service_type } = serviceData;
-  
-  log.debug(`ServiceService: Creating service ${service_type}`);
-  
-  try {
-    const result = await serviceRepository.create(serviceData);
-    
-    if (result) {
-      log.info(`ServiceService: Created service ${service_type} with ID ${result.service_id}`);
-      return result;
-    } else {
-      throw new Error('Failed to create service');
-    }
-  } catch (error) {
-    log.error(`ServiceService: Failed to create service ${service_type}: ${error.message}`);
-    throw error;
-  }
-}
-
-async function getAllServices() {
-  log.debug('ServiceService: Getting all services');
-  
-  try {
-    const result = await serviceRepository.findAll();
-    log.debug(`ServiceService: Found ${result.length} services`);
-    return result;
-  } catch (error) {
-    log.error(`ServiceService: Failed to get services: ${error.message}`);
-    throw error;
-  }
-}
-
-async function getServiceById(serviceId) {
-  log.debug(`ServiceService: Getting service by ID ${serviceId}`);
-  
-  try {
-    const result = await serviceRepository.findById(serviceId);
-    return result;
-  } catch (error) {
-    log.error(`ServiceService: Failed to get service ${serviceId}: ${error.message}`);
-    throw error;
-  }
-}
-
-async function updateService(serviceId, serviceData) {
-  log.debug(`ServiceService: Updating service ${serviceId}`);
-  
-  try {
-    const result = await serviceRepository.update(serviceId, serviceData);
-    
-    if (result) {
-      log.info(`ServiceService: Updated service ${serviceId}`);
-      return result;
-    } else {
-      return null;
-    }
-  } catch (error) {
-    log.error(`ServiceService: Failed to update service ${serviceId}: ${error.message}`);
-    throw error;
-  }
-}
-
-async function deleteService(serviceId) {
-  log.debug(`ServiceService: Deleting service ${serviceId}`);
-  
-  try {
-    const result = await serviceRepository.delete(serviceId);
-    
-    if (result) {
-      log.info(`ServiceService: Deleted service ${serviceId}`);
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    log.error(`ServiceService: Failed to delete service ${serviceId}: ${error.message}`);
-    throw error;
-  }
+// Helper to translate legacy controller payload → schema v3 columns
+function normalizePayload(p) {
+  if (!p) return {};
+  return {
+    // category code (service type)
+    categoryCode: p.categoryCode || p.category_code || p.service_type || null,
+    name: p.name || p.service_name || p.description || null,
+    description: p.description || null,
+    basePrice: p.basePrice !== undefined ? p.basePrice : p.base_price,
+    currencyCode: p.currencyCode || p.currency_code || undefined,
+    avgDurationMin: p.avgDurationMin || p.avg_duration_min || 30 // default 30 min
+  };
 }
 
 module.exports = {
-  createService,
-  getAllServices,
-  getServiceById,
-  updateService,
-  deleteService
+  // generic wrappers
+  list: () => repo.list(),
+  get: id => repo.get(id),
+
+  create: data => {
+    const svc = normalizePayload(data);
+    return repo.create(svc, data.requirements || []);
+  },
+
+  update: (id, data = {}) => repo.update(id, normalizePayload(data)),
+  remove: id => repo.delete ? repo.delete(id) : repo.remove(id),
+
+  // controller-friendly aliases
+  getAllServices: () => repo.list(),
+  getServiceById: id => repo.get(id),
+  createService: data => module.exports.create(data),
+  updateService: (id, data) => module.exports.update(id, data),
+  deleteService: id => module.exports.remove(id)
 }; 

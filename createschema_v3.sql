@@ -81,7 +81,8 @@ CREATE TABLE users (
   last_name     TEXT,
   phone         TEXT,
   created_at    TIMESTAMP WITH TIME ZONE DEFAULT now(),
-  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT now()
+  updated_at    TIMESTAMP WITH TIME ZONE DEFAULT now(),
+  approved      BOOLEAN DEFAULT false
 );
 
 CREATE TABLE employees_profiles (
@@ -257,6 +258,21 @@ CREATE TABLE routes (
   created_at     TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
+-- =============================================
+-- 8. Weather snapshots
+-- =============================================
+CREATE TABLE weather_conditions (
+  id             SERIAL PRIMARY KEY,
+  branch_id      INT REFERENCES branches(id) ON DELETE CASCADE,
+  weather_type   TEXT NOT NULL,
+  temperature    DECIMAL(5,2),
+  humidity       DECIMAL(5,2),
+  wind_speed     DECIMAL(5,2),
+  precipitation  DECIMAL(5,2),
+  date           DATE NOT NULL,
+  created_at     TIMESTAMP WITH TIME ZONE DEFAULT now()
+);
+
 -- Recurring orders
 CREATE TABLE recurring_orders (
   id               SERIAL PRIMARY KEY,
@@ -270,7 +286,7 @@ CREATE TABLE recurring_orders (
 );
 
 -- =============================================
--- 8. Audit
+-- 9. Audit
 -- =============================================
 CREATE TABLE audit_log (
   id            BIGSERIAL PRIMARY KEY,

@@ -3,7 +3,7 @@ const log = require('../core/logger');
 
 class ExceptionController {
   constructor() {
-    this.exceptionService = new ExceptionService();
+    this.exceptionService = ExceptionService;
   }
 
   // Creează excepție

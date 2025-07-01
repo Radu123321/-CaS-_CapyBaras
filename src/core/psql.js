@@ -52,7 +52,7 @@ async function query(text, params = []) {
     const duration = Date.now() - start;
     
     log.debug(`SQL executed in ${duration}ms, returned ${result.rowCount} rows`);
-    return result.rows;
+    return result;
   } catch (error) {
     const duration = Date.now() - start;
     log.error(`SQL error after ${duration}ms: ${error.message}`);

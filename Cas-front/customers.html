@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clienți - CaS Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+
+  <div class="customers-container">
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Se încarcă clienții...</p>
+    </div>
+
+    <!-- Customers Content -->
+    <div id="customersContent" class="orders-content">
+      <!-- Header -->
+      <div class="orders-header">
+        <div>
+          <h1 class="orders-title">Gestionare Clienți</h1>
+          <p class="orders-subtitle">Administrează și monitorizează toți clienții</p>
+        </div>
+        <div class="orders-actions">
+          <button class="btn-new-order" id="createCustomerBtn"><span>➕</span> Client Nou</button>
+          <button class="btn-refresh" id="refreshCustomersBtn"><span>🔄</span> Reîmprospătează</button>
+          <a href="dashboard.html" class="btn-back"><span>←</span> Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="orders-stats" id="customersStats">
+        <div class="stat-card completed">
+          <div class="stat-icon">🙍‍♂️</div>
+          <span class="stat-number" id="customersTotalCount">0</span>
+          <div class="stat-label">Clienți Activi</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="orders-filters">
+        <h3 class="filters-title">Filtrează Clienții</h3>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label for="branchFilter">Filială</label>
+            <select id="branchFilter">
+              <option value="">Toate filialele</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="searchInput">Căutare</label>
+            <input type="text" id="searchInput" placeholder="Caută după email, nume..." />
+          </div>
+        </div>
+      </div>
+
+      <!-- Customers Table -->
+      <div class="orders-table-container">
+        <div class="table-header">
+          <h3 class="table-title">Lista Clienților</h3>
+          <div class="table-stats"><span id="customersCount">0 clienți</span></div>
+        </div>
+        <div class="table-overflow">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nume</th>
+                <th>Filială</th>
+                <th>Telefon</th>
+                <th>Creat</th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody">
+              <tr><td colspan="7" class="loading-row">Se încarcă clienții...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="error-state hidden">
+      <div class="error-card">
+        <h2>Eroare la încărcarea clienților</h2>
+        <p id="errorMessage">A apărut o eroare neașteptată.</p>
+        <button class="btn-refresh" id="reloadPageBtn"><span>🔄</span> Reîncarcă Pagina</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/customers.js"></script>
+</body>
+</html> 

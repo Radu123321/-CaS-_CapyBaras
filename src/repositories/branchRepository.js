@@ -39,8 +39,7 @@ module.exports = {
     const { name, address, city, lat, lon, timezone, phone } = data;
     const { rows } = await pool.query(
       `UPDATE branches SET
-         name=$2,address=$3,city=$4,lat=$5,lon=$6,timezone=$7,phone=$8,
-         updated_at = now()
+         name=$2,address=$3,city=$4,lat=$5,lon=$6,timezone=$7,phone=$8
        WHERE id=$1 RETURNING *`,
       [id, name, address, city, lat, lon, timezone, phone]
     );

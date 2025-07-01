@@ -3,7 +3,10 @@ const log = require('../core/logger');
 
 class ShiftController {
   constructor() {
-    this.shiftService = new ShiftService();
+    this.shiftService = ShiftService; // service is plain object
+    Object.getOwnPropertyNames(ShiftController.prototype)
+      .filter(m => m !== 'constructor' && typeof this[m] === 'function')
+      .forEach(m => { this[m] = this[m].bind(this); });
   }
 
   // Creează un schimb nou

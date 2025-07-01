@@ -234,10 +234,16 @@ class Dashboard {
       ],
       'EMPLOYEE': [
         {
+          icon: '⏰',
+          title: 'Schimbul meu',
+          description: 'Pornește / închide tura',
+          href: 'employee-shift.html'
+        },
+        {
           icon: '📋',
-          title: 'Comenzile Mele',
-          description: 'Vezi comenzile atribuite',
-          href: 'my-orders.html'
+          title: 'Comenzile mele',
+          description: 'Listă comenzi atribuite',
+          href: 'orders.html'
         },
         {
           icon: '🗓️',

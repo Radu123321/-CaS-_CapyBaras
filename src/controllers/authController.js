@@ -204,6 +204,10 @@ async function login(req, res) {
     
     const result = await authService.loginUser(loginIdentifier.toLowerCase().trim(), password);
     
+    if (!result) {
+      throw new Error('Invalid credentials');
+    }
+    
     log.info(`Login: Success for user ${loginIdentifier}`);
     res.writeHead(200, { 
       'Content-Type': 'application/json',
