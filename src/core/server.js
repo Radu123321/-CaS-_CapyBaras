@@ -9,7 +9,7 @@ const { parseRequest } = require('./json');
 const log = require('./logger');
 const scheduler = require('./scheduler');
 const { performHandshake } = require('./websocket');
-const { auth, logReq } = require('./middleware');
+const { auth, logReq, branchScope } = require('./middleware');
 
 // Toggle to enable/disable built-in WebSocket support
 const WEBSOCKET_ENABLED = false;
@@ -323,6 +323,9 @@ router.use((req, res, next) => {
   return auth()(req, res, next);
 });
 
+// Branch scope restriction for MANAGER role (must run after auth)
+router.use(branchScope());
+
 // Helper to serve static files
 function serveStatic(filePath, res) {
   fs.stat(filePath, (err, stats) => {
@@ -383,6 +386,11 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(status, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(payload));
   };
+
+  // Express-like helper so that controller code can use res.status(400).json({...})
+  res.status = (code = 200) => ({
+    json: payload => res.json(code, payload)
+  });
   res.unauth = () => res.json(401, { success: false, error: 'Unauthorized' });
   res.forbid  = () => res.json(403, { success: false, error: 'Forbidden' });
 

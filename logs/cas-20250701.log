@@ -1145,3 +1145,1166 @@
 2025-07-01T08:17:39.913Z [INFO] [REQ] GET /api/stats/system-status
 2025-07-01T08:17:39.918Z [INFO] [REQ] GET /api/stats/performance
 2025-07-01T08:17:39.923Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:28:09.372Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:28:09.407Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:28:09.411Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:28:09.464Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:28:09 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:28:11.448Z [INFO] [REQ] POST /api/login
+2025-07-01T08:28:11.450Z [INFO] POST /api/login
+2025-07-01T08:29:15.107Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:29:15.108Z [INFO] POST /api/auth/login
+2025-07-01T08:29:15.108Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:29:15.154Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:29:15.161Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:29:15.162Z [INFO] GET /api/ping
+2025-07-01T08:29:15.166Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:29:15.167Z [INFO] GET /api/scheduler/status
+2025-07-01T08:29:15.170Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:29:15.171Z [INFO] GET /api/locations
+2025-07-01T08:29:15.175Z [INFO] [REQ] GET /api/services
+2025-07-01T08:29:15.175Z [INFO] GET /api/services
+2025-07-01T08:29:15.178Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:29:15.178Z [INFO] GET /api/customers
+2025-07-01T08:29:15.180Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:29:15.180Z [INFO] GET /api/employees
+2025-07-01T08:29:15.184Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:29:15.184Z [INFO] GET /api/orders
+2025-07-01T08:29:15.187Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:29:15.188Z [INFO] GET /api/orders/active
+2025-07-01T08:29:15.192Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:29:15.193Z [INFO] GET /api/transports
+2025-07-01T08:29:15.195Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:29:15.196Z [INFO] GET /api/inventory
+2025-07-01T08:29:15.197Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:29:15.198Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:29:15.201Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T08:29:15.201Z [INFO] GET /api/inventory/alerts
+2025-07-01T08:29:15.203Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:29:15.204Z [INFO] GET /api/equipment
+2025-07-01T08:29:15.207Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T08:29:15.207Z [INFO] GET /api/equipment/dashboard
+2025-07-01T08:29:15.209Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:29:15.209Z [INFO] GET /api/equipment/statuses
+2025-07-01T08:29:15.210Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:29:15.211Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T08:29:15.212Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T08:29:15.212Z [INFO] GET /api/maintenance/overdue
+2025-07-01T08:29:15.214Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:29:15.214Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T08:29:15.218Z [INFO] [REQ] GET /api/shifts
+2025-07-01T08:29:15.218Z [INFO] GET /api/shifts
+2025-07-01T08:29:15.220Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T08:29:15.220Z [INFO] GET /api/recurrences
+2025-07-01T08:29:15.222Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T08:29:15.223Z [INFO] GET /api/weather/current
+2025-07-01T08:29:15.225Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:29:15.225Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:29:15.227Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T08:29:15.227Z [INFO] GET /api/stats/summary
+2025-07-01T08:29:15.228Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:29:15.229Z [INFO] GET /api/stats/system-status
+2025-07-01T08:29:15.230Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:29:15.230Z [INFO] GET /api/stats/performance
+2025-07-01T08:29:15.233Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T08:29:15.234Z [INFO] GET /api/stats/kpis
+2025-07-01T08:29:15.237Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:29:15.238Z [INFO] GET /api/notifications/recent
+2025-07-01T08:29:15.240Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T08:29:15.240Z [INFO] POST /api/equipment/check-status
+2025-07-01T08:31:17.325Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:31:17.326Z [INFO] POST /api/auth/login
+2025-07-01T08:31:17.326Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:31:17.385Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:31:17.393Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:31:17.394Z [INFO] GET /api/ping
+2025-07-01T08:31:17.396Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:31:17.397Z [INFO] GET /api/scheduler/status
+2025-07-01T08:31:17.399Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:31:17.399Z [INFO] GET /api/locations
+2025-07-01T08:31:17.400Z [INFO] [REQ] GET /api/services
+2025-07-01T08:31:17.401Z [INFO] GET /api/services
+2025-07-01T08:31:17.403Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:31:17.403Z [INFO] GET /api/customers
+2025-07-01T08:31:17.407Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:31:17.408Z [INFO] GET /api/employees
+2025-07-01T08:31:17.410Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:31:17.410Z [INFO] GET /api/orders
+2025-07-01T08:31:17.412Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:31:17.412Z [INFO] GET /api/orders/active
+2025-07-01T08:31:17.414Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:31:17.415Z [INFO] GET /api/transports
+2025-07-01T08:31:17.416Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:31:17.417Z [INFO] GET /api/inventory
+2025-07-01T08:31:17.418Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:31:17.418Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:31:17.421Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T08:31:17.422Z [INFO] GET /api/inventory/alerts
+2025-07-01T08:31:17.426Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:31:17.426Z [INFO] GET /api/equipment
+2025-07-01T08:31:17.428Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T08:31:17.428Z [INFO] GET /api/equipment/dashboard
+2025-07-01T08:31:17.430Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:31:17.430Z [INFO] GET /api/equipment/statuses
+2025-07-01T08:31:17.432Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:31:17.432Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T08:31:17.433Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T08:31:17.433Z [INFO] GET /api/maintenance/overdue
+2025-07-01T08:31:17.435Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:31:17.435Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T08:31:17.437Z [INFO] [REQ] GET /api/shifts
+2025-07-01T08:31:17.438Z [INFO] GET /api/shifts
+2025-07-01T08:31:17.441Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T08:31:17.442Z [INFO] GET /api/recurrences
+2025-07-01T08:31:17.444Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T08:31:17.445Z [INFO] GET /api/weather/current
+2025-07-01T08:31:17.446Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:31:17.447Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:31:17.448Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T08:31:17.448Z [INFO] GET /api/stats/summary
+2025-07-01T08:31:17.449Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:31:17.450Z [INFO] GET /api/stats/system-status
+2025-07-01T08:31:17.451Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:31:17.451Z [INFO] GET /api/stats/performance
+2025-07-01T08:31:17.453Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T08:31:17.454Z [INFO] GET /api/stats/kpis
+2025-07-01T08:31:17.458Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:31:17.458Z [INFO] GET /api/notifications/recent
+2025-07-01T08:31:17.459Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T08:31:17.460Z [INFO] POST /api/equipment/check-status
+2025-07-01T08:31:58.297Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:31:58.327Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:31:58.331Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:31:58.377Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:31:58 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:32:12.832Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:32:12.833Z [INFO] POST /api/auth/login
+2025-07-01T08:32:12.834Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:32:12.839Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:32:12.846Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:32:12.846Z [INFO] GET /api/ping
+2025-07-01T08:32:12.848Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:32:12.849Z [INFO] GET /api/scheduler/status
+2025-07-01T08:32:12.852Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:32:12.853Z [INFO] GET /api/locations
+2025-07-01T08:32:12.856Z [INFO] [REQ] GET /api/services
+2025-07-01T08:32:12.857Z [INFO] GET /api/services
+2025-07-01T08:32:12.860Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:32:12.860Z [INFO] GET /api/customers
+2025-07-01T08:32:12.862Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:32:12.862Z [INFO] GET /api/employees
+2025-07-01T08:32:12.864Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:32:12.864Z [INFO] GET /api/orders
+2025-07-01T08:32:12.866Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:32:12.866Z [INFO] GET /api/orders/active
+2025-07-01T08:32:12.870Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:32:12.870Z [INFO] GET /api/transports
+2025-07-01T08:32:12.872Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:32:12.873Z [INFO] GET /api/inventory
+2025-07-01T08:32:12.876Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:32:12.877Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:32:12.878Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T08:32:12.879Z [INFO] GET /api/inventory/alerts
+2025-07-01T08:32:12.880Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:32:12.880Z [INFO] GET /api/equipment
+2025-07-01T08:32:12.882Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T08:32:12.882Z [INFO] GET /api/equipment/dashboard
+2025-07-01T08:32:12.885Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:32:12.886Z [INFO] GET /api/equipment/statuses
+2025-07-01T08:32:12.888Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:32:12.888Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T08:32:12.890Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T08:32:12.891Z [INFO] GET /api/maintenance/overdue
+2025-07-01T08:32:12.893Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:32:12.894Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T08:32:12.895Z [INFO] [REQ] GET /api/shifts
+2025-07-01T08:32:12.895Z [INFO] GET /api/shifts
+2025-07-01T08:32:12.896Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T08:32:12.897Z [INFO] GET /api/recurrences
+2025-07-01T08:32:12.898Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T08:32:12.899Z [INFO] GET /api/weather/current
+2025-07-01T08:32:12.901Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:32:12.902Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:32:12.904Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T08:32:12.904Z [INFO] GET /api/stats/summary
+2025-07-01T08:32:12.907Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:32:12.907Z [INFO] GET /api/stats/system-status
+2025-07-01T08:32:12.909Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:32:12.909Z [INFO] GET /api/stats/performance
+2025-07-01T08:32:12.910Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T08:32:12.911Z [INFO] GET /api/stats/kpis
+2025-07-01T08:32:12.912Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:32:12.912Z [INFO] GET /api/notifications/recent
+2025-07-01T08:32:12.913Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T08:32:12.913Z [INFO] POST /api/equipment/check-status
+2025-07-01T08:53:16.035Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T08:53:16.037Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:53:16.038Z [INFO] POST /api/auth/login
+2025-07-01T08:53:16.038Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:53:16.115Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:53:17.682Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T08:53:17.684Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:53:17.685Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:53:17.861Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:17.863Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:17.864Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T08:53:17.864Z [INFO] GET /api/orders
+2025-07-01T08:53:17.882Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T08:53:17.884Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:53:17.885Z [INFO] GET /api/stats/system-status
+2025-07-01T08:53:17.895Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T08:53:17.897Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:53:17.898Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T08:53:17.902Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T08:53:17.906Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:53:17.907Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T08:53:19.749Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:53:19.754Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:19.755Z [INFO] GET /api/locations
+2025-07-01T08:53:19.756Z [INFO] GET /api/locations
+2025-07-01T08:53:21.509Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:53:21.510Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:53:21.523Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:21.524Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T08:53:21.525Z [INFO] GET /api/orders
+2025-07-01T08:53:21.537Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:53:21.538Z [INFO] GET /api/stats/system-status
+2025-07-01T08:53:21.547Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:53:21.548Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T08:53:21.553Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:53:21.554Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T08:53:22.312Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:22.315Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:53:22.316Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:53:22.317Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:22.317Z [INFO] GET /api/locations
+2025-07-01T08:53:22.318Z [INFO] GET /api/locations
+2025-07-01T08:53:22.319Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:22.320Z [INFO] GET /api/orders
+2025-07-01T08:53:22.320Z [INFO] GET /api/orders
+2025-07-01T08:53:22.321Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:22.322Z [INFO] GET /api/customers
+2025-07-01T08:53:22.322Z [INFO] GET /api/customers
+2025-07-01T08:53:22.324Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:22.325Z [INFO] GET /api/services
+2025-07-01T08:53:22.326Z [INFO] GET /api/services
+2025-07-01T08:53:26.357Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:26.358Z [INFO] GET /api/orders
+2025-07-01T08:53:26.358Z [INFO] GET /api/orders
+2025-07-01T08:53:26.359Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:53:26.359Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:26.360Z [INFO] GET /api/customers
+2025-07-01T08:53:26.360Z [INFO] GET /api/customers
+2025-07-01T08:53:26.361Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:26.362Z [INFO] GET /api/services
+2025-07-01T08:53:26.363Z [INFO] GET /api/services
+2025-07-01T08:53:26.365Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:26.366Z [INFO] GET /api/locations
+2025-07-01T08:53:26.366Z [INFO] GET /api/locations
+2025-07-01T08:53:26.663Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T08:53:26.667Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:53:26.668Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:53:26.682Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:26.688Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:26.689Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T08:53:26.689Z [INFO] GET /api/orders
+2025-07-01T08:53:26.695Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T08:53:26.699Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:53:26.700Z [INFO] GET /api/stats/system-status
+2025-07-01T08:53:26.708Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T08:53:26.711Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:53:26.712Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T08:53:26.717Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T08:53:26.720Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:53:26.721Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T08:53:27.705Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:53:27.706Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:53:27.710Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:27.712Z [INFO] GET /api/locations
+2025-07-01T08:53:27.713Z [INFO] GET /api/locations
+2025-07-01T08:53:27.714Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:27.715Z [INFO] GET /api/customers
+2025-07-01T08:53:27.715Z [INFO] GET /api/customers
+2025-07-01T08:53:27.716Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:27.716Z [INFO] GET /api/services
+2025-07-01T08:53:27.717Z [INFO] GET /api/services
+2025-07-01T08:53:27.729Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:27.734Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:27.735Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:53:27.735Z [INFO] GET /api/orders
+2025-07-01T08:53:27.750Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:53:27.753Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:53:27.754Z [INFO] GET /api/stats/appointments
+2025-07-01T08:53:35.649Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:53:35.650Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:53:35.650Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:53:35.652Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:35.654Z [INFO] GET /api/customers
+2025-07-01T08:53:35.655Z [INFO] GET /api/customers
+2025-07-01T08:53:35.657Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:35.657Z [INFO] GET /api/services
+2025-07-01T08:53:35.658Z [INFO] GET /api/services
+2025-07-01T08:53:35.658Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:35.659Z [INFO] GET /api/locations
+2025-07-01T08:53:35.660Z [INFO] GET /api/locations
+2025-07-01T08:53:35.679Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:35.682Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:35.683Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:53:35.683Z [INFO] GET /api/orders
+2025-07-01T08:53:35.697Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:53:35.699Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:53:35.700Z [INFO] GET /api/stats/appointments
+2025-07-01T08:53:51.524Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:53:51.525Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:53:51.525Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:53:51.531Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:51.532Z [INFO] GET /api/customers
+2025-07-01T08:53:51.532Z [INFO] GET /api/customers
+2025-07-01T08:53:51.533Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:51.533Z [INFO] GET /api/services
+2025-07-01T08:53:51.534Z [INFO] GET /api/services
+2025-07-01T08:53:51.534Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:51.535Z [INFO] GET /api/locations
+2025-07-01T08:53:51.535Z [INFO] GET /api/locations
+2025-07-01T08:53:51.547Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:53:51.549Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:51.550Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:53:51.551Z [INFO] GET /api/orders
+2025-07-01T08:53:51.561Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:53:51.564Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:53:51.564Z [INFO] GET /api/stats/appointments
+2025-07-01T08:53:52.780Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:53:52.780Z [INFO] GET /api/customers
+2025-07-01T08:53:52.781Z [INFO] GET /api/customers
+2025-07-01T08:53:52.781Z [INFO] [REQ] GET /api/services
+2025-07-01T08:53:52.782Z [INFO] GET /api/services
+2025-07-01T08:53:52.782Z [INFO] GET /api/services
+2025-07-01T08:53:52.782Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:53:52.782Z [INFO] GET /api/locations
+2025-07-01T08:53:52.783Z [INFO] GET /api/locations
+2025-07-01T08:53:52.792Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:53:52.793Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:53:52.793Z [INFO] GET /api/orders
+2025-07-01T08:53:52.800Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:53:52.800Z [INFO] GET /api/stats/appointments
+2025-07-01T08:54:30.837Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:54:30.838Z [INFO] POST /api/auth/login
+2025-07-01T08:54:30.839Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:54:30.878Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:55:44.363Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:55:44.364Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:55:44.365Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:55:44.389Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:55:44.390Z [INFO] GET /api/customers
+2025-07-01T08:55:44.391Z [INFO] GET /api/customers
+2025-07-01T08:55:44.392Z [INFO] [REQ] GET /api/services
+2025-07-01T08:55:44.393Z [INFO] GET /api/services
+2025-07-01T08:55:44.394Z [INFO] GET /api/services
+2025-07-01T08:55:44.395Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:55:44.396Z [INFO] GET /api/locations
+2025-07-01T08:55:44.396Z [INFO] GET /api/locations
+2025-07-01T08:55:44.495Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:55:44.497Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:55:44.498Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:55:44.498Z [INFO] GET /api/orders
+2025-07-01T08:55:44.508Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:55:44.510Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:55:44.510Z [INFO] GET /api/stats/appointments
+2025-07-01T08:55:50.126Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:55:50.127Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:55:50.128Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:55:50.129Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:55:50.130Z [INFO] GET /api/customers
+2025-07-01T08:55:50.130Z [INFO] GET /api/customers
+2025-07-01T08:55:50.131Z [INFO] [REQ] GET /api/services
+2025-07-01T08:55:50.132Z [INFO] GET /api/services
+2025-07-01T08:55:50.132Z [INFO] GET /api/services
+2025-07-01T08:55:50.133Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:55:50.133Z [INFO] GET /api/locations
+2025-07-01T08:55:50.133Z [INFO] GET /api/locations
+2025-07-01T08:55:50.148Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:55:50.150Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:55:50.151Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:55:50.152Z [INFO] GET /api/orders
+2025-07-01T08:55:50.163Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:55:50.166Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:55:50.166Z [INFO] GET /api/stats/appointments
+2025-07-01T08:55:55.386Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:55:55.386Z [INFO] POST /api/auth/login
+2025-07-01T08:55:55.386Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:55:55.388Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:55:55.397Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:55:55.398Z [INFO] GET /api/ping
+2025-07-01T08:55:55.400Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:55:55.400Z [INFO] GET /api/scheduler/status
+2025-07-01T08:55:55.402Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:55:55.402Z [INFO] GET /api/locations
+2025-07-01T08:55:55.405Z [INFO] [REQ] GET /api/services
+2025-07-01T08:55:55.406Z [INFO] GET /api/services
+2025-07-01T08:55:55.410Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:55:55.411Z [INFO] GET /api/customers
+2025-07-01T08:55:55.413Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:55:55.413Z [INFO] GET /api/employees
+2025-07-01T08:55:55.415Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:55:55.416Z [INFO] GET /api/orders
+2025-07-01T08:55:55.418Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:55:55.418Z [INFO] GET /api/orders/active
+2025-07-01T08:55:55.422Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:55:55.422Z [INFO] GET /api/transports
+2025-07-01T08:55:55.426Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:55:55.427Z [INFO] GET /api/inventory
+2025-07-01T08:55:55.430Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:55:55.430Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:55:55.432Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T08:55:55.432Z [INFO] GET /api/inventory/alerts
+2025-07-01T08:55:55.434Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:55:55.435Z [INFO] GET /api/equipment
+2025-07-01T08:55:55.437Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T08:55:55.437Z [INFO] GET /api/equipment/dashboard
+2025-07-01T08:55:55.439Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:55:55.440Z [INFO] GET /api/equipment/statuses
+2025-07-01T08:55:55.444Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:55:55.445Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T08:55:55.447Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T08:55:55.447Z [INFO] GET /api/maintenance/overdue
+2025-07-01T08:55:55.449Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:55:55.449Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T08:55:55.451Z [INFO] [REQ] GET /api/shifts
+2025-07-01T08:55:55.452Z [INFO] GET /api/shifts
+2025-07-01T08:55:55.453Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T08:55:55.454Z [INFO] GET /api/recurrences
+2025-07-01T08:55:55.456Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T08:55:55.457Z [INFO] GET /api/weather/current
+2025-07-01T08:55:55.461Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:55:55.461Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:55:55.462Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T08:55:55.463Z [INFO] GET /api/stats/summary
+2025-07-01T08:55:55.464Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:55:55.464Z [INFO] GET /api/stats/system-status
+2025-07-01T08:55:55.466Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:55:55.466Z [INFO] GET /api/stats/performance
+2025-07-01T08:55:55.467Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T08:55:55.467Z [INFO] GET /api/stats/kpis
+2025-07-01T08:55:55.468Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:55:55.468Z [INFO] GET /api/notifications/recent
+2025-07-01T08:55:55.469Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T08:55:55.470Z [INFO] POST /api/equipment/check-status
+2025-07-01T08:56:42.523Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T08:56:42.524Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T08:56:42.525Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T08:56:42.527Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:56:42.528Z [INFO] GET /api/customers
+2025-07-01T08:56:42.528Z [INFO] GET /api/customers
+2025-07-01T08:56:42.530Z [INFO] [REQ] GET /api/services
+2025-07-01T08:56:42.530Z [INFO] GET /api/services
+2025-07-01T08:56:42.531Z [INFO] GET /api/services
+2025-07-01T08:56:42.532Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:56:42.532Z [INFO] GET /api/locations
+2025-07-01T08:56:42.532Z [INFO] GET /api/locations
+2025-07-01T08:56:42.621Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T08:56:42.623Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:56:42.623Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:56:42.624Z [INFO] GET /api/orders
+2025-07-01T08:56:42.635Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T08:56:42.637Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:56:42.638Z [INFO] GET /api/stats/appointments
+2025-07-01T08:56:43.127Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:56:43.127Z [INFO] GET /api/customers
+2025-07-01T08:56:43.128Z [INFO] GET /api/customers
+2025-07-01T08:56:43.129Z [INFO] [REQ] GET /api/services
+2025-07-01T08:56:43.129Z [INFO] GET /api/services
+2025-07-01T08:56:43.129Z [INFO] GET /api/services
+2025-07-01T08:56:43.130Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:56:43.130Z [INFO] GET /api/locations
+2025-07-01T08:56:43.131Z [INFO] GET /api/locations
+2025-07-01T08:56:43.143Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:56:43.144Z [INFO] GET /api/orders?page=1&limit=10&include_customer=true&include_service=true&include_location=true
+2025-07-01T08:56:43.144Z [INFO] GET /api/orders
+2025-07-01T08:56:43.154Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T08:56:43.155Z [INFO] GET /api/stats/appointments
+2025-07-01T08:57:47.359Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:57:47.406Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:57:47.408Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:57:47.457Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:57:47 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:58:41.165Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T08:58:41.166Z [INFO] POST /api/auth/login
+2025-07-01T08:58:41.167Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:58:41.219Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:58:41.227Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:58:41.227Z [INFO] GET /api/ping
+2025-07-01T08:58:41.230Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:58:41.230Z [INFO] GET /api/scheduler/status
+2025-07-01T08:58:41.235Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:58:41.236Z [INFO] GET /api/locations
+2025-07-01T08:58:41.239Z [INFO] [REQ] GET /api/services
+2025-07-01T08:58:41.240Z [INFO] GET /api/services
+2025-07-01T08:58:41.242Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:58:41.242Z [INFO] GET /api/customers
+2025-07-01T08:58:41.245Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:58:41.245Z [INFO] GET /api/employees
+2025-07-01T08:58:41.248Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:58:41.249Z [INFO] GET /api/orders
+2025-07-01T08:58:41.253Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:58:41.254Z [INFO] GET /api/orders/active
+2025-07-01T08:58:41.257Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:58:41.258Z [INFO] GET /api/transports
+2025-07-01T08:58:41.259Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:58:41.260Z [INFO] GET /api/inventory
+2025-07-01T08:58:41.262Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:58:41.262Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:58:41.264Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T08:58:41.265Z [INFO] GET /api/inventory/alerts
+2025-07-01T08:58:41.268Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:58:41.269Z [INFO] GET /api/equipment
+2025-07-01T08:58:41.273Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T08:58:41.273Z [INFO] GET /api/equipment/dashboard
+2025-07-01T08:58:41.275Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:58:41.275Z [INFO] GET /api/equipment/statuses
+2025-07-01T08:58:41.277Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:58:41.277Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T08:58:41.279Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T08:58:41.280Z [INFO] GET /api/maintenance/overdue
+2025-07-01T08:58:41.282Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:58:41.282Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T08:58:41.285Z [INFO] [REQ] GET /api/shifts
+2025-07-01T08:58:41.286Z [INFO] GET /api/shifts
+2025-07-01T08:58:41.288Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T08:58:41.289Z [INFO] GET /api/recurrences
+2025-07-01T08:58:41.291Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T08:58:41.292Z [INFO] GET /api/weather/current
+2025-07-01T08:58:41.294Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:58:41.294Z [INFO] GET /api/stats/dashboard
+2025-07-01T08:58:41.296Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T08:58:41.296Z [INFO] GET /api/stats/summary
+2025-07-01T08:58:41.297Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:58:41.298Z [INFO] GET /api/stats/system-status
+2025-07-01T08:58:41.300Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:58:41.301Z [INFO] GET /api/stats/performance
+2025-07-01T08:58:41.304Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T08:58:41.304Z [INFO] GET /api/stats/kpis
+2025-07-01T08:58:41.306Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:58:41.306Z [INFO] GET /api/notifications/recent
+2025-07-01T08:58:41.308Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T08:58:41.309Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:01:20.493Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:01:20.494Z [INFO] POST /api/auth/login
+2025-07-01T09:01:20.494Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:01:20.544Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T09:01:20.551Z [INFO] [REQ] GET /api/ping
+2025-07-01T09:01:20.552Z [INFO] GET /api/ping
+2025-07-01T09:01:20.556Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T09:01:20.556Z [INFO] GET /api/scheduler/status
+2025-07-01T09:01:20.558Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:01:20.558Z [INFO] GET /api/locations
+2025-07-01T09:01:20.558Z [INFO] GET /api/locations
+2025-07-01T09:01:20.562Z [INFO] [REQ] GET /api/services
+2025-07-01T09:01:20.563Z [INFO] GET /api/services
+2025-07-01T09:01:20.563Z [INFO] GET /api/services
+2025-07-01T09:01:20.570Z [INFO] [REQ] GET /api/customers
+2025-07-01T09:01:20.570Z [INFO] GET /api/customers
+2025-07-01T09:01:20.571Z [INFO] GET /api/customers
+2025-07-01T09:01:20.584Z [INFO] [REQ] GET /api/employees
+2025-07-01T09:01:20.586Z [INFO] GET /api/employees
+2025-07-01T09:01:20.586Z [INFO] GET /api/employees
+2025-07-01T09:01:20.597Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:01:20.597Z [INFO] GET /api/orders
+2025-07-01T09:01:20.598Z [INFO] GET /api/orders
+2025-07-01T09:01:20.609Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T09:01:20.609Z [INFO] GET /api/orders/active
+2025-07-01T09:01:20.610Z [INFO] GET /api/orders/active
+2025-07-01T09:01:20.619Z [INFO] [REQ] GET /api/transports
+2025-07-01T09:01:20.620Z [INFO] GET /api/transports
+2025-07-01T09:01:20.631Z [INFO] [REQ] GET /api/inventory
+2025-07-01T09:01:20.631Z [INFO] GET /api/inventory
+2025-07-01T09:01:20.632Z [INFO] GET /api/inventory
+2025-07-01T09:01:20.641Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T09:01:20.641Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:01:20.642Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:01:20.646Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T09:01:20.646Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:01:20.646Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:01:20.650Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:01:20.651Z [INFO] GET /api/equipment
+2025-07-01T09:01:20.660Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T09:01:20.661Z [INFO] GET /api/equipment/dashboard
+2025-07-01T09:01:20.664Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T09:01:20.665Z [INFO] GET /api/equipment/statuses
+2025-07-01T09:01:20.668Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T09:01:20.669Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T09:01:20.672Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T09:01:20.673Z [INFO] GET /api/maintenance/overdue
+2025-07-01T09:01:20.673Z [ERROR] MaintenanceController.getOverdue: Cannot read properties of undefined (reading 'getOverdue')
+2025-07-01T09:01:20.675Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T09:01:20.675Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T09:01:20.678Z [INFO] [REQ] GET /api/shifts
+2025-07-01T09:01:20.678Z [INFO] GET /api/shifts
+2025-07-01T09:01:20.679Z [ERROR] ShiftController.getAllShifts: Cannot read properties of undefined (reading 'getAllShifts')
+2025-07-01T09:01:20.681Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T09:01:20.681Z [INFO] GET /api/recurrences
+2025-07-01T09:01:20.682Z [ERROR] RecurrenceController.getAllRecurrences: Cannot read properties of undefined (reading 'getAllRecurrences')
+2025-07-01T09:01:20.685Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T09:11:00.138Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T09:11:00.177Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T09:11:00.179Z [INFO] Minimal server listening on port 8000
+2025-07-01T09:11:00.231Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 12:11:00 GMT+0300 (Eastern European Summer Time)
+2025-07-01T09:11:02.254Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:11:02.257Z [INFO] POST /api/auth/login
+2025-07-01T09:11:02.257Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:11:02.266Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T09:11:02.280Z [INFO] [REQ] GET /api/ping
+2025-07-01T09:11:02.281Z [INFO] GET /api/ping
+2025-07-01T09:11:02.286Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T09:11:02.286Z [INFO] GET /api/scheduler/status
+2025-07-01T09:11:02.290Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:11:02.291Z [INFO] GET /api/locations
+2025-07-01T09:11:02.291Z [INFO] GET /api/locations
+2025-07-01T09:11:02.301Z [INFO] [REQ] GET /api/services
+2025-07-01T09:11:02.301Z [INFO] GET /api/services
+2025-07-01T09:11:02.302Z [INFO] GET /api/services
+2025-07-01T09:11:02.309Z [INFO] [REQ] GET /api/customers
+2025-07-01T09:11:02.310Z [INFO] GET /api/customers
+2025-07-01T09:11:02.312Z [INFO] GET /api/customers
+2025-07-01T09:11:02.331Z [INFO] [REQ] GET /api/employees
+2025-07-01T09:11:02.332Z [INFO] GET /api/employees
+2025-07-01T09:11:02.332Z [INFO] GET /api/employees
+2025-07-01T09:11:02.343Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:11:02.343Z [INFO] GET /api/orders
+2025-07-01T09:11:02.344Z [INFO] GET /api/orders
+2025-07-01T09:11:02.355Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T09:11:02.356Z [INFO] GET /api/orders/active
+2025-07-01T09:11:02.356Z [INFO] GET /api/orders/active
+2025-07-01T09:11:02.367Z [INFO] [REQ] GET /api/transports
+2025-07-01T09:11:02.368Z [INFO] GET /api/transports
+2025-07-01T09:11:02.382Z [INFO] [REQ] GET /api/inventory
+2025-07-01T09:11:02.382Z [INFO] GET /api/inventory
+2025-07-01T09:11:02.383Z [INFO] GET /api/inventory
+2025-07-01T09:11:02.390Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T09:11:02.390Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:11:02.391Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:11:02.397Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T09:11:02.397Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:11:02.398Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:11:02.401Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:11:02.401Z [INFO] GET /api/equipment
+2025-07-01T09:11:02.411Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T09:11:02.412Z [INFO] GET /api/equipment/dashboard
+2025-07-01T09:11:02.416Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T09:11:02.417Z [INFO] GET /api/equipment/statuses
+2025-07-01T09:11:02.419Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T09:11:02.420Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T09:11:02.423Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T09:11:02.424Z [INFO] GET /api/maintenance/overdue
+2025-07-01T09:11:02.429Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T09:11:02.430Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T09:11:02.435Z [INFO] [REQ] GET /api/shifts
+2025-07-01T09:11:02.435Z [INFO] GET /api/shifts
+2025-07-01T09:11:02.953Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T09:11:02.954Z [INFO] GET /api/recurrences
+2025-07-01T09:11:02.954Z [ERROR] RecurrenceController.getAllRecurrences: Cannot convert object to primitive value
+2025-07-01T09:11:02.955Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T09:11:02.955Z [INFO] GET /api/weather/current
+2025-07-01T09:11:02.956Z [ERROR] Error in getCurrentWeatherAll:
+2025-07-01T09:11:02.958Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:11:02.959Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:11:03.013Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T09:11:03.014Z [INFO] GET /api/stats/summary
+2025-07-01T09:11:03.016Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:11:03.016Z [INFO] GET /api/stats/system-status
+2025-07-01T09:11:03.023Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:11:03.023Z [INFO] GET /api/stats/performance
+2025-07-01T09:11:03.028Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T09:11:03.029Z [INFO] GET /api/stats/kpis
+2025-07-01T09:11:03.033Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:11:03.033Z [INFO] GET /api/notifications/recent
+2025-07-01T09:11:03.036Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T09:11:03.036Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:12:52.902Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T09:12:52.938Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T09:12:52.941Z [INFO] Minimal server listening on port 8000
+2025-07-01T09:12:52.993Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 12:12:52 GMT+0300 (Eastern European Summer Time)
+2025-07-01T09:12:56.030Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:12:56.032Z [INFO] POST /api/auth/login
+2025-07-01T09:12:56.033Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:12:56.040Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T09:12:56.049Z [INFO] [REQ] GET /api/ping
+2025-07-01T09:12:56.050Z [INFO] GET /api/ping
+2025-07-01T09:12:56.056Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T09:12:56.057Z [INFO] GET /api/scheduler/status
+2025-07-01T09:12:56.061Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:12:56.061Z [INFO] GET /api/locations
+2025-07-01T09:12:56.062Z [INFO] GET /api/locations
+2025-07-01T09:12:56.071Z [INFO] [REQ] GET /api/services
+2025-07-01T09:12:56.071Z [INFO] GET /api/services
+2025-07-01T09:12:56.072Z [INFO] GET /api/services
+2025-07-01T09:12:56.079Z [INFO] [REQ] GET /api/customers
+2025-07-01T09:12:56.080Z [INFO] GET /api/customers
+2025-07-01T09:12:56.080Z [INFO] GET /api/customers
+2025-07-01T09:12:56.098Z [INFO] [REQ] GET /api/employees
+2025-07-01T09:12:56.099Z [INFO] GET /api/employees
+2025-07-01T09:12:56.099Z [INFO] GET /api/employees
+2025-07-01T09:12:56.113Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:12:56.113Z [INFO] GET /api/orders
+2025-07-01T09:12:56.114Z [INFO] GET /api/orders
+2025-07-01T09:12:56.126Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T09:12:56.127Z [INFO] GET /api/orders/active
+2025-07-01T09:12:56.127Z [INFO] GET /api/orders/active
+2025-07-01T09:12:56.139Z [INFO] [REQ] GET /api/transports
+2025-07-01T09:12:56.140Z [INFO] GET /api/transports
+2025-07-01T09:12:56.156Z [INFO] [REQ] GET /api/inventory
+2025-07-01T09:12:56.157Z [INFO] GET /api/inventory
+2025-07-01T09:12:56.157Z [INFO] GET /api/inventory
+2025-07-01T09:12:56.168Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T09:12:56.170Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:12:56.171Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:12:56.175Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T09:12:56.176Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:12:56.176Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:12:56.181Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:12:56.181Z [INFO] GET /api/equipment
+2025-07-01T09:12:56.194Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T09:12:56.194Z [INFO] GET /api/equipment/dashboard
+2025-07-01T09:12:56.199Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T09:12:56.199Z [INFO] GET /api/equipment/statuses
+2025-07-01T09:12:56.205Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T09:12:56.205Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T09:12:56.209Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T09:12:56.210Z [INFO] GET /api/maintenance/overdue
+2025-07-01T09:12:56.213Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T09:12:56.214Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T09:12:56.866Z [INFO] [REQ] GET /api/shifts
+2025-07-01T09:12:56.866Z [INFO] GET /api/shifts
+2025-07-01T09:12:56.872Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T09:12:56.873Z [INFO] GET /api/recurrences
+2025-07-01T09:12:56.875Z [ERROR] SQL error after 2ms: syntax error at or near "SELECT"
+2025-07-01T09:12:56.875Z [ERROR] Failed query: SELECT * FROM recurring_orders WHERE SELECT * FROM recurring_orders WHERE TRUE
+2025-07-01T09:12:56.876Z [ERROR] RecurrenceController.getAllRecurrences: syntax error at or near "SELECT"
+2025-07-01T09:12:56.879Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T09:12:56.880Z [INFO] GET /api/weather/current
+2025-07-01T09:12:56.883Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:12:56.884Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:12:56.944Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T09:12:56.945Z [INFO] GET /api/stats/summary
+2025-07-01T09:12:56.948Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:12:56.948Z [INFO] GET /api/stats/system-status
+2025-07-01T09:12:56.955Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:12:56.955Z [INFO] GET /api/stats/performance
+2025-07-01T09:12:56.959Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T09:12:56.959Z [INFO] GET /api/stats/kpis
+2025-07-01T09:12:56.963Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:12:56.964Z [INFO] GET /api/notifications/recent
+2025-07-01T09:12:56.966Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T09:12:56.967Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:21:23.310Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T09:21:23.350Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T09:21:23.353Z [INFO] Minimal server listening on port 8000
+2025-07-01T09:21:23.407Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 12:21:23 GMT+0300 (Eastern European Summer Time)
+2025-07-01T09:21:25.571Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:21:25.574Z [INFO] POST /api/auth/login
+2025-07-01T09:21:25.575Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:21:25.579Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T09:21:25.587Z [INFO] [REQ] GET /api/ping
+2025-07-01T09:21:25.588Z [INFO] GET /api/ping
+2025-07-01T09:21:25.593Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T09:21:25.593Z [INFO] GET /api/scheduler/status
+2025-07-01T09:21:25.595Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:21:25.596Z [INFO] GET /api/locations
+2025-07-01T09:21:25.596Z [INFO] GET /api/locations
+2025-07-01T09:21:25.602Z [INFO] [REQ] GET /api/services
+2025-07-01T09:21:25.602Z [INFO] GET /api/services
+2025-07-01T09:21:25.603Z [INFO] GET /api/services
+2025-07-01T09:21:25.610Z [INFO] [REQ] GET /api/customers
+2025-07-01T09:21:25.610Z [INFO] GET /api/customers
+2025-07-01T09:21:25.611Z [INFO] GET /api/customers
+2025-07-01T09:21:25.623Z [INFO] [REQ] GET /api/employees
+2025-07-01T09:21:25.624Z [INFO] GET /api/employees
+2025-07-01T09:21:25.625Z [INFO] GET /api/employees
+2025-07-01T09:21:25.635Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:21:25.635Z [INFO] GET /api/orders
+2025-07-01T09:21:25.636Z [INFO] GET /api/orders
+2025-07-01T09:21:25.644Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T09:21:25.645Z [INFO] GET /api/orders/active
+2025-07-01T09:21:25.645Z [INFO] GET /api/orders/active
+2025-07-01T09:21:25.652Z [INFO] [REQ] GET /api/transports
+2025-07-01T09:21:25.652Z [INFO] GET /api/transports
+2025-07-01T09:21:25.665Z [INFO] [REQ] GET /api/inventory
+2025-07-01T09:21:25.666Z [INFO] GET /api/inventory
+2025-07-01T09:21:25.666Z [INFO] GET /api/inventory
+2025-07-01T09:21:25.675Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T09:21:25.676Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:21:25.676Z [INFO] GET /api/inventory/low-stock
+2025-07-01T09:21:25.680Z [INFO] [REQ] GET /api/inventory/alerts
+2025-07-01T09:21:25.681Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:21:25.681Z [INFO] GET /api/inventory/alerts
+2025-07-01T09:21:25.684Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:21:25.685Z [INFO] GET /api/equipment
+2025-07-01T09:21:25.694Z [INFO] [REQ] GET /api/equipment/dashboard
+2025-07-01T09:21:25.695Z [INFO] GET /api/equipment/dashboard
+2025-07-01T09:21:25.698Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T09:21:25.698Z [INFO] GET /api/equipment/statuses
+2025-07-01T09:21:25.700Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T09:21:25.700Z [INFO] GET /api/maintenance?branchId=1
+2025-07-01T09:21:25.703Z [INFO] [REQ] GET /api/maintenance/overdue
+2025-07-01T09:21:25.703Z [INFO] GET /api/maintenance/overdue
+2025-07-01T09:21:25.706Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T09:21:25.707Z [INFO] GET /api/maintenance/upcoming?branchId=1
+2025-07-01T09:21:25.712Z [INFO] [REQ] GET /api/shifts
+2025-07-01T09:21:25.712Z [INFO] GET /api/shifts
+2025-07-01T09:21:25.928Z [INFO] [REQ] GET /api/recurrences
+2025-07-01T09:21:25.929Z [INFO] GET /api/recurrences
+2025-07-01T09:21:25.931Z [ERROR] SQL error after 1ms: syntax error at or near "SELECT"
+2025-07-01T09:21:25.931Z [ERROR] Failed query: SELECT * FROM recurring_orders WHERE SELECT * FROM recurring_orders WHERE TRUE
+2025-07-01T09:21:25.931Z [ERROR] RecurrenceController.getAllRecurrences: syntax error at or near "SELECT"
+2025-07-01T09:21:25.933Z [INFO] [REQ] GET /api/weather/current
+2025-07-01T09:21:25.933Z [INFO] GET /api/weather/current
+2025-07-01T09:21:25.936Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:21:25.936Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:21:26.001Z [INFO] [REQ] GET /api/stats/summary
+2025-07-01T09:21:26.001Z [INFO] GET /api/stats/summary
+2025-07-01T09:21:26.004Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:21:26.005Z [INFO] GET /api/stats/system-status
+2025-07-01T09:21:26.012Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:21:26.013Z [INFO] GET /api/stats/performance
+2025-07-01T09:21:26.016Z [INFO] [REQ] GET /api/stats/kpis
+2025-07-01T09:21:26.016Z [INFO] GET /api/stats/kpis
+2025-07-01T09:21:26.020Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:21:26.020Z [INFO] GET /api/notifications/recent
+2025-07-01T09:21:26.024Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T09:21:26.025Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:30:19.281Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T09:30:19.284Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:30:19.284Z [INFO] POST /api/auth/login
+2025-07-01T09:30:19.285Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:30:19.343Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T09:30:20.926Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:30:20.928Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:30:20.928Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:30:20.993Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:30:20.994Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:30:20.994Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:30:20.995Z [INFO] GET /api/orders
+2025-07-01T09:30:21.010Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:30:21.012Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:30:21.013Z [INFO] GET /api/stats/system-status
+2025-07-01T09:30:21.020Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:30:21.022Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:30:21.023Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:30:21.026Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:30:21.029Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:30:21.030Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:30:22.786Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:30:22.788Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T09:30:22.792Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:30:22.794Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:30:22.796Z [INFO] GET /api/orders
+2025-07-01T09:30:22.796Z [INFO] GET /api/orders
+2025-07-01T09:30:22.798Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T09:30:22.800Z [INFO] [REQ] GET /api/customers
+2025-07-01T09:30:22.801Z [INFO] GET /api/customers
+2025-07-01T09:30:22.801Z [INFO] GET /api/customers
+2025-07-01T09:30:22.803Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:30:22.804Z [INFO] GET /api/locations
+2025-07-01T09:30:22.804Z [INFO] GET /api/locations
+2025-07-01T09:30:22.806Z [INFO] [REQ] GET /api/services
+2025-07-01T09:30:22.807Z [INFO] GET /api/services
+2025-07-01T09:30:22.807Z [INFO] GET /api/services
+2025-07-01T09:30:24.786Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:30:24.786Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:30:24.800Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:30:24.801Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:30:24.802Z [INFO] GET /api/orders
+2025-07-01T09:30:24.817Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:30:24.818Z [INFO] GET /api/stats/system-status
+2025-07-01T09:30:24.826Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:30:24.827Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:30:24.832Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:30:24.833Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:30:38.941Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T09:30:38.944Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:30:38.945Z [INFO] POST /api/auth/login
+2025-07-01T09:30:38.945Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:30:38.949Z [INFO] Login: Success for user manager1@cas.local
+2025-07-01T09:30:40.507Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:30:40.511Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:30:40.511Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:30:40.522Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:30:40.526Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:30:40.527Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:30:40.527Z [INFO] GET /api/orders
+2025-07-01T09:30:40.543Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:30:40.545Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:30:40.546Z [INFO] GET /api/stats/system-status
+2025-07-01T09:30:40.553Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:30:40.557Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:30:40.558Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:30:40.562Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:30:40.565Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:30:40.565Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:30:54.647Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:30:54.652Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:30:54.653Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:30:54.659Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:30:54.663Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:30:54.664Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:30:54.666Z [INFO] GET /api/orders
+2025-07-01T09:30:54.673Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:30:54.676Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:30:54.677Z [INFO] GET /api/stats/system-status
+2025-07-01T09:30:54.686Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:30:54.689Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:30:54.690Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:30:54.694Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:30:54.698Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:30:54.699Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:00.693Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:00.697Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:00.698Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:00.705Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:00.707Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:00.708Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:00.708Z [INFO] GET /api/orders
+2025-07-01T09:31:00.720Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:00.722Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:00.723Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:00.729Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:00.732Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:00.732Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:00.739Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:00.742Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:00.742Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:01.259Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:01.260Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:01.267Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:01.267Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:01.268Z [INFO] GET /api/orders
+2025-07-01T09:31:01.274Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:01.275Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:01.286Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:01.287Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:01.293Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:01.294Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:02.314Z [INFO] [REQ] OPTIONS /api/auth/logout
+2025-07-01T09:31:02.316Z [INFO] [REQ] POST /api/auth/logout
+2025-07-01T09:31:02.316Z [INFO] POST /api/auth/logout
+2025-07-01T09:31:02.317Z [INFO] POST /api/auth/logout
+2025-07-01T09:31:12.668Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T09:31:12.669Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T09:31:12.670Z [INFO] POST /api/auth/login
+2025-07-01T09:31:12.670Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T09:31:12.671Z [INFO] Login: Success for user manager1@cas.local
+2025-07-01T09:31:13.885Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:13.889Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:13.890Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:13.901Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:13.903Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:13.903Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:13.904Z [INFO] GET /api/orders
+2025-07-01T09:31:13.916Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:13.918Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:13.919Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:13.924Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:13.927Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:13.929Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:13.933Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:13.935Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:13.935Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:18.937Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:18.940Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:18.940Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:18.950Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:18.952Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:18.953Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:18.953Z [INFO] GET /api/orders
+2025-07-01T09:31:18.959Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:18.964Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:18.965Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:18.971Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:18.974Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:18.975Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:18.981Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:18.983Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:18.984Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:21.419Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:21.420Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:21.431Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:21.432Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:21.433Z [INFO] GET /api/orders
+2025-07-01T09:31:21.445Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:21.446Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:21.451Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:21.452Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:21.457Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:21.459Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:23.739Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:31:23.741Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:23.741Z [INFO] GET /api/locations
+2025-07-01T09:31:23.742Z [INFO] GET /api/locations
+2025-07-01T09:31:25.404Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:25.405Z [INFO] GET /api/locations
+2025-07-01T09:31:25.406Z [INFO] GET /api/locations
+2025-07-01T09:31:28.021Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:28.022Z [INFO] GET /api/locations
+2025-07-01T09:31:28.022Z [INFO] GET /api/locations
+2025-07-01T09:31:31.921Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:31.925Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:31.926Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:31.934Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:31.937Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:31.938Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:31.939Z [INFO] GET /api/orders
+2025-07-01T09:31:31.966Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:31.968Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:31.968Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:31.972Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:31.975Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:31.976Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:31.982Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:31.984Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:31.985Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:34.308Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:34.309Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:34.316Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:34.317Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:34.318Z [INFO] GET /api/orders
+2025-07-01T09:31:34.329Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:34.330Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:34.339Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:34.340Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:34.344Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:34.345Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:41.062Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:41.065Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:41.067Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:41.078Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:41.081Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:41.082Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:41.083Z [INFO] GET /api/orders
+2025-07-01T09:31:41.094Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:41.096Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:41.097Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:41.103Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:41.106Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:41.107Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:41.109Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:41.111Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:41.111Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:46.230Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:31:46.232Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:46.233Z [INFO] GET /api/locations
+2025-07-01T09:31:46.233Z [INFO] GET /api/locations
+2025-07-01T09:31:52.067Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:31:52.080Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:52.081Z [INFO] GET /api/locations
+2025-07-01T09:31:52.081Z [INFO] GET /api/locations
+2025-07-01T09:31:52.129Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:31:52.131Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:52.132Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:52.142Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:31:52.144Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:52.145Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:52.145Z [INFO] GET /api/orders
+2025-07-01T09:31:52.151Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:31:52.156Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:52.156Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:52.161Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:31:52.162Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:52.162Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:52.165Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:31:52.167Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:52.167Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:31:54.755Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:31:54.755Z [INFO] GET /api/locations
+2025-07-01T09:31:54.756Z [INFO] GET /api/locations
+2025-07-01T09:31:54.777Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:31:54.778Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:31:54.789Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:31:54.791Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:31:54.792Z [INFO] GET /api/orders
+2025-07-01T09:31:54.802Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:31:54.802Z [INFO] GET /api/stats/system-status
+2025-07-01T09:31:54.810Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:31:54.811Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:31:54.816Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:31:54.817Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:32:07.654Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:32:07.657Z [INFO] [REQ] POST /api/locations
+2025-07-01T09:32:07.658Z [INFO] POST /api/locations
+2025-07-01T09:32:07.658Z [INFO] POST /api/locations
+2025-07-01T09:32:07.670Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:32:07.671Z [INFO] GET /api/locations
+2025-07-01T09:32:07.671Z [INFO] GET /api/locations
+2025-07-01T09:32:10.325Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:32:10.327Z [INFO] GET /api/locations
+2025-07-01T09:32:10.328Z [INFO] GET /api/locations
+2025-07-01T09:32:21.764Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:32:21.766Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:32:21.767Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:32:21.777Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:32:21.781Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:32:21.782Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:32:21.783Z [INFO] GET /api/orders
+2025-07-01T09:32:21.789Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:32:21.793Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:32:21.794Z [INFO] GET /api/stats/system-status
+2025-07-01T09:32:21.801Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:32:21.805Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:32:21.807Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:32:21.811Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:32:21.814Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:32:21.816Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:32:22.846Z [INFO] [REQ] OPTIONS /api/equipment
+2025-07-01T09:32:22.847Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:32:22.848Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:32:22.849Z [INFO] GET /api/equipment
+2025-07-01T09:32:22.850Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:32:22.850Z [INFO] GET /api/locations
+2025-07-01T09:32:22.851Z [INFO] GET /api/locations
+2025-07-01T09:32:43.343Z [INFO] [REQ] OPTIONS /api/equipment
+2025-07-01T09:32:43.346Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:32:43.346Z [INFO] GET /api/equipment
+2025-07-01T09:32:44.178Z [INFO] [REQ] OPTIONS /api/equipment/check-status
+2025-07-01T09:32:44.180Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T09:32:44.180Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:32:44.184Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:32:44.184Z [INFO] GET /api/equipment
+2025-07-01T09:32:45.816Z [INFO] [REQ] POST /api/equipment/check-status
+2025-07-01T09:32:45.817Z [INFO] POST /api/equipment/check-status
+2025-07-01T09:32:45.821Z [INFO] [REQ] GET /api/equipment
+2025-07-01T09:32:45.822Z [INFO] GET /api/equipment
+2025-07-01T09:32:48.472Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:32:48.474Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:32:48.474Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:32:48.498Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:32:48.504Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:32:48.505Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:32:48.505Z [INFO] GET /api/orders
+2025-07-01T09:32:48.514Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:32:48.516Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:32:48.517Z [INFO] GET /api/stats/system-status
+2025-07-01T09:32:48.524Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:32:48.527Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:32:48.528Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:32:48.532Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:32:48.534Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:32:48.535Z [INFO] GET /api/stats/performance?days=7
+2025-07-01T09:32:56.682Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:32:56.684Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:32:56.684Z [INFO] GET /api/locations
+2025-07-01T09:32:56.685Z [INFO] GET /api/locations
+2025-07-01T09:33:02.638Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T09:33:02.641Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T09:33:02.644Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T09:33:02.645Z [INFO] GET /api/stats/dashboard
+2025-07-01T09:33:02.646Z [INFO] [REQ] GET /api/locations
+2025-07-01T09:33:02.646Z [INFO] GET /api/locations
+2025-07-01T09:33:02.647Z [INFO] GET /api/locations
+2025-07-01T09:33:02.654Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T09:33:02.657Z [INFO] [REQ] GET /api/orders
+2025-07-01T09:33:02.659Z [INFO] GET /api/orders?limit=5&sort=created_at:desc
+2025-07-01T09:33:02.659Z [INFO] GET /api/orders
+2025-07-01T09:33:02.668Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T09:33:02.672Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T09:33:02.672Z [INFO] GET /api/stats/system-status
+2025-07-01T09:33:02.681Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T09:33:02.683Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T09:33:02.684Z [INFO] GET /api/notifications/recent?limit=5
+2025-07-01T09:33:02.689Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T09:33:02.691Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T09:33:02.692Z [INFO] GET /api/stats/performance?days=7

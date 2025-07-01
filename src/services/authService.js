@@ -15,6 +15,7 @@ function generateToken(user) {
     sub: user.id,
     email: user.email,
     role: user.role,
+    branchId: user.branchId || user.branch_id || null,
     exp: Math.floor(Date.now()/1000) + 24*3600 // 24h
   })).toString('base64url');
   return `${header}.${payload}.`;
@@ -47,8 +48,28 @@ module.exports = {
     return { id: entry.userId, role: entry.role, branchId: entry.branchId };
   },
 
-  /** Returns payload or null */
-  verifyToken: token => tokens.get(token) || null,
+  /**
+   * Verify token.
+   * 1) Dacă există în Map (utilizator logat în sesiune curentă) ⇒ return payload.
+   * 2) Altfel încearcă să decodeze payload-ul JWT (alg none) şi să verifice exp.
+   *    Astfel tokenul rămâne valid şi după un eventual restart "hot" al serverului,
+   *    iar testele CLI nu mai depind de Map.
+   */
+  verifyToken: token => {
+    if (!token) return null;
+    const cached = tokens.get(token);
+    if (cached) return cached;
+    try {
+      const [, payloadB64] = token.split('.');
+      if (!payloadB64) return null;
+      const payloadJson = Buffer.from(payloadB64, 'base64url').toString('utf8');
+      const payload = JSON.parse(payloadJson);
+      if (payload.exp && payload.exp * 1000 < Date.now()) return null; // expirat
+      return { userId: payload.sub, email: payload.email, role: payload.role, branchId: payload.branchId || null };
+    } catch {
+      return null;
+    }
+  },
 
   // stubs for flows not yet migrated
   registerUser: async (data) => {

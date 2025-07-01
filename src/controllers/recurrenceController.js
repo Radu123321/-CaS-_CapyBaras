@@ -4,6 +4,9 @@ const log = require('../core/logger');
 class RecurrenceController {
   constructor() {
     this.recurrenceService = RecurrenceService;
+    Object.getOwnPropertyNames(RecurrenceController.prototype)
+      .filter(m => m !== 'constructor' && typeof this[m] === 'function')
+      .forEach(m => { this[m] = this[m].bind(this); });
   }
 
   // Creează programare recurentă

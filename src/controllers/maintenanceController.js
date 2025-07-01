@@ -4,6 +4,10 @@ const log = require('../core/logger');
 class MaintenanceController {
   constructor() {
     this.maintenanceService = MaintenanceService;
+    // auto-bind all prototype methods to preserve context when passed as callback
+    Object.getOwnPropertyNames(MaintenanceController.prototype)
+      .filter(m => m !== 'constructor' && typeof this[m] === 'function')
+      .forEach(m => { this[m] = this[m].bind(this); });
   }
 
   // Creează programare de mentenanță
