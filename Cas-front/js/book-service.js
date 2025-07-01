@@ -93,11 +93,11 @@ class BookingWizard {
     };
     
     const icon = serviceIcons[service.service_type] || '🧽';
-    
+    const sid = service.service_id ?? service.id;
     return `
-      <div class="service-card" onclick="bookingWizard.selectService(${service.service_id})" data-service-id="${service.service_id}">
+      <div class="service-card" onclick="bookingWizard.selectService(${sid})" data-service-id="${sid}">
         <div class="service-icon">${icon}</div>
-        <h3 class="service-name">${service.description}</h3>
+        <h3 class="service-name">${service.description || service.name}</h3>
         <p class="service-description">${this.getServiceTypeLabel(service.service_type)}</p>
         <p class="service-price">${service.base_price} RON</p>
       </div>
@@ -116,10 +116,11 @@ class BookingWizard {
   }
   
   createLocationCard(location) {
+    const locId = location.location_id ?? location.id ?? location.branch_id;
     return `
-      <div class="location-card" onclick="bookingWizard.selectLocation(${location.location_id})" data-location-id="${location.location_id}">
+      <div class="location-card" onclick="bookingWizard.selectLocation(${locId})" data-location-id="${locId}">
         <h3 class="location-name">${location.name}</h3>
-        <p class="location-address">${location.address}</p>
+        <p class="location-address">${location.address || location.city || ''}</p>
         <p class="location-distance">📍 Disponibil</p>
       </div>
     `;
@@ -189,7 +190,7 @@ class BookingWizard {
   // ===== SELECTION METHODS =====
   
   selectService(serviceId) {
-    this.selectedService = this.services.find(s => s.service_id === serviceId);
+    this.selectedService = this.services.find(s => (s.service_id ?? s.id) == serviceId);
     
     // Update UI
     document.querySelectorAll('.service-card').forEach(card => {
@@ -217,7 +218,7 @@ class BookingWizard {
   }
   
   selectLocation(locationId) {
-    this.selectedLocation = this.locations.find(l => l.location_id === locationId);
+    this.selectedLocation = this.locations.find(l => (l.location_id ?? l.id ?? l.branch_id) == locationId);
     
     // Update UI
     document.querySelectorAll('.location-card').forEach(card => {
@@ -337,13 +338,25 @@ class BookingWizard {
       const specialRequests = document.getElementById('specialRequests').value;
       
       // Prepare booking data
+      const locId = this.selectedLocation.location_id ?? this.selectedLocation.id ?? this.selectedLocation.branch_id;
+      const svcId = this.selectedService.service_id ?? this.selectedService.id;
       const bookingData = {
-        service_id: this.selectedService.service_id,
-        location_id: this.selectedLocation.location_id,
-        scheduled_date: this.selectedDate,
-        scheduled_time: this.selectedTime,
-        description: specialRequests || `Programare pentru ${this.selectedService.description}`,
-        customer_phone: phone
+        // snake_case fields – required by OrderController validation
+        customer_id: authManager?.currentUser?.id || null,
+        location_id: locId,
+        service_id: svcId,
+        unit_price: this.selectedService.base_price,
+        quantity: 1,
+        scheduled_for: `${this.selectedDate} ${this.selectedTime}`, // combine date & time for backend
+        notes: specialRequests || `Programare pentru ${this.selectedService.description}`,
+        customer_phone: phone || null,
+
+        // camelCase duplicates – required deeper in OrderService / OrderRepository
+        customerId: authManager?.currentUser?.id || null,
+        branchId: locId,
+        serviceId: svcId,
+        unitPrice: this.selectedService.base_price,
+        scheduledFor: `${this.selectedDate} ${this.selectedTime}`
       };
       
       // Submit booking
@@ -353,7 +366,8 @@ class BookingWizard {
       });
       
       if (response.success) {
-        this.showSuccessMessage(response.data.order_id || 'N/A');
+        const bookingId = (response.data && (response.data.order_id || response.data.id)) || response.data;
+        this.showSuccessMessage(bookingId ?? 'N/A');
       } else {
         throw new Error(response.message || 'Eroare la crearea programării');
       }
