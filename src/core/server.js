@@ -131,6 +131,7 @@ router.add('GET', '/api/inventory/alerts', inventoryController.getInventoryAlert
 router.add('GET', '/api/inventory/low-stock', inventoryController.getLowStockItems);
 router.add('GET', '/api/inventory/export/:id', inventoryController.exportInventoryCsv);
 router.add('POST', '/api/inventory/import/:id', inventoryController.importInventoryCsv);
+router.add('GET', '/api/inventory/export-all', [requireAuth('ADMIN')], inventoryController.exportAllInventoryCsv);
 
 // Equipment management routes
 const equipmentController = require('../controllers/equipmentController');

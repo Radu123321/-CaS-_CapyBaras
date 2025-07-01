@@ -431,6 +431,21 @@ async function importInventoryCsv(req,res){
   }
 }
 
+// GET /api/inventory/export-all
+async function exportAllInventoryCsv(req,res){
+  try{
+    const data = await inventoryService.getAllInventory(true);
+    const rows = data.rows || data;
+    let csv='branch_id,branch_name,item_code,qty_on_hand,expire_date\n';
+    rows.forEach(r=>{csv+=`${r.branch_id},${r.branch_name},${r.item_code},${r.qty_on_hand},${r.expire_date||''}\n`;});
+    res.writeHead(200,{'Content-Type':'text/csv','Content-Disposition':'attachment; filename=inventory_all.csv'});
+    res.end(csv);
+  }catch(e){
+    log.error(e);
+    res.status(500).json({success:false,error:'export failed'});
+  }
+}
+
 module.exports = {
   getAllResources,
   createResource,
@@ -442,5 +457,6 @@ module.exports = {
   getInventoryAlerts,
   getLowStockItems,
   exportInventoryCsv,
+  exportAllInventoryCsv,
   importInventoryCsv
 }; 

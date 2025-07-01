@@ -200,6 +200,13 @@ class Dashboard {
           description: 'Vezi stoc pe filiale',
           href: 'javascript:void(0)',
           onclick: 'openInventoryModal()'
+        },
+        {
+          icon: '⬇️',
+          title: 'Export Inventar',
+          description: 'Descarcă stoc toate filiale',
+          href: 'javascript:void(0)',
+          onclick: 'exportAllInventory()'
         }
       ],
       'MANAGER': [
@@ -1080,4 +1087,31 @@ async function loadInventoryForBranch(branchId){
 // For import modal
 async function renderImportInventory(branchId){
   renderInventoryTable(branchId,'#importInvTable');
+}
+
+// ===== EXPORT ALL INVENTORY =====
+async function exportAllInventory(){
+  dashboard.showToast('Se generează CSV...', 'info', 3000);
+  try{
+    const resp = await fetch(`${authManager.apiBaseUrl}/inventory/export-all`, {
+      headers: { 'Authorization': `Bearer ${authManager.token}` }
+    });
+    if(!resp.ok){
+      const txt = await resp.text();
+      throw new Error(txt||'Eroare server');
+    }
+    const blob = await resp.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'inventory_all.csv';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+    dashboard.showToast('CSV descărcat', 'success');
+  }catch(err){
+    console.error('exportAllInventory',err);
+    dashboard.showToast('Eroare la export', 'error');
+  }
 } 
