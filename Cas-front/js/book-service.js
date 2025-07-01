@@ -338,11 +338,16 @@ class BookingWizard {
       const specialRequests = document.getElementById('specialRequests').value;
       
       // Prepare booking data
-      const locId = this.selectedLocation.location_id ?? this.selectedLocation.id ?? this.selectedLocation.branch_id;
+      const locId = this.selectedLocation.branch_id ?? this.selectedLocation.location_id ?? this.selectedLocation.id;
       const svcId = this.selectedService.service_id ?? this.selectedService.id;
+      const userId = authManager?.currentUser?.user_id ?? authManager?.currentUser?.id ?? null;
+      const confirmBtn = document.getElementById('confirmBtn');
+      if (confirmBtn) confirmBtn.disabled = true;
+
       const bookingData = {
         // snake_case fields – required by OrderController validation
-        customer_id: authManager?.currentUser?.id || null,
+        customer_id: userId,
+        branch_id: locId,
         location_id: locId,
         service_id: svcId,
         unit_price: this.selectedService.base_price,
@@ -352,7 +357,7 @@ class BookingWizard {
         customer_phone: phone || null,
 
         // camelCase duplicates – required deeper in OrderService / OrderRepository
-        customerId: authManager?.currentUser?.id || null,
+        customerId: userId,
         branchId: locId,
         serviceId: svcId,
         unitPrice: this.selectedService.base_price,
@@ -368,6 +373,7 @@ class BookingWizard {
       if (response.success) {
         const bookingId = (response.data && (response.data.order_id || response.data.id)) || response.data;
         this.showSuccessMessage(bookingId ?? 'N/A');
+        this.showToast('Programare creată cu succes', 'success');
       } else {
         throw new Error(response.message || 'Eroare la crearea programării');
       }
@@ -376,6 +382,7 @@ class BookingWizard {
       console.error('Error confirming booking:', error);
       this.showToast(error.message || 'Eroare la confirmarea programării', 'error');
     } finally {
+      if (confirmBtn) confirmBtn.disabled = false;
       this.hideLoading();
     }
   }

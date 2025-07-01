@@ -102,9 +102,11 @@ class Dashboard {
   }
   
   loadQuickActions(role) {
-    const actionsGrid = document.getElementById('quickActionsGrid');
-    const actions = this.getQuickActionsByRole(role);
+    let actions = this.getQuickActionsByRole(role);
+    const banned = ['Venituri','Facturi','Evaluări','Contact'];
+    actions = actions.filter(a => !banned.includes(a.title));
     
+    const actionsGrid = document.getElementById('quickActionsGrid');
     actionsGrid.innerHTML = actions.map(action => `
       <a href="${action.href}" class="action-card" onclick="${action.onclick || ''}">
         <span class="action-icon">${action.icon}</span>
@@ -121,19 +123,6 @@ class Dashboard {
         title: 'Calendar',
         description: 'Vezi programările în calendar',
         href: 'calendar.html'
-      },
-      {
-        icon: '📊',
-        title: 'Rapoarte',
-        description: 'Vezi rapoarte și statistici',
-        href: 'reports.html'
-      },
-      {
-        icon: '🔔',
-        title: 'Notificări',
-        description: 'Gestionează notificările',
-        href: '#',
-        onclick: 'showNotificationsModal()'
       }
     ];
     
@@ -180,12 +169,6 @@ class Dashboard {
           title: 'Clienți',
           description: 'Gestionează clienții',
           href: 'customers.html'
-        },
-        {
-          icon: '⚙️',
-          title: 'Configurări',
-          description: 'Setări de sistem',
-          href: 'settings.html'
         },
         {
           icon: '📦',

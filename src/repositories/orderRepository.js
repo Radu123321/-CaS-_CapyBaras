@@ -34,15 +34,19 @@ class OrderRepository extends Base {
     const client = await pool.connect();
     try {
       await client.query('BEGIN');
+      // Determine IDs with safe fallbacks
+      const customerId = header.customerId ?? header.customer_id ?? header.userid ?? null;
+      const branchId = header.branchId ?? header.branch_id ?? header.location_id ?? header.locationId;
+
       const { rows } = await client.query(
         `INSERT INTO orders
            (customer_id, branch_id, status, scheduled_start, scheduled_end,
             total_price, currency_code, created_via, notes)
-         VALUES ($1,$2,'NEW',$3,$4,$5,$6,'ADMIN',$7)
+         VALUES ($1,$2,'NEW',$3,$4,$5,$6,'WEB',$7)
          RETURNING id`,
         [
-          header.customerId, header.branchId, header.start, header.end,
-          header.total, header.currency || 'RON', header.notes
+          customerId, branchId, header.start ?? header.scheduled_for ?? header.scheduledStart, header.end ?? null,
+          header.total ?? header.total_price ?? null, header.currency || 'RON', header.notes
         ]);
       const orderId = rows[0].id;
 
@@ -596,47 +600,26 @@ class OrderRepository extends Base {
     return await pool.query(selectSQL, params);
   }
 
-  async getAvailability(date, branchId = null, serviceId = null) {
+  async getAvailability(date, branchId = null) {
     log.debug(`OrderRepository: Getting availability for ${date}`);
 
     try {
       let sql = `
-        SELECT 
-          id,
-          scheduled_start,
-          scheduled_end,
-          status,
-          service_id,
-          branch_id
-        FROM orders 
-        WHERE DATE(scheduled_start) = $1
-      `;
+        SELECT id, scheduled_start, scheduled_end, status, branch_id
+          FROM orders
+         WHERE DATE(scheduled_start) = $1`;
 
       const params = [date];
-      let idx = 2;
-
       if (branchId) {
-        sql += ` AND branch_id = $${idx}`;
+        sql += ' AND branch_id = $2';
         params.push(branchId);
-        idx++;
       }
 
-      if (serviceId) {
-        sql += ` AND service_id = $${idx}`;
-        params.push(serviceId);
-        idx++;
-      }
-
-      sql += ` ORDER BY scheduled_start`;
+      sql += ' ORDER BY scheduled_start';
 
       const { rows } = await pool.query(sql, params);
 
-      // Build list of unavailable times (HH:MM) based on scheduled_start
-      const unavailable = rows.map(r => {
-        const d = new Date(r.scheduled_start);
-        return d.toISOString().substring(11,16);
-      });
-
+      const unavailable = rows.map(r => new Date(r.scheduled_start).toISOString().substring(11,16));
       return { unavailable };
     } catch (error) {
       log.error(`OrderRepository: Failed to get availability: ${error.message}`);

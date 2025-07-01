@@ -9,6 +9,7 @@ async function createOrder(req, res) {
     const { 
       customer_id, 
       location_id, 
+      branch_id,
       service_id,
       quantity,
       unit_price,
@@ -18,7 +19,8 @@ async function createOrder(req, res) {
       notes
     } = req.body;
     
-    if (!customer_id || !location_id || !service_id || !unit_price) {
+    const branchIdValue = parseInt(branch_id ?? location_id);
+    if (!customer_id || !branchIdValue || !service_id || !unit_price) {
       res.writeHead(400, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -32,7 +34,8 @@ async function createOrder(req, res) {
     
     const orderData = {
       customer_id: parseInt(customer_id),
-      location_id: parseInt(location_id),
+      branch_id: branchIdValue,
+      location_id: location_id ? parseInt(location_id) : undefined,
       service_id: parseInt(service_id),
       quantity: quantity ? parseInt(quantity) : 1,
       unit_price: parseFloat(unit_price),
@@ -44,7 +47,12 @@ async function createOrder(req, res) {
     
     log.debug(`OrderController: Creating order for customer ${orderData.customer_id}`);
     
-    const order = await orderService.createOrder(orderData);
+    // Map to expected keys for service
+    const header = {
+      ...orderData,
+      branchId: branchIdValue
+    };
+    const order = await orderService.createOrder(header);
     
     res.writeHead(201, { 
       'Content-Type': 'application/json',
