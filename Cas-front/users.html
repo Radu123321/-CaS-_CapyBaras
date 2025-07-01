@@ -1,16 +1,135 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-  <meta charset="UTF-8" />
-  <title>Utilizatori</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/admin.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utilizatori - CaS Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <!-- Re-use orders/table styles for consistent look -->
+  <link rel="stylesheet" href="css/orders.css">
 </head>
 <body>
-  <h1>Gestionare Utilizatori</h1>
-  <div id="content">Se încarcă...</div>
+
+  <div class="users-container">
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+      <div class="loading-spinner"></div>
+      <p>Se încarcă utilizatorii...</p>
+    </div>
+
+    <!-- Users Content -->
+    <div id="usersContent" class="orders-content"><!-- reuse .orders-content rules -->
+      
+      <!-- Header -->
+      <div class="orders-header"><!-- reuse common classes -->
+        <div>
+          <h1 class="orders-title">Gestionare Utilizatori</h1>
+          <p class="orders-subtitle">Administrează și monitorizează toți utilizatorii</p>
+        </div>
+        <div class="orders-actions">
+          <button class="btn-new-order" id="createUserBtn"><span>➕</span> Utilizator Nou</button>
+          <button class="btn-refresh" id="refreshUsersBtn"><span>🔄</span> Reîmprospătează</button>
+          <a href="dashboard.html" class="btn-back"><span>←</span> Dashboard</a>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="orders-stats" id="usersStats">
+        <div class="stat-card pending">
+          <div class="stat-icon">🛡️</div>
+          <span class="stat-number" id="adminsCount">0</span>
+          <div class="stat-label">Admini</div>
+        </div>
+        <div class="stat-card confirmed">
+          <div class="stat-icon">👔</div>
+          <span class="stat-number" id="managersCount">0</span>
+          <div class="stat-label">Manageri</div>
+        </div>
+        <div class="stat-card completed">
+          <div class="stat-icon">🧑‍🔧</div>
+          <span class="stat-number" id="employeesCount">0</span>
+          <div class="stat-label">Angajați</div>
+        </div>
+        <div class="stat-card cancelled">
+          <div class="stat-icon">🙍‍♂️</div>
+          <span class="stat-number" id="customersCount">0</span>
+          <div class="stat-label">Clienți</div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="orders-filters">
+        <h3 class="filters-title">Filtrează Utilizatorii</h3>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label for="roleFilter">Rol</label>
+            <select id="roleFilter">
+              <option value="">Toate rolurile</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="MANAGER">MANAGER</option>
+              <option value="EMPLOYEE">EMPLOYEE</option>
+              <option value="CUSTOMER">CUSTOMER</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="branchFilter">Filială</label>
+            <select id="branchFilter">
+              <option value="">Toate filialele</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="searchInput">Căutare</label>
+            <input type="text" id="searchInput" placeholder="Caută după email, nume..." />
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Table -->
+      <div class="orders-table-container"><!-- reuse common classes -->
+        <div class="table-header">
+          <h3 class="table-title">Lista Utilizatorilor</h3>
+          <div class="table-stats">
+            <span id="usersCount">0 utilizatori</span>
+          </div>
+        </div>
+        <div class="table-overflow">
+          <table class="orders-table"><!-- reuse table styles -->
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nume</th>
+                <th>Rol</th>
+                <th>Filială</th>
+                <th>Telefon</th>
+                <th>Creat</th>
+                <th>Acțiuni</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr>
+                <td colspan="8" class="loading-row">Se încarcă utilizatorii...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Error State -->
+    <div id="errorState" class="error-state hidden">
+      <div class="error-card">
+        <h2>Eroare la încărcarea utilizatorilor</h2>
+        <p id="errorMessage">A apărut o eroare neașteptată.</p>
+        <button class="btn-refresh" id="reloadPageBtn"><span>🔄</span> Reîncarcă Pagina</button>
+      </div>
+    </div>
+
+  </div>
+
   <script src="js/auth.js"></script>
-  <script src="js/crud-table.js"></script>
   <script src="js/users.js"></script>
 </body>
 </html> 

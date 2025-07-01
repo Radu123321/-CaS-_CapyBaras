@@ -259,9 +259,9 @@ class OrderRepository extends Base {
           item_type = COALESCE($13, item_type),
           item_condition = COALESCE($14, item_condition),
           updated_at = CURRENT_TIMESTAMP
-      WHERE order_id = $1
-      RETURNING order_id, customer_id, location_id, service_id, base_price, transport_fee,
-                total_amount, status, scheduled_date, scheduled_time, assigned_employee_id, 
+      WHERE id = $1
+      RETURNING id AS order_id, customer_id, location_id AS branch_id, service_id, base_price, transport_fee,
+                total_amount, status, scheduled_date AS scheduled_start, scheduled_time, assigned_employee_id, 
                 special_instructions, pickup_address, delivery_address, updated_at
     `;
     

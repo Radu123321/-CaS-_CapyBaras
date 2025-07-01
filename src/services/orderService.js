@@ -40,6 +40,6 @@ module.exports = {
   getOrderStats: f=>repo.getStats?repo.getStats(f):ok({}),
   getOrdersWithTransport: ()=>ok([]),
   getOrdersWithRecurrence: ()=>ok([]),
-  VALID_ORDER_STATUSES:['NEW','SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED'],
+  VALID_ORDER_STATUSES:['NEW','SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED','REFUNDED'],
   getAllOrders: (filters={}) => repo.list(filters)
 }; 
