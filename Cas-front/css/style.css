@@ -564,6 +564,8 @@
 /* Form Styles in Modals */
 .modal .form-group {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal .form-label {
