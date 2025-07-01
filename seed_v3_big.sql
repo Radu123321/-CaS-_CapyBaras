@@ -8,15 +8,20 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 -- ---------------------------------------------
--- 1. Branches (10 branches)
+-- 1. Branches (10 realistic branches)
 -- ---------------------------------------------
-INSERT INTO branches (name, address, city, phone, created_by)
-SELECT 'Branch '||gs::text,
-       'Str. Demo '||gs,
-       'City'||gs,
-       '+40-701-1'||LPAD(gs::text,3,'0'),
-       1
-FROM generate_series(1,10) gs;
+INSERT INTO branches (id,name,address,city,phone,created_by)
+VALUES
+  (1,'București Nord','Șos. București-Ploiești 15','București','021-301-111',1),
+  (2,'București Sud','Bd. Metalurgiei 99','București','021-302-222',1),
+  (3,'Cluj Central','Str. Memorandumului 12','Cluj-Napoca','0264-401-123',1),
+  (4,'Timișoara Vest','Calea Șagului 45','Timișoara','0256-987-654',1),
+  (5,'Iași Est','Șos. Bucium 7','Iași','0232-555-333',1),
+  (6,'Constanța Port','Bd. Aurel Vlaicu 201','Constanța','0241-777-888',1),
+  (7,'Brașov Mont','Str. Poienelor 8','Brașov','0268-123-900',1),
+  (8,'Craiova Oltenia','Calea București 210','Craiova','0251-456-789',1),
+  (9,'Oradea Criș','Str. Republicii 30','Oradea','0259-321-654',1),
+  (10,'Galați Dunăre','Str. Brăilei 140','Galați','0236-456-001',1);
 
 -- ---------------------------------------------
 -- 2. Users (admins/managers/employees/customers)
@@ -65,20 +70,22 @@ ON CONFLICT DO NOTHING;
 INSERT INTO consumable_items (code,name,unit_code) VALUES
  ('SOAP','Detergent lichid','ml'),
  ('SHAMPOO','Șampon auto','ml'),
- ('WAX','Ceară','ml')
+ ('WAX','Ceară auto','ml'),
+ ('GLASS','Soluție geamuri','ml'),
+ ('DEGREASE','Degresant puternic','ml')
 ON CONFLICT DO NOTHING;
 
 -- ---------------------------------------------
--- 4. Inventory initial stocks per branch for each consumable
+-- 4. Inventory initial stocks per branch for each consumable (0 qty)
 -- ---------------------------------------------
 INSERT INTO inventory_stocks (branch_id,item_code,qty_on_hand,min_qty)
 SELECT b.id, c.code, 0, 500
 FROM branches b CROSS JOIN consumable_items c;
 
--- Add restock transactions (+5000 of each)
-INSERT INTO inventory_transactions (stock_id, qty_delta, reason_code, created_by)
-SELECT s.id, 5000, 'RESTOCK', 1
-FROM inventory_stocks s;
+-- Restock sample (+5000) – COMMENTED pentru teste manuale
+-- INSERT INTO inventory_transactions (stock_id, qty_delta, reason_code, created_by)
+-- SELECT s.id, 5000, 'RESTOCK', 1
+-- FROM inventory_stocks s;
 
 -- ---------------------------------------------
 -- 5. Equipment (5 per branch = 50)

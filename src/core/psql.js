@@ -113,4 +113,8 @@ async function close() {
 // Test connection on module load
 testConnection();
 
-module.exports = { query, transaction, close, testConnection }; 
+module.exports = { query, transaction, close, testConnection };
+
+// Backwards-compatibility: allow other modules to call pool.connect()
+module.exports.connect = () => pool.connect();
+module.exports.pool = pool; 

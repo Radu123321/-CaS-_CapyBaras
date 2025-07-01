@@ -1,4 +1,6 @@
 const repo = require('../repositories/orderRepository');
+const serviceRepo = require('../repositories/serviceRepository');
+const inventoryService = require('./inventoryService');
 
 function ok(v){return Promise.resolve(v);} // helper for stub returns
 
@@ -11,7 +13,40 @@ function ok(v){return Promise.resolve(v);} // helper for stub returns
  *   remove(id)
  */
 module.exports = {
-  createOrder: (header, items = [], employees = []) => repo.create(header, items, employees),
+  createOrder: async (header, items = [], employees = []) => {
+    // Determine branch/location
+    const branchId = header.branchId || header.location_id || header.locationId;
+    if(!branchId) return Promise.reject(new Error('branchId/location_id required'));
+    // Retrieve service requirements
+    const reqs = await serviceRepo.getRequirements(header.service_id || header.serviceId);
+    // Build usage list (negative qtyDelta)
+    const usage = reqs.map(r=>({
+      branchId,
+      itemCode: r.resource_code,
+      qtyDelta: - (r.qty_needed * (header.quantity || 1)),
+      reason: 'ORDER',
+      userId: header.customer_id || null
+    }));
+    // Reserve resources (one by one so trigger validates)
+    try {
+      for(const u of usage){
+        await inventoryService.addTransaction(u);
+      }
+    } catch(err){
+      throw new Error('Insufficient inventory');
+    }
+    // Try to create order in repo
+    try {
+      const id = await repo.create(header, items, employees);
+      return id;
+    } catch(e) {
+      // rollback reservation
+      for(const u of usage){
+        try{ await inventoryService.addTransaction({...u, qtyDelta: -u.qtyDelta, reason:'ROLLBACK'});}catch(_){/* ignore */}
+      }
+      throw e;
+    }
+  },
   list: filters => repo.list(filters),
   getOrderById: id => repo.get(id),
   updateOrderStatus: (id, status) => repo.updateStatus(id, status),

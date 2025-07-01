@@ -83,4 +83,13 @@ module.exports = {
       vals);
     return rows[0];
   },
+
+  /** get consumable requirements for a service */
+  async getRequirements(id) {
+    const { rows } = await pool.query(
+      `SELECT resource_code, qty_needed
+         FROM services_requirements
+        WHERE service_id = $1`, [id]);
+    return rows;
+  }
 };

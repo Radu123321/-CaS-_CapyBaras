@@ -129,6 +129,8 @@ router.add('POST', '/api/inventory/location/:locationId/restock', inventoryContr
 router.add('POST', '/api/inventory/consume', inventoryController.consumeResourcesForOrder);
 router.add('GET', '/api/inventory/alerts', inventoryController.getInventoryAlerts);
 router.add('GET', '/api/inventory/low-stock', inventoryController.getLowStockItems);
+router.add('GET', '/api/inventory/export/:id', inventoryController.exportInventoryCsv);
+router.add('POST', '/api/inventory/import/:id', inventoryController.importInventoryCsv);
 
 // Equipment management routes
 const equipmentController = require('../controllers/equipmentController');
