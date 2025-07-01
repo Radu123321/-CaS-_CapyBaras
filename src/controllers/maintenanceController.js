@@ -44,7 +44,8 @@ class MaintenanceController {
       if (filters.equipment_id) filters.equipment_id = parseInt(filters.equipment_id);
       if (filters.location_id) filters.location_id = parseInt(filters.location_id);
 
-      const maintenance = await this.maintenanceService.getAllMaintenance(filters);
+      const svc = this.maintenanceService || MaintenanceService;
+      const maintenance = await svc.getAllMaintenance(filters);
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -161,9 +162,9 @@ class MaintenanceController {
     try {
       const url = require('url');
       const parsedUrl = url.parse(req.url, true);
-      const locationId = parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null;
+      const branchId = parsedUrl.query.branchId ? parseInt(parsedUrl.query.branchId) : (parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null);
 
-      const maintenance = await this.maintenanceService.getTodayScheduled(locationId);
+      const maintenance = await this.maintenanceService.getTodayScheduled(branchId);
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -191,9 +192,9 @@ class MaintenanceController {
     try {
       const url = require('url');
       const parsedUrl = url.parse(req.url, true);
-      const locationId = parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null;
+      const branchId = parsedUrl.query.branchId ? parseInt(parsedUrl.query.branchId) : (parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null);
 
-      const maintenance = await this.maintenanceService.getOverdue(locationId);
+      const maintenance = await this.maintenanceService.getOverdue(branchId);
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -221,9 +222,9 @@ class MaintenanceController {
     try {
       const url = require('url');
       const parsedUrl = url.parse(req.url, true);
-      const locationId = parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null;
+      const branchId = parsedUrl.query.branchId ? parseInt(parsedUrl.query.branchId) : (parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null);
 
-      const maintenance = await this.maintenanceService.getUrgentMaintenance(locationId);
+      const maintenance = await this.maintenanceService.getUrgent(branchId);
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
@@ -512,9 +513,10 @@ class MaintenanceController {
       const url = require('url');
       const parsedUrl = url.parse(req.url, true);
       const days = parsedUrl.query.days ? parseInt(parsedUrl.query.days) : 7;
-      const locationId = parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null;
+      const branchId = parsedUrl.query.branchId ? parseInt(parsedUrl.query.branchId) : (parsedUrl.query.location_id ? parseInt(parsedUrl.query.location_id) : null);
 
-      const schedule = await this.maintenanceService.getUpcomingSchedule(days, locationId);
+      const svc2 = this.maintenanceService || MaintenanceService;
+      const schedule = await svc2.getUpcomingSchedule(branchId, days);
       res.writeHead(200, { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'

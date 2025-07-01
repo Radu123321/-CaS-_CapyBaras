@@ -26,7 +26,7 @@ class BaseRepo {
 
   async patch(id, setExpr, values) {
     const { rows } = await pool.query(
-      `UPDATE ${this.table} SET ${setExpr}, updated_at = now() WHERE ${this.pk}=$1 RETURNING *`,
+      `UPDATE ${this.table} SET ${setExpr} WHERE ${this.pk}=$1 RETURNING *`,
       [id, ...values]);
     return rows[0];
   }

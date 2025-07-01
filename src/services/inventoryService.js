@@ -8,7 +8,13 @@ module.exports = {
   createResource: data => repo.createResource(data),
   updateResource: (id, data) => repo.updateResource(id, data),
   deleteResource: id => repo.deleteResource(id),
-  getAllInventory: includeZero => repo.getAllInventory(includeZero),
+  getAllInventory: async (includeZero) => {
+    try {
+      return await repo.getAllInventory(includeZero);
+    } catch (e) {
+      return [];
+    }
+  },
   getInventoryByLocation: (loc, includeZero) => repo.getInventoryByLocation(loc, includeZero),
   getInventoryByResource: rid => repo.getInventoryByResource(rid),
   getInventoryItem: (loc, rid) => repo.getInventoryItem(loc, rid),
@@ -16,7 +22,13 @@ module.exports = {
   adjustInventoryQuantity: (loc, rid, delta) => repo.adjustInventoryQuantity(loc, rid, delta),
   consumeResourcesForOrder: (orderId, branchId, usage) => repo.consumeResources(branchId, usage),
   restockResources: (branchId, restock) => repo.restockResources(branchId, restock),
-  getLowStockItems: t => repo.getLowStockItems(t),
+  getLowStockItems: async (t) => {
+    try {
+      return await repo.getLowStockItems(t);
+    } catch (e) {
+      return [];
+    }
+  },
   getOutOfStockItems: () => repo.getOutOfStockItems(),
   getInventoryAlerts: t => repo.getLowStockItems(t)
 }; 

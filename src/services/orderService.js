@@ -22,8 +22,13 @@ module.exports = {
   updateStatus: (id,s) => repo.updateStatus(id,s),
   remove: id => repo.delete(id),
   // stubs for advanced legacy paths (returning neutral data)
-  searchOrders: (term,f)=>ok([]),
-  getOrdersByCustomer: (custId, filters) => repo.findByCustomerId ? repo.findByCustomerId(custId, filters) : ok([]),
+  searchOrders: async (term, filters={}) => {
+    if (!term) return repo.list(filters);
+    const all = await repo.list(filters);
+    term = term.toLowerCase();
+    return all.filter(o=> o.id.toString()===term || (o.customer_email||'').toLowerCase().includes(term));
+  },
+  getOrdersByCustomer: (custId, filters) => repo.findByCustomerId ? repo.findByCustomerId(custId, filters) : repo.list({customer_id:custId,...filters}),
   getOrdersByEmployee: (empId, filters) => repo.findByEmployeeId ? repo.findByEmployeeId(empId, filters) : ok([]),
   getActiveOrders: locId => repo.list({status:'IN_PROGRESS', branchId:locId}),
   assignEmployee: (orderId, empId) => repo.assignEmployee(orderId, empId),
@@ -35,5 +40,6 @@ module.exports = {
   getOrderStats: f=>repo.getStats?repo.getStats(f):ok({}),
   getOrdersWithTransport: ()=>ok([]),
   getOrdersWithRecurrence: ()=>ok([]),
-  VALID_ORDER_STATUSES:['NEW','SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED']
+  VALID_ORDER_STATUSES:['NEW','SCHEDULED','IN_PROGRESS','COMPLETED','CANCELLED'],
+  getAllOrders: (filters={}) => repo.list(filters)
 }; 

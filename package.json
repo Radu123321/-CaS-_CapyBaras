@@ -30,7 +30,9 @@
   },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "node-fetch": "^2.6.9",
+    "chalk": "^4.1.2"
   },
   "devDependencies": {},
   "repository": {

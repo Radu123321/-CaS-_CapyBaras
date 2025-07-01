@@ -9,7 +9,7 @@ const { parseRequest } = require('./json');
 const log = require('./logger');
 const scheduler = require('./scheduler');
 const { performHandshake } = require('./websocket');
-const { auth } = require('./middleware');
+const { auth, logReq } = require('./middleware');
 
 // Toggle to enable/disable built-in WebSocket support
 const WEBSOCKET_ENABLED = false;
@@ -291,6 +291,37 @@ router.add('GET', '/api/exceptions/:id', exceptionController.getExceptionById);
 router.add('PUT', '/api/exceptions/:id', exceptionController.updateException);
 router.add('PUT', '/api/exceptions/:id/resolve', exceptionController.resolveException);
 router.add('DELETE', '/api/exceptions/:id', exceptionController.deleteException);
+
+// ----------------------------------------------------------
+// Global middlewares (logging + auth)
+// These are registered AFTER all routes so they apply to every
+// registered path but can still examine req.url for public routes.
+// ----------------------------------------------------------
+
+// Basic request log
+router.use(logReq);
+
+// Protect all API routes except the explicitly public ones
+router.use((req, res, next) => {
+  // List of public (unauthenticated) endpoints
+  const publicPaths = [
+    '/api/ping',
+    '/api/auth/login',
+    '/api/auth/register',
+    '/api/auth/logout',
+    '/api/scheduler/status'
+  ];
+
+  const path = req.url.split('?')[0];
+
+  // Allow CORS pre-flight and public endpoints without auth
+  if (req.method === 'OPTIONS' || publicPaths.includes(path)) {
+    return next();
+  }
+
+  // For everything else require a valid JWT
+  return auth()(req, res, next);
+});
 
 // Helper to serve static files
 function serveStatic(filePath, res) {

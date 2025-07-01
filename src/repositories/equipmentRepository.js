@@ -21,22 +21,22 @@ class EquipmentRepository extends Base {
         let sql = `
             SELECT 
                 e.*,
-                l.name as location_name,
-                COUNT(ms.maintenance_id) as maintenance_count,
+                b.name as branch_name,
+                COUNT(ms.id) as maintenance_count,
                 MAX(ms.completed_at) as last_completed_maintenance,
-                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+                MIN(CASE WHEN ms.status = 'PENDING' THEN ms.due_at END) as next_scheduled_maintenance
             FROM equipment e
-            LEFT JOIN locations l ON e.location_id = l.location_id
-            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            LEFT JOIN branches b ON e.branch_id = b.id
+            LEFT JOIN maintenance_tasks ms ON e.id = ms.equipment_id
             WHERE 1=1
         `;
         
         const params = [];
         let paramIndex = 1;
         
-        if (filters.location_id) {
-            sql += ` AND e.location_id = $${paramIndex++}`;
-            params.push(filters.location_id);
+        if (filters.branch_id || filters.location_id) {
+            sql += ` AND e.branch_id = $${paramIndex++}`;
+            params.push(filters.branch_id || filters.location_id);
         }
         
         if (filters.status) {
@@ -44,9 +44,9 @@ class EquipmentRepository extends Base {
             params.push(filters.status);
         }
         
-        if (filters.type) {
-            sql += ` AND e.type = $${paramIndex++}`;
-            params.push(filters.type);
+        if (filters.type_code || filters.type) {
+            sql += ` AND e.type_code = $${paramIndex++}`;
+            params.push(filters.type_code || filters.type);
         }
         
         if (filters.name) {
@@ -55,8 +55,8 @@ class EquipmentRepository extends Base {
         }
         
         sql += `
-            GROUP BY e.equipment_id, l.name
-            ORDER BY e.location_id, e.name
+            GROUP BY e.id, b.name
+            ORDER BY e.branch_id, e.name
         `;
         
         const result = await pool.query(sql, params);
@@ -70,11 +70,11 @@ class EquipmentRepository extends Base {
         const sql = `
             SELECT 
                 e.*,
-                l.name as location_name,
-                l.address as location_address
+                b.name as branch_name,
+                b.address as branch_address
             FROM equipment e
-            LEFT JOIN locations l ON e.location_id = l.location_id
-            WHERE e.equipment_id = $1
+            LEFT JOIN branches b ON e.branch_id = b.id
+            WHERE e.id = $1
         `;
         
         const result = await pool.query(sql, [equipmentId]);
@@ -86,16 +86,16 @@ class EquipmentRepository extends Base {
      */
     async createEquipment(equipmentData) {
         const {
-            location_id, name, type, status, purchased_date, notes
+            branch_id, name, type_code, status, purchase_date, notes
         } = equipmentData;
         
         const sql = `
-            INSERT INTO equipment (location_id, name, type, status, purchased_date, notes)
+            INSERT INTO equipment (branch_id, name, type_code, status, purchase_date, notes)
             VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING *
         `;
         
-        const params = [location_id, name, type, status || 'OPERATIVE', purchased_date, notes];
+        const params = [branch_id, name, type_code, status || 'OPERATIONAL', purchase_date, notes];
         
         const result = await pool.query(sql, params);
         return result.rows.length > 0 ? result.rows[0] : null;
@@ -109,7 +109,7 @@ class EquipmentRepository extends Base {
         const params = [];
         let paramIndex = 1;
         
-        const allowedFields = ['name', 'type', 'status', 'purchased_date', 'notes'];
+        const allowedFields = ['name', 'type_code', 'status', 'purchase_date', 'notes'];
         
         for (const [key, value] of Object.entries(updateData)) {
             if (allowedFields.includes(key) && value !== undefined) {
@@ -127,7 +127,7 @@ class EquipmentRepository extends Base {
         const sql = `
             UPDATE equipment 
             SET ${fields.join(', ')}
-            WHERE equipment_id = $${paramIndex}
+            WHERE id = $${paramIndex}
             RETURNING *
         `;
         
@@ -139,7 +139,7 @@ class EquipmentRepository extends Base {
      * Delete equipment
      */
     async deleteEquipment(equipmentId) {
-        const sql = 'DELETE FROM equipment WHERE equipment_id = $1 RETURNING *';
+        const sql = 'DELETE FROM equipment WHERE id = $1 RETURNING *';
         const result = await pool.query(sql, [equipmentId]);
         return result.rows.length > 0 ? result.rows[0] : null;
     }
@@ -156,12 +156,12 @@ class EquipmentRepository extends Base {
             SELECT 
                 ms.*,
                 e.name as equipment_name,
-                l.name as location_name
-            FROM maintenance_schedules ms
-            JOIN equipment e ON ms.equipment_id = e.equipment_id
-            JOIN locations l ON e.location_id = l.location_id
+                b.name as branch_name
+            FROM maintenance_tasks ms
+            JOIN equipment e ON ms.equipment_id = e.id
+            JOIN branches b ON e.branch_id = b.id
             WHERE ms.equipment_id = $1
-            ORDER BY ms.scheduled_date DESC
+            ORDER BY ms.due_at DESC
             LIMIT $2
         `;
         
@@ -178,19 +178,19 @@ class EquipmentRepository extends Base {
                 ms.*,
                 e.name as equipment_name,
                 e.status as equipment_status,
-                l.name as location_name
-            FROM maintenance_schedules ms
-            JOIN equipment e ON ms.equipment_id = e.equipment_id
-            JOIN locations l ON e.location_id = l.location_id
+                b.name as branch_name
+            FROM maintenance_tasks ms
+            JOIN equipment e ON ms.equipment_id = e.id
+            JOIN branches b ON e.branch_id = b.id
             WHERE 1=1
         `;
         
         const params = [];
         let paramIndex = 1;
         
-        if (filters.location_id) {
-            sql += ` AND e.location_id = $${paramIndex++}`;
-            params.push(filters.location_id);
+        if (filters.branch_id || filters.location_id) {
+            sql += ` AND e.branch_id = $${paramIndex++}`;
+            params.push(filters.branch_id || filters.location_id);
         }
         
         if (filters.equipment_id) {
@@ -198,12 +198,12 @@ class EquipmentRepository extends Base {
             params.push(filters.equipment_id);
         }
         
-        if (filters.type) {
+        if (filters.type_code || filters.type) {
             sql += ` AND ms.type = $${paramIndex++}`;
-            params.push(filters.type);
+            params.push(filters.type_code || filters.type);
         }
         
-        sql += ` ORDER BY ms.scheduled_date DESC`;
+        sql += ` ORDER BY ms.due_at DESC`;
         
         if (filters.limit) {
             sql += ` LIMIT $${paramIndex++}`;
@@ -218,17 +218,15 @@ class EquipmentRepository extends Base {
      * Create maintenance record
      */
     async createMaintenance(maintenanceData) {
-        const {
-            equipment_id, type, scheduled_date, description, estimated_cost
-        } = maintenanceData;
+        const { equipment_id, due_at, task_desc } = maintenanceData;
         
         const sql = `
-            INSERT INTO maintenance_schedules (equipment_id, type, scheduled_date, description, estimated_cost, status)
-            VALUES ($1, $2, $3, $4, $5, 'SCHEDULED')
+            INSERT INTO maintenance_tasks (equipment_id, due_at, task_desc, mandatory, status)
+            VALUES ($1, $2, $3, true, 'PENDING')
             RETURNING *
         `;
         
-        const params = [equipment_id, type || 'PREVENTIVE', scheduled_date, description, estimated_cost || 0.00];
+        const params = [equipment_id, due_at, task_desc || 'Scheduled maintenance'];
         
         const result = await pool.query(sql, params);
         return result.rows.length > 0 ? result.rows[0] : null;
@@ -258,9 +256,9 @@ class EquipmentRepository extends Base {
         params.push(maintenanceId);
         
         const sql = `
-            UPDATE maintenance_schedules 
+            UPDATE maintenance_tasks 
             SET ${fields.join(', ')}
-            WHERE maintenance_id = $${paramIndex}
+            WHERE id = $${paramIndex}
             RETURNING *
         `;
         
@@ -275,27 +273,27 @@ class EquipmentRepository extends Base {
     /**
      * Get equipment status summary
      */
-    async getEquipmentStatusSummary(locationId = null) {
+    async getEquipmentStatusSummary(branchId = null) {
         let sql = `
             SELECT 
-                l.location_id,
-                l.name as location_name,
+                b.id as branch_id,
+                b.name as branch_name,
                 e.status,
                 COUNT(*) as count
             FROM equipment e
-            JOIN locations l ON e.location_id = l.location_id
+            JOIN branches b ON e.branch_id = b.id
             WHERE 1=1
         `;
         
         const params = [];
-        if (locationId) {
-            sql += ' AND e.location_id = $1';
-            params.push(locationId);
+        if (branchId) {
+            sql += ' AND e.branch_id = $1';
+            params.push(branchId);
         }
         
         sql += `
-            GROUP BY l.location_id, l.name, e.status
-            ORDER BY l.name, e.status
+            GROUP BY b.id, b.name, e.status
+            ORDER BY b.name, e.status
         `;
         
         const result = await pool.query(sql, params);
@@ -309,14 +307,14 @@ class EquipmentRepository extends Base {
         const sql = `
             SELECT 
                 e.*,
-                l.name as location_name,
+                b.name as branch_name,
                 MAX(ms.completed_at) as last_maintenance
             FROM equipment e
-            JOIN locations l ON e.location_id = l.location_id
-            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id 
+            JOIN branches b ON e.branch_id = b.id
+            LEFT JOIN maintenance_tasks ms ON e.id = ms.equipment_id 
                 AND ms.completed_at IS NOT NULL
-            WHERE e.status = 'OPERATIVE'
-            GROUP BY e.equipment_id, l.name
+            WHERE e.status = 'OPERATIONAL'
+            GROUP BY e.id, b.name
             HAVING MAX(ms.completed_at) < NOW() - INTERVAL '90 days' OR MAX(ms.completed_at) IS NULL
             ORDER BY MAX(ms.completed_at) ASC NULLS FIRST
         `;

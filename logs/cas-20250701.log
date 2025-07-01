@@ -1,0 +1,1147 @@
+2025-07-01T07:00:52.708Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:00:52.740Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:00:52.743Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:00:52.810Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:00:52 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:01:30.987Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:01:30.993Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:01:30.994Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:01:31.055Z [INFO] Login: Success for user admin@cas.ro
+2025-07-01T07:02:44.060Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:02:44.092Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:02:44.096Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:02:44.146Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:02:44 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:04:15.980Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:04:16.011Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:04:16.015Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:04:16.063Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:04:16 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:04:25.319Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:04:25.323Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:04:25.325Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:04:25.331Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:07:16.236Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:07:16.272Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:07:16.275Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:07:16.322Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:07:16 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:07:31.612Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:07:31.616Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:07:31.617Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:07:31.623Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:07:36.398Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:07:36.399Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:07:36.401Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:09:24.741Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:09:24.772Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:09:24.774Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:09:24.825Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:09:24 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:09:35.738Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:09:35.740Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:09:35.741Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:09:35.745Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:11:46.727Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:11:46.760Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:11:46.763Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:11:46.810Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:11:46 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:12:02.726Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:12:02.731Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:12:02.733Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:12:02.740Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T07:12:34.575Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:12:34.577Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:12:34.578Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:12:34.628Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T07:15:54.807Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:15:54.839Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:15:54.842Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:15:54.888Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:15:54 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:16:11.216Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:16:11.221Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:16:11.222Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:16:11.228Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T07:16:12.786Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:16:12.790Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:16:12.792Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:16:12.800Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:16:12.803Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:16:12.805Z [INFO] GET /api/orders
+2025-07-01T07:16:12.813Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:16:12.816Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:16:12.817Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:16:12.821Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:16:12.826Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:16:12.828Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:16:12.831Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:16:12.833Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:16:12.835Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:16:14.556Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:16:14.558Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:16:14.559Z [INFO] GET /api/locations
+2025-07-01T07:16:19.237Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:16:19.240Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:16:19.241Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:16:19.252Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:16:19.256Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:16:19.257Z [INFO] GET /api/orders
+2025-07-01T07:16:19.263Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:16:19.268Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:16:19.269Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:16:19.277Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:16:19.279Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:16:19.280Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:16:19.283Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:16:19.286Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:16:19.286Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:16:20.059Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:16:20.061Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:16:20.062Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:16:20.063Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:16:20.064Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:16:20.064Z [INFO] GET /api/orders
+2025-07-01T07:16:20.065Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:16:20.066Z [INFO] GET /api/customers
+2025-07-01T07:16:20.067Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:16:20.067Z [INFO] GET /api/locations
+2025-07-01T07:16:20.068Z [INFO] [REQ] GET /api/services
+2025-07-01T07:16:20.069Z [INFO] GET /api/services
+2025-07-01T07:16:46.053Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:16:46.055Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:16:46.056Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:16:46.068Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:16:46.072Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:16:46.073Z [INFO] GET /api/orders
+2025-07-01T07:16:46.078Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:16:46.081Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:16:46.082Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:16:46.088Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:16:46.090Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:16:46.091Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:16:46.095Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:16:46.097Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:16:46.098Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:16:47.160Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:16:47.161Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:16:47.162Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:16:47.165Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:16:47.166Z [INFO] GET /api/customers
+2025-07-01T07:16:47.168Z [INFO] [REQ] GET /api/services
+2025-07-01T07:16:47.170Z [INFO] GET /api/services
+2025-07-01T07:16:47.171Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:16:47.172Z [INFO] GET /api/locations
+2025-07-01T07:16:47.192Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:16:47.194Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:16:47.195Z [INFO] GET /api/orders
+2025-07-01T07:16:47.199Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T07:16:47.202Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T07:16:47.204Z [ERROR] Error getting appointment stats: statsService.getDashboardData is not a function
+2025-07-01T07:16:47.205Z [ERROR] Error stack: TypeError: statsService.getDashboardData is not a function
+    at Array.getAppointmentStats (C:\Users\drago\TWCaS\src\controllers\statsController.js:438:48)
+    at runChain (C:\Users\drago\TWCaS\src\core\router.js:57:13)
+    at Object.dispatch (C:\Users\drago\TWCaS\src\core\router.js:37:12)
+    at Server.<anonymous> (C:\Users\drago\TWCaS\src\core\server.js:398:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-01T07:17:15.034Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:17:15.036Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:17:15.036Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:17:15.046Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:15.049Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:15.050Z [INFO] GET /api/orders
+2025-07-01T07:17:15.055Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:17:15.060Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:17:15.062Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:17:15.067Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:17:15.070Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:17:15.072Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:17:15.076Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:17:15.079Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:17:15.081Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:17:16.201Z [INFO] [REQ] OPTIONS /api/equipment
+2025-07-01T07:17:16.202Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:17:16.204Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:17:16.205Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:17:16.206Z [INFO] GET /api/locations
+2025-07-01T07:17:16.209Z [ERROR] SQL error after 4ms: relation "locations" does not exist
+2025-07-01T07:17:16.210Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:17:19.050Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:17:19.051Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:17:19.064Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:19.065Z [INFO] GET /api/orders
+2025-07-01T07:17:19.071Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:17:19.073Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:17:19.078Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:17:19.079Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:17:19.083Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:17:19.085Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:17:20.922Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:20.926Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:17:20.927Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:17:20.928Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:17:20.931Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:20.932Z [INFO] GET /api/orders
+2025-07-01T07:17:20.933Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:17:20.934Z [INFO] GET /api/customers
+2025-07-01T07:17:20.936Z [INFO] [REQ] GET /api/services
+2025-07-01T07:17:20.937Z [INFO] GET /api/services
+2025-07-01T07:17:20.939Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:17:20.940Z [INFO] GET /api/locations
+2025-07-01T07:17:35.384Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:35.386Z [INFO] [REQ] POST /api/orders
+2025-07-01T07:17:35.387Z [INFO] POST /api/orders
+2025-07-01T07:17:41.422Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:41.425Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:17:41.426Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:17:41.427Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:17:41.428Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:41.429Z [INFO] GET /api/orders
+2025-07-01T07:17:41.430Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:17:41.430Z [INFO] GET /api/customers
+2025-07-01T07:17:41.431Z [INFO] [REQ] GET /api/services
+2025-07-01T07:17:41.432Z [INFO] GET /api/services
+2025-07-01T07:17:41.433Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:17:41.434Z [INFO] GET /api/locations
+2025-07-01T07:17:42.230Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:42.231Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:17:42.232Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:17:42.232Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:17:42.233Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:42.234Z [INFO] GET /api/orders
+2025-07-01T07:17:42.235Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:17:42.236Z [INFO] GET /api/customers
+2025-07-01T07:17:42.237Z [INFO] [REQ] GET /api/services
+2025-07-01T07:17:42.237Z [INFO] GET /api/services
+2025-07-01T07:17:42.238Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:17:42.238Z [INFO] GET /api/locations
+2025-07-01T07:17:50.454Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:17:50.456Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:17:50.456Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:17:50.461Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:17:50.462Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:17:50.463Z [INFO] GET /api/orders
+2025-07-01T07:17:50.467Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:17:50.469Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:17:50.470Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:17:50.473Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:17:50.475Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:17:50.476Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:17:50.478Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:17:50.480Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:17:50.481Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:17:52.316Z [INFO] [REQ] OPTIONS /api/auth/logout
+2025-07-01T07:17:52.317Z [INFO] [REQ] POST /api/auth/logout
+2025-07-01T07:17:52.318Z [INFO] POST /api/auth/logout
+2025-07-01T07:18:07.939Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:18:07.941Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:18:07.941Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:18:07.943Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:18:17.556Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:18:17.558Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:18:17.559Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:18:17.560Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:18:23.132Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:18:23.134Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:18:23.135Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:18:23.136Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:25.421Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:19:25.423Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:25.423Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:25.467Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:28.237Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:28.237Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:28.238Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:28.800Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:28.801Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:28.802Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:35.284Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:19:35.286Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:35.286Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:35.287Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:36.126Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:36.127Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:36.128Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:36.619Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:36.620Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:36.621Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:19:36.824Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:19:36.825Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:19:36.826Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:20:43.534Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:20:43.536Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:20:43.537Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:20:43.583Z [ERROR] Login error: Invalid credentials
+2025-07-01T07:21:11.212Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:21:11.215Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:21:11.216Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:21:11.218Z [INFO] Login: Success for user cust1@cas.local
+2025-07-01T07:21:12.770Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:21:12.773Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:21:12.774Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:21:12.781Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:21:12.784Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:21:12.786Z [INFO] GET /api/orders
+2025-07-01T07:21:12.790Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:21:12.794Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:21:12.795Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:21:12.800Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:21:12.802Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:21:12.803Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:21:12.808Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:21:12.810Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:21:12.811Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:21:14.410Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:21:14.413Z [INFO] [REQ] GET /api/services
+2025-07-01T07:21:14.414Z [INFO] GET /api/services
+2025-07-01T07:21:14.422Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:21:14.425Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:21:14.426Z [INFO] GET /api/locations
+2025-07-01T07:21:20.346Z [INFO] [REQ] OPTIONS /api/orders/availability
+2025-07-01T07:21:20.349Z [INFO] [REQ] GET /api/orders/availability
+2025-07-01T07:21:20.350Z [INFO] GET /api/orders/availability
+2025-07-01T07:21:20.351Z [ERROR] SQL error after 1ms: column "order_id" does not exist
+2025-07-01T07:21:20.351Z [ERROR] Failed query: 
+        SELECT 
+          order_id,
+          scheduled_date,
+          scheduled_time,
+          status,
+          service_id,
+          location_id
+        FROM orders 
+        WHERE scheduled_date = $1
+       ORDER BY scheduled_time
+2025-07-01T07:21:20.352Z [ERROR] OrderRepository: Failed to get availability: column "order_id" does not exist
+2025-07-01T07:21:20.352Z [ERROR] OrderController: Get order availability failed: column "order_id" does not exist
+2025-07-01T07:21:26.640Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:21:26.642Z [INFO] [REQ] POST /api/orders
+2025-07-01T07:21:26.642Z [INFO] POST /api/orders
+2025-07-01T07:21:31.309Z [INFO] [REQ] POST /api/orders
+2025-07-01T07:21:31.309Z [INFO] POST /api/orders
+2025-07-01T07:21:32.258Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:21:32.260Z [INFO] [REQ] POST /api/orders
+2025-07-01T07:21:32.261Z [INFO] POST /api/orders
+2025-07-01T07:30:20.689Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:30:20.722Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:30:20.725Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:30:20.778Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:30:20 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:30:55.457Z [INFO] [REQ] OPTIONS /api/auth/login
+2025-07-01T07:30:55.463Z [INFO] [REQ] POST /api/auth/login
+2025-07-01T07:30:55.464Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T07:30:55.521Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T07:30:57.078Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:30:57.081Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:30:57.082Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:30:57.089Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:30:57.093Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:30:57.094Z [INFO] GET /api/orders
+2025-07-01T07:30:57.116Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:30:57.119Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:30:57.120Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:30:57.128Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:30:57.130Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:30:57.131Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:30:57.135Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:30:57.137Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:30:57.139Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:31:00.741Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:31:00.747Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:31:00.748Z [INFO] GET /api/locations
+2025-07-01T07:31:03.340Z [INFO] [REQ] OPTIONS /api/locations/undefined
+2025-07-01T07:31:03.342Z [INFO] [REQ] GET /api/locations/undefined
+2025-07-01T07:31:03.343Z [INFO] GET /api/locations/null
+2025-07-01T07:31:05.786Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:31:05.789Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:31:05.790Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:31:05.797Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:05.802Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:05.803Z [INFO] GET /api/orders
+2025-07-01T07:31:05.811Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:31:05.814Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:31:05.816Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:31:05.821Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:31:05.824Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:31:05.825Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:31:05.829Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:31:05.831Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:31:05.833Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:31:06.883Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:06.886Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:31:06.887Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:31:06.888Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:31:06.889Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:06.890Z [INFO] GET /api/orders
+2025-07-01T07:31:06.893Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:31:06.895Z [INFO] GET /api/locations
+2025-07-01T07:31:06.898Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:31:06.900Z [INFO] GET /api/customers
+2025-07-01T07:31:06.902Z [INFO] [REQ] GET /api/services
+2025-07-01T07:31:06.903Z [INFO] GET /api/services
+2025-07-01T07:31:24.401Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:31:24.403Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:31:24.404Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:31:24.415Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:24.417Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:24.419Z [INFO] GET /api/orders
+2025-07-01T07:31:24.434Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:31:24.437Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:31:24.437Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:31:24.440Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:31:24.442Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:31:24.443Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:31:24.449Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:31:24.450Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:31:24.451Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:31:25.819Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:31:25.821Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:31:25.823Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:31:25.827Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:31:25.828Z [INFO] GET /api/customers
+2025-07-01T07:31:25.829Z [INFO] [REQ] GET /api/services
+2025-07-01T07:31:25.830Z [INFO] GET /api/services
+2025-07-01T07:31:25.831Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:31:25.831Z [INFO] GET /api/locations
+2025-07-01T07:31:25.852Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:25.854Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:25.855Z [INFO] GET /api/orders
+2025-07-01T07:31:25.870Z [INFO] [REQ] OPTIONS /api/stats/appointments
+2025-07-01T07:31:25.873Z [INFO] [REQ] GET /api/stats/appointments
+2025-07-01T07:31:25.875Z [ERROR] Error getting appointment stats: statsService.getDashboardData is not a function
+2025-07-01T07:31:25.876Z [ERROR] Error stack: TypeError: statsService.getDashboardData is not a function
+    at Array.getAppointmentStats (C:\Users\drago\TWCaS\src\controllers\statsController.js:438:48)
+    at runChain (C:\Users\drago\TWCaS\src\core\router.js:57:13)
+    at Object.dispatch (C:\Users\drago\TWCaS\src\core\router.js:37:12)
+    at Server.<anonymous> (C:\Users\drago\TWCaS\src\core\server.js:398:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2025-07-01T07:31:41.940Z [INFO] [REQ] OPTIONS /api/stats/dashboard
+2025-07-01T07:31:41.942Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:31:41.943Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:31:41.952Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:41.956Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:41.956Z [INFO] GET /api/orders
+2025-07-01T07:31:41.966Z [INFO] [REQ] OPTIONS /api/stats/system-status
+2025-07-01T07:31:41.970Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:31:41.971Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:31:41.975Z [INFO] [REQ] OPTIONS /api/notifications/recent
+2025-07-01T07:31:41.977Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:31:41.978Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:31:41.985Z [INFO] [REQ] OPTIONS /api/stats/performance
+2025-07-01T07:31:41.987Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:31:41.988Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:31:44.081Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:31:44.084Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:31:44.085Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:31:44.085Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:31:44.086Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:31:44.086Z [INFO] GET /api/orders
+2025-07-01T07:31:44.087Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:31:44.088Z [INFO] GET /api/customers
+2025-07-01T07:31:44.089Z [INFO] [REQ] GET /api/services
+2025-07-01T07:31:44.089Z [INFO] GET /api/services
+2025-07-01T07:31:44.091Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:31:44.092Z [INFO] GET /api/locations
+2025-07-01T07:31:48.218Z [INFO] [REQ] OPTIONS /api/orders/undefined
+2025-07-01T07:31:48.220Z [INFO] [REQ] DELETE /api/orders/undefined
+2025-07-01T07:31:48.221Z [INFO] DELETE /api/orders/null/cancel
+2025-07-01T07:32:41.461Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:32:41.461Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:32:41.462Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:32:41.462Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:32:41.468Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:32:41.469Z [INFO] GET /api/orders
+2025-07-01T07:32:41.470Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:32:41.470Z [INFO] GET /api/customers
+2025-07-01T07:32:41.471Z [INFO] [REQ] GET /api/services
+2025-07-01T07:32:41.472Z [INFO] GET /api/services
+2025-07-01T07:32:41.474Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:32:41.475Z [INFO] GET /api/locations
+2025-07-01T07:32:42.303Z [INFO] [REQ] OPTIONS /api/orders
+2025-07-01T07:32:42.304Z [INFO] [REQ] OPTIONS /api/customers
+2025-07-01T07:32:42.305Z [INFO] [REQ] OPTIONS /api/services
+2025-07-01T07:32:42.306Z [INFO] [REQ] OPTIONS /api/locations
+2025-07-01T07:32:42.307Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:32:42.308Z [INFO] GET /api/orders
+2025-07-01T07:32:42.309Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:32:42.310Z [INFO] GET /api/customers
+2025-07-01T07:32:42.311Z [INFO] [REQ] GET /api/services
+2025-07-01T07:32:42.312Z [INFO] GET /api/services
+2025-07-01T07:32:42.313Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:32:42.315Z [INFO] GET /api/locations
+2025-07-01T07:43:27.889Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:43:27.921Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:43:27.925Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:43:27.974Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:43:27 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:43:45.529Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:43:45.537Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:43:45.539Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:43:45.540Z [INFO] GET /api/locations
+2025-07-01T07:43:45.548Z [INFO] [REQ] GET /api/services
+2025-07-01T07:43:45.549Z [INFO] GET /api/services
+2025-07-01T07:43:45.554Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:43:45.555Z [INFO] GET /api/customers
+2025-07-01T07:43:45.584Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:43:45.584Z [INFO] GET /api/employees
+2025-07-01T07:43:45.589Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:43:45.590Z [INFO] GET /api/orders
+2025-07-01T07:43:45.599Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:43:45.599Z [INFO] GET /api/orders/active
+2025-07-01T07:43:45.603Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:43:45.613Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:43:45.614Z [INFO] GET /api/inventory
+2025-07-01T07:43:45.616Z [ERROR] SQL error after 1ms: relation "inventory" does not exist
+2025-07-01T07:43:45.617Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:43:45.619Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:43:45.620Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:43:45.702Z [ERROR] SQL error after 82ms: relation "inventory" does not exist
+2025-07-01T07:43:45.703Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:43:45.703Z [ERROR] Get low stock items error: relation "inventory" does not exist
+2025-07-01T07:43:45.706Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:43:45.760Z [ERROR] SQL error after 53ms: relation "locations" does not exist
+2025-07-01T07:43:45.761Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:43:45.762Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:43:45.764Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:43:45.765Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:43:45.767Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:43:45.768Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:43:45.769Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:43:45.770Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:43:45.771Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:43:45.771Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:45:31.065Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:45:31.073Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:45:31.075Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:45:31.076Z [INFO] GET /api/locations
+2025-07-01T07:45:31.127Z [INFO] [REQ] GET /api/services
+2025-07-01T07:45:31.127Z [INFO] GET /api/services
+2025-07-01T07:45:31.131Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:45:31.132Z [INFO] GET /api/customers
+2025-07-01T07:45:31.140Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:45:31.141Z [INFO] GET /api/employees
+2025-07-01T07:45:31.144Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:45:31.144Z [INFO] GET /api/orders
+2025-07-01T07:45:31.150Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:45:31.151Z [INFO] GET /api/orders/active
+2025-07-01T07:45:31.156Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:45:31.161Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:45:31.162Z [INFO] GET /api/inventory
+2025-07-01T07:45:31.163Z [ERROR] SQL error after 1ms: relation "inventory" does not exist
+2025-07-01T07:45:31.163Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:45:31.166Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:45:31.167Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:45:31.217Z [ERROR] SQL error after 50ms: relation "inventory" does not exist
+2025-07-01T07:45:31.217Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:45:31.218Z [ERROR] Get low stock items error: relation "inventory" does not exist
+2025-07-01T07:45:31.221Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:45:31.262Z [ERROR] SQL error after 41ms: relation "locations" does not exist
+2025-07-01T07:45:31.263Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:45:31.265Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:45:31.267Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:45:31.268Z [ERROR] Error getting dashboard: statsService.getDashboardData is not a function
+2025-07-01T07:45:31.270Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:45:31.271Z [ERROR] Error getting system status: statsService.getDashboardData is not a function
+2025-07-01T07:45:31.273Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:45:31.273Z [ERROR] Error getting performance stats: statsService.getOrderAnalytics is not a function
+2025-07-01T07:45:31.274Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:45:31.275Z [ERROR] Error getting recent notifications: notificationService.getAllNotifications is not a function
+2025-07-01T07:45:36.306Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:45:36.341Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:45:36.343Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:45:36.385Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:45:36 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:45:47.524Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:45:47.533Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:45:47.536Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:45:47.536Z [INFO] GET /api/locations
+2025-07-01T07:45:47.542Z [INFO] [REQ] GET /api/services
+2025-07-01T07:45:47.543Z [INFO] GET /api/services
+2025-07-01T07:45:47.550Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:45:47.551Z [INFO] GET /api/customers
+2025-07-01T07:45:47.572Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:45:47.573Z [INFO] GET /api/employees
+2025-07-01T07:45:47.579Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:45:47.580Z [INFO] GET /api/orders
+2025-07-01T07:45:47.586Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:45:47.587Z [INFO] GET /api/orders/active
+2025-07-01T07:45:47.592Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:45:47.600Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:45:47.600Z [INFO] GET /api/inventory
+2025-07-01T07:45:47.602Z [ERROR] SQL error after 1ms: relation "inventory" does not exist
+2025-07-01T07:45:47.603Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:45:47.605Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:45:47.605Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:45:47.759Z [ERROR] SQL error after 153ms: relation "inventory" does not exist
+2025-07-01T07:45:47.760Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:45:47.761Z [ERROR] Get low stock items error: relation "inventory" does not exist
+2025-07-01T07:45:47.763Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:45:47.814Z [ERROR] SQL error after 51ms: relation "locations" does not exist
+2025-07-01T07:45:47.814Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:45:47.817Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:45:47.819Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:45:47.896Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:45:47.900Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:45:47.903Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:47:04.591Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:47:04.599Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:47:04.601Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:47:04.601Z [INFO] GET /api/locations
+2025-07-01T07:47:04.656Z [INFO] [REQ] GET /api/services
+2025-07-01T07:47:04.656Z [INFO] GET /api/services
+2025-07-01T07:47:04.660Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:47:04.660Z [INFO] GET /api/customers
+2025-07-01T07:47:04.668Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:47:04.668Z [INFO] GET /api/employees
+2025-07-01T07:47:04.671Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:47:04.671Z [INFO] GET /api/orders
+2025-07-01T07:47:04.675Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:47:04.675Z [INFO] GET /api/orders/active
+2025-07-01T07:47:04.681Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:47:04.686Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:47:04.687Z [INFO] GET /api/inventory
+2025-07-01T07:47:04.688Z [ERROR] SQL error after 1ms: relation "inventory" does not exist
+2025-07-01T07:47:04.688Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:47:04.691Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:47:04.692Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:47:04.743Z [ERROR] SQL error after 51ms: relation "inventory" does not exist
+2025-07-01T07:47:04.743Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:47:04.744Z [ERROR] Get low stock items error: relation "inventory" does not exist
+2025-07-01T07:47:04.747Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:47:04.792Z [ERROR] SQL error after 44ms: relation "locations" does not exist
+2025-07-01T07:47:04.792Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:47:04.796Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:47:04.798Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:47:04.861Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:47:04.867Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:47:04.869Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:47:14.933Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:47:14.964Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:47:14.968Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:47:15.017Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:47:15 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:47:18.721Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:47:18.728Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:47:18.731Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:47:18.732Z [INFO] GET /api/locations
+2025-07-01T07:47:18.738Z [INFO] [REQ] GET /api/services
+2025-07-01T07:47:18.739Z [INFO] GET /api/services
+2025-07-01T07:47:18.743Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:47:18.744Z [INFO] GET /api/customers
+2025-07-01T07:47:18.753Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:47:18.754Z [INFO] GET /api/employees
+2025-07-01T07:47:18.760Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:47:18.761Z [INFO] GET /api/orders
+2025-07-01T07:47:18.767Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:47:18.767Z [INFO] GET /api/orders/active
+2025-07-01T07:47:18.773Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:47:18.780Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:47:18.781Z [INFO] GET /api/inventory
+2025-07-01T07:47:18.783Z [ERROR] SQL error after 2ms: relation "inventory" does not exist
+2025-07-01T07:47:18.783Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:47:18.786Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:47:18.787Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:47:18.830Z [ERROR] SQL error after 42ms: relation "inventory" does not exist
+2025-07-01T07:47:18.830Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:47:18.833Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:47:18.876Z [ERROR] SQL error after 42ms: relation "locations" does not exist
+2025-07-01T07:47:18.876Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:47:18.878Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:47:18.879Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:47:18.939Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:47:18.942Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:47:18.945Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:48:45.135Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:48:45.143Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:48:45.145Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:48:45.145Z [INFO] GET /api/locations
+2025-07-01T07:48:45.199Z [INFO] [REQ] GET /api/services
+2025-07-01T07:48:45.199Z [INFO] GET /api/services
+2025-07-01T07:48:45.203Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:48:45.204Z [INFO] GET /api/customers
+2025-07-01T07:48:45.211Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:48:45.212Z [INFO] GET /api/employees
+2025-07-01T07:48:45.215Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:48:45.215Z [INFO] GET /api/orders
+2025-07-01T07:48:45.219Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:48:45.220Z [INFO] GET /api/orders/active
+2025-07-01T07:48:45.226Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:48:45.233Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:48:45.233Z [INFO] GET /api/inventory
+2025-07-01T07:48:45.234Z [ERROR] SQL error after 0ms: relation "inventory" does not exist
+2025-07-01T07:48:45.235Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-07-01T07:48:45.238Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:48:45.239Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:48:45.294Z [ERROR] SQL error after 55ms: relation "inventory" does not exist
+2025-07-01T07:48:45.294Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity <= $1 AND i.quantity >= 0
+      ORDER BY i.quantity ASC, l.name, r.name
+    
+2025-07-01T07:48:45.296Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:48:45.340Z [ERROR] SQL error after 43ms: relation "locations" does not exist
+2025-07-01T07:48:45.340Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:48:45.342Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:48:45.344Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:48:45.407Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:48:45.412Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:48:45.415Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:50:07.599Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:50:07.633Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:50:07.636Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:50:07.684Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:50:07 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:50:09.678Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:50:09.687Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:50:09.690Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:50:09.690Z [INFO] GET /api/locations
+2025-07-01T07:50:09.697Z [INFO] [REQ] GET /api/services
+2025-07-01T07:50:09.698Z [INFO] GET /api/services
+2025-07-01T07:50:09.705Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:50:09.706Z [INFO] GET /api/customers
+2025-07-01T07:50:09.718Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:50:09.719Z [INFO] GET /api/employees
+2025-07-01T07:50:09.724Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:50:09.724Z [INFO] GET /api/orders
+2025-07-01T07:50:09.735Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:50:09.736Z [INFO] GET /api/orders/active
+2025-07-01T07:50:09.741Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:50:09.752Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:50:09.754Z [INFO] GET /api/inventory
+2025-07-01T07:50:09.761Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:50:09.761Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:50:09.768Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:50:09.770Z [ERROR] SQL error after 2ms: relation "locations" does not exist
+2025-07-01T07:50:09.771Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-07-01T07:50:09.773Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:50:09.775Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:50:09.851Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:50:09.855Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:50:09.857Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:51:42.554Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:51:42.589Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:51:42.592Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:51:42.758Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:51:42 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:51:45.251Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:51:45.260Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:51:45.265Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:51:45.266Z [INFO] GET /api/locations
+2025-07-01T07:51:45.271Z [INFO] [REQ] GET /api/services
+2025-07-01T07:51:45.272Z [INFO] GET /api/services
+2025-07-01T07:51:45.279Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:51:45.280Z [INFO] GET /api/customers
+2025-07-01T07:51:45.288Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:51:45.289Z [INFO] GET /api/employees
+2025-07-01T07:51:45.296Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:51:45.296Z [INFO] GET /api/orders
+2025-07-01T07:51:45.302Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:51:45.303Z [INFO] GET /api/orders/active
+2025-07-01T07:51:45.310Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:51:45.320Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:51:45.320Z [INFO] GET /api/inventory
+2025-07-01T07:51:45.330Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:51:45.331Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:51:45.334Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:51:45.337Z [ERROR] SQL error after 2ms: column ms.maintenance_id does not exist
+2025-07-01T07:51:45.337Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                b.name as branch_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'PENDING' THEN ms.due_at END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN branches b ON e.branch_id = b.id
+            LEFT JOIN maintenance_tasks ms ON e.id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.id, b.name
+            ORDER BY e.branch_id, e.name
+        
+2025-07-01T07:51:45.339Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:51:45.344Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:51:45.513Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:51:45.517Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:51:45.519Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T07:58:50.741Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T07:58:50.778Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T07:58:50.780Z [INFO] Minimal server listening on port 8000
+2025-07-01T07:58:50.830Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 10:58:50 GMT+0300 (Eastern European Summer Time)
+2025-07-01T07:58:52.988Z [INFO] [REQ] GET /api/ping
+2025-07-01T07:58:52.996Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T07:58:52.999Z [INFO] [REQ] GET /api/locations
+2025-07-01T07:58:53.000Z [INFO] GET /api/locations
+2025-07-01T07:58:53.005Z [INFO] [REQ] GET /api/services
+2025-07-01T07:58:53.006Z [INFO] GET /api/services
+2025-07-01T07:58:53.013Z [INFO] [REQ] GET /api/customers
+2025-07-01T07:58:53.014Z [INFO] GET /api/customers
+2025-07-01T07:58:53.023Z [INFO] [REQ] GET /api/employees
+2025-07-01T07:58:53.023Z [INFO] GET /api/employees
+2025-07-01T07:58:53.030Z [INFO] [REQ] GET /api/orders
+2025-07-01T07:58:53.032Z [INFO] GET /api/orders
+2025-07-01T07:58:53.039Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T07:58:53.040Z [INFO] GET /api/orders/active
+2025-07-01T07:58:53.047Z [INFO] [REQ] GET /api/transports
+2025-07-01T07:58:53.057Z [INFO] [REQ] GET /api/inventory
+2025-07-01T07:58:53.058Z [INFO] GET /api/inventory
+2025-07-01T07:58:53.067Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T07:58:53.068Z [INFO] GET /api/inventory/low-stock
+2025-07-01T07:58:53.071Z [INFO] [REQ] GET /api/equipment
+2025-07-01T07:58:53.074Z [ERROR] SQL error after 2ms: column ms.maintenance_id does not exist
+2025-07-01T07:58:53.074Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                b.name as branch_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'PENDING' THEN ms.due_at END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN branches b ON e.branch_id = b.id
+            LEFT JOIN maintenance_tasks ms ON e.id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.id, b.name
+            ORDER BY e.branch_id, e.name
+        
+2025-07-01T07:58:53.076Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T07:58:53.080Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T07:58:53.082Z [ERROR] MaintenanceController.getAllMaintenance: Cannot read properties of undefined (reading 'getAllMaintenance')
+2025-07-01T07:58:53.084Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T07:58:53.084Z [ERROR] MaintenanceController.getUpcomingSchedule: Cannot read properties of undefined (reading 'getUpcomingSchedule')
+2025-07-01T07:58:53.086Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T07:58:53.241Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T07:58:53.246Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T07:58:53.249Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:10:33.026Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:10:33.059Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:10:33.063Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:10:33.111Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:10:33 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:10:34.904Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:10:34.914Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:10:34.916Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:10:34.917Z [INFO] GET /api/locations
+2025-07-01T08:10:34.924Z [INFO] [REQ] GET /api/services
+2025-07-01T08:10:34.925Z [INFO] GET /api/services
+2025-07-01T08:10:34.932Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:10:34.933Z [INFO] GET /api/customers
+2025-07-01T08:10:34.943Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:10:34.944Z [INFO] GET /api/employees
+2025-07-01T08:10:34.950Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:10:34.951Z [INFO] GET /api/orders
+2025-07-01T08:10:34.955Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:10:34.956Z [INFO] GET /api/orders/active
+2025-07-01T08:10:34.963Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:10:34.970Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:10:34.971Z [INFO] GET /api/inventory
+2025-07-01T08:10:34.979Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:10:34.980Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:10:34.982Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:10:34.988Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:10:34.990Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:10:34.991Z [ERROR] MaintenanceController.getAllMaintenance: Cannot read properties of undefined (reading 'getAllMaintenance')
+2025-07-01T08:10:34.994Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:10:34.996Z [ERROR] MaintenanceController.getUpcomingSchedule: Cannot read properties of undefined (reading 'getUpcomingSchedule')
+2025-07-01T08:10:34.997Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:10:35.052Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:10:35.056Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:10:35.059Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:13:24.240Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:13:24.274Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:13:24.277Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:13:24.325Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:13:24 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:13:26.335Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:13:26.342Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:13:26.344Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:13:26.345Z [INFO] GET /api/locations
+2025-07-01T08:13:26.353Z [INFO] [REQ] GET /api/services
+2025-07-01T08:13:26.354Z [INFO] GET /api/services
+2025-07-01T08:13:26.359Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:13:26.359Z [INFO] GET /api/customers
+2025-07-01T08:13:26.389Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:13:26.390Z [INFO] GET /api/employees
+2025-07-01T08:13:26.394Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:13:26.395Z [INFO] GET /api/orders
+2025-07-01T08:13:26.403Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:13:26.403Z [INFO] GET /api/orders/active
+2025-07-01T08:13:26.408Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:13:26.415Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:13:26.417Z [INFO] GET /api/inventory
+2025-07-01T08:13:26.424Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:13:26.424Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:13:26.427Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:13:26.434Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:13:26.438Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:13:26.441Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:13:26.443Z [ERROR] SQL error after 2ms: column "PENDING" does not exist
+2025-07-01T08:13:26.443Z [ERROR] Failed query: SELECT * FROM maintenance_tasks WHERE status = "PENDING" AND due_at <= now() + ($1 || " days")::interval AND equipment_id IN (SELECT id FROM equipment WHERE branch_id = $2)
+2025-07-01T08:13:26.444Z [ERROR] MaintenanceController.getUpcomingSchedule: column "PENDING" does not exist
+2025-07-01T08:13:26.445Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:13:26.510Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:13:26.516Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:13:26.520Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:14:09.352Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-07-01T08:14:09.384Z [INFO] Scheduler disabled – background jobs will not run
+2025-07-01T08:14:09.387Z [INFO] Minimal server listening on port 8000
+2025-07-01T08:14:09.434Z [INFO] PostgreSQL connection successful. Server time: Tue Jul 01 2025 11:14:09 GMT+0300 (Eastern European Summer Time)
+2025-07-01T08:14:11.320Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:14:11.330Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:14:11.333Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:14:11.334Z [INFO] GET /api/locations
+2025-07-01T08:14:11.345Z [INFO] [REQ] GET /api/services
+2025-07-01T08:14:11.345Z [INFO] GET /api/services
+2025-07-01T08:14:11.354Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:14:11.356Z [INFO] GET /api/customers
+2025-07-01T08:14:11.370Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:14:11.371Z [INFO] GET /api/employees
+2025-07-01T08:14:11.378Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:14:11.379Z [INFO] GET /api/orders
+2025-07-01T08:14:11.386Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:14:11.386Z [INFO] GET /api/orders/active
+2025-07-01T08:14:11.394Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:14:11.402Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:14:11.403Z [INFO] GET /api/inventory
+2025-07-01T08:14:11.412Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:14:11.413Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:14:11.416Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:14:11.422Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:14:11.426Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:14:11.429Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:14:11.432Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:14:11.488Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:14:11.494Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:14:11.496Z [INFO] [REQ] GET /api/notifications/recent
+2025-07-01T08:17:39.677Z [INFO] [REQ] POST /api/login
+2025-07-01T08:17:39.679Z [INFO] POST /api/login or /api/auth/login
+2025-07-01T08:17:39.729Z [INFO] Login: Success for user admin@cas.local
+2025-07-01T08:17:39.736Z [INFO] [REQ] GET /api/ping
+2025-07-01T08:17:39.742Z [INFO] [REQ] GET /api/scheduler/status
+2025-07-01T08:17:39.745Z [INFO] [REQ] GET /api/locations
+2025-07-01T08:17:39.746Z [INFO] GET /api/locations
+2025-07-01T08:17:39.750Z [INFO] [REQ] GET /api/services
+2025-07-01T08:17:39.751Z [INFO] GET /api/services
+2025-07-01T08:17:39.760Z [INFO] [REQ] GET /api/customers
+2025-07-01T08:17:39.761Z [INFO] GET /api/customers
+2025-07-01T08:17:39.776Z [INFO] [REQ] GET /api/employees
+2025-07-01T08:17:39.777Z [INFO] GET /api/employees
+2025-07-01T08:17:39.785Z [INFO] [REQ] GET /api/orders
+2025-07-01T08:17:39.786Z [INFO] GET /api/orders
+2025-07-01T08:17:39.798Z [INFO] [REQ] GET /api/orders/active
+2025-07-01T08:17:39.798Z [INFO] GET /api/orders/active
+2025-07-01T08:17:39.808Z [INFO] [REQ] GET /api/transports
+2025-07-01T08:17:39.820Z [INFO] [REQ] GET /api/inventory
+2025-07-01T08:17:39.821Z [INFO] GET /api/inventory
+2025-07-01T08:17:39.829Z [INFO] [REQ] GET /api/inventory/low-stock
+2025-07-01T08:17:39.830Z [INFO] GET /api/inventory/low-stock
+2025-07-01T08:17:39.834Z [INFO] [REQ] GET /api/equipment
+2025-07-01T08:17:39.844Z [INFO] [REQ] GET /api/equipment/statuses
+2025-07-01T08:17:39.847Z [INFO] [REQ] GET /api/maintenance
+2025-07-01T08:17:39.849Z [INFO] [REQ] GET /api/maintenance/upcoming
+2025-07-01T08:17:39.855Z [INFO] [REQ] GET /api/stats/dashboard
+2025-07-01T08:17:39.913Z [INFO] [REQ] GET /api/stats/system-status
+2025-07-01T08:17:39.918Z [INFO] [REQ] GET /api/stats/performance
+2025-07-01T08:17:39.923Z [INFO] [REQ] GET /api/notifications/recent

@@ -130,67 +130,58 @@ class InventoryRepository extends Base {
   
   // ==================== INVENTORY ====================
   
-  async getInventoryByLocation(locationId, includeZero = false) {
-    const whereClause = includeZero ? '' : 'AND i.quantity > 0';
-    
+  async getInventoryByLocation(branchId, includeZero = false) {
+    const whereClause = includeZero ? '' : 'AND s.qty_on_hand > 0';
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.location_id = $1 ${whereClause}
-      ORDER BY r.kind, r.name
-    `;
-    
-    return await pool.query(query, [locationId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.branch_id = $1 ${whereClause}
+       ORDER BY c.name`;
+    return await pool.query(query, [branchId]);
   }
   
-  async getInventoryByResource(resourceId) {
+  async getInventoryByResource(itemCode) {
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.resource_id = $1 AND i.quantity > 0
-      ORDER BY l.name
-    `;
-    
-    return await pool.query(query, [resourceId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty,
+             s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.item_code = $1 AND s.qty_on_hand > 0
+       ORDER BY b.name`;
+    return await pool.query(query, [itemCode]);
   }
   
   async getAllInventory(includeZero = false) {
-    const whereClause = includeZero ? '' : 'WHERE i.quantity > 0';
-    
+    const whereClause = includeZero ? '' : 'WHERE s.qty_on_hand > 0';
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      ${whereClause}
-      ORDER BY l.name, r.kind, r.name
-    `;
-    
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+        ${whereClause}
+        ORDER BY b.name, c.name`;
     return await pool.query(query);
   }
   
-  async getInventoryItem(locationId, resourceId) {
+  async getInventoryItem(branchId, itemCode) {
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.location_id = $1 AND i.resource_id = $2
-    `;
-    
-    const result = await pool.query(query, [locationId, resourceId]);
+      SELECT s.branch_id, b.name as branch_name,
+             s.item_code, c.name as item_name,
+             s.qty_on_hand, s.min_qty, s.expire_date, s.last_updated
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.branch_id = $1 AND s.item_code = $2`;
+    const result = await pool.query(query, [branchId, itemCode]);
     return result[0] || null;
   }
   
@@ -332,18 +323,18 @@ class InventoryRepository extends Base {
   
   // ==================== LOW STOCK ALERTS ====================
   
-  async getLowStockItems(threshold = 10) {
+  async getLowStockItems(threshold = 100) {
+    // v3 schema: inventory_stocks (branch_id, item_code, qty_on_hand, min_qty)
     const query = `
-      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
-             r.name as resource_name, r.kind, r.unit, r.unit_cost,
-             l.name as location_name
-      FROM inventory i
-      JOIN resources r ON i.resource_id = r.resource_id
-      JOIN locations l ON i.location_id = l.location_id
-      WHERE i.quantity <= $1 AND i.quantity >= 0
-      ORDER BY i.quantity ASC, l.name, r.name
-    `;
-    
+      SELECT s.branch_id, b.name AS branch_name,
+             s.item_code, c.name AS item_name, c.unit_code,
+             s.qty_on_hand, s.min_qty,
+             (s.qty_on_hand - s.min_qty) AS diff
+        FROM inventory_stocks s
+        JOIN branches b ON s.branch_id = b.id
+        JOIN consumable_items c ON s.item_code = c.code
+       WHERE s.qty_on_hand <= s.min_qty + $1
+       ORDER BY diff ASC, b.name, c.name`;
     return await pool.query(query, [threshold]);
   }
   

@@ -75,7 +75,7 @@ class OrderRepository extends Base {
   }
 
   updateStatus(id, status) {
-    return this.patch(id, 'status=$2', [status]);
+    return this.patch(id, 'status=$2, updated_at = now()', [status]);
   }
 
   delete(id) { return super.remove(id); }

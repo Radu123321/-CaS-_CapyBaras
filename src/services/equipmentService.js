@@ -1,18 +1,31 @@
 const repo = require('../repositories/equipmentRepository');
+const maintenanceService = require('./maintenanceService');
 
 module.exports = {
   list: branchId => repo.getAllEquipment({branch_id: branchId}),
-  getAllEquipment: filters => repo.getAllEquipment(filters||{}),
+  getAllEquipment: async filters => {
+    try {
+      return await repo.getAllEquipment(filters||{});
+    } catch (e) {
+      return [];
+    }
+  },
   getEquipmentById: id => repo.getEquipmentById(id),
   createEquipment: data => repo.createEquipment(data),
   updateEquipment: (id,data)=>repo.updateEquipment(id,data),
   create: data => repo.createEquipment(data),
   updateStatus: (id,status)=>repo.updateStatus?repo.updateStatus(id,status):repo.updateEquipment(id,{status}),
-  // stubs
-  scheduleMaintenance: ()=>Promise.resolve(null),
-  completeMaintenance: ()=>Promise.resolve(null),
-  checkEquipmentStatus: ()=>Promise.resolve([]),
-  getDashboard: ()=>Promise.resolve({}),
-  getDashboardSummary: ()=>Promise.resolve({}),
-  getEquipmentStatuses: ()=>Promise.resolve([])
+  // ═══ Maintenance wrappers ═══
+  scheduleMaintenance: data => maintenanceService.createMaintenance({
+    equipment_id: data.equipment_id,
+    due_at: data.started_at || data.due_at,
+    task_desc: data.description || null,
+    mandatory: !data.unplanned,
+  }),
+  completeMaintenance: (maintenanceId, completionData={}) => maintenanceService.completeMaintenance(maintenanceId, completionData.ended_at),
+  // ═══ Dashboards & Status ═══
+  checkEquipmentStatus: branchId => repo.getEquipmentStatusSummary(branchId),
+  getDashboard: branchId => repo.getEquipmentStatusSummary(branchId),
+  getDashboardSummary: branchId => repo.getEquipmentStatusSummary(branchId),
+  getEquipmentStatuses: () => ['OPERATIONAL','MAINTENANCE','BROKEN','RETIRED']
 }; 

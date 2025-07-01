@@ -1611,3 +1611,66 @@
 2025-06-29T21:35:04.809Z [INFO] [REQ] GET /api/employees
 2025-06-29T21:35:04.810Z [INFO] GET /api/employees
 2025-06-29T21:35:04.810Z [ERROR] Get employees error: employeeService.getAllEmployees is not a function
+2025-06-29T21:36:31.817Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:36:31.880Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:36:31.885Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:36:31.967Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:36:31 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:41:52.275Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:41:52.330Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:41:52.334Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:41:52.395Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:41:52 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:42:46.246Z [INFO] [REQ] GET /api/employees
+2025-06-29T21:42:46.247Z [INFO] GET /api/employees
+2025-06-29T21:42:55.266Z [INFO] [REQ] GET /api/services
+2025-06-29T21:42:55.267Z [INFO] GET /api/services
+2025-06-29T21:42:55.267Z [ERROR] Get services error: serviceService.getAllServices is not a function
+2025-06-29T21:45:12.251Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:45:12.300Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:45:12.303Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:45:12.367Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:45:12 GMT+0300 (Eastern European Summer Time)
+2025-06-29T21:45:25.204Z [INFO] [REQ] GET /api/services
+2025-06-29T21:45:25.205Z [INFO] GET /api/services
+2025-06-29T21:46:05.348Z [INFO] [REQ] GET /api/orders
+2025-06-29T21:46:05.349Z [INFO] GET /api/orders
+2025-06-29T21:46:05.350Z [ERROR] OrderController: Get orders failed: orderService.getAllOrders is not a function
+2025-06-29T21:46:05.358Z [INFO] [REQ] GET /api/inventory
+2025-06-29T21:46:05.358Z [INFO] GET /api/inventory
+2025-06-29T21:46:05.419Z [ERROR] SQL error after 61ms: relation "inventory" does not exist
+2025-06-29T21:46:05.420Z [ERROR] Failed query: 
+      SELECT i.location_id, i.resource_id, i.quantity, i.updated_at,
+             r.name as resource_name, r.kind, r.unit, r.unit_cost,
+             l.name as location_name
+      FROM inventory i
+      JOIN resources r ON i.resource_id = r.resource_id
+      JOIN locations l ON i.location_id = l.location_id
+      WHERE i.quantity > 0
+      ORDER BY l.name, r.kind, r.name
+    
+2025-06-29T21:46:05.420Z [ERROR] Get inventory error: relation "inventory" does not exist
+2025-06-29T21:46:05.426Z [INFO] [REQ] GET /api/equipment
+2025-06-29T21:46:05.528Z [ERROR] SQL error after 101ms: relation "locations" does not exist
+2025-06-29T21:46:05.528Z [ERROR] Failed query: 
+            SELECT 
+                e.*,
+                l.name as location_name,
+                COUNT(ms.maintenance_id) as maintenance_count,
+                MAX(ms.completed_at) as last_completed_maintenance,
+                MIN(CASE WHEN ms.status = 'SCHEDULED' THEN ms.scheduled_date END) as next_scheduled_maintenance
+            FROM equipment e
+            LEFT JOIN locations l ON e.location_id = l.location_id
+            LEFT JOIN maintenance_schedules ms ON e.equipment_id = ms.equipment_id
+            WHERE 1=1
+        
+            GROUP BY e.equipment_id, l.name
+            ORDER BY e.location_id, e.name
+        
+2025-06-29T21:46:05.529Z [ERROR] Error in getAllEquipment:
+2025-06-29T21:46:05.535Z [INFO] [REQ] GET /api/shifts
+2025-06-29T21:46:05.538Z [ERROR] ShiftController.getAllShifts: Cannot read properties of undefined (reading 'getAllShifts')
+2025-06-29T21:46:05.543Z [INFO] [REQ] GET /api/maintenance
+2025-06-29T21:46:05.544Z [ERROR] MaintenanceController.getAllMaintenance: Cannot read properties of undefined (reading 'getAllMaintenance')
+2025-06-29T21:46:05.548Z [INFO] [REQ] GET /api/alerts/history
+2025-06-29T21:54:40.952Z [INFO] Connecting to PostgreSQL: postgres@localhost:5432/twproject
+2025-06-29T21:54:40.991Z [INFO] Scheduler disabled – background jobs will not run
+2025-06-29T21:54:40.994Z [INFO] Minimal server listening on port 8000
+2025-06-29T21:54:41.050Z [INFO] PostgreSQL connection successful. Server time: Mon Jun 30 2025 00:54:41 GMT+0300 (Eastern European Summer Time)

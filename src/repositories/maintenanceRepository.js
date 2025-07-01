@@ -60,7 +60,7 @@ class MaintenanceRepository extends Base {
   /** Return tasks that are due in next `days` days (or overdue if negative). */
   upcoming(days = 7, branchId = null) {
     const params = [days];
-    let where = 'status = \"PENDING\" AND due_at <= now() + ($1 || \" days\")::interval';
+    let where = "status = 'PENDING' AND due_at <= now() + ($1 || ' days')::interval";
     if (branchId) {
       params.push(branchId);
       where += ` AND equipment_id IN (SELECT id FROM equipment WHERE branch_id = $${params.length})`;
