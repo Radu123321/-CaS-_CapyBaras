@@ -1,0 +1,5 @@
+.admin-table{width:100%;border-collapse:collapse;margin-top:20px;}
+.admin-table th,.admin-table td{border:1px solid #e5e7eb;padding:8px 12px;text-align:left;}
+.admin-table th{background:#f3f4f6;font-weight:600;}
+.admin-table tr:nth-child(even){background:#fafafa;}
+.admin-actions .btn{margin-right:6px;} 
