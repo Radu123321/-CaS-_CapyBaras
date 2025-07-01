@@ -60,7 +60,7 @@ class BookingWizard {
       const response = await authManager.apiRequest('/locations');
       
       if (response.success) {
-        this.locations = response.data || [];
+        this.locations = (response.data || []).filter(l=>l.is_active!==false);
         this.renderLocations();
       } else {
         throw new Error('Nu s-au putut încărca locațiile');

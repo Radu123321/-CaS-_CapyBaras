@@ -601,41 +601,48 @@ class OrderRepository extends Base {
     return await pool.query(selectSQL, params);
   }
 
-  async getAvailability(date, locationId = null, serviceId = null) {
+  async getAvailability(date, branchId = null, serviceId = null) {
     log.debug(`OrderRepository: Getting availability for ${date}`);
-    
+
     try {
       let sql = `
         SELECT 
-          order_id,
-          scheduled_date,
-          scheduled_time,
+          id,
+          scheduled_start,
+          scheduled_end,
           status,
           service_id,
-          location_id
+          branch_id
         FROM orders 
-        WHERE scheduled_date = $1
+        WHERE DATE(scheduled_start) = $1
       `;
-      
+
       const params = [date];
-      let paramIndex = 2;
-      
-      if (locationId) {
-        sql += ` AND location_id = $${paramIndex}`;
-        params.push(locationId);
-        paramIndex++;
+      let idx = 2;
+
+      if (branchId) {
+        sql += ` AND branch_id = $${idx}`;
+        params.push(branchId);
+        idx++;
       }
-      
+
       if (serviceId) {
-        sql += ` AND service_id = $${paramIndex}`;
+        sql += ` AND service_id = $${idx}`;
         params.push(serviceId);
-        paramIndex++;
+        idx++;
       }
-      
-      sql += ` ORDER BY scheduled_time`;
-      
-      const result = await pool.query(sql, params);
-      return result && result.rows || [];
+
+      sql += ` ORDER BY scheduled_start`;
+
+      const { rows } = await pool.query(sql, params);
+
+      // Build list of unavailable times (HH:MM) based on scheduled_start
+      const unavailable = rows.map(r => {
+        const d = new Date(r.scheduled_start);
+        return d.toISOString().substring(11,16);
+      });
+
+      return { unavailable };
     } catch (error) {
       log.error(`OrderRepository: Failed to get availability: ${error.message}`);
       throw error;
