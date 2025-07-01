@@ -44,10 +44,15 @@ function buildUserModal(mode='create', row={}){
       <div class="modal-body">
         ${isCreate? '<div class="form-group"><label class="form-label">Email</label><input type="email" id="uEmail" class="form-control" placeholder="utilizator@example.com" required></div>' : ''}
         ${isCreate? '<div class="form-group"><label class="form-label">Rol</label><select id="uRole" class="form-control"><option value="EMPLOYEE">EMPLOYEE</option><option value="MANAGER">MANAGER</option><option value="ADMIN">ADMIN</option><option value="CUSTOMER">CUSTOMER</option></select></div>' : ''}
-        ${isCreate? '<div class="form-group"><label class="form-label">Filiala ID (opțional)</label><input type="number" id="uBranch" class="form-control" placeholder="1"></div>' : ''}
-        <div class="form-group"><label class="form-label">Prenume</label><input type="text" id="uFirst" class="form-control" value="${row.first_name||''}" required></div>
-        <div class="form-group"><label class="form-label">Nume</label><input type="text" id="uLast" class="form-control" value="${row.last_name||''}" required></div>
-        <div class="form-group"><label class="form-label">Telefon</label><input type="text" id="uPhone" class="form-control" value="${row.phone||''}" ></div>
+        ${isCreate? (()=>{
+          const opts = branchesData.map(b=>{
+            const id=b.id||b.location_id; const n=b.name||b.location_name||('Filiala #'+id);
+            return `<option value="${id}">${n}</option>`;}).join('');
+          return `<div class=\"form-group\"><label class=\"form-label\">Filială</label><select id=\"uBranchSel\" class=\"form-control\"><option value=\"\">(fără)</option>${opts}</select></div>`;
+        })() : ''}
+        <div class="form-group"><label class="form-label">Prenume</label><input type="text" id="uFirst" class="form-control" placeholder="Prenume" value="${row.first_name||''}" required></div>
+        <div class="form-group"><label class="form-label">Nume</label><input type="text" id="uLast" class="form-control" placeholder="Nume" value="${row.last_name||''}" required></div>
+        <div class="form-group"><label class="form-label">Telefon</label><input type="text" id="uPhone" class="form-control" placeholder="07xx xxx xxx" value="${row.phone||''}" ></div>
         ${isCreate? '<div class="form-group"><label class="form-label">Parolă temporară</label><input type="text" id="uPwd" class="form-control" value="changeme"></div>' : ''}
       </div>
       <div class="modal-footer">
@@ -74,7 +79,7 @@ async function submitUserModal(modalId, mode, userId){
   if(mode==='create'){
     payload.email = getVal('uEmail');
     payload.role = getVal('uRole')||'EMPLOYEE';
-    const br=getVal('uBranch');
+    const br=getVal('uBranchSel');
     if(br) payload.branch_id=parseInt(br);
     payload.password = getVal('uPwd')||'changeme';
   }
