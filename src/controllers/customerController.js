@@ -222,9 +222,29 @@ async function createCustomer(req, res) {
       company_name, 
       billing_address, 
       preferred_location_id, 
-      preferred_contact_method 
+      preferred_contact_method,
+      email,
+      password,
+      first_name,
+      last_name,
+      phone,
+      branch_id
     } = req.body;
-    
+
+    // New simplified flow: if email+password provided, create standalone customer user
+    if(email && password){
+      const newCustomer = await customerService.createCustomer({
+        email,
+        password,
+        branch_id,
+        first_name,
+        last_name,
+        phone
+      });
+      res.writeHead(201, { 'Content-Type':'application/json','Access-Control-Allow-Origin':'*'});
+      return res.end(JSON.stringify({success:true,data:newCustomer}));
+    }
+
     if (!user_id) {
       res.writeHead(400, { 
         'Content-Type': 'application/json',
@@ -232,7 +252,7 @@ async function createCustomer(req, res) {
       });
       res.end(JSON.stringify({ 
         success: false,
-        error: 'user_id is required' 
+        error: 'user_id or email/password is required' 
       }));
       return;
     }
@@ -307,14 +327,20 @@ async function updateCustomer(req, res) {
       company_name, 
       billing_address, 
       preferred_location_id, 
-      preferred_contact_method 
+      preferred_contact_method,
+      phone,
+      first_name,
+      last_name
     } = req.body;
     
     const customerData = { 
       company_name: company_name?.trim() || null,
       billing_address: billing_address?.trim() || null,
       preferred_location_id: preferred_location_id || null,
-      preferred_contact_method: preferred_contact_method || null
+      preferred_contact_method: preferred_contact_method || null,
+      phone: phone || null,
+      first_name: first_name || null,
+      last_name: last_name || null
     };
     
     // Remove null/undefined values

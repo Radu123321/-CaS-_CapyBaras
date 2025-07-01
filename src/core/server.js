@@ -292,6 +292,13 @@ router.add('PUT', '/api/exceptions/:id', exceptionController.updateException);
 router.add('PUT', '/api/exceptions/:id/resolve', exceptionController.resolveException);
 router.add('DELETE', '/api/exceptions/:id', exceptionController.deleteException);
 
+const userController = require('../controllers/userController');
+router.add('GET','/api/users', userController.listUsers);
+router.add('POST','/api/users', userController.createUser);
+router.add('GET','/api/users/:id', userController.getUser);
+router.add('PUT','/api/users/:id', userController.updateUser);
+router.add('DELETE','/api/users/:id', userController.deleteUser);
+
 // ----------------------------------------------------------
 // Global middlewares (logging + auth)
 // These are registered AFTER all routes so they apply to every
