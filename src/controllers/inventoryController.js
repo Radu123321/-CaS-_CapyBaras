@@ -399,14 +399,20 @@ async function importInventoryCsv(req,res){
 
     let imported = 0;
     for(let i=1;i<lines.length;i++){
-      const [code,qtyStr,exp] = lines[i].split(',');
+      // Support both comma and semicolon CSVs
+      let parts = lines[i].split(',');
+      if(parts.length<2){
+        parts = lines[i].split(';');
+      }
+      const [codeRaw, qtyStr, exp] = parts.map(p=>p.trim());
+      const code = codeRaw;
       const qty = parseFloat(qtyStr);
       if(!code || isNaN(qty) || qty===0) continue;
 
       try{
         await inventoryService.addTransaction({
           branchId: parseInt(branchId),
-          itemCode: code.trim(),
+          itemCode: code,
           qtyDelta: qty,
           expireDate: exp ? (exp.trim()||null) : null,
           reason: 'RESTOCK',
