@@ -329,3 +329,5 @@ BEGIN
   EXECUTE format('COMMENT ON DATABASE %I IS %L', current_database(),
                  'CaS – Cleaning & Scheduling schema v3');
 END$$; 
+ALTER TABLE branches
+ADD COLUMN is_active BOOLEAN DEFAULT true;
