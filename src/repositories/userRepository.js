@@ -4,13 +4,28 @@ const pool = require('../core/psql');
  * User repository – ADMIN full control
  */
 module.exports = {
-  async list() {
+  /** List active users (soft-delete aware) */
+  async list(activeOnly = true) {
+    // ensure column exists (idempotent for PG 9.6+)
+    await pool.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS active BOOLEAN DEFAULT TRUE');
+    const where = activeOnly ? 'WHERE u.active = true' : '';
     const { rows } = await pool.query(
       `SELECT u.*, b.name AS branch_name
          FROM users u
          LEFT JOIN branches b ON b.id = u.branch_id
+         ${where}
         ORDER BY u.id`);
     return rows;
+  },
+
+  /** Get a single user by id */
+  async get(id){
+    const { rows } = await pool.query(
+      `SELECT u.*, b.name AS branch_name
+         FROM users u
+         LEFT JOIN branches b ON b.id = u.branch_id
+        WHERE u.id=$1`, [id]);
+    return rows[0] || null;
   },
 
   async create({ email, pwdHash, role, branchId = null, firstName, lastName, phone }) {
@@ -34,5 +49,8 @@ module.exports = {
     return rows[0];
   },
 
-  remove: id => pool.query('DELETE FROM users WHERE id=$1', [id])
+  /** Soft delete (set active=false) */
+  async remove(id) {
+    await pool.query('UPDATE users SET active=false, updated_at=now() WHERE id=$1', [id]);
+  }
 }; 
