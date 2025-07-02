@@ -1,7 +1,7 @@
 const pool = require('../core/psql');
 
 /**
- * Branch (location) repository – schema v3
+ * Branch (location) repository schema v3
  */
 module.exports = {
   /**

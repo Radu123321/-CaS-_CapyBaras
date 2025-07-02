@@ -9,12 +9,12 @@ class BaseRepo {
   /** generic list */
   list(where = 'TRUE', params = []) {
     return pool.query(`SELECT * FROM ${this.table} WHERE ${where}`, params)
-               .then(r => r.rows);
+            .then(r => r.rows);
   }
 
   get(id) {
     return pool.query(`SELECT * FROM ${this.table} WHERE ${this.pk}=$1`, [id])
-               .then(r => r.rows[0] || null);
+            .then(r => r.rows[0] || null);
   }
 
   async insert(columns, values) {
@@ -36,4 +36,4 @@ class BaseRepo {
   }
 }
 
-module.exports = BaseRepo; 
+module.exports = BaseRepo;
